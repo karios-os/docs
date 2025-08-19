@@ -11,7 +11,7 @@ This repository contains the official documentation for Karios, the software-def
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone git@git.karios.ai:Karios/docs.git
 cd karios-docs
 ```
 
