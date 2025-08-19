@@ -4,14 +4,15 @@
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Complete installation guide for Karios hyper-converged infrastructure platform" name="description" />
+<meta content="Karios, installation, setup, FreeBSD, HCI, hypervisor" name="keywords" />
 <meta property="og:title" content="Installation" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.karios.ai/getting-started/installation.html" />
 <meta property="og:site_name" content="Karios Documentation" />
-<meta property="og:description" content="Installation guide coming soon." />
+<meta property="og:description" content="Overview: Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components p..." />
 <meta property="og:image" content="https://docs.karios.ai/_static/images/og-image.png" />
 <meta property="og:image:alt" content="Karios Documentation" />
-<meta name="description" content="Installation guide coming soon." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation &mdash; Karios Documentation</title>
@@ -19,7 +20,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b0c2013c" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1206881a" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -64,7 +65,16 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#architecture-overview">Architecture Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#hardware-requirements">Hardware Requirements</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#next-steps">Next Steps</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-installation-planning">Pre-Installation Planning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-process">Installation Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-installation-configuration">Post-Installation Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-troubleshooting">Installation Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="basics.html">Karios Basics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="initial-configuration.html">Initial Configuration</a></li>
 </ul>
@@ -135,7 +145,284 @@
              
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<p>Installation guide coming soon.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components pre-configured for optimal performance and security.</p>
+</section>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<section id="production-hardware-recommendations">
+<h3>Production Hardware Recommendations<a class="headerlink" href="#production-hardware-recommendations" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We strongly recommend using high-quality server hardware when deploying Karios in production environments. Enterprise-grade hardware ensures reliability, performance, and long-term support for your critical infrastructure.</p>
+</div>
+</section>
+<section id="minimum-requirements">
+<h3>Minimum Requirements<a class="headerlink" href="#minimum-requirements" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These minimum requirements are intended for <strong>evaluation and testing purposes only</strong>. Do not use these specifications for production deployments.</p>
+</div>
+<ul class="simple">
+<li><p><strong>CPU</strong>: 64-bit processor</p></li>
+<li><p><strong>Virtualization Support</strong>: Intel VT-x or AMD-V capable CPU and motherboard for hardware-assisted virtualization</p></li>
+<li><p><strong>RAM</strong>: 32 GB system RAM minimum, plus additional RAM allocation for virtual machines and guests</p></li>
+<li><p><strong>Storage</strong>: Hard drive with sufficient capacity for the operating system and guest storage</p></li>
+<li><p><strong>Network</strong>: One network interface card (NIC) minimum</p></li>
+</ul>
+</section>
+<section id="recommended-production-requirements">
+<h3>Recommended Production Requirements<a class="headerlink" href="#recommended-production-requirements" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Production Hardware Specifications</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Specification</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>CPU</strong></p></td>
+<td><p>Intel Xeon Scalable, AMD EPYC or equivalent (minimum 8 cores)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RAM</strong></p></td>
+<td><p>64GB DDR4 ECC RAM (minimum) - ECC RAM is strongly recommended for data integrity</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Storage</strong></p></td>
+<td><p>Minimum 2 x 1TB SATA drives (for redundancy). SSD/NVMe drives are highly recommended for performance</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Network</strong></p></td>
+<td><p>Gigabit Ethernet adapter minimum</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For detailed hardware requirements, refer to the hardware compatibility section.</p>
+</div>
+</section>
+</section>
+<section id="pre-installation-planning">
+<h2>Pre-Installation Planning<a class="headerlink" href="#pre-installation-planning" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>MANDATORY REQUIREMENT</strong>: Internet connectivity is required during installation.</p>
+</div>
+<section id="preparing-your-hardware-and-software">
+<h3>Preparing Your Hardware and Software<a class="headerlink" href="#preparing-your-hardware-and-software" title="Link to this heading"></a></h3>
+<p>Before you begin installing Karios, careful preparation is crucial for a smooth and successful deployment. This section outlines the necessary hardware checks, software downloads, and USB drive creation process.</p>
+<section id="hardware-requirements-verification">
+<h4>Hardware Requirements Verification<a class="headerlink" href="#hardware-requirements-verification" title="Link to this heading"></a></h4>
+<p><strong>Hardware Compatibility</strong></p>
+<p>While Karios supports a wide range of hardware, we maintain a list of tested and validated configurations. Consult the hardware compatibility documentation before proceeding if you have specific concerns about hardware compatibility.</p>
+<p><strong>BIOS/UEFI Settings</strong></p>
+<p>Ensure your BIOS or UEFI is configured properly:</p>
+<ul class="simple">
+<li><p>Set boot order with USB drive as the primary boot device</p></li>
+<li><p>Enable virtualization support (Intel VT-x or AMD-V)</p></li>
+<li><p>Refer to your motherboard manual for instructions on accessing and modifying these settings</p></li>
+</ul>
+</section>
+<section id="downloading-the-karios-iso-image">
+<h4>Downloading the Karios ISO Image<a class="headerlink" href="#downloading-the-karios-iso-image" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Navigate to the official Karios download page</p></li>
+<li><p>Select the appropriate version based on your hardware architecture (typically x86_64)</p></li>
+<li><p>If unsure about architecture, consult with your system administrator</p></li>
+</ol>
+<p><strong>Verify Download Integrity</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On Linux/macOS, verify the ISO checksum</span>
+sha256sum<span class="w"> </span>karios-installer.iso
+
+<span class="c1"># Compare with the official checksum from the download page</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-a-bootable-usb-drive">
+<h4>Creating a Bootable USB Drive<a class="headerlink" href="#creating-a-bootable-usb-drive" title="Link to this heading"></a></h4>
+<p><strong>Recommended Software</strong></p>
+<ul class="simple">
+<li><p><strong>Rufus</strong> (Windows)</p></li>
+<li><p><strong>Etcher</strong> (Cross-platform)</p></li>
+<li><p><strong>dd</strong> command (Linux/macOS)</p></li>
+</ul>
+<p><strong>Rufus Instructions (Windows)</strong></p>
+<ol class="arabic simple">
+<li><p>Download and run Rufus</p></li>
+<li><p>Select your USB drive from the “Device” dropdown menu</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All data on the selected USB drive will be erased.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Click the “SELECT” button and browse to the downloaded Karios ISO image file</p></li>
+<li><p>Set partition scheme to “MBR” or “GPT” based on your system’s BIOS/UEFI settings</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If unsure, try GPT first for newer systems.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Click “START” and confirm any warnings about data loss</p></li>
+</ol>
+<p><strong>Etcher Instructions (Cross-Platform)</strong></p>
+<ol class="arabic simple">
+<li><p>Download and run Etcher</p></li>
+<li><p>Click “Flash from file” and select the Karios ISO image</p></li>
+<li><p>Select your USB drive as the target device</p></li>
+<li><p>Click “Flash!”</p></li>
+</ol>
+<p><strong>dd Command Instructions (Linux/macOS)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace /dev/sdX with your USB drive identifier</span>
+<span class="c1"># Use &#39;lsblk&#39; or &#39;fdisk -l&#39; to identify the correct drive</span>
+sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>karios-installer.iso<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sdX<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4M<span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
+sudo<span class="w"> </span>sync
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="installation-process">
+<h2>Installation Process<a class="headerlink" href="#installation-process" title="Link to this heading"></a></h2>
+<section id="kickstart-installation-steps">
+<h3>Kickstart Installation Steps<a class="headerlink" href="#kickstart-installation-steps" title="Link to this heading"></a></h3>
+<p>The Karios installation follows a two-phase process:</p>
+<p><strong>Phase 1: FreeBSD Base Installation</strong></p>
+<ol class="arabic simple">
+<li><p>Boot from the USB drive</p></li>
+<li><p>Follow the FreeBSD installation prompts</p></li>
+<li><p>Wait for the base system installation to complete</p></li>
+<li><p>Allow the system to reboot</p></li>
+</ol>
+<p><strong>Phase 2: Karios Bootstrap</strong></p>
+<p>After FreeBSD installation is complete and the node is up, execute the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/root/
+fetch<span class="w"> </span>--no-verify-peer<span class="w"> </span>--no-verify-hostname<span class="w"> </span>-o<span class="w"> </span>/root/bootstrap.sh<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>https://install.karios.ai/bootstrap.sh
+chmod<span class="w"> </span>+x<span class="w"> </span>bootstrap.sh
+./bootstrap.sh
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The bootstrap script will automatically install and configure all Karios components.</p>
+</div>
+</section>
+</section>
+<section id="post-installation-configuration">
+<h2>Post-Installation Configuration<a class="headerlink" href="#post-installation-configuration" title="Link to this heading"></a></h2>
+<section id="accessing-the-karios-interface">
+<h3>Accessing the Karios Interface<a class="headerlink" href="#accessing-the-karios-interface" title="Link to this heading"></a></h3>
+<p>Once installation is complete, access the Karios management interface:</p>
+<ol class="arabic simple">
+<li><p><strong>Web Browser</strong>: Open a web browser on a computer connected to the same network</p></li>
+<li><p><strong>Management URL</strong>: Navigate to the Karios management interface URL (typically <code class="docutils literal notranslate"><span class="pre">https://&lt;server-ip&gt;</span></code>)</p></li>
+<li><p><strong>Login Credentials</strong>: Use the administrative credentials created during installation</p></li>
+<li><p><strong>Initial Setup Wizard</strong>: Complete the guided setup process</p></li>
+</ol>
+</section>
+<section id="supported-web-browsers">
+<h3>Supported Web Browsers<a class="headerlink" href="#supported-web-browsers" title="Link to this heading"></a></h3>
+<p>To access the web-based user interface, we recommend using one of the following browsers:</p>
+<ul class="simple">
+<li><p><strong>Chrome</strong>: A release from the current year</p></li>
+<li><p><strong>Safari</strong>: A release from the current year</p></li>
+<li><p><strong>Mobile Access</strong>: When accessed from a mobile device, Karios automatically displays a lightweight, touch-optimized interface</p></li>
+</ul>
+</section>
+<section id="system-validation">
+<h3>System Validation<a class="headerlink" href="#system-validation" title="Link to this heading"></a></h3>
+<p>Verify that your Karios installation is functioning correctly:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Validation Checklist</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Check</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Service Status</strong></p></td>
+<td><p>Verify that all essential services are running</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Hardware Recognition</strong></p></td>
+<td><p>Confirm that all hardware components are detected</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Network Connectivity</strong></p></td>
+<td><p>Test network connectivity and performance</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Storage Availability</strong></p></td>
+<td><p>Verify storage pools and volumes are accessible</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="installation-troubleshooting">
+<h2>Installation Troubleshooting<a class="headerlink" href="#installation-troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-installation-issues">
+<h3>Common Installation Issues<a class="headerlink" href="#common-installation-issues" title="Link to this heading"></a></h3>
+<p>If you encounter problems during installation:</p>
+<dl class="simple">
+<dt><strong>Hardware Compatibility</strong></dt><dd><p>Verify that your hardware meets all requirements and is on the compatibility list.</p>
+</dd>
+<dt><strong>Installation Media</strong></dt><dd><p>Ensure installation media is not corrupted by verifying checksums.</p>
+</dd>
+<dt><strong>Network Configuration</strong></dt><dd><p>Check network settings and connectivity during the bootstrap phase.</p>
+</dd>
+<dt><strong>Storage Issues</strong></dt><dd><p>Verify storage hardware is properly connected and functional.</p>
+</dd>
+</dl>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h3>
+<p>If you need assistance with the installation process:</p>
+<ul class="simple">
+<li><p><strong>Documentation</strong>: Refer to the comprehensive Karios documentation</p></li>
+<li><p><strong>Support Resources</strong>: Access available support channels and community forums</p></li>
+<li><p><strong>Log Files</strong>: Review installation logs for detailed error information</p></li>
+<li><p><strong>Professional Support</strong>: Contact professional support services if available</p></li>
+</ul>
+<p><strong>Common Log Locations</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Installation logs</span>
+/var/log/karios-install.log
+
+<span class="c1"># System logs</span>
+/var/log/messages
+
+<span class="c1"># Bootstrap logs</span>
+/tmp/bootstrap.log
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation, proceed to:</p>
+<ul class="simple">
+<li><p><strong>Configuration</strong>: Review the management section for detailed setup procedures</p></li>
+<li><p><strong>User Guide</strong>: Familiarize yourself with user operations and interface</p></li>
+<li><p><strong>Component Configuration</strong>: Configure individual Karios components as needed</p></li>
+<li><p><strong>Security Hardening</strong>: Implement additional security measures for production use</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="basics.html"><span class="doc">Karios Basics</span></a></dt><dd><p>Learn Karios fundamentals and basic operations</p>
+</dd>
+<dt><a class="reference internal" href="initial-configuration.html"><span class="doc">Initial Configuration</span></a></dt><dd><p>Complete the initial system configuration</p>
+</dd>
+</dl>
+</div>
+</section>
 </section>
 
 
