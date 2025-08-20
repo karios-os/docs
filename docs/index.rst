@@ -3,10 +3,6 @@ Karios Documentation
 
 Welcome to the comprehensive documentation for Karios, the software-defined foundation for modern IT infrastructure.
 
-.. note::
-   This documentation is under active development. If you find any issues or have suggestions, 
-   please `open an issue <https://github.com/karios/karios-docs/issues>`_.
-
 What is Karios?
 ---------------
 
