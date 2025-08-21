@@ -30,58 +30,24 @@ The Security Center provides a centralized real-time view of your infrastructure
 
 **Left Panel - Risk Summary:**
 
-Displays critical security metrics at a glance:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - Risk Percentage
-     - Current security risk as a percentage (lower values indicate better security)
-   * - System Status
-     - Overall system health status based on latest scan results (e.g., "Needs Attention")
+.. image:: _static/security/risk-summary.png
+   :width: 600
+   :alt: Risk Summary Panel
+   :align: center
 
 **Center Panel - System Information:**
 
-Provides detailed system and scanning engine information:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - Scan Engine Version
-     - Current scanning engine version (KariOS Enhanced v1.1.0)
-   * - Last Scan Status
-     - Completion status of most recent scan (COMPLETED/FAILED)
-   * - Top Risk Category
-     - Primary vulnerability category contributing to current risk
-   * - Newest CVE
-     - Most recently detected CVE identifier
-   * - Last Remediation
-     - Time elapsed since last vulnerability remediation
+.. image:: _static/security/system-information.png
+   :width: 600
+   :alt: System Information Panel
+   :align: center
 
 **Right Panel - Vulnerability Breakdown:**
 
-Shows vulnerability distribution by category:
-
-.. list-table::
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Category
-     - Description
-   * - CAT I
-     - Critical vulnerabilities with high impact and immediate attention required
-   * - CAT II
-     - High-to-medium severity issues requiring prompt attention
-   * - CAT III
-     - Low-priority or informational issues for future consideration
-   * - Total
-     - Complete count of all identified vulnerabilities
+.. image:: _static/security/vulnerability-breakdown.png
+   :width: 600
+   :alt: Vulnerability Breakdown Panel
+   :align: center
 
 Metrics View - Scan History & Trends
 -------------------------------------
@@ -90,79 +56,38 @@ Access detailed metrics and historical analysis by clicking the Metrics dropdown
 
 **Security Scan History:**
 
-Track and analyze vulnerability trends across multiple scans with historical data showing vulnerability counts by category over time.
+.. image:: _static/security/scan-history.png
+   :width: 600
+   :alt: Security Scan History
+   :align: center
 
 **Previous Scan Details:**
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - Scan Date
-     - Timestamp of previous security scan
-   * - Total Findings
-     - Complete count of vulnerabilities found
-   * - Critical Issues
-     - Number of CAT I vulnerabilities identified
-   * - Risk Score
-     - Calculated risk assessment value
-   * - Compliance Status
-     - CIS FreeBSD compliance level achieved
+.. image:: _static/security/previous-scan-details.png
+   :width: 600
+   :alt: Previous Scan Details
+   :align: center
 
 **Recent Changes:**
 
-Monitor security posture changes between scans:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - New Vulnerabilities
-     - Number of new issues detected compared to last scan
-   * - Resolved Issues
-     - Number of previously identified issues now resolved
-   * - Improving Controls
-     - Security controls showing improvement in current scan
-   * - Declining Controls
-     - Security controls showing degradation since last scan
+.. image:: _static/security/recent-changes.png
+   :width: 600
+   :alt: Recent Changes
+   :align: center
 
 **Compliance Gap Analysis:**
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Compliance Area
-     - Status
-   * - Access Controls
-     - Number of failed checks vs. total checks
-   * - System Hardening
-     - Percentage of hardening requirements met
-   * - Network Security
-     - Count of network-related findings
-   * - Audit & Logging
-     - Compliance level for audit requirements
+.. image:: _static/security/compliance-gap.png
+   :width: 600
+   :alt: Compliance Gap Analysis
+   :align: center
 
 **Security Insights:**
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Metric
-     - Value
-   * - Mean Time to Remediate
-     - Average time to fix vulnerabilities
-   * - Exposure Time Reduction
-     - Percentage improvement in vulnerability exposure
-   * - Most Common Issue Type
-     - Frequently occurring vulnerability category
-   * - Threat Landscape Status
-     - Current threat intelligence assessment
+.. image:: _static/security/security-insights.png
+   :width: 600
+   :alt: Security Insights
+   :align: center
 
 Vulnerability Scanning
 ======================
@@ -200,26 +125,10 @@ Scan Process and Components
 
 **What Gets Checked:**
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Component
-     - Description
-   * - System Packages
-     - Installed software versions and known vulnerabilities
-   * - Kernel Configuration
-     - Security-related kernel parameters and loaded modules
-   * - Network Services
-     - Open ports, running services, and network configurations
-   * - File Permissions
-     - Critical system file and directory access controls
-   * - User Accounts
-     - Account security, privileges, and authentication settings
-   * - Security Policies
-     - System security policy compliance and configurations
-   * - Patch Status
-     - Missing security updates and available patches
+.. image:: _static/security/scan-components.png
+   :width: 600
+   :alt: Scan Components
+   :align: center
 
 **Behind-the-Scenes Process:**
 
@@ -276,24 +185,10 @@ Vulnerability Classification and Tracking
 
 **Vulnerability Information Display:**
 
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - CVE ID
-     - Common Vulnerabilities and Exposures identifier
-   * - CVSS Score
-     - Severity score from 0.0 to 10.0
-   * - Severity Level
-     - Critical, High, Medium, or Low classification
-   * - Affected Component
-     - System component or package with vulnerability
-   * - Remediation Status
-     - Available, Pending, Applied, or Not Available
-   * - Exploit Available
-     - Whether public exploits exist for this vulnerability
+.. image:: _static/security/vulnerability-info.png
+   :width: 600
+   :alt: Vulnerability Information
+   :align: center
 
 **CVE Tracking:**
 
@@ -349,31 +244,10 @@ Compliance Gap Analysis
 
 **Control Categories:**
 
-.. list-table::
-   :widths: 30 20 50
-   :header-rows: 1
-
-   * - Control Category
-     - Status
-     - Description
-   * - Initial Setup
-     - Pass/Fail
-     - System installation and initial configuration security
-   * - Services
-     - Pass/Fail
-     - Unnecessary service identification and disabling
-   * - Network Parameters
-     - Pass/Fail
-     - Network stack security configurations
-   * - Logging and Auditing
-     - Pass/Fail
-     - System event logging and audit trail configuration
-   * - Access Controls
-     - Pass/Fail
-     - User access management and authentication controls
-   * - System Maintenance
-     - Pass/Fail
-     - Patch management and system update procedures
+.. image:: _static/security/control-categories.png
+   :width: 600
+   :alt: Control Categories
+   :align: center
 
 Remediation Management
 ======================
@@ -443,20 +317,10 @@ Scan Management
 
 **Scan History Tracking:**
 
-.. list-table::
-   :widths: 20 20 20 20 20
-   :header-rows: 1
-
-   * - Scan Date
-     - Type
-     - Duration
-     - Findings
-     - Risk Score
-   * - [Date/Time]
-     - Quick/Deep
-     - X minutes
-     - Number
-     - Score/100
+.. image:: _static/security/scan-history-tracking.png
+   :width: 600
+   :alt: Scan History Tracking
+   :align: center
 
 Scan Results and Details
 ------------------------
@@ -517,20 +381,10 @@ Vulnerability Trend Analysis
 
 **Recent Changes Tracking:**
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Trend Indicator
-     - Description
-   * - New Vulnerabilities
-     - Count and severity of newly discovered issues
-   * - Remediated Issues
-     - Successfully fixed vulnerabilities since last scan
-   * - Recurring Issues
-     - Vulnerabilities that have reappeared after remediation
-   * - Trend Direction
-     - Overall security posture improvement or decline
+.. image:: _static/security/recent-changes-tracking.png
+   :width: 600
+   :alt: Recent Changes Tracking
+   :align: center
 
 Common Vulnerability Patterns
 -----------------------------
