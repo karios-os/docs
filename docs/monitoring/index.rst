@@ -24,9 +24,9 @@ Data Collection
 
 **Process:**
 
-* The power link device reads voltage, current, power, and cumulative energy from six channels every second
-* Each reading is timestamped and formatted
-* Data is sent via HTTP to the server for storage and visualization
+* The power link device reads voltage, current, power, and cumulative energy from CT channels every second.
+* Each reading is timestamped and formatted.
+* Data is sent via HTTP to the server for storage and visualization.
 
 Metrics Processing
 ------------------
