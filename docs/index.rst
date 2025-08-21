@@ -55,18 +55,6 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Virtualization & Compute
-   
-   virtualization/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Storage & Data Management
-   
-   storage/index
-
-.. toctree::
-   :maxdepth: 2
    :caption: Networking
    
    networking/index
