@@ -15,18 +15,22 @@ Karios Security provides comprehensive security management and threat protection
 
 * **Comprehensive Vulnerability Scanning:** Advanced vulnerability detection using proprietary and public CVE databases
 * **Real-Time Security Dashboard:** Centralized security posture monitoring and risk assessment
-* **Compliance Management:** CIS FreeBSD standards compliance monitoring and gap analysis
+* **Compliance Management:** SCAP compliance monitoring and gap analysis
 * **Automated Remediation:** Limited automated fixes for FreeBSD benchmark violations (expanding in future releases)
 * **Threat Intelligence Integration:** Continuous threat landscape monitoring and analysis
 * **Historical Tracking:** Security trends and improvement metrics over time
 
 Security Center Dashboard
 =========================
+The Security Center serves as the central hub for managing and monitoring your infrastructure's security posture. It provides real-time visibility into vulnerabilities, compliance status, and remediation efforts.
+
 
 Default View - Real-Time Security Snapshot
 -------------------------------------------
 
 The Security Center provides a centralized real-time view of your infrastructure's security posture, appearing by default when entering the Security tab.
+
+
 
 **Left Panel - Risk Summary:**
 
@@ -226,16 +230,9 @@ Scan Process and Components
 Pre-Scan Setup
 ^^^^^^^^^^^^^^
 
-* Scanner reads selected configuration (quick/deep, target profile)
-* Initializes system-specific access and environment data
-* Prepares plugin execution environment
+* No Pre Scan Setup is required, The initial Karios installation takes care of the prerequisites, you already get a custom SCAP Profile ready and loaded, which is run during your every scan.
+* When it Comes to OVAL Database, The SCAP Profile is used to load the OVAL Database, which contains the vulnerability definitions and checks present on host's machine
 
-Plugin Execution
-^^^^^^^^^^^^^^^^
-
-* Each plugin runs sequentially, checking specific system areas
-* Issues are flagged as findings when vulnerabilities are detected
-* Results are collected and categorized by severity
 
 CVE Matching
 ^^^^^^^^^^^^
