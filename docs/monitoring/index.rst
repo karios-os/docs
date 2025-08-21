@@ -28,6 +28,7 @@ Data Collection
 * Each reading is timestamped and formatted.
 * Data is sent via HTTP to the server for storage and visualization.
 
+
 Metrics Processing
 ------------------
 
@@ -48,8 +49,11 @@ Hardware Setup
 
 Software Configuration
 ----------------------
-
-* **Karios PowerLink** web configuration interface
+* **Karios PowerLink** web configuration interface:
+  
+  - Set Wi-Fi credentials (SSID and password)
+  - Specify the node to associate with
+  - Enter the database host IP address
 
 Calibration
 -----------
