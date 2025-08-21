@@ -91,7 +91,7 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Monitoring & Maintenance
+   :caption: Power Monitoring & Metrics
    
    monitoring/index
 
