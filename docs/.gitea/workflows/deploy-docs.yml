@@ -1,0 +1,52 @@
+name: Deploy Documentation to FreeBSD
+
+on:
+  push:
+    branches:
+      - test
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Deploy to FreeBSD node
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 192.168.116.38
+        username: root
+        password: adminadmin
+        port: 22
+        script: |
+          echo "Starting documentation deployment..."
+          
+          # Pull latest changes in the docs jail
+          echo "Pulling latest changes from git..."
+          jexec docs sh -c "cd /usr/local/git/docs && git pull"
+          
+          # Build the documentation with Sphinx
+          echo "Building documentation with Sphinx..."
+          jexec docs sh -c "cd /usr/local/git/docs/docs && python3 -m sphinx -E -a -b html . /usr/local/www/docs"
+          
+          echo "Documentation deployment completed successfully!"
+    
+    - name: Verify deployment
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 192.168.116.38
+        username: root
+        password: adminadmin
+        port: 22
+        script: |
+          # Check if the build was successful
+          if jexec docs sh -c "test -d /usr/local/www/docs && test -f /usr/local/www/docs/index.html"; then
+            echo "✅ Documentation build verified - index.html exists"
+            jexec docs sh -c "ls -la /usr/local/www/docs/ | head -10"
+          else
+            echo "❌ Documentation build may have failed - checking for errors"
+            exit 1
+          fi
