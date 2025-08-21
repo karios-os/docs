@@ -558,7 +558,7 @@ Vulnerability Management
 
       Figure 3: Vulnerability Information
 
-   - A Pop up for the Vulnerability will look this this
+   - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links.
 
    .. figure:: _static/images/security/security_vuln_popup.png
       :width: 600
@@ -570,6 +570,7 @@ Remediation Actions
 ~~~~~~~~~~~~~~~~~~~
    - The Remediation Actions section allows you to initiate automated fixes for identified issues
    - Where to find the remediation option (if there are any vulnerabilities to remediate)
+   - Note: One-click Remediation is availble for very few vulnerabilities at this point to make sure that it does not hamper the system functionality.
 
    .. figure:: _static/images/security/security_vuln_remediation_pointer_section.png
       :width: 600
@@ -582,16 +583,16 @@ Scan History
    - The Scan History section provides a log of all security scans performed
    - Review past scan results and reports
 
-   - Where to find the Scan History
+   - Please click on the 'Metrics' button besinde the 'Scan' button to navigate to Security Scan History Page
    .. figure:: _static/images/security/security_navigate_to_history_page.png
       :width: 600
       :alt: Security Scan History Pointer
 
       Figure 6: Security Scan History Pointer
 
-Security Centre History Page
+Security Scan History Page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   - The Security Centre History Page provides a metrics dashboard for previous scans performed.
+   - The Security Scan History Page provides a metrics dashboard for previous scans performed.
    - Review historical reports in html and PDF formats.
 
    - You can find the previous scan details, risk score from earlier scan and other additional details in this Security Scan History Page.
@@ -604,7 +605,7 @@ Security Centre History Page
 Security Report
 ~~~~~~~~~~~~~~~
 
-   - Where to find the Security Report
+   - The below image clearly indicates where to find the pdf & html report download options under the Scan History section.
 
    .. figure:: _static/images/security/security_report_pointer.png
       :width: 600
@@ -612,7 +613,8 @@ Security Report
 
       Figure 8: Security Report Pointer
 
-   - What's included in the Security Report
+   - Once downloaded, the security report will contain detailed information of all the vulnerabilites identified in the scan.
+   - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details.
 
    .. figure:: _static/images/security/security_report_content.png
       :width: 600
