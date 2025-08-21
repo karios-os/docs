@@ -522,9 +522,9 @@ The Security Center provides a centralized interface for managing and monitoring
 Accessing the Security Center
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    - Log in to the Karios platform
-   - Navigate to the "Security" tab on every node in the node's main menu
+   - Navigate to the "Security" tab on any node in the node's main menu
 
-   - Where to find the Security Page
+   - The below image clearly indicates where to find the 'Security' tab on the interface.
 
    .. figure:: _static/images/security/security_tab_pointer.png
       :width: 600
@@ -534,9 +534,9 @@ Accessing the Security Center
 
 Overview Dashboard
 ~~~~~~~~~~~~~~~~~~
-   - The Overview Dashboard displays a real-time snapshot of your security posture
-   - Key metrics include risk percentage, system status, and recent vulnerabilities
-   - Where to find the 'Scan' Button
+   - The Security Centre Overview Dashboard displays a real-time snapshot of your security posture
+   - Key metrics include risk percentage, system status, last scan status and top risk category.
+   - The below image clearly shows where to find 'Scan' Button
 
    .. figure:: _static/images/security/security_scan_pointer.png
       :width: 600
