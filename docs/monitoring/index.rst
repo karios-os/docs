@@ -71,6 +71,12 @@ Real-time Monitoring
 * The system streams live power, voltage, current, and energy data to InfluxDB
 * Real-time dashboards visualize these metrics for each node
 
+.. figure:: _static/images/monitoring/Landing_page_power.png
+   :width: 600
+   :alt: Landing page Power stats
+
+   **Figure 1**: Landing page Power stats
+
 Historical Analysis
 -------------------
 
