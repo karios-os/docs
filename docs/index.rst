@@ -67,21 +67,15 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Integrated Firewall
+
+   firewall/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: Liquid Cooling Management
 
    liquid/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Management & Automation
-   
-   management/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Deployment Scenarios
-   
-   deployment/index
 
 .. toctree::
    :maxdepth: 2
