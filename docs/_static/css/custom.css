@@ -1,6 +1,6 @@
-/* Karios Brand Colors Custom CSS with Light/Dark Mode Support */
+/* Karios Brand Colors Custom CSS - Light Mode Only */
 
-/* Brand Color Variables - Light Mode */
+/* Brand Color Variables - Light Mode Only */
 :root {
     --karios-navy: #1a1f3a;         /* Dark navy background */
     --karios-deep-navy: #0f1729;    /* Deeper navy for backgrounds */
@@ -11,7 +11,7 @@
     --karios-muted-gray: #e8eaf0;   /* Muted backgrounds */
     --karios-dark-gray: #6c757d;    /* Text gray */
     --karios-white: #ffffff;        /* Pure white */
-    
+
     /* Light mode specific colors */
     --bg-primary: linear-gradient(135deg, #f4f6f8 0%, #ffffff 50%, #e8eaf0 100%);
     --bg-content: rgba(255, 255, 255, 0.9);
@@ -24,34 +24,107 @@
     --admonition-bg: linear-gradient(135deg, rgba(154, 205, 50, 0.08) 0%, rgba(46, 74, 139, 0.05) 100%);
 }
 
-/* Dark Mode Variables */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Dark mode color overrides */
-        --bg-primary: linear-gradient(135deg, #0f1729 0%, #1a1f3a 50%, #2a3052 100%);
-        --bg-content: rgba(26, 31, 58, 0.95);
-        --bg-sidebar: linear-gradient(180deg, #0f1729 0%, #1a1f3a 100%);
-        --text-primary: #e8eaf0;
-        --text-secondary: #f4f6f8;
-        --border-color: #2a3052;
-        --shadow-color: rgba(0, 0, 0, 0.3);
-        --code-bg: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(42, 48, 82, 0.6) 100%);
-        --admonition-bg: linear-gradient(135deg, rgba(154, 205, 50, 0.15) 0%, rgba(46, 74, 139, 0.1) 100%);
-        --karios-tech-gray: #2a3052;
-        --karios-muted-gray: #1a1f3a;
+/* Create a fixed header container */
+.karios-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(135deg, var(--karios-navy) 0%, #2a3052 100%);
+    border-bottom: 3px solid var(--karios-bright-green);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+/* Add Karios Documentation Banner using a more reliable method */
+body::before {
+    content: 'Karios Documentation';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(135deg, var(--karios-navy) 0%, #2a3052 100%);
+    color: var(--karios-white);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    z-index: 999;
+    border-bottom: 3px solid var(--karios-bright-green);
+    padding: 0 20px;
+}
+
+/* Alternative approach for better compatibility */
+.wy-grid-for-nav::before {
+    content: 'Karios Documentation';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(135deg, var(--karios-navy) 0%, #2a3052 100%);
+    color: var(--karios-white);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    z-index: 999;
+    border-bottom: 3px solid var(--karios-bright-green);
+}
+
+/* Adjust all main content areas to account for the fixed header */
+.wy-nav-side {
+    position: fixed;
+    top: 63px !important; /* Account for header + border */
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    overflow-y: auto;
+    height: calc(100vh - 63px) !important;
+}
+
+.wy-nav-content-wrap {
+    margin-left: 300px;
+    margin-top: 63px !important; /* Account for header + border */
+    background: var(--bg-primary);
+    min-height: calc(100vh - 63px);
+}
+
+/* Ensure the body has proper padding */
+body {
+    padding-top: 63px !important;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .wy-nav-side {
+        top: 63px !important;
+        height: calc(100vh - 63px) !important;
+    }
+    
+    .wy-nav-content-wrap {
+        margin-left: 0;
+        margin-top: 63px !important;
     }
 }
 
-/* Navigation and Header Styling */
+/* Search section styling */
 .wy-side-nav-search {
     background: linear-gradient(135deg, var(--karios-navy) 0%, #2a3052 100%);
     border-bottom: 3px solid var(--karios-bright-green);
+    padding: 12px;
 }
 
 .wy-side-nav-search input[type=text] {
     border: 2px solid var(--karios-bright-green);
     border-radius: 6px;
     background-color: var(--karios-white);
+    width: 100%;
 }
 
 .wy-side-nav-search input[type=text]:focus {
@@ -59,17 +132,19 @@
     box-shadow: 0 0 0 2px rgba(154, 205, 50, 0.2);
 }
 
-/* Top navigation bar */
+/* Top navigation bar (mobile) */
 .wy-nav-top {
     background: linear-gradient(135deg, var(--karios-navy) 0%, #2a3052 100%);
     border-bottom: 3px solid var(--karios-bright-green);
+    position: fixed;
+    top: 63px !important;
 }
 
 .wy-nav-top a {
     color: var(--karios-white) !important;
 }
 
-/* Sidebar styling - Theme aware */
+/* Sidebar styling */
 .wy-nav-side {
     background: var(--bg-sidebar);
     border-right: 1px solid var(--border-color);
@@ -98,20 +173,7 @@
     border: none;
 }
 
-/* Dark mode specific sidebar adjustments */
-@media (prefers-color-scheme: dark) {
-    .wy-menu-vertical li.current a {
-        color: var(--karios-deep-navy);
-        font-weight: 700;
-    }
-}
-
-/* Content area improvements - Responsive to theme */
-.wy-nav-content-wrap {
-    background: var(--bg-primary);
-    transition: background 0.3s ease;
-}
-
+/* Content area improvements */
 .wy-nav-content {
     background: var(--bg-content);
     backdrop-filter: blur(10px);
@@ -122,9 +184,10 @@
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
     color: var(--text-primary);
+    max-width: none;
 }
 
-/* Headers with Karios branding - Theme responsive */
+/* Headers with Karios branding */
 h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
     transition: color 0.3s ease;
@@ -171,35 +234,20 @@ h3, h4, h5, h6 {
     font-weight: 600;
 }
 
-/* Links with brand colors - Theme aware */
+/* Links with brand colors */
 a {
-    color: var(--karios-bright-green);
+    color: var(--karios-navy);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--karios-blue-accent);
+    color: var(--karios-bright-green);
     text-decoration: underline;
 }
 
 a:visited {
-    color: var(--karios-light-blue);
-}
-
-/* Dark mode link adjustments */
-@media (prefers-color-scheme: dark) {
-    a {
-        color: var(--karios-bright-green);
-    }
-    
-    a:hover {
-        color: #B8E657; /* Brighter green for dark mode */
-    }
-    
-    a:visited {
-        color: var(--karios-light-blue);
-    }
+    color: #2a3052;
 }
 
 /* Buttons and interactive elements */
@@ -218,7 +266,7 @@ a:visited {
     border-color: var(--karios-navy);
 }
 
-/* Admonitions (notes, warnings, etc.) - Theme aware */
+/* Admonitions (notes, warnings, etc.) */
 .admonition {
     border-radius: 12px;
     border: 1px solid var(--border-color);
@@ -260,39 +308,7 @@ a:visited {
     margin-bottom: 8px;
 }
 
-/* Dark mode admonition adjustments */
-@media (prefers-color-scheme: dark) {
-    .admonition.warning {
-        background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
-    }
-    
-    /* Ensure all admonition text is visible in dark mode */
-    .admonition * {
-        color: var(--text-primary) !important;
-    }
-    
-    .admonition-title {
-        color: var(--karios-bright-green) !important;
-        font-weight: 800;
-    }
-    
-    /* Fix important admonition specifically */
-    .admonition.important {
-        background: linear-gradient(135deg, rgba(154, 205, 50, 0.2) 0%, rgba(46, 74, 139, 0.15) 100%);
-        border: 1px solid rgba(154, 205, 50, 0.4);
-    }
-    
-    .admonition.important .admonition-title {
-        color: var(--karios-bright-green) !important;
-    }
-}
-
-.admonition-title {
-    font-weight: 700;
-    color: var(--karios-navy);
-}
-
-/* Code blocks and inline code - Theme responsive */
+/* Code blocks and inline code */
 .highlight {
     border-radius: 12px;
     border: 1px solid var(--border-color);
@@ -312,19 +328,7 @@ code {
     transition: all 0.3s ease;
 }
 
-/* Dark mode code adjustments */
-@media (prefers-color-scheme: dark) {
-    code {
-        border-color: rgba(154, 205, 50, 0.5);
-        color: var(--karios-bright-green);
-    }
-    
-    .highlight pre {
-        color: #e8eaf0;
-    }
-}
-
-/* Tables - Theme responsive */
+/* Tables */
 .wy-table-responsive table td,
 .wy-table-responsive table th {
     border-color: var(--border-color);
@@ -340,58 +344,6 @@ code {
 .wy-table-striped tr:nth-child(2n-1) td {
     background-color: rgba(154, 205, 50, 0.05);
     transition: background-color 0.3s ease;
-}
-
-/* Dark mode table adjustments */
-@media (prefers-color-scheme: dark) {
-    .wy-table thead th {
-        color: var(--karios-deep-navy);
-    }
-    
-    /* Fix the alternating row colors - make them visible in dark mode */
-    .wy-table-striped tr:nth-child(odd) td {
-        background-color: rgba(46, 74, 139, 0.2) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .wy-table-striped tr:nth-child(even) td {
-        background-color: rgba(26, 31, 58, 0.4) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .wy-table td, .wy-table th {
-        color: var(--text-primary) !important;
-        border-color: rgba(154, 205, 50, 0.3);
-    }
-    
-    /* Force all table text to be visible */
-    .wy-table tbody tr td {
-        color: var(--text-primary) !important;
-        background-color: rgba(26, 31, 58, 0.3);
-    }
-    
-    .wy-table tbody tr:nth-child(odd) td {
-        background-color: rgba(42, 48, 82, 0.4) !important;
-    }
-    
-    .wy-table tbody tr:nth-child(even) td {
-        background-color: rgba(26, 31, 58, 0.6) !important;
-    }
-    
-    /* Ensure table headers are visible */
-    .wy-table thead {
-        background: linear-gradient(90deg, var(--karios-bright-green) 0%, rgba(154, 205, 50, 0.9) 100%);
-    }
-    
-    .wy-table thead th {
-        color: var(--karios-deep-navy) !important;
-        font-weight: 800;
-    }
-    
-    /* Override any inherited styles that might make text invisible */
-    table tbody tr td {
-        color: #e8eaf0 !important;
-    }
 }
 
 /* Search results */
@@ -410,7 +362,7 @@ code {
 }
 
 .btn-neutral {
-    background-color: var(--karios-light-gray) !important;
+    background-color: var(--karios-tech-gray) !important;
     color: var(--karios-navy) !important;
     border: 2px solid var(--karios-bright-green) !important;
 }
@@ -429,123 +381,25 @@ code {
     margin: 16px 0;
 }
 
-.karios-logo-placeholder {
-    display: inline-block;
-    background-color: var(--karios-navy);
-    color: var(--karios-white);
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: 700;
-    margin: 8px 0;
-}
-
-/* Dark mode specific overrides for visibility */
-@media (prefers-color-scheme: dark) {
-    /* Fix any dark text that might be invisible */
-    p, li, td, th, span, div {
-        color: var(--text-primary);
-    }
-    
-    /* Ensure strong contrast for headings */
-    h1, h2, h3, h4, h5, h6 {
-        color: var(--text-primary) !important;
-    }
-    
-    /* Fix any remaining dark text issues */
-    .rst-content {
-        color: var(--text-primary);
-    }
-    
-    /* Table caption and other elements */
-    caption, .caption {
-        color: var(--text-primary) !important;
-    }
-    
-    /* Fix list items */
-    .wy-plain-list-disc li, .rst-content .section ul li {
-        color: var(--text-primary);
-    }
-    
-    /* AGGRESSIVE TABLE FIX - Force all table content to be visible */
-    table, table *, 
-    .wy-table, .wy-table *,
-    .docutils, .docutils * {
-        color: var(--text-primary) !important;
-        background-color: transparent;
-    }
-    
-    /* Force table cell backgrounds and text */
-    td, th {
-        color: var(--text-primary) !important;
-        background-color: rgba(26, 31, 58, 0.4) !important;
-    }
-    
-    /* Alternating row colors with forced visibility */
-    tr:nth-child(odd) td {
-        background-color: rgba(42, 48, 82, 0.5) !important;
-        color: #e8eaf0 !important;
-    }
-    
-    tr:nth-child(even) td {
-        background-color: rgba(26, 31, 58, 0.7) !important;
-        color: #e8eaf0 !important;
-    }
-    
-    /* Table headers */
-    thead th, th {
-        background: linear-gradient(90deg, var(--karios-bright-green) 0%, rgba(154, 205, 50, 0.9) 100%) !important;
-        color: var(--karios-deep-navy) !important;
-        font-weight: 800 !important;
-    }
-    
-    /* Override Sphinx's table styling completely */
-    .wy-table-responsive table tbody tr:nth-child(odd) td {
-        background-color: rgba(42, 48, 82, 0.5) !important;
-        color: #e8eaf0 !important;
-    }
-    
-    .wy-table-responsive table tbody tr:nth-child(even) td {
-        background-color: rgba(26, 31, 58, 0.7) !important;
-        color: #e8eaf0 !important;
-    }
-    
-    /* Re-apply specific color overrides after the global fix */
-    .wy-menu-vertical a {
-        color: var(--text-secondary) !important;
-    }
-    
-    .wy-menu-vertical li.current a {
-        color: var(--karios-deep-navy) !important;
-    }
-    
-    code {
-        color: var(--karios-bright-green) !important;
-    }
-    
-    a {
-        color: var(--karios-bright-green) !important;
-    }
-    
-    a:hover {
-        color: #B8E657 !important;
-    }
-}
-@media (max-width: 768px) {
-    .wy-nav-top {
-        background: var(--karios-navy);
-    }
-    
-    .wy-nav-top i {
-        color: var(--karios-bright-green);
-    }
-}
-
 /* Print styles */
 @media print {
+    body::before,
+    .wy-grid-for-nav::before {
+        display: none !important;
+    }
+    
+    body {
+        padding-top: 0 !important;
+    }
+    
+    .wy-nav-content-wrap {
+        margin-top: 0 !important;
+    }
+    
     h1, h2, h3, h4, h5, h6 {
         color: var(--karios-navy) !important;
     }
-    
+
     a {
         color: var(--karios-navy) !important;
         text-decoration: none !important;
