@@ -683,6 +683,114 @@ Standard VM management operations include:
 - **Snapshot**: Create point-in-time VM snapshots
 - **Delete**: Remove the virtual machine permanently
 
+Security Center Walkthrough
+--------------------------
+
+The Security Center provides a centralized interface for managing and monitoring your infrastructure's security posture. This walkthrough will guide you through the key features and functionalities available in the Security Center.
+
+Accessing the Security Center
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   - Log in to the Karios platform
+   - Navigate to the "Security" tab on any node in the node's main menu
+
+   - The below image clearly indicates where to find the 'Security' tab on the interface.
+
+   .. figure:: _static/images/security/security_tab_pointer.png
+      :width: 600
+      :alt: Security Tab Pointer
+
+      Figure 1: Security Tab Pointer
+
+Overview Dashboard
+~~~~~~~~~~~~~~~~~~
+   - The Security Centre Overview Dashboard displays a real-time snapshot of your security posture
+   - Key metrics include risk percentage, system status, last scan status and top risk category.
+   - The below image clearly shows where to find 'Scan' Button
+
+   .. figure:: _static/images/security/security_scan_pointer.png
+      :width: 600
+      :alt: Security Scan Button
+
+      Figure 2: Security Scan Button
+
+Vulnerability Management
+~~~~~~~~~~~~~~~~~~~~~~~~
+   - Access the Vulnerability Management section to view and manage identified vulnerabilities
+   - Use filters to sort vulnerabilities by severity
+
+   - Scroll Down to view detailed vulnerabilities information along with remediation options, 
+   - Please click on the vulnerability to know more information about it
+
+   .. figure:: _static/images/security/security_vuln_info.png
+      :width: 600
+      :alt: Vulnerability Information
+
+      Figure 3: Vulnerability Information
+
+   - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links.
+
+   .. figure:: _static/images/security/security_vuln_popup.png
+      :width: 600
+      :alt: Vulnerability Popup
+
+      Figure 4: Vulnerability Popup
+
+Remediation Actions
+~~~~~~~~~~~~~~~~~~~
+   - The Remediation Actions section allows you to initiate automated fixes for identified issues
+   - Where to find the remediation option (if there are any vulnerabilities to remediate)
+   - Note: One-click Remediation is availble for very few vulnerabilities at this point to make sure that it does not hamper the system functionality.
+
+   .. figure:: _static/images/security/security_vuln_remediation_pointer_section.png
+      :width: 600
+      :alt: Vulnerability Remediation Pointer
+
+      Figure 5: Vulnerability Remediation Pointer
+
+Scan History
+~~~~~~~~~~~~
+   - The Scan History section provides a log of all security scans performed
+   - Review past scan results and reports
+
+   - Please click on the 'Metrics' button besinde the 'Scan' button to navigate to Security Scan History Page
+   .. figure:: _static/images/security/security_navigate_to_history_page.png
+      :width: 600
+      :alt: Security Scan History Pointer
+
+      Figure 6: Security Scan History Pointer
+
+Security Scan History Page
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   - The Security Scan History Page provides a metrics dashboard for previous scans performed.
+   - Review historical reports in html and PDF formats.
+
+   - You can find the previous scan details, risk score from earlier scan and other additional details in this Security Scan History Page.
+   .. figure:: _static/images/security/security_history_page.png
+      :width: 600
+      :alt: Security History Page
+
+      Figure 7: Security History Page
+
+Security Report
+~~~~~~~~~~~~~~~
+
+   - The below image clearly indicates where to find the pdf & html report download options under the Scan History section.
+
+   .. figure:: _static/images/security/security_report_pointer.png
+      :width: 600
+      :alt: Security Report Pointer
+
+      Figure 8: Security Report Pointer
+
+   - Once downloaded, the security report will contain detailed information of all the vulnerabilites identified in the scan.
+   - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details.
+
+   .. figure:: _static/images/security/security_report_content.png
+      :width: 600
+      :alt: Security Report Content
+
+      Figure 9: Security Report Content
+
 API Integration
 ---------------
 
