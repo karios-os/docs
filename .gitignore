@@ -37,7 +37,6 @@ pip-delete-this-directory.txt
 .mypy_cache/
 .dmypy.json
 dmypy.json
-Scripts/
 
 # Sphinx build artifacts (ignore generated files, keep source)
 docs/_build/
@@ -73,6 +72,7 @@ Thumbs.db
 # Windows
 desktop.ini
 $RECYCLE.BIN/
+Scripts/
 
 # macOS
 .AppleDouble

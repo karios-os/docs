@@ -154,6 +154,18 @@ After successful login, the system will display the "Access Karios" license vali
 - **Validation Status**: Green checkmark indicates successful file upload
 - **Error Handling**: The system will display errors if the license file is invalid or corrupted
 
+.. note::
+
+   It is critical to set BMC credentials for the node to enable fetching system updates and performing essential system calls.
+
+   Steps to set BMC credentials:
+
+   1. Navigate to the Provisioning Center, located at the top of the control node interface.
+   2. Edit the first node, which is automatically added during bootstrap.
+   3. Update the node with the actual BMC credentials.
+
+   These credentials are required for various system operations and updates.
+
 Post-License Validation and Resource Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -190,6 +202,55 @@ The License Features modal provides three main tabs for comprehensive license ma
    - **Portal Access**: Use token at payment portal to generate updated license
    - **File Upload**: Upload new JSON license file for updates
    - **License Processing**: System processes and applies license updates
+
+   **Node-Level License Management**
+
+   **Add Licensed Features**
+
+   Each registered node displays an “Add licensed features” button, allowing you to allocate specific features to individual nodes.
+
+   **License Management for Nodes**
+
+   Access node-level license management via the “License Management - [node-name]” modal. This modal provides two main tabs:
+
+   - **Currently Used Tab**: Displays the current resource allocation for the selected node.
+   - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
+
+   If all resources have been allocated, the interface will display “No features available to add.”
+
+   To add a feature, select the toggle next to the desired feature and click “Add Feature.”
+
+   License Monitoring and Alerts
+   The system continuously monitors license status and resource allocation:
+
+   - **License Status Indicators**: Proactive notifications show days remaining until license expiration.
+   - **License Dashboard Access**: Quickly access detailed license information from the dashboard.
+   - **Resource Tracking**: Monitor real-time resource usage versus available quota.
+
+   Resource Allocation Management
+
+   - **Cluster-Wide Licensing**: License resources are shared across the entire cluster.
+   - **CPU Socket Allocation**: Distribute available CPU sockets among multiple nodes.
+   - **Feature Distribution**: Allocate Power and Security features to required nodes.
+   - **Usage Monitoring**: Track actual resource consumption across the infrastructure.
+
+   License Renewal Process
+ 
+
+   Renew your license in the following scenarios:
+
+   - **Expiration Approach**: When license expiration warnings appear in the dashboard.
+   - **Feature Upgrades**: When additional resources or features are needed.
+   - **Capacity Expansion**: When adding new nodes that require licensing.
+
+   **Renewal Steps** (see “Update License Tab” in section 3.1.3):
+
+   1. Access the Update License tab: Navigate to License Features → Update License.
+   2. Generate Token: Copy the system-generated token.
+   3. Portal Processing: Use the token at the payment portal for renewal or upgrade.
+   4. Download New License: Obtain the updated JSON license file.
+   5. Upload and Validate: Upload the new license file and validate it.
+   6. Resource Availability: Newly licensed resources become immediately available for allocation.
 
 Interface Overview
 ~~~~~~~~~~~~~~~~~~
@@ -266,7 +327,34 @@ To access the full capabilities of the Karios platform:
 - **Principle of Least Privilege**: Request only the minimum permissions necessary for job functions
 - **Regular Access Review**: Periodically review and validate user access permissions
 - **Security Compliance**: Follow organizational security policies for account management
-- **Administrative Coordination**: Coordinate with system administrators for permission changes
+- **Administrative Coordination**: Coordinate with system administrators 
+
+Best Practices
+--------------
+
+Account Security
+~~~~~~~~~~~~~~~~~
+
+- **Strong Passwords**: Use strong, unique passwords for account security.
+- **Regular Updates**: Update passwords regularly according to security policies.
+- **Session Management**: Log out properly when finished using the system.
+- **Access Monitoring**: Monitor account access and report suspicious activity.
+
+License Compliance
+~~~~~~~~~~~~~~~~~~
+
+- **Renewal Tracking**: Monitor license expiration dates proactively.
+- **Compliance Documentation**: Maintain records of license validation and renewals.
+- **Usage Monitoring**: Ensure system usage complies with license terms.
+- **Renewal Planning**: Plan license renewals well in advance of expiration dates.
+
+System Usage
+~~~~~~~~~~~~
+
+- **Resource Management**: Use system resources efficiently and responsibly.
+- **Documentation**: Keep personal documentation of system configurations and procedures.
+- **Change Management**: Follow proper change management procedures for system modifications.
+- **Support Utilization**: Utilize available support resources and documentation effectively.
 
 Web Interface Navigation
 ------------------------
