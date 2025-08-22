@@ -603,6 +603,51 @@ For enhanced security, configure SSH key authentication for your virtual machine
 - Subnet Mask: Configure network subnet mask
 - Domain Name: Set domain name for the VM
 
+Security Best Practices
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The system provides security recommendations to ensure safe and reliable VM operations:
+
+- **Strong Passwords**: Use complex passwords with a mix of uppercase, lowercase, numbers, and special characters.
+- **SSH Key Authentication**: Prefer SSH keys over passwords for VM access; they offer enhanced security and reduce brute-force risks.
+- **Password Disabling**: When SSH keys are configured, consider disabling password authentication for remote access.
+- **Network Security**: Apply appropriate network security policies, such as firewalls and VLAN segmentation, to protect VM traffic.
+
+VM Deployment Process
+~~~~~~~~~~~~~~~~~~~~~
+
+Pre-Deployment Validation
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before creating a VM, the system performs several validation checks:
+
+- **Network Switch Availability**: Ensure a virtual switch exists and is ready to attach to the VM's NIC (see Networking → Switches → Create).
+- **OS ISO Availability**: Confirm the required installation ISO is present and attachable. If missing, upload or download the ISO from Node → ISOs.
+- **Resource Availability**: Verify sufficient CPU, memory, and storage capacity on the target node.
+- **Configuration Validity**: Validate all VM parameters (vCPU, memory, disk, NIC) for compatibility with the selected node.
+
+VM Creation Process
+^^^^^^^^^^^^^^^^^^^
+
+The VM creation workflow includes:
+
+1. **Configuration Review**: Review all VM settings before proceeding.
+2. **Resource Reservation**: Reserve the specified resources on the target server.
+3. **VM Instantiation**: Create the virtual machine with the chosen configuration.
+4. **OS Installation**: Install the operating system (automatic for cloud-init setups).
+5. **Initial Configuration**: Apply initial configuration settings, such as user accounts and network parameters.
+6. **Service Startup**: Start VM services and validate basic functionality.
+
+Post-Creation Verification
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After VM creation, perform the following checks:
+
+- **VM Status**: Confirm the VM is running and accessible via the management interface.
+- **Network Connectivity**: Test network connectivity and verify correct configuration.
+- **User Access**: Ensure user accounts and authentication methods (password or SSH key) are working.
+- **Service Functionality**: Validate that all required services within the VM are operational.
+
 VM Lifecycle Management
 ~~~~~~~~~~~~~~~~~~~~~~~
 
