@@ -479,6 +479,239 @@ Once a server is registered, administrators can perform various management opera
 - Process: Removes server registration and management capabilities
 - Impact: Loss of remote management and monitoring capabilities
 
+Node Level Storage Management
+-----------------------------
+
+Navigating to Node Level
+~~~~~~~~~~~~~~~~~~~~~~~~
+**Accessing Worker Node Components:** 
+To access worker node level management, administrators must first navigate to the specific server they want to manage. This provides access to individual server components and detailed node-specific operations.
+
+**Navigation Process:**
+
+1. **Server Selection:** From the datacenter hierarchy in the left sidebar, select the specific worker node you want to manage
+
+2. **Component Access:** Once a worker node is selected, the interface displays “Selected Server” with the server’s name(e.g., k00000)
+
+3. **Component Tabs:** The worker node interface provides access to specialized component tabs designed for individual server management
+
+**Node Component Overview:** The worker node interface provides access to the following key components:
+
+- **Home:** Server dashboard with performance metrics and system information
+
+- **ISO:** Node-specific ISO image management and mounting
+
+- **Storage:** Local storage management and disk health monitoring
+
+- **Monitoring:** Server-specific performance monitoring and analytics
+
+- **Power:** Power consumption monitoring and energy efficiency metrics
+
+- **Network:** Network interface management and connectivity status
+
+- **Firewall:** Node-level firewall configuration and security policies
+
+- **Security:** Server-specific security settings and compliance monitoring
+
+- **Logs:** System logs and event monitoring for the individual server
+
+**Interface Context:** When working at the worker node level, all operations and configurations apply specifically to the selected server, providing granular control over individual infrastructure components.
+
+Home Dashboard
+~~~~~~~~~~~~~~
+
+**Worker Node Home Overview:** The Home tab serves as the primary dashboard for individual worker node management, providing comprehensive real-time metrics and system information essential for server administration and monitoring.
+
+**Performance Metrics Dashboard:** The Home dashboard displays five key performance indicators in an intuitive card-based layout:
+
+
+**System Uptime:**
+
+- **Display Format:** Shows uptime in weeks, days, and hours format (e.g., “0W 0D 18H”)
+- **Uptime Tracking:** Continuous monitoring of system availability since last restart
+- **Reliability Indicator:** Provides quick assessment of system stability and availability
+- **Color-coded Status:** Visual indicators for uptime duration and system health
+
+**Efficiency Rating:**
+
+- **Efficiency Score:** Displays overall system efficiency rating (e.g., “91”)
+- **Performance Optimization:** Indicates how efficiently the server is utilizing resources
+- **Energy Efficiency:** Reflects power consumption relative to performance output
+- **Operational Insights:** Provides guidance for optimization opportunities
+
+**CPU Utilization:**
+
+- **Real-time CPU Usage:** Current CPU utilization percentage (e.g., “3.46%”)
+- **Processing Load:** Indicates current computational workload on the server
+- **Performance Monitoring:** Continuous tracking of CPU performance metrics
+- **Capacity Planning:** Helps assess CPU capacity and usage patterns
+
+**Storage Utilization:**
+
+- **Storage Usage:** Current storage utilization percentage (e.g., “1.05%”)
+- **Disk Capacity:** Indicates available storage space and usage trends
+- **Storage Health:** Monitors storage system performance and availability
+- **Capacity Management:** Assists with storage planning and optimization
+
+**Memory Utilization:**
+
+- **Memory Usage:** Current memory utilization percentage (e.g., “22.37%”)
+- **RAM Consumption:** Indicates current memory usage and availability
+- **Memory Performance:** Tracks memory allocation and usage patterns
+- **Resource Optimization:** Helps optimize memory allocation for better performance
+
+System  Information
+^^^^^^^^^^^^^^^^^^^
+
+**Hardware Information Display:** The System Information section provides comprehensive details about the server’s hardware configuration and specifications.
+
+**System Specifications:**
+
+- **Make:** Hardware manufacturer information (e.g., “Supermicro”)
+- **Model:** Server model designation (e.g., “Super Server”)
+- **Network Interface:** Primary network interface details with IP address and MAC address
+
+  - **Interface Name:** Network interface identifier (e.g., “bnxt0”)
+  - **IP Address:** Server’s network IP address (e.g., “192.168.116.111”)
+  - **MAC Address:** Hardware MAC address (e.g., “7c:c2:55:e8:77:8c”)
+
+**System Identity:**
+
+- **Server Identification:** Complete server identification including network configuration
+- **Hardware Fingerprint:** Unique hardware identifiers for system tracking
+- **Network Configuration:** Network interface configuration and connectivity details
+
+
+Add-in Card and PCIe Devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**PCIe Expansion Monitoring:** The Add-in Card and PCIe Devices section provides real-time monitoring of expansion card slots and their current status.
+
+**PCIe Slot Information:**
+
+- **CPU SLOT1 PCI-E 4.0 X16:** PCIe slot specification with availability status
+- **CPU SLOT2 PCI-E 4.0 X8:** Secondary PCIe slot with current status
+- **CPU SLOT3 PCI-E 4.0 X16:** Third PCIe slot monitoring
+- **CPU SLOT4 PCI-E 4.0 X8:** Fourth PCIe slot status
+
+**Slot Status Monitoring:**
+
+- **Available:** Indicates slots available for expansion cards
+- **Occupied:** Shows slots currently in use with installed devices
+- **Slot Specifications:** Detailed PCIe lane configuration and capabilities
+- **Expansion Planning:** Assists with hardware expansion planning and compatibility
+
+Power Monitoring
+^^^^^^^^^^^^^^^^
+
+**Real-time Power Metrics:** The Power section provides comprehensive power consumption monitoring and energy efficiency tracking.
+
+**Power Consumption Metrics:**
+
+- **Current:** Real-time current draw measurement (e.g., “0.34 A”)
+- **Energy:** Cumulative energy consumption tracking (e.g., “15250.86 Wh (15.25 kWh)”)
+- **Power:** Instantaneous power consumption (e.g., “38.53 W”)
+- **Voltage:** Current voltage levels (e.g., “114.05 V”)
+
+**Power Management Features:**
+
+- **Energy Efficiency:** Track power usage effectiveness and optimization opportunities
+- **Power Trends:** Historical power consumption patterns and analysis
+- **Cost Monitoring:** Energy cost tracking and budgeting assistance
+- **Environmental Impact:** Carbon footprint monitoring and sustainability metrics
+
+
+Storage System Overview
+^^^^^^^^^^^^^^^^^^^^^^^
+
+**Storage Health Monitoring:** The Storage section provides comprehensive monitoring of all storage controllers and attached storage devices.
+
+**NVMe SSD Controllers:**
+
+- **Controller Model:** NVMe SSD controller specifications (e.g., “NVMe SSD Controller MAP1602 (DRAM-less)”)
+- **Disk Information:** Individual disk identification and capacity (e.g., “nda0 - ORICO 1.02TB”)
+- **Health Status:** Real-time health monitoring with status indicators (e.g., “Healthy”)
+- **Multiple Disk Support:** Monitoring of multiple attached storage devices
+
+**Other Storage Controllers:**
+
+- **SATA Controllers:** Traditional SATA controller monitoring (e.g., “Raptor Lake SATA AHCI Controller”)
+- **Storage Devices:** Individual storage device monitoring (e.g., “sda - Sample Disk (1TB)”)
+- **Health Monitoring:** Comprehensive health status for all storage devices
+- **Performance Tracking:** Storage performance metrics and optimization insights
+
+Network Interface Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Physical Network Interfaces:** The Network section provides detailed information about all network interfaces configured on the server.
+
+**Network Interface Information:**
+
+- **Interface Model:** Network interface model identification (e.g., “bnxt0”, “bnxt1”)
+- **MAC Address:** Hardware MAC address for each interface
+- **IP Configuration:** Current IP address assignments and network configuration
+- **Interface Status:** Current operational status of each network interface
+
+**Virtual Network Interfaces:** The system also displays virtual network interfaces created for virtualization and network segmentation.
+
+**Virtual Interface Details:**
+
+- **Virtual Interface Names:** Virtual interface identifiers (e.g., “vm-default”, “vm-vlan115-sw”)
+- **MAC Address Assignment:** Virtual MAC addresses for each interface
+- **Network Segmentation:** Virtual network configuration for traffic isolation
+
+
+**VLAN Configuration:** VLAN-specific virtual interfaces and their configurations
+
+Chassis View
+^^^^^^^^^^^^
+**Physical Server Visualization:** The Chassis View provides a visual representation of the physical server hardware, helping administrators understand the physical layout and configuration.
+
+**Chassis Display Features:**
+
+- **3D Server Visualization:** Three-dimensional representation of the server chassis
+- **Front Panel View:** Default front panel view of the server hardware
+- **Hardware Identification:** Visual identification of physical server components
+- **Physical Layout:** Understanding of physical component placement and accessibility
+
+**Chassis Navigation:**
+
+- **View Options:** Toggle between different chassis views (Front/Back)
+- **Show Back Button:** Option to view the rear panel of the server
+- **Hardware Mapping:** Visual correlation between logical and physical components
+- **Physical Maintenance:** Assistance with physical hardware maintenance and identification
+
+**Chassis View Benefits:**
+
+- **Hardware Identification:** Quickly identify physical components and their locations
+- **Maintenance Planning:** Plan physical maintenance and hardware replacement
+- **Visual Reference:** Provide visual context for hardware troubleshooting
+- **Documentation:** Visual documentation of server configuration and layout
+
+
+ISO Management
+~~~~~~~~~~~~~~
+
+**ISO Operations:**
+
+- **Download ISO:** Download ISO files using FQDN URL with appended ISO file path
+- **Upload ISO:** Upload valid ISO files to the data center storage
+- **RAW File Support:** Upload and manage RAW disk image files
+- **File Selection:** Browse and select from available ISO and RAW files
+- **Availability Tracking:** Real-time view of available ISO and RAW files
+
+**ISO Management Features:**
+
+- **Dual Upload Support:** Support for both ISO and RAW file formats
+- **URL-based Downloads:** Download ISO files directly from FQDN URLs
+- **File Browser Integration:** Integrated file selection interface
+- **Availability Dropdown:** Dropdown menu displaying all available ISO and RAW files
+- **Upload Status Monitoring:** Real-time upload progress and completion status
+- **File Validation:** Automatic validation of uploaded ISO and RAW files
+
+**ISO Management Interface:**
+
+
 Virtual Machine Management
 --------------------------
 
