@@ -537,6 +537,10 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 - **FreeBSD**: Automated FreeBSD deployment with cloud-init
 - **Ubuntu**: Automated Ubuntu deployment with cloud-init integration
 
+.. note::
+
+   Please upload and download a raw image (``.raw``) if it is not available during the setup. To do this, navigate to the node-level ISO section in the interface.
+
 **Cloud-Init Configuration Process**
 
 1. **Setup Method Selection**: Choose "Cloud-Init Setup" from available options
@@ -554,6 +558,38 @@ Cloud-Init VMs require initial user account setup:
 - **Username**: Primary user account for the VM
 - **Password**: Secure password for user account authentication
 - **SSH Public Key (Optional)**: Add SSH public key for passwordless authentication
+
+SSH Key Authentication (Enhanced Security)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For enhanced security, configure SSH key authentication for your virtual machines.
+
+**SSH Key Format**
+
+- Provide your SSH public key in standard format (e.g., ``ssh-rsa``, ``ssh-ed25519``).
+- Paste the public key directly into the VM setup form or upload as required.
+
+**Key Benefits**
+
+- Enables passwordless authentication for secure remote access.
+- Reduces risk of brute-force password attacks.
+- Simplifies automation and remote management.
+
+**Multiple Keys Support**
+
+- You may specify multiple SSH public keys for a VM.
+- Each key grants access to authorized users.
+
+**Key Management**
+
+- SSH keys are managed centrally via the Karios interface.
+- Administrators can add, remove, or update authorized keys for each VM.
+- Regularly review and rotate SSH keys for optimal security.
+
+.. note::
+
+   Always keep your private SSH keys secure and never share them. 
+   Only authorized public keys should be added to the VM configuration.
 
 **Network Configuration Options**
 
