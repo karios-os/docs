@@ -4,22 +4,22 @@
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Security & Compliance" />
+<meta property="og:title" content="Karios Security" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.karios.ai/security/index.html" />
 <meta property="og:site_name" content="Karios Documentation" />
-<meta property="og:description" content="Security architecture, compliance, and best practices for Karios deployments. Content for security architecture and compliance frameworks will be added here." />
+<meta property="og:description" content="Table of Contents: Overview, Security Center Dashboard- Default View - Real-Time Security Snapshot, Metrics View - Scan History &amp; Trends., Vulnerability Scanning- Scan Types and Execution- Quic..." />
 <meta property="og:image" content="https://docs.karios.ai/_static/images/og-image.png" />
 <meta property="og:image:alt" content="Karios Documentation" />
-<meta name="description" content="Security architecture, compliance, and best practices for Karios deployments. Content for security architecture and compliance frameworks will be added here." />
+<meta name="description" content="Table of Contents: Overview, Security Center Dashboard- Default View - Real-Time Security Snapshot, Metrics View - Scan History &amp; Trends., Vulnerability Scanning- Scan Types and Execution- Quic..." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Security &amp; Compliance &mdash; Karios Documentation</title>
+  <title>Karios Security &mdash; Karios Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1206881a" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=95f2467c" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -33,8 +33,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Monitoring &amp; Maintenance" href="../monitoring/index.html" />
-    <link rel="prev" title="Deployment Scenarios" href="../deployment/index.html" /> 
+    <link rel="next" title="Power Monitoring and Metrics" href="../monitoring/index.html" />
+    <link rel="prev" title="Karios Cool" href="../liquid/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -81,33 +81,380 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Virtualization &amp; Compute</span></p>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../virtualization/index.html">Virtualization &amp; Compute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/index.html#getting-started-as-a-user">Getting Started as a User</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#accessing-the-system-logging-in-registration">Accessing the System - Logging In &amp; Registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#license-validation-mandatory">License Validation (Mandatory)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#post-license-validation-and-resource-management">Post-License Validation and Resource Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#interface-overview">Interface Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#basic-operations">Basic Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#getting-full-access">Getting Full Access</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Storage &amp; Data Management</span></p>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/index.html#web-interface-navigation">Web Interface Navigation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#dashboard-overview">Dashboard Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#datacenter-management">Datacenter Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/index.html#bare-metal-server-management">Bare Metal Server Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#server-discovery-process">Server Discovery Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#server-lifecycle-management">Server Lifecycle Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#server-information-display">Server Information Display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/index.html#server-registration-and-management">Server Registration and Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#server-registration-process">Server Registration Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#server-management-operations">Server Management Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/index.html#virtual-machine-management">Virtual Machine Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#vm-creation-overview">VM Creation Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#standard-vm-setup">Standard VM Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#cloud-init-vm-setup">Cloud-Init VM Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#vm-lifecycle-management">VM Lifecycle Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/index.html#api-integration">API Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#api-authentication-and-usage-guide">API Authentication and Usage Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/index.html#swagger-api-documentation-guide">Swagger API Documentation Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">System Updates and Releases</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Storage &amp; Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">System Updates and Releases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-management">Update Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#update-notifications">Update Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#update-types">Update Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-discovery-and-download">Update Discovery and Download</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#update-detection">Update Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#update-download-process">Update Download Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-installation">Update Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#node-selection-and-scheduling">Node Selection and Scheduling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#installation-process">Installation Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-monitoring-and-progress">Update Monitoring and Progress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#real-time-monitoring">Real-time Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#installation-control">Installation Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#rollback-and-recovery">Rollback and Recovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#automatic-rollback">Automatic Rollback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#manual-rollback-options">Manual Rollback Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-history-and-tracking">Update History and Tracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#installation-history">Installation History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#version-management">Version Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-coordination">Update Coordination</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#multi-node-updates">Multi-Node Updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#maintenance-mode">Maintenance Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#security-and-integrity">Security and Integrity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#update-security">Update Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#audit-and-compliance">Audit and Compliance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#update-policies-and-configuration">Update Policies and Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#update-policies">Update Policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#troubleshooting-and-support">Troubleshooting and Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#support-features">Support Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#performance-and-optimization">Performance and Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration/index.html#optimization-features">Optimization Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration/index.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Networking</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../networking/index.html">Networking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networking/index.html">Karios Flexible Network</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#network-architecture">Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#virtual-networking-components">Virtual Networking Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#network-topology-architecture">Network Topology Architecture</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Management &amp; Automation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../management/index.html">Management &amp; Automation</a></li>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#network-configuration">Network Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#initial-network-setup">Initial Network Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#network-management-interface">Network Management Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#switch-operations-and-management">Switch Operations and Management</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Deployment Scenarios</span></p>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#vale-high-speed-switching">VALE High-Speed Switching</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#vale-architecture-and-design">VALE Architecture and Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#vale-configuration-and-management">VALE Configuration and Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#vlan-implementation">VLAN Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#vlan-architecture-and-standards">VLAN Architecture and Standards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#vxlan-overlay-networks-future-scope">VXLAN Overlay Networks (Future Scope)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#vxlan-architecture-and-components">VXLAN Architecture and Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#network-topology-options">Network Topology Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#available-network-architectures">Available Network Architectures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#hybrid-network-architectures">Hybrid Network Architectures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#advanced-networking-features-future-scope">Advanced Networking Features (Future Scope)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#netgraph-implementation">Netgraph Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#sdn-implementation-future-scope">SDN Implementation (Future Scope)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#security-and-compliance">Security and Compliance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#network-security-framework">Network Security Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../networking/index.html#integration-and-interoperability">Integration and Interoperability</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networking/index.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integrated Firewall</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../firewall/index.html">Integrated Firewall</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#firewall-architecture">Firewall Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#freebsd-pf-foundation">FreeBSD PF Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#firewall-components">Firewall Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#firewall-configuration">Firewall Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#rule-management">Rule Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#policy-management">Policy Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#nat-configuration">NAT Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#network-address-translation">Network Address Translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#nat-pool-management">NAT Pool Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#scrub-rules">Scrub Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#traffic-redirection-rdr">Traffic Redirection (RDR)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#rdr-configuration">RDR Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#firewall-customization">Firewall Customization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#user-defined-rules">User-Defined Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#advanced-configuration">Advanced Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#monitoring-and-logging">Monitoring and Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#firewall-monitoring">Firewall Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#logging-and-analysis">Logging and Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#integration-with-karios-network">Integration with Karios Network</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#network-component-integration">Network Component Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../firewall/index.html#centralized-management">Centralized Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../firewall/index.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Liquid Cooling Management</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../liquid/index.html">Karios Cool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#karios-cool-architecture">Karios Cool Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#integrated-hardware-and-software-solution">Integrated Hardware and Software Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#system-components">System Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#temperature-monitoring-and-control">Temperature Monitoring and Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#comprehensive-temperature-monitoring">Comprehensive Temperature Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#intelligent-cooling-control">Intelligent Cooling Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#performance-benefits">Performance Benefits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#thermal-throttling-prevention">Thermal Throttling Prevention</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#energy-efficiency">Energy Efficiency</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#high-density-server-support">High-Density Server Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#high-density-deployments">High-Density Deployments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#workload-specific-cooling">Workload-Specific Cooling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#system-integration">System Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#karios-platform-integration">Karios Platform Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#management-interface">Management Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#monitoring-and-analytics">Monitoring and Analytics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#real-time-monitoring">Real-Time Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#analytics-and-reporting">Analytics and Reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#predictive-maintenance">Predictive Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#health-monitoring">Health Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#maintenance-scheduling">Maintenance Scheduling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#energy-efficiency-and-sustainability">Energy Efficiency and Sustainability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#energy-optimization">Energy Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#sustainability-metrics">Sustainability Metrics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#advanced-features">Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#intelligent-algorithms">Intelligent Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#integration-capabilities">Integration Capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#troubleshooting-and-support">Troubleshooting and Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#diagnostic-tools">Diagnostic Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#support-features">Support Features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#safety-and-reliability">Safety and Reliability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#safety-features">Safety Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../liquid/index.html#reliability-engineering">Reliability Engineering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../liquid/index.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Security &amp; Compliance</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Security &amp; Compliance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Karios Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-center-dashboard">Security Center Dashboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-view-real-time-security-snapshot">Default View - Real-Time Security Snapshot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metrics-view-scan-history-trends">Metrics View - Scan History &amp; Trends</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Monitoring &amp; Maintenance</span></p>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vulnerability-scanning">Vulnerability Scanning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scan-types-and-execution">Scan Types and Execution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quick-scan-current">Quick Scan (Current)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deep-scan-future-scope">Deep Scan (Future Scope)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manual-scan">Manual Scan</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#scan-process-and-components">Scan Process and Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-scan-setup">Pre-Scan Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plugin-execution">Plugin Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cve-matching">CVE Matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scoring-reporting">Scoring &amp; Reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#scanning-engine">Scanning Engine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vulnerability-management">Vulnerability Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vulnerability-classification-and-tracking">Vulnerability Classification and Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#risk-assessment-and-scoring">Risk Assessment and Scoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compliance-management">Compliance Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cis-standards-compliance">CIS Standards Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compliance-gap-analysis">Compliance Gap Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#remediation-management">Remediation Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#current-remediation-capabilities">Current Remediation Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remediation-process">Remediation Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-remediation-enhancements">Future Remediation Enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#security-scanning-operations">Security Scanning Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scan-management">Scan Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scan-results-and-details">Scan Results and Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#report-generation">Report Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#security-insights-and-analysis">Security Insights and Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#threat-intelligence-integration">Threat Intelligence Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-metrics-and-improvements">Performance Metrics and Improvements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#security-history-and-tracking">Security History and Tracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vulnerability-trend-analysis">Vulnerability Trend Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-vulnerability-patterns">Common Vulnerability Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-security-features">Advanced Security Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#real-time-security-monitoring">Real-Time Security Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration-and-extensibility">Integration and Extensibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#future-enhancements-and-roadmap">Future Enhancements and Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#planned-security-features">Planned Security Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-roadmap">Version Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices-and-recommendations">Best Practices and Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#security-scanning-best-practices">Security Scanning Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remediation-best-practices">Remediation Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Power Monitoring &amp; Metrics</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../monitoring/index.html">Monitoring &amp; Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring/index.html">Power Monitoring and Metrics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#monitoring-architecture">Monitoring Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#power-sensors">Power Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#data-collection">Data Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#metrics-processing">Metrics Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#installation-and-configuration">Installation and Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#hardware-setup">Hardware Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#software-configuration">Software Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#calibration">Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#power-monitoring">Power Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#real-time-monitoring">Real-time Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#historical-analysis">Historical Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#reporting-and-analytics">Reporting and Analytics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#dashboard">Dashboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#reports">Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#integration">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#api-endpoints">API Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#real-time-metrics">Real-time Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#power-supply-management">Power Supply Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#power-profile-management">Power Profile Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#node-power-ratings">Node Power Ratings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../monitoring/index.html#power-metrics-history">Power Metrics History</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../monitoring/index.html#security-and-maintenance">Security and Maintenance</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Topics</span></p>
 <ul>
@@ -132,7 +479,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Security &amp; Compliance</li>
+      <li class="breadcrumb-item active">Karios Security</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -141,18 +488,840 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="security-compliance">
-<h1>Security &amp; Compliance<a class="headerlink" href="#security-compliance" title="Link to this heading"></a></h1>
-<p>Security architecture, compliance, and best practices for Karios deployments.</p>
-<p>Content for security architecture and compliance frameworks will be added here.</p>
+  <section id="karios-security">
+<h1>Karios Security<a class="headerlink" href="#karios-security" title="Link to this heading"></a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#security-center-dashboard" id="id2">Security Center Dashboard</a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-view-real-time-security-snapshot" id="id3">Default View - Real-Time Security Snapshot</a></p></li>
+<li><p><a class="reference internal" href="#metrics-view-scan-history-trends" id="id4">Metrics View - Scan History &amp; Trends</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#vulnerability-scanning" id="id5">Vulnerability Scanning</a></p>
+<ul>
+<li><p><a class="reference internal" href="#scan-types-and-execution" id="id6">Scan Types and Execution</a></p>
+<ul>
+<li><p><a class="reference internal" href="#quick-scan-current" id="id7">Quick Scan (Current)</a></p></li>
+<li><p><a class="reference internal" href="#deep-scan-future-scope" id="id8">Deep Scan (Future Scope)</a></p></li>
+<li><p><a class="reference internal" href="#manual-scan" id="id9">Manual Scan</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#scan-process-and-components" id="id10">Scan Process and Components</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pre-scan-setup" id="id11">Pre-Scan Setup</a></p></li>
+<li><p><a class="reference internal" href="#plugin-execution" id="id12">Plugin Execution</a></p></li>
+<li><p><a class="reference internal" href="#cve-matching" id="id13">CVE Matching</a></p></li>
+<li><p><a class="reference internal" href="#scoring-reporting" id="id14">Scoring &amp; Reporting</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#scanning-engine" id="id15">Scanning Engine</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#vulnerability-management" id="id16">Vulnerability Management</a></p>
+<ul>
+<li><p><a class="reference internal" href="#vulnerability-classification-and-tracking" id="id17">Vulnerability Classification and Tracking</a></p></li>
+<li><p><a class="reference internal" href="#risk-assessment-and-scoring" id="id18">Risk Assessment and Scoring</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#compliance-management" id="id19">Compliance Management</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cis-standards-compliance" id="id20">CIS Standards Compliance</a></p></li>
+<li><p><a class="reference internal" href="#compliance-gap-analysis" id="id21">Compliance Gap Analysis</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#remediation-management" id="id22">Remediation Management</a></p>
+<ul>
+<li><p><a class="reference internal" href="#current-remediation-capabilities" id="id23">Current Remediation Capabilities</a></p></li>
+<li><p><a class="reference internal" href="#remediation-process" id="id24">Remediation Process</a></p></li>
+<li><p><a class="reference internal" href="#future-remediation-enhancements" id="id25">Future Remediation Enhancements</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#security-scanning-operations" id="id26">Security Scanning Operations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#scan-management" id="id27">Scan Management</a></p></li>
+<li><p><a class="reference internal" href="#scan-results-and-details" id="id28">Scan Results and Details</a></p></li>
+<li><p><a class="reference internal" href="#report-generation" id="id29">Report Generation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#security-insights-and-analysis" id="id30">Security Insights and Analysis</a></p>
+<ul>
+<li><p><a class="reference internal" href="#threat-intelligence-integration" id="id31">Threat Intelligence Integration</a></p></li>
+<li><p><a class="reference internal" href="#performance-metrics-and-improvements" id="id32">Performance Metrics and Improvements</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#security-history-and-tracking" id="id33">Security History and Tracking</a></p>
+<ul>
+<li><p><a class="reference internal" href="#vulnerability-trend-analysis" id="id34">Vulnerability Trend Analysis</a></p></li>
+<li><p><a class="reference internal" href="#common-vulnerability-patterns" id="id35">Common Vulnerability Patterns</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-security-features" id="id36">Advanced Security Features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#real-time-security-monitoring" id="id37">Real-Time Security Monitoring</a></p></li>
+<li><p><a class="reference internal" href="#integration-and-extensibility" id="id38">Integration and Extensibility</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#future-enhancements-and-roadmap" id="id39">Future Enhancements and Roadmap</a></p>
+<ul>
+<li><p><a class="reference internal" href="#planned-security-features" id="id40">Planned Security Features</a></p></li>
+<li><p><a class="reference internal" href="#version-roadmap" id="id41">Version Roadmap</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#best-practices-and-recommendations" id="id42">Best Practices and Recommendations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#security-scanning-best-practices" id="id43">Security Scanning Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#remediation-best-practices" id="id44">Remediation Best Practices</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conclusion" id="id45">Conclusion</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Karios Security provides comprehensive security management and threat protection for your hyper-converged infrastructure. This integrated security solution delivers advanced vulnerability scanning, compliance monitoring, and automated remediation specifically designed for FreeBSD-based bare metal and virtualized environments. Built around the KariOS SHIELD scanning platform with the KariOS Enhanced v1.1.0 engine, it offers enterprise-grade security assessment and management capabilities.</p>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Comprehensive Vulnerability Scanning:</strong> Advanced vulnerability detection using proprietary and public CVE databases</p></li>
+<li><p><strong>Real-Time Security Dashboard:</strong> Centralized security posture monitoring and risk assessment</p></li>
+<li><p><strong>Compliance Management:</strong> CIS FreeBSD standards compliance monitoring and gap analysis</p></li>
+<li><p><strong>Automated Remediation:</strong> Limited automated fixes for FreeBSD benchmark violations (expanding in future releases)</p></li>
+<li><p><strong>Threat Intelligence Integration:</strong> Continuous threat landscape monitoring and analysis</p></li>
+<li><p><strong>Historical Tracking:</strong> Security trends and improvement metrics over time</p></li>
+</ul>
+</section>
+<section id="security-center-dashboard">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Security Center Dashboard</a><a class="headerlink" href="#security-center-dashboard" title="Link to this heading"></a></h2>
+<section id="default-view-real-time-security-snapshot">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Default View - Real-Time Security Snapshot</a><a class="headerlink" href="#default-view-real-time-security-snapshot" title="Link to this heading"></a></h3>
+<p>The Security Center provides a centralized real-time view of your infrastructure’s security posture, appearing by default when entering the Security tab.</p>
+<p><strong>Left Panel - Risk Summary:</strong></p>
+<p>Displays critical security metrics at a glance:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Risk Percentage</p></td>
+<td><p>Current security risk as a percentage (lower values indicate better security)</p></td>
+</tr>
+<tr class="row-odd"><td><p>System Status</p></td>
+<td><p>Overall system health status based on latest scan results (e.g., “Needs Attention”)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Center Panel - System Information:</strong></p>
+<p>Provides detailed system and scanning engine information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scan Engine Version</p></td>
+<td><p>Current scanning engine version (KariOS Enhanced v1.1.0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Last Scan Status</p></td>
+<td><p>Completion status of most recent scan (COMPLETED/FAILED)</p></td>
+</tr>
+<tr class="row-even"><td><p>Top Risk Category</p></td>
+<td><p>Primary vulnerability category contributing to current risk</p></td>
+</tr>
+<tr class="row-odd"><td><p>Newest CVE</p></td>
+<td><p>Most recently detected CVE identifier</p></td>
+</tr>
+<tr class="row-even"><td><p>Last Remediation</p></td>
+<td><p>Time elapsed since last vulnerability remediation</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Right Panel - Vulnerability Breakdown:</strong></p>
+<p>Shows vulnerability distribution by category:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CAT I</p></td>
+<td><p>Critical vulnerabilities with high impact and immediate attention required</p></td>
+</tr>
+<tr class="row-odd"><td><p>CAT II</p></td>
+<td><p>High-to-medium severity issues requiring prompt attention</p></td>
+</tr>
+<tr class="row-even"><td><p>CAT III</p></td>
+<td><p>Low-priority or informational issues for future consideration</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total</p></td>
+<td><p>Complete count of all identified vulnerabilities</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="metrics-view-scan-history-trends">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Metrics View - Scan History &amp; Trends</a><a class="headerlink" href="#metrics-view-scan-history-trends" title="Link to this heading"></a></h3>
+<p>Access detailed metrics and historical analysis by clicking the Metrics dropdown, providing comprehensive security posture tracking over time.</p>
+<p><strong>Security Scan History:</strong></p>
+<p>Track and analyze vulnerability trends across multiple scans with historical data showing vulnerability counts by category over time.</p>
+<p><strong>Previous Scan Details:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scan Date</p></td>
+<td><p>Timestamp of previous security scan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total Findings</p></td>
+<td><p>Complete count of vulnerabilities found</p></td>
+</tr>
+<tr class="row-even"><td><p>Critical Issues</p></td>
+<td><p>Number of CAT I vulnerabilities identified</p></td>
+</tr>
+<tr class="row-odd"><td><p>Risk Score</p></td>
+<td><p>Calculated risk assessment value</p></td>
+</tr>
+<tr class="row-even"><td><p>Compliance Status</p></td>
+<td><p>CIS FreeBSD compliance level achieved</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recent Changes:</strong></p>
+<p>Monitor security posture changes between scans:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>New Vulnerabilities</p></td>
+<td><p>Number of new issues detected compared to last scan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resolved Issues</p></td>
+<td><p>Number of previously identified issues now resolved</p></td>
+</tr>
+<tr class="row-even"><td><p>Improving Controls</p></td>
+<td><p>Security controls showing improvement in current scan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Declining Controls</p></td>
+<td><p>Security controls showing degradation since last scan</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Compliance Gap Analysis:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Compliance Area</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Access Controls</p></td>
+<td><p>Number of failed checks vs. total checks</p></td>
+</tr>
+<tr class="row-odd"><td><p>System Hardening</p></td>
+<td><p>Percentage of hardening requirements met</p></td>
+</tr>
+<tr class="row-even"><td><p>Network Security</p></td>
+<td><p>Count of network-related findings</p></td>
+</tr>
+<tr class="row-odd"><td><p>Audit &amp; Logging</p></td>
+<td><p>Compliance level for audit requirements</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Security Insights:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mean Time to Remediate</p></td>
+<td><p>Average time to fix vulnerabilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exposure Time Reduction</p></td>
+<td><p>Percentage improvement in vulnerability exposure</p></td>
+</tr>
+<tr class="row-even"><td><p>Most Common Issue Type</p></td>
+<td><p>Frequently occurring vulnerability category</p></td>
+</tr>
+<tr class="row-odd"><td><p>Threat Landscape Status</p></td>
+<td><p>Current threat intelligence assessment</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="vulnerability-scanning">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Vulnerability Scanning</a><a class="headerlink" href="#vulnerability-scanning" title="Link to this heading"></a></h2>
+<section id="scan-types-and-execution">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Scan Types and Execution</a><a class="headerlink" href="#scan-types-and-execution" title="Link to this heading"></a></h3>
+<p>KariOS SHIELD provides multiple scan types to accommodate different security assessment needs:</p>
+<section id="quick-scan-current">
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">Quick Scan (Current)</a><a class="headerlink" href="#quick-scan-current" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Duration:</strong> 3-5 minutes</p></li>
+<li><p><strong>Coverage:</strong> Most critical security items</p></li>
+<li><p><strong>Scope:</strong> Packages, kernel configurations, basic file permissions</p></li>
+<li><p><strong>Use Case:</strong> Rapid security assessment and regular monitoring</p></li>
+</ul>
+</section>
+<section id="deep-scan-future-scope">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Deep Scan (Future Scope)</a><a class="headerlink" href="#deep-scan-future-scope" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Status:</strong> Coming soon</p></li>
+<li><p><strong>Coverage:</strong> Comprehensive system-wide security analysis</p></li>
+<li><p><strong>Scope:</strong> All available security checks across the entire system</p></li>
+<li><p><strong>Use Case:</strong> Full compliance audits and thorough vulnerability analysis</p></li>
+</ul>
+</section>
+<section id="manual-scan">
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">Manual Scan</a><a class="headerlink" href="#manual-scan" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Trigger:</strong> User-initiated on-demand scanning</p></li>
+<li><p><strong>Flexibility:</strong> Configurable scope and target selection</p></li>
+<li><p><strong>Control:</strong> Complete user control over scan timing and parameters</p></li>
+</ul>
+</section>
+</section>
+<section id="scan-process-and-components">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Scan Process and Components</a><a class="headerlink" href="#scan-process-and-components" title="Link to this heading"></a></h3>
+<p><strong>What Gets Checked:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>System Packages</p></td>
+<td><p>Installed software versions and known vulnerabilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kernel Configuration</p></td>
+<td><p>Security-related kernel parameters and loaded modules</p></td>
+</tr>
+<tr class="row-even"><td><p>Network Services</p></td>
+<td><p>Open ports, running services, and network configurations</p></td>
+</tr>
+<tr class="row-odd"><td><p>File Permissions</p></td>
+<td><p>Critical system file and directory access controls</p></td>
+</tr>
+<tr class="row-even"><td><p>User Accounts</p></td>
+<td><p>Account security, privileges, and authentication settings</p></td>
+</tr>
+<tr class="row-odd"><td><p>Security Policies</p></td>
+<td><p>System security policy compliance and configurations</p></td>
+</tr>
+<tr class="row-even"><td><p>Patch Status</p></td>
+<td><p>Missing security updates and available patches</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Behind-the-Scenes Process:</strong></p>
+<section id="pre-scan-setup">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Pre-Scan Setup</a><a class="headerlink" href="#pre-scan-setup" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Scanner reads selected configuration (quick/deep, target profile)</p></li>
+<li><p>Initializes system-specific access and environment data</p></li>
+<li><p>Prepares plugin execution environment</p></li>
+</ul>
+</section>
+<section id="plugin-execution">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Plugin Execution</a><a class="headerlink" href="#plugin-execution" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Each plugin runs sequentially, checking specific system areas</p></li>
+<li><p>Issues are flagged as findings when vulnerabilities are detected</p></li>
+<li><p>Results are collected and categorized by severity</p></li>
+</ul>
+</section>
+<section id="cve-matching">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">CVE Matching</a><a class="headerlink" href="#cve-matching" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>All findings compared against updated CVE database</p></li>
+<li><p>Matches recorded with metadata (CVE ID, severity, exploitability)</p></li>
+<li><p>Vulnerability classifications assigned based on database lookups</p></li>
+</ul>
+</section>
+<section id="scoring-reporting">
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Scoring &amp; Reporting</a><a class="headerlink" href="#scoring-reporting" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Risk Score calculated based on findings and severity</p></li>
+<li><p>Scan results, scores, and logs saved to database</p></li>
+<li><p>Results displayed in Security tab interface</p></li>
+</ul>
+</section>
+</section>
+<section id="scanning-engine">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Scanning Engine</a><a class="headerlink" href="#scanning-engine" title="Link to this heading"></a></h3>
+<p><strong>KariOS Enhanced v1.1.0:</strong></p>
+<ul class="simple">
+<li><p><strong>Current Version:</strong> KariOS Enhanced v1.1.0</p></li>
+<li><p><strong>Update Schedule:</strong> Next version release scheduled shortly</p></li>
+<li><p><strong>Capabilities:</strong> Comprehensive vulnerability detection and assessment</p></li>
+<li><p><strong>Database:</strong> Maintains proprietary vulnerability database with public CVE integration</p></li>
+</ul>
+<p><strong>Database Management:</strong></p>
+<ul class="simple">
+<li><p><strong>Proprietary Database:</strong> Karios maintains specialized vulnerability database</p></li>
+<li><p><strong>Public CVE Integration:</strong> Regular synchronization with public CVE databases</p></li>
+<li><p><strong>Update Frequency:</strong> Regular intervals for database synchronization</p></li>
+<li><p><strong>Coverage:</strong> Comprehensive vulnerability signatures and definitions</p></li>
+</ul>
+</section>
+</section>
+<section id="vulnerability-management">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Vulnerability Management</a><a class="headerlink" href="#vulnerability-management" title="Link to this heading"></a></h2>
+<section id="vulnerability-classification-and-tracking">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Vulnerability Classification and Tracking</a><a class="headerlink" href="#vulnerability-classification-and-tracking" title="Link to this heading"></a></h3>
+<p><strong>Vulnerability Information Display:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CVE ID</p></td>
+<td><p>Common Vulnerabilities and Exposures identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>CVSS Score</p></td>
+<td><p>Severity score from 0.0 to 10.0</p></td>
+</tr>
+<tr class="row-even"><td><p>Severity Level</p></td>
+<td><p>Critical, High, Medium, or Low classification</p></td>
+</tr>
+<tr class="row-odd"><td><p>Affected Component</p></td>
+<td><p>System component or package with vulnerability</p></td>
+</tr>
+<tr class="row-even"><td><p>Remediation Status</p></td>
+<td><p>Available, Pending, Applied, or Not Available</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exploit Available</p></td>
+<td><p>Whether public exploits exist for this vulnerability</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>CVE Tracking:</strong></p>
+<ul class="simple">
+<li><p><strong>CVE Integration:</strong> Comprehensive Common Vulnerabilities and Exposures tracking</p></li>
+<li><p><strong>CVSS Scoring:</strong> Common Vulnerability Scoring System implementation</p></li>
+<li><p><strong>Severity Classification:</strong> Standardized critical, high, medium, low severity levels</p></li>
+<li><p><strong>Status Monitoring:</strong> Active vulnerability status tracking and updates</p></li>
+</ul>
+</section>
+<section id="risk-assessment-and-scoring">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Risk Assessment and Scoring</a><a class="headerlink" href="#risk-assessment-and-scoring" title="Link to this heading"></a></h3>
+<p><strong>Risk Score Calculation:</strong> The Risk Score provides a comprehensive assessment of system vulnerability based on:</p>
+<ul class="simple">
+<li><p><strong>Number of Security Findings:</strong> Total count of identified vulnerabilities</p></li>
+<li><p><strong>Severity Weighting:</strong> Critical, High, Medium, Low severity impact factors</p></li>
+<li><p><strong>Exploitability:</strong> Whether vulnerabilities are actively exploitable</p></li>
+<li><p><strong>Patch Availability:</strong> Missing patches for known vulnerabilities</p></li>
+</ul>
+<p><strong>Compliance Score:</strong> Reflects system adherence to security hardening and configuration best practices:</p>
+<ul class="simple">
+<li><p><strong>CIS FreeBSD Compliance:</strong> Alignment with Center for Internet Security standards</p></li>
+<li><p><strong>Configuration Assessment:</strong> System settings and security controls evaluation</p></li>
+<li><p><strong>Best Practices:</strong> Implementation of recommended security configurations</p></li>
+</ul>
+<p><strong>Overall Security Status:</strong> Simplified security posture indicators:</p>
+<ul class="simple">
+<li><p><strong>GOOD:</strong> Well-configured system with low risk</p></li>
+<li><p><strong>MODERATE:</strong> Reasonably secure with some areas requiring attention</p></li>
+<li><p><strong>AT-RISK:</strong> Exposed to major vulnerabilities or weak configurations</p></li>
+</ul>
+</section>
+</section>
+<section id="compliance-management">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Compliance Management</a><a class="headerlink" href="#compliance-management" title="Link to this heading"></a></h2>
+<section id="cis-standards-compliance">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">CIS Standards Compliance</a><a class="headerlink" href="#cis-standards-compliance" title="Link to this heading"></a></h3>
+<p><strong>CIS Framework Integration:</strong></p>
+<ul class="simple">
+<li><p><strong>Standards:</strong> Center for Internet Security FreeBSD standards implementation</p></li>
+<li><p><strong>Risk Categories:</strong> CIS-based vulnerability categorization and assessment</p></li>
+<li><p><strong>Compliance Scoring:</strong> Automated compliance assessment and grading</p></li>
+<li><p><strong>Gap Analysis:</strong> Compliance gap identification and tracking</p></li>
+</ul>
+<p><strong>Compliance Monitoring:</strong></p>
+<ul class="simple">
+<li><p><strong>Current Status:</strong> Real-time compliance status (e.g., C - CRITICAL)</p></li>
+<li><p><strong>Historical Tracking:</strong> Previous compliance status and trend analysis</p></li>
+<li><p><strong>Improvement Tracking:</strong> Compliance improvement or decline analysis</p></li>
+<li><p><strong>Category Breakdown:</strong> Specific CIS control category assessment</p></li>
+</ul>
+</section>
+<section id="compliance-gap-analysis">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Compliance Gap Analysis</a><a class="headerlink" href="#compliance-gap-analysis" title="Link to this heading"></a></h3>
+<p><strong>Control Categories:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Control Category</p></th>
+<th class="head"><p>Status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Initial Setup</p></td>
+<td><p>Pass/Fail</p></td>
+<td><p>System installation and initial configuration security</p></td>
+</tr>
+<tr class="row-odd"><td><p>Services</p></td>
+<td><p>Pass/Fail</p></td>
+<td><p>Unnecessary service identification and disabling</p></td>
+</tr>
+<tr class="row-even"><td><p>Network Parameters</p></td>
+<td><p>Pass/Fail</p></td>
+<td><p>Network stack security configurations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Logging and Auditing</p></td>
+<td><p>Pass/Fail</p></td>
+<td><p>System event logging and audit trail configuration</p></td>
+</tr>
+<tr class="row-even"><td><p>Access Controls</p></td>
+<td><p>Pass/Fail</p></td>
+<td><p>User access management and authentication controls</p></td>
+</tr>
+<tr class="row-odd"><td><p>System Maintenance</p></td>
+<td><p>Pass/Fail</p></td>
+<td><p>Patch management and system update procedures</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="remediation-management">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Remediation Management</a><a class="headerlink" href="#remediation-management" title="Link to this heading"></a></h2>
+<section id="current-remediation-capabilities">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Current Remediation Capabilities</a><a class="headerlink" href="#current-remediation-capabilities" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Remediation is currently available for very few vulnerabilities and primarily covers FreeBSD benchmark violations. Enhanced remediation capabilities are planned for future releases.</p>
+</div>
+<p><strong>Current Remediation Scope:</strong></p>
+<ul class="simple">
+<li><p><strong>FreeBSD Benchmark Checks:</strong> System-level fixes for CIS FreeBSD standard violations</p></li>
+<li><p><strong>Configuration Corrections:</strong> Adjusting permissions, disabling unsafe services</p></li>
+<li><p><strong>Kernel Module Management:</strong> Removing vulnerable or unnecessary kernel modules</p></li>
+<li><p><strong>File Permission Fixes:</strong> Correcting overly permissive file and directory access</p></li>
+</ul>
+<p><strong>What Remediation Covers Currently:</strong></p>
+<ul class="simple">
+<li><p>Disabling core dumps for security</p></li>
+<li><p>Removing or disabling vulnerable kernel modules</p></li>
+<li><p>Correcting incorrect file permissions</p></li>
+<li><p>Basic system hardening configurations</p></li>
+</ul>
+</section>
+<section id="remediation-process">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Remediation Process</a><a class="headerlink" href="#remediation-process" title="Link to this heading"></a></h3>
+<p><strong>How Remediation Works:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Vulnerability Assessment:</strong> Identify vulnerabilities with available automated fixes</p></li>
+<li><p><strong>Manual Trigger:</strong> User must manually initiate remediation via UI</p></li>
+<li><p><strong>Fix Execution:</strong> System applies predefined fixes (usually shell command logic)</p></li>
+<li><p><strong>System Changes:</strong> Updates may include file modifications, permission adjustments, service configurations</p></li>
+<li><p><strong>Verification:</strong> Automatic verification step confirms issue resolution</p></li>
+<li><p><strong>Status Update:</strong> Finding marked as remediated, compliance score updated</p></li>
+</ol>
+<p><strong>Remediation Types:</strong></p>
+<ul class="simple">
+<li><p><strong>Automatic Fixes:</strong> Limited automated vulnerability remediation for supported issues</p></li>
+<li><p><strong>Step-by-Step Guides:</strong> Detailed manual remediation instructions</p></li>
+<li><p><strong>Verification:</strong> Automated verification of successful remediation</p></li>
+<li><p><strong>Tracking:</strong> Complete remediation progress and completion monitoring</p></li>
+</ul>
+</section>
+<section id="future-remediation-enhancements">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">Future Remediation Enhancements</a><a class="headerlink" href="#future-remediation-enhancements" title="Link to this heading"></a></h3>
+<p><strong>Planned Expansions:</strong></p>
+<ul class="simple">
+<li><p><strong>Package Updates:</strong> Automated security patch installation</p></li>
+<li><p><strong>Advanced Configuration:</strong> Enhanced system hardening automation</p></li>
+<li><p><strong>Custom Remediation:</strong> User-defined remediation scripts</p></li>
+<li><p><strong>Orchestrated Remediation:</strong> Multi-system coordinated remediation</p></li>
+<li><p><strong>Rollback Capabilities:</strong> Safe remediation rollback functionality</p></li>
+</ul>
+</section>
+</section>
+<section id="security-scanning-operations">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">Security Scanning Operations</a><a class="headerlink" href="#security-scanning-operations" title="Link to this heading"></a></h2>
+<section id="scan-management">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Scan Management</a><a class="headerlink" href="#scan-management" title="Link to this heading"></a></h3>
+<p><strong>Scan Operations:</strong></p>
+<ul class="simple">
+<li><p><strong>Scan Initiation:</strong> Manual scan trigger via Security dashboard</p></li>
+<li><p><strong>Scan Configuration:</strong> Scope definition and target selection</p></li>
+<li><p><strong>Scan Monitoring:</strong> Real-time scan progress and status monitoring</p></li>
+<li><p><strong>Scan Validation:</strong> Automatic verification of scan completion and results</p></li>
+</ul>
+<p><strong>Scan History Tracking:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Scan Date</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Duration</p></th>
+<th class="head"><p>Findings</p></th>
+<th class="head"><p>Risk Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[Date/Time]</p></td>
+<td><p>Quick/Deep</p></td>
+<td><p>X minutes</p></td>
+<td><p>Number</p></td>
+<td><p>Score/100</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scan-results-and-details">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Scan Results and Details</a><a class="headerlink" href="#scan-results-and-details" title="Link to this heading"></a></h3>
+<p><strong>Detailed Scan Information:</strong></p>
+<ul class="simple">
+<li><p><strong>Scan Time:</strong> Precise scan execution timestamp</p></li>
+<li><p><strong>Initiator:</strong> Scan trigger source (System/User initiated)</p></li>
+<li><p><strong>Target Assets:</strong> Number and identification of scanned assets</p></li>
+<li><p><strong>Risk Score:</strong> Calculated risk score from scan results</p></li>
+<li><p><strong>Vulnerability Count:</strong> Total number of vulnerabilities discovered</p></li>
+</ul>
+</section>
+<section id="report-generation">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Report Generation</a><a class="headerlink" href="#report-generation" title="Link to this heading"></a></h3>
+<p><strong>Available Report Formats:</strong></p>
+<ul class="simple">
+<li><p><strong>HTML Reports:</strong> Interactive web-based detailed reports</p></li>
+<li><p><strong>PDF Reports:</strong> Printable PDF documentation for offline use</p></li>
+<li><p><strong>Export Options:</strong> Report download for external analysis and archiving</p></li>
+<li><p><strong>Report Contents:</strong> Comprehensive vulnerability data, compliance assessment, and remediation recommendations</p></li>
+</ul>
+</section>
+</section>
+<section id="security-insights-and-analysis">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Security Insights and Analysis</a><a class="headerlink" href="#security-insights-and-analysis" title="Link to this heading"></a></h2>
+<section id="threat-intelligence-integration">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Threat Intelligence Integration</a><a class="headerlink" href="#threat-intelligence-integration" title="Link to this heading"></a></h3>
+<p><strong>Threat Landscape Monitoring:</strong></p>
+<ul class="simple">
+<li><p><strong>Threat Detection:</strong> Continuous monitoring for new threat patterns</p></li>
+<li><p><strong>Threat Intelligence:</strong> Integration with threat intelligence feeds</p></li>
+<li><p><strong>Risk Assessment:</strong> Ongoing threat risk evaluation and analysis</p></li>
+<li><p><strong>Status Reporting:</strong> Clear threat status communication (e.g., “No new threats detected”)</p></li>
+</ul>
+</section>
+<section id="performance-metrics-and-improvements">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">Performance Metrics and Improvements</a><a class="headerlink" href="#performance-metrics-and-improvements" title="Link to this heading"></a></h3>
+<p><strong>Security Improvement Tracking:</strong></p>
+<ul class="simple">
+<li><p><strong>Exposure Time Reduction:</strong> Measurable improvements in vulnerability exposure time (e.g., 25% improvement)</p></li>
+<li><p><strong>Risk Mitigation:</strong> Quantifiable security posture improvements</p></li>
+<li><p><strong>Trend Analysis:</strong> Historical security improvement tracking</p></li>
+<li><p><strong>Baseline Comparison:</strong> Security metrics compared to established baselines</p></li>
+</ul>
+<p><strong>Historical Analysis:</strong></p>
+<ul class="simple">
+<li><p><strong>Risk Score Trends:</strong> Long-term risk score analysis and trending</p></li>
+<li><p><strong>Vulnerability Trends:</strong> Tracking vulnerability discovery and remediation over time</p></li>
+<li><p><strong>Compliance History:</strong> Historical compliance status and improvement tracking</p></li>
+<li><p><strong>Change Analytics:</strong> Analysis of security changes and their impacts</p></li>
+</ul>
+</section>
+</section>
+<section id="security-history-and-tracking">
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">Security History and Tracking</a><a class="headerlink" href="#security-history-and-tracking" title="Link to this heading"></a></h2>
+<section id="vulnerability-trend-analysis">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Vulnerability Trend Analysis</a><a class="headerlink" href="#vulnerability-trend-analysis" title="Link to this heading"></a></h3>
+<p><strong>Recent Changes Tracking:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Trend Indicator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>New Vulnerabilities</p></td>
+<td><p>Count and severity of newly discovered issues</p></td>
+</tr>
+<tr class="row-odd"><td><p>Remediated Issues</p></td>
+<td><p>Successfully fixed vulnerabilities since last scan</p></td>
+</tr>
+<tr class="row-even"><td><p>Recurring Issues</p></td>
+<td><p>Vulnerabilities that have reappeared after remediation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trend Direction</p></td>
+<td><p>Overall security posture improvement or decline</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-vulnerability-patterns">
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">Common Vulnerability Patterns</a><a class="headerlink" href="#common-vulnerability-patterns" title="Link to this heading"></a></h3>
+<p><strong>Vulnerability Type Analysis:</strong></p>
+<ul class="simple">
+<li><p><strong>Top Risk Categories:</strong> Most prevalent risk categories (e.g., CAT II)</p></li>
+<li><p><strong>Common Vulnerability Types:</strong> Frequent vulnerability classifications (e.g., KERNEL, NETWORK)</p></li>
+<li><p><strong>System Areas:</strong> Most vulnerable system components and services</p></li>
+<li><p><strong>Remediation Patterns:</strong> Common approaches and success rates for remediation</p></li>
+</ul>
+</section>
+</section>
+<section id="advanced-security-features">
+<h2><a class="toc-backref" href="#id36" role="doc-backlink">Advanced Security Features</a><a class="headerlink" href="#advanced-security-features" title="Link to this heading"></a></h2>
+<section id="real-time-security-monitoring">
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">Real-Time Security Monitoring</a><a class="headerlink" href="#real-time-security-monitoring" title="Link to this heading"></a></h3>
+<p><strong>Continuous Monitoring Capabilities:</strong></p>
+<ul class="simple">
+<li><p><strong>Live Status Updates:</strong> Real-time security status monitoring and dashboard updates</p></li>
+<li><p><strong>Alert System:</strong> Automated security alerts and notifications for critical issues</p></li>
+<li><p><strong>Status Indicators:</strong> Visual security status indicators and risk level displays</p></li>
+<li><p><strong>Threshold Monitoring:</strong> Configurable risk alert thresholds and automated notifications</p></li>
+</ul>
+</section>
+<section id="integration-and-extensibility">
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">Integration and Extensibility</a><a class="headerlink" href="#integration-and-extensibility" title="Link to this heading"></a></h3>
+<p><strong>Current Integration:</strong></p>
+<ul class="simple">
+<li><p><strong>Dashboard Integration:</strong> Seamless integration with Karios main dashboard</p></li>
+<li><p><strong>Reporting Integration:</strong> Export capabilities for external security tools</p></li>
+<li><p><strong>Database Integration:</strong> Centralized vulnerability and compliance data storage</p></li>
+</ul>
+</section>
+</section>
+<section id="future-enhancements-and-roadmap">
+<h2><a class="toc-backref" href="#id39" role="doc-backlink">Future Enhancements and Roadmap</a><a class="headerlink" href="#future-enhancements-and-roadmap" title="Link to this heading"></a></h2>
+<section id="planned-security-features">
+<h3><a class="toc-backref" href="#id40" role="doc-backlink">Planned Security Features</a><a class="headerlink" href="#planned-security-features" title="Link to this heading"></a></h3>
+<p><strong>Upcoming Capabilities:</strong></p>
+<ul class="simple">
+<li><p><strong>Deep Scan Implementation:</strong> Complete deep scanning capabilities for comprehensive analysis</p></li>
+<li><p><strong>Enhanced Remediation:</strong> Expanded automated remediation coverage beyond current FreeBSD benchmarks</p></li>
+<li><p><strong>Automated Scheduling:</strong> Scheduled automatic security scans with configurable intervals</p></li>
+<li><p><strong>Advanced Analytics:</strong> Machine learning-based threat detection and pattern analysis</p></li>
+<li><p><strong>Extended Remediation:</strong> Package updates, advanced configuration automation, and custom scripts</p></li>
+</ul>
+</section>
+<section id="version-roadmap">
+<h3><a class="toc-backref" href="#id41" role="doc-backlink">Version Roadmap</a><a class="headerlink" href="#version-roadmap" title="Link to this heading"></a></h3>
+<p><strong>Development Schedule:</strong></p>
+<ul class="simple">
+<li><p><strong>Current Version:</strong> KariOS Enhanced v1.1.0</p></li>
+<li><p><strong>Next Release:</strong> Enhanced features and expanded remediation capabilities</p></li>
+<li><p><strong>Update Schedule:</strong> Regular security engine updates and database synchronization</p></li>
+<li><p><strong>Feature Additions:</strong> Continuous security capability improvements and new functionality</p></li>
+</ul>
+<p><strong>Integration Expansion:</strong></p>
+<ul class="simple">
+<li><p><strong>Compliance Frameworks:</strong> Additional compliance standard support beyond CIS FreeBSD</p></li>
+<li><p><strong>API Development:</strong> Enhanced API capabilities for external tool integration</p></li>
+<li><p><strong>Custom Plugin Support:</strong> Framework for custom security check development</p></li>
+</ul>
+</section>
+</section>
+<section id="best-practices-and-recommendations">
+<h2><a class="toc-backref" href="#id42" role="doc-backlink">Best Practices and Recommendations</a><a class="headerlink" href="#best-practices-and-recommendations" title="Link to this heading"></a></h2>
+<section id="security-scanning-best-practices">
+<h3><a class="toc-backref" href="#id43" role="doc-backlink">Security Scanning Best Practices</a><a class="headerlink" href="#security-scanning-best-practices" title="Link to this heading"></a></h3>
+<p><strong>Recommended Scan Schedule:</strong></p>
+<ul class="simple">
+<li><p><strong>Regular Quick Scans:</strong> Daily or weekly quick scans for continuous monitoring</p></li>
+<li><p><strong>Periodic Full Scans:</strong> Monthly comprehensive scans for complete assessment</p></li>
+<li><p><strong>Post-Change Scans:</strong> Immediate scans after system changes or updates</p></li>
+<li><p><strong>Compliance Scans:</strong> Quarterly scans for compliance reporting requirements</p></li>
+</ul>
+</section>
+<section id="remediation-best-practices">
+<h3><a class="toc-backref" href="#id44" role="doc-backlink">Remediation Best Practices</a><a class="headerlink" href="#remediation-best-practices" title="Link to this heading"></a></h3>
+<p><strong>Current Limitations Awareness:</strong></p>
+<ul class="simple">
+<li><p><strong>Limited Scope:</strong> Understand current remediation covers only FreeBSD benchmark issues</p></li>
+<li><p><strong>Manual Review:</strong> Review all remediation actions before execution</p></li>
+<li><p><strong>Testing Environment:</strong> Test remediation in non-production environments first</p></li>
+<li><p><strong>Documentation:</strong> Maintain records of all remediation activities</p></li>
+</ul>
+<p><strong>Future Preparation:</strong></p>
+<ul class="simple">
+<li><p><strong>Remediation Planning:</strong> Prepare remediation procedures for expanded capabilities</p></li>
+<li><p><strong>Change Management:</strong> Establish change management processes for automated remediation</p></li>
+<li><p><strong>Rollback Procedures:</strong> Develop rollback procedures for remediation failures</p></li>
+<li><p><strong>Monitoring Integration:</strong> Plan integration with existing monitoring and alerting systems</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion">
+<h2><a class="toc-backref" href="#id45" role="doc-backlink">Conclusion</a><a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>Karios Security provides a robust foundation for infrastructure security management with its comprehensive vulnerability scanning, compliance monitoring, and limited automated remediation capabilities. While current remediation features are focused on FreeBSD benchmark compliance, the platform’s architecture supports significant expansion of security capabilities. The combination of real-time monitoring, detailed reporting, and integration with the broader Karios platform makes it an essential component for maintaining secure hyper-converged infrastructure deployments.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../deployment/index.html" class="btn btn-neutral float-left" title="Deployment Scenarios" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../monitoring/index.html" class="btn btn-neutral float-right" title="Monitoring &amp; Maintenance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../liquid/index.html" class="btn btn-neutral float-left" title="Karios Cool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../monitoring/index.html" class="btn btn-neutral float-right" title="Power Monitoring and Metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

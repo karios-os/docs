@@ -3,10 +3,6 @@ Karios Documentation
 
 Welcome to the comprehensive documentation for Karios, the software-defined foundation for modern IT infrastructure.
 
-.. note::
-   This documentation is under active development. If you find any issues or have suggestions, 
-   please `open an issue <https://github.com/karios/karios-docs/issues>`_.
-
 What is Karios?
 ---------------
 
@@ -47,15 +43,15 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Virtualization & Compute
-   
-   virtualization/index
+   :caption: Getting Started
+
+   user-guide/index
 
 .. toctree::
    :maxdepth: 2
-   :caption: Storage & Data Management
-   
-   storage/index
+   :caption: System Updates and Releases
+
+   administration/index
 
 .. toctree::
    :maxdepth: 2
@@ -65,15 +61,15 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Management & Automation
-   
-   management/index
+   :caption: Integrated Firewall
+
+   firewall/index
 
 .. toctree::
    :maxdepth: 2
-   :caption: Deployment Scenarios
-   
-   deployment/index
+   :caption: Liquid Cooling Management
+
+   liquid/index
 
 .. toctree::
    :maxdepth: 2
@@ -83,7 +79,7 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Monitoring & Maintenance
+   :caption: Power Monitoring & Metrics
    
    monitoring/index
 
