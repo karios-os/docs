@@ -14,7 +14,7 @@ Karios Security provides comprehensive security management and threat protection
 **Key Features:**
 
 * **Comprehensive Vulnerability Scanning:** Advanced vulnerability detection using proprietary and public CVE databases
-* **Real-Time Security Dashboard:** Centralized security posture monitoring and risk assessment
+* **Security Dashboard:** Centralized security posture monitoring and risk assessment
 * **Compliance Management:** SCAP compliance monitoring and gap analysis
 * **Automated Remediation:** Limited automated fixes for FreeBSD benchmark violations (expanding in future releases)
 * **Threat Intelligence Integration:** Continuous threat landscape monitoring and analysis
