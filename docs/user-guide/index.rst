@@ -916,6 +916,82 @@ Standard VM management operations include:
 - **Snapshot**: Create point-in-time VM snapshots
 - **Delete**: Remove the virtual machine permanently
 
+VM Console Access
+~~~~~~~~~~~~~~~~~
+
+The Console tab provides direct browser-based access to the VM's operating system:
+
+- **Direct Console Access**: Interact with the VM through a web-based console interface
+- **Remote Management**: Perform administrative tasks and troubleshooting directly from your browser
+
+VM Snapshot Management
+~~~~~~~~~~~~~~~~~~~~~~
+
+The Snapshots tab enables comprehensive snapshot operations:
+
+- **Snapshot Creation**: Create point-in-time snapshots of the VM state
+- **Snapshot Rollback**: Restore the VM to a previous snapshot
+- **Snapshot Management**: View, delete, and organize existing snapshots
+- **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
+
+VM Monitoring
+~~~~~~~~~~~~~
+
+Monitor VM performance and health using built-in tools:
+
+- **Resource Usage**: Track CPU, memory, and storage utilization
+- **Network Traffic**: Monitor network performance and connectivity
+- **System Logs**: Access VM system logs and error messages via the Activity Logs tab
+
+VM Maintenance
+~~~~~~~~~~~~~~
+
+Perform regular maintenance operations to ensure optimal VM performance:
+
+- **Updates**: Apply operating system and application updates
+- **Backups**: Create regular VM backups for disaster recovery
+- **Security Patches**: Apply security updates and patches promptly
+- **Configuration Changes**: Modify VM settings through the Hardware tab as needed
+- **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
+
+VM Console Access
+~~~~~~~~~~~~~~~~~
+
+The Console tab provides direct browser-based access to the VM's operating system:
+
+- **Direct Console Access**: Interact with the VM through a web-based console interface
+- **Remote Management**: Perform administrative tasks and troubleshooting directly from your browser
+
+VM Snapshot Management
+~~~~~~~~~~~~~~~~~~~~~~
+
+The Snapshots tab enables comprehensive snapshot operations:
+
+- **Snapshot Creation**: Create point-in-time snapshots of the VM state
+- **Snapshot Rollback**: Restore the VM to a previous snapshot
+- **Snapshot Management**: View, delete, and organize existing snapshots
+- **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
+
+VM Monitoring
+~~~~~~~~~~~~~
+
+Monitor VM performance and health using built-in tools:
+
+- **Resource Usage**: Track CPU, memory, and storage utilization
+- **Network Traffic**: Monitor network performance and connectivity
+- **System Logs**: Access VM system logs and error messages via the Activity Logs tab
+
+VM Maintenance
+~~~~~~~~~~~~~~
+
+Perform regular maintenance operations to ensure optimal VM performance:
+
+- **Updates**: Apply operating system and application updates
+- **Backups**: Create regular VM backups for disaster recovery
+- **Security Patches**: Apply security updates and patches promptly
+- **Configuration Changes**: Modify VM settings through the Hardware tab as needed
+- **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
+
 Security Center Walkthrough
 --------------------------
 
