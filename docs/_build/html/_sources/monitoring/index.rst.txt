@@ -24,9 +24,10 @@ Data Collection
 
 **Process:**
 
-* The power link device reads voltage, current, power, and cumulative energy from six channels every second
-* Each reading is timestamped and formatted
-* Data is sent via HTTP to the server for storage and visualization
+* The power link device reads voltage, current, power, and cumulative energy from CT channels every second.
+* Each reading is timestamped and formatted.
+* Data is sent via HTTP to the server for storage and visualization.
+
 
 Metrics Processing
 ------------------
@@ -48,8 +49,11 @@ Hardware Setup
 
 Software Configuration
 ----------------------
-
-* **Karios PowerLink** web configuration interface
+* **Karios PowerLink** web configuration interface:
+  
+  - Set Wi-Fi credentials (SSID and password)
+  - Specify the node to associate with
+  - Enter the database host IP address
 
 Calibration
 -----------
@@ -66,6 +70,12 @@ Real-time Monitoring
 
 * The system streams live power, voltage, current, and energy data to InfluxDB
 * Real-time dashboards visualize these metrics for each node
+
+.. figure:: _static/images/monitoring/Landing_page_power.png
+   :width: 600
+   :alt: Landing page Power stats
+
+   **Figure 1**: Landing page Power stats
 
 Historical Analysis
 -------------------

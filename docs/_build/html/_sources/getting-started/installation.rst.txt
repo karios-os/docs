@@ -500,28 +500,33 @@ During the bootstrap installation, you will be prompted to accept the End User L
 3. **Precise Acceptance**: When prompted for EULA agreement, type exactly ``yes`` (lowercase)
 4. **Confirmation**: Press Enter to confirm your acceptance and proceed with installation
 
+.. figure:: _static/images/installation/eula.png
+   :width: 600
+   :alt: EULA Acceptance Screen
+
 .. warning::
    **Critical Input Requirement**: The confirmation text must be exactly lowercase ``yes``. Any other format (Yes, YES, y, etc.) will terminate the script and prevent installation from continuing. This precision is required for legal compliance verification.
 
-**Reinstallation Security Considerations**
-
-If the system prompts about reinstallation during bootstrap execution:
-
-.. warning::
-   **Reinstallation Impact**: Reinstalling Karios will completely remove all existing configurations, virtual machines, storage pools, network settings, and user data. This action is irreversible without proper backups.
-
-**Reinstallation Decision Process:**
-
-- **Type "yes"** only if you specifically need to reinstall Karios and have verified all data is backed up
-- **Press Enter to exit** if uncertain about reinstallation requirements or lack proper backups
-- **Backup Verification**: Ensure comprehensive backups exist before proceeding with any reinstallation
-
-.. tip::
-   **Backup Recommendations**: Before any reinstallation, create complete backups of virtual machines, configuration files, storage pools, and user data. Test backup restoration procedures to ensure data recovery capability.
 
 **Post-Bootstrap Security Validation**
 
 After successful bootstrap completion, verify system security:
+
+.. figure:: _static/images/installation/installation1.png
+   :width: 600
+   :alt: Bootstrap installation initiated  
+
+.. figure:: _static/images/installation/installation2.png
+   :width: 600
+   :alt: Bootstrap installation started
+
+.. figure:: _static/images/installation/installation3.png
+   :width: 600
+   :alt: Bootstrap installation in progress    
+
+.. figure:: _static/images/installation/installation5.png
+   :width: 600
+   :alt: Bootstrap installation completed
 
 .. code-block:: bash
 
@@ -537,6 +542,28 @@ After successful bootstrap completion, verify system security:
 .. note::
    The bootstrap script automatically installs and configures all Karios components, security settings, and service dependencies after successful EULA acceptance and execution.
 
+
+**Reinstallation Security Considerations**
+
+If the system prompts about reinstallation during bootstrap execution:
+
+.. warning::
+   **Reinstallation Impact**: Reinstalling Karios will completely remove all existing configurations, virtual machines, storage pools, network settings, and user data. This action is irreversible without proper backups.
+
+**Reinstallation Decision Process:**
+
+.. figure:: _static/images/installation/bootstrap.png
+   :width: 600
+   :alt: Bootstrap Execution Screen
+
+- **Type "yes"** only if you specifically need to reinstall Karios and have verified all data is backed up
+- **Press Enter to exit** if uncertain about reinstallation requirements or lack proper backups
+- **Backup Verification**: Ensure comprehensive backups exist before proceeding with any reinstallation
+
+.. tip::
+   **Backup Recommendations**: Before any reinstallation, create complete backups of virtual machines, configuration files, storage pools, and user data. Test backup restoration procedures to ensure data recovery capability.
+
+
 Post-Installation Configuration
 -------------------------------
 
@@ -544,6 +571,10 @@ Accessing the Karios Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once installation is complete, access the Karios management interface:
+
+.. figure:: _static/images/installation/installation4.png
+   :width: 600
+   :alt: Bootstrap installation completed
 
 1. **Web Browser**: Open a web browser on a computer connected to the same network
 2. **Management URL**: Navigate to the Karios management interface URL (typically ``https://<server-ip>``)
