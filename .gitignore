@@ -1,2 +1,154 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
-*
+# Karios Documentation .gitignore
+
+# Virtual Environment (Python venv)
+bin/
+lib/
+lib64/
+include/
+share/
+pyvenv.cfg
+Scripts/  # Windows virtual environment
+Lib/      # Windows virtual environment
+Include/  # Windows virtual environment
+
+# Alternative virtual environment names
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Sphinx build artifacts (ignore generated files, keep source)
+docs/_build/
+docs/_doctrees/
+.doctrees/
+*.doctree
+
+# Sphinx auto-generated files (only if using autodoc)
+# docs/modules.rst
+# docs/karios.rst
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Windows
+desktop.ini
+$RECYCLE.BIN/
+Scripts/
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+.TemporaryItems
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Node.js (if using any JS tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Package managers
+.npm/
+.yarn/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Jupyter Notebooks (if any)
+.ipynb_checkpoints/
+
+# Local configuration
+local_settings.py
+secrets.py
+config.local.py
+
+# Database files (if any)
+*.db
+*.sqlite
+*.sqlite3
+
+# Archives and packages
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Generated documentation formats (optional - uncomment if you don't want to track these)
+# docs/_build/html/
+# docs/_build/latex/
+# docs/_build/pdf/
+# *.pdf
+
+# Keep empty directories with .gitkeep files
+!.gitkeep
