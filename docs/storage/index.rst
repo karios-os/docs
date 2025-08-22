@@ -1,4 +1,3 @@
-
 =============================
 Storage & Data Management
 =============================
@@ -68,12 +67,10 @@ ZFS Pool Management
 -------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
-     - Method
-     - Functionality
      - Method
      - Description
    * - ``/storage/zfs/pools``
@@ -96,7 +93,7 @@ Dataset and Zvol Management
 ---------------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
@@ -122,7 +119,7 @@ Compression and Deduplication
 -----------------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
@@ -145,7 +142,7 @@ Datastore Management
 --------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
@@ -165,7 +162,7 @@ VM Disk Management
 ------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
@@ -188,7 +185,7 @@ ARC, L2ARC, and SLOG Management
 -------------------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
@@ -214,7 +211,7 @@ Encryption Management
 ---------------------
 
 .. list-table::
-   :widths: 30 20 50
+   :widths: 35 15 50
    :header-rows: 1
 
    * - Endpoint
