@@ -1251,22 +1251,30 @@ With authentication configured, you can now test all available API endpoints:
 - Handle authentication errors gracefully
 - Validate response status codes
 
-**Troubleshooting**
+Response Information
+~~~~~~~~~~~~~~~~~~~~
 
-- **401 Unauthorized**: Incorrect or expired token
+- **Response Code**: HTTP status code (e.g., 200, 201, 400, 401, 404, 500)
+- **Response Body**: JSON response data returned by the server
+- **Response Headers**: HTTP headers included in the response
+- **Request URL**: The actual URL that was called
+- **Request Duration**: Time taken to complete the request
+
+Common Response Codes
+~~~~~~~~~~~~~~~~~~~~~
+
+- **200 OK**: Request successful
+- **201 Created**: Resource created successfully
+- **400 Bad Request**: Invalid request format
+- **401 Unauthorized**: Authentication required or token expired
 - **403 Forbidden**: Insufficient permissions
-- **400 Bad Request**: Incorrect request format
+- **404 Not Found**: Resource not found
+- **500 Internal Server Error**: Server error
 
-.. seealso::
 
-   :doc:`../getting-started/installation`
-       Complete installation guide
-   
-   :doc:`../getting-started/initial-configuration`
-       Initial system configuration
-       
-   :doc:`../storage/index`
-       Storage management documentation
-       
-   :doc:`../networking/index`
-       Network configuration guide
+**See Also**
+
+- `Complete installation guide <../getting-started/installation.html>`__
+- `Initial system configuration <../getting-started/initial-configuration.html>`__
+- `Storage management documentation <../storage/index.html>`__
+- `Network configuration guide <../networking/index.html>`__
