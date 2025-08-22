@@ -601,6 +601,27 @@ Chassis View
 - **Documentation:** Visual documentation of server configuration and layout
 
 
+ISO Management
+~~~~~~~~~~~~~~
+
+**ISO Operations:**
+
+- **Download ISO:** Download ISO files using FQDN URL with appended ISO file path
+- **Upload ISO:** Upload valid ISO files to the data center storage
+- **RAW File Support:** Upload and manage RAW disk image files
+- **File Selection:** Browse and select from available ISO and RAW files
+- **Availability Tracking:** Real-time view of available ISO and RAW files
+
+**ISO Management Features:**
+
+- **Dual Upload Support:** Support for both ISO and RAW file formats
+- **URL-based Downloads:** Download ISO files directly from FQDN URLs
+- **File Browser Integration:** Integrated file selection interface
+- **Availability Dropdown:** Dropdown menu displaying all available ISO and RAW files
+- **Upload Status Monitoring:** Real-time upload progress and completion status
+- **File Validation:** Automatic validation of uploaded ISO and RAW files
+
+**ISO Management Interface:**
 
 
 Virtual Machine Management
