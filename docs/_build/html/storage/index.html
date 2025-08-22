@@ -8,10 +8,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://docs.karios.ai/storage/index.html" />
 <meta property="og:site_name" content="Karios Documentation" />
-<meta property="og:description" content="Learn about Karios’ powerful ZFS-based storage system and data management features. Content for ZFS management, storage policies, and distributed storage will be added here." />
+<meta property="og:description" content="Table of Contents: Overview, Storage Architecture &amp; End-to-End Flow, Setup and Workflow, API Endpoints- ZFS Pool Management, Dataset and Zvol Management, Compression and Deduplication, Datastor..." />
 <meta property="og:image" content="https://docs.karios.ai/_static/images/og-image.png" />
 <meta property="og:image:alt" content="Karios Documentation" />
-<meta name="description" content="Learn about Karios’ powerful ZFS-based storage system and data management features. Content for ZFS management, storage policies, and distributed storage will be added here." />
+<meta name="description" content="Table of Contents: Overview, Storage Architecture &amp; End-to-End Flow, Setup and Workflow, API Endpoints- ZFS Pool Management, Dataset and Zvol Management, Compression and Deduplication, Datastor..." />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Storage &amp; Data Management &mdash; Karios Documentation</title>
@@ -32,7 +32,9 @@
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Power Monitoring and Metrics" href="../monitoring/index.html" />
+    <link rel="prev" title="Storage &amp; Data Management" href="../security/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -340,78 +342,43 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Security &amp; Compliance</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Karios Security</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Storage &amp; Data Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../security/index.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#security-center-dashboard">Security Center Dashboard</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#default-view-real-time-security-snapshot">Default View - Real-Time Security Snapshot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#metrics-view-scan-history-trends">Metrics View - Scan History &amp; Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/index.html#storage-architecture-end-to-end-flow">Storage Architecture &amp; End-to-End Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/index.html#setup-and-workflow">Setup and Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/index.html#api-endpoints">API Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#zfs-pool-management">ZFS Pool Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#dataset-and-zvol-management">Dataset and Zvol Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#compression-and-deduplication">Compression and Deduplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#datastore-management">Datastore Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#vm-disk-management">VM Disk Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#arc-l2arc-and-slog-management">ARC, L2ARC, and SLOG Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html#encryption-management">Encryption Management</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#vulnerability-scanning">Vulnerability Scanning</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#scan-types-and-execution">Scan Types and Execution</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#quick-scan-current">Quick Scan (Current)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#deep-scan-future-scope">Deep Scan (Future Scope)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#manual-scan">Manual Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/index.html#integration">Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/index.html#security-and-maintenance">Security and Maintenance</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#scan-process-and-components">Scan Process and Components</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#pre-scan-setup">Pre-Scan Setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#plugin-execution">Plugin Execution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#cve-matching">CVE Matching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../security/index.html#scoring-reporting">Scoring &amp; Reporting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Storage &amp; Data Management</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Storage &amp; Data Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-architecture-end-to-end-flow">Storage Architecture &amp; End-to-End Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-and-workflow">Setup and Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-endpoints">API Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#zfs-pool-management">ZFS Pool Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-and-zvol-management">Dataset and Zvol Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compression-and-deduplication">Compression and Deduplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datastore-management">Datastore Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vm-disk-management">VM Disk Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arc-l2arc-and-slog-management">ARC, L2ARC, and SLOG Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encryption-management">Encryption Management</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#scanning-engine">Scanning Engine</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#vulnerability-management">Vulnerability Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#vulnerability-classification-and-tracking">Vulnerability Classification and Tracking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#risk-assessment-and-scoring">Risk Assessment and Scoring</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#compliance-management">Compliance Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#cis-standards-compliance">CIS Standards Compliance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#compliance-gap-analysis">Compliance Gap Analysis</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#remediation-management">Remediation Management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#current-remediation-capabilities">Current Remediation Capabilities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#remediation-process">Remediation Process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#future-remediation-enhancements">Future Remediation Enhancements</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#security-scanning-operations">Security Scanning Operations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#scan-management">Scan Management</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#scan-results-and-details">Scan Results and Details</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#report-generation">Report Generation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#security-insights-and-analysis">Security Insights and Analysis</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#threat-intelligence-integration">Threat Intelligence Integration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#performance-metrics-and-improvements">Performance Metrics and Improvements</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#security-history-and-tracking">Security History and Tracking</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#vulnerability-trend-analysis">Vulnerability Trend Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#common-vulnerability-patterns">Common Vulnerability Patterns</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#advanced-security-features">Advanced Security Features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#real-time-security-monitoring">Real-Time Security Monitoring</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#integration-and-extensibility">Integration and Extensibility</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#future-enhancements-and-roadmap">Future Enhancements and Roadmap</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#planned-security-features">Planned Security Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#version-roadmap">Version Roadmap</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#best-practices-and-recommendations">Best Practices and Recommendations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#security-scanning-best-practices">Security Scanning Best Practices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html#remediation-best-practices">Remediation Best Practices</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security/index.html#conclusion">Conclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration">Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-and-maintenance">Security and Maintenance</a></li>
 </ul>
 </li>
 </ul>
@@ -488,14 +455,337 @@
              
   <section id="storage-data-management">
 <h1>Storage &amp; Data Management<a class="headerlink" href="#storage-data-management" title="Link to this heading"></a></h1>
-<p>Learn about Karios’ powerful ZFS-based storage system and data management features.</p>
-<p>Content for ZFS management, storage policies, and distributed storage will be added here.</p>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#storage-architecture-end-to-end-flow" id="id2">Storage Architecture &amp; End-to-End Flow</a></p></li>
+<li><p><a class="reference internal" href="#setup-and-workflow" id="id3">Setup and Workflow</a></p></li>
+<li><p><a class="reference internal" href="#api-endpoints" id="id4">API Endpoints</a></p>
+<ul>
+<li><p><a class="reference internal" href="#zfs-pool-management" id="id5">ZFS Pool Management</a></p></li>
+<li><p><a class="reference internal" href="#dataset-and-zvol-management" id="id6">Dataset and Zvol Management</a></p></li>
+<li><p><a class="reference internal" href="#compression-and-deduplication" id="id7">Compression and Deduplication</a></p></li>
+<li><p><a class="reference internal" href="#datastore-management" id="id8">Datastore Management</a></p></li>
+<li><p><a class="reference internal" href="#vm-disk-management" id="id9">VM Disk Management</a></p></li>
+<li><p><a class="reference internal" href="#arc-l2arc-and-slog-management" id="id10">ARC, L2ARC, and SLOG Management</a></p></li>
+<li><p><a class="reference internal" href="#encryption-management" id="id11">Encryption Management</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#integration" id="id12">Integration</a></p></li>
+<li><p><a class="reference internal" href="#security-and-maintenance" id="id13">Security and Maintenance</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Karios delivers a fully GUI-driven ZFS storage management experience. All ZFS operations—pool creation, disk management, dataset/zvol provisioning, snapshots, compression, deduplication, encryption, and VM disk integration—are abstracted behind RESTful APIs and presented in a user-friendly interface. This design empowers users to manage complex storage workflows without command-line expertise, while the backend ensures robust validation, error handling, and security.</p>
+</section>
+<section id="storage-architecture-end-to-end-flow">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Storage Architecture &amp; End-to-End Flow</a><a class="headerlink" href="#storage-architecture-end-to-end-flow" title="Link to this heading"></a></h2>
+<p>The architecture is built around a modular backend that exposes granular ZFS operations as APIs, orchestrated by the GUI in logical, stepwise flows:</p>
+<ol class="arabic simple">
+<li><p><strong>Disk Discovery &amp; Preparation</strong>
+- The system scans for available disks, filters out those already in use, and presents candidates for pool creation.
+- When a user selects disks, the backend wipes, partitions, and prepares them for ZFS, ensuring reliability and compatibility.</p></li>
+<li><p><strong>Pool Creation &amp; Device Management</strong>
+- Users create ZFS pools by selecting disks and configuration options (RAID type, cache/log devices).
+- The backend validates selections, executes ZFS pool creation, and updates the pool with L2ARC (cache) or SLOG (log) devices as needed.</p></li>
+<li><p><strong>Dataset &amp; Zvol Provisioning</strong>
+- Users create datasets for file storage or zvols for block devices (VM disks) via the GUI.
+- The backend handles creation, property assignment (compression, deduplication), and returns status and details to the GUI.</p></li>
+<li><p><strong>Snapshot &amp; Backup Management</strong>
+- Snapshots of datasets/zvols can be taken for backup or rollback, with metadata tracked for restore/delete operations.</p></li>
+<li><p><strong>VM Disk Integration</strong>
+- VM disk operations (attach, detach, reassign) are managed via zvol provisioning and config updates, all exposed as simple GUI actions.
+- Unused disks are identified and presented for cleanup or reassignment.</p></li>
+<li><p><strong>Performance &amp; Tuning</strong>
+- ARC cache size and device management are exposed for advanced users, with recommendations and safe defaults.
+- The backend reads and sets system parameters, ensuring optimal performance.</p></li>
+<li><p><strong>Security &amp; Encryption</strong>
+- Encryption key management is integrated, allowing users to lock/unlock datasets securely.
+- All sensitive operations are permission-controlled and logged.</p></li>
+</ol>
+<p>This end-to-end flow ensures that even complex ZFS storage operations are accessible and manageable through the Karios GUI, with backend APIs handling validation, error reporting, and system integration.</p>
+</section>
+<section id="setup-and-workflow">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Setup and Workflow</a><a class="headerlink" href="#setup-and-workflow" title="Link to this heading"></a></h2>
+<p>The following workflow describes how a typical storage operation is performed in Karios:</p>
+<ol class="arabic simple">
+<li><p><strong>User Action in GUI</strong>: The user initiates an operation (e.g., create pool, add disk, take snapshot) via the web interface.</p></li>
+<li><p><strong>API Request</strong>: The GUI sends a RESTful API request to the backend, specifying the desired action and parameters.</p></li>
+<li><p><strong>Backend Processing</strong>: The backend validates permissions, checks input, and executes the corresponding ZFS/system command.</p></li>
+<li><p><strong>Result &amp; Feedback</strong>: The backend returns structured results (success, error, status) to the GUI, which updates the user view and provides actionable feedback.</p></li>
+<li><p><strong>Audit &amp; Security</strong>: All operations are logged, and sensitive actions require appropriate permissions.</p></li>
+</ol>
+<p>This modular workflow allows for extensibility, automation, and integration with other Karios modules (e.g., VM management, monitoring).</p>
+</section>
+<section id="api-endpoints">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">API Endpoints</a><a class="headerlink" href="#api-endpoints" title="Link to this heading"></a></h2>
+<p>All endpoints are grouped under <code class="docutils literal notranslate"><span class="pre">/storage/zfs</span></code>. Each endpoint is mapped to a backend service function, which performs permission checks, input validation, and invokes the appropriate ZFS or system command. Responses are structured and errors are handled gracefully.</p>
+<section id="zfs-pool-management">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">ZFS Pool Management</a><a class="headerlink" href="#zfs-pool-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/pools</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Returns a list of all ZFS pools on the system, including their status and configuration details.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/available_disks</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Provides a list of disks available for new pool creation, filtering out those already in use or unsuitable.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/create_pool</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Creates a new ZFS pool with the specified disks and configuration, preparing disks as needed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/destroy_pool/:pool_name</span></code></p></td>
+<td><p>DELETE</p></td>
+<td><p>Destroys the specified ZFS pool and cleans up associated resources.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/pool_status/:pool_name</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Returns detailed health and configuration status for the specified ZFS pool.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dataset-and-zvol-management">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Dataset and Zvol Management</a><a class="headerlink" href="#dataset-and-zvol-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/list</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Lists all datasets and zvols in a pool, including usage and mount information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/create_dataset</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Creates a new dataset under a specified pool for file storage.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/create_zvol</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Creates a new zvol (block device) under a specified pool, typically for VM disk use.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/destroy_dataset</span></code></p></td>
+<td><p>DELETE</p></td>
+<td><p>Destroys a specified dataset or zvol, freeing up space and resources.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/take_snapshot</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Takes a snapshot of a dataset or zvol for backup or rollback purposes.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="compression-and-deduplication">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Compression and Deduplication</a><a class="headerlink" href="#compression-and-deduplication" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/set_compression</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Sets the compression property for a dataset to optimize storage usage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/get_compression</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Retrieves the current compression setting for a dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/set_dedup</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Sets the deduplication property for a dataset to reduce duplicate data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/get_dedup</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Retrieves the current deduplication setting for a dataset.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datastore-management">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Datastore Management</a><a class="headerlink" href="#datastore-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/datastore/list</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Lists all configured datastores available for VM and storage operations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/datastore/add</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Adds a new datastore by creating a ZFS dataset and registering it for use.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/datastore/remove/:name</span></code></p></td>
+<td><p>DELETE</p></td>
+<td><p>Removes a datastore and its underlying ZFS dataset from the system.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vm-disk-management">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">VM Disk Management</a><a class="headerlink" href="#vm-disk-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/vm/attach_disk</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Creates and attaches a new disk (zvol) to a VM, updating its configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/vm/detach_disk</span></code></p></td>
+<td><p>DELETE</p></td>
+<td><p>Detaches a disk from a VM and updates its configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/vm/reassign_disk</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Reassigns a disk from one VM to another, handling detachment, renaming, and attachment.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/vm/unused_disks/:vmname</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Lists disks that are not currently attached to the specified VM, available for cleanup or reassignment.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="arc-l2arc-and-slog-management">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">ARC, L2ARC, and SLOG Management</a><a class="headerlink" href="#arc-l2arc-and-slog-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/arc_info</span></code></p></td>
+<td><p>GET</p></td>
+<td><p>Returns current and recommended ZFS ARC cache size and system RAM info for performance tuning.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/set_arc_max</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Sets the maximum size of the ZFS ARC cache for the system.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/l2arc/add</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Adds a cache device (L2ARC) to a ZFS pool to improve read performance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/device/remove</span></code></p></td>
+<td><p>DELETE</p></td>
+<td><p>Removes a device from a ZFS pool, including cache or log devices.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/slog/add</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Adds a log device (SLOG) to a ZFS pool for write acceleration and data safety.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="encryption-management">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Encryption Management</a><a class="headerlink" href="#encryption-management" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 15.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/load_key</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Loads the encryption key for a dataset and mounts it, making encrypted data accessible.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/storage/zfs/unload_key</span></code></p></td>
+<td><p>POST</p></td>
+<td><p>Unloads the encryption key and unmounts the dataset, securing its contents.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="integration">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Integration</a><a class="headerlink" href="#integration" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>RESTful APIs for storage management and monitoring, mapped to backend service logic and ZFS commands.</p></li>
+<li><p>Integration with VM and node management, supporting dynamic disk provisioning and lifecycle operations.</p></li>
+<li><p>Secure, permission-based access to all endpoints, with audit logging and error handling.</p></li>
+</ul>
+</section>
+<section id="security-and-maintenance">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Security and Maintenance</a><a class="headerlink" href="#security-and-maintenance" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Disk preparation and secure wiping before pool creation, using system commands and backend validation.</p></li>
+<li><p>Encryption key management for sensitive datasets, with permission checks and audit logging.</p></li>
+<li><p>Data validation and error handling in backend and API, ensuring reliable and secure operations.</p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../security/index.html" class="btn btn-neutral float-left" title="Storage &amp; Data Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../monitoring/index.html" class="btn btn-neutral float-right" title="Power Monitoring and Metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

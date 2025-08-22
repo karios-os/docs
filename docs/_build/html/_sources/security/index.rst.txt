@@ -1,6 +1,6 @@
-================
-Karios Security
-================
+=============================
+Storage & Data Management
+=============================
 
 .. contents:: Table of Contents
    :depth: 3
@@ -9,622 +9,231 @@ Karios Security
 Overview
 ========
 
-Karios Security provides comprehensive security management and threat protection for your hyper-converged infrastructure. This integrated security solution delivers advanced vulnerability scanning, compliance monitoring, and automated remediation specifically designed for FreeBSD-based bare metal and virtualized environments. Built around the KariOS SHIELD scanning platform with the KariOS Enhanced v1.1.0 engine, it offers enterprise-grade security assessment and management capabilities.
-
-**Key Features:**
-
-* **Comprehensive Vulnerability Scanning:** Advanced vulnerability detection using proprietary and public CVE databases
-* **Real-Time Security Dashboard:** Centralized security posture monitoring and risk assessment
-* **Compliance Management:** CIS FreeBSD standards compliance monitoring and gap analysis
-* **Automated Remediation:** Limited automated fixes for FreeBSD benchmark violations (expanding in future releases)
-* **Threat Intelligence Integration:** Continuous threat landscape monitoring and analysis
-* **Historical Tracking:** Security trends and improvement metrics over time
+Karios delivers a fully GUI-driven ZFS storage management experience. All ZFS operations—pool creation, disk management, dataset/zvol provisioning, snapshots, compression, deduplication, encryption, and VM disk integration—are abstracted behind RESTful APIs and presented in a user-friendly interface. This design empowers users to manage complex storage workflows without command-line expertise, while the backend ensures robust validation, error handling, and security.
 
-Security Center Dashboard
-=========================
-
-Default View - Real-Time Security Snapshot
--------------------------------------------
-
-The Security Center provides a centralized real-time view of your infrastructure's security posture, appearing by default when entering the Security tab.
-
-**Left Panel - Risk Summary:**
-
-Displays critical security metrics at a glance:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - Risk Percentage
-     - Current security risk as a percentage (lower values indicate better security)
-   * - System Status
-     - Overall system health status based on latest scan results (e.g., "Needs Attention")
-
-**Center Panel - System Information:**
-
-Provides detailed system and scanning engine information:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - Scan Engine Version
-     - Current scanning engine version (KariOS Enhanced v1.1.0)
-   * - Last Scan Status
-     - Completion status of most recent scan (COMPLETED/FAILED)
-   * - Top Risk Category
-     - Primary vulnerability category contributing to current risk
-   * - Newest CVE
-     - Most recently detected CVE identifier
-   * - Last Remediation
-     - Time elapsed since last vulnerability remediation
-
-**Right Panel - Vulnerability Breakdown:**
-
-Shows vulnerability distribution by category:
-
-.. list-table::
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Category
-     - Description
-   * - CAT I
-     - Critical vulnerabilities with high impact and immediate attention required
-   * - CAT II
-     - High-to-medium severity issues requiring prompt attention
-   * - CAT III
-     - Low-priority or informational issues for future consideration
-   * - Total
-     - Complete count of all identified vulnerabilities
-
-Metrics View - Scan History & Trends
--------------------------------------
-
-Access detailed metrics and historical analysis by clicking the Metrics dropdown, providing comprehensive security posture tracking over time.
-
-**Security Scan History:**
-
-Track and analyze vulnerability trends across multiple scans with historical data showing vulnerability counts by category over time.
-
-**Previous Scan Details:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - Scan Date
-     - Timestamp of previous security scan
-   * - Total Findings
-     - Complete count of vulnerabilities found
-   * - Critical Issues
-     - Number of CAT I vulnerabilities identified
-   * - Risk Score
-     - Calculated risk assessment value
-   * - Compliance Status
-     - CIS FreeBSD compliance level achieved
-
-**Recent Changes:**
-
-Monitor security posture changes between scans:
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - New Vulnerabilities
-     - Number of new issues detected compared to last scan
-   * - Resolved Issues
-     - Number of previously identified issues now resolved
-   * - Improving Controls
-     - Security controls showing improvement in current scan
-   * - Declining Controls
-     - Security controls showing degradation since last scan
-
-**Compliance Gap Analysis:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Compliance Area
-     - Status
-   * - Access Controls
-     - Number of failed checks vs. total checks
-   * - System Hardening
-     - Percentage of hardening requirements met
-   * - Network Security
-     - Count of network-related findings
-   * - Audit & Logging
-     - Compliance level for audit requirements
-
-**Security Insights:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Metric
-     - Value
-   * - Mean Time to Remediate
-     - Average time to fix vulnerabilities
-   * - Exposure Time Reduction
-     - Percentage improvement in vulnerability exposure
-   * - Most Common Issue Type
-     - Frequently occurring vulnerability category
-   * - Threat Landscape Status
-     - Current threat intelligence assessment
-
-Vulnerability Scanning
-======================
-
-Scan Types and Execution
-------------------------
-
-KariOS SHIELD provides multiple scan types to accommodate different security assessment needs:
-
-Quick Scan (Current)
-^^^^^^^^^^^^^^^^^^^^
-
-* **Duration:** 3-5 minutes
-* **Coverage:** Most critical security items
-* **Scope:** Packages, kernel configurations, basic file permissions
-* **Use Case:** Rapid security assessment and regular monitoring
-
-Deep Scan (Future Scope)
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-* **Status:** Coming soon
-* **Coverage:** Comprehensive system-wide security analysis
-* **Scope:** All available security checks across the entire system
-* **Use Case:** Full compliance audits and thorough vulnerability analysis
-
-Manual Scan
-^^^^^^^^^^^
-
-* **Trigger:** User-initiated on-demand scanning
-* **Flexibility:** Configurable scope and target selection
-* **Control:** Complete user control over scan timing and parameters
-
-Scan Process and Components
----------------------------
-
-**What Gets Checked:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Component
-     - Description
-   * - System Packages
-     - Installed software versions and known vulnerabilities
-   * - Kernel Configuration
-     - Security-related kernel parameters and loaded modules
-   * - Network Services
-     - Open ports, running services, and network configurations
-   * - File Permissions
-     - Critical system file and directory access controls
-   * - User Accounts
-     - Account security, privileges, and authentication settings
-   * - Security Policies
-     - System security policy compliance and configurations
-   * - Patch Status
-     - Missing security updates and available patches
-
-**Behind-the-Scenes Process:**
-
-Pre-Scan Setup
-^^^^^^^^^^^^^^
-
-* Scanner reads selected configuration (quick/deep, target profile)
-* Initializes system-specific access and environment data
-* Prepares plugin execution environment
-
-Plugin Execution
-^^^^^^^^^^^^^^^^
-
-* Each plugin runs sequentially, checking specific system areas
-* Issues are flagged as findings when vulnerabilities are detected
-* Results are collected and categorized by severity
-
-CVE Matching
-^^^^^^^^^^^^
-
-* All findings compared against updated CVE database
-* Matches recorded with metadata (CVE ID, severity, exploitability)
-* Vulnerability classifications assigned based on database lookups
-
-Scoring & Reporting
-^^^^^^^^^^^^^^^^^^^
-
-* Risk Score calculated based on findings and severity
-* Scan results, scores, and logs saved to database
-* Results displayed in Security tab interface
-
-Scanning Engine
----------------
+Storage Architecture & End-to-End Flow
+======================================
 
-**KariOS Enhanced v1.1.0:**
-
-* **Current Version:** KariOS Enhanced v1.1.0
-* **Update Schedule:** Next version release scheduled shortly
-* **Capabilities:** Comprehensive vulnerability detection and assessment
-* **Database:** Maintains proprietary vulnerability database with public CVE integration
-
-**Database Management:**
-
-* **Proprietary Database:** Karios maintains specialized vulnerability database
-* **Public CVE Integration:** Regular synchronization with public CVE databases
-* **Update Frequency:** Regular intervals for database synchronization
-* **Coverage:** Comprehensive vulnerability signatures and definitions
-
-Vulnerability Management
-========================
-
-Vulnerability Classification and Tracking
-------------------------------------------
-
-**Vulnerability Information Display:**
-
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - CVE ID
-     - Common Vulnerabilities and Exposures identifier
-   * - CVSS Score
-     - Severity score from 0.0 to 10.0
-   * - Severity Level
-     - Critical, High, Medium, or Low classification
-   * - Affected Component
-     - System component or package with vulnerability
-   * - Remediation Status
-     - Available, Pending, Applied, or Not Available
-   * - Exploit Available
-     - Whether public exploits exist for this vulnerability
-
-**CVE Tracking:**
-
-* **CVE Integration:** Comprehensive Common Vulnerabilities and Exposures tracking
-* **CVSS Scoring:** Common Vulnerability Scoring System implementation
-* **Severity Classification:** Standardized critical, high, medium, low severity levels
-* **Status Monitoring:** Active vulnerability status tracking and updates
-
-Risk Assessment and Scoring
----------------------------
-
-**Risk Score Calculation:** The Risk Score provides a comprehensive assessment of system vulnerability based on:
-
-* **Number of Security Findings:** Total count of identified vulnerabilities
-* **Severity Weighting:** Critical, High, Medium, Low severity impact factors
-* **Exploitability:** Whether vulnerabilities are actively exploitable
-* **Patch Availability:** Missing patches for known vulnerabilities
-
-**Compliance Score:** Reflects system adherence to security hardening and configuration best practices:
-
-* **CIS FreeBSD Compliance:** Alignment with Center for Internet Security standards
-* **Configuration Assessment:** System settings and security controls evaluation
-* **Best Practices:** Implementation of recommended security configurations
-
-**Overall Security Status:** Simplified security posture indicators:
-
-* **GOOD:** Well-configured system with low risk
-* **MODERATE:** Reasonably secure with some areas requiring attention
-* **AT-RISK:** Exposed to major vulnerabilities or weak configurations
-
-Compliance Management
-=====================
-
-CIS Standards Compliance
-------------------------
-
-**CIS Framework Integration:**
-
-* **Standards:** Center for Internet Security FreeBSD standards implementation
-* **Risk Categories:** CIS-based vulnerability categorization and assessment
-* **Compliance Scoring:** Automated compliance assessment and grading
-* **Gap Analysis:** Compliance gap identification and tracking
-
-**Compliance Monitoring:**
-
-* **Current Status:** Real-time compliance status (e.g., C - CRITICAL)
-* **Historical Tracking:** Previous compliance status and trend analysis
-* **Improvement Tracking:** Compliance improvement or decline analysis
-* **Category Breakdown:** Specific CIS control category assessment
-
-Compliance Gap Analysis
------------------------
-
-**Control Categories:**
-
-.. list-table::
-   :widths: 30 20 50
-   :header-rows: 1
-
-   * - Control Category
-     - Status
-     - Description
-   * - Initial Setup
-     - Pass/Fail
-     - System installation and initial configuration security
-   * - Services
-     - Pass/Fail
-     - Unnecessary service identification and disabling
-   * - Network Parameters
-     - Pass/Fail
-     - Network stack security configurations
-   * - Logging and Auditing
-     - Pass/Fail
-     - System event logging and audit trail configuration
-   * - Access Controls
-     - Pass/Fail
-     - User access management and authentication controls
-   * - System Maintenance
-     - Pass/Fail
-     - Patch management and system update procedures
-
-Remediation Management
-======================
-
-Current Remediation Capabilities
----------------------------------
-
-.. important::
-   Remediation is currently available for very few vulnerabilities and primarily covers FreeBSD benchmark violations. Enhanced remediation capabilities are planned for future releases.
-
-**Current Remediation Scope:**
-
-* **FreeBSD Benchmark Checks:** System-level fixes for CIS FreeBSD standard violations
-* **Configuration Corrections:** Adjusting permissions, disabling unsafe services
-* **Kernel Module Management:** Removing vulnerable or unnecessary kernel modules
-* **File Permission Fixes:** Correcting overly permissive file and directory access
-
-**What Remediation Covers Currently:**
-
-* Disabling core dumps for security
-* Removing or disabling vulnerable kernel modules
-* Correcting incorrect file permissions
-* Basic system hardening configurations
-
-Remediation Process
+The architecture is built around a modular backend that exposes granular ZFS operations as APIs, orchestrated by the GUI in logical, stepwise flows:
+
+1. **Disk Discovery & Preparation**
+   - The system scans for available disks, filters out those already in use, and presents candidates for pool creation.
+   - When a user selects disks, the backend wipes, partitions, and prepares them for ZFS, ensuring reliability and compatibility.
+
+2. **Pool Creation & Device Management**
+   - Users create ZFS pools by selecting disks and configuration options (RAID type, cache/log devices).
+   - The backend validates selections, executes ZFS pool creation, and updates the pool with L2ARC (cache) or SLOG (log) devices as needed.
+
+3. **Dataset & Zvol Provisioning**
+   - Users create datasets for file storage or zvols for block devices (VM disks) via the GUI.
+   - The backend handles creation, property assignment (compression, deduplication), and returns status and details to the GUI.
+
+4. **Snapshot & Backup Management**
+   - Snapshots of datasets/zvols can be taken for backup or rollback, with metadata tracked for restore/delete operations.
+
+5. **VM Disk Integration**
+   - VM disk operations (attach, detach, reassign) are managed via zvol provisioning and config updates, all exposed as simple GUI actions.
+   - Unused disks are identified and presented for cleanup or reassignment.
+
+6. **Performance & Tuning**
+   - ARC cache size and device management are exposed for advanced users, with recommendations and safe defaults.
+   - The backend reads and sets system parameters, ensuring optimal performance.
+
+7. **Security & Encryption**
+   - Encryption key management is integrated, allowing users to lock/unlock datasets securely.
+   - All sensitive operations are permission-controlled and logged.
+
+This end-to-end flow ensures that even complex ZFS storage operations are accessible and manageable through the Karios GUI, with backend APIs handling validation, error reporting, and system integration.
+
+Setup and Workflow
+==================
+
+The following workflow describes how a typical storage operation is performed in Karios:
+
+1. **User Action in GUI**: The user initiates an operation (e.g., create pool, add disk, take snapshot) via the web interface.
+2. **API Request**: The GUI sends a RESTful API request to the backend, specifying the desired action and parameters.
+3. **Backend Processing**: The backend validates permissions, checks input, and executes the corresponding ZFS/system command.
+4. **Result & Feedback**: The backend returns structured results (success, error, status) to the GUI, which updates the user view and provides actionable feedback.
+5. **Audit & Security**: All operations are logged, and sensitive actions require appropriate permissions.
+
+This modular workflow allows for extensibility, automation, and integration with other Karios modules (e.g., VM management, monitoring).
+
+API Endpoints
+=============
+
+All endpoints are grouped under ``/storage/zfs``. Each endpoint is mapped to a backend service function, which performs permission checks, input validation, and invokes the appropriate ZFS or system command. Responses are structured and errors are handled gracefully.
+
+ZFS Pool Management
 -------------------
 
-**How Remediation Works:**
-
-#. **Vulnerability Assessment:** Identify vulnerabilities with available automated fixes
-#. **Manual Trigger:** User must manually initiate remediation via UI
-#. **Fix Execution:** System applies predefined fixes (usually shell command logic)
-#. **System Changes:** Updates may include file modifications, permission adjustments, service configurations
-#. **Verification:** Automatic verification step confirms issue resolution
-#. **Status Update:** Finding marked as remediated, compliance score updated
-
-**Remediation Types:**
-
-* **Automatic Fixes:** Limited automated vulnerability remediation for supported issues
-* **Step-by-Step Guides:** Detailed manual remediation instructions
-* **Verification:** Automated verification of successful remediation
-* **Tracking:** Complete remediation progress and completion monitoring
-
-Future Remediation Enhancements
---------------------------------
-
-**Planned Expansions:**
-
-* **Package Updates:** Automated security patch installation
-* **Advanced Configuration:** Enhanced system hardening automation
-* **Custom Remediation:** User-defined remediation scripts
-* **Orchestrated Remediation:** Multi-system coordinated remediation
-* **Rollback Capabilities:** Safe remediation rollback functionality
-
-Security Scanning Operations
-============================
-
-Scan Management
----------------
-
-**Scan Operations:**
-
-* **Scan Initiation:** Manual scan trigger via Security dashboard
-* **Scan Configuration:** Scope definition and target selection
-* **Scan Monitoring:** Real-time scan progress and status monitoring
-* **Scan Validation:** Automatic verification of scan completion and results
-
-**Scan History Tracking:**
-
 .. list-table::
-   :widths: 20 20 20 20 20
+   :widths: 35 15 50
    :header-rows: 1
 
-   * - Scan Date
-     - Type
-     - Duration
-     - Findings
-     - Risk Score
-   * - [Date/Time]
-     - Quick/Deep
-     - X minutes
-     - Number
-     - Score/100
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/storage/zfs/pools``
+     - GET
+     - Returns a list of all ZFS pools on the system, including their status and configuration details.
+   * - ``/storage/zfs/available_disks``
+     - GET
+     - Provides a list of disks available for new pool creation, filtering out those already in use or unsuitable.
+   * - ``/storage/zfs/create_pool``
+     - POST
+     - Creates a new ZFS pool with the specified disks and configuration, preparing disks as needed.
+   * - ``/storage/zfs/destroy_pool/:pool_name``
+     - DELETE
+     - Destroys the specified ZFS pool and cleans up associated resources.
+   * - ``/storage/zfs/pool_status/:pool_name``
+     - GET
+     - Returns detailed health and configuration status for the specified ZFS pool.
 
-Scan Results and Details
-------------------------
+Dataset and Zvol Management
+---------------------------
 
-**Detailed Scan Information:**
+.. list-table::
+   :widths: 35 15 50
+   :header-rows: 1
 
-* **Scan Time:** Precise scan execution timestamp
-* **Initiator:** Scan trigger source (System/User initiated)
-* **Target Assets:** Number and identification of scanned assets
-* **Risk Score:** Calculated risk score from scan results
-* **Vulnerability Count:** Total number of vulnerabilities discovered
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/storage/zfs/list``
+     - GET
+     - Lists all datasets and zvols in a pool, including usage and mount information.
+   * - ``/storage/zfs/create_dataset``
+     - POST
+     - Creates a new dataset under a specified pool for file storage.
+   * - ``/storage/zfs/create_zvol``
+     - POST
+     - Creates a new zvol (block device) under a specified pool, typically for VM disk use.
+   * - ``/storage/zfs/destroy_dataset``
+     - DELETE
+     - Destroys a specified dataset or zvol, freeing up space and resources.
+   * - ``/storage/zfs/take_snapshot``
+     - POST
+     - Takes a snapshot of a dataset or zvol for backup or rollback purposes.
 
-Report Generation
------------------
+Compression and Deduplication
+-----------------------------
 
-**Available Report Formats:**
+.. list-table::
+   :widths: 35 15 50
+   :header-rows: 1
 
-* **HTML Reports:** Interactive web-based detailed reports
-* **PDF Reports:** Printable PDF documentation for offline use
-* **Export Options:** Report download for external analysis and archiving
-* **Report Contents:** Comprehensive vulnerability data, compliance assessment, and remediation recommendations
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/storage/zfs/set_compression``
+     - POST
+     - Sets the compression property for a dataset to optimize storage usage.
+   * - ``/storage/zfs/get_compression``
+     - GET
+     - Retrieves the current compression setting for a dataset.
+   * - ``/storage/zfs/set_dedup``
+     - POST
+     - Sets the deduplication property for a dataset to reduce duplicate data.
+   * - ``/storage/zfs/get_dedup``
+     - GET
+     - Retrieves the current deduplication setting for a dataset.
 
-Security Insights and Analysis
-==============================
+Datastore Management
+--------------------
 
-Threat Intelligence Integration
+.. list-table::
+   :widths: 35 15 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/storage/zfs/datastore/list``
+     - GET
+     - Lists all configured datastores available for VM and storage operations.
+   * - ``/storage/zfs/datastore/add``
+     - POST
+     - Adds a new datastore by creating a ZFS dataset and registering it for use.
+   * - ``/storage/zfs/datastore/remove/:name``
+     - DELETE
+     - Removes a datastore and its underlying ZFS dataset from the system.
+
+VM Disk Management
+------------------
+
+.. list-table::
+   :widths: 35 15 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/storage/zfs/vm/attach_disk``
+     - POST
+     - Creates and attaches a new disk (zvol) to a VM, updating its configuration.
+   * - ``/storage/zfs/vm/detach_disk``
+     - DELETE
+     - Detaches a disk from a VM and updates its configuration.
+   * - ``/storage/zfs/vm/reassign_disk``
+     - POST
+     - Reassigns a disk from one VM to another, handling detachment, renaming, and attachment.
+   * - ``/storage/zfs/vm/unused_disks/:vmname``
+     - GET
+     - Lists disks that are not currently attached to the specified VM, available for cleanup or reassignment.
+
+ARC, L2ARC, and SLOG Management
 -------------------------------
 
-**Threat Landscape Monitoring:**
-
-* **Threat Detection:** Continuous monitoring for new threat patterns
-* **Threat Intelligence:** Integration with threat intelligence feeds
-* **Risk Assessment:** Ongoing threat risk evaluation and analysis
-* **Status Reporting:** Clear threat status communication (e.g., "No new threats detected")
-
-Performance Metrics and Improvements
-------------------------------------
-
-**Security Improvement Tracking:**
-
-* **Exposure Time Reduction:** Measurable improvements in vulnerability exposure time (e.g., 25% improvement)
-* **Risk Mitigation:** Quantifiable security posture improvements
-* **Trend Analysis:** Historical security improvement tracking
-* **Baseline Comparison:** Security metrics compared to established baselines
-
-**Historical Analysis:**
-
-* **Risk Score Trends:** Long-term risk score analysis and trending
-* **Vulnerability Trends:** Tracking vulnerability discovery and remediation over time
-* **Compliance History:** Historical compliance status and improvement tracking
-* **Change Analytics:** Analysis of security changes and their impacts
-
-Security History and Tracking
-=============================
-
-Vulnerability Trend Analysis
-----------------------------
-
-**Recent Changes Tracking:**
-
 .. list-table::
-   :widths: 30 70
+   :widths: 35 15 50
    :header-rows: 1
 
-   * - Trend Indicator
+   * - Endpoint
+     - Method
      - Description
-   * - New Vulnerabilities
-     - Count and severity of newly discovered issues
-   * - Remediated Issues
-     - Successfully fixed vulnerabilities since last scan
-   * - Recurring Issues
-     - Vulnerabilities that have reappeared after remediation
-   * - Trend Direction
-     - Overall security posture improvement or decline
+   * - ``/storage/zfs/arc_info``
+     - GET
+     - Returns current and recommended ZFS ARC cache size and system RAM info for performance tuning.
+   * - ``/storage/zfs/set_arc_max``
+     - POST
+     - Sets the maximum size of the ZFS ARC cache for the system.
+   * - ``/storage/zfs/l2arc/add``
+     - POST
+     - Adds a cache device (L2ARC) to a ZFS pool to improve read performance.
+   * - ``/storage/zfs/device/remove``
+     - DELETE
+     - Removes a device from a ZFS pool, including cache or log devices.
+   * - ``/storage/zfs/slog/add``
+     - POST
+     - Adds a log device (SLOG) to a ZFS pool for write acceleration and data safety.
 
-Common Vulnerability Patterns
------------------------------
+Encryption Management
+---------------------
 
-**Vulnerability Type Analysis:**
+.. list-table::
+   :widths: 35 15 50
+   :header-rows: 1
 
-* **Top Risk Categories:** Most prevalent risk categories (e.g., CAT II)
-* **Common Vulnerability Types:** Frequent vulnerability classifications (e.g., KERNEL, NETWORK)
-* **System Areas:** Most vulnerable system components and services
-* **Remediation Patterns:** Common approaches and success rates for remediation
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/storage/zfs/load_key``
+     - POST
+     - Loads the encryption key for a dataset and mounts it, making encrypted data accessible.
+   * - ``/storage/zfs/unload_key``
+     - POST
+     - Unloads the encryption key and unmounts the dataset, securing its contents.
 
-Advanced Security Features
-==========================
+Integration
+===========
 
-Real-Time Security Monitoring
------------------------------
+* RESTful APIs for storage management and monitoring, mapped to backend service logic and ZFS commands.
+* Integration with VM and node management, supporting dynamic disk provisioning and lifecycle operations.
+* Secure, permission-based access to all endpoints, with audit logging and error handling.
 
-**Continuous Monitoring Capabilities:**
+Security and Maintenance
+========================
 
-* **Live Status Updates:** Real-time security status monitoring and dashboard updates
-* **Alert System:** Automated security alerts and notifications for critical issues
-* **Status Indicators:** Visual security status indicators and risk level displays
-* **Threshold Monitoring:** Configurable risk alert thresholds and automated notifications
-
-Integration and Extensibility
------------------------------
-
-**Current Integration:**
-
-* **Dashboard Integration:** Seamless integration with Karios main dashboard
-* **Reporting Integration:** Export capabilities for external security tools
-* **Database Integration:** Centralized vulnerability and compliance data storage
-
-Future Enhancements and Roadmap
-===============================
-
-Planned Security Features
--------------------------
-
-**Upcoming Capabilities:**
-
-* **Deep Scan Implementation:** Complete deep scanning capabilities for comprehensive analysis
-* **Enhanced Remediation:** Expanded automated remediation coverage beyond current FreeBSD benchmarks
-* **Automated Scheduling:** Scheduled automatic security scans with configurable intervals
-* **Advanced Analytics:** Machine learning-based threat detection and pattern analysis
-* **Extended Remediation:** Package updates, advanced configuration automation, and custom scripts
-
-Version Roadmap
----------------
-
-**Development Schedule:**
-
-* **Current Version:** KariOS Enhanced v1.1.0
-* **Next Release:** Enhanced features and expanded remediation capabilities
-* **Update Schedule:** Regular security engine updates and database synchronization
-* **Feature Additions:** Continuous security capability improvements and new functionality
-
-**Integration Expansion:**
-
-* **Compliance Frameworks:** Additional compliance standard support beyond CIS FreeBSD
-* **API Development:** Enhanced API capabilities for external tool integration
-* **Custom Plugin Support:** Framework for custom security check development
-
-Best Practices and Recommendations
-===================================
-
-Security Scanning Best Practices
----------------------------------
-
-**Recommended Scan Schedule:**
-
-* **Regular Quick Scans:** Daily or weekly quick scans for continuous monitoring
-* **Periodic Full Scans:** Monthly comprehensive scans for complete assessment
-* **Post-Change Scans:** Immediate scans after system changes or updates
-* **Compliance Scans:** Quarterly scans for compliance reporting requirements
-
-Remediation Best Practices
---------------------------
-
-**Current Limitations Awareness:**
-
-* **Limited Scope:** Understand current remediation covers only FreeBSD benchmark issues
-* **Manual Review:** Review all remediation actions before execution
-* **Testing Environment:** Test remediation in non-production environments first
-* **Documentation:** Maintain records of all remediation activities
-
-**Future Preparation:**
-
-* **Remediation Planning:** Prepare remediation procedures for expanded capabilities
-* **Change Management:** Establish change management processes for automated remediation
-* **Rollback Procedures:** Develop rollback procedures for remediation failures
-* **Monitoring Integration:** Plan integration with existing monitoring and alerting systems
-
-Conclusion
-==========
-
-Karios Security provides a robust foundation for infrastructure security management with its comprehensive vulnerability scanning, compliance monitoring, and limited automated remediation capabilities. While current remediation features are focused on FreeBSD benchmark compliance, the platform's architecture supports significant expansion of security capabilities. The combination of real-time monitoring, detailed reporting, and integration with the broader Karios platform makes it an essential component for maintaining secure hyper-converged infrastructure deployments.
+* Disk preparation and secure wiping before pool creation, using system commands and backend validation.
+* Encryption key management for sensitive datasets, with permission checks and audit logging.
+* Data validation and error handling in backend and API, ensuring reliable and secure operations.

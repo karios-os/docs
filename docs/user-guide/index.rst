@@ -154,6 +154,18 @@ After successful login, the system will display the "Access Karios" license vali
 - **Validation Status**: Green checkmark indicates successful file upload
 - **Error Handling**: The system will display errors if the license file is invalid or corrupted
 
+.. note::
+
+   It is critical to set BMC credentials for the node to enable fetching system updates and performing essential system calls.
+
+   Steps to set BMC credentials:
+
+   1. Navigate to the Provisioning Center, located at the top of the control node interface.
+   2. Edit the first node, which is automatically added during bootstrap.
+   3. Update the node with the actual BMC credentials.
+
+   These credentials are required for various system operations and updates.
+
 Post-License Validation and Resource Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -190,6 +202,55 @@ The License Features modal provides three main tabs for comprehensive license ma
    - **Portal Access**: Use token at payment portal to generate updated license
    - **File Upload**: Upload new JSON license file for updates
    - **License Processing**: System processes and applies license updates
+
+   **Node-Level License Management**
+
+   **Add Licensed Features**
+
+   Each registered node displays an “Add licensed features” button, allowing you to allocate specific features to individual nodes.
+
+   **License Management for Nodes**
+
+   Access node-level license management via the “License Management - [node-name]” modal. This modal provides two main tabs:
+
+   - **Currently Used Tab**: Displays the current resource allocation for the selected node.
+   - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
+
+   If all resources have been allocated, the interface will display “No features available to add.”
+
+   To add a feature, select the toggle next to the desired feature and click “Add Feature.”
+
+   License Monitoring and Alerts
+   The system continuously monitors license status and resource allocation:
+
+   - **License Status Indicators**: Proactive notifications show days remaining until license expiration.
+   - **License Dashboard Access**: Quickly access detailed license information from the dashboard.
+   - **Resource Tracking**: Monitor real-time resource usage versus available quota.
+
+   Resource Allocation Management
+
+   - **Cluster-Wide Licensing**: License resources are shared across the entire cluster.
+   - **CPU Socket Allocation**: Distribute available CPU sockets among multiple nodes.
+   - **Feature Distribution**: Allocate Power and Security features to required nodes.
+   - **Usage Monitoring**: Track actual resource consumption across the infrastructure.
+
+   License Renewal Process
+ 
+
+   Renew your license in the following scenarios:
+
+   - **Expiration Approach**: When license expiration warnings appear in the dashboard.
+   - **Feature Upgrades**: When additional resources or features are needed.
+   - **Capacity Expansion**: When adding new nodes that require licensing.
+
+   **Renewal Steps** (see “Update License Tab” in section 3.1.3):
+
+   1. Access the Update License tab: Navigate to License Features → Update License.
+   2. Generate Token: Copy the system-generated token.
+   3. Portal Processing: Use the token at the payment portal for renewal or upgrade.
+   4. Download New License: Obtain the updated JSON license file.
+   5. Upload and Validate: Upload the new license file and validate it.
+   6. Resource Availability: Newly licensed resources become immediately available for allocation.
 
 Interface Overview
 ~~~~~~~~~~~~~~~~~~
@@ -266,7 +327,34 @@ To access the full capabilities of the Karios platform:
 - **Principle of Least Privilege**: Request only the minimum permissions necessary for job functions
 - **Regular Access Review**: Periodically review and validate user access permissions
 - **Security Compliance**: Follow organizational security policies for account management
-- **Administrative Coordination**: Coordinate with system administrators for permission changes
+- **Administrative Coordination**: Coordinate with system administrators 
+
+Best Practices
+--------------
+
+Account Security
+~~~~~~~~~~~~~~~~~
+
+- **Strong Passwords**: Use strong, unique passwords for account security.
+- **Regular Updates**: Update passwords regularly according to security policies.
+- **Session Management**: Log out properly when finished using the system.
+- **Access Monitoring**: Monitor account access and report suspicious activity.
+
+License Compliance
+~~~~~~~~~~~~~~~~~~
+
+- **Renewal Tracking**: Monitor license expiration dates proactively.
+- **Compliance Documentation**: Maintain records of license validation and renewals.
+- **Usage Monitoring**: Ensure system usage complies with license terms.
+- **Renewal Planning**: Plan license renewals well in advance of expiration dates.
+
+System Usage
+~~~~~~~~~~~~
+
+- **Resource Management**: Use system resources efficiently and responsibly.
+- **Documentation**: Keep personal documentation of system configurations and procedures.
+- **Change Management**: Follow proper change management procedures for system modifications.
+- **Support Utilization**: Utilize available support resources and documentation effectively.
 
 Web Interface Navigation
 ------------------------
@@ -682,6 +770,10 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 - **FreeBSD**: Automated FreeBSD deployment with cloud-init
 - **Ubuntu**: Automated Ubuntu deployment with cloud-init integration
 
+.. note::
+
+   Please upload and download a raw image (``.raw``) if it is not available during the setup. To do this, navigate to the node-level ISO section in the interface.
+
 **Cloud-Init Configuration Process**
 
 1. **Setup Method Selection**: Choose "Cloud-Init Setup" from available options
@@ -700,6 +792,38 @@ Cloud-Init VMs require initial user account setup:
 - **Password**: Secure password for user account authentication
 - **SSH Public Key (Optional)**: Add SSH public key for passwordless authentication
 
+SSH Key Authentication (Enhanced Security)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For enhanced security, configure SSH key authentication for your virtual machines.
+
+**SSH Key Format**
+
+- Provide your SSH public key in standard format (e.g., ``ssh-rsa``, ``ssh-ed25519``).
+- Paste the public key directly into the VM setup form or upload as required.
+
+**Key Benefits**
+
+- Enables passwordless authentication for secure remote access.
+- Reduces risk of brute-force password attacks.
+- Simplifies automation and remote management.
+
+**Multiple Keys Support**
+
+- You may specify multiple SSH public keys for a VM.
+- Each key grants access to authorized users.
+
+**Key Management**
+
+- SSH keys are managed centrally via the Karios interface.
+- Administrators can add, remove, or update authorized keys for each VM.
+- Regularly review and rotate SSH keys for optimal security.
+
+.. note::
+
+   Always keep your private SSH keys secure and never share them. 
+   Only authorized public keys should be added to the VM configuration.
+
 **Network Configuration Options**
 
 **DHCP Configuration (Default)**:
@@ -711,6 +835,51 @@ Cloud-Init VMs require initial user account setup:
 - Static IP Address: Manually specify IP address
 - Subnet Mask: Configure network subnet mask
 - Domain Name: Set domain name for the VM
+
+Security Best Practices
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The system provides security recommendations to ensure safe and reliable VM operations:
+
+- **Strong Passwords**: Use complex passwords with a mix of uppercase, lowercase, numbers, and special characters.
+- **SSH Key Authentication**: Prefer SSH keys over passwords for VM access; they offer enhanced security and reduce brute-force risks.
+- **Password Disabling**: When SSH keys are configured, consider disabling password authentication for remote access.
+- **Network Security**: Apply appropriate network security policies, such as firewalls and VLAN segmentation, to protect VM traffic.
+
+VM Deployment Process
+~~~~~~~~~~~~~~~~~~~~~
+
+Pre-Deployment Validation
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before creating a VM, the system performs several validation checks:
+
+- **Network Switch Availability**: Ensure a virtual switch exists and is ready to attach to the VM's NIC (see Networking → Switches → Create).
+- **OS ISO Availability**: Confirm the required installation ISO is present and attachable. If missing, upload or download the ISO from Node → ISOs.
+- **Resource Availability**: Verify sufficient CPU, memory, and storage capacity on the target node.
+- **Configuration Validity**: Validate all VM parameters (vCPU, memory, disk, NIC) for compatibility with the selected node.
+
+VM Creation Process
+^^^^^^^^^^^^^^^^^^^
+
+The VM creation workflow includes:
+
+1. **Configuration Review**: Review all VM settings before proceeding.
+2. **Resource Reservation**: Reserve the specified resources on the target server.
+3. **VM Instantiation**: Create the virtual machine with the chosen configuration.
+4. **OS Installation**: Install the operating system (automatic for cloud-init setups).
+5. **Initial Configuration**: Apply initial configuration settings, such as user accounts and network parameters.
+6. **Service Startup**: Start VM services and validate basic functionality.
+
+Post-Creation Verification
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After VM creation, perform the following checks:
+
+- **VM Status**: Confirm the VM is running and accessible via the management interface.
+- **Network Connectivity**: Test network connectivity and verify correct configuration.
+- **User Access**: Ensure user accounts and authentication methods (password or SSH key) are working.
+- **Service Functionality**: Validate that all required services within the VM are operational.
 
 VM Lifecycle Management
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -746,6 +915,114 @@ Standard VM management operations include:
 - **Clone**: Create VM copies for testing or deployment
 - **Snapshot**: Create point-in-time VM snapshots
 - **Delete**: Remove the virtual machine permanently
+
+Security Center Walkthrough
+--------------------------
+
+The Security Center provides a centralized interface for managing and monitoring your infrastructure's security posture. This walkthrough will guide you through the key features and functionalities available in the Security Center.
+
+Accessing the Security Center
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   - Log in to the Karios platform
+   - Navigate to the "Security" tab on any node in the node's main menu
+
+   - The below image clearly indicates where to find the 'Security' tab on the interface.
+
+   .. figure:: _static/images/security/security_tab_pointer.png
+      :width: 600
+      :alt: Security Tab Pointer
+
+      Figure 1: Security Tab Pointer
+
+Overview Dashboard
+~~~~~~~~~~~~~~~~~~
+   - The Security Centre Overview Dashboard displays a real-time snapshot of your security posture
+   - Key metrics include risk percentage, system status, last scan status and top risk category.
+   - The below image clearly shows where to find 'Scan' Button
+
+   .. figure:: _static/images/security/security_scan_pointer.png
+      :width: 600
+      :alt: Security Scan Button
+
+      Figure 2: Security Scan Button
+
+Vulnerability Management
+~~~~~~~~~~~~~~~~~~~~~~~~
+   - Access the Vulnerability Management section to view and manage identified vulnerabilities
+   - Use filters to sort vulnerabilities by severity
+
+   - Scroll Down to view detailed vulnerabilities information along with remediation options, 
+   - Please click on the vulnerability to know more information about it
+
+   .. figure:: _static/images/security/security_vuln_info.png
+      :width: 600
+      :alt: Vulnerability Information
+
+      Figure 3: Vulnerability Information
+
+   - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links.
+
+   .. figure:: _static/images/security/security_vuln_popup.png
+      :width: 600
+      :alt: Vulnerability Popup
+
+      Figure 4: Vulnerability Popup
+
+Remediation Actions
+~~~~~~~~~~~~~~~~~~~
+   - The Remediation Actions section allows you to initiate automated fixes for identified issues
+   - Where to find the remediation option (if there are any vulnerabilities to remediate)
+   - Note: One-click Remediation is availble for very few vulnerabilities at this point to make sure that it does not hamper the system functionality.
+
+   .. figure:: _static/images/security/security_vuln_remediation_pointer_section.png
+      :width: 600
+      :alt: Vulnerability Remediation Pointer
+
+      Figure 5: Vulnerability Remediation Pointer
+
+Scan History
+~~~~~~~~~~~~
+   - The Scan History section provides a log of all security scans performed
+   - Review past scan results and reports
+
+   - Please click on the 'Metrics' button besinde the 'Scan' button to navigate to Security Scan History Page
+   .. figure:: _static/images/security/security_navigate_to_history_page.png
+      :width: 600
+      :alt: Security Scan History Pointer
+
+      Figure 6: Security Scan History Pointer
+
+Security Scan History Page
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   - The Security Scan History Page provides a metrics dashboard for previous scans performed.
+   - Review historical reports in html and PDF formats.
+
+   - You can find the previous scan details, risk score from earlier scan and other additional details in this Security Scan History Page.
+   .. figure:: _static/images/security/security_history_page.png
+      :width: 600
+      :alt: Security History Page
+
+      Figure 7: Security History Page
+
+Security Report
+~~~~~~~~~~~~~~~
+
+   - The below image clearly indicates where to find the pdf & html report download options under the Scan History section.
+
+   .. figure:: _static/images/security/security_report_pointer.png
+      :width: 600
+      :alt: Security Report Pointer
+
+      Figure 8: Security Report Pointer
+
+   - Once downloaded, the security report will contain detailed information of all the vulnerabilites identified in the scan.
+   - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details.
+
+   .. figure:: _static/images/security/security_report_content.png
+      :width: 600
+      :alt: Security Report Content
+
+      Figure 9: Security Report Content
 
 API Integration
 ---------------
