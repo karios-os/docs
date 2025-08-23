@@ -2343,7 +2343,7 @@ Node Storage Management
 **Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
 
 Storage Pool Management
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **ZFS Storage Pool Overview:** The Storage Pools section displays comprehensive information about existing ZFS pools on the worker node:
 
@@ -2406,7 +2406,7 @@ ARC (Adaptive Replacement Cache) is ZFS’s in-memory caching system. It keeps f
 - **Predictive Maintenance:** Early warning indicators for disk replacement
 
 Storage Pool Operations
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 **Pool Management Actions:** The Storage Pool interface provides four primary operational buttons:
 
 **Purpose**
@@ -2573,7 +2573,7 @@ Dataset Management
 - **Hierarchical Organization:** Organized dataset structure with parent-child relationships
 
 ZFS Advanced Features
-"""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 **Compression Management:**
 
 - **Compression Algorithm:** lz4 compression for space efficiency
@@ -2604,7 +2604,7 @@ Node Monitoring
 **Monitoring Interface:** The monitoring interface features a time-based performance dashboard with configurable time ranges and multiple performance metrics displayed in detailed graphical format.
 
 Time Range Selection
-""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Time Range Controls:** The monitoring interface provides flexible time range selection for performance analysis:
 
@@ -2625,7 +2625,7 @@ Time Range Selection
 
 
 CPU Usage Monitoring
-""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **CPU Performance Graph:** The CPU Usage (%) graph provides detailed real-time monitoring of processor utilization:
 
@@ -2651,7 +2651,7 @@ CPU Usage Monitoring
 - **Trend Analysis:** Historical CPU usage trends for performance optimization
 
 Memory Usage Monitoring
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Memory Performance Graph:** The Memory Usage (%) graph provides comprehensive memory utilization monitoring:
 
@@ -2677,7 +2677,7 @@ Memory Usage Monitoring
 - **Capacity Analysis:** Memory capacity utilization and availability assessment
 
 Storage Usage Monitoring
-""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Storage Performance Graph:** The Storage Usage (%) graph monitors storage utilization and capacity:
 
@@ -2704,7 +2704,7 @@ Storage Usage Monitoring
 
 
 Performance Analytics
-""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Multi-Metric Analysis:** The monitoring interface provides comprehensive performance analytics across multiple system resources:
 
@@ -2723,7 +2723,7 @@ Performance Analytics
 - **Optimization Opportunities:** Data-driven optimization recommendations
 
 Historical Performance Analysis
-"""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Time-Based Analysis:** The monitoring system provides comprehensive historical performance analysis:
 
@@ -2754,7 +2754,7 @@ Node Power Management
 - **Power Profile Management:** Configure and optimize power profiles for different workloads
 
 Power Metrics View
-"""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 **Power Metrics Dashboard:** The Power Metrics view provides detailed real-time power consumption monitoring with comprehensive electrical measurements:
 
 **Power Consumption Graph:** The Power (W) graph displays instantaneous power consumption over time:
@@ -2795,7 +2795,7 @@ Power Metrics View
 - **Long-term Analysis:** Historical energy consumption tracking for cost analysis
 
 Power Monitoring View
-"""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Power Monitoring Dashboard:** The Power Monitoring view provides comprehensive power analytics and management capabilities:
 
@@ -2835,7 +2835,7 @@ To add a new power supply unit data:
 **Step: Complete Configuration** Click **Add** to save the power supply configuration, or **Cancel** to abort the setup
 
 Server Power Metrics
-""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Comprehensive Power Analytics:** The Server Power Metrics section provides detailed power consumption analysis and CPU core monitoring
 
@@ -2859,7 +2859,7 @@ Server Power Metrics
 - **Idle Cores:** 0% utilization (displayed in light green)
 
 System Resource Summary
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Resource Utilization Overview:** The system provides a comprehensive summary of overall resource utilization:
 
@@ -2881,7 +2881,7 @@ System Resource Summary
    - **Power Saving:** Maximum power efficiency for light workloads
 
 Power Profile Configuration
-"""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Power Profile Settings:** The Set Power-Profile section enables dynamic power profile management:
 
@@ -2899,7 +2899,7 @@ Power Profile Configuration
 
 
 Frequency Management
-""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **CPU Frequency Control:** The system provides detailed CPU frequency monitoring and management:
 
@@ -2921,7 +2921,7 @@ Frequency Management
 - **Workload Adaptation:** Dynamic frequency adjustment based on workload characteristics
 
 Power Management Best Practices
-"""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Effective Power Management**
 
@@ -2946,7 +2946,7 @@ Network Management
 **Network Interface Management:** The network management interface features dedicated sections for interface monitoring and switch configuration, providing granular control over network connectivity and virtual network topology.
 
 Network Interface Configuration
-"""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Interface Overview:** The Network Management - Interface section displays all available network interfaces for the selected worker node:
 
@@ -2977,7 +2977,7 @@ Network Interface Configuration
 - **Configuration Access:** Direct access to detailed interface settings
 
 Virtual Switch Management
-"""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Switch Overview:** The Network Management - Switches section provides comprehensive virtual switch management and configuration:
 
@@ -2998,7 +2998,7 @@ Virtual Switch Management
 - **Interface Assignment:** Management of interface-to-switch assignments
 
 Switch Creation and Configuration
-"""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 **Create Switch Interface:** The Create Switch modal provides comprehensive switch creation and configuration options:
 
 **Switch Creation Form:**
@@ -3025,7 +3025,7 @@ The switch management interface displays all configured virtual switches.
 
 
 Network Configuration Best Practices
-"""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 - **Interface Configuration:**
    - **Naming Conventions:** Use descriptive names for switches and interfaces
@@ -3051,7 +3051,7 @@ Firewall Management
 
 
 Packet Filter Rules Interface
-"""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **PF Rules Display:** The Packet Filter Rules section provides a comprehensive view of all active firewall rules.
 
@@ -3072,7 +3072,7 @@ Packet Filter Rules Interface
 
 
 Firewall Rule Components
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Rule Structure Analysis:** The firewall rules are organized in a structured format with specific components.
 
@@ -3124,7 +3124,7 @@ Firewall Rule Components
       - **State Management:** Automatic connection state tracking for all services
 
 Rule Editing and Modification
-"""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Interactive Rule Editor:** The firewall interface provides comprehensive rule editing capabilities.
 
@@ -3150,7 +3150,7 @@ Rule Editing and Modification
 
 
 Change Confirmation System Safety Mechanism:
-"""""""""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 The firewall system includes a comprehensive safety mechanism to prevent system lockout.
 
@@ -3185,7 +3185,7 @@ The firewall system includes a comprehensive safety mechanism to prevent system 
 - **Revert Warning:** Clear indication of automatic reversion behavior
 
 Security Considerations:
-"""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Expertise Requirement:** Advanced PF configuration requires specialized knowledge
 
@@ -3406,7 +3406,7 @@ Node Log Management
 
 
 Log Viewer Dashboard
-"""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Log Display Interface:** The Log Viewer provides a comprehensive log monitoring interface.
 
@@ -3431,7 +3431,7 @@ Log Viewer Dashboard
 **Kernel Messages:** “kernel: 310.534325 [4335] netmap_transmit vlan113 full hwcur 0 hwtail 0 qlen 1023”
 
 Log Filtering and Search
-"""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Advanced Log Filtering:** The Log Viewer provides comprehensive filtering and search capabilities.
 
@@ -3456,7 +3456,7 @@ Log Filtering and Search
 - **Flexible Matching:** Partial and full text search capabilities
 
 Log Export and Management
-"""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^
 
 **Log Export Functionality:** The Log Viewer provides log export capabilities:
 
