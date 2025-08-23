@@ -479,6 +479,1382 @@ Once a server is registered, administrators can perform various management opera
 - Process: Removes server registration and management capabilities
 - Impact: Loss of remote management and monitoring capabilities
 
+
+Control Center Level Management
+------------------------------------
+
+Administrators can access various control center management features. The control center provides centralized management capabilities for the entire Karios infrastructure.
+
+Component Navigation Process
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Control Node Components:** The control node interface provides access to key system components:
+
+- **Provisioning Center**: Central management and configuration hub
+- **Storage**: Storage pool and volume management
+- **Seaweed**: Distributed file system
+- **ISO**: Operating system image management
+- **Network**: Network configuration and management
+- **Event logs**: System event monitoring, and log management
+- **Stats**: Performance metrics and monitoring
+- **Releases**: System updates and patch management
+
+.. image:: path/to/image
+   :alt: Control Node Interface
+
+**Navigation Best Practices:**
+
+- **Tab Organization**: Use tabs to organize different management functions
+- **Context Awareness**: Understand the current context (control node vs. worker node)
+- **Permission Levels**: Ensure appropriate permissions for accessing different components
+
+Liquid Cooling Management Operations (Future Scope - Not available for )
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Karios Cool Integration:** The Liquid Cooling tab provides access to the Karios Cool thermal management system for monitoring and controlling liquid cooling infrastructure across your deployment.
+
+**Liquid Cooling Interface:** The interface provides two main management categories:
+Immersion Cooling and Rack Level.
+
+.. image:: path/to/image
+   :alt: Liquid Cooling Interface
+   :width: 925px
+   :height: 283px
+
+**Immersion Cooling Tab**
+
+**Immersion Cooling Systems:** The Immersion Cooling tab provides comprehensive management of immersion cooling systems and components:
+
+**Netbox Configuration:**
+
+- **Configure Netbox**: Click the "Configure Netbox" button to set up Netbox integration
+- **Netbox URL**: Enter the Netbox URL (e.g., "http://example.com:8000")
+- **API Token**: Enter your API token for authentication (e.g., 57de59edd5ee56af1946f39a55e17281e6c7aaee)
+- **Save Configuration**: Click "Save Configuration" to apply settings
+
+.. image:: path/to/image
+   :alt: Netbox Configuration
+   :width: 679px
+   :height: 405px
+
+**Rack Selection:** After configuring Netbox, administrators can select and manage available racks:
+
+- **DEV Rack**: Active rack with detailed specifications
+- **Physical Specifications**: View rack dimensions, device counts, and power requirements
+- **Rack Management**: Access rack-level cooling controls and monitoring
+
+.. image:: path/to/image
+   :alt: Rack Selection
+   :width: 913px
+   :height: 396px
+
+**Immersion Cooling Loop Control:** The system provides visual control of the immersion cooling loop:
+
+- **Tank**: Coolant tank with visual fluid level indicators
+- **Pump**: Circulation pump with control capabilities
+- **Servers**: Server units (U1-U10) with cooling connections
+- **Chiller**: Cooling chiller with temperature control
+- **Coolant Flow**: Visual representation of coolant flow paths
+
+**Coolant Flow Management:**
+
+- **Flow Control**: ON/OFF button to control coolant flow
+- **Flow Direction**: Visual indicators showing coolant flow from Tank → Pump → Servers → Chiller → Tank
+- **Flow Status**: Real-time status of coolant circulation
+- **Temperature Zones**: Cold water (blue) and warm water (red) flow indicators
+
+.. image:: path/to/image
+   :alt: Coolant Flow Management
+   :width: 925px
+   :height: 439px
+
+.. image:: path/to/image
+   :alt: Coolant Flow Status
+   :width: 928px
+   :height: 499px
+
+**Server Information Display:** Individual server information within the immersion cooling system:
+
+- **Server Status**: Active/inactive status for each server unit
+- **Server Identification**: Unit positions (U1, U2, U3, etc.)
+- **Temperature Monitoring**: Per-server temperature monitoring
+
+.. image:: path/to/image
+   :alt: Server Information
+   :width: 919px
+   :height: 475px
+
+**Monitoring Controls:**
+
+- **Sensors Dropdown**: Select "Sensors" to view different available sensors
+
+.. image:: path/to/image
+   :alt: Monitoring Controls
+   :width: 931px
+   :height: 487px
+
+**Sensor Types and Monitoring:** The system provides comprehensive sensor monitoring with 8 different sensor types:
+
+.. image:: path/to/image
+   :alt: Sensor Types Overview
+   :width: 934px
+   :height: 459px
+
+**Flame Sensor:** Fire detection and safety monitoring for the cooling system
+
+.. image:: path/to/image
+   :alt: Flame Sensor
+   :width: 895px
+   :height: 517px
+
+**Motor:** Motor status and performance monitoring for pumps and fans
+
+.. image:: path/to/image
+   :alt: Motor Monitoring
+   :width: 919px
+   :height: 511px
+
+**Temperature Sensor (CPU):** CPU temperature monitoring for thermal management
+
+.. image:: path/to/image
+   :alt: CPU Temperature Sensor
+   :width: 939px
+   :height: 523px
+
+**Flow Rate Sensor (Outlet):** Coolant flow rate monitoring at outlet points
+
+.. image:: path/to/image
+   :alt: Flow Rate Sensor
+   :width: 928px
+   :height: 487px
+
+**CDU (Coolant Distribution Unit) Security:** Security monitoring for coolant distribution systems
+
+.. image:: path/to/image
+   :alt: CDU Security
+   :width: 937px
+   :height: 508px
+
+**Temperature Sensor (Coolant Tank):** Coolant tank temperature monitoring
+
+.. image:: path/to/image
+   :alt: Coolant Tank Temperature
+   :width: 919px
+   :height: 574px
+
+**Leak Detection Sensor:** Leak detection and prevention monitoring
+
+.. image:: path/to/image
+   :alt: Leak Detection Sensor
+   :width: 913px
+   :height: 472px
+
+**Tank Level Sensor:** Coolant tank level monitoring and management
+
+.. image:: path/to/image
+   :alt: Tank Level Sensor
+   :width: 928px
+   :height: 582px
+
+**Sensor Capabilities:**
+
+- **Real-time Monitoring**: Live sensor data collection and display
+- **Alert Generation**: Automatic alerts for sensor threshold breaches
+- **Historical Data**: Sensor data history and trend analysis
+- **Safety Monitoring**: Critical safety sensors including flame and leak detection
+- **Performance Tracking**: Operational sensors for flow, temperature, and motor performance
+
+**Metrics Button:** Click "Metrics" to access real-time performance data
+
+.. image:: path/to/image
+   :alt: Metrics Interface
+   :width: 2955px
+   :height: 1694px
+
+.. image:: path/to/image
+   :alt: Metrics Data
+   :width: 762px
+   :height: 523px
+
+**Real-time Updates:** Live monitoring of cooling system performance
+
+**Rack Level Tab**
+
+**Rack-Level Cooling Management:** The Rack Level tab provides detailed rack-level cooling management:
+
+.. image:: path/to/image
+   :alt: Rack Level Management
+   :width: 910px
+   :height: 403px
+
+**Available Nodes Display:** The system shows available nodes with comprehensive information:
+
+- **Name**: Node identifier (e.g., "DEV Rack")
+- **Status**: Operational status (Active/Inactive)
+- **Physical Dimensions**: Width (19 inches) and Height (15U) specifications
+- **Device Count**: Number of devices in the rack (18 devices)
+- **Power Feeds**: Number of power connections (2 power feeds)
+
+**Real-time Monitoring and Metrics**
+
+**Sensor Information:** Access detailed sensor information through the Sensors tab
+
+.. image:: path/to/image
+   :alt: Sensor Information
+   :width: 3008px
+   :height: 1688px
+
+**Coolant Distribution System:**
+
+.. image:: path/to/image
+   :alt: Coolant Distribution System
+   :width: 891px
+   :height: 628px
+
+**Interactive Monitoring:**
+
+- **Real-time Graphs**: Access real-time graphical data for each metric
+- **Historical Data**: View historical trends and patterns
+- **Alert Thresholds**: Configure alert thresholds for temperature and flow parameters
+- **Performance Analysis**: Analyze cooling system performance over time
+
+**Operational Controls**
+
+**Cooling System Control:**
+
+- **Flow Control**: Start/stop coolant circulation with ON/OFF controls
+- **Temperature Management**: Monitor and control temperature across the system
+- **Pump Management**: Control pump operation and speed
+- **Chiller Control**: Manage chiller operation and temperature settings
+
+**System Status Monitoring:**
+
+- **Visual Status Indicators**: Real-time visual indicators for system components
+- **Component Health**: Monitor health status of pumps, chillers, and sensors
+- **Flow Visualization**: Visual representation of coolant flow throughout the system
+- **Temperature Mapping**: Visual temperature mapping across server units
+
+**Navigation and Usage:**
+
+- **Tab Navigation**: Switch between Immersion Cooling and Rack Level tabs
+- **Back to Racks**: Return to rack overview with "Back to Racks" button
+- **Node Selection**: Select specific nodes for detailed management
+- **Configuration Access**: Access configuration options for cooling systems
+- **Status Monitoring**: Monitor cooling system status and performance
+
+For detailed information regarding liquid cooling functionality, configuration options, and advanced features, please refer to Section 5: Liquid Cooling Management.
+
+Storage Management Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Storage Tab Overview:** The Storage tab provides comprehensive storage management capabilities for all supported storage protocols and systems. This centralized interface allows administrators to configure, monitor, and manage various storage types through a unified dashboard.
+
+**Storage Protocol Support:** The storage interface provides access to multiple storage protocols with dropdown selection:
+
+**MooseFS Storage**
+
+**MooseFS Distributed Storage:**
+MooseFS is a distributed file system that provides scalable, fault-tolerant storage across multiple servers with a unified namespace. It offers high availability and automatic data replication for enterprise storage requirements.
+
+.. image:: path/to/image
+   :alt: MooseFS Storage Interface
+   :width: 925px
+   :height: 379px
+
+**Mount MooseFS Storage:** Click "Mount MooseFS Storage" to configure MooseFS connections
+
+**Server Information:** View MooseFS server details (e.g., 192.168.111.92)
+
+**Port Configuration:** Configure MooseFS port settings (e.g., 9421)
+
+**Storage Metrics:** Monitor storage usage and capacity
+
+- **Size**: Total storage capacity (e.g., 49G)
+- **Used**: Currently used storage (e.g., 11G)
+- **Available**: Available storage space (e.g., 38G)
+- **Capacity**: Storage utilization percentage (e.g., 22%)
+- **Mount Point**: View mount directory (e.g., /mnt/moosefs/karios)
+
+.. image:: path/to/image
+   :alt: MooseFS Storage Metrics
+   :width: 915px
+   :height: 213px
+
+To mount MooseFS storage, follow these steps:
+
+**Step 1: Gather MooseFS Server Information**
+Before configuring, obtain the following details
+
+- MooseFS server IP address
+- Server port number (usually 9421)
+- Available directory/namespace to mount
+
+**Step 2: Configure MooseFS Mount**
+
+**ID:** Enter a name to identify this storage mount (e.g., "main-storage")
+
+.. tip::
+   A MooseFS ID is a unique identifier used for user authentication, access control, and quota management within the distributed MooseFS file system.
+
+**Server:** Enter the IP address of your MooseFS server (e.g., 192.168.111.92)
+
+.. tip::
+   A MooseFS server is any computer running the MooseFS software and fulfilling a specific role like managing metadata (master), storing data chunks (data), or facilitating discovery (listen) within a distributed file system cluster.
+
+**Port:** Enter the MooseFS port number (default is 9421)
+
+.. tip::
+   MooseFS ports are network doorways used by the master, data, and listen servers to communicate with each other and clients, with default values like 10001 (master), 10003 (data), and 10005 (listen).
+
+**Directory:** Enter the MooseFS directory path you want to access (e.g., "moosefs")
+
+.. tip::
+   A MooseFS directory is a hierarchical structure within the distributed file system, similar to traditional directories, that organizes files and subdirectories across multiple servers for storage and access.
+
+**Step 3: Configure Options**
+
+- ✓ **Auto Mount on Restart**: Check this to automatically connect to storage when system restarts
+- ✓ **Add to Datastore**: Check this to make the storage available for virtual machines
+
+**MooseFS Storage Management**
+
+**Actions:** Unmount and manage MooseFS storage
+
+.. image:: path/to/image
+   :alt: MooseFS Storage Actions
+   :width: 915px
+   :height: 213px
+
+Click Delete icon to unmount the moosefs storage. It will prompt you for a confirmation. Click "unmount" to remove the moosefs mount.
+
+.. image:: path/to/image
+   :alt: MooseFS Unmount Confirmation
+   :width: 532px
+   :height: 322px
+
+**S3 Storage**
+
+**S3 Object Storage:**
+S3 (Simple Storage Service) provides scalable object storage for backup, archival, and cloud-native applications. It offers cost-effective storage with global accessibility and integration with modern DevOps workflows.
+
+.. image:: path/to/image
+   :alt: S3 Storage Interface
+   :width: 924px
+   :height: 361px
+
+To mount S3 storage, follow these steps:
+
+**Step 1: Gather S3 Storage Information**
+Before configuring, obtain the following details:
+
+- S3 bucket name
+- Access credentials (Access Key and Secret Key)
+- S3 endpoint URL or region information
+
+**Step 2: Configure S3 Mount**
+
+**Bucket Name:** Enter the name of your S3 bucket you want to access
+
+.. tip::
+   An AWS bucket is a container within Amazon S3 that securely stores objects (files and their metadata) in the cloud, offering scalability, durability, and various configuration options for different use cases.
+
+**Access Key:** Enter your S3 access key ID for authentication
+
+.. tip::
+   A bucket access key is a unique set of credentials, an Access Key ID and Secret Access Key that allows users or applications to authenticate and interact with an AWS S3 bucket.
+
+**Secret Key:** Enter your S3 secret access key for authentication
+
+.. tip::
+   The bucket secret key, also known as the Secret Access Key, is a confidential string of characters paired with an Access Key ID that authenticates requests made to your AWS S3 bucket.
+
+**Endpoint:** Enter the S3 endpoint URL (e.g., s3.amazonaws.com)
+
+.. tip::
+   The URL of the S3 service endpoint for your region (e.g., s3.amazonaws.com for global, or s3.us-west-2.amazonaws.com for specific regions). For S3-compatible services, this would be the custom endpoint URL
+
+**Region:** Enter the S3 region (e.g., us-east-1) or leave default
+
+.. tip::
+   An S3 region is a geographical location where your Amazon S3 bucket's data is physically stored, impacting latency, cost, and compliance considerations.
+
+**ID:** Enter a name to identify this storage mount (e.g., "karios")
+
+.. tip::
+   An S3 Access Key ID is a public identifier that acts as the first part of your credentials for authenticating requests to access your Amazon S3 bucket.
+
+**Step 3: Configure Options**
+
+- ✓ **Auto Mount on Restart**: Check this to automatically connect to storage when system restarts
+- ✓ **Add to Datastore**: Check this to make the storage available for virtual machines
+
+**Step 4: Complete Setup**
+Click Submit to save the configuration and mount the S3 storage.
+
+.. image:: path/to/image
+   :alt: S3 Configuration Form
+   :width: 618px
+   :height: 603px
+
+**Storage Status:** Monitor S3 storage availability and connection status
+
+.. image:: path/to/image
+   :alt: S3 Storage Status
+   :width: 903px
+   :height: 235px
+
+Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal of S3 storage.
+
+.. image:: path/to/image
+   :alt: S3 Unmount Confirmation
+   :width: 589px
+   :height: 385px
+
+**iSCSI Storage**
+
+**iSCSI Block Storage:**
+iSCSI provides block-level storage access over IP networks, enabling remote storage to appear as locally attached disks. It's commonly used for shared storage in virtualization environments and high-performance database applications.
+
+**Understanding iSCSI Terms:**
+
+**Target:** An iSCSI target is the storage device or service on the remote server that provides the actual storage space. It's identified by an IQN (iSCSI Qualified Name) and contains one or more LUNs (Logical Unit Numbers).
+
+**Mount:** Mounting makes the connected iSCSI storage accessible to the operating system as a usable disk or file system. After mounting, the remote storage appears as a local disk that can be used for data storage.
+
+**Connect to iSCSI Target:** Click "Connect to iSCSI Target" to establish iSCSI connections
+
+.. image:: path/to/image
+   :alt: iSCSI Target Connection
+   :width: 925px
+   :height: 432px
+
+**Step 1: Gather iSCSI Target Information**
+Before configuring, obtain the following details:
+
+- iSCSI target server IP address
+- Target name (IQN - iSCSI Qualified Name)
+- Authentication credentials (username and password)
+
+**Step 2: Configure iSCSI Connection**
+
+**Portal:** Enter the IP address of your iSCSI target server (e.g., 192.168.116.113)
+
+.. tip::
+   An iSCSI portal is the combination of an IP address and TCP port (typically 3260) that defines a specific endpoint for initiating or accepting iSCSI connections, essentially acting as the doorway for communication between an initiator and target.
+
+**Target:** Enter the iSCSI target name (e.g., iqn.store.ai.karios:storage.lun1)
+
+**Username:** Enter the authentication username for the iSCSI target (e.g., admin)
+
+.. tip::
+   An iSCSI username is a credential used for authentication when connecting to an iSCSI target, ensuring only authorized initiators can access the shared storage.
+
+**Password:** Enter the authentication password for the iSCSI target
+
+.. tip::
+   An iSCSI password, paired with a username, provides secure authentication for clients accessing an iSCSI target, verifying their identity before granting storage access.
+
+**Step 3: Complete Connection**
+Click Submit to establish the iSCSI connection and make the storage available as a block device.
+
+.. image:: path/to/image
+   :alt: iSCSI Connection Form
+   :width: 484px
+   :height: 387px
+
+To mount iSCSI devices, follow these steps:
+
+After connecting to an iSCSI target, you need to mount the discovered devices to make them accessible for storage operations.
+
+**Step 1: Configure Multipath Settings**
+
+**Multipath Name:** Enter a name for the multipath device (e.g., "mp_disk")
+
+.. tip::
+   The Multipath Name is essentially the logical name you assign to the multipath device created from multiple iSCSI paths.
+
+**Select Devices:** Choose the iSCSI devices you want to include in the multipath configuration
+
+**Device Selection:** Check the boxes for available devices (e.g., "da1")
+
+**Verify Selection:** Confirm your selected devices are listed correctly
+
+**Step 2: Complete Mount Process**
+Click Mount to mount the selected iSCSI devices and make them available for use.
+
+.. image:: path/to/image
+   :alt: iSCSI Device Mounting
+   :width: 882px
+   :height: 345px
+
+**Device Actions:** These are the following actions that can be performed on an iSCSI storage device.
+
+- **Mount**: Makes the iSCSI storage accessible to the system as a usable disk drive
+- **Disconnect**: Terminates the connection to the iSCSI target while preserving configuration
+- **Remove Device**: Completely removes the device from the system configuration
+- **Destroy Path**: Removes the multipath configuration and destroys the path mapping
+
+.. image:: path/to/image
+   :alt: iSCSI Device Actions
+   :width: 768px
+   :height: 315px
+
+**NFS Storage**
+
+**NFS File Storage:**
+NFS (Network File System) allows you to access files on remote servers as if they were stored locally on your system. It's commonly used for shared storage in Unix/Linux environments and virtualization platforms.
+
+.. image:: path/to/image
+   :alt: NFS Storage Interface
+   :width: 904px
+   :height: 451px
+
+To mount NFS storage, follow these steps: Click "Mount NFS Storage" to configure NFS connections
+
+**Step 1: Select NFS Server**
+
+**NFS Server:** Enter the IP address or hostname of your NFS server (e.g., 192.168.116.113)
+
+Click Next to proceed to mount configuration
+
+.. image:: path/to/image
+   :alt: NFS Server Selection
+   :width: 604px
+   :height: 337px
+
+**Step 2: Configure NFS Mount**
+
+**ID:** Enter a name to identify this storage mount
+
+.. tip::
+   An NFS ID (Network File System Identifier) is a unique identifier assigned to each client accessing an NFS server, used for access control and tracking.
+
+**Server:** Enter the IP address or hostname of your NFS server (e.g., 192.168.1.100)
+
+.. tip::
+   A network file server that runs the Network File System daemon (nfsd) and exports (shares) directories to remote client systems over a network. The NFS server manages file access permissions, handles client requests for file operations (read, write, create, delete), and maintains the shared file systems that clients can mount and access as if they were local storage.
+
+**Export Path:** Enter the directory path exported by the NFS server (e.g., /exports/shared)
+
+.. tip::
+   The directory path on the NFS server that has been configured and made available for sharing to client systems. This is the actual folder location on the server (e.g., /exports/shared, /home/data) that contains the files you want to access remotely.
+
+.. tip::
+   **Mount Point:** The local directory path on the client system where the remote NFS share will be attached and accessed. This is an empty directory on your local system (e.g., /mnt/nfs-storage, /data/shared) that serves as the access point for the remote files.
+
+   **Mount Options:** Configuration parameters that control how the NFS file system is mounted and behaves, including NFS protocol version (NFSv3, NFSv4), read/write permissions, timeout settings, cache behavior, and security options. These options determine the performance characteristics and access rules for the mounted file system.
+
+**Step 3: Configure Options**
+
+- ✓ **Auto Mount on Restart**: Check this to automatically mount NFS storage when system restarts
+- ✓ **Add to Datastore**: Check this to make the storage available for virtual machines
+- ✓ **Enable pNFS**: Check this to enable parallel NFS for improved performance (if supported)
+
+.. tip::
+   An extension to NFSv4 that allows clients to access file data directly from multiple storage servers simultaneously, rather than routing all data through a single NFS server. This parallel access significantly improves performance and scalability by distributing I/O operations across multiple storage devices, reducing bottlenecks and enabling higher throughput for large file operations.
+
+**Step 4: Complete Setup**
+Click Submit to save the configuration and mount the NFS storage.
+
+.. image:: path/to/image
+   :alt: NFS Configuration Form
+   :width: 627px
+   :height: 466px
+
+To unmount the NFS storage, please click on the delete icon
+
+.. image:: path/to/image
+   :alt: NFS Storage Management
+   :width: 927px
+   :height: 300px
+
+**SMB Storage**
+
+**SMB/CIFS Storage:**
+
+SMB (Server Message Block) enables file sharing with Windows systems and provides access to network shares. It's essential for mixed Windows/Linux environments and centralized file storage.
+
+.. image:: path/to/image
+   :alt: SMB Storage Interface
+   :width: 915px
+   :height: 253px
+
+**Mount SMB/CIFS Storage:** Click "Mount SMB/CIFS Storage" to configure SMB connections and follow these steps:
+
+**Step 1: Gather SMB Server Information**
+Before configuring, obtain the following details:
+
+- SMB server IP address or NetBIOS name
+- Share name on the SMB server
+- Authentication credentials (username and password)
+
+**Step 2: Configure SMB Mount**
+
+**ID:** Enter a name to identify this SMB mount (e.g., "karios")
+
+**NetBIOS Name:** Enter the Windows computer name or NetBIOS name (e.g., "DESKTOP-FHPF4OS")
+
+.. tip::
+   A NetBIOS name is a legacy computer name used in Windows networking that can be utilized when specifying the server address for mounting SMB/CIFS shares.
+
+**Server:** Enter the IP address of your SMB server (e.g., 192.168.111.230)
+
+.. tip::
+   An SMB (Server Message Block) / CIFS (Common Internet File System) server allows users on a network to share files, printers, and other resources using the Windows networking protocol.
+
+**Share:** Enter the name of the shared folder (e.g., "shared-folder")
+
+.. tip::
+   An SMB share is a designated folder on an SMB/CIFS server that's made accessible to other computers on the network for file sharing.
+
+**Username:** Enter your SMB authentication username (e.g., "smbuser")
+
+.. tip::
+   An SMB username is a specific account name used to authenticate and access resources (like files and folders) on an SMB/CIFS share, separate from your local computer's login.
+
+**Password:** Enter your SMB authentication password
+
+.. tip::
+   An SMB password is the secret credential associated with an SMB username, required for authentication when accessing shared resources on an SMB/CIFS server.
+
+**Step 3: Configure Options**
+
+- ✓ **Auto Mount on Restart**: Check this to automatically mount SMB storage when system restarts
+- ✓ **Add to Datastore**: Check this to make the storage available for virtual machines
+
+**Step 4: Complete Setup**
+Click Submit to save the configuration and mount the SMB storage.
+
+.. image:: path/to/image
+   :alt: SMB Configuration Form
+   :width: 457px
+   :height: 472px
+
+**SMB Server Configuration:** SMB/CIFS server connections.
+
+.. image:: path/to/image
+   :alt: SMB Server Status
+   :width: 928px
+   :height: 216px
+
+**Unmount:** Click on the "delete" icon to unmount SMB storage.
+
+**SeaweedFS Storage**
+
+**SeaweedFS Distributed Object Storage:**
+SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
+
+**SeaweedFS Terms:**
+
+**Master Server:** Controls the distributed file system by managing metadata, coordinating volume servers, and handling file location requests. It acts as the central coordinator for the entire SeaweedFS cluster.
+
+**Volume Server:** Stores the actual file data and handles read/write operations. Multiple volume servers work together to provide distributed storage capacity and redundancy.
+
+.. image:: path/to/image
+   :alt: SeaweedFS Interface
+   :width: 873px
+   :height: 241px
+
+**Master Server Management:** Configure and manage SeaweedFS master servers
+
+To configure SeaweedFS Master, follow these steps:
+
+**Step 1: Access SeaweedFS Configuration**
+
+Navigate to the SeaweedFS section in your Karios interface
+
+Click Configure Master to begin master server setup
+
+**Step 2: Configure Master Server**
+
+**Datacenter:** Enter datacenter identifier (e.g., "dc0")
+
+.. tip::
+   A logical identifier that represents a physical data center or geographic location where SeaweedFS nodes are deployed. This helps SeaweedFS understand the physical topology and make intelligent replication decisions to ensure data copies are distributed across different locations for disaster recovery.
+
+**Rack:** Enter rack identifier (e.g., "r0")
+
+.. tip::
+   A logical identifier that represents a physical server rack within a datacenter. SeaweedFS uses rack information to ensure data replicas are stored on servers in different racks, providing protection against rack-level failures such as power loss, network switch failures, or cooling issues affecting an entire rack.
+
+**Default Replication:** Set replication factor (e.g., "000")
+
+.. tip::
+   A three-digit configuration that defines how many copies of data SeaweedFS automatically creates and where they are stored. The format is "XYZ" where X = copies across datacenters, Y = copies across racks, Z = copies across volume servers. For example, "001" means 1 copy on different volume servers, "010" means 1 copy on different racks, and "100" means 1 copy across different datacenters.
+
+.. note::
+   SeaweedFS replication 000: Stores only a single copy of each chunk (no replicas). Use this setting only when durability isn't required as any volume/node failure may result in data loss.
+
+   In a single-node deployment, SeaweedFS replication is disabled and has no effect. Replication is only applicable when multiple volume servers (nodes) are configured.
+
+**Select Node for Master Configuration:** Choose which node will serve as the master server
+
+.. image:: path/to/image
+   :alt: SeaweedFS Master Configuration
+   :width: 618px
+   :height: 604px
+
+**Configure Volumes:** Click "Configure Volumes" to manage storage volumes
+
+.. image:: path/to/image
+   :alt: SeaweedFS Volume Configuration
+   :width: 727px
+   :height: 235px
+
+**Unmount Volumes:** Click on Unmount button to remove the volume servers
+
+.. image:: path/to/image
+   :alt: SeaweedFS Volume Unmount
+   :width: 604px
+   :height: 328px
+
+**Master Servers Display:** View active master servers with IP addresses and status
+
+- **IP Address**: Master server addresses (e.g., 192.168.116.137:9333)
+- **Status**: Active status for all master servers
+- **Multi-Master Support**: Multiple master servers for high availability
+
+**Delete Configure:** Removes the entire seaweed configuration.
+
+.. image:: path/to/image
+   :alt: SeaweedFS Master Servers
+   :width: 3024px
+   :height: 1710px
+
+**Storage Operations**
+
+**Common Storage Operations:**
+
+- **Mount/Unmount**: Mount and unmount storage systems
+- **Connection Management**: Connect and disconnect from storage targets
+- **Capacity Monitoring**: Real-time storage usage and capacity monitoring
+- **Status Tracking**: Monitor connection status and storage health
+- **Configuration Management**: Configure storage protocol settings
+
+**Storage Management Features:**
+
+- **Protocol Selection**: Dropdown selection for different storage protocols
+- **Unified Interface**: Single interface for all storage protocol management
+- **Real-time Monitoring**: Live storage metrics and status updates
+- **Action Controls**: Direct action buttons for storage operations
+- **Storage Analytics**: Detailed storage usage and performance metrics
+
+For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Section 6: Flexible Storage.
+
+ISO Management Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+   Control Center level ISO section is only enabled if seaweed is configured. If you don't wish to configure seaweed, please navigate to the node level ISO section to upload or download ISO.
+
+**Understanding Basic Terms:**
+
+**ISO:** A disk image file format that contains an exact copy of data from an optical disc (CD/DVD). In virtualization, ISO files are used as virtual installation media to install operating systems or software on virtual machines, eliminating the need for physical discs.
+
+**RAW:** An uncompressed disk image format that contains a bit-for-bit copy of a storage device or partition. RAW images provide maximum compatibility and performance but consume more storage space since they don't use compression, making them ideal for high-performance virtual machine storage.
+
+**ISO Operations:**
+
+- **Download ISO**: Download ISO files using FQDN URL with appended ISO file path
+- **Upload ISO**: Upload valid ISO files to the data center storage
+- **RAW File Support**: Upload and manage RAW disk image files
+- **File Selection**: Browse and select from available ISO and RAW files
+- **Availability Tracking**: Real-time view of available ISO and RAW files
+
+.. image:: path/to/image
+   :alt: ISO Management Interface
+   :width: 925px
+   :height: 330px
+
+**ISO Management Features:**
+
+- **Dual Upload Support**: Support for both ISO and RAW file formats
+- **URL-based Downloads**: Download ISO files directly from FQDN URLs
+- **File Browser Integration**: Integrated file selection interface
+- **Availability Dropdown**: Dropdown menu displaying all available ISO and RAW files
+- **Upload Status Monitoring**: Real-time upload progress and completion status
+- **File Validation**: Automatic validation of uploaded ISO and RAW files
+
+**ISO Management Interface:**
+
+**Download Section:** FQDN URL input field with download button for remote ISO retrieval (e.g., https://download.freebsd.org/ftp/releases/ISO-IMAGES/14.2/FreeBSD-14.2-RELEASE-amd64-bootonly.iso)
+
+Please give a valid FQDN URL in the input field and click "download"
+
+.. image:: path/to/image
+   :alt: ISO Download Interface
+   :width: 820px
+   :height: 232px
+
+**Upload Section:** File selection interface with upload button for local ISO/RAW files
+
+Select a valid iso or raw file and click "upload"
+
+.. image:: path/to/image
+   :alt: ISO Upload Interface
+   :width: 784px
+   :height: 172px
+
+**Available Files Dropdown:** Comprehensive list of all available ISO and RAW files (cloud images)
+
+.. image:: path/to/image
+   :alt: Available ISO Files
+   :width: 919px
+   :height: 733px
+
+**Status Indicators:** Visual indicators for file availability and upload status
+
+**File Management Controls:** Direct access to file operations and management functions
+
+**Supported File Types:**
+
+- **ISO Files**: Standard ISO 9660 disk image files
+- **RAW Files**: Raw disk image files and virtual machine disk formats
+- **Validation**: Automatic file format validation during upload process
+
+Network Management Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Network Navigation Structure:**
+
+- **Network Tab Selection:** Access network management by selecting the Network tab from the main navigation
+- **Dropdown Menu Options:** Choose between "Switches" and "Interface" from the network options dropdown
+- **Search Functionality:** Search network options using the integrated search bar
+- **Server Selection:** Select target server from the server dropdown menu
+
+.. image:: path/to/image
+:alt: Network Navigation
+:width: 907px
+:height: 261px
+
+**Switches Section**
+**Switches Section (Selected from Network dropdown):**
+- **Virtual Switch:** A software-based network switch that operates within the host system, enabling communication between virtual machines and connecting them to physical or virtual network interfaces. It functions like a physical Ethernet switch by learning MAC addresses, forwarding traffic, and managing network connections entirely in software.
+- **Interface:** A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
+
+**Vale Switches Tab**
+
+**A High performance networking (software) switch** that delivers packet delivery with low latency and high throughput compared to regular software switches.
+
+After navigating to Switches and Select Vale Switch.
+
+.. image:: path/to/image
+   :alt: Vale Switches
+   :width: 1380px
+   :height: 244px
+
+To create a Vale switch, please click on this.
+
+.. image:: path/to/image
+   :alt: Create Vale Switch
+   :width: 1380px
+   :height: 180px
+
+Please enter the following fields for the vale switch configuration:
+
+**Vale Switch Number (not greater than 4094):** An identifier to each VALE switch.
+
+.. tip::
+   VALE Switch Number: A unique numerical identifier assigned to each VALE switch instance within the system. This number distinguishes between multiple VALE switches running on the same host, allowing the system to route traffic to the correct high-performance switch instance (e.g., vale0, vale1, vale2).
+
+**Tap Interface & VM Mapping field:** Select a tap interface of your desired vm from the available list for vale connection
+
+**Network Interface:** Select the network interface from the available list of interfaces.
+
+.. tip::
+   **TAP Interface:** A virtual network interface that operates at Layer 2 (Ethernet level), simulating a complete network card that can send and receive raw Ethernet frames. It's commonly used to connect virtual machines to networks by creating a virtual ethernet adapter that appears as a real network device to the operating system.
+
+   **VLAN:** A Virtual Local Area Network that logically segments a physical network into multiple isolated networks using VLAN tags. VLANs allow you to create separate network segments on the same physical infrastructure, improving security and organization by grouping devices logically rather than physically.
+
+.. image:: path/to/image
+   :alt: Vale Switch Configuration
+   :width: 937px
+   :height: 533px
+
+**The VALE switches module has 3 types of Network topologies.**
+
+**a) Fully connected network:** parent interface - VALE - tap interface(s)
+
+.. image:: path/to/image
+   :alt: Fully Connected Network
+   :width: 1380px
+   :height: 482px
+
+**b) Unused Networks:** parent interface - vale
+
+.. image:: path/to/image
+   :alt: Unused Networks
+   :width: 1380px
+   :height: 292px
+
+**c) Isolated Networks:** VALE - tap interface(s)
+
+.. image:: path/to/image
+   :alt: Isolated Networks
+   :width: 1380px
+   :height: 242px
+
+Clicking on any topology element displays a detailed view showing the complete network hierarchy: the parent physical interface, the VALE switch configuration, and all connected virtual machine TAP interfaces.
+
+.. image:: path/to/image
+   :alt: Network Topology Details
+   :width: 936px
+   :height: 528px
+
+An option to detach the parent interface is available, which will convert the network into an isolated network. A warning will be displayed before performing this destructive action.
+
+.. image:: path/to/image
+   :alt: Detach Warning
+   :width: 422px
+   :height: 427px
+
+You will find two detach options on the right side of the VALE switch:
+
+- **Bulk detach all TAP interfaces**: Removes all connected virtual machine interfaces at once
+- **Detach individual TAP interfaces**: Selectively remove specific virtual machine interfaces
+
+If available interfaces exist, you can add them to the VALE switch.
+
+.. image:: path/to/image
+   :alt: Add Interfaces
+   :width: 346px
+   :height: 370px
+
+A destroy switch option is available with a warning that displays the potential impact of destroying the VALE switch before executing the destructive action.
+
+.. image:: path/to/image
+   :alt: Destroy Switch Warning
+   :width: 561px
+   :height: 505px
+
+
+**Virtual Switches Tab:** Access traditional network bridge switch management
+
+.. image:: path/to/image
+   :alt: Virtual Switches
+   :width: 949px
+   :height: 471px
+
+**Create Switch Button:** Create new switches with type selection and configuration options
+
+.. image:: path/to/image
+:alt: Create Switch Button
+:width: 955px
+:height: 235px
+
+To create a new switch
+- **Switch name:** Give a unique alphanumeric name to the switch
+.. tip::
+   A unique identifier assigned to distinguish and manage individual virtual switches within the Karios network infrastructure.
+- **Select interface:** Select the desired interface for switch configuration
+.. tip::
+A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
+
+Click "Create Network Switch" button
+.. image:: path/to/image
+:alt: Create Network Switch Form
+:width: 961px
+:height: 475px
+
+
+**Interface Section (Selected from Network dropdown):**
+
+- **Physical Tab:** Access physical network interface management and monitoring
+- **Virtual Tab:** Access virtual network interface and VLAN configuration
+
+Overview: You will be able to manage 2 kinds of interfaces:
+
+**1) Physical Interface**
+
+This is the landing page which allows you to view your Network Interface Cards (NIC) and their status.
+
+The Interface panel also gives the MAC address, IP address, media, VLAN's connected to the NIC, etc.
+
+.. tip::
+   **MAC Address:** A unique 48-bit hardware identifier assigned to network interfaces, displayed in hexadecimal format (e.g., 00:50:56:12:34:56). It serves as the physical address for network communication at the data link layer.
+
+   **IP Address:** A numerical address assigned to devices on a network for identification and communication. It can be IPv4 (e.g., 192.168.1.100) or IPv6 format, used for routing traffic across networks.
+
+   **Media:** The physical transmission medium or connection type used by a network interface, such as Ethernet copper cables, fiber optic cables, or wireless connections.
+
+   **NIC:** Network Interface Card - a hardware component that connects a computer to a network, providing the physical interface for sending and receiving network data over Ethernet or other network protocols
+
+.. image:: path/to/image
+   :alt: Physical Interface
+   :width: 1380px
+   :height: 244px
+
+Click on 'View Details' to view the Received & Transmitted packets.
+
+.. note::
+   View Details is only available for active interfaces.
+
+**Interface Monitoring:** Real-time monitoring of physical network adapters (igc0, igc1, etc.)
+
+**Speed and Duplex:** Display interface speed (1000 Mbps) and duplex settings (Full Duplex)
+
+**MAC Address Information:** View MAC addresses and network interface identifiers
+
+**IP Configuration:** Monitor IPv4 and IPv6 address assignments and CIDR notation
+
+**MTU Settings:** View and manage Maximum Transmission Unit settings
+
+**Status Indicators:** Active, Link Up, and Editable status monitoring
+
+**View Details:** Access detailed interface configuration and statistics
+
+.. image:: path/to/image
+   :alt: Interface Details
+   :width: 836px
+   :height: 588px
+
+
+**2) Virtual Interfaces**
+**Virtual Network Interfaces (VLANs):**
+In the Network Interfaces tab, like shown below, please navigate to Virtual.
+We have Virtual lans (VLAN's) currently supported and the landing page shows you the metrics associated with VLANs like count, status, VLANs with IP and Tag ID.
+In each VLAN, you will get basic information like its MAC address, IP, status, parent interface.(usually the physically interface which is seen above)
+Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an option to create a VLAN - 'Add VLAN'
+
+**VLAN Management:** Configure and manage Virtual LANs with comprehensive settings
+.. image:: path/to/image
+:alt: VLAN Management
+:width: 1380px
+:height: 264px
+
+**Add VLAN Button:** Click on 'Add VLAN', it redirects you to a vlan configuration popup.
+.. image:: path/to/image
+:alt: Add VLAN Form
+:width: 537px
+:height: 730px
+
+**VLAN Configuration Process:**
+Provide all the information given below and click "Create VLAN"
+- **Tag ID Assignment:** Enter VLAN tag ID within valid range (1-4094) with duplicate avoidance
+.. tip::
+- **Tag ID Assignment:** A unique numerical identifier (1-4094) assigned to VLAN traffic for network segmentation. The tag is added to Ethernet frames to identify which VLAN the traffic belongs to, enabling logical network separation on shared physical infrastructure.
+- **Parent NIC Selection:** Choose parent network interface from available interfaces dropdown (Parent network interface is usually from the Network → physical Interfaces, an "active" parent interface is provided).
+Selecting IP
+If you choose to allow Dynamic IP assignment based on the Tag ID you entered, you can skip entering the Static IP address and Subnet Mask. (It will either automatically assign an IP within 15 seconds or asks you to enter Static IP
+While Entering Static IP addresses it is recommended to enter IP as per the tag ID, and the subnet (the recommended formats are entered in the place holders).
+.. tip::
+Subnet: A logical subdivision of an IP network that groups devices within a specific IP address range using subnet masks (e.g., 192.168.1.0/24). Subnets organize network traffic and improve security by creating logical network boundaries.
+Dynamic IP: An IP address automatically assigned to a device by a DHCP server from a predefined pool of available addresses. The address can change when the device reconnects or when the lease expires.
+Static IP: A permanently assigned IP address that remains constant and is manually configured on a device. Static IPs provide consistent network identity and are essential for servers and network infrastructure that need predictable addressing.
+.. note::
+It is recommended that you have your L2 network configurations ready as per your requirements.
+
+**VLAN Management Module:**
+- **VLAN Details:** Display VLAN name, Tag ID, MAC address information
+- **Network Configuration:** Show Parent NIC, IPv4 addresses, and MTU settings
+.. tip::
+MTU Settings: Maximum Transmission Unit - the largest size of data packet that can be transmitted over a network interface, measured in bytes. Standard Ethernet MTU is 1500 bytes, while jumbo frames can support up to 9000 bytes for improved performance on high-speed networks.
+Status Monitoring: Active status, admin up/down state, and connectivity indicators
+Action Controls: View, Stats, Ping, and Delete functionality for each VLAN
+
+.. image:: path/to/image
+:alt: VLAN Management Module
+:width: 1380px
+:height: 610px
+
+You can perform all the 4 actions mentioned above per VLAN:
+**View:** This gives you details such as Parent NIC, MAC address, Status, Virtual Switches connected, Routing Table. (Please scroll down to find them)
+.. image:: path/to/image
+:alt: VLAN View Details
+:width: 805px
+:height: 501px
+**Stats:** The packets VLAN receives and transmits is displayed here.
+.. image:: path/to/image
+:alt: VLAN Stats
+:width: 597px
+:height: 488px
+
+**Ping:** For an Active VLAN, a ping is possible to its gateway. In this case VLAN with Tag ID 115 is connecting to its interface 115.253.
+.. image:: path/to/image
+:alt: VLAN Ping
+:width: 705px
+:height: 627px
+
+**Delete:** Before you delete a VLAN, you will be given a warning on the connected switches that will be isolated if the VLAN is deleted.
+.. image:: path/to/image
+:alt: VLAN Delete Warning
+:width: 511px
+:height: 542px
+
+Stats Management Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Stats Navigation Structure:**
+
+- **Stats Tab Selection**: Access statistics and monitoring by selecting the Stats tab from the main navigation
+- **Live and Recommendations Tabs**: Toggle between real-time monitoring and system recommendations
+- **Node & VM Stats Overview**: Comprehensive monitoring of both physical nodes and virtual machines
+- **Real-time Data Updates**: Live statistics with automatic refresh capabilities
+
+.. image:: path/to/image
+   :alt: Stats Navigation
+   :width: 916px
+   :height: 204px
+
+**Live Statistics Monitoring:**
+
+- **Node Performance Metrics**: Real-time monitoring of CPU percentage, memory usage, power consumption, and uptime
+- **VM Performance Tracking**: Individual virtual machine CPU usage, memory consumption, and operational status
+- **Status Indicators**: Visual status indicators showing NORMAL, Running, or Stopped states
+- **Multi-Node Support**: Monitor multiple nodes simultaneously with consolidated view
+- **Resource Utilization**: Track resource allocation and usage patterns across the infrastructure
+
+.. image:: path/to/image
+   :alt: Live Statistics
+   :width: 940px
+   :height: 439px
+
+**Node Statistics Display:**
+
+- **Node Name**: Display of node identifiers and hostnames
+- **CPU Usage**: Real-time CPU utilization percentage with core count information
+- **Memory Usage**: Memory consumption percentage with total available memory in GB
+- **Power Consumption**: Current power usage in watts with power status indicators
+- **Uptime Information**: Node uptime tracking with days, hours, and minutes format
+- **Status Monitoring**: Overall node health status with color-coded indicators
+
+.. image:: path/to/image
+   :alt: Node Statistics
+   :width: 921px
+   :height: 157px
+
+**Virtual Machine Statistics:**
+
+- **VM Name**: Individual virtual machine identification and naming
+- **CPU Usage**: Per-VM CPU utilization with allocated CPU core information
+- **Memory Usage**: VM memory consumption with allocated memory in GB
+- **VM Status**: Current operational status (Running, Stopped) with color coding
+- **Uptime Tracking**: Individual VM uptime monitoring with precise time formatting
+- **Status Health**: VM health status indicators with NORMAL operational states
+
+.. image:: path/to/image
+   :alt: VM Statistics
+   :width: 937px
+   :height: 313px
+
+**Recommendations System:**
+
+- **Time Range Selection**: Configurable time range dropdown for recommendation analysis (1 Week default)
+- **Apply Button**: Apply selected time range for recommendation generation
+- **Expandable Recommendations**: Click on any node row to expand detailed VM recommendations
+- **Resource Optimization**: Intelligent recommendations for resource allocation and scaling
+- **Performance Insights**: Detailed analysis and suggestions for infrastructure optimization
+
+.. image:: path/to/image
+   :alt: Recommendations System
+   :width: 943px
+   :height: 336px
+
+**Recommendation Details:**
+
+- **VM-Level Recommendations**: Individual virtual machine optimization suggestions
+- **CPU Recommendations**: CPU scaling recommendations with specific core adjustments
+- **Memory Recommendations**: Memory optimization suggestions with GB-level adjustments
+- **Action Suggestions**: Specific actions like "scale-down" for underutilized resources
+- **Justification**: Detailed explanations for each recommendation with reasoning
+- **Resource Efficiency**: Recommendations to free up capacity and optimize resource usage
+
+**Statistics Table Features:**
+
+- **Sortable Columns**: Sort by node name, CPU usage, memory usage, power, uptime, and status
+- **Color-Coded Status**: Visual status indicators for quick health assessment
+- **Expandable Rows**: Click to expand nodes and view detailed VM statistics
+- **Real-time Updates**: Automatic refresh of statistics data
+- **Multi-Level Monitoring**: Both node-level and VM-level statistics in unified view
+
+**Performance Monitoring Capabilities:**
+
+- **Resource Utilization Tracking**: Monitor CPU, memory, and power consumption patterns
+- **Capacity Planning**: Resource usage insights for infrastructure planning
+- **Health Monitoring**: Continuous monitoring of system health and operational status
+- **Optimization Insights**: Data-driven recommendations for performance improvements
+
+System Releases Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Releases Navigation Structure:**
+
+- **Releases Tab Selection**: Access system releases and updates by selecting the Releases tab from the main navigation
+- **Four Main Sections**: Navigate between Versions, Updates, History, and Install Jobs tabs
+- **Host Management**: Filter and search functionality for managing multiple hosts and nodes
+- **Remote Server Integration**: Fetch updates from remote servers with timestamp tracking
+
+.. image:: path/to/image
+   :alt: Releases Navigation
+   :width: 883px
+   :height: 222px
+
+**Versions Tab**
+
+Click on versions tab and select any node to view the update versions.
+
+- **Host Listing**: Display all available hosts with expandable rows for detailed version information
+- **Version Count Indicators**: Show number of available versions per host with numeric badges
+- **Search and Filter**: Filter by Host Name, Update Type (All/Core/OS), and Version numbers
+- **Expandable Interface**: Click on host names to expand and view detailed version information
+- **Version Details**: View specific update types (CORE, OS) with version numbers and request timestamps
+
+.. image:: path/to/image
+   :alt: Versions Tab
+   :width: 940px
+   :height: 505px
+
+.. image:: path/to/image
+   :alt: Version Details
+   :width: 796px
+   :height: 208px
+
+**Updates Tab**
+
+**Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
+
+.. image:: path/to/image
+   :alt: Updates Tab
+   :width: 916px
+   :height: 375px
+
+- **Remote Server Sync**: Shows "Fetched from remote server" status with last fetch timestamp
+- **Update Information**: Display update name, version, description, type, and available actions
+- **Download and Install**: Direct download and install buttons for each available update
+
+.. image:: path/to/image
+   :alt: Update Information
+   :width: 921px
+   :height: 280px
+
+Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
+
+.. image:: path/to/image
+   :alt: Install Update Dialog
+   :width: 913px
+   :height: 388px
+
+- **Update Categories**: Filter updates by type (Core, OS, Security) and priority levels
+- **Action Controls**: Install, Download, and Logs buttons for update management
+
+**Update Installation Process:**
+
+**Install Update Dialog:** Comprehensive installation interface with multiple configuration options
+
+.. image:: path/to/image
+   :alt: Update Installation Interface
+   :width: 985px
+   :height: 679px
+
+- **Update Details**: Display update type (CORE, OS, UI) and version information
+- **Node Selection**: Multi-select interface for choosing target nodes for installation
+- **Installation Status**: Track Already Updated, Pending, and Scheduled installation states
+- **Schedule Management**: Optional scheduling with date/time picker for future installations
+
+**Steps to install an update:**
+
+1. Select a node from the available list.
+2. Choose between immediate installation or scheduled deployment
+3. Click on "install now" for immediate installation.
+
+.. image:: path/to/image
+   :alt: Installation Steps
+   :width: 940px
+   :height: 706px
+
+.. note::
+   We have two update install options i.e., "install now" for instant installation and "set schedule time" for later installation.
+
+**Installation Scheduling:**
+
+- **Schedule Options**: Set specific date and time for update installation
+- **Future Date Validation**: Ensure scheduled installations are set for future dates and times
+- **Schedule Management**: Click on "Set Schedule Time" for scheduled update deployment.
+
+.. image:: path/to/image
+   :alt: Schedule Options 1
+   :width: 843px
+   :height: 697px
+
+.. image:: path/to/image
+   :alt: Schedule Options 2
+   :width: 919px
+   :height: 712px
+
+- **Clear Schedule**: Option to clear scheduled time and install immediately
+- **Multi-Node Support**: Schedule installations across multiple selected nodes
+
+**History Tab**
+
+Click on "history" tab to view
+
+- **Update History**: Complete historical record of all system updates and installations
+- **Filter Options**: Filter by Update Type, Host Name, Action, and Status
+- **Detailed Records**: View update type, host name, action, version, initiated by, status, and request timestamp
+- **Status Tracking**: Track SUCCESS, ERROR, and other status indicators for historical updates
+- **User Attribution**: Show which user initiated each update or installation
+- **Chronological View**: Updates displayed in chronological order with timestamps
+
+.. image:: path/to/image
+   :alt: Update History
+   :width: 880px
+   :height: 435px
+
+**Install Jobs Tab**
+
+Click on the "install jobs" tab
+
+- **Job Management**: Monitor and manage all installation jobs and their current status
+- **Job Filtering**: Filter by Update Type, Status, Requested By, and Scheduled status
+- **Job Details**: Display Job ID, Update Type, Version, Requested By, Scheduled status, Nodes count, Success/Failure counts, and overall Status
+- **Status Monitoring**: Track PENDING, FAILED, SUCCESS, and other job statuses
+- **Scheduled Jobs**: Identify and manage scheduled installations with "Yes/No" indicators
+- **Job Statistics**: View success and failure counts for each installation job
+
+.. image:: path/to/image
+   :alt: Install Jobs
+   :width: 949px
+   :height: 556px
+
+**Installation Monitoring:**
+
+- **Install Summary**: Comprehensive installation summary with timestamp, Job ID, and node count
+- **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
+- **Success and Failure Counts**: Track installation success and failure statistics
+
+.. image:: path/to/image
+   :alt: Installation Monitoring
+   :width: 937px
+   :height: 396px
+
+- **Detailed Status View**: Click on installation jobs to view detailed status information
+- **Host-Level Details**: View individual host installation status with timestamps
+- **Error Logging**: Access detailed installation logs for troubleshooting failed installations
+
+**Installation Logs and Details:**
+
+.. image:: path/to/image
+   :alt: Installation Logs
+   :width: 946px
+   :height: 733px
+
+- **Detailed Log Access**: View comprehensive installation logs for each host
+- **Error Diagnosis**: Detailed error messages and failure analysis
+- **Installation Timeline**: Track installation start time, completion time, and duration
+- **Log Status**: Monitor log status (ERROR, SUCCESS) for each installation attempt
+- **Rollback Information**: View rollback procedures and restoration details when installations fail
+- **Filter by Status**: Filter installation details by All, Success, Failed, Pending, and In Progress
+
+**Advanced Features:**
+
+- **Multi-Node Management**: Support for managing updates across multiple nodes simultaneously
+- **Remote Update Fetching**: Automatic fetching of updates from remote servers with status indicators
+- **Installation Rollback**: Automatic rollback capabilities for failed installations
+- **Comprehensive Logging**: Detailed logging for all installation activities and system changes
+- **Status Filtering**: Advanced filtering options for monitoring specific installation states
+
+For detailed information regarding system release management, advanced update procedures, rollback processes, and comprehensive release deployment strategies, please refer to Section 9: System Release Management.
+
+
 Node Level Storage Management
 -----------------------------
 
