@@ -2540,6 +2540,8 @@ Node Storage Management
 - **Create Datastore:** Create new datastores for virtual machine storage
 - **Storage Pools Dropdown:** Select and manage existing storage pools
 
+.. figure:: _static/images/storage/image_001.png
+   :align: center
 
 **Info tip:**
 
@@ -2565,6 +2567,8 @@ Storage Pool Management
 - **State Indicators:** Real-time pool health status (ONLINE)
 - **Capacity Monitoring:** Visual and numerical capacity utilization tracking
 
+.. figure:: _static/images/storage/image_002.png
+   :align: center
 
 **ZFS ARC Memory Management**
 
@@ -2580,6 +2584,8 @@ ARC (Adaptive Replacement Cache) is ZFS’s in-memory caching system. It keeps f
    - Or decrease it to free RAM for virtual machines and other workloads.
 - To save the settings, click “apply” . Changes apply dynamically
 
+.. figure:: _static/images/storage/image_003.png
+   :align: center
 
 **Impact of Adjustments**
 
@@ -2641,6 +2647,8 @@ Ideal for organizing file-based storage into logical, isolated datasets.
    - **Step 3:** Enable encryption if required and provide a passphrase (min 8 characters)
    - **Step 4:** Click "Create"
 
+.. figure:: _static/images/storage/image_004.png
+   :align: center
 
 
 **Info tip:** ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
@@ -2655,6 +2663,9 @@ Ideal for organizing file-based storage into logical, isolated datasets.
 
 Click on "View datasets" to display and manage your datasets within the pool.
 
+.. figure:: _static/images/storage/image_005.png
+   :align: center
+
 **Create Zvol:**
 
 - **Purpose:** Create ZFS volumes for block storage
@@ -2664,6 +2675,9 @@ Click on "View datasets" to display and manage your datasets within the pool.
 - **Usage:** Ideal for virtual machine storage and database applications
 
 Provide an appropriate name for the zvol and select “Create Zvol”
+
+.. figure:: _static/images/storage/image_006.png
+   :align: center
 
 
 **Delete Pool:**
@@ -2676,6 +2690,9 @@ Provide an appropriate name for the zvol and select “Create Zvol”
 Please navigate to the appropriate pool and select "Delete Pool" 
 
 **Warning:** Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
+
+.. figure:: _static/images/storage/image_007.png
+   :align: center
 
 
 ZFS Pool Creation
@@ -2742,6 +2759,9 @@ Datastore Management
 - **Step 2:** Select the pool from the available list
 - **Step 3:** click "Create Datastore"
 
+.. figure:: _static/images/storage/image_008.png
+   :align: center
+
 Dataset Management
 """"""""""""""""""
 
@@ -2754,12 +2774,18 @@ Dataset Management
 - **Compression Settings:** ZFS compression configuration (lz4 ON/OFF)
 - **Deduplication Settings:** Data deduplication configuration (ON/OFF)
 
+.. figure:: _static/images/storage/image_009.png
+   :align: center
+
 **Dataset Types and Filtering:**
 
 - **All Types:** Display all dataset types in unified view
 - **Filesystem:** File-based datasets for traditional file storage
 - **Volume:** Block-based datasets for virtual machine storage
 - **Snapshot:** Point-in-time snapshots for data protection
+
+.. figure:: _static/images/storage/image_010.png
+   :align: center
 
 **Dataset Operations:**
 
@@ -2772,7 +2798,13 @@ Dataset Management
 - **Step 2:** Give an appropriate name
 - **Step 3:** Click on the green icon to take a snapshot.
 
+.. figure:: _static/images/storage/image_011.png
+   :align: center
+
 **Dataset Deletion:** Remove datasets with confirmation prompts
+
+.. figure:: _static/images/storage/image_012.png
+   :align: center
 
 - **Snapshot Management:** Manage snapshot lifecycle and retention
 - **Hierarchical Organization:** Organized dataset structure with parent-child relationships
