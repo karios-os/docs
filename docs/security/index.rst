@@ -9,24 +9,34 @@ Karios Security
 Overview
 ========
 
-Karios Security provides comprehensive security management and threat protection for your hyper-converged infrastructure. This integrated security solution delivers advanced vulnerability scanning, compliance monitoring, and automated remediation specifically designed for FreeBSD-based bare metal and virtualized environments. Built around the KariOS SHIELD scanning platform with the KariOS Enhanced v1.1.0 engine, it offers enterprise-grade security assessment and management capabilities.
+Karios Security provides comprehensive security management and threat protection for your hyper-converged infrastructure. This integrated security solution delivers advanced vulnerability scanning, compliance monitoring, and automated remediation specifically designed for FreeBSD-based bare metal and virtualized environments. Built around the KariOS SHIELD scanning platform with the KariOS Enhanced v1.1.0 engine, it offers security assessment and management capabilities.
+
+**SCAP Alignment (OVAL/XCCDF):**
+
+Karios evaluates systems using **XCCDF profiles** that drive **OVAL** checks for Karios Custom Security Profiles. The engine executes SCAP-style evaluations (pass/fail/error/not-checked), records compliance status and rule counts per run, and generates HTML/PDF reports.  
+
+* **Current release:** SCAP content execution and profile-based evaluation (OVAL + XCCDF).  
 
 **Key Features:**
 
-* **Comprehensive Vulnerability Scanning:** Advanced vulnerability detection using proprietary and public CVE databases
-* **Real-Time Security Dashboard:** Centralized security posture monitoring and risk assessment
-* **Compliance Management:** CIS FreeBSD standards compliance monitoring and gap analysis
+* **Comprehensive Vulnerability Scanning:** Vulnerability detection using proprietary and public CVE databases
+* **Security Dashboard:** Centralized security posture monitoring and risk assessment
+* **Compliance Management:** **SCAP-aligned** compliance monitoring and gap analysis (OVAL/XCCDF-driven)
 * **Automated Remediation:** Limited automated fixes for FreeBSD benchmark violations (expanding in future releases)
 * **Threat Intelligence Integration:** Continuous threat landscape monitoring and analysis
 * **Historical Tracking:** Security trends and improvement metrics over time
 
 Security Center Dashboard
 =========================
+The Security Center serves as the central hub for managing and monitoring your infrastructure's security posture. It provides real-time visibility into vulnerabilities, compliance status, and remediation efforts.
+
 
 Default View - Real-Time Security Snapshot
 -------------------------------------------
 
-The Security Center provides a centralized real-time view of your infrastructure's security posture, appearing by default when entering the Security tab.
+The Security Center provides a centralized real-time view of your infrastructure's security posture. The dashboard is divided into three main panels:
+
+
 
 **Left Panel - Risk Summary:**
 
@@ -77,11 +87,47 @@ Shows vulnerability distribution by category:
    * - CAT I
      - Critical vulnerabilities with high impact and immediate attention required
    * - CAT II
-     - High-to-medium severity issues requiring prompt attention
+     - High severity issues requiring prompt attention
    * - CAT III
-     - Low-priority or informational issues for future consideration
+     - Medium - Low priority or informational issues for future consideration
    * - Total
      - Complete count of all identified vulnerabilities
+
+Vulnerability Management
+========================
+
+Vulnerability Classification and Tracking
+------------------------------------------
+
+**Vulnerability Information Display:**
+
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Field
+     - Description
+   * - Internal ID
+     - Tracker ID for each vulnerability/misconfiguration
+   * - Type
+     - Vulnerability (or) Misconfiguration
+   * - Title  
+     - Vulnerability (or) Misconfiguration information
+   * - Description
+     - Detailed explanation of the issue
+   * - Rationale
+     - Explanation of the issue and its impact
+   * - CVE-ID
+     - Common Vulnerabilities and Exposures identifier 
+   * - CWE-ID
+     - Common Weakness Enumeration identifier 
+   * - CVSS Score
+     - Severity score from 0.0 to 10.0
+   * - Severity Level
+     - Critical, High, Medium, or Low classification
+   * - Remediate
+     - Remediation to fix the vulnerability
+
 
 Metrics View - Scan History & Trends
 -------------------------------------
@@ -100,16 +146,20 @@ Track and analyze vulnerability trends across multiple scans with historical dat
 
    * - Field
      - Description
-   * - Scan Date
-     - Timestamp of previous security scan
-   * - Total Findings
-     - Complete count of vulnerabilities found
-   * - Critical Issues
-     - Number of CAT I vulnerabilities identified
+   * - Scan ID
+     - Unique identifier for each scan  
+   * - Date & Target
+     - Timestamp and target of the scan
+   * - Status
+     - Completion status (COMPLETED/FAILED)
    * - Risk Score
-     - Calculated risk assessment value
-   * - Compliance Status
-     - CIS FreeBSD compliance level achieved
+     - Risk score calculated from scan findings
+   * - Vulnerabilities
+     - Total vulnerabilities found during the scan
+   * - Duration
+     - Time taken to complete the scan
+   * - Reports
+     - Links to detailed HTML/PDF reports for the scan          
 
 **Recent Changes:**
 
@@ -130,70 +180,21 @@ Monitor security posture changes between scans:
    * - Declining Controls
      - Security controls showing degradation since last scan
 
-**Compliance Gap Analysis:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Compliance Area
-     - Status
-   * - Access Controls
-     - Number of failed checks vs. total checks
-   * - System Hardening
-     - Percentage of hardening requirements met
-   * - Network Security
-     - Count of network-related findings
-   * - Audit & Logging
-     - Compliance level for audit requirements
-
-**Security Insights:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Metric
-     - Value
-   * - Mean Time to Remediate
-     - Average time to fix vulnerabilities
-   * - Exposure Time Reduction
-     - Percentage improvement in vulnerability exposure
-   * - Most Common Issue Type
-     - Frequently occurring vulnerability category
-   * - Threat Landscape Status
-     - Current threat intelligence assessment
-
 Vulnerability Scanning
 ======================
 
 Scan Types and Execution
 ------------------------
 
-KariOS SHIELD provides multiple scan types to accommodate different security assessment needs:
+KariOS SHIELD provides one scan option currently, the Default Scan covering all the critical security checks in a SCAP Compliant Process:
 
-Quick Scan (Current)
+Default Scan (Current)
 ^^^^^^^^^^^^^^^^^^^^
 
 * **Duration:** 3-5 minutes
 * **Coverage:** Most critical security items
 * **Scope:** Packages, kernel configurations, basic file permissions
 * **Use Case:** Rapid security assessment and regular monitoring
-
-Deep Scan (Future Scope)
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-* **Status:** Coming soon
-* **Coverage:** Comprehensive system-wide security analysis
-* **Scope:** All available security checks across the entire system
-* **Use Case:** Full compliance audits and thorough vulnerability analysis
-
-Manual Scan
-^^^^^^^^^^^
-
-* **Trigger:** User-initiated on-demand scanning
-* **Flexibility:** Configurable scope and target selection
-* **Control:** Complete user control over scan timing and parameters
 
 Scan Process and Components
 ---------------------------
@@ -210,32 +211,21 @@ Scan Process and Components
      - Installed software versions and known vulnerabilities
    * - Kernel Configuration
      - Security-related kernel parameters and loaded modules
-   * - Network Services
-     - Open ports, running services, and network configurations
    * - File Permissions
-     - Critical system file and directory access controls
+     - Basic system file and directory access controls
    * - User Accounts
      - Account security, privileges, and authentication settings
    * - Security Policies
      - System security policy compliance and configurations
-   * - Patch Status
-     - Missing security updates and available patches
 
 **Behind-the-Scenes Process:**
 
 Pre-Scan Setup
 ^^^^^^^^^^^^^^
 
-* Scanner reads selected configuration (quick/deep, target profile)
-* Initializes system-specific access and environment data
-* Prepares plugin execution environment
+* No Pre Scan Setup is required, The initial Karios installation takes care of the prerequisites, you already get a custom SCAP Profile ready and loaded, which is run during your every scan.
+* When it Comes to OVAL Database, The SCAP Profile is used to load the OVAL Database, which contains the vulnerability definitions and checks present on host's machine
 
-Plugin Execution
-^^^^^^^^^^^^^^^^
-
-* Each plugin runs sequentially, checking specific system areas
-* Issues are flagged as findings when vulnerabilities are detected
-* Results are collected and categorized by severity
 
 CVE Matching
 ^^^^^^^^^^^^
@@ -252,50 +242,22 @@ Scoring & Reporting
 * Results displayed in Security tab interface
 
 Scanning Engine
----------------
+^^^^^^^^^^^^^^^^
 
-**KariOS Enhanced v1.1.0:**
-
-* **Current Version:** KariOS Enhanced v1.1.0
 * **Update Schedule:** Next version release scheduled shortly
 * **Capabilities:** Comprehensive vulnerability detection and assessment
 * **Database:** Maintains proprietary vulnerability database with public CVE integration
 
-**Database Management:**
+Database Management
+^^^^^^^^^^^^^^^^^^^
 
 * **Proprietary Database:** Karios maintains specialized vulnerability database
 * **Public CVE Integration:** Regular synchronization with public CVE databases
 * **Update Frequency:** Regular intervals for database synchronization
 * **Coverage:** Comprehensive vulnerability signatures and definitions
 
-Vulnerability Management
-========================
-
-Vulnerability Classification and Tracking
-------------------------------------------
-
-**Vulnerability Information Display:**
-
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Field
-     - Description
-   * - CVE ID
-     - Common Vulnerabilities and Exposures identifier
-   * - CVSS Score
-     - Severity score from 0.0 to 10.0
-   * - Severity Level
-     - Critical, High, Medium, or Low classification
-   * - Affected Component
-     - System component or package with vulnerability
-   * - Remediation Status
-     - Available, Pending, Applied, or Not Available
-   * - Exploit Available
-     - Whether public exploits exist for this vulnerability
-
-**CVE Tracking:**
+CVE Tracking
+^^^^^^^^^^^^
 
 * **CVE Integration:** Comprehensive Common Vulnerabilities and Exposures tracking
 * **CVSS Scoring:** Common Vulnerability Scoring System implementation
@@ -318,62 +280,13 @@ Risk Assessment and Scoring
 * **Configuration Assessment:** System settings and security controls evaluation
 * **Best Practices:** Implementation of recommended security configurations
 
-**Overall Security Status:** Simplified security posture indicators:
-
-* **GOOD:** Well-configured system with low risk
-* **MODERATE:** Reasonably secure with some areas requiring attention
-* **AT-RISK:** Exposed to major vulnerabilities or weak configurations
-
 Compliance Management
 =====================
-
-CIS Standards Compliance
-------------------------
-
-**CIS Framework Integration:**
-
-* **Standards:** Center for Internet Security FreeBSD standards implementation
-* **Risk Categories:** CIS-based vulnerability categorization and assessment
-* **Compliance Scoring:** Automated compliance assessment and grading
-* **Gap Analysis:** Compliance gap identification and tracking
 
 **Compliance Monitoring:**
 
 * **Current Status:** Real-time compliance status (e.g., C - CRITICAL)
 * **Historical Tracking:** Previous compliance status and trend analysis
-* **Improvement Tracking:** Compliance improvement or decline analysis
-* **Category Breakdown:** Specific CIS control category assessment
-
-Compliance Gap Analysis
------------------------
-
-**Control Categories:**
-
-.. list-table::
-   :widths: 30 20 50
-   :header-rows: 1
-
-   * - Control Category
-     - Status
-     - Description
-   * - Initial Setup
-     - Pass/Fail
-     - System installation and initial configuration security
-   * - Services
-     - Pass/Fail
-     - Unnecessary service identification and disabling
-   * - Network Parameters
-     - Pass/Fail
-     - Network stack security configurations
-   * - Logging and Auditing
-     - Pass/Fail
-     - System event logging and audit trail configuration
-   * - Access Controls
-     - Pass/Fail
-     - User access management and authentication controls
-   * - System Maintenance
-     - Pass/Fail
-     - Patch management and system update procedures
 
 Remediation Management
 ======================
@@ -382,21 +295,19 @@ Current Remediation Capabilities
 ---------------------------------
 
 .. important::
-   Remediation is currently available for very few vulnerabilities and primarily covers FreeBSD benchmark violations. Enhanced remediation capabilities are planned for future releases.
+ * Karios Security includes safe, guided remediation for a curated set of FreeBSD hardening checks. Each action is pre-checked, executed, and verified.
+
+ * User-in-control workflow: fixes are manually triggered from the UI, show a clear preview of changes, and produce an audit trail so you stay fully in control.
+
+ * Built to grow: the remediation framework is ready for broader coverage as new fix packs are validated and released.
+ 
+ * Current status: coverage is purposefully limited today to the most reliable, high-confidence items—by design—while we expand safely and progressively.
 
 **Current Remediation Scope:**
 
 * **FreeBSD Benchmark Checks:** System-level fixes for CIS FreeBSD standard violations
 * **Configuration Corrections:** Adjusting permissions, disabling unsafe services
-* **Kernel Module Management:** Removing vulnerable or unnecessary kernel modules
 * **File Permission Fixes:** Correcting overly permissive file and directory access
-
-**What Remediation Covers Currently:**
-
-* Disabling core dumps for security
-* Removing or disabling vulnerable kernel modules
-* Correcting incorrect file permissions
-* Basic system hardening configurations
 
 Remediation Process
 -------------------
@@ -404,8 +315,8 @@ Remediation Process
 **How Remediation Works:**
 
 #. **Vulnerability Assessment:** Identify vulnerabilities with available automated fixes
-#. **Manual Trigger:** User must manually initiate remediation via UI
-#. **Fix Execution:** System applies predefined fixes (usually shell command logic)
+#. **Manual Trigger:** User must manually initiate remediation via UI throught the 'Remediate' button.
+#. **Fix Execution:** System applies predefined fixes
 #. **System Changes:** Updates may include file modifications, permission adjustments, service configurations
 #. **Verification:** Automatic verification step confirms issue resolution
 #. **Status Update:** Finding marked as remediated, compliance score updated
@@ -431,33 +342,6 @@ Future Remediation Enhancements
 Security Scanning Operations
 ============================
 
-Scan Management
----------------
-
-**Scan Operations:**
-
-* **Scan Initiation:** Manual scan trigger via Security dashboard
-* **Scan Configuration:** Scope definition and target selection
-* **Scan Monitoring:** Real-time scan progress and status monitoring
-* **Scan Validation:** Automatic verification of scan completion and results
-
-**Scan History Tracking:**
-
-.. list-table::
-   :widths: 20 20 20 20 20
-   :header-rows: 1
-
-   * - Scan Date
-     - Type
-     - Duration
-     - Findings
-     - Risk Score
-   * - [Date/Time]
-     - Quick/Deep
-     - X minutes
-     - Number
-     - Score/100
-
 Scan Results and Details
 ------------------------
 
@@ -465,7 +349,6 @@ Scan Results and Details
 
 * **Scan Time:** Precise scan execution timestamp
 * **Initiator:** Scan trigger source (System/User initiated)
-* **Target Assets:** Number and identification of scanned assets
 * **Risk Score:** Calculated risk score from scan results
 * **Vulnerability Count:** Total number of vulnerabilities discovered
 
@@ -479,25 +362,47 @@ Report Generation
 * **Export Options:** Report download for external analysis and archiving
 * **Report Contents:** Comprehensive vulnerability data, compliance assessment, and remediation recommendations
 
+Scan Execution Explained
+------------------------
+
+When you start a scan in Karios, the system doesn’t build everything from scratch. Instead, it uses a **pre-downloaded Security Profile** that was installed during setup. This profile contains all the **OVAL databases** and **rules** needed to check your system. Think of it as a ready-made checklist that Karios always has on hand.
+
+**Step-by-Step Process:**
+
+**Security Profile Loaded**
+
+- The system loads the pre-installed profile, which includes OVAL rules and definitions.
+- These rules describe what “secure” looks like and what needs to be checked.
+
+**Plugins Scanned**
+- The scanner runs through different plugins.
+- Each plugin is a group of checks focusing on a specific area (e.g., packages, kernel settings, file permissions).
+- Together, the plugins ensure complete system coverage.
+
+**Findings Generated**
+
+- After running the checks, the system compares your machine against the OVAL rules.  
+- If something fails a rule, it is recorded as a **finding**.  
+- Findings include details such as severity, affected component, and the reason for failure.
+
+**Security Report Created**
+
+- Once all plugins finish, the findings are collected into a **security report**.  
+- The report shows which checks passed or failed.  
+- It also assigns risk levels and highlights areas that need attention.
+
+**In Simple Terms**
+
+- **Click Scan → Karios loads security rules → runs grouped checks (plugins) → records failures → produces a clear report.**
+
 Security Insights and Analysis
 ==============================
-
-Threat Intelligence Integration
--------------------------------
-
-**Threat Landscape Monitoring:**
-
-* **Threat Detection:** Continuous monitoring for new threat patterns
-* **Threat Intelligence:** Integration with threat intelligence feeds
-* **Risk Assessment:** Ongoing threat risk evaluation and analysis
-* **Status Reporting:** Clear threat status communication (e.g., "No new threats detected")
 
 Performance Metrics and Improvements
 ------------------------------------
 
 **Security Improvement Tracking:**
 
-* **Exposure Time Reduction:** Measurable improvements in vulnerability exposure time (e.g., 25% improvement)
 * **Risk Mitigation:** Quantifiable security posture improvements
 * **Trend Analysis:** Historical security improvement tracking
 * **Baseline Comparison:** Security metrics compared to established baselines
@@ -509,28 +414,6 @@ Performance Metrics and Improvements
 * **Compliance History:** Historical compliance status and improvement tracking
 * **Change Analytics:** Analysis of security changes and their impacts
 
-Security History and Tracking
-=============================
-
-Vulnerability Trend Analysis
-----------------------------
-
-**Recent Changes Tracking:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Trend Indicator
-     - Description
-   * - New Vulnerabilities
-     - Count and severity of newly discovered issues
-   * - Remediated Issues
-     - Successfully fixed vulnerabilities since last scan
-   * - Recurring Issues
-     - Vulnerabilities that have reappeared after remediation
-   * - Trend Direction
-     - Overall security posture improvement or decline
 
 Common Vulnerability Patterns
 -----------------------------
@@ -550,10 +433,8 @@ Real-Time Security Monitoring
 
 **Continuous Monitoring Capabilities:**
 
-* **Live Status Updates:** Real-time security status monitoring and dashboard updates
-* **Alert System:** Automated security alerts and notifications for critical issues
+* **Live Status Updates:** Real-time security status monitoring and dashboard updates post scans
 * **Status Indicators:** Visual security status indicators and risk level displays
-* **Threshold Monitoring:** Configurable risk alert thresholds and automated notifications
 
 Integration and Extensibility
 -----------------------------
@@ -561,8 +442,101 @@ Integration and Extensibility
 **Current Integration:**
 
 * **Dashboard Integration:** Seamless integration with Karios main dashboard
-* **Reporting Integration:** Export capabilities for external security tools
 * **Database Integration:** Centralized vulnerability and compliance data storage
+
+API Endpoints
+=============
+
+All endpoints are grouped under ``/api/v1/security`` unless noted. Each endpoint maps to a backend service that performs permission checks, validates input, and returns structured JSON.
+
+Dashboard
+---------
+
+.. list-table::
+   :widths: 40 10 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/api/v1/security/{scan_target}/dashboard/score-panel-new``
+     - GET
+     - Returns the top-line security panel (risk %, compliance, counts) for the latest scan.
+   * - ``/api/v1/security/{scan_target}/dashboard/cat-analysis``
+     - GET
+     - Returns CAT I/II/III breakdown and pass/fail stats.
+   * - ``/api/v1/security/{scan_target}/dashboard/risk-trend?days={n}``
+     - GET
+     - Returns risk score trend data over the past ``n`` days (default example: 90).
+   * - ``/api/v1/security/{scan_target}/dashboard/recent-scan-stats``
+     - GET
+     - Returns recent-scan summary (duration, findings, status) for quick at-a-glance metrics.
+
+Vulnerabilities
+---------------
+
+.. list-table::
+   :widths: 40 10 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/api/v1/security/vulnerabilities?page={p}&limit={n}&severity={S}&severity={S2}``
+     - GET
+     - Lists vulnerabilities with pagination and optional multi-value ``severity`` filters (e.g., ``MEDIUM``, ``LOW``).
+
+Scans
+-----
+
+.. list-table::
+   :widths: 40 10 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/api/v1/security/{scan_target}/scan/execute``
+     - POST
+     - Triggers a scan execution for the target. See request body below.
+   * - ``/api/v1/security/{scan_target}/scans?page={p}&limit={n}&sort=scan_date&order=desc``
+     - GET
+     - Returns historical scan runs for the target with pagination and sorting.
+
+Reports
+-------
+
+.. list-table::
+   :widths: 40 10 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/api/v1/reports/{scan_id}/download?format=pdf``
+     - GET
+     - Downloads a report for the specified scan in the requested format (e.g., ``pdf``). *(Note: base URL may differ from security service.)*
+
+Remediation (Limited / Controlled)
+----------------------------------
+
+.. list-table::
+   :widths: 40 10 50
+   :header-rows: 1
+
+   * - Endpoint
+     - Method
+     - Description
+   * - ``/api/v1/{scan_target}/remediation/vulnerability/{cve}/remediate``
+     - POST
+     - Attempts a controlled remediation for a specific CVE (scope is intentionally very limited; primarily FreeBSD benchmark fixes).
+
+Notes
+-----
+
+- **Auth**: Most endpoints require a Bearer token (e.g., ``Authorization: Bearer <token>``).
+- **Variables**: Replace ``{scan_target}`` with your target identifier; replace ``{scan_id}`` with a scan run ID.
+- **Safety**: Remediation is **intentionally restricted** and requires explicit user action.
 
 Future Enhancements and Roadmap
 ===============================
@@ -583,8 +557,6 @@ Version Roadmap
 
 **Development Schedule:**
 
-* **Current Version:** KariOS Enhanced v1.1.0
-* **Next Release:** Enhanced features and expanded remediation capabilities
 * **Update Schedule:** Regular security engine updates and database synchronization
 * **Feature Additions:** Continuous security capability improvements and new functionality
 
@@ -612,9 +584,7 @@ Remediation Best Practices
 
 **Current Limitations Awareness:**
 
-* **Limited Scope:** Understand current remediation covers only FreeBSD benchmark issues
-* **Manual Review:** Review all remediation actions before execution
-* **Testing Environment:** Test remediation in non-production environments first
+* **Limited Scope:** Please understand that the current remediation covers only few vulnerabilities and possible misconfigurations
 * **Documentation:** Maintain records of all remediation activities
 
 **Future Preparation:**
