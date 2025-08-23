@@ -1139,7 +1139,29 @@ Click Submit to save the configuration and mount the SMB storage.
 
 **Unmount:** Click on the "delete" icon to unmount SMB storage.
 
-**SeaweedFS Storage**
+
+**Storage Operations**
+
+**Common Storage Operations:**
+
+- **Mount/Unmount**: Mount and unmount storage systems
+- **Connection Management**: Connect and disconnect from storage targets
+- **Capacity Monitoring**: Real-time storage usage and capacity monitoring
+- **Status Tracking**: Monitor connection status and storage health
+- **Configuration Management**: Configure storage protocol settings
+
+**Storage Management Features:**
+
+- **Protocol Selection**: Dropdown selection for different storage protocols
+- **Unified Interface**: Single interface for all storage protocol management
+- **Real-time Monitoring**: Live storage metrics and status updates
+- **Action Controls**: Direct action buttons for storage operations
+- **Storage Analytics**: Detailed storage usage and performance metrics
+
+For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
+
+SeaweedFS Storage
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -1221,25 +1243,6 @@ Click Configure Master to begin master server setup
    :width: 3024px
    :height: 1710px
 
-**Storage Operations**
-
-**Common Storage Operations:**
-
-- **Mount/Unmount**: Mount and unmount storage systems
-- **Connection Management**: Connect and disconnect from storage targets
-- **Capacity Monitoring**: Real-time storage usage and capacity monitoring
-- **Status Tracking**: Monitor connection status and storage health
-- **Configuration Management**: Configure storage protocol settings
-
-**Storage Management Features:**
-
-- **Protocol Selection**: Dropdown selection for different storage protocols
-- **Unified Interface**: Single interface for all storage protocol management
-- **Real-time Monitoring**: Live storage metrics and status updates
-- **Action Controls**: Direct action buttons for storage operations
-- **Storage Analytics**: Detailed storage usage and performance metrics
-
-For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Section 6: Flexible Storage.
 
 ISO Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2063,6 +2066,218 @@ Chassis View
 - **Maintenance Planning:** Plan physical maintenance and hardware replacement
 - **Visual Reference:** Provide visual context for hardware troubleshooting
 - **Documentation:** Visual documentation of server configuration and layout
+
+Node Console Management
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Console Overview
+^^^^^^^^^^^^^^^^^^
+
+The Console tab provides direct access to the FreeBSD command-line interface for individual worker nodes, enabling administrators to perform advanced system administration tasks, troubleshooting, and direct system configuration through a web-based terminal interface.
+
+**Console Interface Features:**
+
+- **Web-based Terminal**: Browser-based access to the FreeBSD command line
+- **Direct System Access**: Full command-line access to the underlying FreeBSD system
+- **Real-time Interaction**: Live terminal session with immediate command execution
+- **Administrative Control**: Complete system administration capabilities through CLI
+- **Secure Access**: Password-protected console access with credential validation
+
+Console Access and Authentication
+^^^^^^^^^^^^^^^^^^
+
+Accessing Node Console
+"""""""""""""""""""""""
+
+**Console Navigation:**
+
+1. **Node Selection**: Select the target worker node from the datacenter hierarchy
+2. **Console Tab**: Click on the "Console" tab in the node management interface
+3. **Console Interface**: The web-based console interface loads automatically
+4. **Authentication Prompt**: System prompts for console access credentials
+
+**Authentication Requirements:**
+
+- **Console Access**: Requires valid system credentials for security
+- **User Authentication**: Password-based authentication for console access
+- **Session Management**: Secure session handling for terminal access
+- **Credential Validation**: Real-time credential verification
+
+Console Authentication Interface
+"""""""""""""""""""""""
+
+**Credentials Dialog:**
+
+The console authentication interface provides secure access to the node's command-line interface:
+
+**Authentication Components:**
+
+- **Credentials Header**: "Credentials" dialog title
+- **Password Field**: Secure password input field for user authentication
+- **Send Credentials Button**: Submit authentication credentials to establish console session
+- **Security Prompt**: Password-protected access to prevent unauthorized console access
+
+**Authentication Process:**
+
+1. **Access Console**: Navigate to the Console tab on the selected node
+2. **Credentials Prompt**: System displays authentication dialog
+3. **Enter Password**: Input the valid system password in the password field (Default password is "karios")
+4. **Submit Credentials**: Click "Send credentials" to authenticate and establish console session
+5. **Console Access**: Upon successful authentication, gain full console access
+
+.. image:: path/to/image
+   :alt: Console Authentication Interface
+   :width: 1200px
+   :height: 800px
+
+
+Console Operations and Commands
+^^^^^^^^^^^^^^^^^^
+
+FreeBSD Command Line Access
+"""""""""""""""""""""""
+
+**System Administration Commands:**
+
+Once authenticated, administrators have full access to FreeBSD system commands:
+
+**System Monitoring:**
+
+.. code-block:: bash
+
+   # System status and resource monitoring
+   top                    # Display running processes and system usage
+   ps aux                 # List all running processes
+   df -h                  # Display filesystem disk usage
+   free -h                # Show memory usage statistics
+   uptime                 # Display system uptime and load average
+
+**Service Management:**
+
+.. code-block:: bash
+
+   # FreeBSD service management
+   service -e             # List enabled services
+   service <name> status  # Check service status
+   service <name> start   # Start a service
+   service <name> stop    # Stop a service
+   service <name> restart # Restart a service
+
+**Network Configuration:**
+
+.. code-block:: bash
+
+   # Network interface and connectivity
+   ifconfig              # Display network interface configuration
+   netstat -rn           # Show routing table
+   ping <host>           # Test network connectivity
+   sockstat -l           # Display listening sockets
+
+**Log Analysis:**
+
+.. code-block:: bash
+
+   # System log examination
+   tail -f /var/log/messages    # Monitor system messages in real-time
+   grep "error" /var/log/messages # Search for errors in system logs
+   dmesg                        # Display kernel boot messages
+   logger "test message"        # Add custom message to system log
+
+Advanced Console Operations
+"""""""""""""""""""""""
+
+**File System Operations:**
+
+.. code-block:: bash
+
+   # File and directory management
+   ls -la                # List files with detailed information
+   cd /path/to/directory # Change directory
+   pwd                   # Display current directory
+   mkdir directory_name  # Create new directory
+   rm -rf directory      # Remove directory and contents
+
+**System Configuration:**
+
+.. code-block:: bash
+
+   # System configuration files
+   cat /etc/rc.conf      # View system startup configuration
+   sysctl -a             # Display all system variables
+   mount                 # Show mounted filesystems
+   zpool status          # Check ZFS pool status (if applicable)
+
+**Package Management:**
+
+.. code-block:: bash
+
+   # FreeBSD package management
+   pkg info              # List installed packages
+   pkg search <package>  # Search for packages
+   pkg install <package> # Install new package
+   pkg update            # Update package repository
+
+**Process Management:**
+
+.. code-block:: bash
+
+   # Process control and monitoring
+   killall <process>     # Kill processes by name
+   kill -9 <pid>         # Force kill process by PID
+   jobs                  # Display active jobs
+   nohup <command> &     # Run command in background
+
+Console Security and Best Practices
+^^^^^^^^^^^^^^^^^^
+
+Security Considerations
+"""""""""""""""""""""""
+
+**Console Access Security:**
+
+- **Authentication Required**: All console access requires valid system credentials
+- **Session Management**: Secure handling of console sessions and authentication
+- **Command Logging**: System logs record console activity for audit purposes
+- **Access Control**: Restrict console access to authorized administrators only
+- **Session Timeout**: Implement appropriate session timeout policies
+
+**Safe Console Practices:**
+
+- **Command Verification**: Verify commands before execution, especially destructive operations
+- **Backup Before Changes**: Create backups before making significant system modifications
+- **Documentation**: Document important configuration changes and commands
+- **Testing Environment**: Test critical changes in non-production environments first
+- **Change Management**: Follow established change management procedures
+
+
+Console Support and Documentation
+^^^^^^^^^^^^^^^^^^
+
+Getting Help
+"""""""""""""""""""""""
+
+**Console Documentation:**
+
+- **FreeBSD Handbook**: Reference comprehensive FreeBSD documentation for command usage
+- **Man Pages**: Use man pages within the console for detailed command documentation
+- **System Help**: Access built-in help functions for commands and utilities
+- **Community Resources**: Leverage FreeBSD community resources and forums
+
+**Support Resources:**
+
+- **Platform Documentation**: Refer to Karios platform documentation for integration guidance
+- **Knowledge Base**: Access knowledge base articles for common console operations
+- **Training Resources**: Utilize available training resources for FreeBSD administration
+
+**Command Reference:**
+
+.. code-block:: bash
+
+   # Get help for any command
+   man <command>         # Display manual page for command
+   <command> --help      # Display command help (if available)
+   which <command>       # Show path to command executable
+   whereis <command>     # Locate command binary, source, and manual
 
 
 ISO Management
