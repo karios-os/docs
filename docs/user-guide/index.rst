@@ -1855,8 +1855,8 @@ Click on the "install jobs" tab
 For detailed information regarding system release management, advanced update procedures, rollback processes, and comprehensive release deployment strategies, please refer to Section 9: System Release Management.
 
 
-Node Level Storage Management
------------------------------
+Node Level Management
+---------------------
 
 Navigating to Node Level
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2086,6 +2086,981 @@ ISO Management
 - **File Validation:** Automatic validation of uploaded ISO and RAW files
 
 **ISO Management Interface:**
+
+- **Download Section:** FQDN URL input field with download button for remote ISO retrieval
+
+Please provide a valid FQDN url and click “Download”. The downloaded iso can be viewed in the Available ISOs section.
+
+- **Upload Section:** File selection interface with upload button for local ISO/RAW files
+
+Please select the appropriate ISO/RAW files from your system and click “Upload”. The uploaded file will be in the available ISO/Cloud images section.
+
+- **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files
+- **Status Indicators:** Visual indicators for file availability and upload status
+- **File Management Controls:** Direct access to file operations and management functions
+
+
+**Supported File Types:**
+
+- **ISO Files:** Standard ISO 9660 disk image files
+- **RAW Files:** Raw disk image files and virtual machine disk formats
+- **Validation:** Automatic file format validation during upload process
+
+
+Node Storage Management
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Storage Management Overview:** The Storage tab provides comprehensive ZFS storage management capabilities at the node level, enabling administrators to create and manage storage pools, datasets, and volumes directly on individual servers.
+
+**ZFS (Zettabyte File System)** A next-generation file system and logical volume manager originally developed by Sun Microsystems for Solaris, now widely used on FreeBSD and other operating systems. ZFS combines traditional file system functionality with volume management, providing data integrity, compression, deduplication, snapshots, and RAID-like functionality in a single integrated solution.
+
+**Storage Management Interface:** The Storage Management interface offers three primary functions accessible through the top action bar:
+
+- **Create Pool:** Create new ZFS storage pools with configurable RAID levels
+- **Create Datastore:** Create new datastores for virtual machine storage
+- **Storage Pools Dropdown:** Select and manage existing storage pools
+
+
+**Info tip:**
+
+**Pool (ZFS Pool/zpool)** The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
+
+**Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
+
+Storage Pool Management
+"""""""""""""""""""""""
+
+**ZFS Storage Pool Overview:** The Storage Pools section displays comprehensive information about existing ZFS pools on the worker node:
+
+**Pool Information Display:**
+
+- **Pool Name:** ZFS pool identifier (e.g., “zroot”)
+- **Pool Size:** Total pool capacity (e.g., “920G”)
+- **Pool State:** Current operational status (e.g., “ONLINE”)
+- **Storage Utilization:** Visual progress bar showing allocated vs. free space
+- **Capacity Details:** Specific capacity information (e.g., “Free: 848G, Allocated: 71.6G”)
+
+**Pool Health Monitoring:**
+
+- **State Indicators:** Real-time pool health status (ONLINE)
+- **Capacity Monitoring:** Visual and numerical capacity utilization tracking
+
+
+**ZFS ARC Memory Management**
+
+ARC (Adaptive Replacement Cache) is ZFS’s in-memory caching system. It keeps frequently accessed data and metadata in RAM, improving read performance and reducing disk I/O. The **ARC Memory Management** section shows:
+- **Available:** Free memory remaining on the node.
+- **Current:** The ARC size currently allocated.
+- **Recommended:** A suggested ARC allocation, based on system resources.
+
+**Adjust ARC Memory:**
+
+- **Modify the Current value** to the desired cache size.
+   - You can increase it for more aggressive caching.
+   - Or decrease it to free RAM for virtual machines and other workloads.
+- To save the settings, click “apply” . Changes apply dynamically
+
+
+**Impact of Adjustments**
+
+**Increasing ARC**
+
+- **Pros:** Higher cache hit rates, improved read performance, reduced latency on repeated operations.
+- **Cons:** Less memory left for VMs or applications; risk of memory pressure if set too high.
+
+**Decreasing ARC**
+
+- **Pros:** Frees RAM for VMs and services, preventing out-of-memory scenarios.
+- **Cons:** Lower cache hit rates, more disk access, possible performance dips for repeated reads.
+
+**Disk Management**
+
+**Physical Disk Information:** The Disks section provides detailed information about physical storage devices within the pool:
+
+**Disk Status Display:**
+
+- **Disk Identifier:** Physical disk designation (e.g., “nda1p3”)
+- **Disk State:** Current operational status (e.g., “ONLINE”)
+- **Disk Performance:** Read, write, and checksum statistics
+
+**Disk Health Monitoring:**
+
+- **Performance Tracking:** Monitor disk I/O performance and statistics
+- **Error Detection:** Track and report disk errors and failures
+- **Health Status:** Visual indicators for disk health and reliability
+- **Predictive Maintenance:** Early warning indicators for disk replacement
+
+Storage Pool Operations
+"""""""""""""""""""""""
+**Pool Management Actions:** The Storage Pool interface provides four primary operational buttons:
+
+**Purpose**
+
+Create a new ZFS dataset within an existing storage pool for file storage and organization.
+
+**Functionality**
+
+Datasets allow you to create structured storage areas inside a pool. They can be managed independently with properties such as quotas, compression, and optional encryption.
+
+
+**Organization**
+
+Datasets are organized hierarchically (like directories) under the pool name.
+
+for example:
+zroot/mydataset
+
+**Usage**
+
+Ideal for organizing file-based storage into logical, isolated datasets.
+
+- **Steps to create a dataset:**
+
+   - **Step 1:** Please click on "Create dataset" on any of the available pools (e.g., zroot)
+   - **Step 2:** Please provide an appropriate dataset name(e.g., dataset-1)
+   - **Step 3:** Enable encryption if required and provide a passphrase (min 8 characters)
+   - **Step 4:** Click "Create"
+
+
+
+**Info tip:** ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
+
+
+**View Datasets:**
+
+- **Purpose:** Display and manage existing datasets within the pool
+- **Functionality:** Comprehensive dataset viewing and management
+- **Dataset Information:** Usage statistics, compression settings, and configurations
+- **Filter Options:** Filter datasets by type (All Types, Filesystem, Volume, Snapshot
+
+Click on "View datasets" to display and manage your datasets within the pool.
+
+**Create Zvol:**
+
+- **Purpose:** Create ZFS volumes for block storage
+- **Info tip: Block Level Storage** refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
+- **Functionality:** Block-level storage for virtual machines and applications
+- **Configuration:** Specify volume name and size with unit selection (GB, TB)
+- **Usage:** Ideal for virtual machine storage and database applications
+
+Provide an appropriate name for the zvol and select “Create Zvol”
+
+
+**Delete Pool:**
+
+- **Purpose:** Remove storage pools from the system
+- **Functionality:** Complete pool deletion with data removal
+- **Safety:** Confirmation required before permanent deletion
+- **Impact:** Permanent removal of all pool data and configurations
+
+Please navigate to the appropriate pool and select "Delete Pool" 
+
+**Warning:** Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
+
+
+ZFS Pool Creation
+"""""""""""""""""
+**Create ZPool Interface:** The Create ZPool dialog provides comprehensive options for creating new ZFS storage pools:
+
+**Pool Configuration Options:**
+
+- **Pool Name:** Specify unique pool identifier
+- **RAID Type Selection:** Choose from multiple RAID configurations:
+  - **raidz1:** Single parity RAID-Z (similar to RAID 5)
+  - **raidz2:** Double parity RAID-Z (similar to RAID 6)
+  - **raidz3:** Triple parity RAID-Z (maximum fault tolerance)
+  - **mirror:** Mirrored configuration (similar to RAID 1)
+  - **striped:** Striped configuration (similar to RAID 0)
+
+**Disk Selection:**
+
+- **Available Disks:** Display of available physical disks for pool creation
+- **Disk Status:** Real-time availability status of storage devices
+- **Disk Validation:** Verification of disk suitability for pool creation
+- **No Disks Available:** Clear indication when no disks are available for pool creation
+
+
+**Steps to create a zpool:**
+
+- **Step 1:** Provide an appropriate pool name
+- **Step 2:** Select the desired RAID type and available disks based on the RAID type.
+- **Step 3:** Click “Create ZPool” to provision the ZFS pool.
+
+**Info tip:**
+
+- **RAID-Z1** A ZFS implementation similar to RAID-5, using single-parity protection across multiple drives (minimum 3 drives). Can tolerate the failure of one drive while maintaining data integrity, providing a balance between storage capacity and redundancy.
+- **RAID-Z2** A ZFS implementation similar to RAID-6, using double-parity protection across multiple drives (minimum 4 drives). Can tolerate the failure of up to two drives simultaneously, offering higher redundancy than RAID-Z1 at the cost of additional storage overhead.
+- **RAID-Z3** A ZFS implementation using triple-parity protection across multiple drives (minimum 5 drives). Can tolerate the failure of up to three drives simultaneously, providing the highest level of redundancy in the RAID-Z family, ideal for large storage arrays where maximum data protection is critical.
+- **Mirror** A ZFS configuration similar to RAID-1, where data is duplicated across two or more drives. Provides excellent read performance and can tolerate the failure of all but one drive in the mirror group, offering the fastest rebuild times but using 50% or more of available storage capacity for redundancy.
+- **Striped** A ZFS configuration similar to RAID-0, where data is distributed across multiple drives without any redundancy. Provides maximum storage capacity and improved performance through parallel I/O operations, but offers no fault tolerance - the failure of any single drive results in complete data loss.
+
+
+Datastore Management
+""""""""""""""""""""
+**Create Datastore Interface:** The Create Datastore dialog enables creation of datastores for virtual machine storage:
+
+**Info tip: Datastore** A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
+
+**Datastore Configuration:**
+
+- **Datastore Name:** Specify unique datastore identifier
+- **Info tip:** Datastore name - Logical identifiers assigned to datastores for easy identification and management within storage systems.
+- **Pool Selection:** Choose from available ZFS pools (e.g., “zroot”)
+- **Storage Integration:** Integration with existing storage pools
+- **VM Storage:** Optimized for virtual machine storage requirements
+
+**Datastore Benefits:**
+
+- **VM Integration:** Seamless integration with virtual machine storage
+- **Performance:** Optimized for virtualization workloads
+- **Management:** Simplified virtual machine storage management
+- **Flexibility:** Easy expansion and modification of storage allocation
+
+**Steps to create a datastore:**
+
+- **Step 1:** Provide an appropriate name
+- **Step 2:** Select the pool from the available list
+- **Step 3:** click "Create Datastore"
+
+Dataset Management
+""""""""""""""""""
+
+**Dataset Overview:** The View Datasets interface provides comprehensive dataset management capabilities:
+
+**Dataset Information Display:**
+
+- **Dataset Name:** Hierarchical dataset naming (e.g., “zroot”, “zroot/Load-test-1-disk-1”)
+- **Usage Statistics:** Detailed usage information (Used, Available, Mount point)
+- **Compression Settings:** ZFS compression configuration (lz4 ON/OFF)
+- **Deduplication Settings:** Data deduplication configuration (ON/OFF)
+
+**Dataset Types and Filtering:**
+
+- **All Types:** Display all dataset types in unified view
+- **Filesystem:** File-based datasets for traditional file storage
+- **Volume:** Block-based datasets for virtual machine storage
+- **Snapshot:** Point-in-time snapshots for data protection
+
+**Dataset Operations:**
+
+- **Snapshot Creation:** Create point-in-time snapshots with custom naming
+- **Info tip: Snapshot:** A read-only, point-in-time copy of a ZFS dataset or zvol.
+
+**Steps to create a snapshot:**
+
+- **Step 1:** navigate to a particular dataset or zvol
+- **Step 2:** Give an appropriate name
+- **Step 3:** Click on the green icon to take a snapshot.
+
+**Dataset Deletion:** Remove datasets with confirmation prompts
+
+- **Snapshot Management:** Manage snapshot lifecycle and retention
+- **Hierarchical Organization:** Organized dataset structure with parent-child relationships
+
+ZFS Advanced Features
+"""""""""""""""""""""
+**Compression Management:**
+
+- **Compression Algorithm:** lz4 compression for space efficiency
+- **Compression Status:** Real-time compression status indicators (ON/OFF)
+- **Space Savings:** Automatic space savings through compression
+- **Performance Impact:** Minimal performance impact with lz4 compression
+
+**Deduplication Management:**
+
+- **Deduplication Status:** Real-time deduplication status monitoring
+- **Space Optimization:** Automatic duplicate data removal
+- **Resource Usage:** Monitor deduplication resource consumption
+- **Performance Considerations:** Balance between space savings and performance
+
+**Snapshot Management:**
+
+- **Snapshot Creation:** Create instant point-in-time snapshots
+- **Snapshot Naming:** Custom snapshot naming with timestamps
+- **Snapshot Types:** Different snapshot types for various use cases
+- **Snapshot Retention:** Automated snapshot retention policies
+
+
+Node Monitoring
+~~~~~~~~~~~~~~~
+
+**Monitoring Overview:** The Monitoring tab provides comprehensive real-time performance monitoring and historical analysis for individual worker nodes, enabling administrators to track system performance, identify trends, and optimize resource utilization.
+
+**Monitoring Interface:** The monitoring interface features a time-based performance dashboard with configurable time ranges and multiple performance metrics displayed in detailed graphical format.
+
+Time Range Selection
+""""""""""""""""""""
+
+**Time Range Controls:** The monitoring interface provides flexible time range selection for performance analysis:
+
+**Available Time Ranges:**
+
+**Last 1h:** Real-time monitoring for the past hour (default selection)
+**Last 30m:** Short-term monitoring for the past 30 minutes
+**Last 15m:** Immediate monitoring for the past 15 minutes
+**Last 5m:** Real-time monitoring for the past 5 minutes
+**Last 1m:** Live monitoring for the past minute
+
+**Time Range Features:**
+
+- **Active Selection:** Currently selected time range highlighted in blue
+- **Flexible Analysis:** Choose appropriate time ranges for different analysis needs
+- **Historical Data:** Access historical performance data for trend analysis
+- **Real-time Updates:** Continuous data updates for live monitoring
+
+
+CPU Usage Monitoring
+""""""""""""""""""""
+
+**CPU Performance Graph:** The CPU Usage (%) graph provides detailed real-time monitoring of processor utilization:
+
+**CPU Metrics Display:**
+
+- **Y-Axis Scale:** CPU percentage scale from 0% to 22% (dynamically adjusted)
+- **Time-based X-Axis:** Detailed timestamp display with precise time intervals
+- **Performance Visualization:** Red line graph showing CPU usage patterns over time
+- **Usage Patterns:** Visual representation of CPU load variations and spikes
+
+**CPU Monitoring Features:**
+
+- **Real-time Updates:** Continuous CPU usage monitoring with live data
+- **Performance Spikes:** Visual identification of CPU usage spikes and patterns
+- **Load Analysis:** Detailed analysis of CPU load distribution over time
+- **Resource Planning:** Data for capacity planning and resource optimization
+
+**CPU Graph Details:**
+
+- **Graph Color:** Red line graph for clear CPU usage visualization
+- **Time Precision:** Detailed timestamps showing minute-by-minute data
+- **Performance Ranges:** Dynamic scaling showing usage from baseline to peak levels
+- **Trend Analysis:** Historical CPU usage trends for performance optimization
+
+Memory Usage Monitoring
+"""""""""""""""""""""""
+
+**Memory Performance Graph:** The Memory Usage (%) graph provides comprehensive memory utilization monitoring:
+
+**Memory Metrics Display:**
+
+**Y-Axis Scale:** Memory percentage scale from 0% to 27% (dynamically adjusted)
+**Stable Usage Pattern:** Blue line graph showing consistent memory usage
+**Usage Consistency:** Visual representation of stable memory consumption
+**Current Usage:** Real-time memory usage percentage display
+
+**Memory Monitoring Features:**
+
+- **Interactive Tooltips:** Hover tooltips showing precise memory usage data
+- **Timestamp Information:** Detailed timestamp display (e.g., “Time: 11:03:52 AM”)
+- **Usage Percentage:** Specific memory usage percentage (e.g., “Memory Usage: 22.35%”)
+- **Trend Visualization:** Blue line graph for clear memory usage patterns
+
+**Memory Graph Characteristics:**
+
+- **Stability Indicators:** Visual representation of memory usage stability
+- **Usage Patterns:** Identification of memory usage patterns and trends
+- **Resource Monitoring:** Continuous memory resource utilization tracking
+- **Capacity Analysis:** Memory capacity utilization and availability assessment
+
+Storage Usage Monitoring
+""""""""""""""""""""""""
+
+**Storage Performance Graph:** The Storage Usage (%) graph monitors storage utilization and capacity:
+
+**Storage Metrics Display:**
+
+- **Y-Axis Scale:** Storage percentage scale from 0% to 6% (dynamically adjusted)
+- **Low Usage Visualization:** Green line graph showing minimal storage usage
+- **Usage Stability:** Consistent low storage utilization patterns
+- **Capacity Monitoring:** Real-time storage capacity utilization tracking
+
+**Storage Monitoring Features:**
+
+- **Interactive Data Points:** Clickable data points with detailed information
+- **Timestamp Display:** Precise timestamp information (e.g., “Time: 11:12:26 AM”)
+- **Usage Percentage:** Specific storage usage percentage (e.g., “Storage Usage: 1.05%”)
+- **Trend Analysis:** Long-term storage usage trend monitoring
+
+**Storage Graph Characteristics:**
+
+- **Green Visualization:** Green line graph for storage usage representation
+- **Low Utilization:** Visual indication of efficient storage utilization
+- **Capacity Planning:** Data for storage capacity planning and expansion
+- **Performance Baseline:** Baseline storage performance monitoring
+
+
+Performance Analytics
+""""""""""""""""""""""
+
+**Multi-Metric Analysis:** The monitoring interface provides comprehensive performance analytics across multiple system resources:
+
+**Cross-Resource Correlation:**
+
+- **CPU vs Memory:** Correlation analysis between CPU and memory usage
+- **Resource Efficiency:** Analysis of overall system resource efficiency
+- **Performance Patterns:** Identification of performance patterns across metrics
+- **System Optimization:** Data-driven insights for system optimization
+
+**Performance Insights:**
+
+- **Usage Patterns:** Detailed analysis of resource usage patterns
+- **Peak Performance:** Identification of peak performance periods
+- **Resource Bottlenecks:** Early identification of potential resource bottlenecks
+- **Optimization Opportunities:** Data-driven optimization recommendations
+
+Historical Performance Analysis
+"""""""""""""""""""""""""""""""
+
+**Time-Based Analysis:** The monitoring system provides comprehensive historical performance analysis:
+
+**Historical Data Features:**
+
+- **Time Series Data:** Continuous time series data collection and analysis
+- **Trend Identification:** Long-term trend analysis for performance optimization
+- **Pattern Recognition:** Automatic pattern recognition for performance insights
+- **Comparative Analysis:** Compare performance across different time periods
+
+**Performance Reporting:**
+
+- **Real-time Dashboards:** Live performance dashboards with real-time updates
+- **Historical Reports:** Detailed historical performance reports and analysis
+- **Trend Analysis:** Long-term performance trend analysis and forecasting
+- **Capacity Planning:** Performance data for infrastructure capacity planning
+
+Node Power Management
+~~~~~~~~~~~~~~~~~~~~~
+
+**Power Management Overview:** The Power tab provides comprehensive power monitoring and management capabilities for individual worker nodes, enabling administrators to track power consumption, optimize energy efficiency, and manage power profiles for optimal performance and cost savings.
+
+**Power Interface Features:** The Power management interface offers dual view modes and comprehensive power analytics:
+
+- **View Mode Selection:** Switch between “Power Metrics” and “Power Monitoring” views
+- **Time Range Controls:** Flexible time range selection for power analysis
+- **Real-time Monitoring:** Live power consumption tracking and visualization
+- **Power Profile Management:** Configure and optimize power profiles for different workloads
+
+Power Metrics View
+"""""""""""""""""""
+**Power Metrics Dashboard:** The Power Metrics view provides detailed real-time power consumption monitoring with comprehensive electrical measurements:
+
+**Power Consumption Graph:** The Power (W) graph displays instantaneous power consumption over time:
+
+**Power Monitoring Features:**
+
+- **Y-Axis Scale:** Dynamic power scale from 0W to 133W (adjustable based on consumption)
+- **Real-time Visualization:** Green area chart showing power consumption patterns
+- **Power Fluctuations:** Visual representation of power usage variations and spikes
+- **Time-based Analysis:** Detailed timestamp tracking for power consumption trends
+
+
+**Voltage Monitoring:** The Voltage (V) graph provides electrical voltage monitoring:
+
+**Voltage Characteristics:**
+
+- **Stable Voltage Display:** Orange line graph showing consistent voltage levels
+- **Voltage Range:** Monitoring voltage from 0V to 119V range
+- **Interactive Tooltips:** Hover tooltips showing precise voltage measurements
+- **Voltage Stability:** Visual indication of voltage stability (e.g., “Voltage: 113.36V” at “Time: 11:20:42 AM”)
+
+**Current Monitoring:** The Current (A) graph tracks electrical current consumption:
+
+**Current Measurement Features:**
+
+- **Current Range:** Monitoring current from 0A to 6A range
+- **Current Stability:** Red line graph showing consistent current draw
+- **Real-time Updates:** Live current measurement with tooltip information
+- **Current Precision:** Detailed current measurements (e.g., “Current: 1.00A” at “Time: 11:16:33 AM”)``
+
+**Energy Consumption Tracking:** The Energy (kWh) graph provides cumulative energy consumption monitoring:
+
+**Energy Tracking Features:**
+
+- **Cumulative Energy:** Blue area chart showing total energy consumption over time
+- **Energy Scale:** Large scale energy tracking (e.g., 0 to 30831 kWh)
+- **Energy Tooltips:** Detailed energy consumption data (e.g., “Energy: 30760.09 kWh” at “Time: 11:10:37 AM”)
+- **Long-term Analysis:** Historical energy consumption tracking for cost analysis
+
+Power Monitoring View
+"""""""""""""""""""""
+
+**Power Monitoring Dashboard:** The Power Monitoring view provides comprehensive power analytics and management capabilities:
+
+**View Mode Selection:** Toggle between different power monitoring views:
+
+- **Power Metrics:** Real-time electrical measurements and graphs
+- **Power Monitoring:** Comprehensive power analytics and CPU core monitoring
+
+**Power Supply Unit Data:** The Power Supply Unit Data section displays detailed PSU information:
+
+**PSU Information Display:**
+
+**PSU Details:** Complete PSU specifications including model, current, power, and voltage ratings
+
+- **PSU Model:** Power supply model information (e.g., “SS Gemini 900A”)
+- **Electrical Specifications:** Current rating (77.5 A), power rating (900 W), voltage (12 V)
+- **Network Integration:** Node IP address association (e.g., “192.168.116.111”)
+- **Efficiency Rating:** 80 Plus certification and rating (e.g., “80 Plus: 90, 80 Plus Rating: Platinum”)
+- **Management Actions:** Edit and delete PSU configuration options
+
+To add a new power supply unit data:
+
+
+**Add Power Supply Configuration:**
+
+**To add a power supply to your system, provide the following information:**
+
+**Required Fields:**
+
+- **Power Supply Name:** Enter a descriptive name for the power supply unit
+- **Current (A):** Specify the current rating in amperes
+- **Power (W):** Enter the power rating in watts
+- **Voltage (V):** Specify the voltage rating in volts
+- **By Pass Rating:** Enter the bypass power rating
+- **Status:** Set the current operational status of the power supply
+
+**Step: Complete Configuration** Click **Add** to save the power supply configuration, or **Cancel** to abort the setup
+
+Server Power Metrics
+""""""""""""""""""""
+
+**Comprehensive Power Analytics:** The Server Power Metrics section provides detailed power consumption analysis and CPU core monitoring
+
+**Core Usage Monitoring:** Individual CPU core usage tracking with color-coded visualization:
+
+**CPU Core Performance:**
+
+- **32-Core Monitoring:** Individual monitoring of all CPU cores (Core 0 through Core 31)
+- **Usage Percentage:** Real-time usage percentage for each core
+- **Color-coded Display:** Visual color coding for different usage levels:
+- **Green:** Low to moderate usage (0% to ~20%)
+- **Orange:** Moderate to high usage (~21% to ~50%)
+- **Red:** High usage (100% indicates full utilization)
+- **Color Graduation:** Progressive color changes based on usage intensity
+
+**Core Usage Examples:**
+
+- **Core 5:** 100% utilization (displayed in red)
+- **Core 20:** 31.58% utilization (displayed in orange)
+- **Core 21:** 16.67% utilization (displayed in green)
+- **Idle Cores:** 0% utilization (displayed in light green)
+
+System Resource Summary
+"""""""""""""""""""""""
+
+**Resource Utilization Overview:** The system provides a comprehensive summary of overall resource utilization:
+
+**Resource Metrics:**
+
+- **CPU Usage:** Overall CPU utilization percentage (e.g., “4.86%”)
+- **Memory Usage:** System memory consumption (e.g., “22.31%”)
+- **Storage Usage:** Storage capacity utilization (e.g., “13.38%”)
+- **Workload Efficiency:** Overall system efficiency rating (e.g., “88%”)
+- **Power Profile Management:** Intelligent power profile recommendations and management:
+
+**Power Profile Features:**
+
+- **Profile Recommendation:** AI-driven power profile recommendations (e.g., “Balanced”)
+- **Profile Description:** Detailed profile descriptions (e.g., “Mixed workload - maintain responsiveness”)
+- **Profile Selection:** Multiple power profile options:
+   - **Performance:** Maximum performance for demanding workloads
+   - **Balanced:** Optimal balance between performance and power efficiency
+   - **Power Saving:** Maximum power efficiency for light workloads
+
+Power Profile Configuration
+"""""""""""""""""""""""""""
+
+**Power Profile Settings:** The Set Power-Profile section enables dynamic power profile management:
+
+**Profile Selection Options:**
+
+- **Performance Profile:** Optimized for maximum computational performance
+- **Balanced Profile:** Balanced performance and power efficiency
+- **Power Saving Profile:** Optimized for minimum power consumption
+
+**Current Power Configuration:**
+
+- **Current Profile:** Currently active power profile (e.g., “Power Saving”)
+- **Profile Editor:** Edit button for custom power profile configuration
+- **Profile Validation:** Check mark and X buttons for profile confirmation
+
+
+Frequency Management
+""""""""""""""""""""
+
+**CPU Frequency Control:** The system provides detailed CPU frequency monitoring and management:
+
+**Frequency Information:**
+
+- **Current Frequency:** Real-time CPU frequency (e.g., “1500 MHz”)
+
+- **Suggested Frequency:** System-recommended frequency for optimal performance (e.g., “2400 MHz”)
+
+**Frequency Optimization:** Automatic frequency recommendations based on workload analysis
+
+**Dynamic Scaling:** Real-time frequency adjustments based on power profile and workload demands
+
+**Frequency Management Benefits:**
+
+- **Performance Optimization:** Optimal frequency selection for workload requirements
+- **Power Efficiency:** Frequency scaling for power consumption optimization
+- **Thermal Management:** Frequency control for thermal management
+- **Workload Adaptation:** Dynamic frequency adjustment based on workload characteristics
+
+Power Management Best Practices
+"""""""""""""""""""""""""""""""
+
+**Effective Power Management**
+
+- **Profile Selection:** Choose appropriate power profiles based on workload characteristics
+- **Monitoring:** Regular monitoring of power consumption and efficiency metrics
+- **Optimization:** Use power recommendations for optimal system configuration
+- **Frequency Management:** Leverage frequency scaling for performance and efficiency balance
+
+**Power Efficiency Optimization**
+
+- **Workload Analysis:** Analyze workload patterns for optimal power profile selection
+- **Resource Utilization:** Monitor resource utilization for power efficiency opportunities
+- **Profile Tuning:** Fine-tune power profiles based on specific workload requirements
+- **Energy Cost Management:** Use power monitoring for energy cost optimization and budgeting
+
+
+Network Management
+~~~~~~~~~~~~~~~~~~
+
+**Network Overview:** The Network tab provides comprehensive network interface and switch management for individual worker nodes, enabling administrators to configure network connectivity, manage virtual switches, and monitor network interface status across the cluster infrastructure.
+
+**Network Interface Management:** The network management interface features dedicated sections for interface monitoring and switch configuration, providing granular control over network connectivity and virtual network topology.
+
+Network Interface Configuration
+"""""""""""""""""""""""""""""""
+
+**Interface Overview:** The Network Management - Interface section displays all available network interfaces for the selected worker node:
+
+**Available Network Interfaces:**
+
+- Primary network interface with active switch association
+
+- Secondary network interface without switch association
+
+- Additional network interface available for configuration
+
+**Interface Information Display:**
+
+- **Interface Name:** Clear identification of each network interface (e.g., bnxt0, bnxt1, ue0)
+
+- **Switch Assignment:** Associated switch name display (e.g., “Switch: default”)
+
+- **Status Badges:** Color-coded status indicators for quick assessment
+
+- **Association Status:** Clear indication of switch association or availability
+
+**Interface Configuration Options:**
+
+- **Switch Association:** Ability to associate interfaces with virtual switches
+
+- **Network Type:** Public/Private network classification management
+
+- **Configuration Access:** Direct access to detailed interface settings
+
+Virtual Switch Management
+"""""""""""""""""""""""""
+
+**Switch Overview:** The Network Management - Switches section provides comprehensive virtual switch management and configuration:
+
+**Virtual Switch Display:**
+
+- **Switch Listing:** Complete inventory of configured virtual switches
+
+- **Interface Association:** Clear display of associated network interfaces
+
+- **Status Monitoring:** Real-time switch operational status
+
+- **Configuration Access:** Direct access to switch configuration options
+
+**Switch Configuration Features:**
+
+- **Switch Creation:** “Create Switch” button for new virtual switch deployment
+- **Switch Deletion:** Red delete button for switch removal
+- **Interface Assignment:** Management of interface-to-switch assignments
+
+Switch Creation and Configuration
+"""""""""""""""""""""""""""""""""
+**Create Switch Interface:** The Create Switch modal provides comprehensive switch creation and configuration options:
+
+**Switch Creation Form:**
+
+- **Switch Name Input:** Text field for custom switch name entry
+
+- **Interface Selection:** Dropdown menu for interface assignment
+
+- **Creation Controls:** Cancel and Create Switch action buttons
+
+**Switch Creation Process:**
+
+- **Name Assignment:** Enter descriptive switch name in the text field
+
+- **Interface Selection:** Choose target interface from dropdown menu
+
+- **Configuration Review:** Verify switch configuration parameters
+
+- **Switch Creation:** Click “Create Switch” button to deploy new switch
+
+- **Status Verification:** Confirm successful switch creation and activation
+
+The switch management interface displays all configured virtual switches.
+
+
+Network Configuration Best Practices
+"""""""""""""""""""""""""""""""""""""
+
+- **Interface Configuration:**
+   - **Naming Conventions:** Use descriptive names for switches and interfaces
+   - **Association Management:** Maintain clear interface-to-switch relationships
+
+- **Switch Management:**
+   - **Strategic Planning:** Plan virtual switch topology for optimal performance
+   - **Resource Allocation:** Allocate interfaces efficiently across switches
+   - **Status Monitoring:** Regular monitoring of switch operational status
+
+- **Network Security:**
+   - **Access Control:** Implement appropriate network access controls
+   - **Traffic Monitoring:** Monitor network traffic for security threats
+   - **Configuration Validation:** Validate network configuration changes
+
+
+Firewall Management
+~~~~~~~~~~~~~~~~~~~
+
+**Overview:** The Firewall tab provides comprehensive packet filter (PF) rule management for individual worker nodes, enabling administrators to configure network security policies, manage traffic filtering rules, and maintain system security through advanced firewall configuration.
+
+**Firewall Rule Management:** The firewall interface features a code-based rule editor with syntax highlighting, real-time validation, and safety mechanisms to prevent system lockout through configuration errors.
+
+
+Packet Filter Rules Interface
+"""""""""""""""""""""""""""""
+
+**PF Rules Display:** The Packet Filter Rules section provides a comprehensive view of all active firewall rules.
+
+**Rule Configuration Display:**
+
+   - **Line Numbers:** Sequential line numbering for easy rule reference and navigation
+   - **Syntax Highlighting:** Color-coded syntax highlighting for different rule components
+   - **Rule Structure:** Clear display of rule syntax with proper formatting
+   - **Code Editor:** Full-featured code editor with firewall rule editing capabilities
+
+**Advanced Configuration Warning:**
+
+   - **Security Notice:** Prominent warning about advanced configuration complexity
+   - **Risk Assessment:** Clear indication of potential security vulnerabilities
+   - **Expertise Requirement:** Emphasis on required expertise for rule modification
+   - **System Lockout Prevention:** Warning about potential system access issues
+
+
+
+Firewall Rule Components
+"""""""""""""""""""""""
+
+**Rule Structure Analysis:** The firewall rules are organized in a structured format with specific components.
+
+**Interface Configuration:**
+
+   - **External Interface:** Definition for external network interface
+   - **Interface Assignment:** Clear association between logical and physical interfaces
+   - **Network Boundary:** Definition of network perimeter and access points
+   - **Traffic Direction:** Inbound and outbound traffic handling specifications
+
+**Policy Configuration:**
+
+   - **Block Policy:** Set block-policy return for default blocking behavior
+   - **Fragment Handling:** Fragment reassemble for packet processing
+   - **Skip Interface:** Loopback interface exclusion
+   - **Default Actions:** Comprehensive default policy configuration
+
+
+**Traffic Filtering Rules**
+
+**Rule Types and Functions:** The firewall configuration includes multiple rule types for comprehensive traffic control.
+
+**Pass Rules Configuration:**
+
+   - **Quick Rules**
+   - **Protocol-Specific Rules**
+   - **State Maintenance:** Automatic connection state tracking for established connections
+   - **Direction Control:** Separate inbound and outbound traffic rule definitions
+
+**Block Rules Implementation:**
+
+   - **Default Block:** For comprehensive inbound traffic blocking
+   - **Selective Blocking:** For controlled outbound access
+   - **Anti-Spoof:** For IP spoofing prevention
+   - **Security Enforcement:** Comprehensive blocking with exception-based access
+
+**Service Access Rules:**
+
+   **Port-Based Access Control:** The firewall configuration includes specific port access rules.
+   
+   **SSH Access Control:**
+      - **SSH Port**
+      - **Connection Flags:** Proper TCP connection flag handling for secure connections
+      - **State Tracking:** Automatic connection state maintenance for SSH sessions
+      - **Access Scope:** Controlled SSH access from authorized sources
+   **Multi-Service Access:**
+      - **Port Range:** {9090, 9100, 3000, 80, 443, 8080:8084, 5001, 6900:7000, 5432, 9592, 9595, 9694}
+      - **Service Portfolio:** Comprehensive port access for multiple services and applications
+      - **State Management:** Automatic connection state tracking for all services
+
+Rule Editing and Modification
+"""""""""""""""""""""""""""""
+
+**Interactive Rule Editor:** The firewall interface provides comprehensive rule editing capabilities.
+
+**Code Editor Features:**
+
+- **Syntax Highlighting:** Color-coded syntax for different rule components
+
+- **Line Numbering:** Sequential line numbers for easy reference
+
+- **Real-time Validation:** Live syntax validation during rule editing
+
+- **Error Detection:** Automatic detection of syntax errors and misconfigurations
+
+**Rule Modification Process:**
+
+- **Direct Editing:** Click-to-edit functionality for individual rules
+
+- **Syntax Validation:** Real-time syntax checking during modification
+
+- **Change Tracking:** Visual indication of modified rules and changes
+
+- **Preview Mode:** Rule validation before applying changes
+
+
+Change Confirmation System Safety Mechanism:
+"""""""""""""""""""""""""""""""""""""""""""""
+
+The firewall system includes a comprehensive safety mechanism to prevent system lockout.
+
+- **Confirmation Timer System:**
+
+- **60-Second Timer:** Changes will revert in 60 seconds countdown display
+
+- **Auto-Revert:** Automatic reversion to previous configuration if not confirmed
+
+- **Safety Window:** 60-second window for testing and validation
+
+- **Change Persistence:** Manual confirmation required for permanent changes
+
+**Confirmation Process:**
+
+- **Rule Modification:** Edit firewall rules using the code editor
+
+- **Timer Activation:** 60-second countdown timer begins automatically
+
+- **Testing Period:** Test connectivity and system access during timer period
+
+- **Confirmation Action:** Click “Confirm Changes” to make changes permanent
+
+**Safety Controls:**
+
+- **Cancel Option:** Cancel button to abort changes before confirmation
+
+- **Confirm Changes:** Green “Confirm Changes” button for permanent application
+
+- **Timer Display:** Real-time countdown showing remaining confirmation time
+
+- **Revert Warning:** Clear indication of automatic reversion behavior
+
+Security Considerations:
+"""""""""""""""""""""""
+
+- **Expertise Requirement:** Advanced PF configuration requires specialized knowledge
+
+- **Risk Assessment:** Incorrect rules can create security vulnerabilities
+
+- **System Access:** Improper configuration can result in system lockout
+
+- **Best Practices:** Follow established firewall configuration best practices
+
+Node Log Management
+~~~~~~~~~~~~~~~~~~~
+
+**Log Overview:** The Logs tab provides comprehensive system log monitoring and analysis for individual worker nodes, featuring real-time log streaming, filtering capabilities, and log export functionality for troubleshooting and system analysis.
+
+**Log Viewer Interface:** The Log Viewer displays system logs in a structured format with filtering options, search capabilities, and export tools for efficient log management and analysis.
+
+
+Log Viewer Dashboard
+"""""""""""""""""""""
+
+**Log Display Interface:** The Log Viewer provides a comprehensive log monitoring interface.
+
+**Log Table Structure:**
+
+**Date Column:** Log entry date display (Jul 17 format)
+
+**Time Column:** Precise timestamp display (18:35:12 format)
+
+**Level Column:** Log severity level classification
+
+**Message Column:** Detailed log message content
+
+**Log Entry Examples:**
+
+**System Messages:** “syslogd: last message repeated 3 times”
+
+**Application Errors:** “my_app[5139]: Failed to convert str to int”
+
+**Network Events:** “dhclient[17655]: send_packet: No buffer space available”
+
+**Kernel Messages:** “kernel: 310.534325 [4335] netmap_transmit vlan113 full hwcur 0 hwtail 0 qlen 1023”
+
+Log Filtering and Search
+"""""""""""""""""""""""""
+
+**Advanced Log Filtering:** The Log Viewer provides comprehensive filtering and search capabilities.
+
+**Level Filtering:**
+
+- **Select Level Dropdown:** Filter logs by severity level
+
+- **Available Levels:** Info, Error, Debug classification
+
+- **Default Selection:** “Select Level” for all log entries
+
+- **Dynamic Filtering:** Real-time log filtering based on selected level
+
+**Content Search:**
+
+- **Search Field:** “Search logs” text input for content filtering
+
+- **Real-time Search:** Live filtering of log entries based on search terms
+
+- **Message Content:** Search through log message content
+
+- **Flexible Matching:** Partial and full text search capabilities
+
+Log Export and Management
+"""""""""""""""""""""""""
+
+**Log Export Functionality:** The Log Viewer provides log export capabilities:
+
+**Export Options:**
+
+- **Export Logs Button:** Blue “Export Logs” button for log data export
+
+- **Data Format:** Structured log data export capabilities
+
+- **Historical Data:** Export of filtered or complete log datasets
+
+**Log Management Features:**
+
+- **Real-time Updates:** Live log streaming and real-time updates
+
+- **Historical Access:** Access to historical log entries
+
+- **Filtering Export:** Export filtered log data based on search criteria
+
+- **Batch Processing:** Efficient handling of large log volumes
+
 
 
 Virtual Machine Management
