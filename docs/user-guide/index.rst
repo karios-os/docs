@@ -1893,6 +1893,10 @@ Recommendation Details
 - **Justification**: Detailed explanations for each recommendation with reasoning
 - **Resource Efficiency**: Recommendations to free up capacity and optimize resource usage
 
+.. figure:: _static/images/control_center/node_monitoring/recommendations_stats_features.png
+   :alt: Recommendation Details
+   :width: 600
+
 Statistics Table Features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2150,7 +2154,7 @@ Home Dashboard
 - **Energy Efficiency:** Reflects power consumption relative to performance output
 - **Operational Insights:** Provides guidance for optimization opportunities
 
-.. figure:: _static/images/NodeManagement/Image_071a.png
+.. figure:: _static/images/nodemanagement/Image_071a.png
    :width: 600
 
 
@@ -2191,7 +2195,7 @@ System  Information
   - **IP Address:** Server's network IP address (e.g., “192.168.116.111”)
   - **MAC Address:** Hardware MAC address (e.g., “7c:c2:55:e8:77:8c”)
 
-.. figure:: _static/images/NodeManagement/Image_071b.png
+.. figure:: _static/images/nodemanagement/Image_071b.png
    :width: 600
 
 
@@ -2221,7 +2225,7 @@ Add-in Card and PCIe Devices
 - **Slot Specifications:** Detailed PCIe lane configuration and capabilities
 - **Expansion Planning:** Assists with hardware expansion planning and compatibility
 
-.. figure:: _static/images/NodeManagement/Image_072.png
+.. figure:: _static/images/nodemanagement/Image_072.png
    :width: 600
 
 
@@ -2237,7 +2241,7 @@ Power Monitoring
 - **Power:** Instantaneous power consumption (e.g., “38.53 W”)
 - **Voltage:** Current voltage levels (e.g., “114.05 V”)
 
-.. figure:: _static/images/NodeManagement/Image_073.png
+.. figure:: _static/images/nodemanagement/Image_073.png
    :width: 600
 
 
@@ -2270,7 +2274,7 @@ Storage System Overview
 - **Health Monitoring:** Comprehensive health status for all storage devices
 - **Performance Tracking:** Storage performance metrics and optimization insights
 
-.. figure:: _static/images/NodeManagement/Image_074.png
+.. figure:: _static/images/nodemanagement/Image_074.png
    :width: 600
 
 
@@ -2298,7 +2302,7 @@ Network Interface Management
 
 **VLAN Configuration:** VLAN-specific virtual interfaces and their configurations
 
-.. figure:: _static/images/NodeManagement/Image_075.png
+.. figure:: _static/images/nodemanagement/Image_075.png
    :width: 600
 
 
@@ -2328,7 +2332,7 @@ Chassis View
 - **Visual Reference:** Provide visual context for hardware troubleshooting
 - **Documentation:** Visual documentation of server configuration and layout
 
-.. figure:: _static/images/NodeManagement/Image_076.png
+.. figure:: _static/images/nodemanagement/Image_076.png
    :width: 600
 
 
@@ -2362,11 +2366,6 @@ Accessing Node Console
 3. **Console Interface**: The web-based console interface loads automatically
 4. **Authentication Prompt**: System prompts for console access credentials
 
-.. figure:: _static/images/node_console/node_console_authentication_prompt.png
-   :alt: Node Console Authentication Prompt
-   :width: 600
-
-   Figure: Node Console Authentication Prompt
 
 **Authentication Requirements:**
 
@@ -2397,6 +2396,11 @@ The console authentication interface provides secure access to the node's comman
 4. **Submit Credentials**: Click "Send credentials" to authenticate and establish console session
 5. **Console Access**: Upon successful authentication, gain full console access
 
+.. figure:: _static/images/node_console/node_console_authentication_prompt.png
+   :alt: Node Console Authentication Prompt
+   :width: 600
+
+   Figure: Node Console Authentication Prompt
 
 Console Operations and Commands
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2546,8 +2550,6 @@ Getting Help
    which <command>       # Show path to command executable
    whereis <command>     # Locate command binary, source, and manual
 
-.. figure:: _static/images/user-guide/image_108.png
-   :align: center
 
 ISO Management
 ~~~~~~~~~~~~~~
@@ -2560,7 +2562,7 @@ ISO Management
 - **File Selection:** Browse and select from available ISO and RAW files
 - **Availability Tracking:** Real-time view of available ISO and RAW files
 
-.. figure:: _static/images/NodeManagement/Image_077.png
+.. figure:: _static/images/nodemanagement/Image_077.png
    :width: 600
 
 
@@ -2578,21 +2580,21 @@ ISO Management
 
 - **Download Section:** FQDN URL input field with download button for remote ISO retrieval
 
-.. figure:: _static/images/NodeManagement/Image_078.png
+.. figure:: _static/images/nodemanagement/Image_078.png
    :width: 600
 
 Please provide a valid FQDN url and click “Download”. The downloaded iso can be viewed in the Available ISOs section.
 
 - **Upload Section:** File selection interface with upload button for local ISO/RAW files
 
-.. figure:: _static/images/NodeManagement/Image_079.png
+.. figure:: _static/images/nodemanagement/Image_079.png
    :width: 600
 
 Please select the appropriate ISO/RAW files from your system and click “Upload”. The uploaded file will be in the available ISO/Cloud images section.
 
 - **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files
 
-.. figure:: _static/images/NodeManagement/Image_080.png
+.. figure:: _static/images/nodemanagement/Image_080.png
    :width: 600
 
 - **Status Indicators:** Visual indicators for file availability and upload status
@@ -2622,11 +2624,11 @@ Node Storage Management
 .. figure:: _static/images/storage/image_001.png
    :align: center
 
-**Info tip:**
+.. tip::
 
-**Pool (ZFS Pool/zpool)** The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
+   **Pool (ZFS Pool/zpool)** The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
 
-**Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
+   **Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
 
 Storage Pool Management
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -2646,8 +2648,6 @@ Storage Pool Management
 - **State Indicators:** Real-time pool health status (ONLINE)
 - **Capacity Monitoring:** Visual and numerical capacity utilization tracking
 
-.. figure:: _static/images/storage/image_002.png
-   :align: center
 
 **ZFS ARC Memory Management**
 
@@ -2656,6 +2656,9 @@ ARC (Adaptive Replacement Cache) is ZFS's in-memory caching system. It keeps fre
 - **Current:** The ARC size currently allocated.
 - **Recommended:** A suggested ARC allocation, based on system resources.
 
+.. figure:: _static/images/storage/image_002.png
+   :align: center
+
 **Adjust ARC Memory:**
 
 - **Modify the Current value** to the desired cache size.
@@ -2663,8 +2666,9 @@ ARC (Adaptive Replacement Cache) is ZFS's in-memory caching system. It keeps fre
    - Or decrease it to free RAM for virtual machines and other workloads.
 - To save the settings, click “apply” . Changes apply dynamically
 
-.. figure:: _static/images/storage/image_003.png
+.. figure::_static/images/storage/adjust_arc_memory_management
    :align: center
+
 
 **Impact of Adjustments**
 
@@ -2726,11 +2730,12 @@ Ideal for organizing file-based storage into logical, isolated datasets.
    - **Step 3:** Enable encryption if required and provide a passphrase (min 8 characters)
    - **Step 4:** Click "Create"
 
-.. figure:: _static/images/storage/image_004.png
+.. figure:: _static/images/storage/image_003.png
    :align: center
 
 
-**Info tip:** ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
+.. tip:: ZFS Encryption
+   Provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
 
 
 **View Datasets:**
@@ -2742,20 +2747,23 @@ Ideal for organizing file-based storage into logical, isolated datasets.
 
 Click on "View datasets" to display and manage your datasets within the pool.
 
-.. figure:: _static/images/storage/image_005.png
+.. figure:: _static/images/storage/image_004.png
    :align: center
 
 **Create Zvol:**
 
 - **Purpose:** Create ZFS volumes for block storage
-- **Info tip: Block Level Storage** refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
+
+.. tip:: Block Level Storage
+   Refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
+
 - **Functionality:** Block-level storage for virtual machines and applications
 - **Configuration:** Specify volume name and size with unit selection (GB, TB)
 - **Usage:** Ideal for virtual machine storage and database applications
 
 Provide an appropriate name for the zvol and select “Create Zvol”
 
-.. figure:: _static/images/storage/image_006.png
+.. figure:: _static/images/storage/image_005.png
    :align: center
 
 
@@ -2770,9 +2778,8 @@ Please navigate to the appropriate pool and select "Delete Pool"
 
 **Warning:** Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
 
-.. figure:: _static/images/storage/image_007.png
+.. figure:: _static/images/storage/image_006.png
    :align: center
-
 
 ZFS Pool Creation
 """""""""""""""""
@@ -2802,25 +2809,34 @@ ZFS Pool Creation
 - **Step 2:** Select the desired RAID type and available disks based on the RAID type.
 - **Step 3:** Click “Create ZPool” to provision the ZFS pool.
 
-**Info tip:**
+.. figure:: _static/images/storage/image_007.png
+   :align: center
 
-- **RAID-Z1** A ZFS implementation similar to RAID-5, using single-parity protection across multiple drives (minimum 3 drives). Can tolerate the failure of one drive while maintaining data integrity, providing a balance between storage capacity and redundancy.
-- **RAID-Z2** A ZFS implementation similar to RAID-6, using double-parity protection across multiple drives (minimum 4 drives). Can tolerate the failure of up to two drives simultaneously, offering higher redundancy than RAID-Z1 at the cost of additional storage overhead.
-- **RAID-Z3** A ZFS implementation using triple-parity protection across multiple drives (minimum 5 drives). Can tolerate the failure of up to three drives simultaneously, providing the highest level of redundancy in the RAID-Z family, ideal for large storage arrays where maximum data protection is critical.
-- **Mirror** A ZFS configuration similar to RAID-1, where data is duplicated across two or more drives. Provides excellent read performance and can tolerate the failure of all but one drive in the mirror group, offering the fastest rebuild times but using 50% or more of available storage capacity for redundancy.
-- **Striped** A ZFS configuration similar to RAID-0, where data is distributed across multiple drives without any redundancy. Provides maximum storage capacity and improved performance through parallel I/O operations, but offers no fault tolerance - the failure of any single drive results in complete data loss.
+
+.. tip:: RAID-Z Levels
+
+   - **RAID-Z1** A ZFS implementation similar to RAID-5, using single-parity protection across multiple drives (minimum 3 drives). Can tolerate the failure of one drive while maintaining data integrity, providing a balance between storage capacity and redundancy.
+   - **RAID-Z2** A ZFS implementation similar to RAID-6, using double-parity protection across multiple drives (minimum 4 drives). Can tolerate the failure of up to two drives simultaneously, offering higher redundancy than RAID-Z1 at the cost of additional storage overhead.
+   - **RAID-Z3** A ZFS implementation using triple-parity protection across multiple drives (minimum 5 drives). Can tolerate the failure of up to three drives simultaneously, providing the highest level of redundancy in the RAID-Z family, ideal for large storage arrays where maximum data protection is critical.
+   - **Mirror** A ZFS configuration similar to RAID-1, where data is duplicated across two or more drives. Provides excellent read performance and can tolerate the failure of all but one drive in the mirror group, offering the fastest rebuild times but using 50% or more of available storage capacity for redundancy.
+   - **Striped** A ZFS configuration similar to RAID-0, where data is distributed across multiple drives without any redundancy. Provides maximum storage capacity and improved performance through parallel I/O operations, but offers no fault tolerance - the failure of any single drive results in complete data loss.
 
 
 Datastore Management
 """"""""""""""""""""
 **Create Datastore Interface:** The Create Datastore dialog enables creation of datastores for virtual machine storage:
 
-**Info tip: Datastore** A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
+.. tip:: Datastore
+
+   A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
 
 **Datastore Configuration:**
 
 - **Datastore Name:** Specify unique datastore identifier
-- **Info tip:** Datastore name - Logical identifiers assigned to datastores for easy identification and management within storage systems.
+
+.. tip:: Datastore name 
+   - Logical identifiers assigned to datastores for easy identification and management within storage systems.
+
 - **Pool Selection:** Choose from available ZFS pools (e.g., “zroot”)
 - **Storage Integration:** Integration with existing storage pools
 - **VM Storage:** Optimized for virtual machine storage requirements
@@ -2869,7 +2885,9 @@ Dataset Management
 **Dataset Operations:**
 
 - **Snapshot Creation:** Create point-in-time snapshots with custom naming
-- **Info tip: Snapshot:** A read-only, point-in-time copy of a ZFS dataset or zvol.
+
+.. tip:: Snapshot
+   A read-only, point-in-time copy of a ZFS dataset or zvol.
 
 **Steps to create a snapshot:**
 
