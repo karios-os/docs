@@ -91,12 +91,6 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Advanced Topics
-   
-   advanced/index
-
-.. toctree::
-   :maxdepth: 2
    :caption: Appendices
    
    appendices/index
@@ -109,9 +103,3 @@ Community & Support
 * **Issues**: https://github.com/karios/karios/issues
 * **Discussions**: https://github.com/karios/karios/discussions
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

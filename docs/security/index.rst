@@ -189,7 +189,7 @@ Scan Types and Execution
 KariOS SHIELD provides one scan option currently, the Default Scan covering all the critical security checks in a SCAP Compliant Process:
 
 Default Scan (Current)
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 * **Duration:** 3-5 minutes
 * **Coverage:** Most critical security items

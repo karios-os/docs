@@ -684,5 +684,3 @@ After successful installation, proceed to:
    :doc:`initial-configuration`
        Complete the initial system configuration with security best practices
    
-   :doc:`security-hardening`
-       Implement advanced security measures for production deployments

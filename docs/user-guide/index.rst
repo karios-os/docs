@@ -277,7 +277,7 @@ The License Features modal provides three main tabs for comprehensive license ma
 
 Access detailed license information through the "License Dashboard" button located in the top banner of the interface.
 
-.. image:: _static/images/getting_started/license_dashboard_access.png
+.. figure:: _static/images/getting_started/license_dashboard_access.png
    :alt: License Dashboard Interface
    :align: center
 
@@ -342,6 +342,7 @@ Available Resources Overview:
    - **Portal Access**: Use token at payment portal to generate updated license
    - **File Upload**: Upload new JSON license file for updates
    - **License Processing**: System processes and applies license updates
+
    .. figure:: _static/images/getting_started/update_license.png
       :alt: Update License Tab
       :align: center
@@ -703,7 +704,7 @@ Once a server is registered, administrators can perform various management opera
 
 
 Control Center Level Management
-------------------------------------
+-------------------------------
 
 Administrators can access various control center management features. The control center provides centralized management capabilities for the entire Karios infrastructure.
 
@@ -732,7 +733,7 @@ Component Navigation Process
 - **Permission Levels**: Ensure appropriate permissions for accessing different components
 
 Liquid Cooling Management Operations (Future Scope - Not available for Single Node Management)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Karios Cool Integration:** The Liquid Cooling tab provides access to the Karios Cool thermal management system for monitoring and controlling liquid cooling infrastructure across your deployment.
 
@@ -745,7 +746,7 @@ Immersion Cooling and Rack Level.
    :height: 283px
 
 Immersion Cooling Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 **Immersion Cooling Systems:** The Immersion Cooling tab provides comprehensive management of immersion cooling systems and components:
 
@@ -885,7 +886,7 @@ Immersion Cooling Tab
 **Real-time Updates:** Live monitoring of cooling system performance
 
 Rack Level Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 **Rack-Level Cooling Management:** The Rack Level tab provides detailed rack-level cooling management:
 
@@ -903,7 +904,7 @@ Rack Level Tab
 - **Power Feeds**: Number of power connections (2 power feeds)
 
 Real-time Monitoring and Metrics
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Sensor Information:** Access detailed sensor information through the Sensors tab
 
@@ -959,7 +960,7 @@ Storage Management Operations
 **Storage Protocol Support:** The storage interface provides access to multiple storage protocols with dropdown selection:
 
 MooseFS Storage
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 **MooseFS Distributed Storage:**
 MooseFS is a distributed file system that provides scalable, fault-tolerant storage across multiple servers with a unified namespace. It offers high availability and automatic data replication for enterprise storage requirements.
@@ -1044,7 +1045,7 @@ Click Delete icon to unmount the moosefs storage. It will prompt you for a confi
    :width: 800
 
 S3 Storage
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
 **S3 Object Storage:**
 S3 (Simple Storage Service) provides scalable object storage for backup, archival, and cloud-native applications. It offers cost-effective storage with global accessibility and integration with modern DevOps workflows.
 
@@ -1118,7 +1119,7 @@ Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal o
    :width: 800
 
 iSCSI Storage
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 **iSCSI Block Storage:**
 iSCSI provides block-level storage access over IP networks, enabling remote storage to appear as locally attached disks. It's commonly used for shared storage in virtualization environments and high-performance database applications.
@@ -1204,7 +1205,7 @@ Click Mount to mount the selected iSCSI devices and make them available for use.
    :width: 800
 
 NFS Storage
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 **NFS File Storage:**
 NFS (Network File System) allows you to access files on remote servers as if they were stored locally on your system. It's commonly used for shared storage in Unix/Linux environments and virtualization platforms.
@@ -1270,7 +1271,7 @@ To unmount the NFS storage, please click on the delete icon
    :width: 800
 
 SMB Storage
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 **SMB/CIFS Storage:**
 
@@ -1361,7 +1362,7 @@ Storage Operations
 For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
 
 SeaweedFS Storage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -1461,7 +1462,7 @@ ISO Management Operations
 **RAW:** An uncompressed disk image format that contains a bit-for-bit copy of a storage device or partition. RAW images provide maximum compatibility and performance but consume more storage space since they don't use compression, making them ideal for high-performance virtual machine storage.
 
 ISO Operations:
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 - **Download ISO**: Download ISO files using FQDN URL with appended ISO file path
 - **Upload ISO**: Upload valid ISO files to the data center storage
@@ -1474,7 +1475,7 @@ ISO Operations:
    :width: 600
 
 ISO Management Features:
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Dual Upload Support**: Support for both ISO and RAW file formats
 - **URL-based Downloads**: Download ISO files directly from FQDN URLs
@@ -1521,7 +1522,7 @@ Network Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Network Navigation Structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Network Tab Selection:** Access network management by selecting the Network tab from the main navigation
 - **Dropdown Menu Options:** Choose between "Switches" and "Interface" from the network options dropdown
@@ -1534,7 +1535,7 @@ Network Navigation Structure
 
 
 Switches Section (Selected from Network dropdown)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - **Virtual Switch:** A software-based network switch that operates within the host system, enabling communication between virtual machines and connecting them to physical or virtual network interfaces. It functions like a physical Ethernet switch by learning MAC addresses, forwarding traffic, and managing network connections entirely in software.
 - **Interface:** A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
 
@@ -1548,6 +1549,7 @@ After navigating to Switches and Select Vale Switch.
 .. image:: _static/images/control_center/network_management/vale_switches.png
    :alt: Vale Switches
    :width: 600
+
 To create a Vale switch, please click on this.
 
 .. image:: _static/images/control_center/network_management/create_vale_switch.png
@@ -1625,7 +1627,7 @@ A destroy switch option is available with a warning that displays the potential 
 
 
 Virtual Switches Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 Access traditional network bridge switch management
 
@@ -1662,7 +1664,7 @@ Click "Create Network Switch" button
 
 
 Interface Section (Selected from Network dropdown)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Physical Tab:** Access physical network interface management and monitoring
 - **Virtual Tab:** Access virtual network interface and VLAN configuration
@@ -1841,7 +1843,7 @@ Live Statistics Monitoring
    :width: 600
 
 Node Statistics Display
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Node Name**: Display of node identifiers and hostnames
 - **CPU Usage**: Real-time CPU utilization percentage with core count information
@@ -1869,7 +1871,7 @@ Virtual Machine Statistics
    :width: 600
 
 Recommendations System
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 - **Time Range Selection**: Configurable time range dropdown for recommendation analysis (1 Week default)
 - **Apply Button**: Apply selected time range for recommendation generation
@@ -1882,7 +1884,7 @@ Recommendations System
    :width: 600
 
 Recommendation Details
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 - **VM-Level Recommendations**: Individual virtual machine optimization suggestions
 - **CPU Recommendations**: CPU scaling recommendations with specific core adjustments
@@ -1901,7 +1903,7 @@ Statistics Table Features
 - **Multi-Level Monitoring**: Both node-level and VM-level statistics in unified view
 
 Performance Monitoring Capabilities
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Resource Utilization Tracking**: Monitor CPU, memory, and power consumption patterns
 - **Capacity Planning**: Resource usage insights for infrastructure planning
@@ -1912,7 +1914,7 @@ System Releases Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Releases Navigation Structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Releases Tab Selection**: Access system releases and updates by selecting the Releases tab from the main navigation
 - **Four Main Sections**: Navigate between Versions, Updates, History, and Install Jobs tabs
@@ -1924,7 +1926,7 @@ Releases Navigation Structure
    :width: 600
 
 Versions Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 Click on versions tab and select any node to view the update versions.
 
@@ -1943,7 +1945,7 @@ Click on versions tab and select any node to view the update versions.
    :width: 600
 
 Updates Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 **Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
 
@@ -1969,7 +1971,7 @@ Once you click the Download button, the update package will be downloaded to the
 - **Action Controls**: Install, Download, and Logs buttons for update management
 
 Update Installation Process
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Install Update Dialog:** Comprehensive installation interface with multiple configuration options
 - **Update Details**: Display update type (CORE, OS, UI) and version information
@@ -1991,7 +1993,7 @@ Update Installation Process
    We have two update install options i.e., "install now" for instant installation and "set schedule time" for later installation.
 
 Installation Scheduling
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Schedule Options**: Set specific date and time for update installation
 - **Future Date Validation**: Ensure scheduled installations are set for future dates and times
@@ -2009,7 +2011,7 @@ Installation Scheduling
 - **Multi-Node Support**: Schedule installations across multiple selected nodes
 
 History Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 Click on "history" tab to view
 
@@ -2025,7 +2027,7 @@ Click on "history" tab to view
    :width: 600
 
 Install Jobs Tab
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 Click on the "install jobs" tab
 
@@ -2041,7 +2043,7 @@ Click on the "install jobs" tab
    :width: 600
 
 Installation Monitoring
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Install Summary**: Comprehensive installation summary with timestamp, Job ID, and node count
 - **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
@@ -2056,7 +2058,7 @@ Installation Monitoring
 - **Error Logging**: Access detailed installation logs for troubleshooting failed installations
 
 Installation Logs and Details
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. image:: _static/images/control_center/releases_and_updates/installation_logs.png
    :alt: Installation Logs
    :width: 600
@@ -2068,7 +2070,8 @@ Installation Logs and Details
 - **Rollback Information**: View rollback procedures and restoration details when installations fail
 - **Filter by Status**: Filter installation details by All, Success, Failed, Pending, and In Progress
 
-**Advanced Features:**
+Advanced Features
+^^^^^^^^^^^^^^^^^
 
 - **Multi-Node Management**: Support for managing updates across multiple nodes simultaneously
 - **Remote Update Fetching**: Automatic fetching of updates from remote servers with status indicators
@@ -2331,10 +2334,10 @@ Chassis View
 
 
 Node Console Management
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Console Overview
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 The Console tab provides direct access to the FreeBSD command-line interface for individual worker nodes, enabling administrators to perform advanced system administration tasks, troubleshooting, and direct system configuration through a web-based terminal interface.
 
@@ -2347,10 +2350,10 @@ The Console tab provides direct access to the FreeBSD command-line interface for
 - **Secure Access**: Password-protected console access with credential validation
 
 Console Access and Authentication
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Accessing Node Console
-"""""""""""""""""""""""
+""""""""""""""""""""""
 
 **Console Navigation:**
 
@@ -2367,7 +2370,7 @@ Accessing Node Console
 - **Credential Validation**: Real-time credential verification
 
 Console Authentication Interface
-"""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 
 **Credentials Dialog:**
 
@@ -2388,17 +2391,12 @@ The console authentication interface provides secure access to the node's comman
 4. **Submit Credentials**: Click "Send credentials" to authenticate and establish console session
 5. **Console Access**: Upon successful authentication, gain full console access
 
-.. image:: path/to/image
-   :alt: Console Authentication Interface
-   :width: 1200px
-   :height: 800px
-
 
 Console Operations and Commands
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 FreeBSD Command Line Access
-"""""""""""""""""""""""
+"""""""""""""""""""""""""""
 
 **System Administration Commands:**
 
@@ -2447,7 +2445,7 @@ Once authenticated, administrators have full access to FreeBSD system commands:
    logger "test message"        # Add custom message to system log
 
 Advanced Console Operations
-"""""""""""""""""""""""
+"""""""""""""""""""""""""""
 
 **File System Operations:**
 
@@ -2491,7 +2489,7 @@ Advanced Console Operations
    nohup <command> &     # Run command in background
 
 Console Security and Best Practices
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Security Considerations
 """""""""""""""""""""""
@@ -2514,10 +2512,10 @@ Security Considerations
 
 
 Console Support and Documentation
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Getting Help
-"""""""""""""""""""""""
+""""""""""""
 
 **Console Documentation:**
 
@@ -2625,7 +2623,7 @@ Node Storage Management
 **Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
 
 Storage Pool Management
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 **ZFS Storage Pool Overview:** The Storage Pools section displays comprehensive information about existing ZFS pools on the worker node:
 
@@ -2692,7 +2690,7 @@ ARC (Adaptive Replacement Cache) is ZFS’s in-memory caching system. It keeps f
 - **Predictive Maintenance:** Early warning indicators for disk replacement
 
 Storage Pool Operations
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 **Pool Management Actions:** The Storage Pool interface provides four primary operational buttons:
 
 **Purpose**
@@ -2885,7 +2883,7 @@ Dataset Management
 - **Hierarchical Organization:** Organized dataset structure with parent-child relationships
 
 ZFS Advanced Features
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 **Compression Management:**
 
 - **Compression Algorithm:** lz4 compression for space efficiency
@@ -2916,7 +2914,7 @@ Node Monitoring
 **Monitoring Interface:** The monitoring interface features a time-based performance dashboard with configurable time ranges and multiple performance metrics displayed in detailed graphical format.
 
 Time Range Selection
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 **Time Range Controls:** The monitoring interface provides flexible time range selection for performance analysis:
 
@@ -2939,7 +2937,7 @@ Time Range Selection
    :align: center
 
 CPU Usage Monitoring
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 **CPU Performance Graph:** The CPU Usage (%) graph provides detailed real-time monitoring of processor utilization:
 
@@ -2968,7 +2966,7 @@ CPU Usage Monitoring
    :align: center
 
 Memory Usage Monitoring
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 **Memory Performance Graph:** The Memory Usage (%) graph provides comprehensive memory utilization monitoring:
 
@@ -2997,7 +2995,7 @@ Memory Usage Monitoring
    :align: center
 
 Storage Usage Monitoring
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Storage Performance Graph:** The Storage Usage (%) graph monitors storage utilization and capacity:
 
@@ -3027,7 +3025,7 @@ Storage Usage Monitoring
 
 
 Performance Analytics
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 **Multi-Metric Analysis:** The monitoring interface provides comprehensive performance analytics across multiple system resources:
 
@@ -3046,7 +3044,7 @@ Performance Analytics
 - **Optimization Opportunities:** Data-driven optimization recommendations
 
 Historical Performance Analysis
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Time-Based Analysis:** The monitoring system provides comprehensive historical performance analysis:
 
@@ -3118,7 +3116,7 @@ Power Metrics View
 - **Long-term Analysis:** Historical energy consumption tracking for cost analysis
 
 Power Monitoring View
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 **Power Monitoring Dashboard:** The Power Monitoring view provides comprehensive power analytics and management capabilities:
 
@@ -3164,7 +3162,7 @@ To add a new power supply unit data:
    :align: center
 
 Server Power Metrics
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 **Comprehensive Power Analytics:** The Server Power Metrics section provides detailed power consumption analysis and CPU core monitoring
 
@@ -3191,7 +3189,7 @@ Server Power Metrics
    :align: center
 
 System Resource Summary
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 **Resource Utilization Overview:** The system provides a comprehensive summary of overall resource utilization:
 
@@ -3213,7 +3211,7 @@ System Resource Summary
    - **Power Saving:** Maximum power efficiency for light workloads
 
 Power Profile Configuration
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Power Profile Settings:** The Set Power-Profile section enables dynamic power profile management:
 
@@ -3231,7 +3229,7 @@ Power Profile Configuration
 
 
 Frequency Management
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 **CPU Frequency Control:** The system provides detailed CPU frequency monitoring and management:
 
@@ -3253,7 +3251,7 @@ Frequency Management
 - **Workload Adaptation:** Dynamic frequency adjustment based on workload characteristics
 
 Power Management Best Practices
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Effective Power Management**
 
@@ -3281,7 +3279,7 @@ Network Management
       :width: 600
 
 Network Interface Configuration
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Interface Overview:** The Network Management - Interface section displays all available network interfaces for the selected worker node:
 
@@ -3315,7 +3313,7 @@ Network Interface Configuration
 - **Configuration Access:** Direct access to detailed interface settings
 
 Virtual Switch Management
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Switch Overview:** The Network Management - Switches section provides comprehensive virtual switch management and configuration:
 
@@ -3336,7 +3334,7 @@ Virtual Switch Management
 - **Interface Assignment:** Management of interface-to-switch assignments
 
 Switch Creation and Configuration
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **Create Switch Interface:** The Create Switch modal provides comprehensive switch creation and configuration options:
 
 **Switch Creation Form:**
@@ -3369,7 +3367,7 @@ The switch management interface displays all configured virtual switches.
 
 
 Network Configuration Best Practices
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Interface Configuration:**
    - **Naming Conventions:** Use descriptive names for switches and interfaces
@@ -3397,7 +3395,7 @@ Firewall Management
       :width: 600 
 
 Packet Filter Rules Interface
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **PF Rules Display:** The Packet Filter Rules section provides a comprehensive view of all active firewall rules.
 
@@ -3418,7 +3416,7 @@ Packet Filter Rules Interface
 
 
 Firewall Rule Components
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Rule Structure Analysis:** The firewall rules are organized in a structured format with specific components.
 
@@ -3470,7 +3468,7 @@ Firewall Rule Components
       - **State Management:** Automatic connection state tracking for all services
 
 Rule Editing and Modification
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Interactive Rule Editor:** The firewall interface provides comprehensive rule editing capabilities.
 
@@ -3496,7 +3494,7 @@ Rule Editing and Modification
 
 
 Change Confirmation System Safety Mechanism:
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The firewall system includes a comprehensive safety mechanism to prevent system lockout.
 
@@ -3547,7 +3545,7 @@ Security Center Walkthrough
 The Security Center provides a centralized interface for managing and monitoring your infrastructure's security posture. This walkthrough will guide you through the key features and functionalities available in the Security Center.
 
 Accessing the Security Center
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Navigate to the Security Center to begin security monitoring and management.
 
@@ -3586,12 +3584,12 @@ Initiating Security Scans
    - Scan results will be displayed in real-time on the dashboard
 
 Security Vulnerability Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Access the Vulnerability Management section to view and manage identified vulnerabilities across your infrastructure.
 
 Vulnerability Assessment Interface
-"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""
    - Access the Vulnerability Management section to view and manage identified vulnerabilities
    - Use filters to sort vulnerabilities by severity
    - Scroll Down to view detailed vulnerabilities information along with remediation options
@@ -3604,7 +3602,7 @@ Vulnerability Assessment Interface
       Figure 3: Vulnerability Information
 
 Vulnerability Details and Information
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""
    - Click on any vulnerability to access detailed information
    - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links
 
@@ -3647,12 +3645,12 @@ Remediation Process
    - Verify system functionality after remediation
 
 Scan History and Reporting
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Scan History section provides a log of all security scans performed with detailed reporting capabilities.
 
 Security Scan History Navigation
-"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
    - The Scan History section provides a log of all security scans performed
    - Review past scan results and reports
    - Please click on the 'Metrics' button beside the 'Scan' button to navigate to Security Scan History Page
@@ -3686,7 +3684,7 @@ Security Report Generation
       Figure 8: Security Report Pointer
 
 Security Report Content
-"""""""""""""""""""""""""
+"""""""""""""""""""""""
    - Once downloaded, the security report will contain detailed information of all the vulnerabilities identified in the scan
    - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details
 
@@ -3707,10 +3705,10 @@ The security report includes:
 - **Scan Metadata**: Timestamp, scan duration, and coverage information
 
 Best Practices for Security Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Security Monitoring Guidelines
-"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 
 **Regular Security Scanning**
    - Schedule regular security scans to maintain current security posture
@@ -3728,7 +3726,7 @@ Security Monitoring Guidelines
    - Track remediation progress using historical scan data
 
 Security Configuration Management
-""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""
 
 **Remediation Planning**
    - Prioritize vulnerabilities based on risk assessment
@@ -3754,7 +3752,7 @@ Node Log Management
       :width: 600 
 
 Log Viewer Dashboard
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 **Log Display Interface:** The Log Viewer provides a comprehensive log monitoring interface.
 
@@ -3779,7 +3777,7 @@ Log Viewer Dashboard
 **Kernel Messages:** “kernel: 310.534325 [4335] netmap_transmit vlan113 full hwcur 0 hwtail 0 qlen 1023”
 
 Log Filtering and Search
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Advanced Log Filtering:** The Log Viewer provides comprehensive filtering and search capabilities.
 
@@ -3807,7 +3805,7 @@ Log Filtering and Search
       :width: 600 
 
 Log Export and Management
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Log Export Functionality:** The Log Viewer provides log export capabilities:
 
@@ -4104,6 +4102,7 @@ The Hardware tab allows dynamic modification of VM specifications:
    :alt: VM Hardware Configuration
 
 - **Network Switch Management**: Configure network interfaces and switches
+
 .. figure:: _static/images/vmcreation/Image_126.png
    :width: 600
    :alt: VM Hardware Configuration
@@ -4113,6 +4112,7 @@ The Hardware tab allows dynamic modification of VM specifications:
    :alt: VM Hardware Configuration
 
 **Update: Modify existing network configurations**
+
 .. figure:: _static/images/vmcreation/Image_128.png
    :width: 600
    :alt: VM Hardware Configuration
@@ -4125,6 +4125,7 @@ The Hardware tab allows dynamic modification of VM specifications:
    :alt: VM Hardware Configuration
 
 **Detach**: Remove virtual disks
+
 .. figure:: _static/images/vmcreation/Image_130.png
    :width: 600
    :alt: VM Hardware Configuration
@@ -4259,7 +4260,7 @@ API Authentication and Usage Guide
 
    Set Headers:
    
-   .. code-block:: http
+   .. code-block:: text
    
       Content-Type: application/json
 
@@ -4355,6 +4356,7 @@ Upon accessing the Swagger interface, you'll see:
 
    - Click "Try it out" button on the login endpoint
    - Enter Request Body with your credentials:
+
    .. figure:: _static/images/user-guide/Image_143.png
       :width: 600   
 
@@ -4366,6 +4368,7 @@ Upon accessing the Swagger interface, you'll see:
       }
 
    - Click "Execute" to send the login request
+   
    .. figure:: _static/images/user-guide/Image_144.png
       :width: 600     
 
@@ -4457,9 +4460,3 @@ Common Response Codes
 - **500 Internal Server Error**: Server error
 
 
-**See Also**
-
-- `Complete installation guide <../getting-started/installation.html>`__
-- `Initial system configuration <../getting-started/initial-configuration.html>`__
-- `Storage management documentation <../storage/index.html>`__
-- `Network configuration guide <../networking/index.html>`__
