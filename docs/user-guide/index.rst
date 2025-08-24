@@ -1315,13 +1315,13 @@ Click Submit to save the configuration and mount the SMB storage.
 
 .. image:: _static/images/control_center/storage_management/storage_smb_configuration_form.png
    :alt: SMB Configuration Form
-   :width: 800
+   :width: 600
 
 **SMB Server Configuration:** SMB/CIFS server connections.
 
 .. image:: _static/images/control_center/storage_management/storage_smb_server_status.png
    :alt: SMB Server Status
-   :width: 800
+   :width: 600
 
 **Unmount:** Click on the "delete" icon to unmount SMB storage.
 
@@ -1348,7 +1348,7 @@ Storage Operations
 For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
 
 SeaweedFS Storage
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -1361,8 +1361,7 @@ SeaweedFS is a distributed file system that provides scalable object and file st
 
 .. image:: _static/images/control_center/storage_management/storage_seaweedfs_interface.png
    :alt: SeaweedFS Interface
-   :width: 873px
-   :height: 241px
+   :width: 600
 
 **Master Server Management:** Configure and manage SeaweedFS master servers
 
@@ -1399,23 +1398,28 @@ Click Configure Master to begin master server setup
 **Select Node for Master Configuration:** Choose which node will serve as the master server
 
 .. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
-   :alt: SeaweedFS Master Configuration
-   :width: 618px
-   :height: 604px
+   :alt: SeaweedFS Master Configuration Navigate
+   :width: 618
+
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration_dialog.png
+   :alt: SeaweedFS Master Configuration Navigate
+   :width: 618
 
 **Configure Volumes:** Click "Configure Volumes" to manage storage volumes
 
 .. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration.png
    :alt: SeaweedFS Volume Configuration
-   :width: 727px
-   :height: 235px
+   :width: 600
+
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration_dialog.png
+   :alt: SeaweedFS Volume Configuration
+   :width: 600
 
 **Unmount Volumes:** Click on Unmount button to remove the volume servers
 
 .. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_unmount.png
    :alt: SeaweedFS Volume Unmount
-   :width: 604px
-   :height: 328px
+   :width: 600
 
 **Master Servers Display:** View active master servers with IP addresses and status
 
@@ -1425,10 +1429,9 @@ Click Configure Master to begin master server setup
 
 **Delete Configure:** Removes the entire seaweed configuration.
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_remove_master_configuration.png
    :alt: SeaweedFS Master Servers
-   :width: 3024px
-   :height: 1710px
+   :width: 600
 
 
 ISO Management Operations
@@ -1454,8 +1457,7 @@ ISO Operations:
 
 .. image:: _static/images/control_center/iso_management/iso_management_interface.png
    :alt: ISO Management Interface
-   :width: 925px
-   :height: 330px
+   :width: 600
 
 ISO Management Features:
 ^^^^^^^^^^^^^^^^^^
@@ -1475,8 +1477,7 @@ Please give a valid FQDN URL in the input field and click "download"
 
 .. image:: _static/images/control_center/iso_management/iso_download_interface.png
    :alt: ISO Download Interface
-   :width: 820px
-   :height: 232px
+   :width: 600
 
 **Upload Section:** File selection interface with upload button for local ISO/RAW files
 
@@ -1484,15 +1485,13 @@ Select a valid iso or raw file and click "upload"
 
 .. image:: _static/images/control_center/iso_management/iso_upload_interface.png
    :alt: ISO Upload Interface
-   :width: 784px
-   :height: 172px
+   :width: 600
 
 **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files (cloud images)
 
 .. image:: _static/images/control_center/iso_management/available_iso_files.png
    :alt: Available ISO Files
-   :width: 919px
-   :height: 733px
+   :width: 600
 
 **Status Indicators:** Visual indicators for file availability and upload status
 
@@ -1517,8 +1516,7 @@ Network Navigation Structure
 
 .. image:: _static/images/control_center/network_management/network_navigation.png
    :alt: Network Navigation
-   :width: 907px
-   :height: 261px
+   :width: 600
 
 
 Switches Section (Selected from Network dropdown)
@@ -1535,15 +1533,12 @@ After navigating to Switches and Select Vale Switch.
 
 .. image:: _static/images/control_center/network_management/vale_switches.png
    :alt: Vale Switches
-   :width: 1380px
-   :height: 244px
-
+   :width: 600
 To create a Vale switch, please click on this.
 
 .. image:: _static/images/control_center/network_management/create_vale_switch.png
    :alt: Create Vale Switch
-   :width: 1380px
-   :height: 180px
+   :width: 600
 
 Please enter the following fields for the vale switch configuration:
 
@@ -1563,8 +1558,7 @@ Please enter the following fields for the vale switch configuration:
 
 .. image:: _static/images/control_center/network_management/vale_switch_configuration.png
    :alt: Vale Switch Configuration
-   :width: 937px
-   :height: 533px
+   :width: 600
 
 **The VALE switches module has 3 types of Network topologies.**
 
@@ -1572,36 +1566,31 @@ Please enter the following fields for the vale switch configuration:
 
 .. image:: _static/images/control_center/network_management/fully_connected_network.png
    :alt: Fully Connected Network
-   :width: 1380px
-   :height: 482px
+   :width: 600
 
 **b) Unused Networks:** parent interface - vale
 
 .. image:: _static/images/control_center/network_management/unused_networks.png
    :alt: Unused Networks
-   :width: 1380px
-   :height: 292px
+   :width: 600
 
 **c) Isolated Networks:** VALE - tap interface(s)
 
 .. image:: _static/images/control_center/network_management/isolated_networks.png
    :alt: Isolated Networks
-   :width: 1380px
-   :height: 242px
+   :width: 600
 
 Clicking on any topology element displays a detailed view showing the complete network hierarchy: the parent physical interface, the VALE switch configuration, and all connected virtual machine TAP interfaces.
 
-.. image:: _static/images/control_center/network_management/network_topology_details.png
+.. image:: _static/images/control_center/network_management/vale_topology_details.png
    :alt: Network Topology Details
-   :width: 936px
-   :height: 528px
+   :width: 600
 
 An option to detach the parent interface is available, which will convert the network into an isolated network. A warning will be displayed before performing this destructive action.
 
-.. image:: _static/images/control_center/network_management/detach_warning.png
+.. image:: _static/images/control_center/network_management/detach_parent_warning.png
    :alt: Detach Warning
-   :width: 422px
-   :height: 427px
+   :width: 600
 
 You will find two detach options on the right side of the VALE switch:
 
@@ -1610,17 +1599,15 @@ You will find two detach options on the right side of the VALE switch:
 
 If available interfaces exist, you can add them to the VALE switch.
 
-.. image:: _static/images/control_center/network_management/add_interfaces.png
-   :alt: Add Interfaces
-   :width: 346px
-   :height: 370px
+.. image:: _static/images/control_center/network_management/add_child_interfaces.png
+   :alt: Add Child Interfaces
+   :width: 600
 
 A destroy switch option is available with a warning that displays the potential impact of destroying the VALE switch before executing the destructive action.
 
 .. image:: _static/images/control_center/network_management/destroy_switch_warning.png
    :alt: Destroy Switch Warning
-   :width: 561px
-   :height: 505px
+   :width: 600
 
 
 Virtual Switches Tab
@@ -1630,16 +1617,13 @@ Access traditional network bridge switch management
 
 .. image:: _static/images/control_center/network_management/virtual_switches.png
    :alt: Virtual Switches
-   :width: 949px
-   :height: 471px
+   :width: 600
 
 **Create Switch Button:** Create new switches with type selection and configuration options
 
 .. image:: _static/images/control_center/network_management/create_virtual_switch.png
    :alt: Create Switch Button
-   :width: 955px
-   :height: 235px
-
+   :width: 600
 To create a new switch
 - **Switch name:** Give a unique alphanumeric name to the switch
 .. tip::
@@ -1649,10 +1633,11 @@ To create a new switch
 A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
 
 Click "Create Network Switch" button
+
+
 .. image:: _static/images/control_center/network_management/create_network_switch.png
    :alt: Create Network Switch Form
-   :width: 961px
-   :height: 475px
+   :width: 600
 
 
 Interface Section (Selected from Network dropdown)
@@ -1668,6 +1653,10 @@ Physical Interface
 
 This is the landing page which allows you to view your Network Interface Cards (NIC) and their status.
 
+.. image:: _static/images/control_center/network_management/physical_interface_landing.png
+   :alt: Physical Interface Landing
+   :width: 600
+
 The Interface panel also gives the MAC address, IP address, media, VLAN's connected to the NIC, etc.
 
 .. tip::
@@ -1681,8 +1670,7 @@ The Interface panel also gives the MAC address, IP address, media, VLAN's connec
 
 .. image:: _static/images/control_center/network_management/physical_interface.png
    :alt: Physical Interface
-   :width: 1380px
-   :height: 244px
+   :width: 600
 
 Click on 'View Details' to view the Received & Transmitted packets.
 
@@ -1703,31 +1691,34 @@ Click on 'View Details' to view the Received & Transmitted packets.
 
 **View Details:** Access detailed interface configuration and statistics
 
-.. image:: _static/images/control_center/network_management/interface_details.png
-   :alt: Interface Details
-   :width: 836px
-   :height: 588px
-
+.. image:: _static/images/control_center/network_management/physical_interface_stats.png
+   :alt: Physical Interface Stats
+   :width: 600
 
 Virtual Interfaces
 ^^^^^^^^^^^^^^^^^^
 **Virtual Network Interfaces (VLANs):**
 In the Network Interfaces tab, like shown below, please navigate to Virtual.
+
+.. image:: _static/images/control_center/network_management/virtual_interface_landing.png
+   :alt: Virtual Interface Landing
+   :width: 600
+
 We have Virtual lans (VLAN's) currently supported and the landing page shows you the metrics associated with VLANs like count, status, VLANs with IP and Tag ID.
 In each VLAN, you will get basic information like its MAC address, IP, status, parent interface.(usually the physically interface which is seen above)
 Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an option to create a VLAN - 'Add VLAN'
 
 **VLAN Management:** Configure and manage Virtual LANs with comprehensive settings
+
 .. image:: _static/images/control_center/network_management/vlan_management.png
    :alt: VLAN Management
-   :width: 1380px
-   :height: 264px
+   :width: 600
 
 **Add VLAN Button:** Click on 'Add VLAN', it redirects you to a vlan configuration popup.
+
 .. image:: _static/images/control_center/network_management/add_vlan.png
    :alt: Add VLAN Form
-   :width: 537px
-:height: 730px
+   :width: 600
 
 **VLAN Configuration Process:**
 Provide all the information given below and click "Create VLAN"
@@ -1745,6 +1736,10 @@ Static IP: A permanently assigned IP address that remains constant and is manual
 .. note::
 It is recommended that you have your L2 network configurations ready as per your requirements.
 
+.. image:: _static/images/control_center/network_management/vlan_create_dialog.png
+   :alt: VLAN Create Dialog
+   :width: 600
+
 **VLAN Management Module:**
 - **VLAN Details:** Display VLAN name, Tag ID, MAC address information
 - **Network Configuration:** Show Parent NIC, IPv4 addresses, and MTU settings
@@ -1755,32 +1750,31 @@ Action Controls: View, Stats, Ping, and Delete functionality for each VLAN
 
 .. image:: _static/images/control_center/network_management/vlan_management_module.png
    :alt: VLAN Management Module
-   :width: 1380px
-   :height: 610px
+   :width: 600
 
 You can perform all the 4 actions mentioned above per VLAN:
 **View:** This gives you details such as Parent NIC, MAC address, Status, Virtual Switches connected, Routing Table. (Please scroll down to find them)
+
 .. image:: _static/images/control_center/network_management/vlan_view_details.png
-:alt: VLAN View Details
-:width: 805px
-:height: 501px
+   :alt: VLAN View Details
+   :width: 600
+
 **Stats:** The packets VLAN receives and transmits is displayed here.
-.. image:: _static/images/control_center/network_management/vlan_stats.png 
-:alt: VLAN Stats
-:width: 597px
-:height: 488px
+.. image:: _static/images/control_center/network_management/vlan_stats.png
+   :alt: VLAN Stats
+   :width: 600
 
 **Ping:** For an Active VLAN, a ping is possible to its gateway. In this case VLAN with Tag ID 115 is connecting to its interface 115.253.
+
 .. image:: _static/images/control_center/network_management/vlan_ping.png
-:alt: VLAN Ping
-:width: 705px
-:height: 627px
+   :alt: VLAN Ping
+   :width: 600
 
 **Delete:** Before you delete a VLAN, you will be given a warning on the connected switches that will be isolated if the VLAN is deleted.
+
 .. image:: _static/images/control_center/network_management/vlan_delete_warning.png
-:alt: VLAN Delete Warning
-:width: 511px
-:height: 542px
+   :alt: VLAN Delete Warning
+   :width: 600
 
 Stats Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1793,10 +1787,9 @@ Stats Navigation Structure
 - **Node & VM Stats Overview**: Comprehensive monitoring of both physical nodes and virtual machines
 - **Real-time Data Updates**: Live statistics with automatic refresh capabilities
 
-.. image:: _static/images/control_center/network_management/stats_navigation.png
+.. image:: _static/images/control_center/node_monitoring/stats_navigation.png
    :alt: Stats Navigation
-   :width: 916px
-   :height: 204px
+   :width: 600
 
 Live Statistics Monitoring
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1807,10 +1800,9 @@ Live Statistics Monitoring
 - **Multi-Node Support**: Monitor multiple nodes simultaneously with consolidated view
 - **Resource Utilization**: Track resource allocation and usage patterns across the infrastructure
 
-.. image:: _static/images/control_center/network_management/live_statistics.png
+.. image:: _static/images/control_center/node_monitoring/live_statistics.png
    :alt: Live Statistics
-   :width: 940px
-   :height: 439px
+   :width: 600
 
 Node Statistics Display
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1822,10 +1814,9 @@ Node Statistics Display
 - **Uptime Information**: Node uptime tracking with days, hours, and minutes format
 - **Status Monitoring**: Overall node health status with color-coded indicators
 
-.. image:: _static/images/control_center/network_management/node_statistics.png
+.. image:: _static/images/control_center/node_monitoring/node_statistics.png
    :alt: Node Statistics
-   :width: 921px
-   :height: 157px
+   :width: 600
 
 Virtual Machine Statistics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1837,10 +1828,9 @@ Virtual Machine Statistics
 - **Uptime Tracking**: Individual VM uptime monitoring with precise time formatting
 - **Status Health**: VM health status indicators with NORMAL operational states
 
-.. image:: _static/images/control_center/network_management/vm_statistics.png
+.. image:: _static/images/control_center/node_monitoring/vm_statistics.png
    :alt: VM Statistics
-   :width: 937px
-   :height: 313px
+   :width: 600
 
 Recommendations System
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1851,10 +1841,9 @@ Recommendations System
 - **Resource Optimization**: Intelligent recommendations for resource allocation and scaling
 - **Performance Insights**: Detailed analysis and suggestions for infrastructure optimization
 
-.. image:: _static/images/control_center/network_management/recommendations_system.png
+.. image:: _static/images/control_center/node_monitoring/recommendations_system.png
    :alt: Recommendations System
-   :width: 943px
-   :height: 336px
+   :width: 600
 
 Recommendation Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1894,10 +1883,9 @@ Releases Navigation Structure
 - **Host Management**: Filter and search functionality for managing multiple hosts and nodes
 - **Remote Server Integration**: Fetch updates from remote servers with timestamp tracking
 
-.. image:: _static/images/control_center/network_management/releases_navigation.png
+.. image:: _static/images/control_center/releases_and_updates/releases_navigation.png
    :alt: Releases Navigation
-   :width: 883px
-   :height: 222px
+   :width: 600
 
 Versions Tab
 ^^^^^^^^^^^^^^^^^^
@@ -1910,41 +1898,36 @@ Click on versions tab and select any node to view the update versions.
 - **Expandable Interface**: Click on host names to expand and view detailed version information
 - **Version Details**: View specific update types (CORE, OS) with version numbers and request timestamps
 
-.. image:: _static/images/control_center/network_management/versions_tab.png
+.. image:: _static/images/control_center/releases_and_updates/versions_tab.png
    :alt: Versions Tab
-   :width: 940px
-   :height: 505px
+   :width: 600
 
-.. image:: _static/images/control_center/network_management/versions_tab_details.png
+.. image:: _static/images/control_center/releases_and_updates/versions_tab_details.png
    :alt: Version Details
-   :width: 796px
-   :height: 208px
+   :width: 600
 
 Updates Tab
 ^^^^^^^^^^^^^^^^^^
 
 **Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
 
-.. image:: _static/images/control_center/network_management/updates_tab.png
+.. image:: _static/images/control_center/releases_and_updates/updates_tab.png
    :alt: Updates Tab
-   :width: 916px
-   :height: 375px
+   :width: 600
 
 - **Remote Server Sync**: Shows "Fetched from remote server" status with last fetch timestamp
 - **Update Information**: Display update name, version, description, type, and available actions
 - **Download and Install**: Direct download and install buttons for each available update
 
-.. image:: _static/images/control_center/network_management/update_information.png
+.. image:: _static/images/control_center/releases_and_updates/download_button.png
    :alt: Update Information
-   :width: 921px
-   :height: 280px
+   :width: 600
 
 Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
 
-.. image:: _static/images/control_center/network_management/install_update_dialog.png
+.. image:: _static/images/control_center/releases_and_updates/install_update_dialog.png
    :alt: Install Update Dialog
-   :width: 913px
-   :height: 388px
+   :width: 600
 
 - **Update Categories**: Filter updates by type (Core, OS, Security) and priority levels
 - **Action Controls**: Install, Download, and Logs buttons for update management
@@ -1953,12 +1936,6 @@ Update Installation Process
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Install Update Dialog:** Comprehensive installation interface with multiple configuration options
-
-.. image:: _static/images/control_center/network_management/install_update_dialog.png
-   :alt: Update Installation Interface
-   :width: 985px
-   :height: 679px
-
 - **Update Details**: Display update type (CORE, OS, UI) and version information
 - **Node Selection**: Multi-select interface for choosing target nodes for installation
 - **Installation Status**: Track Already Updated, Pending, and Scheduled installation states
@@ -1970,10 +1947,9 @@ Update Installation Process
 2. Choose between immediate installation or scheduled deployment
 3. Click on "install now" for immediate installation.
 
-.. image:: _static/images/control_center/network_management/installation_steps.png
+.. image:: _static/images/control_center/releases_and_updates/installation_steps.png
    :alt: Installation Steps
-   :width: 940px
-   :height: 706px
+   :width: 600
 
 .. note::
    We have two update install options i.e., "install now" for instant installation and "set schedule time" for later installation.
@@ -1985,15 +1961,13 @@ Installation Scheduling
 - **Future Date Validation**: Ensure scheduled installations are set for future dates and times
 - **Schedule Management**: Click on "Set Schedule Time" for scheduled update deployment.
 
-.. image:: _static/images/control_center/network_management/schedule_options_1.png
+.. image:: _static/images/control_center/releases_and_updates/schedule_options_1.png
    :alt: Schedule Options 1
-   :width: 843px
-   :height: 697px
+   :width: 600
 
-.. image:: _static/images/control_center/network_management/schedule_options_2.png
+.. image:: _static/images/control_center/releases_and_updates/schedule_options_2.png
    :alt: Schedule Options 2
-   :width: 919px
-   :height: 712px
+   :width: 600
 
 - **Clear Schedule**: Option to clear scheduled time and install immediately
 - **Multi-Node Support**: Schedule installations across multiple selected nodes
@@ -2010,10 +1984,9 @@ Click on "history" tab to view
 - **User Attribution**: Show which user initiated each update or installation
 - **Chronological View**: Updates displayed in chronological order with timestamps
 
-.. image:: _static/images/control_center/network_management/update_history.png
+.. image:: _static/images/control_center/releases_and_updates/update_history.png
    :alt: Update History
-   :width: 880px
-   :height: 435px
+   :width: 600
 
 Install Jobs Tab
 ^^^^^^^^^^^^^^^^^^
@@ -2027,10 +2000,9 @@ Click on the "install jobs" tab
 - **Scheduled Jobs**: Identify and manage scheduled installations with "Yes/No" indicators
 - **Job Statistics**: View success and failure counts for each installation job
 
-.. image:: _static/images/control_center/network_management/install_jobs.png
+.. image:: _static/images/control_center/releases_and_updates/install_jobs.png
    :alt: Install Jobs
-   :width: 949px
-   :height: 556px
+   :width: 600
 
 Installation Monitoring
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -2039,10 +2011,9 @@ Installation Monitoring
 - **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
 - **Success and Failure Counts**: Track installation success and failure statistics
 
-.. image:: _static/images/control_center/network_management/installation_monitoring.png
+.. image:: _static/images/control_center/releases_and_updates/installation_monitoring.png
    :alt: Installation Monitoring
-   :width: 937px
-   :height: 396px
+   :width: 600
 
 - **Detailed Status View**: Click on installation jobs to view detailed status information
 - **Host-Level Details**: View individual host installation status with timestamps
@@ -2050,11 +2021,9 @@ Installation Monitoring
 
 Installation Logs and Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. image:: _static/images/control_center/network_management/installation_logs.png
+.. image:: _static/images/control_center/releases_and_updates/installation_logs.png
    :alt: Installation Logs
-   :width: 946px
-   :height: 733px
+   :width: 600
 
 - **Detailed Log Access**: View comprehensive installation logs for each host
 - **Error Diagnosis**: Detailed error messages and failure analysis
