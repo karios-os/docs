@@ -66,8 +66,10 @@ To access the Karios management interface, open a supported web browser (Chrome 
 3. **Enter Credentials**: Input username and password in the login form
 4. **Sign In**: Click the "Sign in" button to access the system
 
-.. figure:: _static/images/user-guide/image_001.png
-   :align:left
+
+.. figure:: _static/images/login/image1.png
+  :width: 600
+
 
 **New User Registration**
 
@@ -86,7 +88,7 @@ To access the Karios management interface, open a supported web browser (Chrome 
 .. note::
    New users are granted read-only access by default. Contact a system administrator for permission upgrades if needed.
 
-.. figure:: _static/images/user-guide/image_002.png
+.. figure:: _static/images/login/image2.png
    :width: 600
 
 
@@ -121,7 +123,7 @@ After successful login, the system will display the "Access Karios" license vali
 3. Click the "Copy" button to copy this token to your clipboard. Keep this token secure
 4. Click on the highlighted link to access the "license request portal"
 
-.. figure:: _static/images/user-guide/image_003.png
+.. figure:: _static/images/login/image3.png
    :width: 600
 
 
@@ -129,15 +131,15 @@ After successful login, the system will display the "Access Karios" license vali
 
 1. Navigate to the Karios payment portal website to request license
 
-.. figure:: _static/images/user-guide/image_004.png
-   :align: center
+.. figure:: _static/images/login/image4.png
+   :width: 200
 
 
 2. Verify the payment details and click "proceed"
 3. Locate the "License Token" or "Token" input field and paste the copied license token
 
-.. figure:: _static/images/user-guide/image_004.png
-   :align: center
+.. figure:: _static/images/login/image5.png
+   :width: 200
 
 
    **Necessary details:**
@@ -148,23 +150,24 @@ After successful login, the system will display the "Access Karios" license vali
    
    Click "proceed"
 
-   .. figure:: _static/images/user-guide/image_005.png
-   :align: center
+.. figure:: _static/images/login/image6.png
+   :width: 200
 
 
 4. Review the contact details and click "proceed"
 5. Enter the CAPTCHA code and click "Start Trial"
-   .. figure:: _static/images/user-guide/image_006.png
-   :align: center
+
+.. figure:: _static/images/login/image7.png
+   :width: 200
 
    image_006.png
 6. A confirmation page appears, indicating that you have successfully subscribed to the plan
 
-   .. figure:: _static/images/user-guide/image_007.png
-   :align: center
+.. figure:: _static/images/login/image8.png
+   :width: 200
 
-   image_007.png
 7. After successful subscription, a license file will be sent to your registered email address. Download the file from your inbox
+
 
 
 **Step 3: Upload License File**
@@ -177,8 +180,8 @@ After successful login, the system will display the "Access Karios" license vali
 
 3. Verify that the file is uploaded correctly – you should see its filename and size displayed
 
-.. figure:: _static/images/user-guide/image_008.png
-   :align: center
+.. figure:: _static/images/login/image9.png
+   :width: 600
 
 
 
@@ -188,8 +191,8 @@ After successful login, the system will display the "Access Karios" license vali
 2. The system will process and validate your license file
 3. Upon successful validation, you'll be redirected to the main dashboard
 
-.. figure:: _static/images/user-guide/image_009.png
-   :align: center
+.. figure:: _static/images/login/image10.png
+   :width: 600
 
 
 **License Information Display**
@@ -227,22 +230,22 @@ Upon successful license validation, you'll access the Karios Provisioning Center
 
 The License Features modal provides three main tabs for comprehensive license management:
 
-.. figure:: _static/images/user-guide/image_010.png
-   :align: center
+.. figure:: _static/images/login/Imagequotadesc.png
+   :width: 400
 
 1. **Available Quota Tab**
    
    Monitor available resources and quota allocations
 
 
-.. figure:: _static/images/user-guide/image_011.png
-   :align: center
+.. figure:: _static/images/login/Image_available.png
+   :width: 400
 
 
 
 
-.. figure:: _static/images/user-guide/image_012.png
-   :align: center
+.. figure:: _static/images/login/Image_013.png
+   :width: 400
 
 
 
@@ -253,12 +256,12 @@ The License Features modal provides three main tabs for comprehensive license ma
    - **Sockets Usage**: Total CPU sockets currently in use across the cluster
    - **Usage Display**: Shows actual socket consumption
 
-.. figure:: _static/images/user-guide/image_013.png
-   :align: center
+.. figure:: _static/images/login/Image_014.png
+   :width: 400
 
 
-.. figure:: _static/images/user-guide/image_014.png
-   :align: center
+.. figure:: _static/images/login/Image_015.png
+   :width: 400
 
 
 
@@ -274,10 +277,10 @@ The License Features modal provides three main tabs for comprehensive license ma
    - **License Processing**: System processes and applies license updates
 
 
-.. figure:: _static/images/user-guide/image_015.png
-   :align: center
+.. figure:: _static/images/login/Image_016.png
+   :width: 400
 
-image_015.png
+
 
 
    **Node-Level License Management**
@@ -286,8 +289,8 @@ image_015.png
 
    Each registered node displays an “Add licensed features” button, allowing you to allocate specific features to individual nodes.
 
-.. figure:: _static/images/user-guide/image_016.png
-   :align: center
+.. figure:: _static/images/login/Image_017.png
+   :width: 400
 
 
 
@@ -297,9 +300,8 @@ image_015.png
 
    - **Currently Used Tab**: Displays the current resource allocation for the selected node.
 
-.. figure:: _static/images/user-guide/image_017.png
-   :width: 600
-   :align: center
+.. figure:: _static/images/login/Image_018.png
+   :width: 400
 
 
    - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
@@ -308,8 +310,8 @@ image_015.png
 
    To add a feature, select the toggle next to the desired feature and click “Add Feature.”
 
-.. figure:: _static/images/user-guide/image_018.png
-   :align: center
+.. figure:: _static/images/login/Image_019.png
+   :width: 400
 
 
 
@@ -364,9 +366,8 @@ After license validation and resource allocation, users have access to the follo
 - **Stats**: System statistics and performance metrics
 - **Releases**: System release and update management
 
-.. figure:: _static/images/user-guide/image_019.png
-:align: center
-
+.. figure:: _static/images/login/Image020.png
+   :width: 400
 
 
 **System Status Indicators**
@@ -376,9 +377,8 @@ After license validation and resource allocation, users have access to the follo
 - **Provisioned**: Number of provisioned resources
 - **Configured**: Number of configured systems
 
-.. figure:: _static/images/user-guide/image_020.png
-
-:align: center
+.. figure:: _static/images/login/image21.png
+   :width: 400
 
 
 
@@ -390,8 +390,8 @@ After license validation and resource allocation, users have access to the follo
 - **Power Management**: Power consumption and efficiency metrics
 - **Network Interfaces**: Physical and virtual interface management
 
-.. figure:: _static/images/user-guide/image_021.png
-:align: center
+.. figure:: _static/images/login/image22.png
+   :width: 400
 
 
 
@@ -484,8 +484,8 @@ Datacenter Management
 - **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
 - **Control Node Overview**: The selected datacenter displays the active control node and provides access to all managed infrastructure components
 
-.. figure:: _static/images/user-guide/image_022.png
-:align: center
+.. figure:: _static/images/login/image23.png
+   :width: 600
 
 
 
@@ -501,8 +501,8 @@ Karios provides automated bare metal server discovery through network scanning:
 2. **Initiate Scan**: Click the "Scan" button to begin automatic server discovery
 3. **Discovery Results**: Discovered servers appear in the "Bare Metal Discovery" section
 
-.. figure:: _static/images/user-guide/image_023.png
-   :align: center
+.. figure:: _static/images/login/image24.png
+   :width: 600
 
 
 
@@ -517,8 +517,8 @@ Servers progress through distinct stages in the Karios management lifecycle:
 - No management capabilities yet established
 - Ready for credential configuration and registration
 
-.. figure:: _static/images/user-guide/image_024.png
-   :align: center
+.. figure:: _static/images/login/image25.png
+   :width: 600
 
 
 
@@ -531,14 +531,14 @@ Servers progress through distinct stages in the Karios management lifecycle:
 
 1. Click on the highlighted edit icon for your discovered node
 
-.. figure:: _static/images/user-guide/image_024.png
-   :align: center
+.. figure:: _static/images/login/image26.png
+   :width: 600
 
 
 2. Enter the BMC credentials for your node
 
-.. figure:: _static/images/user-guide/image_025.png
-   :align: center
+.. figure:: _static/images/login/image27.png
+   :width: 600
 
 
 
@@ -551,8 +551,8 @@ Servers progress through distinct stages in the Karios management lifecycle:
 - Credentials configured and validated
 - Ready for provisioning and configuration operations
 
-.. figure:: _static/images/user-guide/image_026.png
-   :align: center
+.. figure:: _static/images/login/image28.png
+   :width: 600
 
 
 
@@ -2029,10 +2029,8 @@ To access worker node level management, administrators must first navigate to th
 
 3. **Component Tabs:** The worker node interface provides access to specialized component tabs designed for individual server management
 
-.. figure:: _static/images/user-guide/image_100.png
-   :align: center
-
-
+.. figure:: _static/images/login/node1.png
+   :width: 600
 
 **Node Component Overview:** The worker node interface provides access to the following key components:
 
@@ -2063,8 +2061,8 @@ Home Dashboard
 
 **Performance Metrics Dashboard:** The Home dashboard displays five key performance indicators in an intuitive card-based layout:
 
-.. figure:: _static/images/user-guide/image_101.png
-   :align: center
+.. figure:: _static/images/nodemanagement/Image_071.png
+   :width: 600
 
 
 
@@ -2083,8 +2081,8 @@ Home Dashboard
 - **Energy Efficiency:** Reflects power consumption relative to performance output
 - **Operational Insights:** Provides guidance for optimization opportunities
 
-.. figure:: _static/images/user-guide/image_102.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_071a.png
+   :width: 600
 
 
 
@@ -2124,8 +2122,8 @@ System  Information
   - **IP Address:** Server’s network IP address (e.g., “192.168.116.111”)
   - **MAC Address:** Hardware MAC address (e.g., “7c:c2:55:e8:77:8c”)
 
-.. figure:: _static/images/user-guide/image_103.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_071b.png
+   :width: 600
 
 
 **System Identity:**
@@ -2154,8 +2152,8 @@ Add-in Card and PCIe Devices
 - **Slot Specifications:** Detailed PCIe lane configuration and capabilities
 - **Expansion Planning:** Assists with hardware expansion planning and compatibility
 
-.. figure:: _static/images/user-guide/image_104.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_072.png
+   :width: 600
 
 
 Power Monitoring
@@ -2170,8 +2168,8 @@ Power Monitoring
 - **Power:** Instantaneous power consumption (e.g., “38.53 W”)
 - **Voltage:** Current voltage levels (e.g., “114.05 V”)
 
-.. figure:: _static/images/user-guide/image_105.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_073.png
+   :width: 600
 
 
 
@@ -2203,8 +2201,8 @@ Storage System Overview
 - **Health Monitoring:** Comprehensive health status for all storage devices
 - **Performance Tracking:** Storage performance metrics and optimization insights
 
-.. figure:: _static/images/user-guide/image_106.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_074.png
+   :width: 600
 
 
 
@@ -2231,8 +2229,8 @@ Network Interface Management
 
 **VLAN Configuration:** VLAN-specific virtual interfaces and their configurations
 
-.. figure:: _static/images/user-guide/image_107.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_075.png
+   :width: 600
 
 
 
@@ -2260,8 +2258,9 @@ Chassis View
 - **Maintenance Planning:** Plan physical maintenance and hardware replacement
 - **Visual Reference:** Provide visual context for hardware troubleshooting
 - **Documentation:** Visual documentation of server configuration and layout
-.. figure:: _static/images/user-guide/image_108.png
-   :align: center
+
+.. figure:: _static/images/NodeManagement/Image_076.png
+   :width: 600
 
 
 
@@ -2491,8 +2490,8 @@ ISO Management
 - **File Selection:** Browse and select from available ISO and RAW files
 - **Availability Tracking:** Real-time view of available ISO and RAW files
 
-.. figure:: _static/images/user-guide/image_109.png
-   :align: center
+.. figure:: _static/images/NodeManagement/Image_077.png
+   :width: 600
 
 
 
@@ -2509,13 +2508,23 @@ ISO Management
 
 - **Download Section:** FQDN URL input field with download button for remote ISO retrieval
 
+.. figure:: _static/images/NodeManagement/Image_078.png
+   :width: 600
+
 Please provide a valid FQDN url and click “Download”. The downloaded iso can be viewed in the Available ISOs section.
 
 - **Upload Section:** File selection interface with upload button for local ISO/RAW files
 
+.. figure:: _static/images/NodeManagement/Image_079.png
+   :width: 600
+
 Please select the appropriate ISO/RAW files from your system and click “Upload”. The uploaded file will be in the available ISO/Cloud images section.
 
 - **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files
+
+.. figure:: _static/images/NodeManagement/Image_080.png
+   :width: 600
+
 - **Status Indicators:** Visual indicators for file availability and upload status
 - **File Management Controls:** Direct access to file operations and management functions
 
@@ -3767,6 +3776,9 @@ The "Setup VM" button provides access to virtual machine creation with two disti
 - **Standard VM Setup**: Traditional virtual machine configuration for FreeBSD, Windows 10, and Ubuntu
 - **Cloud-Init Setup**: Automated VM deployment with cloud-init support for FreeBSD and Ubuntu
 
+.. figure:: _static/images/vmcreation/vmsetup.png
+   :width: 600
+
 Standard VM Setup
 ~~~~~~~~~~~~~~~~~
 
@@ -3779,11 +3791,17 @@ Standard VM Setup
 5. **Network Configuration**: Configure network connectivity
 6. **VM Creation**: Finalize and create the virtual machine
 
+.. figure:: _static/images/vmcreation/Image_112.png
+   :width: 600
+
 **Basic VM Configuration**
 
 - **VM Name**: Specify a unique name for the virtual machine
 - **Loader Configuration**: Select the appropriate boot loader for the operating system
 - **Operating System**: Choose from supported OS options (FreeBSD, Windows 10, Ubuntu Linux)
+
+.. figure:: _static/images/vmcreation/Image_113.png
+   :width: 600
 
 **Resource Allocation**
 
@@ -3793,16 +3811,25 @@ Configure virtual machine resources based on requirements:
 - **Memory**: Allocate RAM from available server memory
 - **CPU Sockets**: Configure CPU socket topology
 
+.. figure:: _static/images/vmcreation/Image_114.png
+   :width: 600
+
 **Storage Configuration**
 
 - **Storage Pool**: Select from available storage pools
 - **Disk Size**: Specify virtual disk size based on requirements
+
+.. figure:: _static/images/vmcreation/Image_115.png
+   :width: 600
 
 **Network Configuration**
 
 - **Network Switch**: Select virtual network switch
 - **Network Driver**: Choose network driver type for optimal performance
 - **Network Adapter**: Configure virtual network adapter settings
+
+.. figure:: _static/images/vmcreation/Image_116.png
+   :width: 600
 
 Cloud-Init VM Setup
 ~~~~~~~~~~~~~~~~~~~
@@ -3828,6 +3855,52 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 6. **Network Configuration**: Set network parameters (DHCP or static)
 7. **VM Creation**: Deploy the cloud-init enabled virtual machine
 
+
+.. figure:: _static/images/vmcreation/Image_118.png
+   :width: 600
+   :alt: Cloud-Init Basic Configuration
+
+
+**VM Basic Configuration**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Step 1: Select Server and Basic VM Details**
+
+- **Server Selection**: Choose the target server for VM deployment.
+- **VM Name**: Enter a unique name for your virtual machine.
+- **Operating System**: Select the desired OS (FreeBSD or Ubuntu).
+
+.. note::
+   Cloud-Init setup only supports raw disk images (``.raw`` format).
+
+.. figure:: _static/images/vmcreation/Image_118.png
+   :width: 600
+   :alt: Cloud-Init Basic Configuration
+
+**Step 2: Storage and Network Configuration**
+
+- **Storage Pool**: Select the storage pool for the VM's disk.
+- **Disk Size**: Specify the size of the virtual disk.
+- **Network Switch**: Choose the network switch for VM connectivity.
+
+.. figure:: _static/images/vmcreation/Image_119.png
+   :width: 600
+   :alt: Cloud-Init Storage and Network Configuration
+
+**Step 3: Hardware Configuration**
+
+- **CPU Cores**: Allocate the number of CPU cores.
+- **Memory**: Set the amount of RAM for the VM.
+
+.. figure:: _static/images/vmcreation/Image_120.png
+   :width: 600
+   :alt: Cloud-Init Hardware Configuration
+
+
+
+
+
+
 **User Account Configuration**
 
 Cloud-Init VMs require initial user account setup:
@@ -3835,6 +3908,9 @@ Cloud-Init VMs require initial user account setup:
 - **Username**: Primary user account for the VM
 - **Password**: Secure password for user account authentication
 - **SSH Public Key (Optional)**: Add SSH public key for passwordless authentication
+
+.. figure:: _static/images/vmcreation/Image_121.png
+   :width: 600
 
 SSH Key Authentication (Enhanced Security)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3879,6 +3955,10 @@ For enhanced security, configure SSH key authentication for your virtual machine
 - Static IP Address: Manually specify IP address
 - Subnet Mask: Configure network subnet mask
 - Domain Name: Set domain name for the VM
+
+.. figure:: _static/images/vmcreation/Image_122.png
+   :width: 600
+   :alt: Network Configuration Options
 
 Security Best Practices
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -3937,14 +4017,58 @@ Once a VM is created, the VM management interface provides comprehensive control
 - **Snapshots Tab**: Create and manage VM snapshots
 - **Activity Logs Tab**: View VM operation history and logs
 
+.. figure:: _static/images/vmcreation/Image_123.png
+   :width: 600
+   :alt: VM Management Interface
+
 **VM Hardware Configuration**
 
 The Hardware tab allows dynamic modification of VM specifications:
 
 - **VM Details Configuration**: Adjust CPU and memory allocation
+
+.. figure:: _static/images/vmcreation/Image_124.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
 - **CD/DVD Drive Management**: Attach ISO images for installation or boot
+
+.. figure:: _static/images/vmcreation/Image_125.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
 - **Network Switch Management**: Configure network interfaces and switches
-- **Virtual Disk Management**: Attach, detach, and manage virtual disks
+.. figure:: _static/images/vmcreation/Image_126.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+.. figure:: _static/images/vmcreation/Image_127.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+**Update: Modify existing network configurations**
+.. figure:: _static/images/vmcreation/Image_128.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+
+- **Virtual Disk Management**: Attach virtual disks
+
+.. figure:: _static/images/vmcreation/Image_129.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+**Detach**: Remove virtual disks
+.. figure:: _static/images/vmcreation/Image_130.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+**Reassig**: Remove the virtual disk from the current vm and assign it to some other available vm in the node.
+
+.. figure:: _static/images/vmcreation/Image_131.png
+   :width: 600
+
+**Delete**: Delete the unused disk permanently
 
 **VM Power Operations**
 
@@ -3968,6 +4092,9 @@ The Console tab provides direct browser-based access to the VM's operating syste
 - **Direct Console Access**: Interact with the VM through a web-based console interface
 - **Remote Management**: Perform administrative tasks and troubleshooting directly from your browser
 
+.. figure:: _static/images/vmcreation/Image_132.png
+   :width: 600
+
 VM Snapshot Management
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -3977,6 +4104,9 @@ The Snapshots tab enables comprehensive snapshot operations:
 - **Snapshot Rollback**: Restore the VM to a previous snapshot
 - **Snapshot Management**: View, delete, and organize existing snapshots
 - **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
+
+.. figure:: _static/images/vmcreation/Image_133.png
+   :width: 600
 
 VM Monitoring
 ~~~~~~~~~~~~~
