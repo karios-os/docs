@@ -2643,6 +2643,10 @@ Storage Pool Management
 - **Storage Utilization:** Visual progress bar showing allocated vs. free space
 - **Capacity Details:** Specific capacity information (e.g., “Free: 848G, Allocated: 71.6G”)
 
+.. figure:: _static/images/storage/image_002.png
+   :align: center
+
+
 **Pool Health Monitoring:**
 
 - **State Indicators:** Real-time pool health status (ONLINE)
@@ -2656,8 +2660,6 @@ ARC (Adaptive Replacement Cache) is ZFS's in-memory caching system. It keeps fre
 - **Current:** The ARC size currently allocated.
 - **Recommended:** A suggested ARC allocation, based on system resources.
 
-.. figure:: _static/images/storage/image_002.png
-   :align: center
 
 **Adjust ARC Memory:**
 
@@ -2666,8 +2668,9 @@ ARC (Adaptive Replacement Cache) is ZFS's in-memory caching system. It keeps fre
    - Or decrease it to free RAM for virtual machines and other workloads.
 - To save the settings, click “apply” . Changes apply dynamically
 
-.. figure::_static/images/storage/adjust_arc_memory_management
+.. figure:: _static/images/storage/adjust_arc_memory_management.png
    :align: center
+
 
 
 **Impact of Adjustments**
