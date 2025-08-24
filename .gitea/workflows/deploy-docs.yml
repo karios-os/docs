@@ -3,7 +3,7 @@ name: Deploy Documentation to FreeBSD
 on:
   push:
     branches:
-      - test
+      - main
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
