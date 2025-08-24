@@ -508,7 +508,7 @@ Component Navigation Process
 - **Context Awareness**: Understand the current context (control node vs. worker node)
 - **Permission Levels**: Ensure appropriate permissions for accessing different components
 
-Liquid Cooling Management Operations (Future Scope - Not available for )
+Liquid Cooling Management Operations (Future Scope - Not available for Single Node Management)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Karios Cool Integration:** The Liquid Cooling tab provides access to the Karios Cool thermal management system for monitoring and controlling liquid cooling infrastructure across your deployment.
@@ -521,7 +521,8 @@ Immersion Cooling and Rack Level.
    :width: 925px
    :height: 283px
 
-**Immersion Cooling Tab**
+Immersion Cooling Tab
+^^^^^^^^^^^^^^^^^^
 
 **Immersion Cooling Systems:** The Immersion Cooling tab provides comprehensive management of immersion cooling systems and components:
 
@@ -678,7 +679,8 @@ Immersion Cooling and Rack Level.
 
 **Real-time Updates:** Live monitoring of cooling system performance
 
-**Rack Level Tab**
+Rack Level Tab
+^^^^^^^^^^^^^^^^^^
 
 **Rack-Level Cooling Management:** The Rack Level tab provides detailed rack-level cooling management:
 
@@ -695,7 +697,8 @@ Immersion Cooling and Rack Level.
 - **Device Count**: Number of devices in the rack (18 devices)
 - **Power Feeds**: Number of power connections (2 power feeds)
 
-**Real-time Monitoring and Metrics**
+Real-time Monitoring and Metrics
+^^^^^^^^^^^^^^^^^^
 
 **Sensor Information:** Access detailed sensor information through the Sensors tab
 
@@ -718,7 +721,8 @@ Immersion Cooling and Rack Level.
 - **Alert Thresholds**: Configure alert thresholds for temperature and flow parameters
 - **Performance Analysis**: Analyze cooling system performance over time
 
-**Operational Controls**
+Operational Controls
+^^^^^^^^^^^^^^^^^^^^
 
 **Cooling System Control:**
 
@@ -751,7 +755,8 @@ Storage Management Operations
 
 **Storage Protocol Support:** The storage interface provides access to multiple storage protocols with dropdown selection:
 
-**MooseFS Storage**
+MooseFS Storage
+^^^^^^^^^^^^^^^^^^
 
 **MooseFS Distributed Storage:**
 MooseFS is a distributed file system that provides scalable, fault-tolerant storage across multiple servers with a unified namespace. It offers high availability and automatic data replication for enterprise storage requirements.
@@ -832,8 +837,8 @@ Click Delete icon to unmount the moosefs storage. It will prompt you for a confi
    :width: 532px
    :height: 322px
 
-**S3 Storage**
-
+S3 Storage
+^^^^^^^^^^^^^^^^^^
 **S3 Object Storage:**
 S3 (Simple Storage Service) provides scalable object storage for backup, archival, and cloud-native applications. It offers cost-effective storage with global accessibility and integration with modern DevOps workflows.
 
@@ -910,7 +915,8 @@ Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal o
    :width: 589px
    :height: 385px
 
-**iSCSI Storage**
+iSCSI Storage
+^^^^^^^^^^^^^^^^^^
 
 **iSCSI Block Storage:**
 iSCSI provides block-level storage access over IP networks, enabling remote storage to appear as locally attached disks. It's commonly used for shared storage in virtualization environments and high-performance database applications.
@@ -999,7 +1005,8 @@ Click Mount to mount the selected iSCSI devices and make them available for use.
    :width: 768px
    :height: 315px
 
-**NFS Storage**
+NFS Storage
+^^^^^^^^^^^^^^^^^^
 
 **NFS File Storage:**
 NFS (Network File System) allows you to access files on remote servers as if they were stored locally on your system. It's commonly used for shared storage in Unix/Linux environments and virtualization platforms.
@@ -1068,7 +1075,8 @@ To unmount the NFS storage, please click on the delete icon
    :width: 927px
    :height: 300px
 
-**SMB Storage**
+SMB Storage
+^^^^^^^^^^^^^^^^^^
 
 **SMB/CIFS Storage:**
 
@@ -1140,7 +1148,8 @@ Click Submit to save the configuration and mount the SMB storage.
 **Unmount:** Click on the "delete" icon to unmount SMB storage.
 
 
-**Storage Operations**
+Storage Operations
+^^^^^^^^^^^^^^^^^^
 
 **Common Storage Operations:**
 
@@ -1256,7 +1265,8 @@ ISO Management Operations
 
 **RAW:** An uncompressed disk image format that contains a bit-for-bit copy of a storage device or partition. RAW images provide maximum compatibility and performance but consume more storage space since they don't use compression, making them ideal for high-performance virtual machine storage.
 
-**ISO Operations:**
+ISO Operations:
+^^^^^^^^^^^^^^^^^^
 
 - **Download ISO**: Download ISO files using FQDN URL with appended ISO file path
 - **Upload ISO**: Upload valid ISO files to the data center storage
@@ -1269,7 +1279,8 @@ ISO Management Operations
    :width: 925px
    :height: 330px
 
-**ISO Management Features:**
+ISO Management Features:
+^^^^^^^^^^^^^^^^^^
 
 - **Dual Upload Support**: Support for both ISO and RAW file formats
 - **URL-based Downloads**: Download ISO files directly from FQDN URLs
@@ -1317,7 +1328,9 @@ Select a valid iso or raw file and click "upload"
 
 Network Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Network Navigation Structure:**
+
+Network Navigation Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Network Tab Selection:** Access network management by selecting the Network tab from the main navigation
 - **Dropdown Menu Options:** Choose between "Switches" and "Interface" from the network options dropdown
@@ -1329,12 +1342,14 @@ Network Management Operations
 :width: 907px
 :height: 261px
 
-**Switches Section**
-**Switches Section (Selected from Network dropdown):**
+
+Switches Section (Selected from Network dropdown)
+^^^^^^^^^^^^^^^^^^
 - **Virtual Switch:** A software-based network switch that operates within the host system, enabling communication between virtual machines and connecting them to physical or virtual network interfaces. It functions like a physical Ethernet switch by learning MAC addresses, forwarding traffic, and managing network connections entirely in software.
 - **Interface:** A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
 
-**Vale Switches Tab**
+Vale Switches Tab
+^^^^^^^^^^^^^^^^^^
 
 **A High performance networking (software) switch** that delivers packet delivery with low latency and high throughput compared to regular software switches.
 
@@ -1430,7 +1445,10 @@ A destroy switch option is available with a warning that displays the potential 
    :height: 505px
 
 
-**Virtual Switches Tab:** Access traditional network bridge switch management
+Virtual Switches Tab
+^^^^^^^^^^^^^^^^^^
+
+Access traditional network bridge switch management
 
 .. image:: path/to/image
    :alt: Virtual Switches
@@ -1459,14 +1477,16 @@ Click "Create Network Switch" button
 :height: 475px
 
 
-**Interface Section (Selected from Network dropdown):**
+Interface Section (Selected from Network dropdown)
+^^^^^^^^^^^^^^^^^^
 
 - **Physical Tab:** Access physical network interface management and monitoring
 - **Virtual Tab:** Access virtual network interface and VLAN configuration
 
 Overview: You will be able to manage 2 kinds of interfaces:
 
-**1) Physical Interface**
+Physical Interface
+^^^^^^^^^^^^^^^^^^
 
 This is the landing page which allows you to view your Network Interface Cards (NIC) and their status.
 
@@ -1511,7 +1531,8 @@ Click on 'View Details' to view the Received & Transmitted packets.
    :height: 588px
 
 
-**2) Virtual Interfaces**
+Virtual Interfaces
+^^^^^^^^^^^^^^^^^^
 **Virtual Network Interfaces (VLANs):**
 In the Network Interfaces tab, like shown below, please navigate to Virtual.
 We have Virtual lans (VLAN's) currently supported and the landing page shows you the metrics associated with VLANs like count, status, VLANs with IP and Tag ID.
@@ -1586,7 +1607,8 @@ You can perform all the 4 actions mentioned above per VLAN:
 Stats Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Stats Navigation Structure:**
+Stats Navigation Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Stats Tab Selection**: Access statistics and monitoring by selecting the Stats tab from the main navigation
 - **Live and Recommendations Tabs**: Toggle between real-time monitoring and system recommendations
@@ -1598,7 +1620,8 @@ Stats Management Operations
    :width: 916px
    :height: 204px
 
-**Live Statistics Monitoring:**
+Live Statistics Monitoring
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Node Performance Metrics**: Real-time monitoring of CPU percentage, memory usage, power consumption, and uptime
 - **VM Performance Tracking**: Individual virtual machine CPU usage, memory consumption, and operational status
@@ -1611,7 +1634,8 @@ Stats Management Operations
    :width: 940px
    :height: 439px
 
-**Node Statistics Display:**
+Node Statistics Display
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Node Name**: Display of node identifiers and hostnames
 - **CPU Usage**: Real-time CPU utilization percentage with core count information
@@ -1625,7 +1649,8 @@ Stats Management Operations
    :width: 921px
    :height: 157px
 
-**Virtual Machine Statistics:**
+Virtual Machine Statistics
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **VM Name**: Individual virtual machine identification and naming
 - **CPU Usage**: Per-VM CPU utilization with allocated CPU core information
@@ -1639,7 +1664,8 @@ Stats Management Operations
    :width: 937px
    :height: 313px
 
-**Recommendations System:**
+Recommendations System
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Time Range Selection**: Configurable time range dropdown for recommendation analysis (1 Week default)
 - **Apply Button**: Apply selected time range for recommendation generation
@@ -1652,7 +1678,8 @@ Stats Management Operations
    :width: 943px
    :height: 336px
 
-**Recommendation Details:**
+Recommendation Details
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **VM-Level Recommendations**: Individual virtual machine optimization suggestions
 - **CPU Recommendations**: CPU scaling recommendations with specific core adjustments
@@ -1661,7 +1688,8 @@ Stats Management Operations
 - **Justification**: Detailed explanations for each recommendation with reasoning
 - **Resource Efficiency**: Recommendations to free up capacity and optimize resource usage
 
-**Statistics Table Features:**
+Statistics Table Features
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Sortable Columns**: Sort by node name, CPU usage, memory usage, power, uptime, and status
 - **Color-Coded Status**: Visual status indicators for quick health assessment
@@ -1669,7 +1697,8 @@ Stats Management Operations
 - **Real-time Updates**: Automatic refresh of statistics data
 - **Multi-Level Monitoring**: Both node-level and VM-level statistics in unified view
 
-**Performance Monitoring Capabilities:**
+Performance Monitoring Capabilities
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Resource Utilization Tracking**: Monitor CPU, memory, and power consumption patterns
 - **Capacity Planning**: Resource usage insights for infrastructure planning
@@ -1679,7 +1708,8 @@ Stats Management Operations
 System Releases Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Releases Navigation Structure:**
+Releases Navigation Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Releases Tab Selection**: Access system releases and updates by selecting the Releases tab from the main navigation
 - **Four Main Sections**: Navigate between Versions, Updates, History, and Install Jobs tabs
@@ -1691,7 +1721,8 @@ System Releases Operations
    :width: 883px
    :height: 222px
 
-**Versions Tab**
+Versions Tab
+^^^^^^^^^^^^^^^^^^
 
 Click on versions tab and select any node to view the update versions.
 
@@ -1711,7 +1742,8 @@ Click on versions tab and select any node to view the update versions.
    :width: 796px
    :height: 208px
 
-**Updates Tab**
+Updates Tab
+^^^^^^^^^^^^^^^^^^
 
 **Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
 
@@ -1739,7 +1771,8 @@ Once you click the Download button, the update package will be downloaded to the
 - **Update Categories**: Filter updates by type (Core, OS, Security) and priority levels
 - **Action Controls**: Install, Download, and Logs buttons for update management
 
-**Update Installation Process:**
+Update Installation Process
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Install Update Dialog:** Comprehensive installation interface with multiple configuration options
 
@@ -1767,7 +1800,8 @@ Once you click the Download button, the update package will be downloaded to the
 .. note::
    We have two update install options i.e., "install now" for instant installation and "set schedule time" for later installation.
 
-**Installation Scheduling:**
+Installation Scheduling
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Schedule Options**: Set specific date and time for update installation
 - **Future Date Validation**: Ensure scheduled installations are set for future dates and times
@@ -1786,7 +1820,8 @@ Once you click the Download button, the update package will be downloaded to the
 - **Clear Schedule**: Option to clear scheduled time and install immediately
 - **Multi-Node Support**: Schedule installations across multiple selected nodes
 
-**History Tab**
+History Tab
+^^^^^^^^^^^^^^^^^^
 
 Click on "history" tab to view
 
@@ -1802,7 +1837,8 @@ Click on "history" tab to view
    :width: 880px
    :height: 435px
 
-**Install Jobs Tab**
+Install Jobs Tab
+^^^^^^^^^^^^^^^^^^
 
 Click on the "install jobs" tab
 
@@ -1818,7 +1854,8 @@ Click on the "install jobs" tab
    :width: 949px
    :height: 556px
 
-**Installation Monitoring:**
+Installation Monitoring
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Install Summary**: Comprehensive installation summary with timestamp, Job ID, and node count
 - **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
@@ -1833,7 +1870,8 @@ Click on the "install jobs" tab
 - **Host-Level Details**: View individual host installation status with timestamps
 - **Error Logging**: Access detailed installation logs for troubleshooting failed installations
 
-**Installation Logs and Details:**
+Installation Logs and Details
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: path/to/image
    :alt: Installation Logs
@@ -1847,7 +1885,8 @@ Click on the "install jobs" tab
 - **Rollback Information**: View rollback procedures and restoration details when installations fail
 - **Filter by Status**: Filter installation details by All, Success, Failed, Pending, and In Progress
 
-**Advanced Features:**
+Advanced Features
+^^^^^^^^^^^^^^^^^^
 
 - **Multi-Node Management**: Support for managing updates across multiple nodes simultaneously
 - **Remote Update Fetching**: Automatic fetching of updates from remote servers with status indicators
@@ -2336,11 +2375,11 @@ Node Storage Management
 - **Storage Pools Dropdown:** Select and manage existing storage pools
 
 
-**Info tip:**
+.. tip::
 
-**Pool (ZFS Pool/zpool)** The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
+Pool (ZFS Pool/zpool) The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
 
-**Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
+Dataset A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
 
 Storage Pool Management
 ^^^^^^^^^^^^^^^^^^
@@ -2438,7 +2477,8 @@ Ideal for organizing file-based storage into logical, isolated datasets.
 
 
 
-**Info tip:** ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
+.. tip::
+    ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
 
 
 **View Datasets:**
@@ -2453,7 +2493,8 @@ Click on "View datasets" to display and manage your datasets within the pool.
 **Create Zvol:**
 
 - **Purpose:** Create ZFS volumes for block storage
-- **Info tip: Block Level Storage** refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
+.. tip:: 
+   Block Level Storage refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
 - **Functionality:** Block-level storage for virtual machines and applications
 - **Configuration:** Specify volume name and size with unit selection (GB, TB)
 - **Usage:** Ideal for virtual machine storage and database applications
@@ -2470,7 +2511,8 @@ Provide an appropriate name for the zvol and select “Create Zvol”
 
 Please navigate to the appropriate pool and select "Delete Pool" 
 
-**Warning:** Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
+.. warning:: 
+   Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
 
 
 ZFS Pool Creation
@@ -2501,8 +2543,7 @@ ZFS Pool Creation
 - **Step 2:** Select the desired RAID type and available disks based on the RAID type.
 - **Step 3:** Click “Create ZPool” to provision the ZFS pool.
 
-**Info tip:**
-
+.. tip::
 - **RAID-Z1** A ZFS implementation similar to RAID-5, using single-parity protection across multiple drives (minimum 3 drives). Can tolerate the failure of one drive while maintaining data integrity, providing a balance between storage capacity and redundancy.
 - **RAID-Z2** A ZFS implementation similar to RAID-6, using double-parity protection across multiple drives (minimum 4 drives). Can tolerate the failure of up to two drives simultaneously, offering higher redundancy than RAID-Z1 at the cost of additional storage overhead.
 - **RAID-Z3** A ZFS implementation using triple-parity protection across multiple drives (minimum 5 drives). Can tolerate the failure of up to three drives simultaneously, providing the highest level of redundancy in the RAID-Z family, ideal for large storage arrays where maximum data protection is critical.
@@ -2514,12 +2555,14 @@ Datastore Management
 """"""""""""""""""""
 **Create Datastore Interface:** The Create Datastore dialog enables creation of datastores for virtual machine storage:
 
-**Info tip: Datastore** A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
+.. tip:: 
+   Datastore A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
 
 **Datastore Configuration:**
 
 - **Datastore Name:** Specify unique datastore identifier
-- **Info tip:** Datastore name - Logical identifiers assigned to datastores for easy identification and management within storage systems.
+.. tip::
+    Datastore name - Logical identifiers assigned to datastores for easy identification and management within storage systems.
 - **Pool Selection:** Choose from available ZFS pools (e.g., “zroot”)
 - **Storage Integration:** Integration with existing storage pools
 - **VM Storage:** Optimized for virtual machine storage requirements
@@ -2559,7 +2602,8 @@ Dataset Management
 **Dataset Operations:**
 
 - **Snapshot Creation:** Create point-in-time snapshots with custom naming
-- **Info tip: Snapshot:** A read-only, point-in-time copy of a ZFS dataset or zvol.
+.. tip::
+    Snapshot: A read-only, point-in-time copy of a ZFS dataset or zvol.
 
 **Steps to create a snapshot:**
 
