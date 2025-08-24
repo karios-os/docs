@@ -2860,6 +2860,8 @@ Time Range Selection
 - **Historical Data:** Access historical performance data for trend analysis
 - **Real-time Updates:** Continuous data updates for live monitoring
 
+.. figure:: _static/images/power-monitoring/image_001.png
+   :align: center
 
 CPU Usage Monitoring
 ^^^^^^^^^^^^^^^^^^
@@ -2887,6 +2889,9 @@ CPU Usage Monitoring
 - **Performance Ranges:** Dynamic scaling showing usage from baseline to peak levels
 - **Trend Analysis:** Historical CPU usage trends for performance optimization
 
+.. figure:: _static/images/power-monitoring/image_002.png
+   :align: center
+
 Memory Usage Monitoring
 ^^^^^^^^^^^^^^^^^^
 
@@ -2913,6 +2918,9 @@ Memory Usage Monitoring
 - **Resource Monitoring:** Continuous memory resource utilization tracking
 - **Capacity Analysis:** Memory capacity utilization and availability assessment
 
+.. figure:: _static/images/power-monitoring/image_003.png
+   :align: center
+
 Storage Usage Monitoring
 ^^^^^^^^^^^^^^^^^^
 
@@ -2938,6 +2946,9 @@ Storage Usage Monitoring
 - **Low Utilization:** Visual indication of efficient storage utilization
 - **Capacity Planning:** Data for storage capacity planning and expansion
 - **Performance Baseline:** Baseline storage performance monitoring
+
+.. figure:: _static/images/power-monitoring/image_004.png
+   :align: center
 
 
 Performance Analytics
