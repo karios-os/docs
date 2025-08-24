@@ -627,14 +627,16 @@ Servers progress through distinct stages in the Karios management lifecycle:
    :alt: Server Provisioned
    :align: center
 
-.. figure:: _static/images/baremetal_management/server_management_actions.png
-   :width: 800
-   :alt: Server Management Actions
-   :align: center
+
 
 **Management Actions**
 
 Click on "more" to select actions:
+
+.. figure:: _static/images/baremetal_management/server_management_actions.png
+   :width: 800
+   :alt: Server Management Actions
+   :align: center
 
 - **Configure**: Installing all required services and packages to provide a ready-to-use node
 - **Override BMC Status**: Cleans the existing file system and allows you to reprovision your node
@@ -1348,7 +1350,7 @@ Storage Operations
 For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
 
 SeaweedFS Storage
-^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -1372,6 +1374,10 @@ To configure SeaweedFS Master, follow these steps:
 Navigate to the SeaweedFS section in your Karios interface
 
 Click Configure Master to begin master server setup
+
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
+   :alt: SeaweedFS Master Configuration Navigate
+   :width: 618
 
 **Step 2: Configure Master Server**
 
@@ -1397,15 +1403,12 @@ Click Configure Master to begin master server setup
 
 **Select Node for Master Configuration:** Choose which node will serve as the master server
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
-   :alt: SeaweedFS Master Configuration Navigate
-   :width: 618
 
 .. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration_dialog.png
    :alt: SeaweedFS Master Configuration Navigate
    :width: 618
 
-**Configure Volumes:** Click "Configure Volumes" to manage storage volumes
+**Configure Volumes:** Click "Configure Volumes" to manage storage volumes and select a server IP address from the available list.
 
 .. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration.png
    :alt: SeaweedFS Volume Configuration
@@ -1624,13 +1627,20 @@ Access traditional network bridge switch management
 .. image:: _static/images/control_center/network_management/create_virtual_switch.png
    :alt: Create Switch Button
    :width: 600
+
 To create a new switch
-- **Switch name:** Give a unique alphanumeric name to the switch
+
+**Switch name:** Give a unique alphanumeric name to the switch
+
 .. tip::
    A unique identifier assigned to distinguish and manage individual virtual switches within the Karios network infrastructure.
-- **Select interface:** Select the desired interface for switch configuration
+   
+
+**Select interface:** Select the desired interface for switch configuration
+
 .. tip::
-A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
+   A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
+
 
 Click "Create Network Switch" button
 
@@ -1705,7 +1715,9 @@ In the Network Interfaces tab, like shown below, please navigate to Virtual.
    :width: 600
 
 We have Virtual lans (VLAN's) currently supported and the landing page shows you the metrics associated with VLANs like count, status, VLANs with IP and Tag ID.
+
 In each VLAN, you will get basic information like its MAC address, IP, status, parent interface.(usually the physically interface which is seen above)
+
 Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an option to create a VLAN - 'Add VLAN'
 
 **VLAN Management:** Configure and manage Virtual LANs with comprehensive settings
@@ -1721,38 +1733,50 @@ Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an 
    :width: 600
 
 **VLAN Configuration Process:**
+
 Provide all the information given below and click "Create VLAN"
+
 - **Tag ID Assignment:** Enter VLAN tag ID within valid range (1-4094) with duplicate avoidance
+
 .. tip::
-- **Tag ID Assignment:** A unique numerical identifier (1-4094) assigned to VLAN traffic for network segmentation. The tag is added to Ethernet frames to identify which VLAN the traffic belongs to, enabling logical network separation on shared physical infrastructure.
+   - **Tag ID Assignment:** A unique numerical identifier (1-4094) assigned to VLAN traffic for network segmentation. The tag is added to Ethernet frames to identify which VLAN the traffic belongs to, enabling logical network separation on shared physical infrastructure.
+
 - **Parent NIC Selection:** Choose parent network interface from available interfaces dropdown (Parent network interface is usually from the Network → physical Interfaces, an "active" parent interface is provided).
-Selecting IP
-If you choose to allow Dynamic IP assignment based on the Tag ID you entered, you can skip entering the Static IP address and Subnet Mask. (It will either automatically assign an IP within 15 seconds or asks you to enter Static IP
-While Entering Static IP addresses it is recommended to enter IP as per the tag ID, and the subnet (the recommended formats are entered in the place holders).
+
+- **Selecting IP:** If you choose to allow Dynamic IP assignment based on the Tag ID you entered, you can skip entering the Static IP address and Subnet Mask. (It will either automatically assign an IP within 15 seconds or asks you to enter Static IP While Entering Static IP addresses it is recommended to enter IP as per the tag ID, and the subnet (the recommended formats are entered in the place holders).
+
 .. tip::
-Subnet: A logical subdivision of an IP network that groups devices within a specific IP address range using subnet masks (e.g., 192.168.1.0/24). Subnets organize network traffic and improve security by creating logical network boundaries.
-Dynamic IP: An IP address automatically assigned to a device by a DHCP server from a predefined pool of available addresses. The address can change when the device reconnects or when the lease expires.
-Static IP: A permanently assigned IP address that remains constant and is manually configured on a device. Static IPs provide consistent network identity and are essential for servers and network infrastructure that need predictable addressing.
+   - **Subnet:** A logical subdivision of an IP network that groups devices within a specific IP address range using subnet masks (e.g., 192.168.1.0/24). Subnets organize network traffic and improve security by creating logical network boundaries.
+   - **Dynamic IP:** An IP address automatically assigned to a device by a DHCP server from a predefined pool of available addresses. The address can change when the device reconnects or when the lease expires.
+   - **Static IP:** A permanently assigned IP address that remains constant and is manually configured on a device. Static IPs provide consistent network identity and are essential for servers and network infrastructure that need predictable addressing.
+
 .. note::
-It is recommended that you have your L2 network configurations ready as per your requirements.
+  It is recommended that you have your L2 network configurations ready as per your requirements.
 
 .. image:: _static/images/control_center/network_management/vlan_create_dialog.png
    :alt: VLAN Create Dialog
    :width: 600
 
 **VLAN Management Module:**
+
 - **VLAN Details:** Display VLAN name, Tag ID, MAC address information
 - **Network Configuration:** Show Parent NIC, IPv4 addresses, and MTU settings
+
 .. tip::
-MTU Settings: Maximum Transmission Unit - the largest size of data packet that can be transmitted over a network interface, measured in bytes. Standard Ethernet MTU is 1500 bytes, while jumbo frames can support up to 9000 bytes for improved performance on high-speed networks.
-Status Monitoring: Active status, admin up/down state, and connectivity indicators
-Action Controls: View, Stats, Ping, and Delete functionality for each VLAN
+  MTU Settings: Maximum Transmission Unit - the largest size of data packet that can be transmitted over a network interface, measured in bytes. 
+  
+  Standard Ethernet MTU is 1500 bytes, while jumbo frames can support up to 9000 bytes for improved performance on high-speed networks.
+  
+  Status Monitoring: Active status, admin up/down state, and connectivity indicators
+
+**Action Controls:** View, Stats, Ping, and Delete functionality for each VLAN
 
 .. image:: _static/images/control_center/network_management/vlan_management_module.png
    :alt: VLAN Management Module
    :width: 600
 
 You can perform all the 4 actions mentioned above per VLAN:
+
 **View:** This gives you details such as Parent NIC, MAC address, Status, Virtual Switches connected, Routing Table. (Please scroll down to find them)
 
 .. image:: _static/images/control_center/network_management/vlan_view_details.png
@@ -1760,6 +1784,7 @@ You can perform all the 4 actions mentioned above per VLAN:
    :width: 600
 
 **Stats:** The packets VLAN receives and transmits is displayed here.
+
 .. image:: _static/images/control_center/network_management/vlan_stats.png
    :alt: VLAN Stats
    :width: 600
