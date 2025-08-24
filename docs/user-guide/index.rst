@@ -3064,6 +3064,9 @@ Power Monitoring View
 - **Efficiency Rating:** 80 Plus certification and rating (e.g., “80 Plus: 90, 80 Plus Rating: Platinum”)
 - **Management Actions:** Edit and delete PSU configuration options
 
+.. figure:: _static/images/power-management/image_001.png
+   :align: center
+
 To add a new power supply unit data:
 
 
@@ -3081,6 +3084,9 @@ To add a new power supply unit data:
 - **Status:** Set the current operational status of the power supply
 
 **Step: Complete Configuration** Click **Add** to save the power supply configuration, or **Cancel** to abort the setup
+
+.. figure:: _static/images/power-management/image_002.png
+   :align: center
 
 Server Power Metrics
 ^^^^^^^^^^^^^^^^^^
@@ -3105,6 +3111,9 @@ Server Power Metrics
 - **Core 20:** 31.58% utilization (displayed in orange)
 - **Core 21:** 16.67% utilization (displayed in green)
 - **Idle Cores:** 0% utilization (displayed in light green)
+
+.. figure:: _static/images/power-management/image_003.png
+   :align: center
 
 System Resource Summary
 ^^^^^^^^^^^^^^^^^^
