@@ -199,7 +199,7 @@ After successful login, the system will display the "Access Karios" license vali
    - Drag and drop the file into the designated area
    - Click "click to browse" and select the file from your computer
 
-3. Verify that the file is uploaded correctly – you should see its filename and size displayed
+3. Verify that the file is uploaded correctly, you should see its filename and size displayed
 
 
 .. figure:: _static/images/getting_started/upload_license.png
@@ -2094,7 +2094,7 @@ To access worker node level management, administrators must first navigate to th
 
 1. **Server Selection:** From the datacenter hierarchy in the left sidebar, select the specific worker node you want to manage
 
-2. **Component Access:** Once a worker node is selected, the interface displays “Selected Server” with the server’s name(e.g., k00000)
+2. **Component Access:** Once a worker node is selected, the interface displays “Selected Server” with the server's name(e.g., k00000)
 
 3. **Component Tabs:** The worker node interface provides access to specialized component tabs designed for individual server management
 
@@ -2179,7 +2179,7 @@ Home Dashboard
 System  Information
 ^^^^^^^^^^^^^^^^^^^
 
-**Hardware Information Display:** The System Information section provides comprehensive details about the server’s hardware configuration and specifications.
+**Hardware Information Display:** The System Information section provides comprehensive details about the server's hardware configuration and specifications.
 
 **System Specifications:**
 
@@ -2188,7 +2188,7 @@ System  Information
 - **Network Interface:** Primary network interface details with IP address and MAC address
 
   - **Interface Name:** Network interface identifier (e.g., “bnxt0”)
-  - **IP Address:** Server’s network IP address (e.g., “192.168.116.111”)
+  - **IP Address:** Server's network IP address (e.g., “192.168.116.111”)
   - **MAC Address:** Hardware MAC address (e.g., “7c:c2:55:e8:77:8c”)
 
 .. figure:: _static/images/NodeManagement/Image_071b.png
@@ -2645,7 +2645,7 @@ Storage Pool Management
 
 **ZFS ARC Memory Management**
 
-ARC (Adaptive Replacement Cache) is ZFS’s in-memory caching system. It keeps frequently accessed data and metadata in RAM, improving read performance and reducing disk I/O. The **ARC Memory Management** section shows:
+ARC (Adaptive Replacement Cache) is ZFS's in-memory caching system. It keeps frequently accessed data and metadata in RAM, improving read performance and reducing disk I/O. The **ARC Memory Management** section shows:
 - **Available:** Free memory remaining on the node.
 - **Current:** The ARC size currently allocated.
 - **Recommended:** A suggested ARC allocation, based on system resources.

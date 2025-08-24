@@ -365,7 +365,7 @@ Report Generation
 Scan Execution Explained
 ------------------------
 
-When you start a scan in Karios, the system doesn’t build everything from scratch. Instead, it uses a **pre-downloaded Security Profile** that was installed during setup. This profile contains all the **OVAL databases** and **rules** needed to check your system. Think of it as a ready-made checklist that Karios always has on hand.
+When you start a scan in Karios, the system doesn't build everything from scratch. Instead, it uses a **pre-downloaded Security Profile** that was installed during setup. This profile contains all the **OVAL databases** and **rules** needed to check your system. Think of it as a ready-made checklist that Karios always has on hand.
 
 **Step-by-Step Process:**
 
