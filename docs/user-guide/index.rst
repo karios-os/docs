@@ -184,6 +184,7 @@ After successful login, the system will display the "Access Karios" license vali
 
 7. After successful subscription, a license file will be sent to your registered email address. Download the file from your inbox
 
+
 .. figure:: _static/images/getting_started/license_email.png
       :width: 600
       :alt: Download License File
@@ -200,6 +201,7 @@ After successful login, the system will display the "Access Karios" license vali
 
 3. Verify that the file is uploaded correctly – you should see its filename and size displayed
 
+
 .. figure:: _static/images/getting_started/upload_license.png
       :width: 600
       :alt: Uploaded License File
@@ -212,6 +214,7 @@ After successful login, the system will display the "Access Karios" license vali
 2. The system will process and validate your license file
 3. Upon successful validation, you'll be redirected to the main dashboard
 
+
 .. figure:: _static/images/getting_started/license_success.png
       :width: 600
       :alt: License Validation Success
@@ -223,6 +226,7 @@ After successful login, the system will display the "Access Karios" license vali
 - **File Confirmation**: Successfully uploaded files show filename and file size
 - **Validation Status**: Green checkmark indicates successful file upload
 - **Error Handling**: The system will display errors if the license file is invalid or corrupted
+
 
 .. note::
 
@@ -250,6 +254,7 @@ How to set BMC credentials:
 
 These credentials are essential for various system operations and updates.
 
+
 Post-License Validation and Resource Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -267,6 +272,7 @@ Upon successful license validation, you'll access the Karios Provisioning Center
 
 The License Features modal provides three main tabs for comprehensive license management:
 
+
 **License Dashboard Access**
 
 Access detailed license information through the "License Dashboard" button located in the top banner of the interface.
@@ -281,6 +287,7 @@ Access detailed license information through the "License Dashboard" button locat
 
 The License Features popup provides three main tabs for comprehensive license management:
 
+
 1. **Available Quota Tab**
    
    Monitor available resources and quota allocations
@@ -289,10 +296,10 @@ The License Features popup provides three main tabs for comprehensive license ma
    :alt: Available Quota Tab
    :align: center
 
-.. list-table:: Available Resources Display
+.. list-table::
    :widths: 20 50 30
    :header-rows: 1
-   :align: left
+   :align: center
 
    * - Resource Type
      - Description
@@ -400,6 +407,8 @@ Available Resources Overview:
    4. Download New License: Obtain the updated JSON license file.
    5. Upload and Validate: Upload the new license file and validate it.
    6. Resource Availability: Newly licensed resources become immediately available for allocation.
+
+
 
 Interface Overview
 ~~~~~~~~~~~~~~~~~~
@@ -575,6 +584,7 @@ Servers progress through distinct stages in the Karios management lifecycle:
 - No management capabilities yet established
 - Ready for credential configuration and registration
 
+
 .. figure:: _static/images/baremetal_management/server_discovered.png
    :width: 800
    :alt: Server Discovery
@@ -608,6 +618,7 @@ Servers progress through distinct stages in the Karios management lifecycle:
 - BMC (Baseboard Management Controller) connectivity established
 - Credentials configured and validated
 - Ready for provisioning and configuration operations
+
 
 .. figure:: _static/images/baremetal_management/server_registered.png
    :width: 800
@@ -2057,8 +2068,7 @@ Installation Logs and Details
 - **Rollback Information**: View rollback procedures and restoration details when installations fail
 - **Filter by Status**: Filter installation details by All, Success, Failed, Pending, and In Progress
 
-Advanced Features
-^^^^^^^^^^^^^^^^^^
+**Advanced Features:**
 
 - **Multi-Node Management**: Support for managing updates across multiple nodes simultaneously
 - **Remote Update Fetching**: Automatic fetching of updates from remote servers with status indicators
@@ -2084,6 +2094,9 @@ To access worker node level management, administrators must first navigate to th
 2. **Component Access:** Once a worker node is selected, the interface displays “Selected Server” with the server’s name(e.g., k00000)
 
 3. **Component Tabs:** The worker node interface provides access to specialized component tabs designed for individual server management
+
+.. figure:: _static/images/login/node1.png
+   :width: 600
 
 **Node Component Overview:** The worker node interface provides access to the following key components:
 
@@ -2114,6 +2127,11 @@ Home Dashboard
 
 **Performance Metrics Dashboard:** The Home dashboard displays five key performance indicators in an intuitive card-based layout:
 
+.. figure:: _static/images/nodemanagement/Image_071.png
+   :width: 600
+
+
+
 
 **System Uptime:**
 
@@ -2128,6 +2146,11 @@ Home Dashboard
 - **Performance Optimization:** Indicates how efficiently the server is utilizing resources
 - **Energy Efficiency:** Reflects power consumption relative to performance output
 - **Operational Insights:** Provides guidance for optimization opportunities
+
+.. figure:: _static/images/NodeManagement/Image_071a.png
+   :width: 600
+
+
 
 **CPU Utilization:**
 
@@ -2165,6 +2188,10 @@ System  Information
   - **IP Address:** Server’s network IP address (e.g., “192.168.116.111”)
   - **MAC Address:** Hardware MAC address (e.g., “7c:c2:55:e8:77:8c”)
 
+.. figure:: _static/images/NodeManagement/Image_071b.png
+   :width: 600
+
+
 **System Identity:**
 
 - **Server Identification:** Complete server identification including network configuration
@@ -2191,6 +2218,10 @@ Add-in Card and PCIe Devices
 - **Slot Specifications:** Detailed PCIe lane configuration and capabilities
 - **Expansion Planning:** Assists with hardware expansion planning and compatibility
 
+.. figure:: _static/images/NodeManagement/Image_072.png
+   :width: 600
+
+
 Power Monitoring
 ^^^^^^^^^^^^^^^^
 
@@ -2202,6 +2233,12 @@ Power Monitoring
 - **Energy:** Cumulative energy consumption tracking (e.g., “15250.86 Wh (15.25 kWh)”)
 - **Power:** Instantaneous power consumption (e.g., “38.53 W”)
 - **Voltage:** Current voltage levels (e.g., “114.05 V”)
+
+.. figure:: _static/images/NodeManagement/Image_073.png
+   :width: 600
+
+
+
 
 **Power Management Features:**
 
@@ -2230,6 +2267,11 @@ Storage System Overview
 - **Health Monitoring:** Comprehensive health status for all storage devices
 - **Performance Tracking:** Storage performance metrics and optimization insights
 
+.. figure:: _static/images/NodeManagement/Image_074.png
+   :width: 600
+
+
+
 Network Interface Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -2252,6 +2294,11 @@ Network Interface Management
 
 
 **VLAN Configuration:** VLAN-specific virtual interfaces and their configurations
+
+.. figure:: _static/images/NodeManagement/Image_075.png
+   :width: 600
+
+
 
 Chassis View
 ^^^^^^^^^^^^
@@ -2277,6 +2324,11 @@ Chassis View
 - **Maintenance Planning:** Plan physical maintenance and hardware replacement
 - **Visual Reference:** Provide visual context for hardware troubleshooting
 - **Documentation:** Visual documentation of server configuration and layout
+
+.. figure:: _static/images/NodeManagement/Image_076.png
+   :width: 600
+
+
 
 Node Console Management
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2490,6 +2542,8 @@ Getting Help
    which <command>       # Show path to command executable
    whereis <command>     # Locate command binary, source, and manual
 
+.. figure:: _static/images/user-guide/image_108.png
+   :align: center
 
 ISO Management
 ~~~~~~~~~~~~~~
@@ -2501,6 +2555,11 @@ ISO Management
 - **RAW File Support:** Upload and manage RAW disk image files
 - **File Selection:** Browse and select from available ISO and RAW files
 - **Availability Tracking:** Real-time view of available ISO and RAW files
+
+.. figure:: _static/images/NodeManagement/Image_077.png
+   :width: 600
+
+
 
 **ISO Management Features:**
 
@@ -2515,13 +2574,23 @@ ISO Management
 
 - **Download Section:** FQDN URL input field with download button for remote ISO retrieval
 
+.. figure:: _static/images/NodeManagement/Image_078.png
+   :width: 600
+
 Please provide a valid FQDN url and click “Download”. The downloaded iso can be viewed in the Available ISOs section.
 
 - **Upload Section:** File selection interface with upload button for local ISO/RAW files
 
+.. figure:: _static/images/NodeManagement/Image_079.png
+   :width: 600
+
 Please select the appropriate ISO/RAW files from your system and click “Upload”. The uploaded file will be in the available ISO/Cloud images section.
 
 - **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files
+
+.. figure:: _static/images/NodeManagement/Image_080.png
+   :width: 600
+
 - **Status Indicators:** Visual indicators for file availability and upload status
 - **File Management Controls:** Direct access to file operations and management functions
 
@@ -2546,12 +2615,14 @@ Node Storage Management
 - **Create Datastore:** Create new datastores for virtual machine storage
 - **Storage Pools Dropdown:** Select and manage existing storage pools
 
+.. figure:: _static/images/storage/image_001.png
+   :align: center
 
-.. tip::
+**Info tip:**
 
-Pool (ZFS Pool/zpool) The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
+**Pool (ZFS Pool/zpool)** The top-level storage container in ZFS that consists of one or more virtual devices (vdevs) made up of physical storage devices. A pool aggregates storage capacity and provides the foundation for all ZFS file systems, volumes, and datasets. Pools can be expanded by adding more vdevs and provide redundancy through various RAID-like configurations.
 
-Dataset A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
+**Dataset** A generic term in ZFS that refers to any of the following: file systems, volumes, clones, or snapshots. More commonly, it refers to a ZFS file system - a mountable unit of storage within a pool that can have its own properties, quotas, and snapshots. Datasets are hierarchical and can contain other datasets.
 
 Storage Pool Management
 ^^^^^^^^^^^^^^^^^^
@@ -2571,6 +2642,8 @@ Storage Pool Management
 - **State Indicators:** Real-time pool health status (ONLINE)
 - **Capacity Monitoring:** Visual and numerical capacity utilization tracking
 
+.. figure:: _static/images/storage/image_002.png
+   :align: center
 
 **ZFS ARC Memory Management**
 
@@ -2586,6 +2659,8 @@ ARC (Adaptive Replacement Cache) is ZFS’s in-memory caching system. It keeps f
    - Or decrease it to free RAM for virtual machines and other workloads.
 - To save the settings, click “apply” . Changes apply dynamically
 
+.. figure:: _static/images/storage/image_003.png
+   :align: center
 
 **Impact of Adjustments**
 
@@ -2647,10 +2722,11 @@ Ideal for organizing file-based storage into logical, isolated datasets.
    - **Step 3:** Enable encryption if required and provide a passphrase (min 8 characters)
    - **Step 4:** Click "Create"
 
+.. figure:: _static/images/storage/image_004.png
+   :align: center
 
 
-.. tip::
-    ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
+**Info tip:** ZFS Encryption provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
 
 
 **View Datasets:**
@@ -2662,16 +2738,21 @@ Ideal for organizing file-based storage into logical, isolated datasets.
 
 Click on "View datasets" to display and manage your datasets within the pool.
 
+.. figure:: _static/images/storage/image_005.png
+   :align: center
+
 **Create Zvol:**
 
 - **Purpose:** Create ZFS volumes for block storage
-.. tip:: 
-   Block Level Storage refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
+- **Info tip: Block Level Storage** refers to a data storage method where data is stored and accessed in fixed-size blocks (typically 512 bytes to several KB), with each block having a unique address that the operating system can directly access.
 - **Functionality:** Block-level storage for virtual machines and applications
 - **Configuration:** Specify volume name and size with unit selection (GB, TB)
 - **Usage:** Ideal for virtual machine storage and database applications
 
 Provide an appropriate name for the zvol and select “Create Zvol”
+
+.. figure:: _static/images/storage/image_006.png
+   :align: center
 
 
 **Delete Pool:**
@@ -2683,8 +2764,10 @@ Provide an appropriate name for the zvol and select “Create Zvol”
 
 Please navigate to the appropriate pool and select "Delete Pool" 
 
-.. warning:: 
-   Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
+**Warning:** Performing this action will delete all the datasets, volumes, snapshots and it cannot reversed. 
+
+.. figure:: _static/images/storage/image_007.png
+   :align: center
 
 
 ZFS Pool Creation
@@ -2715,7 +2798,8 @@ ZFS Pool Creation
 - **Step 2:** Select the desired RAID type and available disks based on the RAID type.
 - **Step 3:** Click “Create ZPool” to provision the ZFS pool.
 
-.. tip::
+**Info tip:**
+
 - **RAID-Z1** A ZFS implementation similar to RAID-5, using single-parity protection across multiple drives (minimum 3 drives). Can tolerate the failure of one drive while maintaining data integrity, providing a balance between storage capacity and redundancy.
 - **RAID-Z2** A ZFS implementation similar to RAID-6, using double-parity protection across multiple drives (minimum 4 drives). Can tolerate the failure of up to two drives simultaneously, offering higher redundancy than RAID-Z1 at the cost of additional storage overhead.
 - **RAID-Z3** A ZFS implementation using triple-parity protection across multiple drives (minimum 5 drives). Can tolerate the failure of up to three drives simultaneously, providing the highest level of redundancy in the RAID-Z family, ideal for large storage arrays where maximum data protection is critical.
@@ -2727,14 +2811,12 @@ Datastore Management
 """"""""""""""""""""
 **Create Datastore Interface:** The Create Datastore dialog enables creation of datastores for virtual machine storage:
 
-.. tip:: 
-   Datastore A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
+**Info tip: Datastore** A logical storage container that abstracts and manages underlying physical storage resources (hard drives, SSDs, storage arrays) into a unified pool of storage capacity.
 
 **Datastore Configuration:**
 
 - **Datastore Name:** Specify unique datastore identifier
-.. tip::
-    Datastore name - Logical identifiers assigned to datastores for easy identification and management within storage systems.
+- **Info tip:** Datastore name - Logical identifiers assigned to datastores for easy identification and management within storage systems.
 - **Pool Selection:** Choose from available ZFS pools (e.g., “zroot”)
 - **Storage Integration:** Integration with existing storage pools
 - **VM Storage:** Optimized for virtual machine storage requirements
@@ -2752,6 +2834,9 @@ Datastore Management
 - **Step 2:** Select the pool from the available list
 - **Step 3:** click "Create Datastore"
 
+.. figure:: _static/images/storage/image_008.png
+   :align: center
+
 Dataset Management
 """"""""""""""""""
 
@@ -2764,6 +2849,9 @@ Dataset Management
 - **Compression Settings:** ZFS compression configuration (lz4 ON/OFF)
 - **Deduplication Settings:** Data deduplication configuration (ON/OFF)
 
+.. figure:: _static/images/storage/image_009.png
+   :align: center
+
 **Dataset Types and Filtering:**
 
 - **All Types:** Display all dataset types in unified view
@@ -2771,11 +2859,13 @@ Dataset Management
 - **Volume:** Block-based datasets for virtual machine storage
 - **Snapshot:** Point-in-time snapshots for data protection
 
+.. figure:: _static/images/storage/image_010.png
+   :align: center
+
 **Dataset Operations:**
 
 - **Snapshot Creation:** Create point-in-time snapshots with custom naming
-.. tip::
-    Snapshot: A read-only, point-in-time copy of a ZFS dataset or zvol.
+- **Info tip: Snapshot:** A read-only, point-in-time copy of a ZFS dataset or zvol.
 
 **Steps to create a snapshot:**
 
@@ -2783,7 +2873,13 @@ Dataset Management
 - **Step 2:** Give an appropriate name
 - **Step 3:** Click on the green icon to take a snapshot.
 
+.. figure:: _static/images/storage/image_011.png
+   :align: center
+
 **Dataset Deletion:** Remove datasets with confirmation prompts
+
+.. figure:: _static/images/storage/image_012.png
+   :align: center
 
 - **Snapshot Management:** Manage snapshot lifecycle and retention
 - **Hierarchical Organization:** Organized dataset structure with parent-child relationships
@@ -2839,6 +2935,8 @@ Time Range Selection
 - **Historical Data:** Access historical performance data for trend analysis
 - **Real-time Updates:** Continuous data updates for live monitoring
 
+.. figure:: _static/images/power-monitoring/image_001.png
+   :align: center
 
 CPU Usage Monitoring
 ^^^^^^^^^^^^^^^^^^
@@ -2866,6 +2964,9 @@ CPU Usage Monitoring
 - **Performance Ranges:** Dynamic scaling showing usage from baseline to peak levels
 - **Trend Analysis:** Historical CPU usage trends for performance optimization
 
+.. figure:: _static/images/power-monitoring/image_002.png
+   :align: center
+
 Memory Usage Monitoring
 ^^^^^^^^^^^^^^^^^^
 
@@ -2892,6 +2993,9 @@ Memory Usage Monitoring
 - **Resource Monitoring:** Continuous memory resource utilization tracking
 - **Capacity Analysis:** Memory capacity utilization and availability assessment
 
+.. figure:: _static/images/power-monitoring/image_003.png
+   :align: center
+
 Storage Usage Monitoring
 ^^^^^^^^^^^^^^^^^^
 
@@ -2917,6 +3021,9 @@ Storage Usage Monitoring
 - **Low Utilization:** Visual indication of efficient storage utilization
 - **Capacity Planning:** Data for storage capacity planning and expansion
 - **Performance Baseline:** Baseline storage performance monitoring
+
+.. figure:: _static/images/power-monitoring/image_004.png
+   :align: center
 
 
 Performance Analytics
@@ -3032,6 +3139,9 @@ Power Monitoring View
 - **Efficiency Rating:** 80 Plus certification and rating (e.g., “80 Plus: 90, 80 Plus Rating: Platinum”)
 - **Management Actions:** Edit and delete PSU configuration options
 
+.. figure:: _static/images/power-management/image_001.png
+   :align: center
+
 To add a new power supply unit data:
 
 
@@ -3049,6 +3159,9 @@ To add a new power supply unit data:
 - **Status:** Set the current operational status of the power supply
 
 **Step: Complete Configuration** Click **Add** to save the power supply configuration, or **Cancel** to abort the setup
+
+.. figure:: _static/images/power-management/image_002.png
+   :align: center
 
 Server Power Metrics
 ^^^^^^^^^^^^^^^^^^
@@ -3073,6 +3186,9 @@ Server Power Metrics
 - **Core 20:** 31.58% utilization (displayed in orange)
 - **Core 21:** 16.67% utilization (displayed in green)
 - **Idle Cores:** 0% utilization (displayed in light green)
+
+.. figure:: _static/images/power-management/image_003.png
+   :align: center
 
 System Resource Summary
 ^^^^^^^^^^^^^^^^^^
@@ -3161,6 +3277,9 @@ Network Management
 
 **Network Interface Management:** The network management interface features dedicated sections for interface monitoring and switch configuration, providing granular control over network connectivity and virtual network topology.
 
+   .. figure:: _static/images/networking/Image-node-001.png
+      :width: 600
+
 Network Interface Configuration
 ^^^^^^^^^^^^^^^^^^
 
@@ -3173,6 +3292,9 @@ Network Interface Configuration
 - Secondary network interface without switch association
 
 - Additional network interface available for configuration
+   
+   .. figure:: _static/images/networking/Image-node-002.png
+      :width: 600
 
 **Interface Information Display:**
 
@@ -3225,6 +3347,9 @@ Switch Creation and Configuration
 
 - **Creation Controls:** Cancel and Create Switch action buttons
 
+   .. figure:: _static/images/networking/Image-node-004.png
+      :width: 600
+
 **Switch Creation Process:**
 
 - **Name Assignment:** Enter descriptive switch name in the text field
@@ -3236,6 +3361,9 @@ Switch Creation and Configuration
 - **Switch Creation:** Click “Create Switch” button to deploy new switch
 
 - **Status Verification:** Confirm successful switch creation and activation
+
+   .. figure:: _static/images/networking/Image-node-003.png
+      :width: 600 
 
 The switch management interface displays all configured virtual switches.
 
@@ -3265,6 +3393,8 @@ Firewall Management
 
 **Firewall Rule Management:** The firewall interface features a code-based rule editor with syntax highlighting, real-time validation, and safety mechanisms to prevent system lockout through configuration errors.
 
+   .. figure:: _static/images/networking/Image-pf-002.png
+      :width: 600 
 
 Packet Filter Rules Interface
 ^^^^^^^^^^^^^^^^^^
@@ -3620,6 +3750,8 @@ Node Log Management
 
 **Log Viewer Interface:** The Log Viewer displays system logs in a structured format with filtering options, search capabilities, and export tools for efficient log management and analysis.
 
+   .. figure:: _static/images/networking/Image-node-Log-001.png
+      :width: 600 
 
 Log Viewer Dashboard
 ^^^^^^^^^^^^^^^^^^
@@ -3671,6 +3803,9 @@ Log Filtering and Search
 
 - **Flexible Matching:** Partial and full text search capabilities
 
+   .. figure:: _static/images/networking/Image-node-Log-002.png
+      :width: 600 
+
 Log Export and Management
 ^^^^^^^^^^^^^^^^^^
 
@@ -3707,6 +3842,9 @@ The "Setup VM" button provides access to virtual machine creation with two disti
 - **Standard VM Setup**: Traditional virtual machine configuration for FreeBSD, Windows 10, and Ubuntu
 - **Cloud-Init Setup**: Automated VM deployment with cloud-init support for FreeBSD and Ubuntu
 
+.. figure:: _static/images/vmcreation/vmsetup.png
+   :width: 600
+
 Standard VM Setup
 ~~~~~~~~~~~~~~~~~
 
@@ -3719,11 +3857,17 @@ Standard VM Setup
 5. **Network Configuration**: Configure network connectivity
 6. **VM Creation**: Finalize and create the virtual machine
 
+.. figure:: _static/images/vmcreation/Image_112.png
+   :width: 600
+
 **Basic VM Configuration**
 
 - **VM Name**: Specify a unique name for the virtual machine
 - **Loader Configuration**: Select the appropriate boot loader for the operating system
 - **Operating System**: Choose from supported OS options (FreeBSD, Windows 10, Ubuntu Linux)
+
+.. figure:: _static/images/vmcreation/Image_113.png
+   :width: 600
 
 **Resource Allocation**
 
@@ -3733,16 +3877,25 @@ Configure virtual machine resources based on requirements:
 - **Memory**: Allocate RAM from available server memory
 - **CPU Sockets**: Configure CPU socket topology
 
+.. figure:: _static/images/vmcreation/Image_114.png
+   :width: 600
+
 **Storage Configuration**
 
 - **Storage Pool**: Select from available storage pools
 - **Disk Size**: Specify virtual disk size based on requirements
+
+.. figure:: _static/images/vmcreation/Image_115.png
+   :width: 600
 
 **Network Configuration**
 
 - **Network Switch**: Select virtual network switch
 - **Network Driver**: Choose network driver type for optimal performance
 - **Network Adapter**: Configure virtual network adapter settings
+
+.. figure:: _static/images/vmcreation/Image_116.png
+   :width: 600
 
 Cloud-Init VM Setup
 ~~~~~~~~~~~~~~~~~~~
@@ -3768,6 +3921,52 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 6. **Network Configuration**: Set network parameters (DHCP or static)
 7. **VM Creation**: Deploy the cloud-init enabled virtual machine
 
+
+.. figure:: _static/images/vmcreation/Image_118.png
+   :width: 600
+   :alt: Cloud-Init Basic Configuration
+
+
+**VM Basic Configuration**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Step 1: Select Server and Basic VM Details**
+
+- **Server Selection**: Choose the target server for VM deployment.
+- **VM Name**: Enter a unique name for your virtual machine.
+- **Operating System**: Select the desired OS (FreeBSD or Ubuntu).
+
+.. note::
+   Cloud-Init setup only supports raw disk images (``.raw`` format).
+
+.. figure:: _static/images/vmcreation/Image_118.png
+   :width: 600
+   :alt: Cloud-Init Basic Configuration
+
+**Step 2: Storage and Network Configuration**
+
+- **Storage Pool**: Select the storage pool for the VM's disk.
+- **Disk Size**: Specify the size of the virtual disk.
+- **Network Switch**: Choose the network switch for VM connectivity.
+
+.. figure:: _static/images/vmcreation/Image_119.png
+   :width: 600
+   :alt: Cloud-Init Storage and Network Configuration
+
+**Step 3: Hardware Configuration**
+
+- **CPU Cores**: Allocate the number of CPU cores.
+- **Memory**: Set the amount of RAM for the VM.
+
+.. figure:: _static/images/vmcreation/Image_120.png
+   :width: 600
+   :alt: Cloud-Init Hardware Configuration
+
+
+
+
+
+
 **User Account Configuration**
 
 Cloud-Init VMs require initial user account setup:
@@ -3775,6 +3974,9 @@ Cloud-Init VMs require initial user account setup:
 - **Username**: Primary user account for the VM
 - **Password**: Secure password for user account authentication
 - **SSH Public Key (Optional)**: Add SSH public key for passwordless authentication
+
+.. figure:: _static/images/vmcreation/Image_121.png
+   :width: 600
 
 SSH Key Authentication (Enhanced Security)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3819,6 +4021,10 @@ For enhanced security, configure SSH key authentication for your virtual machine
 - Static IP Address: Manually specify IP address
 - Subnet Mask: Configure network subnet mask
 - Domain Name: Set domain name for the VM
+
+.. figure:: _static/images/vmcreation/Image_122.png
+   :width: 600
+   :alt: Network Configuration Options
 
 Security Best Practices
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -3877,14 +4083,58 @@ Once a VM is created, the VM management interface provides comprehensive control
 - **Snapshots Tab**: Create and manage VM snapshots
 - **Activity Logs Tab**: View VM operation history and logs
 
+.. figure:: _static/images/vmcreation/Image_123.png
+   :width: 600
+   :alt: VM Management Interface
+
 **VM Hardware Configuration**
 
 The Hardware tab allows dynamic modification of VM specifications:
 
 - **VM Details Configuration**: Adjust CPU and memory allocation
+
+.. figure:: _static/images/vmcreation/Image_124.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
 - **CD/DVD Drive Management**: Attach ISO images for installation or boot
+
+.. figure:: _static/images/vmcreation/Image_125.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
 - **Network Switch Management**: Configure network interfaces and switches
-- **Virtual Disk Management**: Attach, detach, and manage virtual disks
+.. figure:: _static/images/vmcreation/Image_126.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+.. figure:: _static/images/vmcreation/Image_127.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+**Update: Modify existing network configurations**
+.. figure:: _static/images/vmcreation/Image_128.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+
+- **Virtual Disk Management**: Attach virtual disks
+
+.. figure:: _static/images/vmcreation/Image_129.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+**Detach**: Remove virtual disks
+.. figure:: _static/images/vmcreation/Image_130.png
+   :width: 600
+   :alt: VM Hardware Configuration
+
+**Reassig**: Remove the virtual disk from the current vm and assign it to some other available vm in the node.
+
+.. figure:: _static/images/vmcreation/Image_131.png
+   :width: 600
+
+**Delete**: Delete the unused disk permanently
 
 **VM Power Operations**
 
@@ -3908,6 +4158,9 @@ The Console tab provides direct browser-based access to the VM's operating syste
 - **Direct Console Access**: Interact with the VM through a web-based console interface
 - **Remote Management**: Perform administrative tasks and troubleshooting directly from your browser
 
+.. figure:: _static/images/vmcreation/Image_132.png
+   :width: 600
+
 VM Snapshot Management
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -3917,6 +4170,9 @@ The Snapshots tab enables comprehensive snapshot operations:
 - **Snapshot Rollback**: Restore the VM to a previous snapshot
 - **Snapshot Management**: View, delete, and organize existing snapshots
 - **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
+
+.. figure:: _static/images/vmcreation/Image_133.png
+   :width: 600
 
 VM Monitoring
 ~~~~~~~~~~~~~
@@ -4016,11 +4272,17 @@ API Authentication and Usage Guide
         "password": "your_password"
       }
 
+   .. figure:: _static/images/user-guide/Image_137.png
+      :width: 600      
+
 3. **Retrieve Access Token**
 
    - Send the login request
    - The response will contain an access token
    - Copy the access token from the response body
+
+   .. figure:: _static/images/user-guide/Image_138.png
+      :width: 600    
 
 4. **Prepare API Request in Postman**
 
@@ -4029,6 +4291,9 @@ API Authentication and Usage Guide
    - Select "Bearer Token" as the authorization type
    - Paste the copied access token in the token field
 
+   .. figure:: _static/images/user-guide/Image_139.png
+      :width: 600    
+
 5. **Configure API Request**
 
    - Set the appropriate HTTP method (GET, POST, PUT, DELETE)
@@ -4036,10 +4301,16 @@ API Authentication and Usage Guide
    - Add any required headers
    - Prepare request body if needed (for POST/PUT requests)
 
+   .. figure:: _static/images/user-guide/Image_140.png
+      :width: 600    
+
 6. **Send the Request**
 
    - Click "Send" to execute the API call
    - Review the response status and body
+
+   .. figure:: _static/images/user-guide/Image_141.png
+      :width: 600    
 
 Swagger API Documentation Guide
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4077,10 +4348,15 @@ Upon accessing the Swagger interface, you'll see:
 
    Find the User management Section and locate the "Login" endpoint
 
+   .. figure:: _static/images/user-guide/Image_142.png
+      :width: 600       
+
 2. **Execute the Login Request**
 
    - Click "Try it out" button on the login endpoint
    - Enter Request Body with your credentials:
+   .. figure:: _static/images/user-guide/Image_143.png
+      :width: 600   
 
    .. code-block:: json
 
@@ -4090,7 +4366,13 @@ Upon accessing the Swagger interface, you'll see:
       }
 
    - Click "Execute" to send the login request
+   .. figure:: _static/images/user-guide/Image_144.png
+      :width: 600     
+
    - Review the Response in the response section
+
+   .. figure:: _static/images/user-guide/Image_145.png
+      :width: 600   
 
 **Step 3: Configure Bearer Token Authorization**
 
@@ -4099,16 +4381,29 @@ Upon accessing the Swagger interface, you'll see:
    - Find the "Authorize" button at the top of the Swagger interface
    - Click the "Authorize" button to open the authorization dialog
 
+   .. figure:: _static/images/user-guide/Image_146.png
+      :width: 600   
+
 2. **Configure Bearer Token Authentication**
 
    - Select "Bearer Auth" section
    - Enter the Bearer Token:
+
+   .. figure:: _static/images/user-guide/Image_147.png
+      :width: 600   
 
    .. code-block:: text
 
       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
    - Click "Authorize" to save the configuration
+
+   .. figure:: _static/images/user-guide/Image_148.png
+    :width: 600   
+
+   .. figure:: _static/images/user-guide/Image_149.png
+      :width: 600   
+
 
 **Step 4: Test API Endpoints**
 
@@ -4117,8 +4412,21 @@ With authentication configured, you can now test all available API endpoints:
 1. **Select an Endpoint**: Choose the desired API endpoint from the list
 2. **Review Endpoint Information**: HTTP Method, URL Path, Parameters, Request Body, Response Codes
 3. **Click "Try it out"**: This enables the interactive testing interface
+
+   .. figure:: _static/images/user-guide/Image_151.png
+      :width: 600   
+
+
 4. **Configure Request Parameters**: Fill in required path variables, query parameters, request body
+
+
 5. **Execute the Request**: Click the "Execute" button
+
+   .. figure:: _static/images/user-guide/Image_152.png
+      :width: 600   
+
+   .. figure:: _static/images/user-guide/Image_153.png
+      :width: 600   
 
 **Best Practices**
 

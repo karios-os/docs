@@ -145,9 +145,9 @@ config.local.py
 *.7z
 
 # Generated documentation formats (optional - uncomment if you don't want to track these)
-# docs/_build/html/
-# docs/_build/latex/
-# docs/_build/pdf/
+docs/_build/html/
+docs/_build/latex/
+docs/_build/pdf/
 # *.pdf
 
 # Keep empty directories with .gitkeep files
