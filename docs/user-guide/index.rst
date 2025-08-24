@@ -70,7 +70,7 @@ To access the Karios management interface, open a supported web browser (Chrome 
       :width: 600
       :alt: Login Process
 
-      Figure 1: Login Process
+      Figure : Login Process
 
 **New User Registration**
 
@@ -100,7 +100,7 @@ To access the Karios management interface, open a supported web browser (Chrome 
       :width: 600
       :alt: New User Registration
 
-      Figure 2: New User Registration
+      Figure : New User Registration
 
 **Account Management & Security**
 
@@ -129,7 +129,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: License Request Portal
 
-      Figure 3: License Request Portal
+      Figure : License Request Portal
 
 **Step 2: Generate License File**
 
@@ -140,7 +140,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: Proceed After Payment 
 
-      Figure 4: Proceed After Payment
+      Figure : Proceed After Payment
 
 3. Locate the "License Token" or "Token" input field and paste the copied license token
 
@@ -156,7 +156,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: Enter User Details
 
-      Figure 5: Enter User Details
+      Figure : Enter User Details
 
 4. Review the contact details and click "proceed"
 
@@ -164,7 +164,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: Click Proceed
 
-      Figure 6: Click Proceed
+      Figure : Click Proceed
 
 5. Enter the CAPTCHA code and click "Start Trial"
 
@@ -172,7 +172,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: Enter CAPTCHA
 
-      Figure 7: Enter CAPTCHA
+      Figure : Enter CAPTCHA
 
 6. A confirmation page appears, indicating that you have successfully subscribed to the plan
 
@@ -180,7 +180,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: License Confirmation
 
-      Figure 8: License Confirmation
+      Figure : License Confirmation
 
 7. After successful subscription, a license file will be sent to your registered email address. Download the file from your inbox
 
@@ -188,7 +188,7 @@ After successful login, the system will display the "Access Karios" license vali
       :width: 600
       :alt: Download License File
 
-      Figure 9: Download License File
+      Figure : Download License File
 
 **Step 3: Upload License File**
 
@@ -200,11 +200,23 @@ After successful login, the system will display the "Access Karios" license vali
 
 3. Verify that the file is uploaded correctly – you should see its filename and size displayed
 
+.. figure:: _static/images/getting_started/upload_license.png
+      :width: 600
+      :alt: Uploaded License File
+
+      Figure : Uploaded License File
+
 **Step 4: Validate License**
 
 1. Click the "Validate license" button
 2. The system will process and validate your license file
 3. Upon successful validation, you'll be redirected to the main dashboard
+
+.. figure:: _static/images/getting_started/license_success.png
+      :width: 600
+      :alt: License Validation Success
+
+      Figure : License Validation Success
 
 **License Information Display**
 
@@ -216,13 +228,27 @@ After successful login, the system will display the "Access Karios" license vali
 
    It is critical to set BMC credentials for the node to enable fetching system updates and performing essential system calls.
 
-   Steps to set BMC credentials:
+**Step 5: Set BMC Credentials**
+How to set BMC credentials:
 
-   1. Navigate to the Provisioning Center, located at the top of the control node interface.
-   2. Edit the first node, which is automatically added during bootstrap.
-   3. Update the node with the actual BMC credentials.
+1. Navigate to the Provisioning Center, located at the top of the control node interface.
+2. Edit the first node, which is automatically added during bootstrap.
 
-   These credentials are required for various system operations and updates.
+.. figure:: _static/images/getting_started/set_bmc_credentials.png
+      :width: 600
+      :alt: BMC Credentials
+
+      Figure : Navigate to set BMC Credentials
+
+3. Update the node with the actual BMC credentials and click save.
+
+.. figure:: _static/images/getting_started/update_bmc_credentials.png
+      :width: 600
+      :alt: BMC Credentials
+
+      Figure : Update BMC Credentials
+
+These credentials are essential for various system operations and updates.
 
 Post-License Validation and Resource Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -241,9 +267,53 @@ Upon successful license validation, you'll access the Karios Provisioning Center
 
 The License Features modal provides three main tabs for comprehensive license management:
 
+**License Dashboard Access**
+
+Access detailed license information through the "License Dashboard" button located in the top banner of the interface.
+
+.. image:: _static/images/getting_started/license_dashboard_access.png
+   :alt: License Dashboard Interface
+   :align: center
+
+   Figure : License Dashboard Interface   
+
+**License Features Management**
+
+The License Features popup provides three main tabs for comprehensive license management:
+
 1. **Available Quota Tab**
    
    Monitor available resources and quota allocations
+
+.. figure:: _static/images/getting_started/available_quota.png
+   :alt: Available Quota Tab
+   :align: center
+
+.. list-table:: Available Resources Display
+   :widths: 20 50 30
+   :header-rows: 1
+   :align: left
+
+   * - Resource Type
+     - Description
+     - Example Allocation
+   * - Sockets
+     - CPU sockets available for cluster-wide allocation
+     - x remaining
+   * - Power
+     - Power management feature availability
+     - x remaining
+   * - Security
+     - Security feature availability
+     - x remaining
+
+Available Resources Overview:
+
+- **Total Sockets**: Total CPU sockets licensed for the cluster
+- **Used Sockets**: Number of CPU sockets currently allocated to nodes
+- **Available Sockets**: Remaining CPU sockets available for allocation
+- **Power Features**: Total, used, and available Power features
+- **Security Features**: Total, used, and available Security features
 
 2. **Usage Tab**
    
@@ -251,6 +321,11 @@ The License Features modal provides three main tabs for comprehensive license ma
    
    - **Sockets Usage**: Total CPU sockets currently in use across the cluster
    - **Usage Display**: Shows actual socket consumption
+
+   .. figure:: _static/images/getting_started/license_usage.png
+      :alt: Usage Display
+      :align: center
+
 
 3. **Update License Tab**
    
@@ -260,6 +335,9 @@ The License Features modal provides three main tabs for comprehensive license ma
    - **Portal Access**: Use token at payment portal to generate updated license
    - **File Upload**: Upload new JSON license file for updates
    - **License Processing**: System processes and applies license updates
+   .. figure:: _static/images/getting_started/update_license.png
+      :alt: Update License Tab
+      :align: center
 
    **Node-Level License Management**
 
@@ -267,12 +345,25 @@ The License Features modal provides three main tabs for comprehensive license ma
 
    Each registered node displays an “Add licensed features” button, allowing you to allocate specific features to individual nodes.
 
+   .. figure:: _static/images/getting_started/add_licensed_features.png
+      :alt: Add Licensed Features
+      :align: center
+
    **License Management for Nodes**
 
    Access node-level license management via the “License Management - [node-name]” modal. This modal provides two main tabs:
 
    - **Currently Used Tab**: Displays the current resource allocation for the selected node.
+
+   .. figure:: _static/images/getting_started/currently_used.png
+      :alt: Currently Used Tab
+      :align: center
+
    - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
+
+   .. figure:: _static/images/getting_started/add_license_features.png
+      :alt: Add Features Tab
+      :align: center
 
    If all resources have been allocated, the interface will display “No features available to add.”
 
@@ -282,7 +373,7 @@ The License Features modal provides three main tabs for comprehensive license ma
    The system continuously monitors license status and resource allocation:
 
    - **License Status Indicators**: Proactive notifications show days remaining until license expiration.
-   - **License Dashboard Access**: Quickly access detailed license information from the dashboard.
+   - **License Dashboard Access**: Quickly access detailed license information from the dashboard
    - **Resource Tracking**: Monitor real-time resource usage versus available quota.
 
    Resource Allocation Management
@@ -301,7 +392,7 @@ The License Features modal provides three main tabs for comprehensive license ma
    - **Feature Upgrades**: When additional resources or features are needed.
    - **Capacity Expansion**: When adding new nodes that require licensing.
 
-   **Renewal Steps** (see “Update License Tab” in section 3.1.3):
+   **Renewal Steps** (Please Refer to “Update License Tab”):
 
    1. Access the Update License tab: Navigate to License Features → Update License.
    2. Generate Token: Copy the system-generated token.
@@ -329,12 +420,24 @@ After license validation and resource allocation, users have access to the follo
 - **Stats**: System statistics and performance metrics
 - **Releases**: System release and update management
 
+.. figure:: _static/images/getting_started/navigation_elements.png
+   :width: 600
+   :alt: Navigation Elements
+   :align: center
+
+
 **System Status Indicators**
 
 - **Discovered**: Number of discovered hardware components
 - **Registered**: Number of registered systems
 - **Provisioned**: Number of provisioned resources
 - **Configured**: Number of configured systems
+
+.. figure:: _static/images/getting_started/system_status_indicators.png
+   :width: 600
+   :alt: System Status Indicators
+   :align: center
+
 
 **Node Management**
 
@@ -343,6 +446,11 @@ After license validation and resource allocation, users have access to the follo
 - **Add-in Cards**: PCIe device information and availability
 - **Power Management**: Power consumption and efficiency metrics
 - **Network Interfaces**: Physical and virtual interface management
+
+.. figure:: _static/images/getting_started/node_management.png
+   :width: 600
+   :alt: Node Management
+   :align: center
 
 Basic Operations
 ~~~~~~~~~~~~~~~~
@@ -431,7 +539,12 @@ Datacenter Management
 ~~~~~~~~~~~~~~~~~~~~~
 
 - **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
-- **Control Node Overview**: The selected datacenter displays the active control node and provides access to all managed infrastructure components
+- **Control Center Overview**: The selected datacenter displays the active control node and provides access to all managed infrastructure components
+
+.. figure:: _static/images/web_interface_management/control_center_overview.png
+   :width: 800
+   :alt: Control Center Overview
+   :align: center
 
 Bare Metal Server Management
 ----------------------------
@@ -445,6 +558,12 @@ Karios provides automated bare metal server discovery through network scanning:
 2. **Initiate Scan**: Click the "Scan" button to begin automatic server discovery
 3. **Discovery Results**: Discovered servers appear in the "Bare Metal Discovery" section
 
+.. figure:: _static/images/baremetal_management/server_discovery.png
+   :width: 800
+   :alt: Server Discovery
+   :align: center
+
+
 Server Lifecycle Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -456,6 +575,11 @@ Servers progress through distinct stages in the Karios management lifecycle:
 - No management capabilities yet established
 - Ready for credential configuration and registration
 
+.. figure:: _static/images/baremetal_management/server_discovered.png
+   :width: 800
+   :alt: Server Discovery
+   :align: center
+
 **Stage 2: Creds Set**
 - Intermediate stage after credential configuration
 - BMC credentials have been set but registration not yet complete
@@ -464,14 +588,31 @@ Servers progress through distinct stages in the Karios management lifecycle:
 **Steps to set credentials:**
 
 1. Click on the highlighted edit icon for your discovered node
+
+.. figure:: _static/images/baremetal_management/server_edit_icon.png
+   :width: 800
+   :alt: Server Edit Icon
+   :align: center
+
 2. Enter the BMC credentials for your node
-3. Click register to complete the registration process
+3. Click save to complete the registration process
+
+.. figure:: _static/images/baremetal_management/server_edit_and_save_credentials.png
+   :width: 800
+   :alt: Server Edit and Save Credentials
+   :align: center
+
 
 **Stage 3: Registered**
 - Servers added to the Karios management system
 - BMC (Baseboard Management Controller) connectivity established
 - Credentials configured and validated
 - Ready for provisioning and configuration operations
+
+.. figure:: _static/images/baremetal_management/server_registered.png
+   :width: 800
+   :alt: Server Registered
+   :align: center
 
 **Stage 4: Provisioned and Configured**
 - Management credentials are configured
@@ -480,6 +621,16 @@ Servers progress through distinct stages in the Karios management lifecycle:
 - Operating system is installed and configured
 - Server is ready for workload deployment
 - Full management capabilities are available
+
+.. figure:: _static/images/baremetal_management/server_click_more_after_registered.png
+   :width: 800
+   :alt: Server Provisioned
+   :align: center
+
+.. figure:: _static/images/baremetal_management/server_management_actions.png
+   :width: 800
+   :alt: Server Management Actions
+   :align: center
 
 **Management Actions**
 
@@ -557,7 +708,8 @@ Component Navigation Process
 - **Stats**: Performance metrics and monitoring
 - **Releases**: System updates and patch management
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/control_center_management.png
+   :width: 800
    :alt: Control Node Interface
 
 **Navigation Best Practices:**
@@ -574,7 +726,7 @@ Liquid Cooling Management Operations (Future Scope - Not available for Single No
 **Liquid Cooling Interface:** The interface provides two main management categories:
 Immersion Cooling and Rack Level.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/liquid_cooling_management.png
    :alt: Liquid Cooling Interface
    :width: 925px
    :height: 283px
@@ -591,7 +743,7 @@ Immersion Cooling Tab
 - **API Token**: Enter your API token for authentication (e.g., 57de59edd5ee56af1946f39a55e17281e6c7aaee)
 - **Save Configuration**: Click "Save Configuration" to apply settings
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_configure_netbox.png
    :alt: Netbox Configuration
    :width: 679px
    :height: 405px
@@ -602,7 +754,7 @@ Immersion Cooling Tab
 - **Physical Specifications**: View rack dimensions, device counts, and power requirements
 - **Rack Management**: Access rack-level cooling controls and monitoring
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_rack_selection.png
    :alt: Rack Selection
    :width: 913px
    :height: 396px
@@ -622,15 +774,9 @@ Immersion Cooling Tab
 - **Flow Status**: Real-time status of coolant circulation
 - **Temperature Zones**: Cold water (blue) and warm water (red) flow indicators
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_coolant_flow_management.png
    :alt: Coolant Flow Management
-   :width: 925px
-   :height: 439px
-
-.. image:: path/to/image
-   :alt: Coolant Flow Status
-   :width: 928px
-   :height: 499px
+   :width: 800
 
 **Server Information Display:** Individual server information within the immersion cooling system:
 
@@ -638,82 +784,72 @@ Immersion Cooling Tab
 - **Server Identification**: Unit positions (U1, U2, U3, etc.)
 - **Temperature Monitoring**: Per-server temperature monitoring
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_server_information.png
    :alt: Server Information
-   :width: 919px
-   :height: 475px
+   :width: 800
 
 **Monitoring Controls:**
 
 - **Sensors Dropdown**: Select "Sensors" to view different available sensors
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_monitoring_controls.png
    :alt: Monitoring Controls
-   :width: 931px
-   :height: 487px
+   :width: 800
 
 **Sensor Types and Monitoring:** The system provides comprehensive sensor monitoring with 8 different sensor types:
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_sensor_types.png
    :alt: Sensor Types Overview
-   :width: 934px
-   :height: 459px
+   :width: 800
 
 **Flame Sensor:** Fire detection and safety monitoring for the cooling system
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_flame_sensor.png
    :alt: Flame Sensor
-   :width: 895px
-   :height: 517px
+   :width: 800
 
 **Motor:** Motor status and performance monitoring for pumps and fans
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_motor_monitoring.png
    :alt: Motor Monitoring
-   :width: 919px
-   :height: 511px
+   :width: 800
 
 **Temperature Sensor (CPU):** CPU temperature monitoring for thermal management
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_cpu_temperature_sensor.png
    :alt: CPU Temperature Sensor
-   :width: 939px
-   :height: 523px
+   :width: 800
 
 **Flow Rate Sensor (Outlet):** Coolant flow rate monitoring at outlet points
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_flow_rate_sensor.png
    :alt: Flow Rate Sensor
-   :width: 928px
-   :height: 487px
+   :width: 800
 
 **CDU (Coolant Distribution Unit) Security:** Security monitoring for coolant distribution systems
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_cdu_security.png
    :alt: CDU Security
    :width: 937px
    :height: 508px
 
 **Temperature Sensor (Coolant Tank):** Coolant tank temperature monitoring
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_coolant_tank_temperature.png
    :alt: Coolant Tank Temperature
-   :width: 919px
-   :height: 574px
+   :width: 800
 
 **Leak Detection Sensor:** Leak detection and prevention monitoring
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_leak_detection_sensor.png
    :alt: Leak Detection Sensor
-   :width: 913px
-   :height: 472px
+   :width: 800
 
 **Tank Level Sensor:** Coolant tank level monitoring and management
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_tank_level_sensor.png
    :alt: Tank Level Sensor
-   :width: 928px
-   :height: 582px
+   :width: 800
 
 **Sensor Capabilities:**
 
@@ -725,15 +861,13 @@ Immersion Cooling Tab
 
 **Metrics Button:** Click "Metrics" to access real-time performance data
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_click_metrics_interface.png
    :alt: Metrics Interface
-   :width: 2955px
-   :height: 1694px
+   :width: 800
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_metrics_data.png
    :alt: Metrics Data
-   :width: 762px
-   :height: 523px
+   :width: 800
 
 **Real-time Updates:** Live monitoring of cooling system performance
 
@@ -742,7 +876,7 @@ Rack Level Tab
 
 **Rack-Level Cooling Management:** The Rack Level tab provides detailed rack-level cooling management:
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_rack_level_management.png
    :alt: Rack Level Management
    :width: 910px
    :height: 403px
@@ -760,17 +894,15 @@ Real-time Monitoring and Metrics
 
 **Sensor Information:** Access detailed sensor information through the Sensors tab
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_sensor_information.png
    :alt: Sensor Information
-   :width: 3008px
-   :height: 1688px
+   :width: 800
 
 **Coolant Distribution System:**
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/liquid_cooling/LQ_coolant_distribution_system.png
    :alt: Coolant Distribution System
-   :width: 891px
-   :height: 628px
+   :width: 800
 
 **Interactive Monitoring:**
 
@@ -819,10 +951,9 @@ MooseFS Storage
 **MooseFS Distributed Storage:**
 MooseFS is a distributed file system that provides scalable, fault-tolerant storage across multiple servers with a unified namespace. It offers high availability and automatic data replication for enterprise storage requirements.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_moosefs_storage_interface.png
    :alt: MooseFS Storage Interface
-   :width: 925px
-   :height: 379px
+   :width: 800
 
 **Mount MooseFS Storage:** Click "Mount MooseFS Storage" to configure MooseFS connections
 
@@ -838,10 +969,9 @@ MooseFS is a distributed file system that provides scalable, fault-tolerant stor
 - **Capacity**: Storage utilization percentage (e.g., 22%)
 - **Mount Point**: View mount directory (e.g., /mnt/moosefs/karios)
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_moosefs_storage_metrics.png
    :alt: MooseFS Storage Metrics
-   :width: 915px
-   :height: 213px
+   :width: 800
 
 To mount MooseFS storage, follow these steps:
 
@@ -879,31 +1009,35 @@ Before configuring, obtain the following details
 - ✓ **Auto Mount on Restart**: Check this to automatically connect to storage when system restarts
 - ✓ **Add to Datastore**: Check this to make the storage available for virtual machines
 
+**Step 4: Complete Setup**
+Click Submit to save the configuration and mount the S3 storage.
+
+.. image:: _static/images/control_center/storage_management/storage_moosefs_mount_options.png
+   :alt: MooseFS Storage Options
+   :width: 800
+
 **MooseFS Storage Management**
 
 **Actions:** Unmount and manage MooseFS storage
 
-.. image:: path/to/image
-   :alt: MooseFS Storage Actions
-   :width: 915px
-   :height: 213px
+.. image:: _static/images/control_center/storage_management/storage_moosefs_unmount_actions.png
+   :alt: MooseFS Storage Unmount Actions
+   :width: 800
 
 Click Delete icon to unmount the moosefs storage. It will prompt you for a confirmation. Click "unmount" to remove the moosefs mount.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_moosefs_unmount_confirmation.png
    :alt: MooseFS Unmount Confirmation
-   :width: 532px
-   :height: 322px
+   :width: 800
 
 S3 Storage
 ^^^^^^^^^^^^^^^^^^
 **S3 Object Storage:**
 S3 (Simple Storage Service) provides scalable object storage for backup, archival, and cloud-native applications. It offers cost-effective storage with global accessibility and integration with modern DevOps workflows.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_s3_storage_interface.png
    :alt: S3 Storage Interface
-   :width: 924px
-   :height: 361px
+   :width: 800
 
 To mount S3 storage, follow these steps:
 
@@ -954,24 +1088,21 @@ Before configuring, obtain the following details:
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the S3 storage.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_s3_configuration_form.png
    :alt: S3 Configuration Form
-   :width: 618px
-   :height: 603px
+   :width: 800
 
 **Storage Status:** Monitor S3 storage availability and connection status
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_s3_storage_status.png
    :alt: S3 Storage Status
-   :width: 903px
-   :height: 235px
+   :width: 800
 
 Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal of S3 storage.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_s3_unmount_confirmation.png
    :alt: S3 Unmount Confirmation
-   :width: 589px
-   :height: 385px
+   :width: 800
 
 iSCSI Storage
 ^^^^^^^^^^^^^^^^^^
@@ -987,10 +1118,9 @@ iSCSI provides block-level storage access over IP networks, enabling remote stor
 
 **Connect to iSCSI Target:** Click "Connect to iSCSI Target" to establish iSCSI connections
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_iscsi_target_connection.png
    :alt: iSCSI Target Connection
-   :width: 925px
-   :height: 432px
+   :width: 800
 
 **Step 1: Gather iSCSI Target Information**
 Before configuring, obtain the following details:
@@ -1021,10 +1151,9 @@ Before configuring, obtain the following details:
 **Step 3: Complete Connection**
 Click Submit to establish the iSCSI connection and make the storage available as a block device.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_iscsi_connection_form.png
    :alt: iSCSI Connection Form
-   :width: 484px
-   :height: 387px
+   :width: 800
 
 To mount iSCSI devices, follow these steps:
 
@@ -1046,10 +1175,9 @@ After connecting to an iSCSI target, you need to mount the discovered devices to
 **Step 2: Complete Mount Process**
 Click Mount to mount the selected iSCSI devices and make them available for use.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_iscsi_device_mounting.png
    :alt: iSCSI Device Mounting
-   :width: 882px
-   :height: 345px
+   :width: 800
 
 **Device Actions:** These are the following actions that can be performed on an iSCSI storage device.
 
@@ -1058,10 +1186,9 @@ Click Mount to mount the selected iSCSI devices and make them available for use.
 - **Remove Device**: Completely removes the device from the system configuration
 - **Destroy Path**: Removes the multipath configuration and destroys the path mapping
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_iscsi_device_actions.png
    :alt: iSCSI Device Actions
-   :width: 768px
-   :height: 315px
+   :width: 800
 
 NFS Storage
 ^^^^^^^^^^^^^^^^^^
@@ -1069,10 +1196,9 @@ NFS Storage
 **NFS File Storage:**
 NFS (Network File System) allows you to access files on remote servers as if they were stored locally on your system. It's commonly used for shared storage in Unix/Linux environments and virtualization platforms.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_nfs_storage_interface.png
    :alt: NFS Storage Interface
-   :width: 904px
-   :height: 451px
+   :width: 800
 
 To mount NFS storage, follow these steps: Click "Mount NFS Storage" to configure NFS connections
 
@@ -1082,10 +1208,9 @@ To mount NFS storage, follow these steps: Click "Mount NFS Storage" to configure
 
 Click Next to proceed to mount configuration
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_nfs_server_selection.png
    :alt: NFS Server Selection
-   :width: 604px
-   :height: 337px
+   :width: 800
 
 **Step 2: Configure NFS Mount**
 
@@ -1121,17 +1246,15 @@ Click Next to proceed to mount configuration
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the NFS storage.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_nfs_configuration_form.png
    :alt: NFS Configuration Form
-   :width: 627px
-   :height: 466px
+   :width: 800
 
 To unmount the NFS storage, please click on the delete icon
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_nfs_unmount_confirmation.png
    :alt: NFS Storage Management
-   :width: 927px
-   :height: 300px
+   :width: 800
 
 SMB Storage
 ^^^^^^^^^^^^^^^^^^
@@ -1140,10 +1263,9 @@ SMB Storage
 
 SMB (Server Message Block) enables file sharing with Windows systems and provides access to network shares. It's essential for mixed Windows/Linux environments and centralized file storage.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_smb_storage_interface.png
    :alt: SMB Storage Interface
-   :width: 915px
-   :height: 253px
+   :width: 800
 
 **Mount SMB/CIFS Storage:** Click "Mount SMB/CIFS Storage" to configure SMB connections and follow these steps:
 
@@ -1191,17 +1313,15 @@ Before configuring, obtain the following details:
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the SMB storage.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_smb_configuration_form.png
    :alt: SMB Configuration Form
-   :width: 457px
-   :height: 472px
+   :width: 800
 
 **SMB Server Configuration:** SMB/CIFS server connections.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_smb_server_status.png
    :alt: SMB Server Status
-   :width: 928px
-   :height: 216px
+   :width: 800
 
 **Unmount:** Click on the "delete" icon to unmount SMB storage.
 
@@ -1239,7 +1359,7 @@ SeaweedFS is a distributed file system that provides scalable object and file st
 
 **Volume Server:** Stores the actual file data and handles read/write operations. Multiple volume servers work together to provide distributed storage capacity and redundancy.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_interface.png
    :alt: SeaweedFS Interface
    :width: 873px
    :height: 241px
@@ -1278,21 +1398,21 @@ Click Configure Master to begin master server setup
 
 **Select Node for Master Configuration:** Choose which node will serve as the master server
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
    :alt: SeaweedFS Master Configuration
    :width: 618px
    :height: 604px
 
 **Configure Volumes:** Click "Configure Volumes" to manage storage volumes
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration.png
    :alt: SeaweedFS Volume Configuration
    :width: 727px
    :height: 235px
 
 **Unmount Volumes:** Click on Unmount button to remove the volume servers
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_unmount.png
    :alt: SeaweedFS Volume Unmount
    :width: 604px
    :height: 328px
@@ -1305,7 +1425,7 @@ Click Configure Master to begin master server setup
 
 **Delete Configure:** Removes the entire seaweed configuration.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
    :alt: SeaweedFS Master Servers
    :width: 3024px
    :height: 1710px
@@ -1332,7 +1452,7 @@ ISO Operations:
 - **File Selection**: Browse and select from available ISO and RAW files
 - **Availability Tracking**: Real-time view of available ISO and RAW files
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/iso_management/iso_management_interface.png
    :alt: ISO Management Interface
    :width: 925px
    :height: 330px
@@ -1353,7 +1473,7 @@ ISO Management Features:
 
 Please give a valid FQDN URL in the input field and click "download"
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/iso_management/iso_download_interface.png
    :alt: ISO Download Interface
    :width: 820px
    :height: 232px
@@ -1362,14 +1482,14 @@ Please give a valid FQDN URL in the input field and click "download"
 
 Select a valid iso or raw file and click "upload"
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/iso_management/iso_upload_interface.png
    :alt: ISO Upload Interface
    :width: 784px
    :height: 172px
 
 **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files (cloud images)
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/iso_management/available_iso_files.png
    :alt: Available ISO Files
    :width: 919px
    :height: 733px
@@ -1395,10 +1515,10 @@ Network Navigation Structure
 - **Search Functionality:** Search network options using the integrated search bar
 - **Server Selection:** Select target server from the server dropdown menu
 
-.. image:: path/to/image
-:alt: Network Navigation
-:width: 907px
-:height: 261px
+.. image:: _static/images/control_center/network_management/network_navigation.png
+   :alt: Network Navigation
+   :width: 907px
+   :height: 261px
 
 
 Switches Section (Selected from Network dropdown)
@@ -1413,14 +1533,14 @@ Vale Switches Tab
 
 After navigating to Switches and Select Vale Switch.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vale_switches.png
    :alt: Vale Switches
    :width: 1380px
    :height: 244px
 
 To create a Vale switch, please click on this.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/create_vale_switch.png
    :alt: Create Vale Switch
    :width: 1380px
    :height: 180px
@@ -1441,7 +1561,7 @@ Please enter the following fields for the vale switch configuration:
 
    **VLAN:** A Virtual Local Area Network that logically segments a physical network into multiple isolated networks using VLAN tags. VLANs allow you to create separate network segments on the same physical infrastructure, improving security and organization by grouping devices logically rather than physically.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vale_switch_configuration.png
    :alt: Vale Switch Configuration
    :width: 937px
    :height: 533px
@@ -1450,35 +1570,35 @@ Please enter the following fields for the vale switch configuration:
 
 **a) Fully connected network:** parent interface - VALE - tap interface(s)
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/fully_connected_network.png
    :alt: Fully Connected Network
    :width: 1380px
    :height: 482px
 
 **b) Unused Networks:** parent interface - vale
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/unused_networks.png
    :alt: Unused Networks
    :width: 1380px
    :height: 292px
 
 **c) Isolated Networks:** VALE - tap interface(s)
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/isolated_networks.png
    :alt: Isolated Networks
    :width: 1380px
    :height: 242px
 
 Clicking on any topology element displays a detailed view showing the complete network hierarchy: the parent physical interface, the VALE switch configuration, and all connected virtual machine TAP interfaces.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/network_topology_details.png
    :alt: Network Topology Details
    :width: 936px
    :height: 528px
 
 An option to detach the parent interface is available, which will convert the network into an isolated network. A warning will be displayed before performing this destructive action.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/detach_warning.png
    :alt: Detach Warning
    :width: 422px
    :height: 427px
@@ -1490,14 +1610,14 @@ You will find two detach options on the right side of the VALE switch:
 
 If available interfaces exist, you can add them to the VALE switch.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/add_interfaces.png
    :alt: Add Interfaces
    :width: 346px
    :height: 370px
 
 A destroy switch option is available with a warning that displays the potential impact of destroying the VALE switch before executing the destructive action.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/destroy_switch_warning.png
    :alt: Destroy Switch Warning
    :width: 561px
    :height: 505px
@@ -1508,17 +1628,17 @@ Virtual Switches Tab
 
 Access traditional network bridge switch management
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/virtual_switches.png
    :alt: Virtual Switches
    :width: 949px
    :height: 471px
 
 **Create Switch Button:** Create new switches with type selection and configuration options
 
-.. image:: path/to/image
-:alt: Create Switch Button
-:width: 955px
-:height: 235px
+.. image:: _static/images/control_center/network_management/create_virtual_switch.png
+   :alt: Create Switch Button
+   :width: 955px
+   :height: 235px
 
 To create a new switch
 - **Switch name:** Give a unique alphanumeric name to the switch
@@ -1529,10 +1649,10 @@ To create a new switch
 A network connection point that allows systems to communicate over a network. This can be a physical network interface (like an Ethernet port) or a virtual interface (like a VM's network adapter), serving as the entry and exit point for network traffic.
 
 Click "Create Network Switch" button
-.. image:: path/to/image
-:alt: Create Network Switch Form
-:width: 961px
-:height: 475px
+.. image:: _static/images/control_center/network_management/create_network_switch.png
+   :alt: Create Network Switch Form
+   :width: 961px
+   :height: 475px
 
 
 Interface Section (Selected from Network dropdown)
@@ -1559,7 +1679,7 @@ The Interface panel also gives the MAC address, IP address, media, VLAN's connec
 
    **NIC:** Network Interface Card - a hardware component that connects a computer to a network, providing the physical interface for sending and receiving network data over Ethernet or other network protocols
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/physical_interface.png
    :alt: Physical Interface
    :width: 1380px
    :height: 244px
@@ -1583,7 +1703,7 @@ Click on 'View Details' to view the Received & Transmitted packets.
 
 **View Details:** Access detailed interface configuration and statistics
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/interface_details.png
    :alt: Interface Details
    :width: 836px
    :height: 588px
@@ -1598,15 +1718,15 @@ In each VLAN, you will get basic information like its MAC address, IP, status, p
 Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an option to create a VLAN - 'Add VLAN'
 
 **VLAN Management:** Configure and manage Virtual LANs with comprehensive settings
-.. image:: path/to/image
-:alt: VLAN Management
-:width: 1380px
-:height: 264px
+.. image:: _static/images/control_center/network_management/vlan_management.png
+   :alt: VLAN Management
+   :width: 1380px
+   :height: 264px
 
 **Add VLAN Button:** Click on 'Add VLAN', it redirects you to a vlan configuration popup.
-.. image:: path/to/image
-:alt: Add VLAN Form
-:width: 537px
+.. image:: _static/images/control_center/network_management/add_vlan.png
+   :alt: Add VLAN Form
+   :width: 537px
 :height: 730px
 
 **VLAN Configuration Process:**
@@ -1633,31 +1753,31 @@ MTU Settings: Maximum Transmission Unit - the largest size of data packet that c
 Status Monitoring: Active status, admin up/down state, and connectivity indicators
 Action Controls: View, Stats, Ping, and Delete functionality for each VLAN
 
-.. image:: path/to/image
-:alt: VLAN Management Module
-:width: 1380px
-:height: 610px
+.. image:: _static/images/control_center/network_management/vlan_management_module.png
+   :alt: VLAN Management Module
+   :width: 1380px
+   :height: 610px
 
 You can perform all the 4 actions mentioned above per VLAN:
 **View:** This gives you details such as Parent NIC, MAC address, Status, Virtual Switches connected, Routing Table. (Please scroll down to find them)
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vlan_view_details.png
 :alt: VLAN View Details
 :width: 805px
 :height: 501px
 **Stats:** The packets VLAN receives and transmits is displayed here.
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vlan_stats.png 
 :alt: VLAN Stats
 :width: 597px
 :height: 488px
 
 **Ping:** For an Active VLAN, a ping is possible to its gateway. In this case VLAN with Tag ID 115 is connecting to its interface 115.253.
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vlan_ping.png
 :alt: VLAN Ping
 :width: 705px
 :height: 627px
 
 **Delete:** Before you delete a VLAN, you will be given a warning on the connected switches that will be isolated if the VLAN is deleted.
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vlan_delete_warning.png
 :alt: VLAN Delete Warning
 :width: 511px
 :height: 542px
@@ -1673,7 +1793,7 @@ Stats Navigation Structure
 - **Node & VM Stats Overview**: Comprehensive monitoring of both physical nodes and virtual machines
 - **Real-time Data Updates**: Live statistics with automatic refresh capabilities
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/stats_navigation.png
    :alt: Stats Navigation
    :width: 916px
    :height: 204px
@@ -1687,7 +1807,7 @@ Live Statistics Monitoring
 - **Multi-Node Support**: Monitor multiple nodes simultaneously with consolidated view
 - **Resource Utilization**: Track resource allocation and usage patterns across the infrastructure
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/live_statistics.png
    :alt: Live Statistics
    :width: 940px
    :height: 439px
@@ -1702,7 +1822,7 @@ Node Statistics Display
 - **Uptime Information**: Node uptime tracking with days, hours, and minutes format
 - **Status Monitoring**: Overall node health status with color-coded indicators
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/node_statistics.png
    :alt: Node Statistics
    :width: 921px
    :height: 157px
@@ -1717,7 +1837,7 @@ Virtual Machine Statistics
 - **Uptime Tracking**: Individual VM uptime monitoring with precise time formatting
 - **Status Health**: VM health status indicators with NORMAL operational states
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/vm_statistics.png
    :alt: VM Statistics
    :width: 937px
    :height: 313px
@@ -1731,7 +1851,7 @@ Recommendations System
 - **Resource Optimization**: Intelligent recommendations for resource allocation and scaling
 - **Performance Insights**: Detailed analysis and suggestions for infrastructure optimization
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/recommendations_system.png
    :alt: Recommendations System
    :width: 943px
    :height: 336px
@@ -1774,7 +1894,7 @@ Releases Navigation Structure
 - **Host Management**: Filter and search functionality for managing multiple hosts and nodes
 - **Remote Server Integration**: Fetch updates from remote servers with timestamp tracking
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/releases_navigation.png
    :alt: Releases Navigation
    :width: 883px
    :height: 222px
@@ -1790,12 +1910,12 @@ Click on versions tab and select any node to view the update versions.
 - **Expandable Interface**: Click on host names to expand and view detailed version information
 - **Version Details**: View specific update types (CORE, OS) with version numbers and request timestamps
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/versions_tab.png
    :alt: Versions Tab
    :width: 940px
    :height: 505px
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/versions_tab_details.png
    :alt: Version Details
    :width: 796px
    :height: 208px
@@ -1805,7 +1925,7 @@ Updates Tab
 
 **Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/updates_tab.png
    :alt: Updates Tab
    :width: 916px
    :height: 375px
@@ -1814,14 +1934,14 @@ Updates Tab
 - **Update Information**: Display update name, version, description, type, and available actions
 - **Download and Install**: Direct download and install buttons for each available update
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/update_information.png
    :alt: Update Information
    :width: 921px
    :height: 280px
 
 Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/install_update_dialog.png
    :alt: Install Update Dialog
    :width: 913px
    :height: 388px
@@ -1834,7 +1954,7 @@ Update Installation Process
 
 **Install Update Dialog:** Comprehensive installation interface with multiple configuration options
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/install_update_dialog.png
    :alt: Update Installation Interface
    :width: 985px
    :height: 679px
@@ -1850,7 +1970,7 @@ Update Installation Process
 2. Choose between immediate installation or scheduled deployment
 3. Click on "install now" for immediate installation.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/installation_steps.png
    :alt: Installation Steps
    :width: 940px
    :height: 706px
@@ -1865,12 +1985,12 @@ Installation Scheduling
 - **Future Date Validation**: Ensure scheduled installations are set for future dates and times
 - **Schedule Management**: Click on "Set Schedule Time" for scheduled update deployment.
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/schedule_options_1.png
    :alt: Schedule Options 1
    :width: 843px
    :height: 697px
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/schedule_options_2.png
    :alt: Schedule Options 2
    :width: 919px
    :height: 712px
@@ -1890,7 +2010,7 @@ Click on "history" tab to view
 - **User Attribution**: Show which user initiated each update or installation
 - **Chronological View**: Updates displayed in chronological order with timestamps
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/update_history.png
    :alt: Update History
    :width: 880px
    :height: 435px
@@ -1907,7 +2027,7 @@ Click on the "install jobs" tab
 - **Scheduled Jobs**: Identify and manage scheduled installations with "Yes/No" indicators
 - **Job Statistics**: View success and failure counts for each installation job
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/install_jobs.png
    :alt: Install Jobs
    :width: 949px
    :height: 556px
@@ -1919,7 +2039,7 @@ Installation Monitoring
 - **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
 - **Success and Failure Counts**: Track installation success and failure statistics
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/installation_monitoring.png
    :alt: Installation Monitoring
    :width: 937px
    :height: 396px
@@ -1931,7 +2051,7 @@ Installation Monitoring
 Installation Logs and Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: path/to/image
+.. image:: _static/images/control_center/network_management/installation_logs.png
    :alt: Installation Logs
    :width: 946px
    :height: 733px
