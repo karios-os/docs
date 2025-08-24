@@ -722,7 +722,7 @@ Component Navigation Process
 - **Stats**: Performance metrics and monitoring
 - **Releases**: System updates and patch management
 
-.. image:: _static/images/control_center/control_center_management.png
+.. figure:: _static/images/control_center/control_center_management.png
    :width: 800
    :alt: Control Node Interface
 
@@ -740,7 +740,7 @@ Liquid Cooling Management Operations (Future Scope - Not available for Single No
 **Liquid Cooling Interface:** The interface provides two main management categories:
 Immersion Cooling and Rack Level.
 
-.. image:: _static/images/control_center/liquid_cooling/liquid_cooling_management.png
+.. figure:: _static/images/control_center/liquid_cooling/liquid_cooling_management.png
    :alt: Liquid Cooling Interface
    :width: 925px
    :height: 283px
@@ -757,7 +757,7 @@ Immersion Cooling Tab
 - **API Token**: Enter your API token for authentication (e.g., 57de59edd5ee56af1946f39a55e17281e6c7aaee)
 - **Save Configuration**: Click "Save Configuration" to apply settings
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_configure_netbox.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_configure_netbox.png
    :alt: Netbox Configuration
    :width: 679px
    :height: 405px
@@ -768,7 +768,7 @@ Immersion Cooling Tab
 - **Physical Specifications**: View rack dimensions, device counts, and power requirements
 - **Rack Management**: Access rack-level cooling controls and monitoring
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_rack_selection.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_rack_selection.png
    :alt: Rack Selection
    :width: 913px
    :height: 396px
@@ -788,7 +788,7 @@ Immersion Cooling Tab
 - **Flow Status**: Real-time status of coolant circulation
 - **Temperature Zones**: Cold water (blue) and warm water (red) flow indicators
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_coolant_flow_management.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_coolant_flow_management.png
    :alt: Coolant Flow Management
    :width: 800
 
@@ -798,7 +798,7 @@ Immersion Cooling Tab
 - **Server Identification**: Unit positions (U1, U2, U3, etc.)
 - **Temperature Monitoring**: Per-server temperature monitoring
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_server_information.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_server_information.png
    :alt: Server Information
    :width: 800
 
@@ -806,62 +806,62 @@ Immersion Cooling Tab
 
 - **Sensors Dropdown**: Select "Sensors" to view different available sensors
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_monitoring_controls.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_monitoring_controls.png
    :alt: Monitoring Controls
    :width: 800
 
 **Sensor Types and Monitoring:** The system provides comprehensive sensor monitoring with 8 different sensor types:
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_sensor_types.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_sensor_types.png
    :alt: Sensor Types Overview
    :width: 800
 
 **Flame Sensor:** Fire detection and safety monitoring for the cooling system
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_flame_sensor.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_flame_sensor.png
    :alt: Flame Sensor
    :width: 800
 
 **Motor:** Motor status and performance monitoring for pumps and fans
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_motor_monitoring.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_motor_monitoring.png
    :alt: Motor Monitoring
    :width: 800
 
 **Temperature Sensor (CPU):** CPU temperature monitoring for thermal management
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_cpu_temperature_sensor.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_cpu_temperature_sensor.png
    :alt: CPU Temperature Sensor
    :width: 800
 
 **Flow Rate Sensor (Outlet):** Coolant flow rate monitoring at outlet points
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_flow_rate_sensor.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_flow_rate_sensor.png
    :alt: Flow Rate Sensor
    :width: 800
 
 **CDU (Coolant Distribution Unit) Security:** Security monitoring for coolant distribution systems
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_cdu_security.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_cdu_security.png
    :alt: CDU Security
    :width: 937px
    :height: 508px
 
 **Temperature Sensor (Coolant Tank):** Coolant tank temperature monitoring
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_coolant_tank_temperature.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_coolant_tank_temperature.png
    :alt: Coolant Tank Temperature
    :width: 800
 
 **Leak Detection Sensor:** Leak detection and prevention monitoring
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_leak_detection_sensor.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_leak_detection_sensor.png
    :alt: Leak Detection Sensor
    :width: 800
 
 **Tank Level Sensor:** Coolant tank level monitoring and management
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_tank_level_sensor.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_tank_level_sensor.png
    :alt: Tank Level Sensor
    :width: 800
 
@@ -875,11 +875,11 @@ Immersion Cooling Tab
 
 **Metrics Button:** Click "Metrics" to access real-time performance data
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_click_metrics_interface.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_click_metrics_interface.png
    :alt: Metrics Interface
    :width: 800
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_metrics_data.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_metrics_data.png
    :alt: Metrics Data
    :width: 800
 
@@ -890,7 +890,7 @@ Rack Level Tab
 
 **Rack-Level Cooling Management:** The Rack Level tab provides detailed rack-level cooling management:
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_rack_level_management.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_rack_level_management.png
    :alt: Rack Level Management
    :width: 910px
    :height: 403px
@@ -908,13 +908,13 @@ Real-time Monitoring and Metrics
 
 **Sensor Information:** Access detailed sensor information through the Sensors tab
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_sensor_information.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_sensor_information.png
    :alt: Sensor Information
    :width: 800
 
 **Coolant Distribution System:**
 
-.. image:: _static/images/control_center/liquid_cooling/LQ_coolant_distribution_system.png
+.. figure:: _static/images/control_center/liquid_cooling/LQ_coolant_distribution_system.png
    :alt: Coolant Distribution System
    :width: 800
 
@@ -965,7 +965,7 @@ MooseFS Storage
 **MooseFS Distributed Storage:**
 MooseFS is a distributed file system that provides scalable, fault-tolerant storage across multiple servers with a unified namespace. It offers high availability and automatic data replication for enterprise storage requirements.
 
-.. image:: _static/images/control_center/storage_management/storage_moosefs_storage_interface.png
+.. figure:: _static/images/control_center/storage_management/storage_moosefs_storage_interface.png
    :alt: MooseFS Storage Interface
    :width: 800
 
@@ -983,7 +983,7 @@ MooseFS is a distributed file system that provides scalable, fault-tolerant stor
 - **Capacity**: Storage utilization percentage (e.g., 22%)
 - **Mount Point**: View mount directory (e.g., /mnt/moosefs/karios)
 
-.. image:: _static/images/control_center/storage_management/storage_moosefs_storage_metrics.png
+.. figure:: _static/images/control_center/storage_management/storage_moosefs_storage_metrics.png
    :alt: MooseFS Storage Metrics
    :width: 800
 
@@ -1026,7 +1026,7 @@ Before configuring, obtain the following details
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the S3 storage.
 
-.. image:: _static/images/control_center/storage_management/storage_moosefs_mount_options.png
+.. figure:: _static/images/control_center/storage_management/storage_moosefs_mount_options.png
    :alt: MooseFS Storage Options
    :width: 800
 
@@ -1034,13 +1034,13 @@ Click Submit to save the configuration and mount the S3 storage.
 
 **Actions:** Unmount and manage MooseFS storage
 
-.. image:: _static/images/control_center/storage_management/storage_moosefs_unmount_actions.png
+.. figure:: _static/images/control_center/storage_management/storage_moosefs_unmount_actions.png
    :alt: MooseFS Storage Unmount Actions
    :width: 800
 
 Click Delete icon to unmount the moosefs storage. It will prompt you for a confirmation. Click "unmount" to remove the moosefs mount.
 
-.. image:: _static/images/control_center/storage_management/storage_moosefs_unmount_confirmation.png
+.. figure:: _static/images/control_center/storage_management/storage_moosefs_unmount_confirmation.png
    :alt: MooseFS Unmount Confirmation
    :width: 800
 
@@ -1049,7 +1049,7 @@ S3 Storage
 **S3 Object Storage:**
 S3 (Simple Storage Service) provides scalable object storage for backup, archival, and cloud-native applications. It offers cost-effective storage with global accessibility and integration with modern DevOps workflows.
 
-.. image:: _static/images/control_center/storage_management/storage_s3_storage_interface.png
+.. figure:: _static/images/control_center/storage_management/storage_s3_storage_interface.png
    :alt: S3 Storage Interface
    :width: 800
 
@@ -1102,19 +1102,19 @@ Before configuring, obtain the following details:
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the S3 storage.
 
-.. image:: _static/images/control_center/storage_management/storage_s3_configuration_form.png
+.. figure:: _static/images/control_center/storage_management/storage_s3_configuration_form.png
    :alt: S3 Configuration Form
    :width: 800
 
 **Storage Status:** Monitor S3 storage availability and connection status
 
-.. image:: _static/images/control_center/storage_management/storage_s3_storage_status.png
+.. figure:: _static/images/control_center/storage_management/storage_s3_storage_status.png
    :alt: S3 Storage Status
    :width: 800
 
 Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal of S3 storage.
 
-.. image:: _static/images/control_center/storage_management/storage_s3_unmount_confirmation.png
+.. figure:: _static/images/control_center/storage_management/storage_s3_unmount_confirmation.png
    :alt: S3 Unmount Confirmation
    :width: 800
 
@@ -1132,7 +1132,7 @@ iSCSI provides block-level storage access over IP networks, enabling remote stor
 
 **Connect to iSCSI Target:** Click "Connect to iSCSI Target" to establish iSCSI connections
 
-.. image:: _static/images/control_center/storage_management/storage_iscsi_target_connection.png
+.. figure:: _static/images/control_center/storage_management/storage_iscsi_target_connection.png
    :alt: iSCSI Target Connection
    :width: 800
 
@@ -1165,7 +1165,7 @@ Before configuring, obtain the following details:
 **Step 3: Complete Connection**
 Click Submit to establish the iSCSI connection and make the storage available as a block device.
 
-.. image:: _static/images/control_center/storage_management/storage_iscsi_connection_form.png
+.. figure:: _static/images/control_center/storage_management/storage_iscsi_connection_form.png
    :alt: iSCSI Connection Form
    :width: 800
 
@@ -1189,7 +1189,7 @@ After connecting to an iSCSI target, you need to mount the discovered devices to
 **Step 2: Complete Mount Process**
 Click Mount to mount the selected iSCSI devices and make them available for use.
 
-.. image:: _static/images/control_center/storage_management/storage_iscsi_device_mounting.png
+.. figure:: _static/images/control_center/storage_management/storage_iscsi_device_mounting.png
    :alt: iSCSI Device Mounting
    :width: 800
 
@@ -1200,7 +1200,7 @@ Click Mount to mount the selected iSCSI devices and make them available for use.
 - **Remove Device**: Completely removes the device from the system configuration
 - **Destroy Path**: Removes the multipath configuration and destroys the path mapping
 
-.. image:: _static/images/control_center/storage_management/storage_iscsi_device_actions.png
+.. figure:: _static/images/control_center/storage_management/storage_iscsi_device_actions.png
    :alt: iSCSI Device Actions
    :width: 800
 
@@ -1210,7 +1210,7 @@ NFS Storage
 **NFS File Storage:**
 NFS (Network File System) allows you to access files on remote servers as if they were stored locally on your system. It's commonly used for shared storage in Unix/Linux environments and virtualization platforms.
 
-.. image:: _static/images/control_center/storage_management/storage_nfs_storage_interface.png
+.. figure:: _static/images/control_center/storage_management/storage_nfs_storage_interface.png
    :alt: NFS Storage Interface
    :width: 800
 
@@ -1222,7 +1222,7 @@ To mount NFS storage, follow these steps: Click "Mount NFS Storage" to configure
 
 Click Next to proceed to mount configuration
 
-.. image:: _static/images/control_center/storage_management/storage_nfs_server_selection.png
+.. figure:: _static/images/control_center/storage_management/storage_nfs_server_selection.png
    :alt: NFS Server Selection
    :width: 800
 
@@ -1260,13 +1260,13 @@ Click Next to proceed to mount configuration
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the NFS storage.
 
-.. image:: _static/images/control_center/storage_management/storage_nfs_configuration_form.png
+.. figure:: _static/images/control_center/storage_management/storage_nfs_configuration_form.png
    :alt: NFS Configuration Form
    :width: 800
 
 To unmount the NFS storage, please click on the delete icon
 
-.. image:: _static/images/control_center/storage_management/storage_nfs_unmount_confirmation.png
+.. figure:: _static/images/control_center/storage_management/storage_nfs_unmount_confirmation.png
    :alt: NFS Storage Management
    :width: 800
 
@@ -1277,7 +1277,7 @@ SMB Storage
 
 SMB (Server Message Block) enables file sharing with Windows systems and provides access to network shares. It's essential for mixed Windows/Linux environments and centralized file storage.
 
-.. image:: _static/images/control_center/storage_management/storage_smb_storage_interface.png
+.. figure:: _static/images/control_center/storage_management/storage_smb_storage_interface.png
    :alt: SMB Storage Interface
    :width: 800
 
@@ -1327,13 +1327,13 @@ Before configuring, obtain the following details:
 **Step 4: Complete Setup**
 Click Submit to save the configuration and mount the SMB storage.
 
-.. image:: _static/images/control_center/storage_management/storage_smb_configuration_form.png
+.. figure:: _static/images/control_center/storage_management/storage_smb_configuration_form.png
    :alt: SMB Configuration Form
    :width: 600
 
 **SMB Server Configuration:** SMB/CIFS server connections.
 
-.. image:: _static/images/control_center/storage_management/storage_smb_server_status.png
+.. figure:: _static/images/control_center/storage_management/storage_smb_server_status.png
    :alt: SMB Server Status
    :width: 600
 
@@ -1373,7 +1373,7 @@ SeaweedFS is a distributed file system that provides scalable object and file st
 
 **Volume Server:** Stores the actual file data and handles read/write operations. Multiple volume servers work together to provide distributed storage capacity and redundancy.
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_interface.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_interface.png
    :alt: SeaweedFS Interface
    :width: 600
 
@@ -1387,7 +1387,7 @@ Navigate to the SeaweedFS section in your Karios interface
 
 Click Configure Master to begin master server setup
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration.png
    :alt: SeaweedFS Master Configuration Navigate
    :width: 618
 
@@ -1416,23 +1416,23 @@ Click Configure Master to begin master server setup
 **Select Node for Master Configuration:** Choose which node will serve as the master server
 
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration_dialog.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_master_configuration_dialog.png
    :alt: SeaweedFS Master Configuration Navigate
    :width: 618
 
 **Configure Volumes:** Click "Configure Volumes" to manage storage volumes and select a server IP address from the available list.
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration.png
    :alt: SeaweedFS Volume Configuration
    :width: 600
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration_dialog.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_volume_configuration_dialog.png
    :alt: SeaweedFS Volume Configuration
    :width: 600
 
 **Unmount Volumes:** Click on Unmount button to remove the volume servers
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_volume_unmount.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_volume_unmount.png
    :alt: SeaweedFS Volume Unmount
    :width: 600
 
@@ -1444,7 +1444,7 @@ Click Configure Master to begin master server setup
 
 **Delete Configure:** Removes the entire seaweed configuration.
 
-.. image:: _static/images/control_center/storage_management/storage_seaweedfs_remove_master_configuration.png
+.. figure:: _static/images/control_center/storage_management/storage_seaweedfs_remove_master_configuration.png
    :alt: SeaweedFS Master Servers
    :width: 600
 
@@ -1470,7 +1470,7 @@ ISO Operations:
 - **File Selection**: Browse and select from available ISO and RAW files
 - **Availability Tracking**: Real-time view of available ISO and RAW files
 
-.. image:: _static/images/control_center/iso_management/iso_management_interface.png
+.. figure:: _static/images/control_center/iso_management/iso_management_interface.png
    :alt: ISO Management Interface
    :width: 600
 
@@ -1490,7 +1490,7 @@ ISO Management Features:
 
 Please give a valid FQDN URL in the input field and click "download"
 
-.. image:: _static/images/control_center/iso_management/iso_download_interface.png
+.. figure:: _static/images/control_center/iso_management/iso_download_interface.png
    :alt: ISO Download Interface
    :width: 600
 
@@ -1498,13 +1498,13 @@ Please give a valid FQDN URL in the input field and click "download"
 
 Select a valid iso or raw file and click "upload"
 
-.. image:: _static/images/control_center/iso_management/iso_upload_interface.png
+.. figure:: _static/images/control_center/iso_management/iso_upload_interface.png
    :alt: ISO Upload Interface
    :width: 600
 
 **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files (cloud images)
 
-.. image:: _static/images/control_center/iso_management/available_iso_files.png
+.. figure:: _static/images/control_center/iso_management/available_iso_files.png
    :alt: Available ISO Files
    :width: 600
 
@@ -1529,7 +1529,7 @@ Network Navigation Structure
 - **Search Functionality:** Search network options using the integrated search bar
 - **Server Selection:** Select target server from the server dropdown menu
 
-.. image:: _static/images/control_center/network_management/network_navigation.png
+.. figure:: _static/images/control_center/network_management/network_navigation.png
    :alt: Network Navigation
    :width: 600
 
@@ -1546,13 +1546,13 @@ Vale Switches Tab
 
 After navigating to Switches and Select Vale Switch.
 
-.. image:: _static/images/control_center/network_management/vale_switches.png
+.. figure:: _static/images/control_center/network_management/vale_switches.png
    :alt: Vale Switches
    :width: 600
 
 To create a Vale switch, please click on this.
 
-.. image:: _static/images/control_center/network_management/create_vale_switch.png
+.. figure:: _static/images/control_center/network_management/create_vale_switch.png
    :alt: Create Vale Switch
    :width: 600
 
@@ -1572,7 +1572,7 @@ Please enter the following fields for the vale switch configuration:
 
    **VLAN:** A Virtual Local Area Network that logically segments a physical network into multiple isolated networks using VLAN tags. VLANs allow you to create separate network segments on the same physical infrastructure, improving security and organization by grouping devices logically rather than physically.
 
-.. image:: _static/images/control_center/network_management/vale_switch_configuration.png
+.. figure:: _static/images/control_center/network_management/vale_switch_configuration.png
    :alt: Vale Switch Configuration
    :width: 600
 
@@ -1580,31 +1580,31 @@ Please enter the following fields for the vale switch configuration:
 
 **a) Fully connected network:** parent interface - VALE - tap interface(s)
 
-.. image:: _static/images/control_center/network_management/fully_connected_network.png
+.. figure:: _static/images/control_center/network_management/fully_connected_network.png
    :alt: Fully Connected Network
    :width: 600
 
 **b) Unused Networks:** parent interface - vale
 
-.. image:: _static/images/control_center/network_management/unused_networks.png
+.. figure:: _static/images/control_center/network_management/unused_networks.png
    :alt: Unused Networks
    :width: 600
 
 **c) Isolated Networks:** VALE - tap interface(s)
 
-.. image:: _static/images/control_center/network_management/isolated_networks.png
+.. figure:: _static/images/control_center/network_management/isolated_networks.png
    :alt: Isolated Networks
    :width: 600
 
 Clicking on any topology element displays a detailed view showing the complete network hierarchy: the parent physical interface, the VALE switch configuration, and all connected virtual machine TAP interfaces.
 
-.. image:: _static/images/control_center/network_management/vale_topology_details.png
+.. figure:: _static/images/control_center/network_management/vale_topology_details.png
    :alt: Network Topology Details
    :width: 600
 
 An option to detach the parent interface is available, which will convert the network into an isolated network. A warning will be displayed before performing this destructive action.
 
-.. image:: _static/images/control_center/network_management/detach_parent_warning.png
+.. figure:: _static/images/control_center/network_management/detach_parent_warning.png
    :alt: Detach Warning
    :width: 600
 
@@ -1615,13 +1615,13 @@ You will find two detach options on the right side of the VALE switch:
 
 If available interfaces exist, you can add them to the VALE switch.
 
-.. image:: _static/images/control_center/network_management/add_child_interfaces.png
+.. figure:: _static/images/control_center/network_management/add_child_interfaces.png
    :alt: Add Child Interfaces
    :width: 600
 
 A destroy switch option is available with a warning that displays the potential impact of destroying the VALE switch before executing the destructive action.
 
-.. image:: _static/images/control_center/network_management/destroy_switch_warning.png
+.. figure:: _static/images/control_center/network_management/destroy_switch_warning.png
    :alt: Destroy Switch Warning
    :width: 600
 
@@ -1631,13 +1631,13 @@ Virtual Switches Tab
 
 Access traditional network bridge switch management
 
-.. image:: _static/images/control_center/network_management/virtual_switches.png
+.. figure:: _static/images/control_center/network_management/virtual_switches.png
    :alt: Virtual Switches
    :width: 600
 
 **Create Switch Button:** Create new switches with type selection and configuration options
 
-.. image:: _static/images/control_center/network_management/create_virtual_switch.png
+.. figure:: _static/images/control_center/network_management/create_virtual_switch.png
    :alt: Create Switch Button
    :width: 600
 
@@ -1658,7 +1658,7 @@ To create a new switch
 Click "Create Network Switch" button
 
 
-.. image:: _static/images/control_center/network_management/create_network_switch.png
+.. figure:: _static/images/control_center/network_management/create_network_switch.png
    :alt: Create Network Switch Form
    :width: 600
 
@@ -1676,7 +1676,7 @@ Physical Interface
 
 This is the landing page which allows you to view your Network Interface Cards (NIC) and their status.
 
-.. image:: _static/images/control_center/network_management/physical_interface_landing.png
+.. figure:: _static/images/control_center/network_management/physical_interface_landing.png
    :alt: Physical Interface Landing
    :width: 600
 
@@ -1691,7 +1691,7 @@ The Interface panel also gives the MAC address, IP address, media, VLAN's connec
 
    **NIC:** Network Interface Card - a hardware component that connects a computer to a network, providing the physical interface for sending and receiving network data over Ethernet or other network protocols
 
-.. image:: _static/images/control_center/network_management/physical_interface.png
+.. figure:: _static/images/control_center/network_management/physical_interface.png
    :alt: Physical Interface
    :width: 600
 
@@ -1714,7 +1714,7 @@ Click on 'View Details' to view the Received & Transmitted packets.
 
 **View Details:** Access detailed interface configuration and statistics
 
-.. image:: _static/images/control_center/network_management/physical_interface_stats.png
+.. figure:: _static/images/control_center/network_management/physical_interface_stats.png
    :alt: Physical Interface Stats
    :width: 600
 
@@ -1723,7 +1723,7 @@ Virtual Interfaces
 **Virtual Network Interfaces (VLANs):**
 In the Network Interfaces tab, like shown below, please navigate to Virtual.
 
-.. image:: _static/images/control_center/network_management/virtual_interface_landing.png
+.. figure:: _static/images/control_center/network_management/virtual_interface_landing.png
    :alt: Virtual Interface Landing
    :width: 600
 
@@ -1735,13 +1735,13 @@ Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an 
 
 **VLAN Management:** Configure and manage Virtual LANs with comprehensive settings
 
-.. image:: _static/images/control_center/network_management/vlan_management.png
+.. figure:: _static/images/control_center/network_management/vlan_management.png
    :alt: VLAN Management
    :width: 600
 
 **Add VLAN Button:** Click on 'Add VLAN', it redirects you to a vlan configuration popup.
 
-.. image:: _static/images/control_center/network_management/add_vlan.png
+.. figure:: _static/images/control_center/network_management/add_vlan.png
    :alt: Add VLAN Form
    :width: 600
 
@@ -1766,7 +1766,7 @@ Provide all the information given below and click "Create VLAN"
 .. note::
   It is recommended that you have your L2 network configurations ready as per your requirements.
 
-.. image:: _static/images/control_center/network_management/vlan_create_dialog.png
+.. figure:: _static/images/control_center/network_management/vlan_create_dialog.png
    :alt: VLAN Create Dialog
    :width: 600
 
@@ -1784,7 +1784,7 @@ Provide all the information given below and click "Create VLAN"
 
 **Action Controls:** View, Stats, Ping, and Delete functionality for each VLAN
 
-.. image:: _static/images/control_center/network_management/vlan_management_module.png
+.. figure:: _static/images/control_center/network_management/vlan_management_module.png
    :alt: VLAN Management Module
    :width: 600
 
@@ -1792,25 +1792,25 @@ You can perform all the 4 actions mentioned above per VLAN:
 
 **View:** This gives you details such as Parent NIC, MAC address, Status, Virtual Switches connected, Routing Table. (Please scroll down to find them)
 
-.. image:: _static/images/control_center/network_management/vlan_view_details.png
+.. figure:: _static/images/control_center/network_management/vlan_view_details.png
    :alt: VLAN View Details
    :width: 600
 
 **Stats:** The packets VLAN receives and transmits is displayed here.
 
-.. image:: _static/images/control_center/network_management/vlan_stats.png
+.. figure:: _static/images/control_center/network_management/vlan_stats.png
    :alt: VLAN Stats
    :width: 600
 
 **Ping:** For an Active VLAN, a ping is possible to its gateway. In this case VLAN with Tag ID 115 is connecting to its interface 115.253.
 
-.. image:: _static/images/control_center/network_management/vlan_ping.png
+.. figure:: _static/images/control_center/network_management/vlan_ping.png
    :alt: VLAN Ping
    :width: 600
 
 **Delete:** Before you delete a VLAN, you will be given a warning on the connected switches that will be isolated if the VLAN is deleted.
 
-.. image:: _static/images/control_center/network_management/vlan_delete_warning.png
+.. figure:: _static/images/control_center/network_management/vlan_delete_warning.png
    :alt: VLAN Delete Warning
    :width: 600
 
@@ -1825,7 +1825,7 @@ Stats Navigation Structure
 - **Node & VM Stats Overview**: Comprehensive monitoring of both physical nodes and virtual machines
 - **Real-time Data Updates**: Live statistics with automatic refresh capabilities
 
-.. image:: _static/images/control_center/node_monitoring/stats_navigation.png
+.. figure:: _static/images/control_center/node_monitoring/stats_navigation.png
    :alt: Stats Navigation
    :width: 600
 
@@ -1838,7 +1838,7 @@ Live Statistics Monitoring
 - **Multi-Node Support**: Monitor multiple nodes simultaneously with consolidated view
 - **Resource Utilization**: Track resource allocation and usage patterns across the infrastructure
 
-.. image:: _static/images/control_center/node_monitoring/live_statistics.png
+.. figure:: _static/images/control_center/node_monitoring/live_statistics.png
    :alt: Live Statistics
    :width: 600
 
@@ -1852,7 +1852,7 @@ Node Statistics Display
 - **Uptime Information**: Node uptime tracking with days, hours, and minutes format
 - **Status Monitoring**: Overall node health status with color-coded indicators
 
-.. image:: _static/images/control_center/node_monitoring/node_statistics.png
+.. figure:: _static/images/control_center/node_monitoring/node_statistics.png
    :alt: Node Statistics
    :width: 600
 
@@ -1866,7 +1866,7 @@ Virtual Machine Statistics
 - **Uptime Tracking**: Individual VM uptime monitoring with precise time formatting
 - **Status Health**: VM health status indicators with NORMAL operational states
 
-.. image:: _static/images/control_center/node_monitoring/vm_statistics.png
+.. figure:: _static/images/control_center/node_monitoring/vm_statistics.png
    :alt: VM Statistics
    :width: 600
 
@@ -1879,7 +1879,7 @@ Recommendations System
 - **Resource Optimization**: Intelligent recommendations for resource allocation and scaling
 - **Performance Insights**: Detailed analysis and suggestions for infrastructure optimization
 
-.. image:: _static/images/control_center/node_monitoring/recommendations_system.png
+.. figure:: _static/images/control_center/node_monitoring/recommendations_system.png
    :alt: Recommendations System
    :width: 600
 
@@ -1921,7 +1921,7 @@ Releases Navigation Structure
 - **Host Management**: Filter and search functionality for managing multiple hosts and nodes
 - **Remote Server Integration**: Fetch updates from remote servers with timestamp tracking
 
-.. image:: _static/images/control_center/releases_and_updates/releases_navigation.png
+.. figure:: _static/images/control_center/releases_and_updates/releases_navigation.png
    :alt: Releases Navigation
    :width: 600
 
@@ -1936,11 +1936,11 @@ Click on versions tab and select any node to view the update versions.
 - **Expandable Interface**: Click on host names to expand and view detailed version information
 - **Version Details**: View specific update types (CORE, OS) with version numbers and request timestamps
 
-.. image:: _static/images/control_center/releases_and_updates/versions_tab.png
+.. figure:: _static/images/control_center/releases_and_updates/versions_tab.png
    :alt: Versions Tab
    :width: 600
 
-.. image:: _static/images/control_center/releases_and_updates/versions_tab_details.png
+.. figure:: _static/images/control_center/releases_and_updates/versions_tab_details.png
    :alt: Version Details
    :width: 600
 
@@ -1949,7 +1949,7 @@ Updates Tab
 
 **Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
 
-.. image:: _static/images/control_center/releases_and_updates/updates_tab.png
+.. figure:: _static/images/control_center/releases_and_updates/updates_tab.png
    :alt: Updates Tab
    :width: 600
 
@@ -1957,13 +1957,13 @@ Updates Tab
 - **Update Information**: Display update name, version, description, type, and available actions
 - **Download and Install**: Direct download and install buttons for each available update
 
-.. image:: _static/images/control_center/releases_and_updates/download_button.png
+.. figure:: _static/images/control_center/releases_and_updates/download_button.png
    :alt: Update Information
    :width: 600
 
 Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
 
-.. image:: _static/images/control_center/releases_and_updates/install_update_dialog.png
+.. figure:: _static/images/control_center/releases_and_updates/install_update_dialog.png
    :alt: Install Update Dialog
    :width: 600
 
@@ -1985,7 +1985,7 @@ Update Installation Process
 2. Choose between immediate installation or scheduled deployment
 3. Click on "install now" for immediate installation.
 
-.. image:: _static/images/control_center/releases_and_updates/installation_steps.png
+.. figure:: _static/images/control_center/releases_and_updates/installation_steps.png
    :alt: Installation Steps
    :width: 600
 
@@ -1999,11 +1999,11 @@ Installation Scheduling
 - **Future Date Validation**: Ensure scheduled installations are set for future dates and times
 - **Schedule Management**: Click on "Set Schedule Time" for scheduled update deployment.
 
-.. image:: _static/images/control_center/releases_and_updates/schedule_options_1.png
+.. figure:: _static/images/control_center/releases_and_updates/schedule_options_1.png
    :alt: Schedule Options 1
    :width: 600
 
-.. image:: _static/images/control_center/releases_and_updates/schedule_options_2.png
+.. figure:: _static/images/control_center/releases_and_updates/schedule_options_2.png
    :alt: Schedule Options 2
    :width: 600
 
@@ -2022,7 +2022,7 @@ Click on "history" tab to view
 - **User Attribution**: Show which user initiated each update or installation
 - **Chronological View**: Updates displayed in chronological order with timestamps
 
-.. image:: _static/images/control_center/releases_and_updates/update_history.png
+.. figure:: _static/images/control_center/releases_and_updates/update_history.png
    :alt: Update History
    :width: 600
 
@@ -2038,7 +2038,7 @@ Click on the "install jobs" tab
 - **Scheduled Jobs**: Identify and manage scheduled installations with "Yes/No" indicators
 - **Job Statistics**: View success and failure counts for each installation job
 
-.. image:: _static/images/control_center/releases_and_updates/install_jobs.png
+.. figure:: _static/images/control_center/releases_and_updates/install_jobs.png
    :alt: Install Jobs
    :width: 600
 
@@ -2049,7 +2049,7 @@ Installation Monitoring
 - **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
 - **Success and Failure Counts**: Track installation success and failure statistics
 
-.. image:: _static/images/control_center/releases_and_updates/installation_monitoring.png
+.. figure:: _static/images/control_center/releases_and_updates/installation_monitoring.png
    :alt: Installation Monitoring
    :width: 600
 
@@ -2059,7 +2059,7 @@ Installation Monitoring
 
 Installation Logs and Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. image:: _static/images/control_center/releases_and_updates/installation_logs.png
+.. figure:: _static/images/control_center/releases_and_updates/installation_logs.png
    :alt: Installation Logs
    :width: 600
 
@@ -2361,6 +2361,12 @@ Accessing Node Console
 2. **Console Tab**: Click on the "Console" tab in the node management interface
 3. **Console Interface**: The web-based console interface loads automatically
 4. **Authentication Prompt**: System prompts for console access credentials
+
+.. figure:: _static/images/node_console/node_console_authentication_prompt.png
+   :alt: Node Console Authentication Prompt
+   :width: 600
+
+   Figure: Node Console Authentication Prompt
 
 **Authentication Requirements:**
 
