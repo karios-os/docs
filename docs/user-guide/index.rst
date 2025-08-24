@@ -3150,6 +3150,9 @@ Network Management
 
 **Network Interface Management:** The network management interface features dedicated sections for interface monitoring and switch configuration, providing granular control over network connectivity and virtual network topology.
 
+   .. figure:: _static/images/networking/Image-node-001.png
+      :width: 600
+
 Network Interface Configuration
 ^^^^^^^^^^^^^^^^^^
 
@@ -3162,6 +3165,9 @@ Network Interface Configuration
 - Secondary network interface without switch association
 
 - Additional network interface available for configuration
+   
+   .. figure:: _static/images/networking/Image-node-002.png
+      :width: 600
 
 **Interface Information Display:**
 
@@ -3214,6 +3220,9 @@ Switch Creation and Configuration
 
 - **Creation Controls:** Cancel and Create Switch action buttons
 
+   .. figure:: _static/images/networking/Image-node-004.png
+      :width: 600
+
 **Switch Creation Process:**
 
 - **Name Assignment:** Enter descriptive switch name in the text field
@@ -3225,6 +3234,9 @@ Switch Creation and Configuration
 - **Switch Creation:** Click “Create Switch” button to deploy new switch
 
 - **Status Verification:** Confirm successful switch creation and activation
+
+   .. figure:: _static/images/networking/Image-node-003.png
+      :width: 600 
 
 The switch management interface displays all configured virtual switches.
 
@@ -3254,6 +3266,8 @@ Firewall Management
 
 **Firewall Rule Management:** The firewall interface features a code-based rule editor with syntax highlighting, real-time validation, and safety mechanisms to prevent system lockout through configuration errors.
 
+   .. figure:: _static/images/networking/Image-pf-002.png
+      :width: 600 
 
 Packet Filter Rules Interface
 ^^^^^^^^^^^^^^^^^^
@@ -3609,6 +3623,8 @@ Node Log Management
 
 **Log Viewer Interface:** The Log Viewer displays system logs in a structured format with filtering options, search capabilities, and export tools for efficient log management and analysis.
 
+   .. figure:: _static/images/networking/Image-node-Log-001.png
+      :width: 600 
 
 Log Viewer Dashboard
 ^^^^^^^^^^^^^^^^^^
@@ -3659,6 +3675,9 @@ Log Filtering and Search
 - **Message Content:** Search through log message content
 
 - **Flexible Matching:** Partial and full text search capabilities
+
+   .. figure:: _static/images/networking/Image-node-Log-002.png
+      :width: 600 
 
 Log Export and Management
 ^^^^^^^^^^^^^^^^^^
@@ -4005,11 +4024,17 @@ API Authentication and Usage Guide
         "password": "your_password"
       }
 
+   .. figure:: _static/images/user-guide/Image_137.png
+      :width: 600      
+
 3. **Retrieve Access Token**
 
    - Send the login request
    - The response will contain an access token
    - Copy the access token from the response body
+
+   .. figure:: _static/images/user-guide/Image_138.png
+      :width: 600    
 
 4. **Prepare API Request in Postman**
 
@@ -4018,6 +4043,9 @@ API Authentication and Usage Guide
    - Select "Bearer Token" as the authorization type
    - Paste the copied access token in the token field
 
+   .. figure:: _static/images/user-guide/Image_139.png
+      :width: 600    
+
 5. **Configure API Request**
 
    - Set the appropriate HTTP method (GET, POST, PUT, DELETE)
@@ -4025,10 +4053,16 @@ API Authentication and Usage Guide
    - Add any required headers
    - Prepare request body if needed (for POST/PUT requests)
 
+   .. figure:: _static/images/user-guide/Image_140.png
+      :width: 600    
+
 6. **Send the Request**
 
    - Click "Send" to execute the API call
    - Review the response status and body
+
+   .. figure:: _static/images/user-guide/Image_141.png
+      :width: 600    
 
 Swagger API Documentation Guide
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4066,10 +4100,15 @@ Upon accessing the Swagger interface, you'll see:
 
    Find the User management Section and locate the "Login" endpoint
 
+   .. figure:: _static/images/user-guide/Image_142.png
+      :width: 600       
+
 2. **Execute the Login Request**
 
    - Click "Try it out" button on the login endpoint
    - Enter Request Body with your credentials:
+   .. figure:: _static/images/user-guide/Image_143.png
+      :width: 600   
 
    .. code-block:: json
 
@@ -4079,7 +4118,13 @@ Upon accessing the Swagger interface, you'll see:
       }
 
    - Click "Execute" to send the login request
+   .. figure:: _static/images/user-guide/Image_144.png
+      :width: 600     
+
    - Review the Response in the response section
+
+   .. figure:: _static/images/user-guide/Image_145.png
+      :width: 600   
 
 **Step 3: Configure Bearer Token Authorization**
 
@@ -4088,16 +4133,29 @@ Upon accessing the Swagger interface, you'll see:
    - Find the "Authorize" button at the top of the Swagger interface
    - Click the "Authorize" button to open the authorization dialog
 
+   .. figure:: _static/images/user-guide/Image_146.png
+      :width: 600   
+
 2. **Configure Bearer Token Authentication**
 
    - Select "Bearer Auth" section
    - Enter the Bearer Token:
+
+   .. figure:: _static/images/user-guide/Image_147.png
+      :width: 600   
 
    .. code-block:: text
 
       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
    - Click "Authorize" to save the configuration
+
+   .. figure:: _static/images/user-guide/Image_148.png
+    :width: 600   
+
+   .. figure:: _static/images/user-guide/Image_149.png
+      :width: 600   
+
 
 **Step 4: Test API Endpoints**
 
@@ -4106,8 +4164,21 @@ With authentication configured, you can now test all available API endpoints:
 1. **Select an Endpoint**: Choose the desired API endpoint from the list
 2. **Review Endpoint Information**: HTTP Method, URL Path, Parameters, Request Body, Response Codes
 3. **Click "Try it out"**: This enables the interactive testing interface
+
+   .. figure:: _static/images/user-guide/Image_151.png
+      :width: 600   
+
+
 4. **Configure Request Parameters**: Fill in required path variables, query parameters, request body
+
+
 5. **Execute the Request**: Click the "Execute" button
+
+   .. figure:: _static/images/user-guide/Image_152.png
+      :width: 600   
+
+   .. figure:: _static/images/user-guide/Image_153.png
+      :width: 600   
 
 **Best Practices**
 
