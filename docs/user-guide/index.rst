@@ -66,6 +66,12 @@ To access the Karios management interface, open a supported web browser (Chrome 
 3. **Enter Credentials**: Input username and password in the login form
 4. **Sign In**: Click the "Sign in" button to access the system
 
+.. figure:: _static/images/getting_started/login_process.png
+      :width: 600
+      :alt: Login Process
+
+      Figure 1: Login Process
+
 **New User Registration**
 
 1. **Sign Up Option**: Click "New User? Sign Up" link on the login page
@@ -90,6 +96,12 @@ To access the Karios management interface, open a supported web browser (Chrome 
 - **Permission Management**: Contact system administrators for permission upgrades
 - **Security Best Practice**: Use administrative accounts only when necessary
 
+.. figure:: _static/images/getting_started/new_user_registration.png
+      :width: 600
+      :alt: New User Registration
+
+      Figure 2: New User Registration
+
 **Account Management & Security**
 
 - To return to the login page, click "Existing User? Login."
@@ -113,10 +125,23 @@ After successful login, the system will display the "Access Karios" license vali
 3. Click the "Copy" button to copy this token to your clipboard. Keep this token secure
 4. Click on the highlighted link to access the "license request portal"
 
+.. figure:: _static/images/getting_started/request_license.png
+      :width: 600
+      :alt: License Request Portal
+
+      Figure 3: License Request Portal
+
 **Step 2: Generate License File**
 
 1. Navigate to the Karios payment portal website to request license
 2. Verify the payment details and click "proceed"
+
+.. figure:: _static/images/getting_started/zoho_init_license_proceed.png
+      :width: 600
+      :alt: Proceed After Payment 
+
+      Figure 4: Proceed After Payment
+
 3. Locate the "License Token" or "Token" input field and paste the copied license token
 
    **Necessary details:**
@@ -127,10 +152,43 @@ After successful login, the system will display the "Access Karios" license vali
    
    Click "proceed"
 
+.. figure:: _static/images/getting_started/zoho_user_details.png
+      :width: 600
+      :alt: Enter User Details
+
+      Figure 5: Enter User Details
+
 4. Review the contact details and click "proceed"
+
+.. figure:: _static/images/getting_started/zoho_license_click_proceed.png
+      :width: 600
+      :alt: Click Proceed
+
+      Figure 6: Click Proceed
+
 5. Enter the CAPTCHA code and click "Start Trial"
+
+.. figure:: _static/images/getting_started/zoho_license_start_trial.png
+      :width: 600
+      :alt: Enter CAPTCHA
+
+      Figure 7: Enter CAPTCHA
+
 6. A confirmation page appears, indicating that you have successfully subscribed to the plan
+
+.. figure:: _static/images/getting_started/zoho_license_confirmation.png
+      :width: 600
+      :alt: License Confirmation
+
+      Figure 8: License Confirmation
+
 7. After successful subscription, a license file will be sent to your registered email address. Download the file from your inbox
+
+.. figure:: _static/images/getting_started/license_email.png
+      :width: 600
+      :alt: Download License File
+
+      Figure 9: Download License File
 
 **Step 3: Upload License File**
 
