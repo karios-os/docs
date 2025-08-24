@@ -9,7 +9,7 @@ System Updates and Releases
 Overview
 ========
 
-The System Updates and Releases component provides comprehensive update management across your entire Karios infrastructure. This system ensures seamless deployment of updates, patches, and new releases while maintaining system stability and providing complete visibility into the update process.
+The System Updates and Releases component provides update management across your entire Karios infrastructure. This system ensures seamless deployment of updates, patches, and new releases while maintaining system stability and providing complete visibility into the update process.
 
 Update Management
 =================
@@ -122,7 +122,6 @@ Update Download Process
 
 * **Progress Tracking:** Real-time download progress monitoring
 * **Retry Mechanism:** Automatic retry for failed downloads
-* **Bandwidth Management:** Optimized download process to minimize network impact
 * **Download History:** Complete history of downloaded updates
 
 Update Installation

@@ -42,7 +42,7 @@ html_theme_options = {
     'analytics_id': '',  # Add your Google Analytics ID
     'analytics_anonymize_ip': False,
     'logo_only': False,
-    'display_version': True,
+    #'display_version': True,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     'vcs_pageview_mode': '',
@@ -55,8 +55,8 @@ html_theme_options = {
 }
 
 # Logo and favicon
-html_logo = '_static/images/logo.png'
-html_favicon = '_static/images/favicon.ico'
+#html_logo = '_static/images/logo.png'
+#html_favicon = '_static/images/favicon.ico'
 
 # Additional options
 html_title = 'Karios Documentation'
