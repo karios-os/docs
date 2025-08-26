@@ -10,8 +10,43 @@ Overview
 
 Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components pre-configured for optimal performance and security.
 
+
+.. _system-requirements:
+
 System Requirements
 -------------------
+
+Security Considerations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Mitigating Spectre & Meltdown Vulnerabilities
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important::
+   **Tech Tip: Mitigating Spectre & Meltdown Vulnerabilities**
+   
+   Spectre and Meltdown are hardware vulnerabilities that affect many processors. While mitigations have been implemented in software (kernel patches), they often come with a performance penalty. Newer CPUs generally offer better performance with the mitigations enabled, as they incorporate architectural improvements to reduce the impact.
+
+.. note::
+   For more information related to Spectre and Meltdown, please refer to https://meltdownattack.com/
+
+
+Processor Recommendations
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Recommendation:** Avoid older Intel processors (pre-8th generation Core series and pre-Xeon Scalable 1st Generation) and AMD processors (pre-Zen/Zen+ architecture). While software patches can address these vulnerabilities, performance degradation is often significant on older hardware. If you must use an older processor, ensure that the latest microcode updates are installed and thoroughly test the impact on your workloads.
+
+**Processors to Avoid:**
+
+- Intel processors: pre-8th generation Core series
+- Intel Xeon: pre-Scalable 1st Generation
+- AMD processors: pre-Zen/Zen+ architecture
+
+**If Using Older Processors:**
+
+- Ensure latest microcode updates are installed
+- Thoroughly test the impact on your workloads
+- Consider performance degradation in capacity planning
 
 Production Hardware Recommendations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -20,30 +55,11 @@ Production Hardware Recommendations
    We strongly recommend using high-quality server hardware when deploying Karios in production environments. Enterprise-grade hardware ensures reliability, performance, and long-term support for your critical infrastructure.
 
 Minimum Requirements
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 .. warning::
    These minimum requirements are intended for **evaluation and testing purposes only**. Do not use these specifications for production deployments.
 
-.. list-table:: 
-   :header-rows: 1
-   :widths: 25 75
-
-   * - Component
-     - Specification
-   * - **CPU**
-     - 64-bit processor
-   * - **Virtualization Support**
-     - Intel VT-x or AMD-V capable CPU and motherboard for hardware-assisted virtualization
-   * - **RAM**
-     - 32 GB system RAM minimum, plus additional RAM allocation for virtual machines and guests
-   * - **Storage**
-     - Hard drive with sufficient capacity for the operating system and guest storage
-   * - **Network**
-     - One network interface card (NIC) minimum
-
-Recommended Production Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table:: 
    :header-rows: 1
@@ -52,22 +68,164 @@ Recommended Production Requirements
    * - Component
      - Specification
    * - **CPU**
-     - Intel Xeon Scalable, AMD EPYC or equivalent (minimum 8 cores)
+     - Intel Core i5 or AMD Ryzen 5 series (6 cores / 12 threads minimum) with VT-x/AMD-V enabled. Clock speed: 3.0 GHz+
    * - **RAM**
-     - 64GB DDR4 ECC RAM (minimum) - ECC RAM is strongly recommended for data integrity
+     - 16 GB DDR4 2666 MHz. This is the absolute floor. You'll be very limited in VM sizes and concurrency
    * - **Storage**
-     - Minimum 2 x 1TB SATA drives (for redundancy). SSD/NVMe drives are highly recommended for performance
-   * - **Network**
-     - Gigabit Ethernet adapter minimum
+     - 256GB NVMe SSD (for FreeBSD + VMs). Consider a second, smaller SSD for boot/root filesystem to isolate it from potential VM disk issues
+   * - **Network Card**
+     - Gigabit Ethernet
+   * - **Notes**
+     - This is barely sufficient for basic testing and experimentation. Performance will be constrained, and you'll need to carefully manage resources. Not suitable for anything approaching a mission-critical workload
+
+Recommended Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
-   For detailed hardware requirements, refer to the hardware compatibility section.
+   Good Lab/Test Environment - Potential for Limited Mission Critical
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Component
+     - Specification
+   * - **CPU**
+     - Intel Core i7 or AMD Ryzen 7 series (8 cores / 16 threads minimum). Clock speed: 3.5 GHz+
+   * - **RAM**
+     - 32 GB DDR4 3200 MHz or faster. This provides more breathing room for VMs and the host OS
+   * - **Storage**
+     - 512GB - 1TB NVMe SSD (or a RAID-Z1/RAID-Z2 array of two NVMe drives) for data storage. A separate 128GB boot drive is highly recommended. Crucially, use ZFS
+   * - **Network Card**
+     - Dual Gigabit Ethernet ports configured in LACP (Link Aggregation Control Protocol) for increased bandwidth and redundancy
+   * - **Notes**
+     - This configuration allows you to run a reasonable number of VMs with acceptable performance. RAID-Z1/RAID-Z2 provides data protection against single drive failure. LACP adds network redundancy. Still, mission-critical workloads require more robust solutions
+
+Ideal Configuration
+^^^^^^^^^^^^^^^^^^^
+
+.. important::
+   Mission Critical - High Availability & Performance
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Component
+     - Specification
+   * - **CPU**
+     - Intel Xeon or AMD EPYC series (16+ cores / 32+ threads). Clock speed: 4.0 GHz+. Consider a dual-socket configuration for increased processing power and redundancy
+   * - **RAM**
+     - 64 GB DDR4/DDR5 3200 MHz or faster ECC Registered RAM. ECC (Error Correcting Code) is essential for data integrity in mission-critical environments. Registered RAM provides better stability with higher capacities
+   * - **Storage**
+     - 1TB - 2TB NVMe SSDs configured in a RAID-Z2/RAID-Z3 array. Consider using enterprise-grade drives designed for continuous operation. A separate boot drive with ZFS is highly recommended
+   * - **Network Card**
+     - Dual or Quad 10 Gigabit Ethernet ports configured in LACP with redundant switches
+   * - **Power Supply**
+     - Redundant power supplies (RPS) to ensure continuous operation even if one PSU fails
+   * - **Hardware Watchdog**
+     - Implement a hardware watchdog timer to automatically reboot the system in case of software hangs or crashes
+
 
 Pre-Installation Planning
 -------------------------
 
 .. important::
    **MANDATORY REQUIREMENT**: Internet connectivity is required during installation.
+
+
+Understanding Virtualization Constraints
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Critical Platform Dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. warning::
+   **Hardware Dependency Requirements**
+   Understanding these constraints is essential for successful Karios deployment and optimal virtualization performance.
+
+Bhyve Hardware Dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. important::
+   **Bhyve is Hardware Dependent**
+   Unlike some other virtualization solutions, Bhyve relies heavily on hardware features like Intel VT-x or AMD-V for efficient operation. Without these hardware features, performance will be abysmal and effectively unusable.
+
+**Required Hardware Features:**
+
+- **Intel VT-x**: Essential for Intel-based systems
+- **AMD-V**: Required for AMD-based systems
+- **Hardware Virtualization Support**: Must be enabled in BIOS/UEFI
+- **Performance Impact**: Missing hardware support renders virtualization unusable
+
+Resource Planning Considerations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+   **Host System Resources are Shared**
+   The host system (Karios) needs sufficient resources to function alongside the virtual machines (VMs) you create. When planning your deployment, ensure you calculate virtual machine overhead in addition to VM resource requirements.
+
+**Resource Planning Guidelines:**
+
+- Reserve adequate CPU cores for the host system
+- Allocate sufficient RAM for host operations
+- Account for storage I/O overhead
+- Plan network bandwidth for host management traffic
+- Consider hypervisor overhead in total resource calculations
+
+Nested Virtualization Limitations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. warning::
+   **Production Deployment Restrictions**
+   While technically possible, nested virtualization (running Bhyve inside another hypervisor like VMware or VirtualBox) is generally not recommended for production use due to significant performance overhead.
+
+**Nested Virtualization Constraints:**
+
+- **Performance Overhead**: Substantial performance degradation
+- **Not Production Ready**: Unsuitable for mission-critical workloads
+- **Testing Only**: Acceptable for development and testing scenarios
+- **Hardware Requirements**: These specifications assume direct hardware installation
+
+**Deployment Recommendations:**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 35 35
+
+   * - Scenario
+     - Recommendation
+     - Use Case
+   * - **Direct Hardware Installation**
+     - **Recommended** - Optimal performance
+     - Production, mission-critical workloads
+   * - **Nested Virtualization**
+     - **Not Recommended** - Performance penalty
+     - Development, testing, lab environments only
+   * - **Cloud Infrastructure**
+     - **Evaluate carefully** - Provider dependent
+     - Ensure hypervisor or optimized virtualization
+
+Planning Considerations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Before Deployment:**
+
+1. **Verify Hardware Compatibility**
+   - Confirm VT-x/AMD-V support
+   - Check BIOS/UEFI settings
+   - Validate hardware feature availability
+
+2. **Calculate Resource Requirements**
+   - Host system overhead
+   - Virtual machine resource needs
+   - Network and storage I/O requirements
+   - Management interface resources
+
+3. **Avoid Nested Scenarios**
+   - Plan for direct hardware installation
+   - Consider performance implications
+   - Evaluate alternative solutions for testing environments
 
 Preparing Your Hardware and Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,17 +235,82 @@ Before you begin installing Karios, careful preparation is crucial for a smooth 
 Hardware Requirements Verification
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. note::
+   For detailed hardware requirements, refer to the :ref:`system-requirements` section.
+
 **Hardware Compatibility**
 
 While Karios supports a wide range of hardware, we maintain a list of tested and validated configurations. Consult the hardware compatibility documentation before proceeding if you have specific concerns about hardware compatibility.
 
-**BIOS/UEFI Settings**
+BIOS/UEFI Settings
+^^^^^^^^^^^^^^^^^^
 
-Ensure your BIOS or UEFI is configured properly:
+**Essential BIOS Settings for Bhyve with Advanced Features**
 
-- Set boot order with USB drive as the primary boot device
-- Enable virtualization support (Intel VT-x or AMD-V)
-- Refer to your motherboard manual for instructions on accessing and modifying these settings
+.. important::
+   **GPU Pass-through and Advanced Virtualization Configuration**
+   The following BIOS/UEFI settings are essential for optimal bhyve performance with advanced features such as GPU pass-through.
+
+**Required Settings**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Setting
+     - Configuration
+   * - **Virtualization Technology (VT-x/AMD-V)**
+     - **Enable** - Crucial for virtualization functionality
+   * - **IOMMU (VT-d/AMD-Vi)**
+     - **Enable** - Required for direct device assignment and GPU pass-through
+   * - **Above 4G Decoding**
+     - **Enable** - Necessary for larger memory addressing capabilities
+   * - **SR-IOV**
+     - **Enable** (Optional) - Improves performance when supported by hardware
+   * - **Resizable BAR**
+     - **Enable** (Optional) - Provides potential performance boost with compatible hardware
+   * - **CSM (Compatibility Support Module)**
+     - **Consider Disabling** - Try disabling for UEFI boot mode (proceed with caution)
+   * - **Secure Boot**
+     - **Consider Disabling** - May interfere with bhyve operation; disable if needed
+
+Critical Configuration Notes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
+   Incorrect BIOS/UEFI settings can prevent the system from booting. Always proceed with extreme caution when modifying these settings.
+
+**Essential Preparation Steps:**
+
+1. **Consult Motherboard Manual**
+   - BIOS settings vary significantly by manufacturer and model
+   - Refer to specific documentation for your hardware
+
+2. **Update BIOS/UEFI Firmware**
+   - Install latest BIOS version for improved compatibility
+   - Recent updates often include bug fixes and enhanced virtualization support
+
+3. **Research IOMMU Grouping**
+   - Verify proper GPU isolation capabilities
+   - Ensure IOMMU groups support your intended device pass-through configuration
+   - Test IOMMU grouping before deployment
+
+**Best Practices**
+
+**Pre-Configuration Checklist:**
+
+- Document current BIOS settings before making changes
+- Update BIOS/UEFI to latest stable version
+- Verify hardware compatibility with intended virtualization features
+- Research motherboard-specific IOMMU limitations
+- Plan rollback procedures in case of boot issues
+
+**Post-Configuration Validation:**
+
+- Verify successful boot after each setting change
+- Test virtualization functionality incrementally
+- Validate IOMMU device grouping
+- Confirm GPU pass-through capabilities if required
 
 Downloading the Karios ISO Image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -676,11 +899,4 @@ After successful installation, proceed to:
 - **Component Configuration**: Configure individual Karios components with appropriate security settings
 - **Backup and Recovery**: Establish comprehensive backup and disaster recovery procedures
 
-.. seealso::
-
-   :doc:`basics`
-       Learn Karios fundamentals and basic operations
-   
-   :doc:`initial-configuration`
-       Complete the initial system configuration with security best practices
    
