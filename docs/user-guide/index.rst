@@ -35,7 +35,7 @@ To access the Karios management interface, open a supported web browser (Chrome 
 
       ssh root@192.168.xxx.xxx
 
-   Default Password: ``adminadmin``
+   Password: ``your-root-password``
 
 2. **Retrieve Generated Password**
 
@@ -231,6 +231,29 @@ After successful login, the system will display the "Access Karios" license vali
 .. note::
 
    It is critical to set BMC credentials for the node to enable fetching system updates and performing essential system calls.
+
+**BMC Security Configuration**
+
+.. danger::
+   **CRITICAL SECURITY NOTICE**
+   
+   Before connecting your BMCs to the Provisioning Center, **secure their credentials immediately**. Using default passwords creates serious security vulnerabilities.
+
+**Password Security Requirements**
+
+.. warning::
+   **Password Configuration - Critical Security Step**
+   
+   **Strong Password Requirements:**
+   - At least 12 characters long
+   - Mix of uppercase, lowercase, numbers, and symbols  
+   - Avoid common words or personal information
+   - Change regularly (recommended every 90 days)
+
+.. error::
+   **Do not skip this crucial security step!**
+   
+   Failure to secure BMC credentials before network connection exposes your infrastructure to potential compromise.
 
 **Step 5: Set BMC Credentials**
 How to set BMC credentials:
@@ -556,17 +579,17 @@ Datacenter Management
    :alt: Control Center Overview
    :align: center
 
-Bare Metal Server Management
+Hypervisor Server Management
 ----------------------------
 
 Server Discovery Process
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Karios provides automated bare metal server discovery through network scanning:
+Karios provides automated hypervisor server discovery through network scanning:
 
 1. **Subnet Scanning**: Navigate to the scan section and enter the target subnet (e.g., ``192.168.111.0/24``)
 2. **Initiate Scan**: Click the "Scan" button to begin automatic server discovery
-3. **Discovery Results**: Discovered servers appear in the "Bare Metal Discovery" section
+3. **Discovery Results**: Discovered servers appear in the "Hypervisor Discovery" section
 
 .. figure:: _static/images/baremetal_management/server_discovery.png
    :width: 800
@@ -732,8 +755,12 @@ Component Navigation Process
 - **Context Awareness**: Understand the current context (control node vs. worker node)
 - **Permission Levels**: Ensure appropriate permissions for accessing different components
 
-Liquid Cooling Management Operations (Future Scope - Not available for Single Node Management)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Liquid Cooling Management Operations - (Special Feature. Contact Sales)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+   **Preview Feature Notice**
+   This section on Liquid Cooling is currently reflecting the preview version of the feature. Expect updates and enhancements as it progresses towards general availability (GA).
 
 **Karios Cool Integration:** The Liquid Cooling tab provides access to the Karios Cool thermal management system for monitoring and controlling liquid cooling infrastructure across your deployment.
 
@@ -752,10 +779,34 @@ Immersion Cooling Tab
 
 **Netbox Configuration:**
 
-- **Configure Netbox**: Click the "Configure Netbox" button to set up Netbox integration
-- **Netbox URL**: Enter the Netbox URL (e.g., "http://example.com:8000")
-- **API Token**: Enter your API token for authentication (e.g., 57de59edd5ee56af1946f39a55e17281e6c7aaee)
-- **Save Configuration**: Click "Save Configuration" to apply settings
+Netbox is a system that acts as a central repository ("single source of truth") for all information about your datacenter. It runs in the background (backend) to manage and track assets and configurations.
+
+**How does it work with Karios?**
+
+Karios uses Netbox by creating connections (northbound/southbound APIs) to pull data from and send data to Netbox. This allows Karios to retrieve information about your datacenter.
+
+**Integration Benefits:**
+
+- Centralized asset management and tracking
+- Automated configuration synchronization
+- Real-time datacenter information access
+- Unified infrastructure visibility
+
+
+To connect Karios to Netbox, follow these configuration steps:
+
+- **Click "Configure Netbox"**
+   Initiates the setup process within the Karios interface
+
+- **Enter the Netbox URL**
+   Provide the web address where your Netbox instance is located (e.g., http://example.com:8000)
+
+- **Enter an API Token**
+   This token acts as authentication credentials for Karios to access and modify data within Netbox
+
+- **Click "Save Configuration"**
+   Applies the settings and establishes the connection between Karios and Netbox
+
 
 .. figure:: _static/images/control_center/liquid_cooling/LQ_configure_netbox.png
    :alt: Netbox Configuration
@@ -1046,8 +1097,43 @@ Click Delete icon to unmount the moosefs storage. It will prompt you for a confi
 
 S3 Storage
 ^^^^^^^^^^
-**S3 Object Storage:**
 S3 (Simple Storage Service) provides scalable object storage for backup, archival, and cloud-native applications. It offers cost-effective storage with global accessibility and integration with modern DevOps workflows.
+
+
+**Why S3 is Useful for Hypervisors - Core Benefits**
+
+**Centralized Storage for VM Images and Disks**
+
+The most common and significant use case involves storing VM disk images (`.raw` files) in S3 buckets instead of local hypervisor storage. This approach provides:
+
+- **Scalability:** Easily scale storage capacity as needed without being limited by the physical hardware of the hypervisor host
+
+- **Cost-Effectiveness:** S3 is often cheaper than traditional SAN or NAS solutions for large amounts of data
+
+**Data Durability & Redundancy:** S3 provides extremely high levels of data durability and redundancy, protecting against data loss
+
+
+**Additional Use Cases**
+
+- **Backup and Disaster Recovery:** S3 serves as an ideal target for VM backups. Regular VM backups to S3 ensure quick restoration in case of disaster or hardware failure
+
+- **VM Migration & Replication:** Moving VMs between Karios hosts becomes easier when VM images are stored centrally in S3. This simplifies copying images between locations and enables streamlined disaster recovery replication
+
+**Content Delivery:** For VMs hosting web applications or content-serving services, S3 can serve as a staging area or directly serve static assets
+
+
+**Specific Advantages for Karios**
+
+**Flexibility:** S3 allows Karios to operate more independently of the underlying storage hardware
+
+**Cloud-Native Integration:** For Karios deployments in cloud environments, S3 integration provides natural architectural alignment
+
+**Simplified Management:** Centralized storage simplifies management and reduces complexity compared to managing multiple local storage devices
+
+
+.. important::
+   **Summary**
+   S3 enables a more scalable, resilient, and flexible Karios environment by separating VM images from the hypervisor's physical storage infrastructure.
 
 .. figure:: _static/images/control_center/storage_management/storage_s3_storage_interface.png
    :alt: S3 Storage Interface
@@ -1123,6 +1209,28 @@ iSCSI Storage
 
 **iSCSI Block Storage:**
 iSCSI provides block-level storage access over IP networks, enabling remote storage to appear as locally attached disks. It's commonly used for shared storage in virtualization environments and high-performance database applications.
+
+iSCSI integration provides Karios with flexible, centralized block storage that delivers:
+
+- Improved performance through dedicated storage networks
+- Enhanced reliability via centralized storage management  
+- Better manageability with unified storage administration
+- Scalable architecture supporting infrastructure growth
+
+**Storage Benefits**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Benefit
+     - Description
+   * - **Centralized Storage**
+     - Simplifies management and enables easy scaling of storage capacity as infrastructure grows
+   * - **High Availability**
+     - Supports live VM migration between hosts without data loss, ensuring continuous operations
+   * - **Cost-Effective**
+     - Provides SAN functionality at a lower cost than traditional Fibre Channel solutions
 
 **Understanding iSCSI Terms:**
 
@@ -1210,6 +1318,41 @@ NFS Storage
 **NFS File Storage:**
 NFS (Network File System) allows you to access files on remote servers as if they were stored locally on your system. It's commonly used for shared storage in Unix/Linux environments and virtualization platforms.
 
+**NFS Advantages for Hypervisors**
+
+For hypervisors like Karios, NFS offers several crucial advantages:
+
+**Shared Storage**
+   The primary benefit of NFS integration. NFS allows multiple Karios hosts to access and use the same VM disk images (`.raw` files). This shared access is essential for advanced hypervisor features like live migration.
+
+**Live Migration Support (Future)**
+   Moving a running virtual machine from one Karios host to another becomes feasible with NFS. Since both hosts access the same storage, the VM's data remains accessible during migration, minimizing downtime.
+
+**Centralized Management**
+   Simplifies storage administration by consolidating management at the NFS server level rather than managing storage individually on each hypervisor host.
+
+**Scalability & Flexibility**
+   Enables easier storage capacity scaling by adding resources to the NFS server without modifying individual Karios hosts. This approach also provides flexibility in storage hardware selection, removing dependency on directly attached storage.
+
+**Cost-Effectiveness**
+   Can provide more economical storage solutions compared to dedicated SAN implementations, particularly beneficial for smaller deployments.
+
+**Implementation Benefits**
+
+**Operational Advantages:**
+
+- Unified storage management across multiple hypervisor hosts
+- Simplified backup and disaster recovery procedures
+- Reduced storage hardware complexity per host
+- Enhanced resource utilization through shared storage pools
+
+**Technical Considerations:**
+
+- Network bandwidth requirements for storage traffic
+- NFS server performance impact on VM operations  
+- Network reliability requirements for storage availability
+- Security considerations for network-attached storage
+
 .. figure:: _static/images/control_center/storage_management/storage_nfs_storage_interface.png
    :alt: NFS Storage Interface
    :width: 800
@@ -1275,7 +1418,55 @@ SMB Storage
 
 **SMB/CIFS Storage:**
 
-SMB (Server Message Block) enables file sharing with Windows systems and provides access to network shares. It's essential for mixed Windows/Linux environments and centralized file storage.
+SMB (Server Message Block), formerly known as CIFS (Common Internet File System), is a network file sharing protocol primarily used by Windows environments. It allows computers to access files over a network as if they were local drives, similar to NFS functionality.
+
+**Importance for Hypervisors**
+
+For hypervisors like Karios, SMB offers valuable benefits, particularly in mixed or Windows-integrated environments:
+
+**Windows Integration**
+   Simplifies integration in infrastructures that heavily utilize Windows servers and Active Directory, leveraging existing expertise and tools
+
+**Shared Storage Capabilities**
+   Similar to NFS, SMB enables multiple Karios hosts to access the same VM disk images (`.raw` files), which is crucial for live migration and high availability
+
+**Live Migration Support (Future)**
+   Allows seamless movement of running VMs between Karios hosts since both access the same storage location, minimizing downtime during migrations
+
+**Administrative Familiarity**
+   For administrators experienced with Windows environments, SMB setup and management are often more straightforward than NFS alternatives
+
+**Cost-Effective Implementation**
+   SMB solutions can be economical, especially when leveraging existing Windows servers for file sharing
+
+**Protocol Comparison**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Protocol
+     - Best Use Case
+     - Key Characteristics
+   * - **SMB/CIFS**
+     - Windows-centric environments
+     - Native Windows integration, familiar management
+   * - **NFS**
+     - Linux/Unix-centric setups
+     - POSIX compliance, Unix-native features
+   * - **SAN**
+     - High-performance requirements
+     - Superior performance but higher cost and complexity
+
+**Storage Decision Factors**
+
+**Choose SMB when:**
+
+- Infrastructure has strong Windows presence
+- Existing Windows file sharing infrastructure available
+- Administrative team has Windows storage expertise
+- Integration with Active Directory is required
+
 
 .. figure:: _static/images/control_center/storage_management/storage_smb_storage_interface.png
    :alt: SMB Storage Interface
@@ -3423,6 +3614,44 @@ Firewall Management
 
 Packet Filter Rules Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**PF Firewall Rules**
+
+**Connection Protection Rules**
+
+This PF rule acts as a security guard for your server, preventing connection flooding and brute-force attacks. It works by implementing multiple security mechanisms:
+
+**Limiting Connections**
+   Restricts the number of simultaneous connections and rate of new connection attempts from any single IP address
+
+**Overload Protection**
+   When configured limits are exceeded, the rule aggressively blocks attackers by dropping their connections and terminating existing ones using a pre-defined "bruteforce" action block
+
+**Attack Mitigation**
+   Designed to stop malicious actors from overwhelming your server with connection requests while minimizing disruption to legitimate users
+
+
+**Configuration Requirements**
+
+Proper configuration is crucial for rule effectiveness:
+
+**Critical Components:**
+
+- Connection limit thresholds appropriate for your environment
+- Rate limiting parameters for new connection attempts
+- Bruteforce overload block configuration
+- Timeout values for blocked connections
+
+**Best Practices:**
+
+- Test configuration changes in a controlled environment
+- Monitor logs to ensure legitimate traffic isn't blocked
+- Adjust thresholds based on actual traffic patterns
+- Document configuration changes for future reference
+
+.. warning::
+   **Configuration Impact**
+   Improper PF rule configuration can block legitimate traffic or fail to protect against attacks. Always validate settings before applying to production systems.
 
 **PF Rules Display:** The Packet Filter Rules section provides a comprehensive view of all active firewall rules.
 
