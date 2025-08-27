@@ -353,8 +353,8 @@ Available Resources Overview:
 
    Each registered node displays an “Add licensed features” button, allowing you to allocate specific features to individual nodes.
 
-   .. figure:: _static/images/getting_started/add_licensed_features.png
-      :alt: Add Licensed Features
+   .. figure:: _static/images/getting_started/add_license_features.png
+      :alt: Add Features Tab
       :align: center
 
    **License Management for Nodes**
@@ -369,7 +369,7 @@ Available Resources Overview:
 
    - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
 
-   .. figure:: _static/images/getting_started/add_license_features.png
+   .. figure:: _static/images/getting_started/add_features_tab.png
       :alt: Add Features Tab
       :align: center
 
@@ -399,6 +399,7 @@ Available Resources Overview:
    - **Expiration Approach**: When license expiration warnings appear in the dashboard.
    - **Feature Upgrades**: When additional resources or features are needed.
    - **Capacity Expansion**: When adding new nodes that require licensing.
+
 
    **Renewal Steps** (Please Refer to “Update License Tab”):
 
@@ -532,7 +533,7 @@ System Usage
 - **Change Management**: Follow proper change management procedures for system modifications.
 - **Support Utilization**: Utilize available support resources and documentation effectively.
 
-Web Interface Navigation
+Web Interface Navigation   
 ------------------------
 
 Dashboard Overview
@@ -1185,6 +1186,10 @@ After connecting to an iSCSI target, you need to mount the discovered devices to
 **Device Selection:** Check the boxes for available devices (e.g., "da1")
 
 **Verify Selection:** Confirm your selected devices are listed correctly
+
+.. figure:: _static/images/control_center/storage_management/storage_iscsi_mount.png
+   :alt: iSCSI Device Verification
+   :width: 800
 
 **Step 2: Complete Mount Process**
 Click Mount to mount the selected iSCSI devices and make them available for use.
