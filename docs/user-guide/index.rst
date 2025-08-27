@@ -1094,7 +1094,7 @@ Click Delete icon to unmount the moosefs storage. It will prompt you for a confi
 
 .. figure:: _static/images/control_center/storage_management/storage_moosefs_unmount_confirmation.png
    :alt: MooseFS Unmount Confirmation
-   :width: 800
+   :width: 600
 
 S3 Storage
 ^^^^^^^^^^
@@ -1203,7 +1203,7 @@ Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal o
 
 .. figure:: _static/images/control_center/storage_management/storage_s3_unmount_confirmation.png
    :alt: S3 Unmount Confirmation
-   :width: 800
+   :width: 600
 
 iSCSI Storage
 ^^^^^^^^^^^^^
@@ -1558,7 +1558,7 @@ Storage Operations
 For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
 
 SeaweedFS Storage
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -2162,6 +2162,10 @@ Updates Tab
    :width: 600
 
 Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
+
+.. figure:: _static/images/control_center/releases_and_updates/install_button.png
+   :alt: Install Button
+   :width: 600
 
 .. figure:: _static/images/control_center/releases_and_updates/install_update_dialog.png
    :alt: Install Update Dialog
@@ -3747,7 +3751,19 @@ Rule Editing and Modification
 
 - **Direct Editing:** Click-to-edit functionality for individual rules
 
+.. figure:: _static/images/user-guide/firewall_rule_editing.png
+   :alt: Firewall Direct Editing
+   :width: 600
+
 - **Syntax Validation:** Real-time syntax checking during modification
+
+.. figure:: _static/images/user-guide/firewall_syntax_confirmation.png
+   :alt: Firewall Syntax Validation
+   :width: 600
+
+.. figure:: _static/images/user-guide/firewall_syntax_confirmation2.png
+   :alt: Firewall Syntax Validation
+   :width: 600
 
 - **Change Tracking:** Visual indication of modified rules and changes
 
@@ -3778,6 +3794,10 @@ The firewall system includes a comprehensive safety mechanism to prevent system 
 - **Testing Period:** Test connectivity and system access during timer period
 
 - **Confirmation Action:** Click “Confirm Changes” to make changes permanent
+
+.. figure:: _static/images/user-guide/firewall_confirm_changes.png
+   :alt: Confirm Changes
+   :width: 600
 
 **Safety Controls:**
 
