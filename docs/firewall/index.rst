@@ -188,8 +188,6 @@ The PF Logging System provides comprehensive insight into firewall activity by c
      - Granular control over logged events
    * - High-performance
      - Minimal performance impact
-   * - SIEM Integration
-     - Support for Security Information and Event Management
    * - Log Management
      - Rotation and archival policies
    * - Real-time Analysis

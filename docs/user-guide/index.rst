@@ -1923,11 +1923,11 @@ In the Network Interfaces tab, like shown below, please navigate to Virtual.
    :alt: Virtual Interface Landing
    :width: 600
 
-We have Virtual lans (VLAN's) currently supported and the landing page shows you the metrics associated with VLANs like count, status, VLANs with IP and Tag ID.
+We have Virtual LANs (VLAN's) currently supported and the landing page shows you the metrics associated with VLANs like count, status, VLANs with IP and Tag ID.
 
 In each VLAN, you will get basic information like its MAC address, IP, status, parent interface.(usually the physically interface which is seen above)
 
-Under the Virtual Interface - Virtual Lans (VLANs), you will be able to find an option to create a VLAN - 'Add VLAN'
+Under the Virtual Interface - Virtual LANs (VLANs), you will be able to find an option to create a VLAN - 'Add VLAN'
 
 **VLAN Management:** Configure and manage Virtual LANs with comprehensive settings
 
@@ -4432,7 +4432,7 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
    :alt: VM Hardware Configuration
 
-**Reassig**: Remove the virtual disk from the current vm and assign it to some other available vm in the node.
+**Reassign**: Remove the virtual disk from the current vm and assign it to some other available vm in the node.
 
 .. figure:: _static/images/vmcreation/Image_131.png
    :width: 600
