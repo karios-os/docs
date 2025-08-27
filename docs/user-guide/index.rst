@@ -3757,6 +3757,8 @@ Rule Editing and Modification
 
 - **Syntax Validation:** Real-time syntax checking during modification
 
+Type the firewall rules in the code editor and click "save" button. The system will automatically validate the syntax and highlight any errors.
+
 .. figure:: _static/images/user-guide/firewall_syntax_confirmation.png
    :alt: Firewall Syntax Validation
    :width: 600
@@ -4361,6 +4363,8 @@ VM Lifecycle Management
 **VM Management Interface**
 
 Once a VM is created, the VM management interface provides comprehensive control through several key sections:
+
+Click on the icon highlighted below to navigate to the VM management interface. All created VMs will be listed here.
 
 .. figure:: _static/images/vmcreation/navigate_to_vms.png
    :width: 600
