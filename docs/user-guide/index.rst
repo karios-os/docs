@@ -3944,6 +3944,11 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 **Cloud-Init Configuration Process**
 
 1. **Setup Method Selection**: Choose "Cloud-Init Setup" from available options
+
+.. figure:: _static/images/vmcreation/choose_cloudinit.png
+   :width: 600
+   :alt: Cloud-Init Setup Selection
+
 2. **Server Selection**: Select target server for VM deployment
 3. **Basic VM Configuration**: Configure VM name, loader, and OS
 4. **Resource Allocation**: Set CPU, memory, and storage parameters
@@ -4108,6 +4113,10 @@ VM Lifecycle Management
 
 Once a VM is created, the VM management interface provides comprehensive control through several key sections:
 
+.. figure:: _static/images/vmcreation/navigate_to_vms.png
+   :width: 600
+   :alt: VM Management Interface Overview
+
 - **Hardware Tab**: Configure VM hardware specifications and resources
 - **Console Tab**: Direct console access to the virtual machine
 - **Snapshots Tab**: Create and manage VM snapshots
@@ -4145,6 +4154,10 @@ The Hardware tab allows dynamic modification of VM specifications:
 
 **Update: Modify existing network configurations**
 
+.. figure:: _static/images/vmcreation/update_vm_configs.png
+   :width: 600
+   :alt: VM Network Configuration Update
+
 .. figure:: _static/images/vmcreation/Image_128.png
    :width: 600
    :alt: VM Hardware Configuration
@@ -4156,7 +4169,11 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
    :alt: VM Hardware Configuration
 
-**Detach**: Remove virtual disks
+**Attach Only Disk**: 
+
+.. figure:: _static/images/vmcreation/attach_only_disk.png
+   :width: 600
+   :alt: VM Hardware Configuration
 
 .. figure:: _static/images/vmcreation/Image_130.png
    :width: 600
@@ -4168,6 +4185,10 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
 
 **Delete**: Delete the unused disk permanently
+
+.. figure:: _static/images/vmcreation/vm_delete_unused_disk.png
+   :width: 600
+   :alt: VM Hardware Configuration
 
 **VM Power Operations**
 
@@ -4200,12 +4221,18 @@ VM Snapshot Management
 The Snapshots tab enables comprehensive snapshot operations:
 
 - **Snapshot Creation**: Create point-in-time snapshots of the VM state
-- **Snapshot Rollback**: Restore the VM to a previous snapshot
-- **Snapshot Management**: View, delete, and organize existing snapshots
-- **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
 
 .. figure:: _static/images/vmcreation/Image_133.png
    :width: 600
+
+- **Snapshot Rollback**: Restore the VM to a previous snapshot
+
+.. figure:: _static/images/vmcreation/vm_snapshot_rollback.png
+   :width: 600
+
+- **Snapshot Management**: View, delete, and organize existing snapshots
+- **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
+
 
 VM Monitoring
 ~~~~~~~~~~~~~
