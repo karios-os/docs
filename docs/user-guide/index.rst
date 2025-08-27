@@ -376,8 +376,8 @@ Available Resources Overview:
 
    Each registered node displays an “Add licensed features” button, allowing you to allocate specific features to individual nodes.
 
-   .. figure:: _static/images/getting_started/add_licensed_features.png
-      :alt: Add Licensed Features
+   .. figure:: _static/images/getting_started/add_license_features.png
+      :alt: Add Features Tab
       :align: center
 
    **License Management for Nodes**
@@ -392,7 +392,7 @@ Available Resources Overview:
 
    - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
 
-   .. figure:: _static/images/getting_started/add_license_features.png
+   .. figure:: _static/images/getting_started/add_features_tab.png
       :alt: Add Features Tab
       :align: center
 
@@ -422,6 +422,7 @@ Available Resources Overview:
    - **Expiration Approach**: When license expiration warnings appear in the dashboard.
    - **Feature Upgrades**: When additional resources or features are needed.
    - **Capacity Expansion**: When adding new nodes that require licensing.
+
 
    **Renewal Steps** (Please Refer to “Update License Tab”):
 
@@ -555,7 +556,7 @@ System Usage
 - **Change Management**: Follow proper change management procedures for system modifications.
 - **Support Utilization**: Utilize available support resources and documentation effectively.
 
-Web Interface Navigation
+Web Interface Navigation   
 ------------------------
 
 Dashboard Overview
@@ -1093,7 +1094,7 @@ Click Delete icon to unmount the moosefs storage. It will prompt you for a confi
 
 .. figure:: _static/images/control_center/storage_management/storage_moosefs_unmount_confirmation.png
    :alt: MooseFS Unmount Confirmation
-   :width: 800
+   :width: 600
 
 S3 Storage
 ^^^^^^^^^^
@@ -1202,7 +1203,7 @@ Click Delete to unmount the S3 storage. Click "unmount" to confirm the removal o
 
 .. figure:: _static/images/control_center/storage_management/storage_s3_unmount_confirmation.png
    :alt: S3 Unmount Confirmation
-   :width: 800
+   :width: 600
 
 iSCSI Storage
 ^^^^^^^^^^^^^
@@ -1293,6 +1294,10 @@ After connecting to an iSCSI target, you need to mount the discovered devices to
 **Device Selection:** Check the boxes for available devices (e.g., "da1")
 
 **Verify Selection:** Confirm your selected devices are listed correctly
+
+.. figure:: _static/images/control_center/storage_management/storage_iscsi_mount.png
+   :alt: iSCSI Device Verification
+   :width: 800
 
 **Step 2: Complete Mount Process**
 Click Mount to mount the selected iSCSI devices and make them available for use.
@@ -1553,7 +1558,7 @@ Storage Operations
 For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
 
 SeaweedFS Storage
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -2157,6 +2162,10 @@ Updates Tab
    :width: 600
 
 Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
+
+.. figure:: _static/images/control_center/releases_and_updates/install_button.png
+   :alt: Install Button
+   :width: 600
 
 .. figure:: _static/images/control_center/releases_and_updates/install_update_dialog.png
    :alt: Install Update Dialog
@@ -3742,7 +3751,21 @@ Rule Editing and Modification
 
 - **Direct Editing:** Click-to-edit functionality for individual rules
 
+.. figure:: _static/images/user-guide/firewall_rule_editing.png
+   :alt: Firewall Direct Editing
+   :width: 600
+
 - **Syntax Validation:** Real-time syntax checking during modification
+
+Type the firewall rules in the code editor and click "save" button. The system will automatically validate the syntax and highlight any errors.
+
+.. figure:: _static/images/user-guide/firewall_syntax_confirmation.png
+   :alt: Firewall Syntax Validation
+   :width: 600
+
+.. figure:: _static/images/user-guide/firewall_syntax_confirmation2.png
+   :alt: Firewall Syntax Validation
+   :width: 600
 
 - **Change Tracking:** Visual indication of modified rules and changes
 
@@ -3773,6 +3796,10 @@ The firewall system includes a comprehensive safety mechanism to prevent system 
 - **Testing Period:** Test connectivity and system access during timer period
 
 - **Confirmation Action:** Click “Confirm Changes” to make changes permanent
+
+.. figure:: _static/images/user-guide/firewall_confirm_changes.png
+   :alt: Confirm Changes
+   :width: 600
 
 **Safety Controls:**
 
@@ -4168,6 +4195,11 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 **Cloud-Init Configuration Process**
 
 1. **Setup Method Selection**: Choose "Cloud-Init Setup" from available options
+
+.. figure:: _static/images/vmcreation/choose_cloudinit.png
+   :width: 600
+   :alt: Cloud-Init Setup Selection
+
 2. **Server Selection**: Select target server for VM deployment
 3. **Basic VM Configuration**: Configure VM name, loader, and OS
 4. **Resource Allocation**: Set CPU, memory, and storage parameters
@@ -4332,6 +4364,12 @@ VM Lifecycle Management
 
 Once a VM is created, the VM management interface provides comprehensive control through several key sections:
 
+Click on the icon highlighted below to navigate to the VM management interface. All created VMs will be listed here.
+
+.. figure:: _static/images/vmcreation/navigate_to_vms.png
+   :width: 600
+   :alt: VM Management Interface Overview
+
 - **Hardware Tab**: Configure VM hardware specifications and resources
 - **Console Tab**: Direct console access to the virtual machine
 - **Snapshots Tab**: Create and manage VM snapshots
@@ -4369,6 +4407,10 @@ The Hardware tab allows dynamic modification of VM specifications:
 
 **Update: Modify existing network configurations**
 
+.. figure:: _static/images/vmcreation/update_vm_configs.png
+   :width: 600
+   :alt: VM Network Configuration Update
+
 .. figure:: _static/images/vmcreation/Image_128.png
    :width: 600
    :alt: VM Hardware Configuration
@@ -4380,7 +4422,11 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
    :alt: VM Hardware Configuration
 
-**Detach**: Remove virtual disks
+**Attach Only Disk**: 
+
+.. figure:: _static/images/vmcreation/attach_only_disk.png
+   :width: 600
+   :alt: VM Hardware Configuration
 
 .. figure:: _static/images/vmcreation/Image_130.png
    :width: 600
@@ -4392,6 +4438,10 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
 
 **Delete**: Delete the unused disk permanently
+
+.. figure:: _static/images/vmcreation/vm_delete_unused_disk.png
+   :width: 600
+   :alt: VM Hardware Configuration
 
 **VM Power Operations**
 
@@ -4424,12 +4474,18 @@ VM Snapshot Management
 The Snapshots tab enables comprehensive snapshot operations:
 
 - **Snapshot Creation**: Create point-in-time snapshots of the VM state
-- **Snapshot Rollback**: Restore the VM to a previous snapshot
-- **Snapshot Management**: View, delete, and organize existing snapshots
-- **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
 
 .. figure:: _static/images/vmcreation/Image_133.png
    :width: 600
+
+- **Snapshot Rollback**: Restore the VM to a previous snapshot
+
+.. figure:: _static/images/vmcreation/vm_snapshot_rollback.png
+   :width: 600
+
+- **Snapshot Management**: View, delete, and organize existing snapshots
+- **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
+
 
 VM Monitoring
 ~~~~~~~~~~~~~
