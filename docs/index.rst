@@ -67,6 +67,12 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Kubernetes Integration
+
+   kubernetes/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: Liquid Cooling Management
 
    liquid/index

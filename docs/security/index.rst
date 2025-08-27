@@ -9,7 +9,7 @@ Karios Security
 Overview
 ========
 
-Karios Security provides comprehensive security management and threat protection for your hyper-converged infrastructure. This integrated security solution delivers advanced vulnerability scanning, compliance monitoring, and automated remediation specifically designed for FreeBSD-based bare metal and virtualized environments. Built around the KariOS SHIELD scanning platform with the KariOS Enhanced v1.1.0 engine, it offers security assessment and management capabilities.
+Karios Security provides comprehensive security management and threat protection for your hyper-converged infrastructure. This integrated security solution delivers advanced vulnerability scanning, compliance monitoring, and automated remediation specifically designed for FreeBSD-based hypervisor and virtualized environments. Built around the KariOS SHIELD scanning platform with the KariOS Enhanced v1.1.0 engine, it offers security assessment and management capabilities.
 
 **SCAP Alignment (OVAL/XCCDF):**
 
