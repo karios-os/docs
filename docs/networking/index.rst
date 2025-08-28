@@ -9,12 +9,12 @@ Karios Integrated Network
 Overview
 ========
 
-Karios leverages FreeBSD’s exceptional networking performance and stability, while removing the operational barriers that make VM network management complex. It provides a **web-managed, centralized, and validated networking stack** that works across single-node or multi-node FreeBSD deployments.
+Karios leverages FreeBSD’s networking performance and stability, while removing the operational barriers that make network management complex. It provides a **web-managed, centralized, and validated networking stack** that works across single-node or multi-node FreeBSD deployments.
 
 Challenges Without Karios
 -------------------------
 
-Organizations often face hurdles with FreeBSD VM networking:
+Organizations often face hurdles with networking:
 
 .. list-table::
    :widths: 35 65
@@ -22,12 +22,10 @@ Organizations often face hurdles with FreeBSD VM networking:
 
    * - Challenge
      - Impact
-   * - **Multi-Node Coordination**
+   * - **Multi-Node Coordination and Visibility**
      - Configurations drift between nodes, creating inconsistent connectivity.
    * - **Expertise Barrier**
-     - Teams require deep FreeBSD networking knowledge to build even basic topologies.
-   * - **Manual Processes**
-     - Hand-written configs increase the risk of errors, downtime, and operational failures.
+     - Teams require deep networking knowledge to build even basic topologies.
 
 How Karios Transforms Networking
 --------------------------------
@@ -41,7 +39,7 @@ Karios addresses these problems while preserving FreeBSD’s strengths:
    * - Feature
      - Benefit
    * - **Intuitive Web Management**
-     - Point-and-click operations; no FreeBSD command syntax required.
+     - Point-and-click operations; no command syntax required.
    * - **Centralized Multi-Node Control**
      - Define virtual switches, VLANs, and VM connectivity once, and apply everywhere.
    * - **Built-in Validation**
@@ -56,7 +54,7 @@ What Makes Karios Essential
 
 * A **comprehensive network management platform** that simplifies FreeBSD networking without losing its performance advantages.  
 * Unified control over **virtual switches, VLANs, VALE switches, VXLANs, and tunnels**.  
-* Automated configuration validation and rollback hints to reduce risk.  
+* Automated configuration validation and warnings to reduce risk.  
 * Full lifecycle management: design, deploy, monitor, and troubleshoot—all from one place.  
 
 Desired Network Topology
@@ -69,16 +67,16 @@ To help users visualize before diving into details, Karios recommends the follow
    :width: 900
    :align: center
 
-   Example topology: Management plane, Storage VLAN, Tenant VLANs, and VXLAN overlay across multiple FreeBSD nodes.
+   Example topology: Management plane, Storage VLAN, Tenant VLANs, and VXLAN overlay across multiple nodes.
 
 Core Network Components
 =======================
 
 Physical Interfaces
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 Overview
---------
+~~~~~~~~
 Physical interfaces (NICs) form the foundation of all networking in Karios. 
 They are discovered automatically and presented in the **Physical Interfaces** tab under the Network menu. 
 From here, administrators can monitor live status and review interface properties before layering VLANs or virtual interfaces on top.
@@ -90,7 +88,7 @@ From here, administrators can monitor live status and review interface propertie
    - A third NIC, while optional, provides redundancy—ensuring uninterrupted connectivity during maintenance or link failures.  
 
 Monitoring Capabilities
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 The **Physical Interfaces** panel displays key real-time information for each NIC:
 
@@ -113,46 +111,38 @@ The **Physical Interfaces** panel displays key real-time information for each NI
    * - **Packets/Traffic**
      - Counters for received and transmitted packets (via *View Details*).
 
-Figures
--------
-
-.. figure:: _static/images/control_center/network_management/physical_interface_landing.png
+.. figure:: ../user-guide/_static/images/control_center/network_management/physical_interface_landing.png
    :alt: Physical Interface Landing Page
    :width: 700
 
    Landing page for physical NICs
 
-.. figure:: _static/images/control_center/network_management/physical_interface.png
-   :alt: Physical Interface List
-   :width: 700
 
-   Interface list with status, MAC, IP, and VLAN associations
-
-.. figure:: _static/images/control_center/network_management/physical_interface_stats.png
+.. figure:: ../user-guide/_static/images/control_center/network_management/physical_interface_stats.png
    :alt: Physical Interface Statistics
    :width: 700
 
    Detailed statistics with packet counters and throughput
 
 Notes
------
+~~~~~
 * **Live Tracking:** Data updates continuously, reflecting the current NIC state.  
 * **View Details:** Available only for active interfaces; provides per-port statistics.  
 
 Virtual Switches
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Overview
---------
-A virtual switch is a software-based Layer 2 device that enables VMs to communicate with each other and with external networks. 
+~~~~~~~~
+A virtual switch is a software-based Layer 2 device that enables VMs to communicate with external networks. 
 They act much like a physical Ethernet switch—forwarding traffic based on MAC addresses—but are implemented entirely in software.  
 In modern virtualization platforms, virtual switches provide flexible connectivity without requiring extra hardware, and they can enforce segmentation, isolation, and monitoring policies at the network edge.
 
-Karios builds on this concept by offering a **UI-driven management layer**, removing the need for manual FreeBSD command-line work. 
+Karios builds on this concept by offering a **UI-driven management layer**, removing the need for manual command-line work. 
 Administrators can create, attach, and monitor switches directly from the Control Center, making VM networking both accessible and consistent across nodes.
 
 Key Uses
---------
+~~~~~~~~
 * Provide VM-to-VM communication within an isolated network segment.  
 * Attach a switch to a **plain NIC** to extend VM traffic out to the physical network.  
 * Integrate with VLAN-backed interfaces for segmented multi-tenant networking.  
@@ -165,7 +155,7 @@ Key Uses
    - Two NICs are generally sufficient; a third NIC is recommended for redundancy and maintenance flexibility.  
 
 Switch Management in Karios
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The **Network → Switches** view in Karios provides a clear overview of all configured virtual switches and their associations:
 
 .. list-table::
@@ -183,26 +173,33 @@ The **Network → Switches** view in Karios provides a clear overview of all con
    * - **Configuration Access**
      - Direct entry points for editing, reassigning, or deleting switches.
 
+.. figure:: _static/images/network/switch_component.png
+   :alt: Switch Component
+   :width: 650
+
+   Switch component view in Karios
+
 Switch Lifecycle
-----------------
+~~~~~~~~~~~~~~~~
 Karios abstracts common operations into a straightforward workflow:
 
 1. **Create** – Open the creation form, name the switch, and assign a parent interface.  
 2. **Review** – Confirm parameters before deployment; validation catches conflicts like duplicate names or unavailable NICs.  
-3. **Monitor** – After creation, the switch appears in the dashboard with live status and statistics.  
-4. **Update/Delete** – Switches can be modified or removed, with warnings shown if connected VMs may be impacted.  
+3. **Delete** – Switches can be modified or removed, with warnings shown if connected VMs may be impacted.  
 
-.. figure:: _static/images/networking/Image-node-004.png
-   :alt: Switch Creation Form
-   :width: 650
-
-   Switch creation form in Karios
-
-.. figure:: _static/images/networking/Image-node-003.png
+.. figure:: ../user-guide/_static/images/networking/Image-node-004.png
    :alt: Switch Dashboard
    :width: 650
 
-   Switch dashboard showing created switches and status
+   Switch dashboard in Karios
+
+User Journey
+
+.. figure:: _static/images/network/virtual_switch_sequence.png
+   :alt: Switch Journey
+   :width: 650
+
+   Switch journey in Karios
 
 Considerations
 --------------
@@ -224,7 +221,7 @@ VALE High-Speed Switching
 
 Overview
 --------
-VALE is a high-performance software switch in FreeBSD’s **netmap** framework. It delivers packet forwarding speeds far beyond traditional virtual switches—reaching tens of millions of packets per second per CPU core and near line-rate performance with standard Ethernet frames.  
+VALE is a high-performance software switch. It delivers packet forwarding speeds far beyond traditional virtual switches—reaching tens of millions of packets per second per CPU core and near line-rate performance with standard Ethernet frames.  
 General benchmarks show that while regular software switches may handle 1–2 million packets per second, VALE can reach **tens of millions of packets per second per core** and approach **70 Gbps line rates** with standard frames. This makes it especially valuable for where performance is critical.
 Karios integrates VALE for scenarios where ultra-fast intra-host networking is required, such as VM-to-VM communication, NFV workloads, or research environments. To protect operational stability, Karios enforces design rules that prevent common pitfalls with VALE usage.
 
@@ -238,9 +235,30 @@ VALE behaves differently than standard switches, and these differences are criti
    * **Eligibility Rule** – The VLAN must not already be connected to another virtual switch or VM.  
    * **Network Separation** – By attaching VALE only to VLANs, Karios ensures that **high-speed VALE networks remain isolated** from regular management and tenant traffic.  
 
+.. figure:: _static/images/network/vale_topology.png
+   :alt: VALE Topology
+   :width: 800
+
+   Example VALE topology with VLAN parent and TAP interfaces
+
+Management in Karios
+--------------------
+The Karios UI simplifies VALE operations, providing:
+
+* Add/remove parent VLANs  
+* Attach/detach VM TAP interfaces  
+* Monitor total TAPs, active VALE switches, and live traffic counters  
+* Destroy unused VALE switches safely  
+
+.. figure:: _static/images/network/vale_seq.png
+   :alt: VALE Landing Page
+   :width: 700
+
+   VALE landing page in Karios
+
 Connectivity Models
 -------------------
-Karios supports several VALE network arrangements:
+Karios supports several network arrangements to track and manage VALE usage:
 
 .. list-table::
    :widths: 30 70
@@ -254,16 +272,7 @@ Karios supports several VALE network arrangements:
      - VALE switch with only TAP interfaces attached; used for secure, high-speed VM-to-VM communication.  
    * - **Unused**
      - VALE configured on a VLAN parent but with no VM connections; consumes resources but not forwarding traffic.  
-
-Management in Karios
---------------------
-The Karios UI simplifies VALE operations, providing:
-
-* Add/remove parent VLANs  
-* Attach/detach VM TAP interfaces  
-* Monitor total TAPs, active VALE switches, and live traffic counters  
-* Destroy unused VALE switches safely  
-
+  
 Best Practices
 --------------
 * **Keep Management Separate** – Always reserve at least one NIC for host management; do not attach it to VALE.  
@@ -291,18 +300,23 @@ Virtual Local Area Networks (VLANs)
 Overview
 --------
 In Karios, VLANs are one of the core building blocks for network segmentation.  
-They allow you to create multiple logical networks over the same physical interface, without touching CLI commands or juggling manual `ifconfig` syntax.  
+They allow you to create multiple logical networks over the same physical interface, without touching CLI.  
 
-Through the Control Center, VLANs are created, monitored, and managed as **first-class citizens** in the Karios networking stack.  
+VLANs are created, monitored and managed through Control Center.
 Each VLAN is tied to a parent NIC, given a tag ID, and optionally configured with an IP (static or DHCP). From there, VLANs integrate seamlessly with switches, VALE networks, and overlays.
 
 What VLANs Are in Karios
 ------------------------
 * **Logical Interfaces** – Each VLAN you create in Karios appears as its own network interface, built on top of a physical NIC.  
 * **Segmentation Tool** – VLANs separate traffic for different roles: management, storage, tenant workloads, or underlay for VALE/VXLAN.  
-* **Dynamic or Static** – Karios supports both DHCP-assigned and statically configured IPs, with automatic validation.  
 * **Always Monitored** – Every VLAN in Karios is actively tracked: gateway reachability, external connectivity, packet counters, and error rates.  
 * **Persistent** – Once created, VLANs are written into system configuration and restored after reboot.  
+
+.. figure:: _static/images/network/vlan_component.png
+   :alt: VLAN Component
+   :width: 700
+
+   VLAN component overview in Karios
 
 VLAN Dashboard in Karios
 ------------------------
@@ -325,11 +339,17 @@ The **Network → Interfaces → Virtual** tab provides a central place for VLAN
    * - **Actions**
      - View, Stats, Ping, and Delete, all directly from the dashboard.  
 
-.. figure:: _static/images/control_center/network_management/vlan_management.png
+.. figure:: ../user-guide/_static/images/control_center/network_management/vlan_management.png
    :alt: VLAN Management in Karios
    :width: 700
 
    VLAN management overview panel
+
+.. figure:: _static/images/network/vlan_seq.png
+   :alt: VLAN Sequence
+   :width: 700
+
+   VLAN sequence overview in Karios
 
 Connectivity & Status Tracking
 ------------------------------
@@ -360,7 +380,6 @@ How VLANs Fit Into the Bigger Picture
 * **Segmentation by Design** – VLANs allow you to separate management, storage, and tenant workloads cleanly in Karios.  
  
 
-
 Virtual Extensible LAN (VXLAN) Overlay Networks
 ===============================================
 
@@ -368,7 +387,7 @@ Overview
 --------
 VXLAN is a network virtualization technology that extends Layer 2 segments across Layer 3 boundaries using encapsulation.  
 It addresses the limitations of VLANs, providing a 24-bit VXLAN Network Identifier (VNI) space with support for up to 16 million segments.  
-Karios integrates VXLAN within its networking stack, enabling scalable overlay connectivity between FreeBSD nodes while enforcing validation and configuration consistency.
+Karios integrates VXLAN within its networking stack, enabling scalable overlay connectivity between nodes while enforcing validation and configuration consistency.
 
 Protocol and Standards
 ----------------------
@@ -402,27 +421,21 @@ VXLAN tunnels in Karios are established and managed with the following phases:
    - Assign static tunnel IP addresses within a common subnet.  
    - Bind the VXLAN interface to the selected VLAN parent.  
 
-3. **Post-Deployment Verification**
+.. figure:: _static/images/network/vxlan_steps.png
+   :alt: VXLAN Tunnel Creation
+   :width: 800
 
-   - Automated bidirectional ping validation of tunnel reachability.  
-   - Continuous monitoring of latency, packet loss, and interface status.  
-   - Integration of VXLAN interfaces into the Karios virtual switch layer for VM connectivity.  
+   Example VXLAN creation flow.
 
 Configuration Model
 -------------------
 A VXLAN tunnel connects two VLAN interfaces across distinct nodes:  
 
-.. figure:: _static/images/networking/create_tunnel.png
+.. figure:: _static/images/network/create_tunnel.png
    :alt: VXLAN Tunnel Creation
    :width: 800
 
    Example VXLAN configuration between two nodes with VLAN endpoints and static tunnel IPs.
-
-.. figure:: _static/images/networking/update_vxlan.png
-   :alt: VXLAN Tunnel Update
-   :width: 800
-
-   VXLAN interface update model – static IPs may be modified without altering VNI or tunnel endpoints.
 
 Operational Considerations
 --------------------------
@@ -448,9 +461,8 @@ Advanced Networking Features
 =============================
 
 Software-Defined Networking (Coming Soon)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
-**What it is:**
 SDN architecture implementing centralized network control with separation of control and data planes, enabling programmable network behavior through OpenFlow integration and policy automation.
 
 **What it does:**
@@ -460,17 +472,14 @@ SDN architecture implementing centralized network control with separation of con
 - Implements fine-grained security controls and micro-segmentation policies
 - Offers comprehensive network automation and orchestration capabilities
 
-**How Karios handles this:**
-Future SDN implementation will leverage FreeBSD's flexible networking stack with OpenFlow protocol support, integrated policy engines, and automated deployment systems while maintaining compatibility with existing network infrastructure.
-
-**How to use it in Karios:**
-Planned SDN features will provide graphical policy design tools, automated deployment workflows, real-time network programming capabilities, and comprehensive service orchestration through the unified management interface.
+**How Karios integrates SDN:**
+- Future SDN implementation will leverage FreeBSD's flexible networking stack with OpenFlow protocol support, integrated policy engines, and automated deployment systems while maintaining compatibility with existing network infrastructure.
+- Planned SDN features will provide graphical policy design tools, automated deployment workflows, real-time network programming capabilities, and comprehensive service orchestration through the unified management interface.
 
 Netgraph Advanced Framework (Coming Soon)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
-**What it is:**
-Modular, kernel-level networking framework enabling custom protocol implementations, advanced packet processing scenarios, and flexible network topology creation with dynamic reconfiguration capabilities.
+Netgraph is a modular, kernel-level networking framework enabling custom protocol implementations, advanced packet processing scenarios, and flexible network topology creation with dynamic reconfiguration capabilities.
 
 **What it does:**
 - Provides building blocks for custom network protocols and processing
@@ -479,17 +488,15 @@ Modular, kernel-level networking framework enabling custom protocol implementati
 - Offers high-performance packet processing with kernel-level efficiency
 - Implements modular architecture with reusable network function components
 
-**How Karios handles this:**
-Future Netgraph integration will provide visual topology design tools, pre-configured protocol modules, automated validation systems, and seamless integration with existing virtual switching infrastructure.
-
-**How to use it in Karios:**
-Planned Netgraph features will include drag-and-drop topology builders, extensive protocol module libraries, configuration templates for common scenarios, and comprehensive debugging and monitoring tools.
+**How Karios integrates Netgraph:**
+- Future Netgraph integration will provide visual topology design tools, pre-configured protocol modules, automated validation systems, and seamless integration with existing virtual switching infrastructure.
+- Planned Netgraph features will include drag-and-drop topology builders, extensive protocol module libraries, configuration templates for common scenarios, and comprehensive debugging and monitoring tools.
 
 Troubleshooting and Best Practices
 ===================================
 
 Performance Optimization Guidelines
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 **CPU and Memory Tuning:**
 
@@ -513,7 +520,7 @@ Performance Optimization Guidelines
 - Implement appropriate spanning tree configuration in multi-switch topologies
 
 Common Issues and Resolution Strategies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 **Connectivity Problems:**
 
@@ -524,10 +531,9 @@ Common Issues and Resolution Strategies
 
 **Performance Degradation:**
 
-1. **Hardware Offloading**: Ensure proper configuration of TSO, LRO, and checksum features
-2. **CPU Utilization**: Monitor network interrupt handling and consider CPU affinity tuning
-3. **Buffer Sizes**: Optimize network buffer allocation for specific traffic patterns
-4. **Switch Table Limits**: Monitor MAC address table utilization and aging parameters
+1. **CPU Utilization**: Monitor network interrupt handling and consider CPU affinity tuning
+2. **Buffer Sizes**: Optimize network buffer allocation for specific traffic patterns
+3. **Switch Table Limits**: Monitor MAC address table utilization and aging parameters
 
 **Configuration Conflicts:**
 
@@ -544,47 +550,18 @@ Common Issues and Resolution Strategies
 4. **Service Recovery**: Know how to restart network services without full system reboot
 
 Security Best Practices
-~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 **Network Segmentation:**
 
 - Implement proper VLAN segmentation for security boundaries
 - Use isolated networks for sensitive workloads and testing environments
 - Configure appropriate firewall rules for each network segment
-- Monitor inter-segment traffic for security policy compliance
-
-**Access Control:**
-
-- Implement role-based access controls for network management functions
-- Use secure protocols for network management and monitoring
-- Configure proper authentication and authorization for API access
-- Maintain audit logs for all network configuration changes
-
-**Traffic Analysis:**
-
-- Monitor network traffic patterns for anomaly detection
-- Implement packet capture capabilities for security investigation
-- Configure appropriate logging levels for security event correlation
-- Use network performance metrics to identify potential security issues
 
 Conclusion
 ==========
 
 Karios solves the fundamental problem that prevents organizations from leveraging FreeBSD's superior networking capabilities: operational complexity. By transforming FreeBSD VM networking from a specialist skill into mainstream operations capability, Karios enables organizations to deploy high-performance virtualization infrastructure without the traditional learning curve and operational overhead.
-
-**The Karios Solution to FreeBSD Adoption Barriers:**
-
-**Operational Transformation:**
-Karios eliminates the primary barrier to FreeBSD virtualization adoption - the operational complexity. While FreeBSD delivers exceptional networking performance, Karios makes that performance accessible to operations teams without requiring months of FreeBSD training or specialized expertise.
-
-**Scalable Management:**
-Karios addresses the multi-node management challenge that makes FreeBSD virtualization operationally complex. Instead of coordinating configurations across multiple FreeBSD systems manually, Karios provides centralized control that scales efficiently as infrastructure grows.
-
-**Risk Reduction:**
-Karios dramatically reduces the operational risks associated with manual FreeBSD configuration. Through automated validation, guided workflows, and centralized management, Karios prevents the configuration errors and inconsistencies that typically plague manually managed FreeBSD deployments.
-
-**Operational Efficiency:**
-Karios transforms hours of manual FreeBSD configuration work into minutes of point-and-click operations. This efficiency gain allows organizations to deploy and modify VM networking rapidly, enabling faster response to business requirements.
 
 **The Karios Advantage:**
 
@@ -593,18 +570,5 @@ Karios enables practical FreeBSD virtualization by solving real operational chal
 - **Accessibility:** Makes FreeBSD VM networking manageable for any operations team, regardless of FreeBSD expertise level
 - **Operational Speed:** Reduces VM networking deployment time from hours of manual work to minutes of guided configuration  
 - **Error Prevention:** Eliminates configuration mistakes through built-in validation and automated best-practice enforcement
-- **Centralized Control:** Provides unified management across multiple FreeBSD nodes, eliminating coordination overhead
-- **Performance Preservation:** Maintains all FreeBSD networking advantages while dramatically improving operational experience
-- **Team Productivity:** Frees operations teams from learning complex FreeBSD commands, allowing focus on strategic initiatives
-
-**Strategic Impact:**
-
-Karios transforms FreeBSD from a niche, expert-only platform into a practical choice for mainstream virtualization deployments:
-
-- **FreeBSD Adoption Enablement:** Organizations can deploy FreeBSD virtualization without hiring FreeBSD specialists or extensive team training
-- **Operational Scalability:** Centralized management enables FreeBSD deployments to scale operationally alongside business growth
-- **Risk Mitigation:** Automated configuration and validation reduce the operational risks that traditionally accompany FreeBSD deployments
-- **Competitive Advantage:** Organizations gain access to FreeBSD's superior networking performance through operationally practical tools
-- **Strategic Flexibility:** Teams can leverage FreeBSD's capabilities without being constrained by command-line complexity
-
-Karios represents the practical evolution of FreeBSD virtualization management. By solving the operational challenges that have historically limited FreeBSD adoption, Karios enables organizations to leverage FreeBSD's proven networking excellence through modern, scalable management tools. The result is virtualization infrastructure that delivers FreeBSD's performance advantages through operational processes that any competent IT team can manage effectively.
+- **Centralized Control:** Provides unified management across multiple Karios nodes, eliminating coordination overhead
+- **Performance Preservation:** Maintains all FreeBSD networking advantages while improving operational experience
