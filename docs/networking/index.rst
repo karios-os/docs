@@ -1,6 +1,6 @@
-========================
-Karios Flexible Network
-========================
+=========================
+Karios Integrated Network
+=========================
 
 .. contents:: Table of Contents
    :depth: 3
@@ -9,799 +9,554 @@ Karios Flexible Network
 Overview
 ========
 
-Karios Flexible Network delivers comprehensive network virtualization capabilities built on advanced FreeBSD networking technologies. The platform implements a robust, high-performance networking stack that seamlessly integrates virtual switches, VALE high-speed packet switching, VLANs, VXLANs, and sophisticated networking capabilities to create a unified network infrastructure solution.
+Karios leverages FreeBSD’s networking performance and stability, while removing the operational barriers that make network management complex. It provides a **web-managed, centralized, and validated networking stack** that works across single-node or multi-node FreeBSD deployments.
 
-**Key Advantages:**
+Challenges Without Karios
+-------------------------
 
-* **Network Virtualization Architecture:** Complete programmability and centralized control
-* **High Performance:** Zero-copy packet processing with microsecond latency
-* **Scalability:** Support for thousands of virtual ports and network segments
-* **Multi-Tenancy:** Isolated network environments with strong security boundaries
-* **Flexibility:** Dynamic network topology creation and modification
-* **Integration:** Seamless integration with virtualization and containerization platforms
-
-**Core Technologies:**
-
-* FreeBSD's advanced networking stack with kernel-level optimization
-* VALE (Virtual Abstraction Layer for Ethernet) switching framework
-* IEEE 802.1Q VLAN implementation with advanced features
-* VXLAN overlay networking with multi-site support
-* Netgraph modular framework for custom topologies
-
-**Performance Characteristics:**
+Organizations often face hurdles with networking:
 
 .. list-table::
-   :widths: 30 70
+   :widths: 35 65
    :header-rows: 1
 
-   * - Metric
-     - Specification
-   * - Throughput
-     - Up to 100 Gbps line-rate forwarding
-   * - Latency
-     - Sub-microsecond switching delays
-   * - Concurrent Connections
-     - Support for tens of thousands of simultaneous connections
-   * - Virtual Ports
-     - Thousands of virtual ports per switch
-   * - Network Segments
-     - Thousands of isolated VXLAN segments
-
-Network Architecture
-====================
-
-Virtual Networking Components
------------------------------
-
-The Karios networking architecture is built on several interconnected core components that work together to provide comprehensive network virtualization capabilities.
-
-.. figure:: _static/images/network/full-network-topology.png
-   :width: 600
-   :alt: Full Network Topology
-
-   Figure 1: Full Network Topology
-
-**Core Components Overview:**
-
-Karios networking is built on several core components:
-
-* **Physical NIC:** Physical Network interface card
-* **VLAN:** Virtual Local Area Network implementation
-* **VXLAN:** Virtual Extensible LAN for overlay networks
-* **Virtual Switch:** Software-defined network switches for VM connectivity
-* **VALE Switch:** High-performance packet switching framework
-* **TAP:** Virtual Network interface
-
-**Physical NIC**
-
-A Physical Network Interface Card (NIC) is a hardware component that connects a system to a network. It enables data transmission and reception over Ethernet or wireless links and serves as the foundation for creating VLANs, virtual switches, and other network interfaces in virtualized environments.
-
-.. list-table:: Physical NIC Advanced Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Multi-Queue Support
-     - Parallel packet processing across multiple CPU cores
-   * - Hardware Acceleration
-     - TCP/UDP checksum offloading, segmentation offloading
-   * - Jumbo Frames
-     - Support for 9000-byte frames for improved efficiency
-   * - Energy Efficiency
-     - Advanced power management and green networking features
-   * - Flow Control
-     - IEEE 802.3x flow control for congestion management
-   * - Link Aggregation
-     - IEEE 802.3ad LACP for bandwidth aggregation and redundancy
-
-**VLAN**
-
-A Virtual Local Area Network (VLAN) is a network segmentation technique that allows multiple isolated networks to coexist on the same physical interface. By assigning VLAN tags to traffic, it enables logical grouping of devices, improves security, and simplifies network management across virtual machines and physical infrastructure.
-
-.. list-table:: VLAN Enterprise Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - IEEE 802.1Q Compliance
-     - Standard VLAN tagging with 12-bit VLAN ID
-   * - Priority Tagging
-     - IEEE 802.1p Quality of Service integration
-   * - VLAN Stacking
-     - IEEE 802.1ad Provider Bridges for service provider networks
-   * - Inter-VLAN Routing
-     - Layer 3 routing between VLAN segments
-   * - Management VLAN
-     - Isolated management traffic for network devices
-
-**VXLAN**
-
-Virtual Extensible LAN (VXLAN) is an overlay networking protocol that enables the creation of isolated Layer 2 networks across Layer 3 infrastructure. It encapsulates Ethernet frames in UDP packets, allowing scalable network virtualization across data centers and cloud environments. VXLAN is ideal for connecting VMs or containers across distributed systems.
-
-.. list-table:: VXLAN Technical Specifications
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Specification
-     - Details
-   * - 24-bit VNI
-     - Support for 16,777,216 unique network segments
-   * - UDP Encapsulation
-     - Standard UDP port 4789 for VXLAN traffic
-   * - Multicast Support
-     - Efficient flooding using multicast groups
-   * - Unicast Mode
-     - Point-to-point VXLAN tunnels for security
-   * - VTEP Integration
-     - VXLAN Tunnel Endpoints for encapsulation/decapsulation
-   * - MTU Optimization
-     - Automatic MTU discovery and fragmentation handling
-   * - Security Integration
-     - IPsec encryption for secure VXLAN tunnels
-
-**Virtual Switch**
-
-A Virtual Switch is a software-defined network switch that enables communication between virtual machines (VMs) and connects them to physical or virtual network interfaces. It operates like a physical Ethernet switch, handling traffic forwarding, VLAN tagging, and MAC address learning, all within the host system.
-
-.. list-table:: Virtual Switch Advanced Capabilities
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Capability
-     - Description
-   * - VLAN Processing
-     - IEEE 802.1Q VLAN tagging and untagging
-   * - Spanning Tree Protocol
-     - STP, RSTP, and MSTP for loop prevention
-   * - Link Aggregation
-     - Port bonding and LACP for redundancy
-   * - Quality of Service
-     - Traffic shaping and priority queuing
-   * - Access Control
-     - Port-based security and MAC address filtering
-   * - Flow Control
-     - Congestion management and flow regulation
-
-**VALE Switch**
-
-The VALE Switch is a high-performance software switch designed for fast packet forwarding in virtualized environments. Built on the Netmap framework, it enables low-latency, high-throughput communication between virtual machines or applications running on the same host.
-
-.. list-table:: VALE Performance Optimizations
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Optimization
-     - Description
-   * - Zero-Copy Processing
-     - Direct packet buffer access without memory copying
-   * - Batched Operations
-     - Processing multiple packets in single system calls
-
-**TAP Interface**
-
-A TAP interface is a virtual network device that operates at Layer 2 (Ethernet level), simulating a physical NIC. It is commonly used to bridge virtual machines or containers to real networks, allowing them to send and receive raw Ethernet frames for full network emulation.
-
-.. list-table:: TAP Interface Advanced Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Full Ethernet Emulation
-     - Complete Layer 2 protocol stack support
-   * - Promiscuous Mode
-     - Packet capture and analysis capabilities
-   * - MTU Configuration
-     - Flexible Maximum Transmission Unit settings
-   * - Traffic Shaping
-     - Rate limiting and bandwidth control
-   * - Security Features
-     - MAC address filtering and access control
-   * - Performance Tuning
-     - Buffer size optimization and interrupt handling
-
-Network Topology Architecture
------------------------------
-
-**Hierarchical Network Design**
-
-The Karios platform supports hierarchical network architectures with multiple tiers for scalability and performance. The following are possible network topologies with the present network core components:
-
-**Network Connection with Physical NIC**
-
-Virtual machines will have access to public network and can be assigned IP via DHCP or be given a static IP address. Virtual machines are connected to one Virtual switch with any Physical NIC as parent interface.
-
-.. figure:: _static/images/network/physical-nic-topology.png
-   :width: 600
-   :alt: Network Connection with Physical NIC
-
-   Network topology showing VMs connected through a virtual switch to a physical NIC
-
-**Network Connection with VLAN**
-
-Virtual machines will have access to public network and can be assigned IP via DHCP or be given a static IP address. All network traffic will be VLAN tagged, ideal for assigning VLAN specific PF rule set.
-
-* Virtual machines are connected to one Vale switch with any VLAN interface as parent interface
-* Virtual machines are connected to one Virtual switch with any VLAN interface as parent interface
-
-.. figure:: _static/images/network/vlan-topology.png
-   :width: 600
-   :alt: Network Connection with VLAN
-
-   Network topology showing VMs connected through VLAN interfaces
-
-**Isolated Network**
-
-Virtual Machines will be isolated from the public network. Virtual machines will have to be assigned static IP addresses in the same subnet. Ideal private network for test cases. Virtual machines are connected to 1 Vale switch without any parent interface.
-
-.. figure:: _static/images/network/isolated-topology.png
-   :width: 600
-   :alt: Isolated Network Topology
-
-   Isolated network configuration without external connectivity
-
-**Network Layer Architecture:**
-
-* **Access Layer:**
-  
-  * VM and container connectivity
-  * Port-based security and access control
-  * VLAN access port configuration
-  * Local traffic switching and forwarding
-
-* **Distribution Layer:**
-  
-  * VLAN routing and inter-VLAN communication
-  * Policy enforcement and filtering
-  * Load balancing and traffic distribution
-  * Aggregation of access layer traffic
-
-* **Core Layer:**
-  
-  * High-speed backbone connectivity
-  * External network integration
-  * Service provider interconnection
-
-Network Configuration
-=====================
-
-Initial Network Setup
----------------------
-
-Network administrators can configure the comprehensive networking environment through the intuitive Karios web interface and command-line tools:
-
-**IP Address Management (IPAM):**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Address Pool Management
-     - Dynamic and static IP address pools
-   * - DHCP Integration
-     - Automatic IP address assignment and management
-   * - DNS Integration
-     - Automatic DNS record creation and updates
-   * - Usage Tracking
-     - Real-time IP address utilization monitoring
-
-**Network Segmentation Strategy:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Segment Type
-     - Description
-   * - Security Zones
-     - DMZ, internal, and management network segments
-   * - Traffic Isolation
-     - Complete isolation between network segments
-   * - Micro-segmentation
-     - Fine-grained network isolation for applications
-   * - Compliance Zones
-     - Dedicated segments for regulatory compliance
-   * - Performance Zones
-     - High-performance segments for critical applications
-
-**Switch Creation and Management**
-
-Create and configure virtual switches with comprehensive management capabilities:
-
-**Switch Configuration Wizard:**
-
-* **Basic Configuration:** Switch name, description, and basic parameters
-* **VLAN Configuration:** VLAN support, trunking, and inter-VLAN routing
-* **Validation and Testing:** Connectivity testing and performance validation
-
-**Switch Templates:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Template Type
-     - Description
-   * - Standard Switch Template
-     - General-purpose switching with basic features
-   * - High-Performance Template
-     - Optimized for maximum throughput and low latency
-   * - Management Template
-     - Dedicated management switch configuration
-   * - Development Template
-     - Isolated development and testing environment
-
-**VLAN Setup and Configuration**
-
-Implement comprehensive VLAN segmentation with advanced management features:
-
-**VLAN Configuration Process:**
-
-* **VLAN Planning:** ID assignment, naming conventions, and subnet allocation
-* **Trunk Configuration:** Inter-switch VLAN communication setup
-* **Security Configuration:** VLAN-based access control and filtering
-* **QoS Integration:** Priority tagging and traffic shaping
-
-**Advanced VLAN Features:**
-
-* **VLAN Stacking:** Provider bridge configuration for service providers
-* **Private VLANs:** Isolated, community, and promiscuous port types
-* **Management VLANs:** Isolated management traffic for network devices
-
-Network Management Interface
-----------------------------
-
-The network management interface provides comprehensive control through multiple access methods:
-
-**Web-Based Management Interface**
-
-Intuitive web interface with comprehensive network management capabilities:
-
-**Dashboard and Monitoring:**
-
-* **Real-time Network Topology:** Interactive network topology visualization
-* **Performance Metrics:** Real-time throughput, latency, and utilization metrics
-* **Alert Management:** Centralized alert monitoring and management
-* **Configuration Status:** Real-time configuration and operational status
-
-**Configuration Management:**
-
-* **Guided Wizards:** Step-by-step configuration wizards for complex setups
-* **Template Management:** Reusable configuration templates
-* **Bulk Operations:** Mass configuration changes across multiple devices
-* **Configuration Validation:** Automatic validation before deployment
-
-**API Integration**
-
-RESTful API for programmatic access and automation:
-
-.. list-table:: API Capabilities
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Capability
-     - Description
-   * - Full Feature Coverage
-     - Complete API coverage of all management features
-   * - Authentication
-     - OAuth 2.0 and API key-based authentication
-   * - Rate Limiting
-     - Configurable rate limiting for API protection
-   * - Versioning
-     - API versioning for backward compatibility
-   * - Documentation
-     - Comprehensive API documentation and examples
-   * - SDK Support
-     - Software development kits for popular languages
-
-Switch Operations and Management
+   * - Challenge
+     - Impact
+   * - **Multi-Node Coordination and Visibility**
+     - Configurations drift between nodes, creating inconsistent connectivity.
+   * - **Expertise Barrier**
+     - Teams require deep networking knowledge to build even basic topologies.
+
+How Karios Transforms Networking
 --------------------------------
 
-**Lifecycle Management Operations:**
+Karios addresses these problems while preserving FreeBSD’s strengths:
 
-**Switch Creation Workflow:**
-
-#. **Requirements Analysis:** Determine switch requirements and specifications
-#. **Resource Allocation:** Allocate CPU, memory, and network resources
-#. **Configuration Generation:** Create switch configuration from templates
-#. **Validation and Testing:** Validate configuration and test connectivity
-#. **Deployment:** Deploy switch configuration to production environment
-#. **Monitoring Setup:** Configure monitoring and alerting systems
-
-**Switch Modification and Updates:**
-
-* **Live Configuration Changes:** Zero-downtime configuration updates
-* **Incremental Updates:** Partial configuration changes without full restart
-* **Configuration Backup:** Automatic backup before changes
-* **Rollback Capabilities:** Quick rollback to previous configurations
-* **Change Validation:** Automatic validation of configuration changes
-* **Impact Assessment:** Analysis of change impact on network operations
-
-**Switch Deletion and Cleanup:**
-
-* **Dependency Verification:** Check for dependent configurations and connections
-* **Graceful Shutdown:** Orderly shutdown of switch services
-* **Resource Cleanup:** Release allocated resources and cleanup configurations
-
-VALE High-Speed Switching
-=========================
-
-VALE Architecture and Design
-----------------------------
-
-VALE (Virtual Abstraction Layer for Ethernet) provides industry-leading high-performance packet switching capabilities:
-
-**VALE Core Architecture:**
-
-**Netmap Framework Integration**
-
-VALE is built on the Netmap framework, providing direct access to network hardware:
-
-.. list-table:: Netmap Architecture Benefits
-   :widths: 30 70
+.. list-table::
+   :widths: 35 65
    :header-rows: 1
 
-   * - Benefit
-     - Description
-   * - Kernel Bypass
-     - Direct userspace access to network hardware
-   * - Zero-Copy Operations
-     - Packet processing without memory copying
-   * - Batched System Calls
-     - Multiple packets processed per system call
-   * - Hardware Queue Access
-     - Direct access to network interface queues
-   * - Interrupt Mitigation
-     - Reduced interrupt overhead through polling
-   * - CPU Affinity
-     - Dedicated CPU cores for packet processing
-
-**VALE Switching Engine:**
-
-* **Hash-Based Forwarding:** Efficient packet forwarding using hash tables
-* **Lock-Free Operations:** Atomic operations for concurrent access
-* **Batch Processing:** Multiple packets processed simultaneously
-* **Cache Optimization:** CPU cache-friendly data structures
-
-**Performance Characteristics:**
-
-.. list-table:: Throughput and Latency
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Metric
-     - Performance
-   * - Line-Rate Performance
-     - Full wire-speed forwarding up to 100 Gbps
-   * - Packet Processing Rate
-     - 148 million packets per second (64-byte packets)
-   * - Switching Latency
-     - Sub-microsecond forwarding delays
-   * - Jitter Performance
-     - Less than 100 nanoseconds variation
-   * - CPU Efficiency
-     - Less than 5% CPU utilization at line rate
-   * - Memory Bandwidth
-     - Optimized memory access patterns
-
-.. list-table:: Scalability Metrics
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Metric
-     - Capability
-   * - Virtual Ports
-     - Thousands of virtual ports per VALE switch
-   * - Connection Tracking
-     - Efficient connection state management
-   * - Table Sizes
-     - Large forwarding tables with fast lookup
-   * - Memory Footprint
-     - Minimal memory overhead per connection
-   * - Linear Scaling
-     - Performance scales linearly with resources
-
-VALE Configuration and Management
----------------------------------
-
-**VALE Switch Configuration:**
-
-**Switch Creation and Setup:**
-
-.. list-table:: Switch Configuration Parameters
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Parameter
-     - Description
-   * - Port Count
-     - Number of virtual ports (up to 65536)
-   * - Memory Allocation
-     - Buffer sizes and memory pools
-   * - CPU Affinity
-     - Dedicated CPU cores for packet processing
-   * - NUMA Node
-     - Memory allocation on specific NUMA nodes
-   * - Queue Sizes
-     - Transmit and receive queue configurations
-   * - Polling Mode
-     - Interrupt vs. polling-based operation
-
-VLAN Implementation
-===================
-
-VLAN Architecture and Standards
---------------------------------
-
-Virtual Local Area Networks provide comprehensive network segmentation capabilities:
-
-**VLAN Technical Standards:**
-
-**IEEE 802.1Q Standard:**
-
-* **VLAN Tagging:** 12-bit VLAN ID field (4094 unique VLANs)
-* **Priority Tagging:** 3-bit priority field for QoS
-* **Ethernet Frame Format:** Modified Ethernet frame with VLAN tag
-
-**IEEE 802.1ad (Provider Bridges):**
-
-* **VLAN Stacking:** Multiple VLAN tags for service providers
-* **Service VLAN:** Outer VLAN tag for service identification
-* **Customer VLAN:** Inner VLAN tag for customer traffic
-* **Tag Protocol Identifier:** 0x88A8 for service provider tags
-
-VXLAN Overlay Networks (Future Scope)
-======================================
-
-VXLAN Architecture and Components
----------------------------------
-
-Virtual Extensible LAN provides advanced overlay network capabilities:
-
-**VXLAN Configuration**
-
-Set up sophisticated overlay networks for multi-tenant environments:
-
-**VXLAN Deployment Models:**
-
-* **Centralized Gateway:** Single gateway for all VXLAN traffic
-* **Distributed Gateway:** Multiple gateways for load distribution
-* **Hybrid Gateway:** Combination of centralized and distributed gateways
-
-**VXLAN Network Services:**
-
-* **DHCP Relay:** DHCP services across VXLAN segments
-* **DNS Services:** Name resolution for VXLAN networks
-* **Security Services:** Firewall and intrusion detection integration
-
-Network Topology Options
-========================
-
-Available Network Architectures
---------------------------------
-
-**Network Connection with Physical NIC**
-
-Direct physical network connectivity for virtual machines:
-
-**Configuration Benefits:**
-
-* **Native Performance:** Full hardware performance without virtualization overhead
-* **Direct Internet Access:** Immediate connectivity to external networks
-* **Simplified Configuration:** Straightforward setup without complex virtualization
-* **Hardware Acceleration:** Full utilization of hardware features
-* **Monitoring Integration:** Direct integration with network monitoring tools
-
-**Use Cases:**
-
-* Production environments requiring maximum performance
-* Direct external connectivity requirements
-* Legacy applications with specific network requirements
-* High-throughput applications and services
-* External monitoring and management integration
-
-**Network Connection with VLAN**
-
-VLAN-based network segmentation with enhanced security:
-
-**Security Integration:**
-
-* **VLAN-Specific Firewalls:** Dedicated firewall rules per VLAN
-* **Micro-segmentation:** Fine-grained network isolation
-* **Access Control:** VLAN-based access control policies
-* **Traffic Isolation:** Complete traffic separation between VLANs
-* **Monitoring Segmentation:** VLAN-specific monitoring and alerting
-
-**Isolated Network**
-
-Completely isolated networks for secure environments:
-
-**Isolation Benefits:**
-
-* **Maximum Security:** Complete isolation from external networks
-* **Controlled Environment:** Predictable network behavior
-* **Testing Safety:** Safe environment for testing and development
-* **Compliance:** Meets strict security and compliance requirements
-* **Resource Protection:** Protection of critical resources
-
-Hybrid Network Architectures
-----------------------------
-
-**Multi-Tier Network Design:**
-
-**Three-Tier Architecture:**
-
-* **Presentation Tier:** Web servers and load balancers
-* **Application Tier:** Application servers and middleware
-* **Data Tier:** Database servers and storage systems
-
-Advanced Networking Features (Future Scope)
-============================================
-
-Netgraph Implementation
------------------------
-
-**Netgraph Framework Architecture**
-
-Powerful modular networking framework for custom topologies:
-
-**Node Types and Capabilities:**
-
-.. list-table:: Interface Nodes
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Node Type
-     - Description
-   * - ng_iface
-     - Virtual network interfaces with full IP stack
-   * - ng_ether
-     - Ethernet interface integration and management
-   * - ng_fec
-     - Fast EtherChannel for link aggregation
-   * - ng_vlan
-     - VLAN processing and tagging
-   * - ng_bridge
-     - Layer 2 bridging with STP support
-   * - ng_hub
-     - Simple packet replication hub
-
-.. list-table:: Protocol Nodes
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Node Type
-     - Description
-   * - ng_ppp
-     - Point-to-Point Protocol implementation
-   * - ng_l2tp
-     - Layer 2 Tunneling Protocol
-   * - ng_pppoe
-     - PPP over Ethernet implementation
-   * - ng_mppc
-     - Microsoft Point-to-Point Compression
-   * - ng_pred1
-     - Predictor-1 compression algorithm
-   * - ng_deflate
-     - Deflate compression for PPP
-
-.. list-table:: Utility Nodes
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Node Type
-     - Description
-   * - ng_tee
-     - Packet duplication and analysis
-   * - ng_pipe
-     - Traffic shaping and rate limiting
-   * - ng_socket
-     - Socket-based communication
-   * - ng_hole
-     - Packet sink for testing
-   * - ng_echo
-     - Packet echo for testing
-   * - ng_source
-     - Packet generation for testing
-
-SDN Implementation (Future Scope)
----------------------------------
-
-**Software-Defined Networking Architecture**
-
-Future SDN capabilities for centralized network control:
-
-**Planned SDN Components:**
-
-**SDN Controller:**
-
-* **Centralized Control:** Single point of network control
-* **Policy Management:** Unified policy definition and enforcement
-* **Topology Discovery:** Automatic network topology discovery
-* **Flow Programming:** Dynamic flow rule programming
-* **Service Orchestration:** Automated service deployment
-* **Multi-Tenant Support:** Isolated tenant environments
-
-**OpenFlow Integration:**
-
-* **Flow Table Management:** Dynamic flow table programming
-* **Switch Communication:** Secure controller-switch communication
-* **Packet Processing:** Flexible packet processing rules
-* **Quality of Service:** Dynamic QoS policy enforcement
-* **Load Balancing:** Intelligent traffic distribution
-* **Security Integration:** Automated security policy enforcement
-
-**Network Virtualization:**
-
-* **Virtual Networks:** Isolated virtual network environments
-* **Network Slicing:** Dynamic network resource allocation
-* **Service Chaining:** Automated service function chaining
-* **Edge Computing:** Distributed network processing
-* **Cloud Integration:** Seamless cloud connectivity
-* **Automation:** Fully automated network operations
-
-**Key Features of SDN on FreeBSD**
-
-**Decoupled Control & Data Planes**
-
-In SDN, decoupled control and data planes separate the logic that makes network decisions (control plane) from the devices that forward traffic (data plane). This architecture allows centralized controllers to manage and program network behavior in real time, improving flexibility, automation, and scalability across the network infrastructure.
-
-**Netgraph Framework**
-
-The Netgraph Framework is a modular, kernel-level graph architecture in FreeBSD that enables flexible, low-latency packet processing. It allows dynamic creation and linking of protocol modules (nodes) to build custom network paths, ideal for advanced routing, bridging, tunneling, and virtual networking scenarios.
-
-**FRRouting (FRR) Integration**
-
-FRRouting (FRR) brings advanced dynamic routing capabilities to FreeBSD with support for protocols like BGP, OSPF, and EVPN. It enables SDN-controlled routing by allowing centralized policy enforcement and real-time route updates across physical and virtual networks.
-
-**VXLAN & EVPN Support**
-
-VXLAN and EVPN enable scalable Layer 2 overlays across Layer 3 networks. VXLAN handles data-plane encapsulation using UDP, while EVPN provides a controller-driven control plane using BGP for MAC/IP route distribution. Together, they support multi-tenant isolation, VM mobility, and seamless network extension across distributed environments.
-
-**Virtual Private Cloud (VPC)**
-
-A Virtual Private Cloud (VPC) is a logically isolated, software-defined network environment within a shared infrastructure (such as a data center or cloud platform). It allows users to define custom IP ranges, subnets, routing tables, firewalls, and gateways—offering full control over traffic flow, security, and connectivity between virtual machines or services. VPCs are foundational for building secure, multi-tenant, and scalable cloud-native architectures.
-
-Security and Compliance
+   * - Feature
+     - Benefit
+   * - **Intuitive Web Management**
+     - Point-and-click operations; no command syntax required.
+   * - **Centralized Multi-Node Control**
+     - Define virtual switches, VLANs, and VM connectivity once, and apply everywhere.
+   * - **Built-in Validation**
+     - Prevents common misconfigurations before they impact production.
+   * - **Operational Simplification**
+     - Teams focus on outcomes, not implementation details.
+   * - **Real-Time Monitoring**
+     - Dashboards provide instant visibility into connectivity and performance.
+
+What Makes Karios Essential
+---------------------------
+
+* A **comprehensive network management platform** that simplifies FreeBSD networking without losing its performance advantages.  
+* Unified control over **virtual switches, VLANs, VALE switches, VXLANs, and tunnels**.  
+* Automated configuration validation and warnings to reduce risk.  
+* Full lifecycle management: design, deploy, monitor, and troubleshoot—all from one place.  
+
+Core Network Components
 =======================
 
-Network Security Framework
+Physical Interfaces
+-------------------
+
+Overview
+~~~~~~~~
+Physical interfaces (NICs) form the foundation of all networking in Karios. 
+They are discovered automatically and presented in the **Physical Interfaces** tab under the Network menu. 
+From here, administrators can monitor live status and review interface properties before layering VLANs or virtual interfaces on top.
+
+.. tip::
+
+   - At least two NICs are recommended.
+   - One NIC can serve management traffic, while the other can host VLANs for storage or tenant workloads.
+   - A third NIC, while optional, provides redundancy—ensuring uninterrupted connectivity during maintenance or link failures.  
+
+Monitoring Capabilities
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The **Physical Interfaces** panel displays key real-time information for each NIC:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Property
+     - What You See
+   * - **Status**
+     - Active/Inactive state, link availability, and whether editable.
+   * - **Speed & Duplex**
+     - Current negotiated speed (e.g., 1000 Mbps) and duplex mode.
+   * - **MAC Address**
+     - Hardware identifier, useful for mapping cables to ports.
+   * - **IP Configuration**
+     - IPv4/IPv6 assignments with CIDR notation.
+   * - **MTU**
+     - Configured Maximum Transmission Unit for the interface.
+   * - **Packets/Traffic**
+     - Counters for received and transmitted packets (via *View Details*).
+
+.. figure:: ../user-guide/_static/images/control_center/network_management/physical_interface_landing.png
+   :alt: Physical Interface Landing Page
+   :width: 700
+
+   Landing page for physical NICs
+
+
+.. figure:: ../user-guide/_static/images/control_center/network_management/physical_interface_stats.png
+   :alt: Physical Interface Statistics
+   :width: 700
+
+   Detailed statistics with packet counters and throughput
+
+Notes
+~~~~~
+* **Live Tracking:** Data updates continuously, reflecting the current NIC state.  
+* **View Details:** Available only for active interfaces; provides per-port statistics.  
+
+Virtual Switches
+-----------------
+
+Overview
+~~~~~~~~
+A virtual switch is a software-based Layer 2 device that enables VMs to communicate with external networks. 
+They act much like a physical Ethernet switch—forwarding traffic based on MAC addresses—but are implemented entirely in software.  
+In modern virtualization platforms, virtual switches provide flexible connectivity without requiring extra hardware, and they can enforce segmentation, isolation, and monitoring policies at the network edge.
+
+Karios builds on this concept by offering a **UI-driven management layer**, removing the need for manual command-line work. 
+Administrators can create, attach, and monitor switches directly from the Control Center, making VM networking both accessible and consistent across nodes.
+
+Key Uses
+~~~~~~~~
+* Provide VM-to-VM communication within an isolated network segment.  
+* Attach a switch to a **plain NIC** to extend VM traffic out to the physical network.  
+* Integrate with VLAN-backed interfaces for segmented multi-tenant networking.  
+* Track status and usage centrally across nodes, with real-time monitoring built in.  
+
+.. tip::
+
+   - Use a plain NIC for switch attachment.  
+   - Avoid running both a VLAN and a switch on the same parent NIC, as this can cause conflicts.  
+   - Two NICs are generally sufficient; a third NIC is recommended for redundancy and maintenance flexibility.  
+
+Switch Management in Karios
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The **Network → Switches** view in Karios provides a clear overview of all configured virtual switches and their associations:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Display Item
+     - What It Shows
+   * - **Switch Inventory**
+     - A complete list of all created virtual switches across the node or cluster.
+   * - **Interface Association**
+     - Specifies which physical NIC (or VLAN interface) each switch is attached to.
+   * - **Status Monitoring**
+     - Real-time operational status, active/inactive state, and traffic counters.
+   * - **Configuration Access**
+     - Direct entry points for editing, reassigning, or deleting switches.
+
+.. figure:: _static/images/network/switch_component.png
+   :alt: Switch Component
+   :width: 650
+
+   Switch component view in Karios
+
+Switch Lifecycle
+~~~~~~~~~~~~~~~~
+Karios abstracts common operations into a straightforward workflow:
+
+1. **Create** – Open the creation form, name the switch, and assign a parent interface.  
+2. **Review** – Confirm parameters before deployment; validation catches conflicts like duplicate names or unavailable NICs.  
+3. **Delete** – Switches can be modified or removed, with warnings shown if connected VMs may be impacted.  
+
+.. figure:: ../user-guide/_static/images/networking/Image-node-004.png
+   :alt: Switch Dashboard
+   :width: 650
+
+   Switch dashboard in Karios
+
+User Journey
+
+.. figure:: _static/images/network/virtual_switch_sequence.png
+   :alt: Switch Journey
+   :width: 650
+
+   Switch journey in Karios
+
+Considerations
+--------------
+* **Configuration Planning:** Define your network architecture before creating switches, as changes may affect running VMs.  
+* **Impact Awareness:** Deleting a switch immediately disconnects attached VMs, please review warnings before taking a action.  
+* **Persistence:** Switch configurations are saved and restored automatically after reboot.  
+* **Scalability:** Excessive switches may increase resource usage (e.g., forwarding tables, CPU load).  
+
+Best Practices
+--------------
+* Use descriptive names for switches to simplify troubleshooting and VM assignment.  
+* Keep VLANs and switches separate on physical NICs to avoid conflicts.  
+* Regularly review switch statistics in the dashboard to identify performance issues early.  
+* Document switch purposes and parent interface choices as your topology grows.  
+
+
+VALE High-Speed Switching
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+--------
+VALE is a high-performance software switch. It delivers packet forwarding speeds far beyond traditional virtual switches—reaching tens of millions of packets per second per CPU core and near line-rate performance with standard Ethernet frames.  
+General benchmarks show that while regular software switches may handle 1–2 million packets per second, VALE can reach **tens of millions of packets per second per core** and approach **70 Gbps line rates** with standard frames. This makes it especially valuable for where performance is critical.
+Karios integrates VALE for scenarios where ultra-fast intra-host networking is required, such as VM-to-VM communication, NFV workloads, or research environments. To protect operational stability, Karios enforces design rules that prevent common pitfalls with VALE usage.
+
+Key Caveats
+-----------
+VALE behaves differently than standard switches, and these differences are critical:
+
+.. warning::
+   * **NIC IP Loss** – If VALE is connected directly to a physical NIC, that NIC **loses its IP address completely** and can no longer be used for management or external access. This is inherent to VALE’s design.  
+   * **VLAN-Only Requirement** – In Karios, VALE can only be attached to a **VLAN sub-interface**, not to a raw NIC.  
+   * **Eligibility Rule** – The VLAN must not already be connected to another virtual switch or VM.  
+   * **Network Separation** – By attaching VALE only to VLANs, Karios ensures that **high-speed VALE networks remain isolated** from regular management and tenant traffic.  
+
+.. figure:: _static/images/network/vale_topology.png
+   :alt: VALE Topology
+   :width: 800
+
+   Example VALE topology with VLAN parent and TAP interfaces
+
+Management in Karios
+--------------------
+The Karios UI simplifies VALE operations, providing:
+
+* Add/remove parent VLANs  
+* Attach/detach VM TAP interfaces  
+* Monitor total TAPs, active VALE switches, and live traffic counters  
+* Destroy unused VALE switches safely  
+
+.. figure:: _static/images/network/vale_seq.png
+   :alt: VALE Landing Page
+   :width: 700
+
+   VALE landing page in Karios
+
+Connectivity Models
+-------------------
+Karios supports several network arrangements to track and manage VALE usage:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Model
+     - Description
+   * - **Fully Connected**
+     - VALE switch attached to a VLAN parent and VM TAP interfaces, giving VMs external access through the VLAN.  
+   * - **Isolated**
+     - VALE switch with only TAP interfaces attached; used for secure, high-speed VM-to-VM communication.  
+   * - **Unused**
+     - VALE configured on a VLAN parent but with no VM connections; consumes resources but not forwarding traffic.  
+  
+Best Practices
+--------------
+* **Keep Management Separate** – Always reserve at least one NIC for host management; do not attach it to VALE.  
+* **Use VLANs as Parents** – VLANs dedicated to VALE should not also carry regular switches or VM traffic.  
+* **One Parent VLAN Recommended** – Use a single VLAN as the parent for all VALE switches to minimize risk.  
+* **Plan for Separation** – Treat VALE networks as a “high-speed lane” and keep them isolated from your standard production paths.  
+
+Recovery if Misconfigured
+-------------------------
+If a NIC carrying SSH or management is accidentally attached to VALE and loses its IP: 
+ - Use out-of-band management (BMC/IPMI) to access the node.  
+ - Remove the VALE parent assignment.  
+ - Restart network services to restore connectivity.  
+
+Use Cases
+---------
+* Ultra-fast VM-to-VM networking (intra-host).  
+* High-performance NFV and packet processing workloads.  
+* Network simulation or research environments where isolation is required.  
+* Appliance development (firewalls, routers) using netmap-enabled applications.  
+
+Virtual Local Area Networks (VLANs)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+--------
+In Karios, VLANs are one of the core building blocks for network segmentation.  
+They allow you to create multiple logical networks over the same physical interface, without touching CLI.  
+
+VLANs are created, monitored and managed through Control Center.
+Each VLAN is tied to a parent NIC, given a tag ID, and optionally configured with an IP (static or DHCP). From there, VLANs integrate seamlessly with switches, VALE networks, and overlays.
+
+What VLANs Are in Karios
+------------------------
+* **Logical Interfaces** – Each VLAN you create in Karios appears as its own network interface, built on top of a physical NIC.  
+* **Segmentation Tool** – VLANs separate traffic for different roles: management, storage, tenant workloads, or underlay for VALE/VXLAN.  
+* **Always Monitored** – Every VLAN in Karios is actively tracked: gateway reachability, external connectivity, packet counters, and error rates.  
+* **Persistent** – Once created, VLANs are written into system configuration and restored after reboot.  
+
+.. figure:: _static/images/network/vlan_component.png
+   :alt: VLAN Component
+   :width: 700
+
+   VLAN component overview in Karios
+
+VLAN Dashboard in Karios
+------------------------
+The **Network → Interfaces → Virtual** tab provides a central place for VLAN lifecycle management:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Feature
+     - In Karios
+   * - **Landing Page**
+     - Shows VLAN count, tag IDs, status, IP configuration, and parent NICs.  
+   * - **Add VLAN**
+     - Guided form: choose Tag ID, parent NIC, and IP assignment.  
+   * - **VLAN Details**
+     - View MAC, MTU, routing table entries, and attached switches.  
+   * - **Monitoring**
+     - Live statistics, packet counters, and ping tests to gateway/external hosts.  
+   * - **Actions**
+     - View, Stats, Ping, and Delete, all directly from the dashboard.  
+
+.. figure:: ../user-guide/_static/images/control_center/network_management/vlan_management.png
+   :alt: VLAN Management in Karios
+   :width: 700
+
+   VLAN management overview panel
+
+.. figure:: _static/images/network/vlan_seq.png
+   :alt: VLAN Sequence
+   :width: 700
+
+   VLAN sequence overview in Karios
+
+Connectivity & Status Tracking
+------------------------------
+Unlike raw FreeBSD VLANs, Karios doesn’t just stop at creating tagged interfaces:
+
+* **Gateway Verification** – Automated pings confirm if the VLAN can reach its configured gateway.  
+* **External Reachability** – If gateway checks fail, Karios tests well-known IPs (e.g., 8.8.8.8).  
+* **Status Classes** – VLANs are labeled *Active* or *No Connectivity*, giving at-a-glance health.  
+* **Traffic Monitoring** – Per-VLAN stats for packets sent/received and error counts.  
+
+Best Practices in Karios
+------------------------
+.. tip::
+
+   - Use descriptive Tag IDs (e.g., VLAN 110 for Storage, 120 for Tenants).  
+   - Avoid attaching management traffic VLANs to VALE or experimental overlays.  
+   - Plan L2 switch trunking before creating VLANs in Karios to prevent mismatched configs.  
+
+* Parent NICs must be active and VLAN-aware in the physical network.  
+* VLAN tag IDs must be unique; Karios enforces this but good planning avoids collisions.  
+* Deleting a VLAN will isolate any switches or VMs attached — Karios warns you, but downtime cannot be avoided.  
+
+How VLANs Fit Into the Bigger Picture
+-------------------------------------
+* **Switch Attachment** – VLANs are common parents for virtual switches, enabling VMs to join the segmented network.  
+* **VALE Eligibility** – Only unused VLANs (not already tied to switches/VMs) may serve as VALE parents.  
+* **VXLAN Underlay** – Active VLANs often act as the underlay fabric for VXLAN overlays.  
+* **Segmentation by Design** – VLANs allow you to separate management, storage, and tenant workloads cleanly in Karios.  
+ 
+
+Virtual Extensible LAN (VXLAN) Overlay Networks
+===============================================
+
+Overview
+--------
+VXLAN is a network virtualization technology that extends Layer 2 segments across Layer 3 boundaries using encapsulation.  
+It addresses the limitations of VLANs, providing a 24-bit VXLAN Network Identifier (VNI) space with support for up to 16 million segments.  
+Karios integrates VXLAN within its networking stack, enabling scalable overlay connectivity between nodes while enforcing validation and configuration consistency.
+
+Protocol and Standards
+----------------------
+* **Encapsulation** – VXLAN encapsulates Ethernet frames in UDP packets (port 4789), allowing Layer 2 networks to traverse Layer 3 infrastructure.  
+* **VNI Space** – 24-bit VNIs provide 16,777,216 possible segments, far exceeding the 4094 limit of VLANs.  
+* **Transport Requirements** – The underlay network must support appropriate MTU sizes to accommodate VXLAN overhead without fragmentation.  
+
+Karios VXLAN Implementation
+---------------------------
+Karios abstracts VXLAN creation and lifecycle management into a controlled workflow:  
+
+* **VLAN Dependency** – Only active, reachable VLANs can serve as VXLAN tunnel endpoints (VTEPs).  
+* **Node Validation** – Both participating nodes must be online, with IP reachability confirmed before tunnel instantiation.  
+* **Static IP Requirement** – VXLAN endpoints require static addressing; DHCP is not supported for overlay interfaces.  
+* **VNI Allocation** – Karios allocates VNIs from a defined range, ensuring uniqueness and preventing conflicts.  
+* **Configuration Persistence** – All VXLAN definitions are persisted into system configuration for restoration on reboot.  
+
+Tunnel Lifecycle
+----------------
+VXLAN tunnels in Karios are established and managed with the following phases:
+
+1. **Pre-Deployment Validation**
+
+   - Verify node availability and inter-VLAN connectivity.  
+   - Detect existing tunnels between node pairs to prevent duplicates.  
+   - Reserve a VNI and overlay subnet.  
+
+2. **Tunnel Configuration**
+
+   - Create VXLAN interfaces on each node with identical VNI assignment.  
+   - Assign static tunnel IP addresses within a common subnet.  
+   - Bind the VXLAN interface to the selected VLAN parent.  
+
+.. figure:: _static/images/network/vxlan_steps.png
+   :alt: VXLAN Tunnel Creation
+   :width: 800
+
+   Example VXLAN creation flow.
+
+Configuration Model
+-------------------
+A VXLAN tunnel connects two VLAN interfaces across distinct nodes:  
+
+.. figure:: _static/images/network/create_tunnel.png
+   :alt: VXLAN Tunnel Creation
+   :width: 800
+
+   Example VXLAN configuration between two nodes with VLAN endpoints and static tunnel IPs.
+
+Operational Considerations
 --------------------------
+* **MTU Planning** – The underlay must support larger MTUs (typically +50 bytes) to accommodate encapsulated traffic.  
+* **Firewall Requirements** – UDP/4789 must be permitted between VXLAN endpoints.  
+* **Immutability of Core Parameters** – VNIs, node pairings, and VLAN parents cannot be modified after creation; re-deployment is required.  
+* **Monitoring Integration** – Tunnel health, packet counters, and endpoint reachability are continuously tracked in Karios.  
 
-**Multi-Layer Security Architecture:**
+Integration with Karios Networking
+----------------------------------
+* **Virtual Switch Attachment** – VXLAN interfaces are automatically integrated into the virtual switch framework, providing a bridge for VM attachment.  
+* **Isolation by Design** – Each VNI provides full isolation from other overlays, ensuring strict traffic segmentation in multi-tenant environments.  
+* **Scalability** – VXLAN overlays allow Karios clusters to span across racks, data centers, or distributed sites without the limitations of VLANs.  
 
-**Physical Layer Security:**
+Best Practices
+--------------
+* Allocate VNIs systematically (e.g., project-based ranges) to simplify management at scale.  
+* Use dedicated VLANs as VXLAN underlays to separate overlay traffic from management or storage paths.  
+* Validate gateway and inter-VLAN reachability prior to tunnel creation to avoid incomplete deployments.  
+* Document tunnel endpoints and IP plans, as overlays introduce additional address spaces that must be tracked.  
 
-* **Port Security:** MAC address limiting and sticky MAC
-* **Physical Access Control:** Secure physical access to network devices
+Advanced Networking Features
+=============================
 
-**Data Link Layer Security:**
+Software-Defined Networking (Coming Soon)
+-----------------------------------------
 
-* **MAC Address Filtering:** Whitelist/blacklist MAC address control
-* **VLAN Security:** VLAN hopping prevention and isolation
-* **Spanning Tree Security:** BPDU guard and root guard protection
-* **Traffic Isolation:** Complete traffic separation between segments
+SDN architecture implementing centralized network control with separation of control and data planes, enabling programmable network behavior through OpenFlow integration and policy automation.
 
-Integration and Interoperability
---------------------------------
+**What it does:**
+- Provides centralized network control with distributed forwarding capabilities
+- Enables dynamic flow programming and intelligent traffic engineering
+- Supports automated service orchestration and policy deployment
+- Implements fine-grained security controls and micro-segmentation policies
+- Offers comprehensive network automation and orchestration capabilities
 
-**Platform Integration**
+**How Karios integrates SDN:**
+- Future SDN implementation will leverage FreeBSD's flexible networking stack with OpenFlow protocol support, integrated policy engines, and automated deployment systems while maintaining compatibility with existing network infrastructure.
+- Planned SDN features will provide graphical policy design tools, automated deployment workflows, real-time network programming capabilities, and comprehensive service orchestration through the unified management interface.
 
-**Virtualization Platform Integration:**
+Netgraph Advanced Framework (Coming Soon)
+-----------------------------------------
 
-* **Container Platforms:** Docker and Kubernetes networking
+Netgraph is a modular, kernel-level networking framework enabling custom protocol implementations, advanced packet processing scenarios, and flexible network topology creation with dynamic reconfiguration capabilities.
+
+**What it does:**
+- Provides building blocks for custom network protocols and processing
+- Enables advanced scenarios including tunneling, encryption, and traffic shaping
+- Supports dynamic network topology modifications without service interruption
+- Offers high-performance packet processing with kernel-level efficiency
+- Implements modular architecture with reusable network function components
+
+**How Karios integrates Netgraph:**
+- Future Netgraph integration will provide visual topology design tools, pre-configured protocol modules, automated validation systems, and seamless integration with existing virtual switching infrastructure.
+- Planned Netgraph features will include drag-and-drop topology builders, extensive protocol module libraries, configuration templates for common scenarios, and comprehensive debugging and monitoring tools.
+
+Troubleshooting and Best Practices
+===================================
+
+Performance Optimization Guidelines
+-----------------------------------
+
+**CPU and Memory Tuning:**
+
+- Configure CPU affinity for network-intensive workloads, especially VALE switches
+- Allocate dedicated CPU cores for high-performance packet processing
+- Optimize buffer sizes based on traffic patterns and latency requirements
+- Configure NUMA-aware memory allocation for multi-socket systems
+
+**Network Interface Optimization:**
+
+- Enable appropriate hardware offloading features (TSO, LRO, checksum offloading)
+- Configure multi-queue settings to match CPU core availability
+- Tune interrupt coalescing parameters for latency vs. throughput optimization
+- Monitor hardware queue depths and adjust as needed for traffic patterns
+
+**Switch Configuration Best Practices:**
+
+- Limit virtual switches to recommended maximums (100 per node)
+- Use VALE switches for high-performance requirements
+- Configure proper VLAN trunk settings to avoid unnecessary broadcast traffic
+- Implement appropriate spanning tree configuration in multi-switch topologies
+
+Common Issues and Resolution Strategies
+---------------------------------------
+
+**Connectivity Problems:**
+
+1. **Physical Layer Issues**: Verify cable integrity, link status, and port configuration
+2. **VLAN Configuration**: Validate tag settings, trunk configuration, and switch compatibility
+3. **IP Address Conflicts**: Check DHCP scope configuration and static IP assignments
+4. **Routing Issues**: Verify default gateway settings and inter-VLAN routing configuration
+
+**Performance Degradation:**
+
+1. **CPU Utilization**: Monitor network interrupt handling and consider CPU affinity tuning
+2. **Buffer Sizes**: Optimize network buffer allocation for specific traffic patterns
+3. **Switch Table Limits**: Monitor MAC address table utilization and aging parameters
+
+**Configuration Conflicts:**
+
+1. **VLAN ID Conflicts**: Use configuration validation tools to prevent overlapping assignments
+2. **Interface Naming**: Follow systematic naming conventions to avoid confusion
+3. **Resource Limits**: Monitor system resources and adjust limits as needed
+4. **Dependencies**: Understand component dependencies before making configuration changes
+
+**Management Access Issues:**
+
+1. **SSH Connectivity Loss**: Always ensure backup management access before major changes
+2. **BMC/IPMI Access**: Verify out-of-band management capabilities before NIC reassignment
+3. **Network Recovery**: Understand rollback procedures for critical network changes
+4. **Service Recovery**: Know how to restart network services without full system reboot
+
+Security Best Practices
+-----------------------
+
+**Network Segmentation:**
+
+- Implement proper VLAN segmentation for security boundaries
+- Use isolated networks for sensitive workloads and testing environments
+- Configure appropriate firewall rules for each network segment
 
 Conclusion
 ==========
 
-The Karios Flexible Network represents a comprehensive, enterprise-grade networking solution that combines the robust foundation of FreeBSD's advanced networking capabilities with modern network virtualization and management principles. Through its sophisticated architecture, extensive feature set, and seamless integration capabilities, organizations can build highly scalable, secure, and efficient network infrastructures that meet the demanding requirements of modern applications and services.
+Karios solves the fundamental problem that prevents organizations from leveraging FreeBSD's superior networking capabilities: operational complexity. By transforming FreeBSD VM networking from a specialist skill into mainstream operations capability, Karios enables organizations to deploy high-performance virtualization infrastructure without the traditional learning curve and operational overhead.
 
-The platform's emphasis on high performance, flexibility, and security makes it an ideal choice for organizations across all sizes and industries. From small businesses requiring simple network connectivity to large enterprises needing complex, multi-tenant network environments with stringent security and compliance requirements, Karios Flexible Network provides the comprehensive tool set and capabilities needed to build next-generation network infrastructures.
+**The Karios Advantage:**
 
-With its advanced features including VALE high-speed switching, comprehensive VLAN support, overlay networking capabilities, and planned SDN integration, the platform is positioned to evolve and adapt to future networking requirements. The strong focus on performance optimization, security, monitoring, and automation ensures that organizations can maintain operational excellence while scaling their network infrastructure to meet growing demands.
+Karios enables practical FreeBSD virtualization by solving real operational challenges:
 
-The integration capabilities, comprehensive API framework, and support for Infrastructure as Code practices make Karios Flexible Network an ideal choice for organizations pursuing digital transformation and modern IT operations. As networking requirements continue to evolve, the platform's extensible architecture and commitment to innovation ensure that it will continue to deliver cutting-edge networking capabilities that enable business success.
+- **Accessibility:** Makes FreeBSD VM networking manageable for any operations team, regardless of FreeBSD expertise level
+- **Operational Speed:** Reduces VM networking deployment time from hours of manual work to minutes of guided configuration  
+- **Error Prevention:** Eliminates configuration mistakes through built-in validation and automated best-practice enforcement
+- **Centralized Control:** Provides unified management across multiple Karios nodes, eliminating coordination overhead
+- **Performance Preservation:** Maintains all FreeBSD networking advantages while improving operational experience
