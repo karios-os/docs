@@ -57,18 +57,6 @@ What Makes Karios Essential
 * Automated configuration validation and warnings to reduce risk.  
 * Full lifecycle management: design, deploy, monitor, and troubleshoot—all from one place.  
 
-Desired Network Topology
-========================
-
-To help users visualize before diving into details, Karios recommends the following starting topology:
-
-.. figure:: _static/images/full-network-topology.png
-   :alt: Desired Network Topology
-   :width: 900
-   :align: center
-
-   Example topology: Management plane, Storage VLAN, Tenant VLANs, and VXLAN overlay across multiple nodes.
-
 Core Network Components
 =======================
 
