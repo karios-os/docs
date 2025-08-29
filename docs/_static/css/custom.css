@@ -1,4 +1,4 @@
-/* Karios Brand Colors Custom CSS - Light Mode Only */
+/* Karios Brand Colors Custom CSS - Light Mode Only with Mobile Table Fix */
 
 /* Brand Color Variables - Light Mode Only */
 :root {
@@ -11,7 +11,7 @@
     --karios-muted-gray: #e8eaf0;   /* Muted backgrounds */
     --karios-dark-gray: #6c757d;    /* Text gray */
     --karios-white: #ffffff;        /* Pure white */
-    
+
     /* Light mode specific colors */
     --bg-primary: linear-gradient(135deg, #f4f6f8 0%, #ffffff 50%, #e8eaf0 100%);
     --bg-content: rgba(255, 255, 255, 0.9);
@@ -54,6 +54,7 @@
     padding-left: 20px;
     z-index: 1001;
     border-bottom: 3px solid var(--karios-bright-green);
+    white-space: nowrap;
 }
 
 /* Add Karios logo at the far left */
@@ -80,15 +81,6 @@ body::after {
     height: calc(100vh - 60px);
 }
 
-/* Adjust main content to account for banner */
-.wy-nav-content-wrap {
-    margin-top: 60px;
-}
-
-.wy-nav-side {
-    top: 60px;
-    height: calc(100vh - 60px);
-}
 .wy-side-nav-search {
     background: linear-gradient(135deg, var(--karios-navy) 0%, #2a3052 100%);
     border-bottom: 3px solid var(--karios-bright-green);
@@ -142,14 +134,6 @@ body::after {
 
 .wy-menu-vertical li.current > a {
     border: none;
-}
-
-/* Dark mode specific sidebar adjustments */
-@media (prefers-color-scheme: dark) {
-    .wy-menu-vertical li.current a {
-        color: var(--karios-deep-navy);
-        font-weight: 700;
-    }
 }
 
 /* Content area improvements - Responsive to theme */
@@ -287,15 +271,8 @@ a:visited {
 
 .admonition-title {
     font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-}
-
-/* Remove all dark mode sections */
-
-.admonition-title {
-    font-weight: 700;
     color: var(--karios-navy);
+    margin-bottom: 8px;
 }
 
 /* Code blocks and inline code */
@@ -318,74 +295,45 @@ code {
     transition: all 0.3s ease;
 }
 
-/* Tables - Theme responsive */
-.wy-table-responsive table td,
-.wy-table-responsive table th {
-    border-color: var(--border-color);
-    transition: border-color 0.3s ease;
+/* SIMPLIFIED TABLE FIX - LIGHT MODE ONLY */
+/* Remove all conflicting styles and ensure readability */
+
+.wy-table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 24px;
 }
 
+.wy-table-responsive table {
+    margin-bottom: 0 !important;
+}
+
+/* Clear, simple table styling */
 .wy-table thead th {
-    background: linear-gradient(90deg, var(--karios-bright-green) 0%, rgba(154, 205, 50, 0.8) 100%);
-    color: var(--karios-navy);
+    background: linear-gradient(90deg, var(--karios-bright-green) 0%, rgba(154, 205, 50, 0.9) 100%) !important;
+    color: var(--karios-navy) !important;
     font-weight: 700;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(154, 205, 50, 0.5);
 }
 
-.wy-table-striped tr:nth-child(2n-1) td {
-    background-color: rgba(154, 205, 50, 0.05);
-    transition: background-color 0.3s ease;
+/* Ensure table text is always visible */
+.wy-table td,
+.wy-table tbody tr td {
+    color: #2c3e50 !important;
+    background-color: white !important;
+    padding: 10px;
+    border: 1px solid #dde1e7;
 }
 
-/* Dark mode table adjustments */
-@media (prefers-color-scheme: dark) {
-    .wy-table thead th {
-        color: var(--karios-deep-navy);
-    }
-    
-    /* Fix the alternating row colors - make them visible in dark mode */
-    .wy-table-striped tr:nth-child(odd) td {
-        background-color: rgba(46, 74, 139, 0.2) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .wy-table-striped tr:nth-child(even) td {
-        background-color: rgba(26, 31, 58, 0.4) !important;
-        color: var(--text-primary) !important;
-    }
-    
-    .wy-table td, .wy-table th {
-        color: var(--text-primary) !important;
-        border-color: rgba(154, 205, 50, 0.3);
-    }
-    
-    /* Force all table text to be visible */
-    .wy-table tbody tr td {
-        color: var(--text-primary) !important;
-        background-color: rgba(26, 31, 58, 0.3);
-    }
-    
-    .wy-table tbody tr:nth-child(odd) td {
-        background-color: rgba(42, 48, 82, 0.4) !important;
-    }
-    
-    .wy-table tbody tr:nth-child(even) td {
-        background-color: rgba(26, 31, 58, 0.6) !important;
-    }
-    
-    /* Ensure table headers are visible */
-    .wy-table thead {
-        background: linear-gradient(90deg, var(--karios-bright-green) 0%, rgba(154, 205, 50, 0.9) 100%);
-    }
-    
-    .wy-table thead th {
-        color: var(--karios-deep-navy) !important;
-        font-weight: 800;
-    }
-    
-    /* Override any inherited styles that might make text invisible */
-    table tbody tr td {
-        color: #e8eaf0 !important;
-    }
+/* Simple alternating rows */
+.wy-table tbody tr:nth-child(odd) td {
+    background-color: #fafafa !important;
+}
+
+.wy-table tbody tr:hover td {
+    background-color: rgba(154, 205, 50, 0.08) !important;
 }
 
 /* Search results */
@@ -404,7 +352,7 @@ code {
 }
 
 .btn-neutral {
-    background-color: var(--karios-light-gray) !important;
+    background-color: var(--karios-tech-gray) !important;
     color: var(--karios-navy) !important;
     border: 2px solid var(--karios-bright-green) !important;
 }
@@ -433,14 +381,40 @@ code {
     margin: 8px 0;
 }
 
-/* Remove remaining dark mode sections and keep only light mode */
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
+    /* Adjust banner for mobile */
+    .wy-body-for-nav::after {
+        left: 0;
+        font-size: 16px;
+        padding-left: 60px;
+    }
+    
     .wy-nav-top {
         background: var(--karios-navy);
     }
-    
+
     .wy-nav-top i {
         color: var(--karios-bright-green);
+    }
+    
+    /* Adjust content for mobile */
+    .wy-nav-content {
+        margin: 10px;
+        padding: 16px;
+    }
+    
+    /* Make tables scrollable on mobile */
+    .wy-table-responsive {
+        border: 1px solid #dde1e7;
+        border-radius: 8px;
+    }
+    
+    /* Prevent text wrapping in table cells */
+    .wy-table td,
+    .wy-table th {
+        white-space: nowrap;
+        min-width: 100px;
     }
 }
 
@@ -449,7 +423,7 @@ code {
     h1, h2, h3, h4, h5, h6 {
         color: var(--karios-navy) !important;
     }
-    
+
     a {
         color: var(--karios-navy) !important;
         text-decoration: none !important;
