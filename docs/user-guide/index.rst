@@ -23,38 +23,8 @@ To access the Karios management interface, open a supported web browser (Chrome 
 - **Password**: Use the generated password
 
 .. note::
-   The system-generated password can be retrieved directly from your node using the steps below.
-
-**Alternative Password Retrieval Method**
-
-1. **SSH Access to Node**
-
-   Access your node via command line using SSH:
-
-   .. code-block:: bash
-
-      ssh root@192.168.xxx.xxx
-
-   Password: ``your-root-password``
-
-2. **Retrieve Generated Password**
-
-   Once logged in, execute the following command to display the GUI password:
-
-   .. code-block:: bash
-
-      cat /root/karios_install_info.txt
-
-3. **Access GUI with Retrieved Password**
-
-   - Copy the password displayed in the file
-   - Navigate to the Karios web interface in your browser
-   - Enter credentials:
-     
-     - Username: ``admin``
-     - Password: Paste the copied password from the file
-   
-   - Access Level: Full administrative privileges (complete system access)
+   **System Password Retrieval**
+   The system generates a default password that can be retrieved directly from your node's command line interface. For step-by-step instructions, refer to `Obtaining UI Password from the CLI <https://docs.karios.ai/appendices/index.html>`_ in the documentation appendices.
 
 .. important::
    Use these credentials initially to explore the application's full capabilities, but immediately change them after your first login.
@@ -87,7 +57,7 @@ To access the Karios management interface, open a supported web browser (Chrome 
 3. **Account Creation**: Click "Sign Up" to create the new user account
 
 .. note::
-   New users are granted read-only access by default. Contact a system administrator for permission upgrades if needed.
+   New users are not granted any access by default. Contact a system administrator for permission upgrades if needed. Detailed instructions on how to provide access are available in the `Getting Full Access <https://docs.karios.ai/getting-started/index.html#getting-full-access>`_ section of the documentation.
 
 **Access Level Considerations**
 
@@ -486,48 +456,23 @@ After license validation and resource allocation, users have access to the follo
    :alt: Node Management
    :align: center
 
-Basic Operations
-~~~~~~~~~~~~~~~~
+User Management & Permissions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Common User Tasks**
+**User Roles**
 
-- **Dashboard Navigation**: Navigate between different system components using the main navigation menu
-- **Status Monitoring**: Monitor real-time system status and health indicators
-- **Information Viewing**: Access system information, documentation, and help resources
-- **Search and Filters**: Use search and filtering tools for efficient navigation
+Karios employs a role-based access control (RBAC) model to manage user permissions. The following roles are available:
 
-**License Management**
+- **Admin**: Full access to all system features and settings.
+- **User**: Limited access to specific features based on assigned permissions.
+- **Viewer**: Read-only access to system information and dashboards.
 
-- **License Monitoring**: Regular monitoring of license expiration dates
-- **Renewal Planning**: Proactive license renewal to avoid service interruption
-- **License Dashboard**: Access detailed license information and history
-- **Compliance Tracking**: Ensure ongoing license compliance and usage
+**Managing User Accounts**
 
-**System Monitoring**
+- **Creating Users**: Admins can create new user accounts through the user management interface.
+- **Editing Users**: User details, including roles and permissions, can be modified by admins.
+- **Deleting Users**: Inactive or unnecessary user accounts can be deleted by admins.
 
-- **Performance Metrics**: Monitor system performance and resource utilization
-- **Alert Management**: Review and respond to system alerts and notifications
-- **Health Indicators**: Monitor system health and operational status
-- **Resource Tracking**: Track resource usage and capacity planning
-
-Getting Full Access
-~~~~~~~~~~~~~~~~~~~~
-
-**Upgrading User Permissions**
-
-To access the full capabilities of the Karios platform:
-
-1. **Administrative Login**: Use the default admin credentials for complete access
-2. **Permission Request**: Contact system administrators to upgrade user account permissions
-3. **Role Assignment**: Request appropriate role assignment based on job responsibilities
-4. **Access Validation**: Verify upgraded permissions through system access testing
-
-**Security Considerations**
-
-- **Principle of Least Privilege**: Request only the minimum permissions necessary for job functions
-- **Regular Access Review**: Periodically review and validate user access permissions
-- **Security Compliance**: Follow organizational security policies for account management
-- **Administrative Coordination**: Coordinate with system administrators 
 
 Best Practices
 --------------
@@ -572,13 +517,15 @@ The Karios web interface provides a comprehensive management dashboard with the 
 Datacenter Management
 ~~~~~~~~~~~~~~~~~~~~~
 
-- **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
 - **Control Center Overview**: The selected datacenter displays the active control node and provides access to all managed infrastructure components
+- **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
+
 
 .. figure:: _static/images/web_interface_management/control_center_overview.png
    :width: 800
    :alt: Control Center Overview
    :align: center
+
 
 Hypervisor Server Management
 ----------------------------

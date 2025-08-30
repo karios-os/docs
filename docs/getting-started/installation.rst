@@ -82,7 +82,7 @@ Recommended Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
-   Good Lab/Test Environment - Potential for Limited Mission Critical
+   Quality Test Environment Essential - Use reliable hardware to ensure accurate testing results and valid performance assessments
 
 .. list-table:: 
    :header-rows: 1
@@ -396,31 +396,6 @@ After FreeBSD installation is complete and the node is up, execute the following
 .. tip::
    **What is Bootstrap?** A bootstrap script is an automated installer that downloads and configures all necessary software components. It eliminates manual setup by handling package installation, configuration, and service initialization automatically.
 
-Security Best Practices for Bootstrap Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. warning::
-   **Critical Security Requirements**: Always follow these security practices before executing any bootstrap script to protect your system from potential security vulnerabilities.
-
-**Pre-Execution Security Verification**
-
-Before running the bootstrap script, implement these mandatory security checks:
-
-.. code-block:: bash
-
-   # 1. Verify script source authenticity
-   # Ensure the download URL came from official Karios documentation
-   
-   # 2. Inspect script contents before execution
-   less /root/test1.sh
-   # or
-   cat /root/test1.sh
-   
-   # 3. Verify file integrity and permissions
-   ls -la /root/test1.sh
-
-.. note::
-   **Why Review Scripts?** Examining scripts before execution is a fundamental security practice. This verification ensures scripts contain expected commands, haven't been tampered with, and don't contain malicious code that could compromise your system.
 
 **Understanding Privilege Escalation Security**
 
@@ -504,6 +479,12 @@ Method 1: Using sudo (Recommended - Highest Security)
 **Step 1: Download and Prepare Bootstrap Script**
 
 .. code-block:: bash
+
+   # Ensure you have sudo installed
+   pkg install sudo
+
+   # Ensure you have sudo privileges
+   sudo whoami  # Should return "root"
 
    # Create non-root user if not already existing
    sudo adduser karios-admin
@@ -723,10 +704,6 @@ During the bootstrap installation, you will be prompted to accept the End User L
 3. **Precise Acceptance**: When prompted for EULA agreement, type exactly ``yes`` (lowercase)
 4. **Confirmation**: Press Enter to confirm your acceptance and proceed with installation
 
-.. figure:: _static/images/installation/eula.png
-   :width: 600
-   :alt: EULA Acceptance Screen
-
 .. warning::
    **Critical Input Requirement**: The confirmation text must be exactly lowercase ``yes``. Any other format (Yes, YES, y, etc.) will terminate the script and prevent installation from continuing. This precision is required for legal compliance verification.
 
@@ -835,30 +812,17 @@ Implement these security measures immediately after installation:
    * - **User Access Control**
      - Implement proper user permissions, role-based access, and authentication policies
 
-
+.. note::
+   For detailed post-installation security hardening steps, refer to the Karios User Guide:
+   https://docs.karios.ai/user-guide/index.html
+   
 
 Installation Troubleshooting
 -----------------------------
 
-Common Installation Issues
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you encounter problems during installation:
-
-**Hardware Compatibility**
-   Verify that your hardware meets all requirements and is on the compatibility list.
-
-**Installation Media**
-   Ensure installation media is not corrupted by verifying checksums and creating fresh installation media if necessary.
-
-**Network Configuration**
-   Check network settings, connectivity, and DNS resolution during the bootstrap phase.
-
-**Storage Issues**
-   Verify storage hardware is properly connected, functional, and has sufficient capacity.
-
-**Security-Related Issues**
-   Review privilege escalation settings, user permissions, and script execution policies.
+.. note::
+   For troubleshooting common installation issues, refer to the Appendices section of the Karios Documentation:
+   https://docs.karios.ai/appendices/index.html
 
 Getting Help
 ~~~~~~~~~~~~

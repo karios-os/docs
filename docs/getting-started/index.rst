@@ -34,11 +34,6 @@ Karios is built around three core principles:
 2. **Integrity** - Your data is protected with ZFS's advanced features like snapshots and self-healing
 3. **Agility** - Respond instantly to changing business needs with software-defined everything
 
-Architecture Overview
----------------------
-
-Karios eliminates traditional infrastructure silos by providing unified compute, storage, and networking layers.
-
 Hardware Requirements
 ---------------------
 
@@ -69,7 +64,7 @@ Recommended Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
-   Good Lab/Test Environment - Potential for Limited Mission Critical
+   Quality Test Environment Essential - Use reliable hardware to ensure accurate testing results and valid performance assessments
 
 .. list-table:: 
    :header-rows: 1
@@ -91,7 +86,7 @@ Recommended Configuration
 Ideal Configuration
 ~~~~~~~~~~~~~~~~~~~
 
-.. important::
+.. note::
    Mission Critical - High Availability & Performance
 
 .. list-table:: 
