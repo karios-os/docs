@@ -456,10 +456,10 @@ After license validation and resource allocation, users have access to the follo
    :alt: Node Management
    :align: center
 
-User Management & Permissions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**User Roles**
+
+User Management & Permissions
+-----------------------------
 
 Karios employs a role-based access control (RBAC) model to manage user permissions. The following roles are available:
 
@@ -473,6 +473,328 @@ Karios employs a role-based access control (RBAC) model to manage user permissio
 - **Editing Users**: User details, including roles and permissions, can be modified by admins.
 - **Deleting Users**: Inactive or unnecessary user accounts can be deleted by admins.
 
+
+RBAC Architecture and Design Philosophy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Hierarchical Permission Model**
+
+**Permission-Based Authorization**: The RBAC system implements a granular permission model where access is controlled through specific permissions rather than broad administrative categories. This provides:
+
+**Principle of Least Privilege**: Users are granted only the minimum permissions necessary to perform their required tasks, reducing security risks and preventing accidental system modifications.
+
+**Separation of Duties**: Different administrative functions are separated into distinct roles, preventing any single user from having unlimited system access and creating accountability trails.
+
+**Scalable Authorization**: The permission system can accommodate complex organizational structures with varying levels of access requirements across different operational domains.
+
+
+Predefined Role Definitions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Administrative Roles**:
+
+**System Admin Role**
+
+* **Scope**: Complete system administration with full access to all subsystems
+* **Permissions**: All available permissions including user management and security configuration
+
+**Node Admin Role**
+
+* **Scope**: Comprehensive node management with extensive system access
+* **Key Capabilities**: VM management, network configuration, storage administration, power management
+
+**Specialized Administrative Roles**:
+
+**VM Admin Role**
+
+* **Focus**: Virtual machine lifecycle management and operations
+* **Operational Scope**: VM creation, configuration, backup, and monitoring
+* **Storage Access**: Read-only storage visibility for capacity planning
+* **Network Access**: Read-only network visibility for VM network configuration
+
+**Network Admin Role**
+
+* **Specialization**: Network infrastructure configuration and management
+* **Scope**: Network device configuration, VLAN management, routing policies
+* **Integration**: Limited node visibility for network-related hardware management
+
+**Storage Admin Role**
+
+* **Domain**: Storage system configuration and management
+* **Responsibilities**: ZFS pool management, filesystem creation
+* **Integration**: Node visibility for storage hardware monitoring
+* **Scope**: Storage client protocol configuration and management
+
+**Power Admin Role**
+
+* **Specialization**: Power management and energy efficiency optimization
+* **Scope**: UPS management, power distribution monitoring, energy reporting
+* **Integration**: Node visibility for power consumption monitoring
+* **Operational Focus**: Power policy configuration and emergency power management
+
+**Security Admin Role**
+
+* **Domain**: Security policy enforcement and monitoring
+* **Responsibilities**: Firewall configuration, security policy implementation, audit compliance
+* **Access**: Console access for security incident response
+* **Scope**: Security configuration across all system components
+
+**Cooling Admin Role**
+
+* **Specialization**: Thermal management and cooling system optimization
+* **Scope**: HVAC integration, temperature monitoring, cooling efficiency management
+* **Integration**: Node visibility for thermal monitoring
+* **Focus**: Cooling policy configuration and thermal incident response
+
+**Netbox Admin Role**
+
+* **Purpose**: Network documentation and inventory management
+* **Scope**: IP address management, network topology documentation, asset tracking
+* **Integration**: Node visibility for accurate inventory management
+* **Focus**: Network planning and documentation maintenance
+
+**End-User Roles**:
+
+**ReadOnly User Role**
+
+* **Purpose**: Monitoring and reporting access without modification capabilities
+* **Scope**: Comprehensive visibility across all system components
+
+
+Role Assignment and Management Procedures
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**User Provisioning Process**
+
+The user provisioning process follows these key steps:
+
+1. **Role Determination**: Select appropriate role based on job responsibilities
+2. **Account Creation**: Create user account with assigned role
+3. **Initial Setup**: Configure user preferences and access credentials
+4. **Training**: Provide role-specific system training
+5. **Monitoring**: Initial monitoring period for new users
+
+**Role Modification Procedures**
+Users may require role changes due to evolving job functions or organizational changes. The role modification process includes:
+
+* **Role Upgrade**: Process for granting additional permissions
+* **Role Downgrade**: Process for removing unnecessary permissions
+* **Temporary Access**: Procedures for temporary permission elevation
+* **Emergency Access**: Emergency procedures for critical system access
+
+**RBAC Implementation Through Web Interface**
+
+**Accessing RBAC Management**: The RBAC system is accessible through the admin dropdown menu in the top-right corner of the Karios interface, providing three main management sections:
+
+* **Role Management**: Create, edit, and delete custom roles
+* **User Management**: Register, manage, and assign roles to users
+* **2FA Management**: Configure two-factor authentication settings
+
+.. note::
+   **Administrative Access Requirements**: RBAC management requires System Admin privileges or USER_MANAGE permissions to access role and user management functions.
+
+
+Role Creation Process
+~~~~~~~~~~~~~~~~~~~~~
+
+**Step 1: Access Role Management**
+
+1. Navigate to admin dropdown → "Role Management"
+2. The interface displays existing roles on the right side
+3. Use the "Create Role" section on the left to define new roles
+
+**Step 2: Define Role Properties**
+
+**Name**: Human-readable role name (e.g., "Storage Admin", "Network Admin")
+**Role Slug**: System identifier for the role (auto-generated or custom)
+**Description**: Detailed explanation of role purpose and responsibilities
+
+**Step 3: Permission Assignment**
+
+The interface provides a comprehensive checkbox grid with all available permissions:
+
+**Infrastructure Permissions**
+
+* **VM_VIEW / VM_MANAGE**: Virtual machine visibility and control
+* **NETWORK_VIEW / NETWORK_MANAGE**: Network infrastructure access
+* **STORAGE_VIEW / STORAGE_MANAGE**: Storage system administration
+* **NODE_VIEW / NODE_MANAGE**: Physical node management
+
+**Specialized System Permissions**
+
+* **NETBOX_VIEW / NETBOX_MANAGE**: Network documentation system
+* **POWER_VIEW / POWER_MANAGE**: Power management system
+* **USER_MANAGE / USER_VIEW**: User account administration
+* **LOGS_VIEW**: System logging access
+
+**Storage Client Permissions**
+
+* **STORAGE_CLIENT_ISCSI**: iSCSI protocol access
+* **STORAGE_CLIENT_MFS**: MooseFS distributed storage
+* **STORAGE_CLIENT_S3**: S3-compatible object storage
+* **STORAGE_CLIENT_SEAWEED**: SeaweedFS storage system
+* **STORAGE_CLIENT_SMB**: SMB/CIFS file sharing
+
+**System Access Permissions**
+
+* **NODE_CONSOLE**: Physical node console access
+* **CONSOLE**: System console access
+* **CONTROL_CENTER_VIEW / CONTROL_CENTER_MANAGE**: Management interface access
+* **SECURITY_VIEW / SECURITY_MANAGE**: Security system administration
+* **COOLING_VIEW / COOLING_MANAGE**: Cooling system management
+
+.. tip::
+   Select the appropriate permissions and click "create" to finalize the role.
+
+
+Predefined Roles Display
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The interface shows all existing roles with their current configuration:
+
+System Roles
+^^^^^^^^^^^^
+
+* **System Admin**: Complete administrative access
+* **VM Admin**: Virtual machine management focus
+* **Network Admin**: Network infrastructure specialization
+* **Storage Admin**: Storage system administration
+* **Node Admin**: Physical infrastructure management
+* **Power Admin**: Power system management
+* **Security Admin**: Security policy management
+* **Cooling Admin**: Thermal management system
+* **Netbox Admin**: Network documentation management
+* **ReadOnly User**: Comprehensive read-only access
+
+Custom Roles
+^^^^^^^^^^^^
+
+Additional custom roles created for specific organizational needs.
+
+Role Actions
+^^^^^^^^^^^^
+
+* **Edit**: Modify existing role permissions and properties
+* **Delete**: Remove custom roles (predefined roles cannot be deleted)
+
+
+User Registration Process
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Step 1: Access User Management
+
+1. Navigate to admin dropdown → "User Management"
+2. Click "Register User" button to create new user accounts
+
+
+Step 2: User Information Entry
+
+The registration dialog requires comprehensive user information:
+
+* **Username**: Unique system identifier for the user
+* **Email**: Primary email address for notifications and communications
+* **First Name**: User's given name for identification
+* **Last Name**: User's last name for complete identification
+* **Password**: Secure password meeting complexity requirements (8+ characters, 1 number, 1 uppercase, 1 special character)
+
+
+User Account Management
+~~~~~~~~~~~~~~~~~~~~~~~
+
+User Status Management
+^^^^^^^^^^^^^^^^^^^^^^
+
+The interface provides comprehensive user account oversight:
+
+Account Status Types
+^^^^^^^^^^^^^^^^^^^^
+
+* **Active**: User account is functional and can access the system
+* **Inactive**: User account is disabled and cannot authenticate
+
+Role Assignment Display
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Each user shows their currently assigned role:
+
+* **System Admin**: Complete administrative privileges
+* **Security Admin**: Security-focused administrative access
+* **ReadOnly User**: View-only access across all systems
+* **Custom Roles**: Specialized roles created for specific requirements
+
+Approval Workflow Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Approval Required**: Some users require administrative approval before activation
+* **Approvers**: Designated users who can approve account activation
+* **No approval required**: Users who can be immediately activated
+
+Role Assignment Strategies
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Full Access Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Method 1: System Admin Role Assignment**
+
+1. Navigate to User Management interface
+2. Locate the target user account
+3. Click "Edit" on the user's row
+4. Change role assignment to "System Admin"
+5. Save changes to grant complete system access
+
+**Method 2: Custom Full Access Role**
+
+1. Access Role Management interface
+2. Create new role with comprehensive name (e.g., "Full Administrator")
+3. Select ALL available permissions in the permission grid
+4. Save the custom role
+5. Assign the new role to target users
+
+
+Specialized Access Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Users can be assigned specialized roles based on job function:
+
+* **Storage Administrators**: Storage Admin role for ZFS and storage management
+* **Network Engineers**: Network Admin role for network infrastructure
+* **Security Personnel**: Security Admin role for security policy management
+* **Operations Staff**: ReadOnly User role for monitoring and reporting
+
+
+.. warning::
+   Full access roles carry significant security implications:
+
+   * **Complete System Control**: Ability to modify any system configuration
+   * **Data Access**: Unrestricted access to all stored data and configurations
+   * **User Management**: Ability to create, modify, or delete user accounts
+   * **Security Policy Control**: Can modify security policies and access controls
+
+
+User Lifecycle Management
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Account Activation Process
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The complete account activation workflow:
+
+1. **Registration**: Create user account with required information
+2. **Role Assignment**: Assign appropriate role based on job function
+3. **Approval**: Process any required approvals through designated approvers
+4. **Activation**: Activate account to enable system access
+5. **Notification**: User receives activation notification and initial access instructions
+
+Account Maintenance
+^^^^^^^^^^^^^^^^^^^
+
+Ongoing account management includes:
+
+**Status Changes**: Toggle between Active and Inactive status as needed
+**Role Modifications**: Update user roles based on changing responsibilities
+**Approval Management**: Manage approval workflows for sensitive role assignments
+**Access Reviews**: Regular review of user accounts and assigned permissions
 
 Best Practices
 --------------
@@ -500,6 +822,31 @@ System Usage
 - **Documentation**: Keep personal documentation of system configurations and procedures.
 - **Change Management**: Follow proper change management procedures for system modifications.
 - **Support Utilization**: Utilize available support resources and documentation effectively.
+
+Security Recommendations
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. important::
+   Follow these security best practices:
+
+   * Implement the principle of least privilege
+   * Regularly review user permissions and roles
+   * Use approval workflows for sensitive role assignments
+   * Monitor user activity and access patterns
+   * Maintain proper documentation of role assignments
+
+Operational Guidelines
+~~~~~~~~~~~~~~~~~~~~~~
+
+* **Regular Audits**: Conduct periodic access reviews
+* **Role Documentation**: Maintain clear documentation of role purposes and permissions
+* **Training**: Provide adequate training for users with new role assignments
+* **Change Management**: Follow proper procedures for role modifications
+* **Emergency Procedures**: Maintain emergency access procedures for critical situations
+
+.. note::
+   This practical implementation guide provides step-by-step instructions for managing roles and users through the Karios web interface, ensuring proper access control while maintaining system security and operational efficiency.
+
 
 Web Interface Navigation   
 ------------------------
