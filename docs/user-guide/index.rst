@@ -98,11 +98,25 @@ Before proceeding, ensure you have:
 1. **2FA Registration Prompt**
 
    * After successful admin login, you'll see the "Set up Two-Factor Authentication" screen
-   * The system displays: "To enhance your account security, please set up two-factor authentication"
+
+   .. figure:: _static/images/getting_started/2fa_mobile_registration_prompt.png
+      :width: 600
+      :alt: 2FA Mobile Registration Prompt
+
+      Figure : 2FA Registration Prompt
+
+   * The system displays: "You need to setup two-factor authentication to continue accessing your account."
 
 2. **QR Code Display**
 
    * A unique QR code will be presented on the screen
+
+   .. figure:: _static/images/getting_started/2fa_qr_code.png
+      :width: 600
+      :alt: 2FA QR Code
+
+      Figure : 2FA QR Code
+
    * This QR code contains your account's secret key for generating time-based codes
    
    .. warning::
@@ -132,6 +146,14 @@ Before proceeding, ensure you have:
 
    * Your authenticator app will immediately start generating 6-digit codes
    * Enter the current 6-digit code from your app into the "Verification Code" field
+
+   
+   .. figure:: _static/images/getting_started/2fa_enter_code.png
+      :width: 600
+      :alt: 2FA Enter Code
+
+      Figure : 2FA Enter Code
+   
    * Click "Verify and Enable 2FA"
 
    .. tip::
@@ -142,17 +164,58 @@ Before proceeding, ensure you have:
    * Upon successful verification, the system generates backup recovery codes
    * Download or print the backup codes and store them in a secure location
 
+   .. figure:: _static/images/getting_started/2fa_backup_codes.png
+      :width: 600
+      :alt: 2FA Backup Codes
+
+      Figure : 2FA Backup Codes
+
    .. important::
       Save these backup codes securely - they allow account recovery if you lose your device. Each backup code can only be used once, so treat them like passwords and store them safely.
 
 
-- **Account Recovery**: If you forget your password, use the "Forgot Password?" link to initiate the recovery process.
+Account Recovery:
+~~~~~~~~~~~~~~~~~
 
-Give you username to initiate a reset password request.
+If you forget your password, use the "Forgot Password?" link to initiate the recovery process.
+
+.. figure:: _static/images/getting_started/forgot_password.png
+   :width: 600
+   :alt: Forgot Password
+
+   Figure : Forgot Password
+
+Give your username to initiate a reset password request.
+
+.. figure:: _static/images/getting_started/forgot_password_enter_username.png
+   :width: 600
+   :alt: Forgot Password Enter Username
+
+   Figure : Forgot Password Enter Username
+
+If a device is configured , please choose one from the list.
+
+.. figure:: _static/images/getting_started/forgot_password_choose_device.png
+   :width: 600
+   :alt: Forgot Password Choose Device
+
+   Figure : Forgot Password Choose Device
 
 Give your 2FA code to reset your password.
 
-once 2FA is verified, you will be able to reset your password. Give your new password and confirm it.
+.. figure:: _static/images/getting_started/forgot_password_enter_2fa.png
+   :width: 600
+   :alt: Forgot Password Enter 2FA
+
+   Figure : Forgot Password Enter 2FA
+
+Once 2FA is verified, you will be able to reset your password. Give your new password and confirm it.
+
+.. figure:: _static/images/getting_started/forgot_password_reset_password.png
+   :width: 600
+   :alt: Forgot Password Reset To New Password
+
+   Figure : Forgot Password Reset To New Password
 
 Your password has been reset successfully. You can now log in with your new password.
 
@@ -641,7 +704,7 @@ Predefined Role Definitions
 
 
 Role Assignment and Management Procedures
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **User Provisioning Process**
 
@@ -679,8 +742,28 @@ Role Creation Process
 **Step 1: Access Role Management**
 
 1. Navigate to admin dropdown → "Role Management"
+
+.. figure:: _static/images/rbac/role_management.png
+   :width: 600
+   :alt: Navigate to Role Management 
+
+   Figure : Navigate to Role Management
+
 2. The interface displays existing roles on the right side
+
+.. figure:: _static/images/rbac/role_list.png
+   :width: 600
+   :alt: Role List
+
+   Figure : Role List
+
 3. Use the "Create Role" section on the left to define new roles
+
+.. figure:: _static/images/rbac/create_role.png
+   :width: 600
+   :alt: Create Role Interface
+
+   Figure : Create Role Interface
 
 **Step 2: Define Role Properties**
 
@@ -722,8 +805,14 @@ The interface provides a comprehensive checkbox grid with all available permissi
 * **SECURITY_VIEW / SECURITY_MANAGE**: Security system administration
 * **COOLING_VIEW / COOLING_MANAGE**: Cooling system management
 
-.. tip::
-   Select the appropriate permissions and click "create" to finalize the role.
+
+Select the appropriate permissions and click "create" to finalize the role.
+
+.. figure:: _static/images/rbac/permission_grid.png
+   :width: 600
+   :alt: Permission Grid
+
+   Figure : Permission Grid
 
 
 Predefined Roles Display
@@ -754,8 +843,20 @@ Role Actions
 ^^^^^^^^^^^^
 
 * **Edit**: Modify existing role permissions and properties
+
+.. figure:: _static/images/rbac/edit_role.png
+   :width: 600
+   :alt: Edit Role Interface
+
+   Figure : Edit Role Interface
+
 * **Delete**: Remove custom roles (predefined roles cannot be deleted)
 
+.. figure:: _static/Images/rbac/delete_role.png
+   :width: 600
+   :alt: Delete Role Confirmation
+
+   Figure : Delete Role Confirmation
 
 User Registration Process
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -763,8 +864,20 @@ User Registration Process
 Step 1: Access User Management
 
 1. Navigate to admin dropdown → "User Management"
+
+.. figure:: _static/Images/rbac/UserManagement.png
+   :width: 600
+   :alt: Navigate to User Management
+
+   Figure : Navigate to User Management
+
 2. Click "Register User" button to create new user accounts
 
+.. figure:: _static/Images/rbac/RegisterUser.png
+   :width: 600
+   :alt: Register User Interface
+
+   Figure : Register User Interface
 
 Step 2: User Information Entry
 
@@ -776,6 +889,11 @@ The registration dialog requires comprehensive user information:
 * **Last Name**: User's last name for complete identification
 * **Password**: Secure password meeting complexity requirements (8+ characters, 1 number, 1 uppercase, 1 special character)
 
+.. figure:: _static/Images/rbac/UserRegistrationForm.png
+   :width: 600
+   :alt: User Registration Form
+
+   Figure : User Registration Form
 
 User Account Management
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -819,8 +937,22 @@ Full Access Implementation
 1. Navigate to User Management interface
 2. Locate the target user account
 3. Click "Edit" on the user's row
+
+.. figure:: _static/Images/rbac/EditUser.png
+   :width: 600
+   :alt: Edit User Interface
+
+   Figure : Edit User Interface
+
 4. Change role assignment to "System Admin"
 5. Save changes to grant complete system access
+
+.. figure:: _static/Images/rbac/AssignSystemAdminRole.png
+   :width: 600
+   :alt: Assign System Admin Role
+
+   Figure : Assign System Admin Role
+
 
 **Method 2: Custom Full Access Role**
 
@@ -830,6 +962,35 @@ Full Access Implementation
 4. Save the custom role
 5. Assign the new role to target users
 
+.. figure:: _static/Images/rbac/AssignCustomRole.png
+   :width: 600
+   :alt: Assign Custom Role
+
+   Figure : Assign Custom Role
+
+**Approval Role Assignment**
+
+1. After Creating the User , if you wish to give them the restricted eligibility, select the dropdown "Approvals Required" to assign permission
+
+.. figure:: _static/Images/rbac/AssignApprovalRole.png
+   :width: 600
+   :alt: Assign Approval Role
+
+   Figure : Assign Approval Role
+
+2. To assign approvers, select eligible approvers from the popup
+
+.. figure:: _static/Images/rbac/SelectedApprovers.png
+   :width: 600
+   :alt: Selected Approvers
+
+   Figure : Selected Approvers
+
+.. figure:: _static/Images/rbac/SelectApproversPopup.png
+   :width: 600
+   :alt: Select Approvers Popup
+
+   Figure : Select Approvers Popup
 
 Specialized Access Implementation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -870,10 +1031,79 @@ Account Maintenance
 
 Ongoing account management includes:
 
-**Status Changes**: Toggle between Active and Inactive status as needed
-**Role Modifications**: Update user roles based on changing responsibilities
-**Approval Management**: Manage approval workflows for sensitive role assignments
-**Access Reviews**: Regular review of user accounts and assigned permissions
+1. **Status Changes**: Toggle between Active and Inactive status as needed
+2. **Role Modifications**: Update user roles based on changing responsibilities
+3. **Approval Management**: Manage approval workflows for sensitive role assignments
+4. **Access Reviews**: Regular review of user accounts and assigned permissions
+5. **Account Deactivation and Deletion**: Process account deactivation / deletion requests by navigating to the user management block in User Management
+
+.. figure:: _static/Images/rbac/AccountDeactivation.png
+   :width: 600
+   :alt: Account Deactivation
+
+   Figure : Account Deactivation
+
+.. figure:: _static/Images/rbac/AccountDeletion.png
+   :width: 600
+   :alt: Account Deletion
+
+   Figure : Account Deletion
+
+
+Two-Factor Management
+---------------------
+
+**Two-Factor Authentication Management Dashboard**
+
+1. Navigate to the Two-Factor Management section
+
+.. figure:: _static/Images/rbac/NavigateToTwoFactorManagement.png
+   :width: 600
+   :alt: Navigate to Two-Factor Management
+
+   Figure : Navigate to Two-Factor Management
+
+2. View and manage two-factor authentication settings and devices 
+
+.. figure:: _static/Images/rbac/TwoFactorManagementDashboard.png
+   :width: 600
+   :alt: Two-Factor Management Dashboard
+
+   Figure : Two-Factor Management Dashboard
+
+3. Edit and delete devices in the dashboard
+
+.. figure:: _static/Images/rbac/TwoFactorDeviceManagement.png
+   :width: 600
+   :alt: Two-Factor Device Management
+
+   Figure : Two-Factor Device Management
+
+**Add new device**
+
+1. Click on the "Add Device" button in the Two-Factor Device Management dashboard
+
+.. figure:: _static/Images/rbac/AddTwoFactorDevice.png
+   :width: 600
+   :alt: Add Two-Factor Device
+
+   Figure : Add Two-Factor Device
+
+2. Follow the prompts to enter new device information for two-factor authentication
+
+   .. figure:: _static/Images/rbac/TwoFactorDeviceEnrollment.png
+      :width: 600
+      :alt: Two-Factor Device Enrollment
+
+   Figure : Two-Factor Device Enrollment
+
+3. Scan and verify the new device to complete the enrollment process
+
+   .. figure:: _static/Images/rbac/TwoFactorDeviceVerification.png
+      :width: 600
+      :alt: Two-Factor Device Verification
+
+   Figure : Two-Factor Device Verification
 
 Best Practices
 --------------
