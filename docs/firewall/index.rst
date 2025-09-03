@@ -1,676 +1,727 @@
-===================
-Integrated Firewall
-===================
+PF Documentation
+================
 
-.. contents:: Table of Contents
-   :depth: 3
-   :local:
-
-Overview
-========
-
-Karios implements a comprehensive integrated firewall solution based on FreeBSD's Packet Filter (PF), delivering enterprise-grade network security with advanced traffic filtering, Network Address Translation (NAT) capabilities, and intelligent traffic redirection. The firewall is seamlessly integrated into the Karios platform architecture, providing customizable security policies that can be tailored to meet specific organizational and regulatory requirements.
-
-**Key Benefits:**
-
-* **Enterprise-Grade Security:** Packet filtering with stateful inspection
-* **High Performance:** Optimized for high-throughput environments with minimal latency
-* **Scalable Architecture:** Modular design supporting complex network topologies
-* **Unified Management:** Single-pane-of-glass management interface
-* **Compliance Ready:** Supports various regulatory compliance frameworks
-
-Firewall Architecture
-=====================
-
-FreeBSD PF Foundation
----------------------
-
-The integrated firewall leverages FreeBSD's Packet Filter (PF), a robust and battle-tested firewall framework originally developed by OpenBSD. PF provides a solid foundation for implementing sophisticated network security policies at both host and gateway levels.
-
-**Core PF Architecture Components:**
-
-**Stateful Packet Filtering**
-
-* Maintains connection state information for TCP, UDP, and ICMP protocols
-* Tracks connection establishment, data transfer, and termination phases
-* Automatically permits return traffic for established connections
-* Provides protection against connection hijacking and session-based attacks
-* Implements adaptive timeout mechanisms for different connection states
-
-**NAT Support**
-
-* Comprehensive Network Address Translation for IPv4 and IPv6
-* Source NAT (SNAT) for outbound traffic masquerading
-* Destination NAT (DNAT) for inbound service exposure
-* Port Address Translation (PAT) for efficient IP address utilization
-* Bidirectional NAT for complex routing scenarios
-
-**Traffic Shaping and Quality of Service (QoS)**
-
-* Bandwidth allocation and rate limiting capabilities
-* Priority-based traffic queuing and scheduling
-* Burst handling and traffic smoothing mechanisms
-* Application-aware traffic classification
-
-**Redirection & Port Forwarding**
-
-* Transparent traffic redirection without client configuration
-* Advanced port forwarding with protocol-specific handling
-* Service load balancing across multiple backend servers
-
-**Table Support**
-
-* Efficient IP address and network range management
-* Dynamic table updates without rule recompilation
-* Memory-optimized storage for large IP lists
-* Support for persistent and temporary table entries
-* Integration with external threat intelligence feeds
-
-**Anchors**
-
-* Modular rule organization and management
-* Hierarchical rule structure for complex policies
-* Runtime rule loading and modification
-* Policy inheritance and override mechanisms
-* Performance optimization through rule grouping
-
-**Scrubbing and Packet Normalization**
-
-* Fragment reassembly and validation
-* TCP flag normalization and invalid flag removal
-* TTL (Time To Live) enforcement and adjustment
-* Protection against protocol-based evasion techniques
-
-**Logging & Monitoring**
-
-* Comprehensive packet logging with pflog interface
-* Integration with system logging infrastructure
-* Real-time traffic analysis and reporting
-* Security event correlation and alerting
-* Performance metrics and statistics collection
-
-Firewall Components
--------------------
-
-**Packet Filter**
-
-The Packet Filter module serves as the core component responsible for processing firewall rules and filtering network traffic. It operates at the kernel level for maximum performance, evaluating packets against defined rulesets, tracking connection states, applying NAT transformations, and enforcing security policies.
-
-.. list-table:: Key Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - High-performance Processing
-     - Zero-copy mechanisms for packet processing
-   * - Multi-threaded Architecture
-     - SMP (Symmetric Multi-Processing) system support
-   * - Hardware Acceleration
-     - Support for cryptographic operations
-   * - Memory-mapped I/O
-     - Reduced system call overhead
-   * - Interrupt Coalescing
-     - Improved network performance
-
-**State Table**
-
-The State Table in PF maintains detailed information about active network connections, enabling the firewall to recognize and permit return traffic without re-evaluating rules for every packet.
-
-.. list-table:: State Management Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Connection Tracking
-     - State tracking for TCP, UDP, ICMP, and other protocols
-   * - Adaptive Timeouts
-     - Timeout mechanisms based on connection characteristics
-   * - Memory Efficiency
-     - Efficient state storage with automatic cleanup
-   * - State Synchronization
-     - Support for high-availability deployments
-   * - Rate Limiting
-     - Connection rate limiting and resource protection
-
-**NAT**
-
-Handles all Network Address Translation operations, enabling private IP addresses to communicate with external networks by intelligently rewriting packet headers.
-
-.. list-table:: NAT Engine Capabilities
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Capability
-     - Description
-   * - Dynamic Port Allocation
-     - Automatic port allocation with collision detection
-   * - Session Persistence
-     - Maintains session consistency for applications
-   * - Protocol-specific NAT
-     - Special handling for FTP, SIP, H.323, etc.
-   * - Hairpin NAT
-     - Support for internal-to-internal communications
-
-**Traffic Redirection (RDR)**
-
-RDR (Redirect) functionality allows incoming traffic to be seamlessly redirected from one IP address and port combination to another.
-
-.. list-table:: RDR Advanced Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Health Monitoring
-     - Automatic failover with backend monitoring
-   * - Load Balancing
-     - Weighted round-robin distribution
-   * - Session Affinity
-     - Maintain session persistence
-   * - Geographic Balancing
-     - Location-based load distribution
-   * - Real-time Monitoring
-     - Live backend server status tracking
-
-**Logging System**
-
-The PF Logging System provides comprehensive insight into firewall activity by capturing packets that match rules configured with the log keyword.
-
-.. list-table:: Logging Capabilities
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Capability
-     - Description
-   * - Selective Logging
-     - Granular control over logged events
-   * - High-performance
-     - Minimal performance impact
-   * - Log Management
-     - Rotation and archival policies
-   * - Real-time Analysis
-     - Live log analysis and alerting
-
-Firewall Configuration
-======================
-
-Rule Management
----------------
-
-Network administrators have complete control over firewall rules through an intuitive yet powerful rule management system. The system supports complex rule hierarchies, policy inheritance, and real-time rule modification without service interruption.
-
-**Rule Types:**
-
-.. list-table::
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Rule Type
-     - Description
-   * - Filter Rules
-     - Determine whether traffic should be allowed or blocked based on comprehensive matching criteria
-   * - NAT Rules
-     - Define how network addresses should be translated for communication between networks
-   * - RDR Rules
-     - Handle traffic redirection and port forwarding for seamless service access
-   * - Scrub Rules
-     - Perform packet normalization and security hardening against evasion techniques
-
-**Rule Configuration Format:**
-
-.. code-block:: none
-
-   General Format:
-   action direction [log] on interface proto protocol from source to destination [port port_number] [flags] [state]
-
-**Rule Components:**
-
-.. list-table:: Actions
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Action
-     - Description
-   * - pass
-     - Allow traffic to proceed
-   * - block
-     - Silently drop traffic
-   * - reject
-     - Drop traffic and send rejection response
-   * - rdr
-     - Redirect traffic to different destination
-
-.. list-table:: Direction Options
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Direction
-     - Description
-   * - in
-     - Incoming traffic
-   * - out
-     - Outgoing traffic
-
-.. list-table:: Interface Types
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Interface Type
-     - Examples
-   * - Physical
-     - em0, igb0
-   * - Virtual
-     - vlan1, tun0
-   * - Groups
-     - Interface groups for simplified management
-
-**Common Rule Examples:**
-
-.. code-block:: none
-
-   # Allow all outgoing traffic with state tracking
-   pass out on em0 from any to any keep state
-
-   # Block all incoming traffic by default
-   block in all
-
-   # Allow SSH access from specific IP range
-   pass in on em0 proto tcp from 192.168.1.0/24 to any port 22 keep state
-
-   # Redirect HTTP traffic to internal server
-   rdr on em0 proto tcp from any to 203.0.113.10 port 80 -> 192.168.1.10 port 8080
-
-   # Log all dropped packets for security analysis
-   block log all
-
-   # Allow HTTPS with stateful inspection
-   pass in on em0 proto tcp from any to any port 443 keep state
-
-   # Allow DNS queries with UDP and TCP support
-   pass out on em0 proto udp from any to any port 53 keep state
-   pass out on em0 proto tcp from any to any port 53 keep state
-
-   # Block and log suspicious port scanning attempts
-   block log quick on em0 proto tcp from any to any port 1:1023 flags S/SA
-
-   # Allow VPN traffic (OpenVPN)
-   pass in on em0 proto udp from any to any port 1194 keep state
-   pass in on em0 proto tcp from any to any port 1194 keep state
-
-Policy Management
------------------
-
-**Security Policies:**
-
-**Default Policies**
-
-System-wide default security policies establish the baseline security posture for the entire network infrastructure.
-
-.. list-table:: Policy Components
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Component
-     - Description
-   * - Deny-all Inbound
-     - Default deny policy with explicit allow rules
-   * - Allow-all Outbound
-     - Default allow policy with restriction exceptions
-   * - State Tracking
-     - Automatic tracking for established connections
-   * - Default Timeouts
-     - Connection-type specific timeout values
-   * - Fallback Rules
-     - Rules for unmatched traffic scenarios
-
-**Custom Policies**
-
-User-defined security policies allow organizations to implement specific security requirements.
-
-.. list-table:: Custom Policy Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Application Control
-     - Application-specific traffic management
-   * - Time-based Access
-     - Schedule-based access restrictions
-   * - User/Group Policies
-     - Identity-based access control
-   * - Geographic Controls
-     - Location-based access restrictions
-   * - Protocol Enhancements
-     - Protocol-specific security features
-
-NAT Configuration
-=================
-
-Network Address Translation
+What is PF (Packet Filter)?
 ---------------------------
 
-The comprehensive NAT functionality integrated with FreeBSD PF provides sophisticated address translation capabilities essential for modern network architectures.
+Think of a firewall like a security guard at the entrance of a building (your network). It checks every visitor (data packet) to decide who gets in or out based on rules you set. PF (Packet Filter) is a powerful and flexible firewall used on systems like FreeBSD to:
 
-**NAT Types:**
+* Protect your computer or network from hackers
+* Control which websites or services your network can access
+* Hide your private network behind a single public IP address (like a phone number for your network)
+* Prioritize important traffic, like video calls, over less urgent downloads
 
-**Source NAT (SNAT)**
+PF, short for Packet Filter, is a stateful firewall originally developed for OpenBSD and later ported to FreeBSD, among other systems. It enables administrators to filter network traffic, perform NAT, shape bandwidth, prioritize packets, and more.
 
-Source NAT rewrites the source IP address of outbound traffic, typically replacing private IP addresses with public IP addresses.
+Key Features
+~~~~~~~~~~~~
 
-.. code-block:: none
+**Stateful filtering**
+    Tracks connection states automatically (e.g., TCP session states)
 
-   # Basic SNAT for internet access
-   nat on em0 from 192.168.1.0/24 to any -> (em0)
+**Network Address Translation (NAT)**
+    Allows private networks to share a public IP
 
-   # SNAT with specific public IP
-   nat on em0 from 192.168.1.0/24 to any -> 203.0.113.10
+**Traffic normalization and scrub**
+    Cleans malformed packets and reassembles fragments
 
-   # SNAT with port range specification
-   nat on em0 from 192.168.1.0/24 to any port 1024:65535 -> (em0) port 10000:20000
+**Tables**
+    Maintain sets of addresses for efficient matching (e.g., blacklists)
 
-**Destination NAT (DNAT)**
+**Logging**
+    Via pflog, PF can log per-rule packet activity for auditing and troubleshooting
 
-Destination NAT modifies the destination IP address of incoming traffic, redirecting it to internal servers or services.
+**Optimization**
+    PF internally optimizes rule lookup for performance
 
-.. code-block:: none
+**Key Terms Explained**
 
-   # Basic port forwarding
-   rdr on em0 proto tcp from any to 203.0.113.10 port 80 -> 192.168.1.10 port 8080
+**Stateful Filtering**
+    PF remembers connections, like knowing someone who entered your building so they can leave without being checked again
 
-   # Multiple service redirection
-   rdr on em0 proto tcp from any to 203.0.113.10 port { 80, 443 } -> 192.168.1.10
+**NAT (Network Address Translation)**
+    Lets multiple devices share one public IP address, like a single phone number for an entire office
 
-   # Load balancing with round-robin
-   rdr on em0 proto tcp from any to 203.0.113.10 port 80 -> { 192.168.1.10, 192.168.1.11, 192.168.1.12 } round-robin
+**Scrub**
+    Fixes messy or broken data packets to keep your network running smoothly
 
-**Bidirectional NAT**
+**Tables**
+    Lists of IP addresses (like a guest list) that PF can quickly check to block or allow traffic
 
-Performs both Source NAT and Destination NAT simultaneously for seamless bidirectional communication.
+PF History & Evolution
+~~~~~~~~~~~~~~~~~~~~~~
 
-**Port Address Translation (PAT)**
+* PF was introduced in December 2001 in OpenBSD 3.0, replacing IPFilter due to licensing issues
+* The initial implementation was by Hartmeier; later enhancements were led by Henning Brauer and Ryan McBride
+* PF is now a component not just of OpenBSD but also FreeBSD, NetBSD, DragonFlyBSD, and more
 
-Maps multiple private IP addresses to a single public IP by assigning unique port numbers to each session.
+PF: High-Level Architecture
+---------------------------
 
-.. code-block:: none
+**Kernel Module**
+    Handles packet inspection and filtering at OS level
 
-   # PAT with automatic port assignment
-   nat on em0 from 192.168.0.0/16 to any -> (em0)
+**User Tool (pfctl)**
+    Used to control the firewall—start/stop/status/etc.
 
-   # PAT with specific port ranges
-   nat on em0 from 192.168.1.0/24 to any -> (em0) port 20000:30000
-   nat on em0 from 192.168.2.0/24 to any -> (em0) port 30001:40000
+**Ruleset File (/etc/pf.conf)**
+    Plain-text configuration file defining macros, tables, filter rules, and options
 
-NAT Pool Management
+Enabling PF on FreeBSD
+~~~~~~~~~~~~~~~~~~~~~~
+
+To activate PF at boot and enable logging:
+
+.. code-block:: bash
+
+   sysrc pf_enable="YES"
+   sysrc pf_rules="/etc/pf.conf"
+   sysrc pflog_enable="YES"
+   sysrc pflog_logfile="/var/log/pflog"
+   service pf start
+
+.. note::
+   These commands ensure PF runs on startup, uses /etc/pf.conf, and logs events to /var/log/pflog
+
+PF Rule Processing Order & Syntax
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PF processes configuration statements in this sequence:
+
+.. code-block:: text
+
+   [Packet Arrives] → [Options] → [Scrub (Clean Packet)] → [Queueing (Prioritize)] → [Translation (NAT)] → [Filtering (Allow/Block)] → [Packet Allowed or Blocked]
+
+**Options**
+    Sets the overall behavior, like what to do with blocked packets
+
+**Scrub**
+    Cleans up messy packets
+
+**Queueing**
+    Decides which traffic gets priority (e.g., video calls over downloads)
+
+**Translation**
+    Rewrites packet addresses (e.g., NAT for private IPs)
+
+**Filtering**
+    Decides whether to allow or block the packet based on your rules
+
+**quick directive**
+    Stops rule processing upon match, even if later rules would apply
+
+**Default "last match wins"**
+    Without quick, PF evaluates all rules, and the last matching one determines action
+
+pfctl Command Summary
+^^^^^^^^^^^^^^^^^^^^^^
+
+**Enabling and Disabling PF**
+
+.. code-block:: bash
+
+   pfctl -e        # Enable PF
+   pfctl -d        # Disable PF
+
+Loading/Reloading Rulesets
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   pfctl -f /etc/pf.conf        # Load rules from file
+   pfctl -n -f /etc/pf.conf     # Test rules (syntax only, do not apply)
+   pfctl -nf /etc/pf.conf       # Another way to test syntax
+
+Checking PF Status
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   pfctl -s info    # General PF info
+   pfctl -s rules   # Current firewall rules
+   pfctl -s nat     # NAT rules
+   pfctl -s state   # Active state entries (connections)
+   pfctl -s queue   # ALTQ traffic shaping queues
+   pfctl -sr        # Rules in compact form
+   pfctl -vv -sr    # Verbose rule details
+
+Flushing/Resetting
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   pfctl -F all      # Flush all rules, NAT, states, tables, queues
+   pfctl -F rules    # Flush firewall rules only
+   pfctl -F nat      # Flush NAT rules
+   pfctl -F state    # Clear state table
+   pfctl -F tables   # Clear all tables
+   pfctl -F queue    # Clear all queues
+
+Table Management (Dynamic IP Lists)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   pfctl -T show -t blocked_ips                      # View table contents
+   pfctl -T add -t blocked_ips 192.168.1.100         # Add IP
+   pfctl -T delete -t blocked_ips 192.168.1.100      # Remove IP
+   pfctl -T flush -t blocked_ips                     # Clear table
+
+Logging & Debugging
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   pfctl -x loud           # Enable verbose logging
+   pfctl -s log            # View logged packets
+   tcpdump -i pflog0       # Real-time monitoring of PF logs
+
+pf.conf File Anatomy
+~~~~~~~~~~~~~~~~~~~~~
+
+The ruleset file (``/etc/pf.conf``) is divided into key sections:
+
+1. Macros
+^^^^^^^^^
+
+Used to define variables:
+
+.. code-block:: 
+
+   ext_if = "igb0"
+   services = "{ ssh, http, https }"
+
+2. Tables
+^^^^^^^^^
+
+Efficient IP lists:
+
+.. code-block::
+
+   table <blocked> persist
+
+3. Options
+^^^^^^^^^^
+
+Set default behavior:
+
+.. code-block:: 
+
+   set block-policy drop
+   set loginterface $ext_if
+
+4. Filter Rules
+^^^^^^^^^^^^^^^
+
+.. code-block:: 
+
+   block all
+   pass out all keep state
+   pass in on $ext_if proto tcp from any to any port 22 keep state
+
+Basic "Default Deny" Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: 
+
+   set skip on lo
+   block all
+   pass out inet proto tcp from any to any port { 80 443 } keep state
+
+.. tip::
+   This configuration provides a secure default-deny stance while allowing essential outbound web traffic.
+
+Managing ICMP Traffic in PF
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What is ICMP?
+^^^^^^^^^^^^^
+
+The Internet Control Message Protocol (ICMP) is vital for network diagnostics. Tools like ping and traceroute use it to:
+
+* Report unreachable destinations
+* Discover path MTU
+* Confirm whether hosts are reachable
+
+However, allowing all ICMP traffic can pose security risks, as attackers may exploit ICMP to:
+
+* Map out your network
+* Launch denial-of-service or spoofing attacks
+
+Basic Secure ICMP Rules
+^^^^^^^^^^^^^^^^^^^^^^^
+
+To allow outbound ICMP for local diagnostics but block unsolicited external probes:
+
+.. code-block:: 
+
+   pass inet proto icmp from $ext_if to any keep state
+   pass inet proto icmp from any to $ext_if keep state
+
+.. warning::
+   Unrestricted ICMP access can expose your network to reconnaissance attacks. Always implement appropriate filtering rules.
+
+Overview of pf.conf Usage in the Application (Karios)
+-----------------------------------------------------
+
+Why PF Matters for Karios
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PF ensures Karios only allows trusted traffic, like customer visits to your web app, while blocking hackers or malicious requests. It also:
+
+* Hides your internal network using NAT
+* Prioritizes important traffic, like API calls over background tasks
+
+Key Features in Karios's PF Setup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**External Interface**
+    Karios uses a network interface (like igb0) to talk to the internet. PF rules are tied to this interface
+
+**SSH Access**
+    Allows secure remote login for admins, but only on port 22
+
+**Web Services**
+    Opens ports like 80 (HTTP) and 443 (HTTPS) for web dashboards or APIs
+
+**VXLAN (Virtual Networking)**
+    Supports virtual networks, like connecting multiple servers securely
+
+**Anti-Spoofing**
+    Blocks fake traffic pretending to come from your network
+
+**Blacklisting**
+    Stops known bad IPs (e.g., hackers trying to brute-force your SSH)
+
+Configuration Concepts
+~~~~~~~~~~~~~~~~~~~~~~
+
+Our application uses Packet Filter (PF) as a host-based firewall, primarily to control and secure network traffic for a server or appliance. The configuration ensures both tight inbound control and essential service accessibility, with attention to anti-spoofing, NAT, and layered ICMP/TCP/UDP filtering.
+
+1. External Interface Declaration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each config declares an ``ext_if`` variable (external interface). This improves portability and simplifies interface-based rules:
+
+.. code-block:: 
+
+   ext_if = "interface-name"
+
+Basic Defaults and Optimizations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Rules begin with best-practice global options:
+
+* **Block policy**: either return or drop (depending on config)
+* **Scrubbing**: enabled to normalize and reassemble fragmented packets
+* **Loopback traffic**: excluded via ``set skip on lo``
+* **TCP timeout and OS fingerprinting**: performance and security optimized
+
+SSH Access
+^^^^^^^^^^^
+
+Inbound SSH is permitted using:
+
+.. code-block:: 
+
+   pass in proto tcp from any to any port ssh keep state
+
+.. note::
+   This allows secure remote administration.
+
+Web & App Services (HTTP, HTTPS, etc.)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A defined set of TCP ports is opened to the world for accessing:
+
+* Web interfaces (standard and custom HTTP/S)
+* Admin panels or dashboards
+* APIs and microservices
+* Database ports for external or internal DB access
+
+These port ranges include both:
+
+* **Standard ports**: HTTP, HTTPS, FTP
+* **Custom ranges**: likely for proprietary services, internal dashboards, developer tools
+
+.. note::
+   The exact ports are generalized but serve app-layer services crucial to the application stack.
+
+Example ports: ``{ 80, 443, 8080, ... }``
+
+UDP Traffic
+^^^^^^^^^^^^
+
+A single UDP port (commonly used for encapsulation protocols like VXLAN) is allowed, indicating:
+
+* Use of VXLAN-based tunneling or overlay networking
+* Possibly container networking or virtualized infrastructure
+
+.. code-block:: 
+
+   pass proto udp to port <port>
+
+VXLAN Tunnel ICMP
+^^^^^^^^^^^^^^^^^^
+
+Separate rules for allowing ICMP over VXLAN interfaces signal:
+
+* Health checks or keep alives over virtual networking layers
+* Secure and monitorable overlay networking
+
+.. code-block:: 
+
+   pass in  quick on vxlan proto icmp
+   pass out quick on vxlan proto icmp
+
+Outbound Rules
+^^^^^^^^^^^^^^
+
+Outbound traffic is generally open with keep state, which:
+
+* Allows connections initiated by the system (e.g., API calls, updates)
+* Tracks session state for connection security
+
+Anti-Spoofing
+~~~~~~~~~~~~~~
+
+Used in all samples:
+
+.. code-block:: 
+
+   antispoof for $ext_if inet
+
+.. important::
+   This prevents IP spoofing by validating that incoming packets claiming to originate from internal addresses are not entering from the outside.
+
+NAT & Port Redirection (Advanced Sample)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+One of the configs introduces:
+
+* **NAT rules** to translate internal IPs to the external interface IP
+* **Port redirection** for FTP traffic to a proxy
+* **Anchor usage** for modular rule insertion (ftp-proxy/)
+* **Include temp config files** to extend or toggle features dynamically
+
+This implies:
+
+* Some services may operate behind NAT
+* FTP services are wrapped or filtered for security
+* Modular, reloadable configs are used for maintenance or toggles
+
+Blacklisting and Blocking
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Blacklists and tables are used to group blocked addresses. SSH brute-force protection is enforced via the ``<sshguard>`` table, blocking known bad actors:
+
+.. code-block:: 
+
+   block in quick from <sshguard> to any
+
+Simple PF UI Examples and Explanations
+--------------------------------------
+
+.. note::
+   Drag and drop functionality is available to move and order the rules. New added rules are highlighted. Select, Reset, Delete functionalities are also available for each rule line.
+
+External Interface Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: 
+
+   ext_if="bge0"
+
+.. tip::
+   Defines the external interface variable (your network card that connects to the outside world). Without this, PF won't know which interface the rules apply to.
+
+.. note::
+   Interface names may vary: ``bge0``, ``igb1``, ``igc2`` depending on your hardware.
+
+Global Set Options
+~~~~~~~~~~~~~~~~~~~
+
+**Block Policy Configuration**
+
+.. code-block:: 
+
+   set block-policy return
+   set block-policy drop
+
+**return**
+    Send back an ICMP/RESET so the sender knows the packet was blocked
+
+**drop**
+    Silently discard the packet (looks like the machine doesn't exist)
+
+.. tip::
+   Use ``drop`` for stealth; use ``return`` for friendlier diagnostics.
+
+**Traffic Scrubbing**
+
+.. code-block:: 
+
+   scrub in ... fragment reassemble
+
+* Normalizes traffic, cleans oddities, and reassembles fragmented packets
+* Prevents attackers from sneaking past firewall rules using fragmented packets
+
+**Loopback Interface Skip**
+
+.. code-block:: 
+
+   set skip on lo
+
+.. important::
+   Skips filtering on the loopback interface (lo, 127.0.0.1). Ensures internal services can talk to each other freely.
+
+**Ruleset Optimization**
+
+.. code-block:: 
+
+   set ruleset-optimization basic
+   set ruleset-optimization normal
+
+* Optimizes rule handling for speed
+* PF processes rules faster but behavior doesn't change
+
+**TCP Timeout Configuration**
+
+.. code-block:: 
+
+   set timeout { tcp.closing 60, tcp.established 7200 }
+
+* Adjusts how long PF keeps TCP states open
+* Helps free resources if connections die
+
+**OS Fingerprinting**
+
+.. code-block:: 
+
+   set fingerprints "/etc/pf.os"
+
+* Enables OS fingerprinting file
+* Useful for detecting what OS a remote machine runs
+
+Basic Traffic Rules
 -------------------
 
-**Address Pool Configuration:**
+ICMP Traffic
+~~~~~~~~~~~~~
 
-.. list-table:: Pool Types
-   :widths: 20 80
-   :header-rows: 1
+.. code-block:: 
 
-   * - Pool Type
-     - Features
-   * - Static Pools
-     - Fixed address mappings, predictable assignments, session persistence
-   * - Dynamic Pools
-     - Automatic assignment, efficient utilization, overflow handling
-   * - Failover Pools
-     - Backup pools, automatic activation, health monitoring
+   pass in quick on $ext_if proto icmp ...
+   pass out quick on $ext_if proto icmp ...
 
-Scrub Rules
-===========
+* Allows ping requests (ICMP) in and out
+* Needed for diagnostics (ping). If removed, pings won't work
 
-Scrub Rules in PF perform critical packet normalization functions, adjusting and validating incoming packets to eliminate ambiguities and defend against sophisticated evasion techniques.
+Default Blocking
+~~~~~~~~~~~~~~~~
 
-**Key Features of Scrub Rules:**
+.. code-block:: 
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
+   block in all
 
-   * - Feature
-     - Description
-   * - Packet Normalization
-     - Rewrites packets to standardized format
-   * - Fragment Reassembly
-     - Reassembles fragmented IP packets
-   * - Invalid Flag Removal
-     - Clears illegal TCP flag combinations
-   * - Timeout Enforcement
-     - Sets limits on packet retention
+.. warning::
+   Default block for all incoming traffic. Ensures nothing enters unless explicitly allowed.
 
-**Scrub Rule Examples:**
+Outbound Connections
+~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: none
+.. code-block:: 
 
-   # Basic packet scrubbing for all traffic
-   scrub in all
+   pass out quick keep state
 
-   # Comprehensive scrubbing with fragment reassembly
-   scrub in all fragment reassemble
+* Allows outbound connections and tracks them so replies are auto-allowed
+* Without it, you couldn't browse the web or fetch updates
 
-   # Remove Don't Fragment bit to prevent PMTU attacks
-   scrub in all no-df
+Anti-Spoofing Protection
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-   # Limit TCP Maximum Segment Size
-   scrub on em0 all max-mss 1400
+.. code-block:: 
 
-   # Enforce minimum TTL to prevent spoofing
-   scrub in all min-ttl 32
+   antispoof for $ext_if inet
 
-   # Advanced scrubbing with multiple options
-   scrub in on em0 all fragment reassemble no-df max-mss 1460 min-ttl 64
+* Drops packets pretending to come from your own interface/IP
+* Prevents basic spoofing attacks
 
-Traffic Redirection (RDR)
-=========================
+SSH Rules
+---------
 
-RDR Configuration
+Basic SSH Access
+~~~~~~~~~~~~~~~~
+
+.. code-block:: 
+
+   pass in inet proto tcp from any to any port ssh flags S/SA keep state
+   pass in proto tcp from any to any port 22 keep state
+
+* Opens SSH (port 22) for remote logins
+* Without it, you couldn't SSH into the machine
+
+.. warning::
+   **Risk**: If left open to the world, bots will constantly try to brute-force login.
+
+SSH Brute-Force Protection
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: 
+
+   block in quick from <sshguard>
+
+* Uses a dynamic table (``<sshguard>``) that lists attackers flagged by sshguard
+* Helps block brute-force SSH attackers automatically
+
+Application Ports
 -----------------
 
-Traffic redirection and port forwarding capabilities using FreeBSD PF provide sophisticated traffic management for complex network topologies.
+**Common Port Examples**
 
-**Redirection Types:**
+**Web Services**
+    * ``{80, 443}`` → Web (HTTP, HTTPS)
 
-**Port Forwarding**
+**Database**
+    * ``5432`` → PostgreSQL database
 
-Forward specific ports from external interfaces to internal servers.
+**Remote Desktop**
+    * ``5900:5910`` → VNC remote desktop range
 
-.. code-block:: none
+**Web Applications**
+    * ``8080:8086`` → Common for web apps/test servers
+    * ``6900:7900`` → App services
+    * ``3000`` → Development dashboards (Node apps)
 
-   # Forward HTTP traffic to internal web server
-   rdr on em0 proto tcp from any to any port 80 -> 192.168.1.10 port 8080
+**Monitoring**
+    * ``9090, 9100`` → Monitoring tools (Prometheus, printers)
 
-   # Forward multiple ports to same server
-   rdr on em0 proto tcp from any to any port { 80, 443 } -> 192.168.1.10
+.. note::
+   Each ``pass in proto tcp ...`` line opens those services. If included, anyone can connect from outside unless additional restrictions are added (like ``<trusted_nets>``).
 
-   # Forward with source IP restriction
-   rdr on em0 proto tcp from 203.0.113.0/24 to any port 22 -> 192.168.1.100 port 22
+UDP Rules
+----------
 
-**Load Balancing**
+VXLAN Support
+~~~~~~~~~~~~~~
 
-Distribute traffic across multiple backend servers.
+.. code-block:: 
 
-.. code-block:: none
+   pass proto udp to port 4789
 
-   # Round-robin load balancing
-   rdr on em0 proto tcp from any to any port 80 -> { 192.168.1.10, 192.168.1.11, 192.168.1.12 } round-robin
+* Allows VXLAN encapsulation traffic (used for virtual networks)
+* Needed for overlay networking. Without it, VXLAN tunnels break
 
-   # Weighted load balancing
-   rdr on em0 proto tcp from any to any port 80 -> { 192.168.1.10 weight 3, 192.168.1.11 weight 2, 192.168.1.12 weight 1 }
+VXLAN ICMP Rules
+~~~~~~~~~~~~~~~~~
 
-   # Sticky sessions with source hashing
-   rdr on em0 proto tcp from any to any port 80 -> { 192.168.1.10, 192.168.1.11, 192.168.1.12 } source-hash
+.. code-block:: 
 
-Firewall Customization
-======================
+   pass in quick on vxlan proto icmp
+   pass out quick on vxlan proto icmp
 
-User-Defined Rules
-------------------
+* Allows pinging across VXLAN tunnels
+* Needed for testing overlay connectivity
 
-Network administrators can fully customize firewall behavior through comprehensive rule customization capabilities.
-
-**Advanced Rule Features:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Complex Matching
-     - IP ranges, port combinations, protocol attributes
-   * - Custom Actions
-     - Traffic handling, packet tagging, queue assignment
-   * - Rule Ordering
-     - Precedence control, quick rules, conditional application
-   * - Validation
-     - Syntax checking, error detection, correction suggestions
-
-Advanced Configuration
-----------------------
-
-**Advanced Features:**
-
-**Traffic Shaping**
-
-Comprehensive bandwidth management and Quality of Service implementation.
-
-* Hierarchical Fair Service Curve (HFSC) algorithm
-* Class-based queueing with priority scheduling
-* Bandwidth allocation and rate limiting
-* Burst handling and traffic smoothing
-* Real-time traffic analysis and adjustment
-
-**Connection Limits**
-
-Implement connection rate limiting and resource protection.
-
-.. code-block:: none
-
-   # Limit concurrent connections per source IP
-   pass in on em0 proto tcp from any to any port 80 keep state (max-src-conn 10)
-
-   # Limit new connections per second
-   pass in on em0 proto tcp from any to any port 80 keep state (max-src-conn-rate 5/1)
-
-   # Limit states per source
-   pass in on em0 proto tcp from any to any port 80 keep state (max-src-states 50)
-
-Monitoring and Logging
-======================
-
-Firewall Monitoring
--------------------
-
-Real-time firewall monitoring capabilities provide comprehensive visibility into network traffic patterns.
-
-.. list-table:: Monitoring Features
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Connection Tracking
-     - Real-time monitoring of active connections
-   * - Bandwidth Monitoring
-     - Traffic bandwidth utilization analysis
-   * - State Table Monitoring
-     - State table utilization and performance
-
-Logging and Analysis
+NAT / Redirect Rules
 --------------------
 
-Comprehensive logging and analysis capabilities using FreeBSD's advanced logging infrastructure.
+Standard NAT Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. list-table:: Logging Options
-   :widths: 30 70
-   :header-rows: 1
+.. code-block:: 
 
-   * - Log Type
-     - Description
-   * - Packet Logging
-     - Selective packet capture and analysis
-   * - Connection Logging
-     - Session establishment and termination tracking
-   * - Rule Logging
-     - Rule match logging and performance metrics
-   * - Security Logging
-     - Security event logging and correlation
+   nat on igc2 inet from !(igc2) -> (igc2:0)
 
-**Log Analysis:**
+* Standard NAT (masquerading). Makes internal traffic appear as if from firewall's IP
+* Needed for LAN → Internet access
 
-* **Traffic Analysis:** Network traffic pattern analysis and statistics
-* **Performance Analysis:** Firewall performance monitoring and optimization
-* **Reporting:** Security reports, compliance auditing, executive dashboards
+Port Redirection
+~~~~~~~~~~~~~~~~~
 
-Integration with Karios Network
-===============================
+.. code-block:: 
 
-Network Component Integration
------------------------------
+   rdr pass on igc2 proto tcp from any to any port ftp -> 127.0.0.1 port 8021
 
-The integrated firewall seamlessly integrates with all Karios network components.
+* Redirects FTP traffic to a local proxy on port 8021
+* Used for secure FTP proxying
 
-**Integration Features:**
+Tables
+------
 
-**VLAN Support in PF Rule Set**
+Trusted Networks
+~~~~~~~~~~~~~~~~
 
-FreeBSD's PF natively supports VLAN interfaces, enabling administrators to define and enforce filtering rules based on virtual network segmentation.
+.. code-block:: 
 
-.. list-table:: VLAN Integration Features
-   :widths: 30 70
-   :header-rows: 1
+   table <trusted_nets> persist { 192.168.116.0/24 }
 
-   * - Feature
-     - Description
-   * - Per-VLAN Policies
-     - VLAN-specific security policies
-   * - Inter-VLAN Control
-     - Communication control between VLANs
-   * - Access Restrictions
-     - VLAN-specific access controls
-   * - Microsegmentation
-     - Fine-grained network isolation
-   * - Multi-tenant Support
-     - Isolated tenant environments
+* Creates a whitelist of trusted networks
+* Can be used in rules to allow access only from trusted IPs
 
-**VXLAN and EVPN Support**
+Blacklist Table
+~~~~~~~~~~~~~~~~
 
-PF can filter traffic on VXLAN interfaces, allowing rule enforcement on encapsulated overlay traffic.
+.. code-block:: 
 
-.. list-table:: VXLAN Integration Capabilities
-   :widths: 30 70
-   :header-rows: 1
+   table <blacklist> persist { }
 
-   * - Capability
-     - Description
-   * - Tunnel Filtering
-     - VXLAN tunnel traffic filtering
-   * - VTEP Security
-     - VTEP-level policy enforcement
-   * - Overlay Controls
-     - Overlay network security
-   * - Underlay Protection
-     - Underlay traffic security
-   * - EVPN Security
-     - Control-plane protection
+* Holds IPs you want permanently blocked
+* Add IPs here to block bad actors
 
-Centralized Management
-----------------------
+SSH Guard Table
+~~~~~~~~~~~~~~~~
 
-**Management Integration:**
+.. code-block:: 
 
-* **Unified Interface:** Single-pane-of-glass management for network and firewall operations
-* **Policy Synchronization:** Automated policy synchronization across all components
-* **Centralized Logging:** Unified logging infrastructure for comprehensive visibility
+   table <sshguard> persist
 
-Conclusion
-==========
+* Managed by sshguard. Stores attacking IPs automatically
+* Works together with the ``block in quick from <sshguard>`` rule
 
-The Karios Integrated Firewall represents a comprehensive enterprise-grade security solution that combines the power and flexibility of FreeBSD's Packet Filter with modern network security requirements. Through its sophisticated architecture, comprehensive feature set, and seamless integration with the Karios platform, organizations can implement robust network security policies that protect against evolving threats while maintaining optimal performance and usability.
+Include Rules
+~~~~~~~~~~~~~
 
-The firewall's modular design, extensive customization capabilities, and centralized management interface make it an ideal solution for organizations of all sizes, from small businesses to large enterprises with complex network infrastructures. With its emphasis on performance, scalability, and security, the Karios Integrated Firewall provides the foundation for a secure and efficient network environment.
+Modular Configuration
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: 
+
+   include "/tmp/ftp-proxy_false.conf"
+   include "/tmp/icmp.conf"
+
+* Includes additional rules from other files
+* Keeps configs modular and easier to manage
+
+.. tip::
+   Using include statements allows you to organize complex rulesets into manageable, purpose-specific files.
+
+FAQ Section
+-----------
+
+**Q: Will PF block everything by default?**
+    A: No, only if your config says ``block all``. You must explicitly define what to allow.
+
+**Q: Does PF block traffic immediately after editing pf.conf?**
+    A: No. You must reload with ``pfctl -f /etc/pf.conf``.
+
+**Q: What is keep state?**
+    A: It means PF remembers a connection, so return traffic is automatically allowed.
+
+Common Mistakes & Gotchas
+-------------------------
+
+.. warning::
+   **Common Configuration Errors:**
+
+   * Forgetting to enable PF after editing ``/etc/pf.conf``
+   * Locking yourself out by misconfiguring SSH access
+   * Syntax errors in ``pf.conf`` that silently fail to load the rule set
+   * Not using ``quick`` when needed (can lead to unexpected rule matches)
+   * Forgetting to add ``keep state`` for stateful protocols like TCP
+
+Additional References
+---------------------
+
+* `OpenBSD PF FAQ <https://www.openbsd.org/faq/pf/>`_
+* `ZenArmor FreeBSD Firewall Configuration <https://www.zenarmor.com/docs/network-security-tutorials/freebsd-firewall-configuration-with-pf>`_
