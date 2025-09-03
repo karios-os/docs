@@ -617,7 +617,7 @@ Karios employs a role-based access control (RBAC) model to manage user permissio
 
 
 RBAC Architecture and Design Philosophy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Hierarchical Permission Model**
 
@@ -631,7 +631,7 @@ RBAC Architecture and Design Philosophy
 
 
 Predefined Role Definitions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Administrative Roles**:
 
@@ -5149,6 +5149,169 @@ Perform regular maintenance operations to ensure optimal VM performance:
 - **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
 
 
+Support Bundle Collection Instructions
+---------------------------------------
+
+The support bundle tool collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team.
+
+**When to Use**
+
+Run this tool when requested by support for:
+
+* Troubleshooting system issues
+* Diagnostic analysis
+* System health evaluation
+* Performance problem investigation
+
+Collection Process
+~~~~~~~~~~~~~~~~~~
+
+1. Connect to the Console
+
+Use SSH or direct console access to log in to your FreeBSD machine.
+
+.. code-block:: bash
+
+   ssh admin@your-freebsd-machine
+
+.. tip::
+   Ensure you have administrative privileges before proceeding with support bundle collection.
+
+2. Navigate to the Tool Location
+
+Change directory to where the support_bundle binary is placed:
+
+.. code-block:: bash
+
+   cd /path/to/support_bundle
+
+.. note::
+   Replace ``/path/to/support_bundle`` with the actual installation path on your system.
+
+3. Run the Support Bundle Tool
+
+Execute the tool:
+
+.. code-block:: bash
+
+   ./support_bundle
+
+When prompted, enter a password to encrypt the archive.
+
+.. important::
+   Remember this password—you will need to share it with support for archive decryption.
+
+.. warning::
+   Choose a strong password for the archive encryption. This password protects sensitive system information during transmission.
+
+4. Verify the Archive
+
+After completion, check that the archive was created:
+
+.. code-block:: bash
+
+   ls -l support_bundle.7z
+
+Expected output should show the created archive file with its size and timestamp.
+
+5. Share the Archive
+
+Send the ``support_bundle.7z`` file and the password to the support team via the provided support email for further analysis.
+
+
+Email Template
+~~~~~~~~~~~~~~~
+
+Use the following template when submitting your support bundle:
+
+**Subject Line:**
+
+.. code-block:: text
+
+   Subject: Support Bundle for Analysis
+
+**Email Body:**
+
+.. code-block:: text
+
+   Attached is the support_bundle.7z file collected from our FreeBSD system.
+   Password for the archive: [your password]
+   
+   Please let us know if you need further information.
+
+Security Considerations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+**Password Protection**
+    The archive is encrypted to protect sensitive system information during transmission
+
+**Secure Transmission**
+    Only send the support bundle through official support channels
+
+**Password Sharing**
+    Share the archive password through a separate, secure communication channel when possible
+
+**Data Contents**
+    The bundle may contain sensitive system logs and configuration information
+
+
+Troubleshooting Collection Issues
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Permission Denied**
+    Ensure you have execute permissions on the support_bundle binary:
+
+    .. code-block:: bash
+
+       chmod +x support_bundle
+
+**Binary Not Found**
+    Verify the correct path to the support_bundle tool:
+
+    .. code-block:: bash
+
+       find / -name "support_bundle" -type f 2>/dev/null
+
+**Insufficient Disk Space**
+    Check available disk space before running the tool:
+
+    .. code-block:: bash
+
+       df -h
+
+    .. note::
+       The support bundle may require significant temporary disk space during collection and compression.
+
+**Collection Timeout**
+    If the collection process appears to hang:
+
+    * Wait for completion (large systems may take several minutes)
+    * Check system load with ``top`` or ``htop``
+    * Verify no other intensive processes are running
+
+Archive Information
+~~~~~~~~~~~~~~~~~~~
+
+**File Format**
+    The output file uses 7-Zip compression format (``.7z``) for optimal compression ratio
+
+**Contents**
+    The archive typically includes:
+
+    * System logs (``/var/log/*``)
+    * Configuration files (sanitized)
+    * Hardware information
+    * Network configuration
+    * Process information
+    * Performance metrics
+
+**Encryption**
+    AES-256 encryption protects the archive contents during transmission
+
+.. tip::
+   The support bundle tool automatically excludes sensitive files like private keys and passwords from the collection process.
+
+
 API Integration
 ---------------
 
@@ -5245,7 +5408,7 @@ Navigate to Swagger Interface:
 
 .. code-block:: text
 
-   http://192.168.116.132:8084/swagger/index.html
+   http://192.168.116.132:8080/swagger/index.html
 
 **Swagger Interface Components**
 
