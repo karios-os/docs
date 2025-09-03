@@ -61,9 +61,9 @@ To access the Karios management interface, open a supported web browser (Chrome 
 
 **Access Level Considerations**
 
-- **Read-Only Access**: New registered users have limited read-only permissions
+- **Read-Only Access**: New registered users have limited permissions
 - **Administrative Access**: Full system capabilities require administrative privileges
-- **Permission Management**: Contact system administrators for permission upgrades
+- **Permission Management**: Contact system administrators for permission upgrades (Refer User Management & Permissions section)
 - **Security Best Practice**: Use administrative accounts only when necessary
 
 .. figure:: _static/images/getting_started/new_user_registration.png
@@ -76,7 +76,149 @@ To access the Karios management interface, open a supported web browser (Chrome 
 
 - To return to the login page, click "Existing User? Login."
 - **Password Security is Critical**: Implement strong password policies for all accounts. Change your password regularly.
-- **Account Recovery**: If you forget your password, contact a system administrator for assistance.
+
+**2FA Setup Requirements**
+
+Before proceeding, ensure you have:
+
+* A smartphone or tablet with internet access
+* One of the following authenticator apps installed:
+
+  * **Google Authenticator** (iOS/Android)
+  * **Microsoft Authenticator** (iOS/Android)
+  * **Authy** (iOS/Android/Desktop)
+  * **1Password** (with TOTP support)
+  * **Bitwarden** (with authenticator feature)
+
+.. tip::
+   Authenticator apps generate time-based one-time passwords (TOTP) that change every 30 seconds, providing secure access even if your password is compromised.
+
+**Setting Up 2FA**
+
+1. **2FA Registration Prompt**
+
+   * After successful admin login, you'll see the "Set up Two-Factor Authentication" screen
+
+   .. figure:: _static/images/getting_started/2fa_mobile_registration_prompt.png
+      :width: 600
+      :alt: 2FA Mobile Registration Prompt
+
+      Figure : 2FA Registration Prompt
+
+   * The system displays: "You need to setup two-factor authentication to continue accessing your account."
+
+2. **QR Code Display**
+
+   * A unique QR code will be presented on the screen
+
+   .. figure:: _static/images/getting_started/2fa_qr_code.png
+      :width: 600
+      :alt: 2FA QR Code
+
+      Figure : 2FA QR Code
+
+   * This QR code contains your account's secret key for generating time-based codes
+   
+   .. warning::
+      This QR code is unique to your account and should not be shared with anyone or stored in unsecured locations.
+
+3. **Configure Your Authenticator App**
+
+   * Open your chosen authenticator app on your mobile device
+   * Tap "Add Account" or the "+" button
+   * Select "Scan QR Code" or "Scan Barcode"
+   * Point your device's camera at the QR code displayed on screen
+   * Your authenticator app will automatically configure the account
+
+4. **Manual Entry Option** (if QR scanning fails)
+
+   * Select "Enter Code Manually" in your authenticator app
+   * Enter the following information:
+
+     * **Account Name**: Your admin username
+     * **Secret Key**: The alphanumeric code displayed below the QR code
+     * **Time-based**: Ensure this option is selected (30-second intervals)
+
+   .. note::
+      Manual entry is useful when camera scanning isn't available or when setting up 2FA on multiple devices.
+
+5. **Verify 2FA Setup**
+
+   * Your authenticator app will immediately start generating 6-digit codes
+   * Enter the current 6-digit code from your app into the "Verification Code" field
+
+   
+   .. figure:: _static/images/getting_started/2fa_enter_code.png
+      :width: 600
+      :alt: 2FA Enter Code
+
+      Figure : 2FA Enter Code
+   
+   * Click "Verify and Enable 2FA"
+
+   .. tip::
+      If the first code doesn't work, wait for the next 30-second cycle and try the new code. Clock synchronization between your device and the server is important for successful verification.
+
+6. **Backup Codes Generation**
+
+   * Upon successful verification, the system generates backup recovery codes
+   * Download or print the backup codes and store them in a secure location
+
+   .. figure:: _static/images/getting_started/2fa_backup_codes.png
+      :width: 600
+      :alt: 2FA Backup Codes
+
+      Figure : 2FA Backup Codes
+
+   .. important::
+      Save these backup codes securely - they allow account recovery if you lose your device. Each backup code can only be used once, so treat them like passwords and store them safely.
+
+
+Account Recovery:
+~~~~~~~~~~~~~~~~~
+
+If you forget your password, use the "Forgot Password?" link to initiate the recovery process.
+
+.. figure:: _static/images/getting_started/forgot_password.png
+   :width: 600
+   :alt: Forgot Password
+
+   Figure : Forgot Password
+
+Give your username to initiate a reset password request.
+
+.. figure:: _static/images/getting_started/forgot_password_enter_username.png
+   :width: 600
+   :alt: Forgot Password Enter Username
+
+   Figure : Forgot Password Enter Username
+
+If a device is configured , please choose one from the list.
+
+.. figure:: _static/images/getting_started/forgot_password_choose_device.png
+   :width: 600
+   :alt: Forgot Password Choose Device
+
+   Figure : Forgot Password Choose Device
+
+Give your 2FA code to reset your password.
+
+.. figure:: _static/images/getting_started/forgot_password_enter_2fa.png
+   :width: 600
+   :alt: Forgot Password Enter 2FA
+
+   Figure : Forgot Password Enter 2FA
+
+Once 2FA is verified, you will be able to reset your password. Give your new password and confirm it.
+
+.. figure:: _static/images/getting_started/forgot_password_reset_password.png
+   :width: 600
+   :alt: Forgot Password Reset To New Password
+
+   Figure : Forgot Password Reset To New Password
+
+Your password has been reset successfully. You can now log in with your new password.
+
 - **Administrative Account Usage**: Use administrative accounts only when necessary and change the default admin credentials immediately after initial login.
 
 License Validation (Mandatory)
@@ -456,10 +598,10 @@ After license validation and resource allocation, users have access to the follo
    :alt: Node Management
    :align: center
 
-User Management & Permissions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**User Roles**
+
+User Management & Permissions
+-----------------------------
 
 Karios employs a role-based access control (RBAC) model to manage user permissions. The following roles are available:
 
@@ -473,6 +615,495 @@ Karios employs a role-based access control (RBAC) model to manage user permissio
 - **Editing Users**: User details, including roles and permissions, can be modified by admins.
 - **Deleting Users**: Inactive or unnecessary user accounts can be deleted by admins.
 
+
+RBAC Architecture and Design Philosophy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Hierarchical Permission Model**
+
+**Permission-Based Authorization**: The RBAC system implements a granular permission model where access is controlled through specific permissions rather than broad administrative categories. This provides:
+
+**Principle of Least Privilege**: Users are granted only the minimum permissions necessary to perform their required tasks, reducing security risks and preventing accidental system modifications.
+
+**Separation of Duties**: Different administrative functions are separated into distinct roles, preventing any single user from having unlimited system access and creating accountability trails.
+
+**Scalable Authorization**: The permission system can accommodate complex organizational structures with varying levels of access requirements across different operational domains.
+
+
+Predefined Role Definitions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Administrative Roles**:
+
+**System Admin Role**
+
+* **Scope**: Complete system administration with full access to all subsystems
+* **Permissions**: All available permissions including user management and security configuration
+
+**Node Admin Role**
+
+* **Scope**: Comprehensive node management with extensive system access
+* **Key Capabilities**: VM management, network configuration, storage administration, power management
+
+**Specialized Administrative Roles**:
+
+**VM Admin Role**
+
+* **Focus**: Virtual machine lifecycle management and operations
+* **Operational Scope**: VM creation, configuration, backup, and monitoring
+* **Storage Access**: Read-only storage visibility for capacity planning
+* **Network Access**: Read-only network visibility for VM network configuration
+
+**Network Admin Role**
+
+* **Specialization**: Network infrastructure configuration and management
+* **Scope**: Network device configuration, VLAN management, routing policies
+* **Integration**: Limited node visibility for network-related hardware management
+
+**Storage Admin Role**
+
+* **Domain**: Storage system configuration and management
+* **Responsibilities**: ZFS pool management, filesystem creation
+* **Integration**: Node visibility for storage hardware monitoring
+* **Scope**: Storage client protocol configuration and management
+
+**Power Admin Role**
+
+* **Specialization**: Power management and energy efficiency optimization
+* **Scope**: UPS management, power distribution monitoring, energy reporting
+* **Integration**: Node visibility for power consumption monitoring
+* **Operational Focus**: Power policy configuration and emergency power management
+
+**Security Admin Role**
+
+* **Domain**: Security policy enforcement and monitoring
+* **Responsibilities**: Firewall configuration, security policy implementation, audit compliance
+* **Access**: Console access for security incident response
+* **Scope**: Security configuration across all system components
+
+**Cooling Admin Role**
+
+* **Specialization**: Thermal management and cooling system optimization
+* **Scope**: HVAC integration, temperature monitoring, cooling efficiency management
+* **Integration**: Node visibility for thermal monitoring
+* **Focus**: Cooling policy configuration and thermal incident response
+
+**Netbox Admin Role**
+
+* **Purpose**: Network documentation and inventory management
+* **Scope**: IP address management, network topology documentation, asset tracking
+* **Integration**: Node visibility for accurate inventory management
+* **Focus**: Network planning and documentation maintenance
+
+**End-User Roles**:
+
+**ReadOnly User Role**
+
+* **Purpose**: Monitoring and reporting access without modification capabilities
+* **Scope**: Comprehensive visibility across all system components
+
+
+Role Assignment and Management Procedures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**User Provisioning Process**
+
+The user provisioning process follows these key steps:
+
+1. **Role Determination**: Select appropriate role based on job responsibilities
+2. **Account Creation**: Create user account with assigned role
+3. **Initial Setup**: Configure user preferences and access credentials
+4. **Training**: Provide role-specific system training
+5. **Monitoring**: Initial monitoring period for new users
+
+**Role Modification Procedures**
+Users may require role changes due to evolving job functions or organizational changes. The role modification process includes:
+
+* **Role Upgrade**: Process for granting additional permissions
+* **Role Downgrade**: Process for removing unnecessary permissions
+* **Temporary Access**: Procedures for temporary permission elevation
+* **Emergency Access**: Emergency procedures for critical system access
+
+**RBAC Implementation Through Web Interface**
+
+**Accessing RBAC Management**: The RBAC system is accessible through the admin dropdown menu in the top-right corner of the Karios interface, providing three main management sections:
+
+* **Role Management**: Create, edit, and delete custom roles
+* **User Management**: Register, manage, and assign roles to users
+* **2FA Management**: Configure two-factor authentication settings
+
+.. note::
+   **Administrative Access Requirements**: RBAC management requires System Admin privileges or USER_MANAGE permissions to access role and user management functions.
+
+
+Role Creation Process
+~~~~~~~~~~~~~~~~~~~~~
+
+**Step 1: Access Role Management**
+
+1. Navigate to admin dropdown → "Role Management"
+
+.. figure:: _static/images/rbac/role_management.png
+   :width: 600
+   :alt: Navigate to Role Management 
+
+   Figure : Navigate to Role Management
+
+2. The interface displays existing roles on the right side
+
+.. figure:: _static/images/rbac/role_list.png
+   :width: 600
+   :alt: Role List
+
+   Figure : Role List
+
+3. Use the "Create Role" section on the left to define new roles
+
+.. figure:: _static/images/rbac/create_role.png
+   :width: 600
+   :alt: Create Role Interface
+
+   Figure : Create Role Interface
+
+**Step 2: Define Role Properties**
+
+**Name**: Human-readable role name (e.g., "Storage Admin", "Network Admin")
+**Role Slug**: System identifier for the role (auto-generated or custom)
+**Description**: Detailed explanation of role purpose and responsibilities
+
+**Step 3: Permission Assignment**
+
+The interface provides a comprehensive checkbox grid with all available permissions:
+
+**Infrastructure Permissions**
+
+* **VM_VIEW / VM_MANAGE**: Virtual machine visibility and control
+* **NETWORK_VIEW / NETWORK_MANAGE**: Network infrastructure access
+* **STORAGE_VIEW / STORAGE_MANAGE**: Storage system administration
+* **NODE_VIEW / NODE_MANAGE**: Physical node management
+
+**Specialized System Permissions**
+
+* **NETBOX_VIEW / NETBOX_MANAGE**: Network documentation system
+* **POWER_VIEW / POWER_MANAGE**: Power management system
+* **USER_MANAGE / USER_VIEW**: User account administration
+* **LOGS_VIEW**: System logging access
+
+**Storage Client Permissions**
+
+* **STORAGE_CLIENT_ISCSI**: iSCSI protocol access
+* **STORAGE_CLIENT_MFS**: MooseFS distributed storage
+* **STORAGE_CLIENT_S3**: S3-compatible object storage
+* **STORAGE_CLIENT_SEAWEED**: SeaweedFS storage system
+* **STORAGE_CLIENT_SMB**: SMB/CIFS file sharing
+
+**System Access Permissions**
+
+* **NODE_CONSOLE**: Physical node console access
+* **CONSOLE**: System console access
+* **CONTROL_CENTER_VIEW / CONTROL_CENTER_MANAGE**: Management interface access
+* **SECURITY_VIEW / SECURITY_MANAGE**: Security system administration
+* **COOLING_VIEW / COOLING_MANAGE**: Cooling system management
+
+
+Select the appropriate permissions and click "create" to finalize the role.
+
+.. figure:: _static/images/rbac/permission_grid.png
+   :width: 600
+   :alt: Permission Grid
+
+   Figure : Permission Grid
+
+
+Predefined Roles Display
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The interface shows all existing roles with their current configuration:
+
+System Roles
+^^^^^^^^^^^^
+
+* **System Admin**: Complete administrative access
+* **VM Admin**: Virtual machine management focus
+* **Network Admin**: Network infrastructure specialization
+* **Storage Admin**: Storage system administration
+* **Node Admin**: Physical infrastructure management
+* **Power Admin**: Power system management
+* **Security Admin**: Security policy management
+* **Cooling Admin**: Thermal management system
+* **Netbox Admin**: Network documentation management
+* **ReadOnly User**: Comprehensive read-only access
+
+Custom Roles
+^^^^^^^^^^^^
+
+Additional custom roles created for specific organizational needs.
+
+Role Actions
+^^^^^^^^^^^^
+
+* **Edit**: Modify existing role permissions and properties
+
+.. figure:: _static/images/rbac/edit_role.png
+   :width: 600
+   :alt: Edit Role Interface
+
+   Figure : Edit Role Interface
+
+* **Delete**: Remove custom roles (predefined roles cannot be deleted)
+
+.. figure:: _static/Images/rbac/delete_role.png
+   :width: 600
+   :alt: Delete Role Confirmation
+
+   Figure : Delete Role Confirmation
+
+User Registration Process
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Step 1: Access User Management
+
+1. Navigate to admin dropdown → "User Management"
+
+.. figure:: _static/Images/rbac/UserManagement.png
+   :width: 600
+   :alt: Navigate to User Management
+
+   Figure : Navigate to User Management
+
+2. Click "Register User" button to create new user accounts
+
+.. figure:: _static/Images/rbac/RegisterUser.png
+   :width: 600
+   :alt: Register User Interface
+
+   Figure : Register User Interface
+
+Step 2: User Information Entry
+
+The registration dialog requires comprehensive user information:
+
+* **Username**: Unique system identifier for the user
+* **Email**: Primary email address for notifications and communications
+* **First Name**: User's given name for identification
+* **Last Name**: User's last name for complete identification
+* **Password**: Secure password meeting complexity requirements (8+ characters, 1 number, 1 uppercase, 1 special character)
+
+.. figure:: _static/Images/rbac/UserRegistrationForm.png
+   :width: 600
+   :alt: User Registration Form
+
+   Figure : User Registration Form
+
+User Account Management
+~~~~~~~~~~~~~~~~~~~~~~~
+
+User Status Management
+^^^^^^^^^^^^^^^^^^^^^^
+
+The interface provides comprehensive user account oversight:
+
+Account Status Types
+^^^^^^^^^^^^^^^^^^^^
+
+* **Active**: User account is functional and can access the system
+* **Inactive**: User account is disabled and cannot authenticate
+
+Role Assignment Display
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Each user shows their currently assigned role:
+
+* **System Admin**: Complete administrative privileges
+* **Security Admin**: Security-focused administrative access
+* **ReadOnly User**: View-only access across all systems
+* **Custom Roles**: Specialized roles created for specific requirements
+
+Approval Workflow Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Approval Required**: Some users require administrative approval before activation
+* **Approvers**: Designated users who can approve account activation
+* **No approval required**: Users who can be immediately activated
+
+Role Assignment Strategies
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Full Access Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Method 1: System Admin Role Assignment**
+
+1. Navigate to User Management interface
+2. Locate the target user account
+3. Click "Edit" on the user's row
+
+.. figure:: _static/Images/rbac/EditUser.png
+   :width: 600
+   :alt: Edit User Interface
+
+   Figure : Edit User Interface
+
+4. Change role assignment to "System Admin"
+5. Save changes to grant complete system access
+
+.. figure:: _static/Images/rbac/AssignSystemAdminRole.png
+   :width: 600
+   :alt: Assign System Admin Role
+
+   Figure : Assign System Admin Role
+
+
+**Method 2: Custom Full Access Role**
+
+1. Access Role Management interface
+2. Create new role with comprehensive name (e.g., "Full Administrator")
+3. Select ALL available permissions in the permission grid
+4. Save the custom role
+5. Assign the new role to target users
+
+.. figure:: _static/Images/rbac/AssignCustomRole.png
+   :width: 600
+   :alt: Assign Custom Role
+
+   Figure : Assign Custom Role
+
+**Approval Role Assignment**
+
+1. After Creating the User , if you wish to give them the restricted eligibility, select the dropdown "Approvals Required" to assign permission
+
+.. figure:: _static/Images/rbac/AssignApprovalRole.png
+   :width: 600
+   :alt: Assign Approval Role
+
+   Figure : Assign Approval Role
+
+2. To assign approvers, select eligible approvers from the popup
+
+.. figure:: _static/Images/rbac/SelectedApprovers.png
+   :width: 600
+   :alt: Selected Approvers
+
+   Figure : Selected Approvers
+
+.. figure:: _static/Images/rbac/SelectApproversPopup.png
+   :width: 600
+   :alt: Select Approvers Popup
+
+   Figure : Select Approvers Popup
+
+Specialized Access Implementation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Users can be assigned specialized roles based on job function:
+
+* **Storage Administrators**: Storage Admin role for ZFS and storage management
+* **Network Engineers**: Network Admin role for network infrastructure
+* **Security Personnel**: Security Admin role for security policy management
+* **Operations Staff**: ReadOnly User role for monitoring and reporting
+
+
+.. warning::
+   Full access roles carry significant security implications:
+
+   * **Complete System Control**: Ability to modify any system configuration
+   * **Data Access**: Unrestricted access to all stored data and configurations
+   * **User Management**: Ability to create, modify, or delete user accounts
+   * **Security Policy Control**: Can modify security policies and access controls
+
+
+User Lifecycle Management
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Account Activation Process
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The complete account activation workflow:
+
+1. **Registration**: Create user account with required information
+2. **Role Assignment**: Assign appropriate role based on job function
+3. **Approval**: Process any required approvals through designated approvers
+4. **Activation**: Activate account to enable system access
+5. **Notification**: User receives activation notification and initial access instructions
+
+Account Maintenance
+^^^^^^^^^^^^^^^^^^^
+
+Ongoing account management includes:
+
+1. **Status Changes**: Toggle between Active and Inactive status as needed
+2. **Role Modifications**: Update user roles based on changing responsibilities
+3. **Approval Management**: Manage approval workflows for sensitive role assignments
+4. **Access Reviews**: Regular review of user accounts and assigned permissions
+5. **Account Deactivation and Deletion**: Process account deactivation / deletion requests by navigating to the user management block in User Management
+
+.. figure:: _static/Images/rbac/AccountDeactivation.png
+   :width: 600
+   :alt: Account Deactivation
+
+   Figure : Account Deactivation
+
+.. figure:: _static/Images/rbac/AccountDeletion.png
+   :width: 600
+   :alt: Account Deletion
+
+   Figure : Account Deletion
+
+
+Two-Factor Management
+---------------------
+
+**Two-Factor Authentication Management Dashboard**
+
+1. Navigate to the Two-Factor Management section
+
+.. figure:: _static/Images/rbac/NavigateToTwoFactorManagement.png
+   :width: 600
+   :alt: Navigate to Two-Factor Management
+
+   Figure : Navigate to Two-Factor Management
+
+2. View and manage two-factor authentication settings and devices 
+
+.. figure:: _static/Images/rbac/TwoFactorManagementDashboard.png
+   :width: 600
+   :alt: Two-Factor Management Dashboard
+
+   Figure : Two-Factor Management Dashboard
+
+3. Edit and delete devices in the dashboard
+
+.. figure:: _static/Images/rbac/TwoFactorDeviceManagement.png
+   :width: 600
+   :alt: Two-Factor Device Management
+
+   Figure : Two-Factor Device Management
+
+**Add new device**
+
+1. Click on the "Add Device" button in the Two-Factor Device Management dashboard
+
+.. figure:: _static/Images/rbac/AddTwoFactorDevice.png
+   :width: 600
+   :alt: Add Two-Factor Device
+
+   Figure : Add Two-Factor Device
+
+2. Follow the prompts to enter new device information for two-factor authentication
+
+   .. figure:: _static/Images/rbac/TwoFactorDeviceEnrollment.png
+      :width: 600
+      :alt: Two-Factor Device Enrollment
+
+   Figure : Two-Factor Device Enrollment
+
+3. Scan and verify the new device to complete the enrollment process
+
+   .. figure:: _static/Images/rbac/TwoFactorDeviceVerification.png
+      :width: 600
+      :alt: Two-Factor Device Verification
+
+   Figure : Two-Factor Device Verification
 
 Best Practices
 --------------
@@ -500,6 +1131,31 @@ System Usage
 - **Documentation**: Keep personal documentation of system configurations and procedures.
 - **Change Management**: Follow proper change management procedures for system modifications.
 - **Support Utilization**: Utilize available support resources and documentation effectively.
+
+Security Recommendations
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. important::
+   Follow these security best practices:
+
+   * Implement the principle of least privilege
+   * Regularly review user permissions and roles
+   * Use approval workflows for sensitive role assignments
+   * Monitor user activity and access patterns
+   * Maintain proper documentation of role assignments
+
+Operational Guidelines
+~~~~~~~~~~~~~~~~~~~~~~
+
+* **Regular Audits**: Conduct periodic access reviews
+* **Role Documentation**: Maintain clear documentation of role purposes and permissions
+* **Training**: Provide adequate training for users with new role assignments
+* **Change Management**: Follow proper procedures for role modifications
+* **Emergency Procedures**: Maintain emergency access procedures for critical situations
+
+.. note::
+   This practical implementation guide provides step-by-step instructions for managing roles and users through the Karios web interface, ensuring proper access control while maintaining system security and operational efficiency.
+
 
 Web Interface Navigation   
 ------------------------
