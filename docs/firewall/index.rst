@@ -1,5 +1,5 @@
-PF Documentation
-================
+Integrated Firewall
+====================
 
 What is PF (Packet Filter)?
 ---------------------------
