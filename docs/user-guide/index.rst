@@ -61,9 +61,9 @@ To access the Karios management interface, open a supported web browser (Chrome 
 
 **Access Level Considerations**
 
-- **Read-Only Access**: New registered users have limited read-only permissions
+- **Read-Only Access**: New registered users have limited permissions
 - **Administrative Access**: Full system capabilities require administrative privileges
-- **Permission Management**: Contact system administrators for permission upgrades
+- **Permission Management**: Contact system administrators for permission upgrades (Refer User Management & Permissions section)
 - **Security Best Practice**: Use administrative accounts only when necessary
 
 .. figure:: _static/images/getting_started/new_user_registration.png
@@ -76,7 +76,86 @@ To access the Karios management interface, open a supported web browser (Chrome 
 
 - To return to the login page, click "Existing User? Login."
 - **Password Security is Critical**: Implement strong password policies for all accounts. Change your password regularly.
-- **Account Recovery**: If you forget your password, contact a system administrator for assistance.
+
+**2FA Setup Requirements**
+
+Before proceeding, ensure you have:
+
+* A smartphone or tablet with internet access
+* One of the following authenticator apps installed:
+
+  * **Google Authenticator** (iOS/Android)
+  * **Microsoft Authenticator** (iOS/Android)
+  * **Authy** (iOS/Android/Desktop)
+  * **1Password** (with TOTP support)
+  * **Bitwarden** (with authenticator feature)
+
+.. tip::
+   Authenticator apps generate time-based one-time passwords (TOTP) that change every 30 seconds, providing secure access even if your password is compromised.
+
+**Setting Up 2FA**
+
+1. **2FA Registration Prompt**
+
+   * After successful admin login, you'll see the "Set up Two-Factor Authentication" screen
+   * The system displays: "To enhance your account security, please set up two-factor authentication"
+
+2. **QR Code Display**
+
+   * A unique QR code will be presented on the screen
+   * This QR code contains your account's secret key for generating time-based codes
+   
+   .. warning::
+      This QR code is unique to your account and should not be shared with anyone or stored in unsecured locations.
+
+3. **Configure Your Authenticator App**
+
+   * Open your chosen authenticator app on your mobile device
+   * Tap "Add Account" or the "+" button
+   * Select "Scan QR Code" or "Scan Barcode"
+   * Point your device's camera at the QR code displayed on screen
+   * Your authenticator app will automatically configure the account
+
+4. **Manual Entry Option** (if QR scanning fails)
+
+   * Select "Enter Code Manually" in your authenticator app
+   * Enter the following information:
+
+     * **Account Name**: Your admin username
+     * **Secret Key**: The alphanumeric code displayed below the QR code
+     * **Time-based**: Ensure this option is selected (30-second intervals)
+
+   .. note::
+      Manual entry is useful when camera scanning isn't available or when setting up 2FA on multiple devices.
+
+5. **Verify 2FA Setup**
+
+   * Your authenticator app will immediately start generating 6-digit codes
+   * Enter the current 6-digit code from your app into the "Verification Code" field
+   * Click "Verify and Enable 2FA"
+
+   .. tip::
+      If the first code doesn't work, wait for the next 30-second cycle and try the new code. Clock synchronization between your device and the server is important for successful verification.
+
+6. **Backup Codes Generation**
+
+   * Upon successful verification, the system generates backup recovery codes
+   * Download or print the backup codes and store them in a secure location
+
+   .. important::
+      Save these backup codes securely - they allow account recovery if you lose your device. Each backup code can only be used once, so treat them like passwords and store them safely.
+
+
+- **Account Recovery**: If you forget your password, use the "Forgot Password?" link to initiate the recovery process.
+
+Give you username to initiate a reset password request.
+
+Give your 2FA code to reset your password.
+
+once 2FA is verified, you will be able to reset your password. Give your new password and confirm it.
+
+Your password has been reset successfully. You can now log in with your new password.
+
 - **Administrative Account Usage**: Use administrative accounts only when necessary and change the default admin credentials immediately after initial login.
 
 License Validation (Mandatory)
