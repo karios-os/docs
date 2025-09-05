@@ -4781,6 +4781,82 @@ Configure virtual machine resources based on requirements:
 .. figure:: _static/images/vmcreation/Image_116.png
    :width: 600
 
+Windows Virtual Machine Installation Guide
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Prerequisites
+^^^^^^^^^^^^^^
+
+.. important::
+   KARIOS currently supports Windows 10 only. 
+
+Before proceeding with the installation, ensure you have:
+1. **Windows 10 ISO file** - Downloaded from Microsoft or uploaded to the system
+2. **VirtIO drivers** - Required for optimal performance and hardware compatibility
+
+Installation Steps
+^^^^^^^^^^^^^^^^^^
+
+**Step 1: Prerequisites & ISO Management**: Configure installation media and drivers
+
+* **Windows ISO Selection**: Choose your uploaded Windows 10 ISO file or download from Microsoft
+* **VirtIO Drivers**: Select or upload the VirtIO driver package
+* **Installation Method**: Choose between:
+
+  * Upload existing ISO files
+  * Download Windows 10 directly from Microsoft
+
+* **Validation**: System verifies ISO compatibility and driver availability
+
+**Step 2: VM Details**: Configure basic virtual machine settings
+
+* **Server**: Select target server (e.g., DEL-R10-Z7-PHX-0998)
+* **VM Name**: Enter descriptive name for the virtual machine
+* **Loader**: Set to UEFI (required for Windows 10)
+* **Operating System**: Automatically set to Windows 10
+
+**Step 3: Hardware Configuration**: Allocate CPU and memory resources
+
+* **CPU Sockets**: Configure based on available resources
+* **CPU Cores**: Assign processor cores (minimum 2 recommended)
+* **Memory (RAM)**: Allocate system memory (minimum 4GB for Windows 10)
+* **Resource Validation**: System checks available resources against allocation
+
+**Step 4: Storage Configuration**: Configure virtual disk settings
+
+* **ZPool**: Select storage pool with adequate free space
+* **Disk Size**: Set virtual disk size (minimum 20GB for Windows 10)
+* **Storage Type**: Automatically optimized for Windows workloads
+* **Performance**: VirtIO storage drivers for enhanced I/O performance
+
+**Step 5: Network Configuration**: Setup network connectivity
+
+* **Network Driver**: Select virtio-net for optimal performance
+* **Virtual Switch**: Choose appropriate network segment
+* **Network Profile**: Configure based on intended use case
+
+**Step 6: Review & Installation**: Final configuration review and VM creation
+
+* **Configuration Summary**: Review all settings before creation
+* **ISO Attachment**: Attach the Windows 10 ISO to the vm in installation mode
+* **VirtIO Integration**: Drivers are prepared for installation
+* **Create VM**: Initialize virtual machine with configured settings
+
+Post-Creation Steps
+^^^^^^^^^^^^^^^^^^^
+
+1. **Power On**: Start the virtual machine
+2. **Windows Installation**: Follow standard Windows 10 setup process
+3. **VirtIO Driver Installation**: Install drivers during or after Windows setup
+4. **System Updates**: Apply Windows updates and configure as needed
+
+.. note::
+   * Only Windows 10 is currently supported
+   * UEFI loader is required for proper Windows 10 functionality
+   * VirtIO drivers are essential for optimal performance
+   * Minimum system requirements: 2 CPU cores, 4GB RAM, 20GB storage
+
+
 Cloud-Init VM Setup
 ~~~~~~~~~~~~~~~~~~~
 
