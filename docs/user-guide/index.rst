@@ -4815,12 +4815,24 @@ Installation Steps
 * **Loader**: Set to UEFI (required for Windows 10)
 * **Operating System**: Automatically set to Windows 10
 
+.. figure:: _static/images/vmcreation/create_windows_vm.png
+   :width: 600
+   :alt: Windows VM Basic Configuration
+
+   Figure: Windows VM Basic Configuration
+
 **Step 3: Hardware Configuration**: Allocate CPU and memory resources
 
 * **CPU Sockets**: Configure based on available resources
 * **CPU Cores**: Assign processor cores (minimum 2 recommended)
 * **Memory (RAM)**: Allocate system memory (minimum 4GB for Windows 10)
 * **Resource Validation**: System checks available resources against allocation
+
+.. figure:: _static/images/vmcreation/windows_vm_hardware_configuration.png
+   :width: 600
+   :alt: Windows VM Hardware Configuration
+
+   Figure: Windows VM Hardware Configuration
 
 **Step 4: Storage Configuration**: Configure virtual disk settings
 
@@ -4829,23 +4841,71 @@ Installation Steps
 * **Storage Type**: Automatically optimized for Windows workloads
 * **Performance**: VirtIO storage drivers for enhanced I/O performance
 
+.. figure:: _static/images/vmcreation/windows_vm_storage_configuration.png
+   :width: 600
+   :alt: Windows VM Storage Configuration
+
+   Figure: Windows VM Storage Configuration
+
 **Step 5: Network Configuration**: Setup network connectivity
 
 * **Network Driver**: Select virtio-net for optimal performance
 * **Virtual Switch**: Choose appropriate network segment
 * **Network Profile**: Configure based on intended use case
 
-**Step 6: Review & Installation**: Final configuration review and VM creation
+.. figure:: _static/images/vmcreation/windows_vm_network_configuration.png
+   :width: 600
+   :alt: Windows VM Network Configuration
 
-* **Configuration Summary**: Review all settings before creation
-* **ISO Attachment**: Attach the Windows 10 ISO to the vm in installation mode
-* **VirtIO Integration**: Drivers are prepared for installation
-* **Create VM**: Initialize virtual machine with configured settings
+   Figure: Windows VM Network Configuration
+
+**Step 6: Review & Installation**: Finalize and Access VM
+
+* **Attach Drive**: Attach Windows 10 ISO as mentioned below
+
+.. figure:: _static/images/vmcreation/windows_vm_attach_iso.png
+   :width: 600
+   :alt: Attach Windows ISO
+
+   Figure: Attach Windows ISO
+
+
+* **Select VM configurations on the drive selection popup**
+
+.. figure:: _static/images/vmcreation/windows_vm_attach_iso_popup.png
+   :width: 600
+   :alt: Attach Windows ISO Popup
+
+   Figure: Attach Windows ISO Popup
+
+
+* **Select ISO and Attach**: Choose Windows 10 ISO and click "Attach"
+
+.. figure:: _static/images/vmcreation/windows_vm_iso_to_attach.png
+   :width: 600
+   :alt: Windows ISO Attached
+
+   Figure: Windows ISO Attached
+
+* **View Attached Drives**: Confirm ISO is attached in VM configuration Visually
+
+.. figure:: _static/images/vmcreation/windows_vm_attached_iso_view.png
+   :width: 600
+   :alt: Attached ISO View
+
+   Figure: Attached ISO View
 
 Post-Creation Steps
 ^^^^^^^^^^^^^^^^^^^
 
 1. **Power On**: Start the virtual machine
+
+.. figure:: _static/images/vmcreation/windows_vm_power_on.png
+   :width: 600
+   :alt: Power On Windows VM
+
+   Figure: Power On Windows VM
+
 2. **Windows Installation**: Follow standard Windows 10 setup process
 3. **VirtIO Driver Installation**: Install drivers during or after Windows setup
 4. **System Updates**: Apply Windows updates and configure as needed
