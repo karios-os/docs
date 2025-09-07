@@ -617,7 +617,7 @@ Karios employs a role-based access control (RBAC) model to manage user permissio
 
 
 RBAC Architecture and Design Philosophy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Hierarchical Permission Model**
 
@@ -631,7 +631,7 @@ RBAC Architecture and Design Philosophy
 
 
 Predefined Role Definitions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Administrative Roles**:
 
@@ -4791,8 +4791,9 @@ Prerequisites
    KARIOS currently supports Windows 10 only. 
 
 Before proceeding with the installation, ensure you have:
-1. **Windows 10 ISO file** - Downloaded from Microsoft or uploaded to the system
-2. **VirtIO drivers** - Required for optimal performance and hardware compatibility
+
+- **Windows 10 ISO file** - Downloaded from Microsoft or uploaded to the system
+- **VirtIO drivers** - Required for optimal performance and hardware compatibility
 
 Installation Steps
 ^^^^^^^^^^^^^^^^^^

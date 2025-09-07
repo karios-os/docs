@@ -312,8 +312,8 @@ Critical Configuration Notes
 - Validate IOMMU device grouping
 - Confirm GPU pass-through capabilities if required
 
-Downloading the Karios ISO Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Downloading the Karios ISO Image (Roadmap Ahead)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Navigate to the official Karios download page
 2. Select the appropriate version based on your hardware architecture (typically x86_64)
@@ -410,7 +410,7 @@ After FreeBSD installation is complete and the node is up, execute the following
 
 **Core Security Features:**
 
-- **Audit Trails and Logging**: Every sudo command is logged with timestamps, user information, command executed, and working directory. Logs are stored in ``/var/log/auth.log`` and can be forwarded to central logging systems for compliance and forensic analysis.
+- **Audit Trails and Logging**: Every sudo command is logged with timestamps, user information, command executed, and working directory.
 
 - **Time-Limited Sessions**: Sudo sessions expire automatically (default 5 minutes), requiring re-authentication for continued access. This minimizes the window of exposure if a session is compromised.
 
@@ -423,34 +423,9 @@ After FreeBSD installation is complete and the node is up, execute the following
 - **Plugin Architecture**: Supports plugins for advanced authentication (LDAP, Kerberos), logging, and policy enforcement.
 
 
-**FreeBSD doas: Security-Focused Alternative**
-
-**doas (Dedicated OpenBSD Authentication System)** was developed by the OpenBSD project as a security-focused alternative to sudo, emphasizing simplicity and security over feature richness.
-
-**Design Philosophy and Architecture:**
-
-- **Minimalist Approach**: doas was designed with the philosophy that simpler code is more secure code. The entire doas codebase is significantly smaller than sudo, reducing the potential attack surface.
-
-- **Security-First Design**: Developed by the OpenBSD team, known for their security-focused approach to system design. Every feature is evaluated for security implications before implementation.
-
-- **Code Auditability**: The smaller codebase makes comprehensive security audits more feasible and effective, allowing security researchers to thoroughly examine the entire system.
-
-**Core Security Features:**
-
-- **Simplified Configuration**: doas uses a straightforward configuration syntax that reduces the likelihood of misconfigurations that could lead to security vulnerabilities.
-
-- **Native FreeBSD Integration**: doas integrates seamlessly with FreeBSD's security architecture, including proper integration with system logging, user management, and security frameworks.
-
-- **Memory Safety**: doas is written with memory safety as a primary concern, using secure coding practices to prevent buffer overflows and other memory-related vulnerabilities.
-
-- **Privilege Separation**: doas employs privilege separation techniques to isolate different components of the system, limiting the impact of potential security breaches.
-
-
-
 **Security Recommendations:**
 
 - **Use sudo for**: Complex environments requiring granular control, extensive logging, or plugin support
-- **Use doas for**: Security-focused deployments, FreeBSD environments, or systems requiring minimal attack surface
 - **Avoid direct root for**: Any multi-user environment or production system where accountability and security are required
 
 Bootstrap Script Download and Preparation
@@ -525,92 +500,14 @@ Method 1: Using sudo (Recommended - Highest Security)
    # Execute bootstrap with sudo from user directory
    sudo ./bootstrap.sh
    
-   # Monitor execution - sudo will log all commands for audit purposes
-   # Logs available in: /var/log/auth.log
 
 **sudo Security Benefits:**
-- All commands logged to ``/var/log/auth.log`` for audit trails
 - Time-limited privilege escalation (default 5-minute timeout)
 - User accountability and traceability
 - Granular permission control
 - Script executed from user directory, not root filesystem
 
-Method 2: Using doas (FreeBSD Security-Focused Alternative)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. note::
-   **FreeBSD Optimized**: doas is designed specifically for FreeBSD environments with enhanced security and simplified configuration.
-
-**Prerequisites:**
-- Non-root user account must exist
-- doas package must be installed and configured
-
-**Step 1: Install and Configure doas**
-
-.. code-block:: bash
-
-   # Install doas if not already installed (as root initially)
-   pkg install doas
-   
-   # Create non-root user if not already existing
-   adduser karios-admin
-
-**Step 2: Configure doas Permissions**
-
-.. code-block:: bash
-
-   # Configure doas permissions (as root)
-   # Edit /usr/local/etc/doas.conf
-   echo "permit nopass karios-admin as root" >> /usr/local/etc/doas.conf
-   echo "permit karios-admin as root cmd bootstrap.sh" >> /usr/local/etc/doas.conf
-   
-   # Set proper permissions on doas configuration
-   chmod 600 /usr/local/etc/doas.conf
-
-**Step 3: Download and Prepare Bootstrap Script**
-
-.. code-block:: bash
-
-   # Switch to non-root user
-   su - karios-admin
-   
-   # Test doas configuration
-   doas whoami  # Should return "root"
-   
-   # Create working directory in user's home
-   mkdir -p ~/karios-setup
-   cd ~/karios-setup
-   
-   # Download bootstrap script to user directory
-   
-   fetch --no-verify-peer --no-verify-hostname "placeholder link" -o bootstrap.sh
-
-   # Set executable permissions
-   chmod o+x bootstrap.sh
-
-
-**Step 4: Security Verification and Execution**
-
-.. code-block:: bash
-
-   # Review script contents before execution
-   less bootstrap.sh
-   
-   # Execute bootstrap with doas from user directory
-   doas ./bootstrap.sh
-   
-   # Monitor execution logs
-   tail -f /var/log/messages
-
-**doas Security Benefits:**
-- Smaller codebase reduces attack surface
-- OpenBSD security model implementation
-- Simpler configuration than sudo
-- Native FreeBSD integration
-- Comprehensive audit logging
-- Script executed from user directory, not root filesystem
-
-Method 3: Direct Root Execution (Use Only When Necessary)
+Method 2: Direct Root Execution (Use Only When Necessary)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. warning::
@@ -845,9 +742,6 @@ If you need assistance with the installation process:
    
    # Bootstrap logs
    /tmp/bootstrap.log
-   
-   # Security audit logs
-   /var/log/auth.log
    
    # sudo/doas activity logs
    /var/log/secure
