@@ -103,14 +103,14 @@ The **Physical Interfaces** panel displays key real-time information for each NI
    :alt: Physical Interface Landing Page
    :width: 700
 
-   Landing page for physical NICs
+   Figure: Landing page for physical NICs
 
 
 .. figure:: ../user-guide/_static/images/control_center/network_management/physical_interface_stats.png
    :alt: Physical Interface Statistics
    :width: 700
 
-   Detailed statistics with packet counters and throughput
+   Figure: Detailed statistics with packet counters and throughput
 
 Notes
 ~~~~~
@@ -131,6 +131,7 @@ Administrators can create, attach, and monitor switches directly from the Contro
 
 Key Uses
 ~~~~~~~~
+
 * Provide VM-to-VM communication within an isolated network segment.  
 * Attach a switch to a **plain NIC** to extend VM traffic out to the physical network.  
 * Integrate with VLAN-backed interfaces for segmented multi-tenant networking.  
@@ -144,6 +145,7 @@ Key Uses
 
 Switch Management in Karios
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The **Network → Switches** view in Karios provides a clear overview of all configured virtual switches and their associations:
 
 .. list-table::
@@ -165,10 +167,11 @@ The **Network → Switches** view in Karios provides a clear overview of all con
    :alt: Switch Component
    :width: 650
 
-   Switch component view in Karios
+   Figure: Switch component view in Karios
 
 Switch Lifecycle
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+
 Karios abstracts common operations into a straightforward workflow:
 
 1. **Create** – Open the creation form, name the switch, and assign a parent interface.  
@@ -179,7 +182,7 @@ Karios abstracts common operations into a straightforward workflow:
    :alt: Switch Dashboard
    :width: 650
 
-   Switch dashboard in Karios
+   Figure: Switch dashboard in Karios
 
 User Journey
 
@@ -187,34 +190,38 @@ User Journey
    :alt: Switch Journey
    :width: 650
 
-   Switch journey in Karios
+   Figure: Switch journey in Karios
 
 Considerations
---------------
+~~~~~~~~~~~~~~~
+
 * **Configuration Planning:** Define your network architecture before creating switches, as changes may affect running VMs.  
 * **Impact Awareness:** Deleting a switch immediately disconnects attached VMs, please review warnings before taking a action.  
 * **Persistence:** Switch configurations are saved and restored automatically after reboot.  
 * **Scalability:** Excessive switches may increase resource usage (e.g., forwarding tables, CPU load).  
 
 Best Practices
---------------
+~~~~~~~~~~~~~~~
+
 * Use descriptive names for switches to simplify troubleshooting and VM assignment.  
 * Keep VLANs and switches separate on physical NICs to avoid conflicts.  
 * Regularly review switch statistics in the dashboard to identify performance issues early.  
 * Document switch purposes and parent interface choices as your topology grows.  
 
 
-VALE High-Speed Switching
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+VALE High-Speed Network Switch
+-------------------------------
 
 Overview
---------
+~~~~~~~~~
+
 VALE is a high-performance software switch. It delivers packet forwarding speeds far beyond traditional virtual switches—reaching tens of millions of packets per second per CPU core and near line-rate performance with standard Ethernet frames.  
 General benchmarks show that while regular software switches may handle 1–2 million packets per second, VALE can reach **tens of millions of packets per second per core** and approach **70 Gbps line rates** with standard frames. This makes it especially valuable for where performance is critical.
 Karios integrates VALE for scenarios where ultra-fast intra-host networking is required, such as VM-to-VM communication, NFV workloads, or research environments. To protect operational stability, Karios enforces design rules that prevent common pitfalls with VALE usage.
 
 Key Caveats
------------
+~~~~~~~~~~~~
+
 VALE behaves differently than standard switches, and these differences are critical:
 
 .. warning::
@@ -227,10 +234,11 @@ VALE behaves differently than standard switches, and these differences are criti
    :alt: VALE Topology
    :width: 800
 
-   Example VALE topology with VLAN parent and TAP interfaces
+   Figure: Example VALE topology with VLAN parent and TAP interfaces
 
 Management in Karios
---------------------
+~~~~~~~~~~~~~~~~~~~~~
+
 The Karios UI simplifies VALE operations, providing:
 
 * Add/remove parent VLANs  
@@ -242,10 +250,11 @@ The Karios UI simplifies VALE operations, providing:
    :alt: VALE Landing Page
    :width: 700
 
-   VALE landing page in Karios
+   Figure: VALE landing page in Karios
 
 Connectivity Models
--------------------
+~~~~~~~~~~~~~~~~~~~~
+
 Karios supports several network arrangements to track and manage VALE usage:
 
 .. list-table::
@@ -262,31 +271,32 @@ Karios supports several network arrangements to track and manage VALE usage:
      - VALE configured on a VLAN parent but with no VM connections; consumes resources but not forwarding traffic.  
   
 Best Practices
---------------
+~~~~~~~~~~~~~~~
 * **Keep Management Separate** – Always reserve at least one NIC for host management; do not attach it to VALE.  
 * **Use VLANs as Parents** – VLANs dedicated to VALE should not also carry regular switches or VM traffic.  
 * **One Parent VLAN Recommended** – Use a single VLAN as the parent for all VALE switches to minimize risk.  
 * **Plan for Separation** – Treat VALE networks as a “high-speed lane” and keep them isolated from your standard production paths.  
 
 Recovery if Misconfigured
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 If a NIC carrying SSH or management is accidentally attached to VALE and loses its IP: 
  - Use out-of-band management (BMC/IPMI) to access the node.  
  - Remove the VALE parent assignment.  
  - Restart network services to restore connectivity.  
 
 Use Cases
----------
+~~~~~~~~~~
 * Ultra-fast VM-to-VM networking (intra-host).  
 * High-performance NFV and packet processing workloads.  
 * Network simulation or research environments where isolation is required.  
 * Appliance development (firewalls, routers) using netmap-enabled applications.  
 
 Virtual Local Area Networks (VLANs)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 Overview
---------
+~~~~~~~~~
+
 In Karios, VLANs are one of the core building blocks for network segmentation.  
 They allow you to create multiple logical networks over the same physical interface, without touching CLI.  
 
@@ -294,7 +304,8 @@ VLANs are created, monitored and managed through Control Center.
 Each VLAN is tied to a parent NIC, given a tag ID, and optionally configured with an IP (static or DHCP). From there, VLANs integrate seamlessly with switches, VALE networks, and overlays.
 
 What VLANs Are in Karios
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 * **Logical Interfaces** – Each VLAN you create in Karios appears as its own network interface, built on top of a physical NIC.  
 * **Segmentation Tool** – VLANs separate traffic for different roles: management, storage, tenant workloads, or underlay for VALE/VXLAN.  
 * **Always Monitored** – Every VLAN in Karios is actively tracked: gateway reachability, external connectivity, packet counters, and error rates.  
@@ -304,10 +315,11 @@ What VLANs Are in Karios
    :alt: VLAN Component
    :width: 700
 
-   VLAN component overview in Karios
+   Figure: VLAN component overview in Karios
 
 VLAN Dashboard in Karios
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The **Network → Interfaces → Virtual** tab provides a central place for VLAN lifecycle management:
 
 .. list-table::
@@ -331,16 +343,21 @@ The **Network → Interfaces → Virtual** tab provides a central place for VLAN
    :alt: VLAN Management in Karios
    :width: 700
 
-   VLAN management overview panel
+   Figure: VLAN management overview panel
+
+* **View Details** – Opens a detailed panel with MAC address, MTU, routing entries, and attached switches.
 
 .. figure:: _static/images/network/vlan_seq.png
    :alt: VLAN Sequence
    :width: 700
 
-   VLAN sequence overview in Karios
+   Figure: VLAN sequence overview in Karios
+
+
 
 Connectivity & Status Tracking
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Unlike raw FreeBSD VLANs, Karios doesn’t just stop at creating tagged interfaces:
 
 * **Gateway Verification** – Automated pings confirm if the VLAN can reach its configured gateway.  
@@ -349,7 +366,8 @@ Unlike raw FreeBSD VLANs, Karios doesn’t just stop at creating tagged interfac
 * **Traffic Monitoring** – Per-VLAN stats for packets sent/received and error counts.  
 
 Best Practices in Karios
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. tip::
 
    - Use descriptive Tag IDs (e.g., VLAN 110 for Storage, 120 for Tenants).  
@@ -361,7 +379,7 @@ Best Practices in Karios
 * Deleting a VLAN will isolate any switches or VMs attached — Karios warns you, but downtime cannot be avoided.  
 
 How VLANs Fit Into the Bigger Picture
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * **Switch Attachment** – VLANs are common parents for virtual switches, enabling VMs to join the segmented network.  
 * **VALE Eligibility** – Only unused VLANs (not already tied to switches/VMs) may serve as VALE parents.  
 * **VXLAN Underlay** – Active VLANs often act as the underlay fabric for VXLAN overlays.  
@@ -369,22 +387,27 @@ How VLANs Fit Into the Bigger Picture
  
 
 Virtual Extensible LAN (VXLAN) Overlay Networks
-===============================================
+-----------------------------------------------
 
 Overview
---------
+~~~~~~~~
+
 VXLAN is a network virtualization technology that extends Layer 2 segments across Layer 3 boundaries using encapsulation.  
 It addresses the limitations of VLANs, providing a 24-bit VXLAN Network Identifier (VNI) space with support for up to 16 million segments.  
 Karios integrates VXLAN within its networking stack, enabling scalable overlay connectivity between nodes while enforcing validation and configuration consistency.
 
 Protocol and Standards
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+VXLAN is defined in RFC 7348 and operates by encapsulating Ethernet frames within UDP packets. Key aspects include:
+
 * **Encapsulation** – VXLAN encapsulates Ethernet frames in UDP packets (port 4789), allowing Layer 2 networks to traverse Layer 3 infrastructure.  
 * **VNI Space** – 24-bit VNIs provide 16,777,216 possible segments, far exceeding the 4094 limit of VLANs.  
 * **Transport Requirements** – The underlay network must support appropriate MTU sizes to accommodate VXLAN overhead without fragmentation.  
 
 Karios VXLAN Implementation
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Karios abstracts VXLAN creation and lifecycle management into a controlled workflow:  
 
 * **VLAN Dependency** – Only active, reachable VLANs can serve as VXLAN tunnel endpoints (VTEPs).  
@@ -394,7 +417,8 @@ Karios abstracts VXLAN creation and lifecycle management into a controlled workf
 * **Configuration Persistence** – All VXLAN definitions are persisted into system configuration for restoration on reboot.  
 
 Tunnel Lifecycle
-----------------
+~~~~~~~~~~~~~~~~~
+
 VXLAN tunnels in Karios are established and managed with the following phases:
 
 1. **Pre-Deployment Validation**
@@ -413,33 +437,41 @@ VXLAN tunnels in Karios are established and managed with the following phases:
    :alt: VXLAN Tunnel Creation
    :width: 800
 
-   Example VXLAN creation flow.
+   Figure: Example VXLAN creation flow.
 
 Configuration Model
--------------------
-A VXLAN tunnel connects two VLAN interfaces across distinct nodes:  
+~~~~~~~~~~~~~~~~~~~~~
+
+Each VXLAN tunnel in Karios consists of two endpoints, each defined by:
+* **Node** – The Karios node hosting the VXLAN interface.
+* **VLAN Parent** – The active VLAN interface that serves as the underlay for the VXLAN tunnel.
+* **VNI** – The unique VXLAN Network Identifier assigned to the tunnel.
+
+A VXLAN tunnel connects two VLAN interfaces across distinct nodes:
 
 .. figure:: _static/images/network/create_tunnel.png
    :alt: VXLAN Tunnel Creation
    :width: 800
 
-   Example VXLAN configuration between two nodes with VLAN endpoints and static tunnel IPs.
+   Figure: Example VXLAN configuration between two nodes with VLAN endpoints and static tunnel IPs.
 
 Operational Considerations
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 * **MTU Planning** – The underlay must support larger MTUs (typically +50 bytes) to accommodate encapsulated traffic.  
 * **Firewall Requirements** – UDP/4789 must be permitted between VXLAN endpoints.  
 * **Immutability of Core Parameters** – VNIs, node pairings, and VLAN parents cannot be modified after creation; re-deployment is required.  
 * **Monitoring Integration** – Tunnel health, packet counters, and endpoint reachability are continuously tracked in Karios.  
 
 Integration with Karios Networking
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 * **Virtual Switch Attachment** – VXLAN interfaces are automatically integrated into the virtual switch framework, providing a bridge for VM attachment.  
 * **Isolation by Design** – Each VNI provides full isolation from other overlays, ensuring strict traffic segmentation in multi-tenant environments.  
 * **Scalability** – VXLAN overlays allow Karios clusters to span across racks, data centers, or distributed sites without the limitations of VLANs.  
 
 Best Practices
---------------
+~~~~~~~~~~~~~~~
 * Allocate VNIs systematically (e.g., project-based ranges) to simplify management at scale.  
 * Use dedicated VLANs as VXLAN underlays to separate overlay traffic from management or storage paths.  
 * Validate gateway and inter-VLAN reachability prior to tunnel creation to avoid incomplete deployments.  
