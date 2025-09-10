@@ -1,10 +1,8 @@
-# Configuration file for the Sphinx documentation builder.
-
 import os
 import sys
 
 # -- Project information -----------------------------------------------------
-project = 'Karios'
+project = 'DocGod'
 copyright = '2024, Karios Team'
 author = 'Karios Team'
 release = '1.0'
@@ -35,6 +33,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+html_favicon = '_static/karios.png'
 html_css_files = ['css/custom.css']
 
 # Theme options
@@ -59,8 +58,8 @@ html_theme_options = {
 #html_favicon = '_static/images/favicon.ico'
 
 # Additional options
-html_title = 'Karios Documentation'
-html_short_title = 'Karios Docs'
+html_title = 'DocGod'
+html_short_title = 'DocGod'
 html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = True
@@ -82,3 +81,12 @@ extlinks = {
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
 }
+extensions = [
+    # your other extensions
+    'sphinxcontrib.spelling',
+]
+
+# Spelling configuration
+spelling_lang = 'en_US'
+spelling_word_list_filename = 'spelling_wordlist.txt'
+spelling_show_suggestions = True
