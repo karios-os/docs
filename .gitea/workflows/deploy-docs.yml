@@ -27,7 +27,7 @@ jobs:
           && rm -rf /var/lib/apt/lists/*
 
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Cache pip dependencies
       uses: actions/cache@v3
@@ -46,18 +46,23 @@ jobs:
       run: |
         cd docs
         make html
+        echo "✅ Sphinx documentation build completed successfully!"
 
-    - name: Upload documentation artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: sphinx-documentation
-        path: docs/_build/html/
-        retention-days: 30
+    - name: List built documentation
+      run: |
+        echo "📁 Documentation built successfully!"
+        ls -la docs/_build/html/
+        echo "📊 Total files: $(find docs/_build/html/ -type f | wc -l)"
+        echo "📏 Total size: $(du -sh docs/_build/html/)"
 
-    - name: Upload build logs on failure
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-logs
-        path: docs/_build/
-        retention-days: 7
+    - name: Verify key files exist
+      run: |
+        if [ -f "docs/_build/html/index.html" ]; then
+          echo "✅ index.html found"
+        else
+          echo "❌ index.html missing"
+          exit 1
+        fi
+        
+        echo "📋 Main HTML files:"
+        find docs/_build/html/ -name "*.html" | head -10
