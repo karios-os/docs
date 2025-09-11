@@ -739,24 +739,6 @@ The migration process involves transitioning DHCP services to the bundled Techni
    - Confirm all static reservations are functioning
    - Test any dependent services or applications
 
-**Migration from Router-Only Setup**
-
-For networks currently using only a WiFi router for DHCP:
-
-1. **Router DHCP Disable Process**
-
-   - Access router admin interface
-   - Navigate to DHCP settings
-   - Disable DHCP server function
-   - Save configuration changes
-
-2. **Bundled Technitium Configuration**
-
-   - Access Technitium at `http://[YOUR-KARIOS-NODE-IP]:5380`
-   - Review and adjust DHCP scope to match router's previous range if needed
-   - Set router IP as gateway
-   - Configure appropriate DNS forwarders if different from defaults
-   - Test connectivity before full deployment
 
 **Performance Monitoring**
 
@@ -803,6 +785,14 @@ Use the pre-configured administrator credentials provided in your Karios install
 - **Username**: ``admin``
 - **Password**: [Provided during Karios installation]
 
+
+.. figure:: _static/images/technitium/login_interface.png
+      :width: 600
+      :alt: Technitium Login Interface
+
+      Figure : Technitium DNS Server Login Interface
+
+
 **Pre-configured Settings Overview**
 
 Your Technitium installation includes:
@@ -812,99 +802,6 @@ Your Technitium installation includes:
 - **Network Integration**: Optimized for Karios VM and infrastructure requirements
 - **Administrative Access**: Ready-to-use credentials for immediate management
 
-Initial Technitium Configuration Check
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Verify Current Network Configuration**
-
-Access the Technitium interface to check your current settings:
-
-.. code-block:: bash
-
-   # Access URL
-   http://[YOUR-KARIOS-NODE-IP]:5380
-
-**Current Configuration Status**
-
-1. **Check DHCP Scope Status**
-   
-   Navigate to **DHCP** → **Scopes** to verify:
-   
-   - Current IP range (e.g., 192.168.1.100-192.168.1.200)
-   - Gateway configuration
-   - DNS server assignments
-   - Lease duration settings
-
-2. **Verify DNS Forwarders**
-   
-   Go to **Settings** → **DNS Settings**:
-   
-   - Primary forwarder: ``8.8.8.8`` (Google DNS)
-   - Secondary forwarder: ``1.1.1.1`` (Cloudflare DNS)
-   - Optional: Add your ISP's DNS servers
-
-Essential DHCP Configuration Tasks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Configure Static IP Reservations**
-
-For critical infrastructure devices that need fixed IP addresses:
-
-1. **Navigate to DHCP Reservations**
-   
-   **DHCP** → **Reservations** → **Add Reservation**
-
-2. **Add Server Management Interfaces**
-
-   .. code-block:: text
-
-      Device: Karios-Node-01-IPMI
-      MAC: [BMC MAC Address]
-      IP: 192.168.1.10
-      
-      Device: Network-Switch-Management
-      MAC: [Switch Management MAC]
-      IP: 192.168.1.11
-      
-      Device: UPS-Management
-      MAC: [UPS Network Card MAC]
-      IP: 192.168.1.12
-
-3. **Reserve IP Ranges for VM Networks**
-
-   Configure separate ranges for different VM purposes:
-
-   .. code-block:: text
-
-      Production VMs: 192.168.1.50-192.168.1.99
-      Development VMs: 192.168.1.150-192.168.1.199
-      Management: 192.168.1.10-192.168.1.49
-
-**Modify DHCP Scope Settings**
-
-Customize the automatically configured scope:
-
-1. **Access Scope Configuration**
-   
-   **DHCP** → **Scopes** → **Edit** (your existing scope)
-
-2. **Update Lease Duration**
-
-   .. code-block:: text
-
-      Default: 24 hours
-      Recommended for servers: 7 days (168 hours)
-      Recommended for workstations: 12 hours
-
-3. **Configure Additional DHCP Options**
-
-   Common options to configure:
-
-   .. code-block:: text
-
-      Option 42 (NTP Servers): 192.168.1.1, pool.ntp.org
-      Option 119 (Domain Search): your-domain.local
-      Option 252 (Proxy Auto-Config): http://proxy.your-domain.local/proxy.pac
 
 DNS Configuration Tasks
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -917,6 +814,13 @@ Create local DNS entries for your infrastructure:
    
    **Zones** → **Add Zone** → **Primary Zone**
 
+   .. figure:: _static/images/technitium/add_zone.png
+      :width: 600
+      :alt: Add DNS Zone
+
+      Figure : Add DNS Zone
+
+
 2. **Create Local Domain Zone**
 
    .. code-block:: text
@@ -924,6 +828,13 @@ Create local DNS entries for your infrastructure:
       Zone Name: karios.local
       Zone Type: Primary Zone
       Dynamic Updates: Allow
+
+   .. figure:: _static/images/technitium/local_domain_zone.png
+      :width: 600
+      :alt: Local Domain Zone
+
+      Figure : Local Domain Zone
+
 
 3. **Add Infrastructure Records**
 
@@ -940,6 +851,12 @@ Create local DNS entries for your infrastructure:
       Name: ipmi-node-01
       IP: [BMC IP Address]
       TTL: 3600
+
+      .. figure:: _static/images/technitium/add_a_record.png
+         :width: 600
+         :alt: Add A Record
+
+         Figure : Add A Record
       
       Type: CNAME Record
       Name: dashboard
@@ -964,98 +881,12 @@ For enterprise environments with existing DNS infrastructure:
       Domain: prod.company.com  
       Forwarder: 172.16.0.10, 172.16.0.11
 
-Network Monitoring and Troubleshooting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Monitor DHCP Leases**
+      .. figure:: _static/images/technitium/add_conditional_forwarder.png
+         :width: 600
+         :alt: Add Conditional Forwarder
 
-Regular monitoring tasks:
-
-1. **Check Active Leases**
-   
-   **DHCP** → **Leases** to monitor:
-   
-   - IP address utilization
-   - Lease expiration times
-   - Device identification
-
-2. **Review DHCP Logs**
-   
-   **Logs** → **DHCP Logs** to troubleshoot:
-   
-   - Failed DHCP requests
-   - IP address conflicts
-   - Scope exhaustion warnings
-
-**DNS Query Monitoring**
-
-1. **Monitor DNS Performance**
-   
-   **Logs** → **Query Logs** to check:
-   
-   - Response times
-   - Failed queries
-   - Blocked domains (if using blocklists)
-
-2. **Validate DNS Resolution**
-
-   Test from client machines:
-
-   .. code-block:: bash
-
-      # Test local resolution
-      nslookup karios-node-01.karios.local [TECHNITIUM-IP]
-      
-      # Test external resolution  
-      nslookup google.com [TECHNITIUM-IP]
-      
-      # Test reverse DNS
-      nslookup [IP-ADDRESS] [TECHNITIUM-IP]
-
-Essential Maintenance Tasks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Backup Configuration**
-
-Regular backup procedures:
-
-1. **Export DHCP Configuration**
-   
-   **DHCP** → **Settings** → **Export Configuration**
-
-2. **Export DNS Zones**
-   
-   **Zones** → **[Zone Name]** → **Export Zone**
-
-3. **Backup System Configuration**
-   
-   **Settings** → **Backup/Restore** → **Create Backup**
-
-**Update and Security**
-
-1. **Configure Access Control**
-   
-   **Settings** → **Users** → Add limited-privilege users for monitoring
-
-.. warning::
-   **Migration Best Practices**
-   
-   While the bundled Technitium provides excellent functionality:
-   
-   - Maintain awareness of both network and infrastructure dependencies
-   - Test changes in development environment before applying to production
-   - Keep system updated to maintain optimal performance and security
-   - Document any custom configurations for disaster recovery planning
-
-.. note::
-   **Recommended Network Foundation**
-   
-   With bundled Technitium DNS Server pre-configured and optimized for your environment, migrating to this solution provides the ideal network foundation for:
-   
-   - VM deployment and management
-   - Infrastructure scaling and expansion  
-   - Advanced networking features and VLAN configuration
-   - Unified monitoring and management alongside Karios infrastructure
+         Figure : Add Conditional Forwarder
 
 
 Detailed Technitium DHCP Server Configuration
@@ -1228,6 +1059,7 @@ The scope configuration dialog contains the following critical settings:
    
    - After making changes, click **"Save"** or **"Update Scope"**
    - The system will apply the new configuration
+   - Scroll down to see the save button if not visible
    - You'll see a confirmation message indicating successful update
 
    .. figure:: _static/images/technitium/dhcp_save_scope_config.png
@@ -1242,7 +1074,7 @@ DHCP Reservations Management
 **Step 7: Configure Static IP Reservations**
 
 1. **Access Reservations Section**
-   
+
    - In the DHCP interface, click on the **"Reservations"** tab
    - This shows all current static IP assignments
 
@@ -1251,51 +1083,11 @@ DHCP Reservations Management
       :alt: DHCP Reservations Tab
 
       Figure : DHCP Reservations Management Tab
-
-2. **Add New Reservation**
-   
-   - Click **"Add Reservation"** button
-   - The reservation configuration dialog will open
-
-   .. figure:: _static/images/technitium/dhcp_add_reservation_button.png
-      :width: 600
-      :alt: Add DHCP Reservation Button
-
-      Figure : Add New DHCP Reservation Button
-
-**Step 8: Configure Device Reservation**
-
-Fill in the reservation details:
-
-1. **Device Information**
-   
-   - **Host Name**: Device name (e.g., "karios-node-01")
-   - **MAC Address**: Physical address of the device's network card
-   - **IP Address**: Desired static IP address within your scope range
-   - **Comments**: Optional description of the device
-
-   .. figure:: _static/images/technitium/dhcp_reservation_config.png
-      :width: 600
-      :alt: DHCP Reservation Configuration
-
-      Figure : DHCP Reservation Configuration Dialog
-
-2. **Save Reservation**
-   
-   - Click **"Save"** or **"Add Reservation"**
-   - The reservation will appear in the reservations list
-   - The device will receive the specified IP address on next DHCP renewal
-
-   .. figure:: _static/images/technitium/dhcp_save_reservation.png
-      :width: 600
-      :alt: Save DHCP Reservation
-
-      Figure : Save DHCP Reservation
-
+      
 DHCP Lease Management
 ~~~~~~~~~~~~~~~~~~~~~
 
-**Step 9: Monitor Active Leases**
+**Step 8: Monitor Active Leases**
 
 1. **Access Active Leases**
    
@@ -1324,13 +1116,29 @@ DHCP Lease Management
 
       Figure : DHCP Lease Information Details
 
+3. **Add New Lease Manually**
+   
+   - Click **"Add Lease"** button to manually assign an IP
+   - Enter MAC address, desired IP, and optional hostname
+   - Click **"Save"** to create the lease
+
+   .. figure:: _static/images/technitium/dhcp_add_lease.png
+      :width: 600
+      :alt: Add DHCP Lease
+
+      Figure : Add New DHCP Lease Manually
+
 3. **Lease Management Actions**
    
    For each lease, you can perform:
    
    - **Convert to Reservation**: Make the assignment permanent
+
+   .. figure:: _static/images/technitium/dhcp_make_reservation_button.png
+      :width: 600
+      :alt: Make Reservation Button
+
    - **Revoke Lease**: Force the device to request a new IP
-   - **View Details**: See complete lease information
 
    .. figure:: _static/images/technitium/dhcp_lease_actions.png
       :width: 600
@@ -1344,9 +1152,8 @@ Advanced DHCP Configuration
 **Step 10: Configure Advanced DHCP Options**
 
 1. **Access DHCP Options**
-   
-   - In the scope configuration, scroll to **"Advanced Options"** section
-   - Click **"Show Advanced Options"** if collapsed
+
+   - In the Edit Scope configuration, scroll to **"check out sub sections in the form "** section
 
    .. figure:: _static/images/technitium/dhcp_advanced_options.png
       :width: 600
@@ -1385,78 +1192,6 @@ Advanced DHCP Configuration
 
       Figure : Multiple DHCP Scopes Management
 
-2. **Scope Priority and Selection**
-   
-   - Configure scope priority for overlapping networks
-   - Set scope-specific options and reservations
-   - Monitor each scope independently
-
-   .. figure:: _static/images/technitium/dhcp_scope_priority.png
-      :width: 600
-      :alt: DHCP Scope Priority
-
-      Figure : DHCP Scope Priority Configuration
-
-Troubleshooting and Monitoring
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Step 12: DHCP Service Status Monitoring**
-
-1. **Service Status Indicators**
-   
-   Monitor DHCP service health:
-   
-   - **DHCP Server Status**: Running/Stopped indicator
-   - **Active Scopes**: Number of enabled scopes
-   - **Total Leases**: Current IP assignments
-   - **Available IPs**: Remaining addresses in pools
-
-   .. figure:: _static/images/technitium/dhcp_status_monitoring.png
-      :width: 600
-      :alt: DHCP Status Monitoring
-
-      Figure : DHCP Service Status Monitoring
-
-2. **DHCP Logs and Diagnostics**
-   
-   - Navigate to **"Logs"** in the main menu
-   - Filter logs for DHCP-related events
-   - Monitor lease assignments, renewals, and conflicts
-
-   .. figure:: _static/images/technitium/dhcp_logs_diagnostics.png
-      :width: 600
-      :alt: DHCP Logs and Diagnostics
-
-      Figure : DHCP Logs and Diagnostics
-
-Configuration Validation and Testing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Step 13: Validate DHCP Configuration**
-
-1. **Test DHCP Functionality**
-   
-   - Use the built-in DHCP testing tools
-   - Verify scope configuration parameters
-   - Test lease assignment and renewal processes
-
-   .. figure:: _static/images/technitium/dhcp_testing_tools.png
-      :width: 600
-      :alt: DHCP Testing Tools
-
-      Figure : DHCP Configuration Testing Tools
-
-2. **Network Connectivity Verification**
-   
-   - Test DNS resolution from DHCP clients
-   - Verify gateway connectivity
-   - Confirm proper IP address assignment
-
-   .. figure:: _static/images/technitium/dhcp_connectivity_test.png
-      :width: 600
-      :alt: DHCP Connectivity Testing
-
-      Figure : DHCP Network Connectivity Testing
 
 **Best Practices Summary**
 
@@ -1466,14 +1201,6 @@ Configuration Validation and Testing
 - **Regular Health Checks**: Monitor DHCP service status and performance
 - **Security Considerations**: Implement appropriate network access controls
 
-.. tip::
-   **Configuration Management Tips**
-   
-   - Start with automatic configuration and customize as needed
-   - Test changes in small increments to isolate issues
-   - Keep detailed documentation of custom configurations
-   - Monitor DHCP performance after configuration changes
-   - Use reservations for critical infrastructure devices
 
 .. warning::
    **Configuration Change Impact**
@@ -1484,7 +1211,7 @@ Configuration Validation and Testing
    - Always plan maintenance windows for significant DHCP changes
 
 
-Comprehensive DNS Configuration
+DNS Configuration
 -------------------------------
 
 This section provides detailed configuration for all DNS functionality in Technitium DNS Server, covering zones, records, and advanced DNS features.
@@ -1515,22 +1242,6 @@ DNS Zones Management
       :alt: Add Primary DNS Zone
 
       Figure : Add Primary DNS Zone
-
-3. **Zone Configuration Parameters**
-
-   .. code-block:: text
-
-      Zone Name: karios.local
-      Zone Type: Primary Zone
-      Dynamic Updates: Allow (for DHCP integration)
-      Zone Transfer: Enabled (if secondary servers exist)
-      DNSSEC: Enabled (recommended for security)
-
-   .. figure:: _static/images/technitium/dns_zone_configuration.png
-      :width: 600
-      :alt: DNS Zone Configuration
-
-      Figure : DNS Zone Configuration Parameters
 
 **Step 2: Secondary Zone Configuration**
 
@@ -1573,6 +1284,8 @@ DNS Records Management
 ~~~~~~~~~~~~~~~~~~~~~~
 
 **Step 3: A Records Configuration**
+
+Navigate to your created zone (e.g., **karios.local**) to add DNS records.
 
 1. **Add A Records**
    
@@ -1627,7 +1340,15 @@ DNS Records Management
       Name: dashboard
       Target: karios-node-01.karios.local
       TTL: 3600
-      
+   
+   .. figure:: _static/images/technitium/dns_cname_record.png
+      :width: 600
+      :alt: DNS CNAME Record
+
+      Figure : DNS CNAME Record
+
+   .. code-block:: text
+
       Record Type: CNAME
       Name: www
       Target: karios-node-01.karios.local
@@ -1756,40 +1477,6 @@ DNS Zone Operations
 
       Figure : DNS Zone Status Monitoring
 
-**Step 8: Zone Transfer Configuration**
-
-1. **Primary-to-Secondary Zone Transfer**
-   
-   - **Access Zone Settings**: Click zone name → **"Zone Transfer"**
-   - **Enable Zone Transfers**: Allow secondary servers to replicate
-   - **Configure Allowed Servers**: Restrict transfer access
-
-   .. code-block:: text
-
-      Zone Transfer Settings:
-      Enable Transfers: Yes
-      Allowed IPs: 192.168.1.11, 192.168.1.12
-      Transfer Type: AXFR (Full Transfer)
-      Notify Secondaries: Yes
-
-   .. figure:: _static/images/technitium/dns_zone_transfer_config.png
-      :width: 600
-      :alt: Zone Transfer Configuration
-
-      Figure : DNS Zone Transfer Configuration
-
-2. **Monitor Zone Transfer Status**
-   
-   - **Transfer Logs**: View successful/failed transfers
-   - **Last Transfer**: Check when secondary servers last synchronized
-   - **Transfer Statistics**: Monitor transfer frequency and size
-
-   .. figure:: _static/images/technitium/dns_zone_transfer_status.png
-      :width: 600
-      :alt: Zone Transfer Status
-
-      Figure : Zone Transfer Status Monitoring
-
 Advanced DNS Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1816,159 +1503,6 @@ Advanced DNS Configuration
 
       Figure : DNS Forwarders Configuration
 
-2. **Conditional Forwarders**
-   
-   For corporate environments with internal DNS servers:
-
-   .. code-block:: text
-
-      Domain: corp.company.com
-      Forwarders: 10.0.0.10, 10.0.0.11
-      
-      Domain: ad.company.com
-      Forwarders: 172.16.0.5, 172.16.0.6
-
-   .. figure:: _static/images/technitium/dns_conditional_forwarders.png
-      :width: 600
-      :alt: Conditional DNS Forwarders
-
-      Figure : Conditional DNS Forwarders
-
-**Step 10: DNS Cache Management**
-
-1. **View DNS Cache**
-   
-   - Navigate to **"Cache"** in main menu
-   - View cached DNS records and their TTL values
-   - Monitor cache hit/miss statistics
-
-   .. figure:: _static/images/technitium/dns_cache_view.png
-      :width: 600
-      :alt: DNS Cache View
-
-      Figure : DNS Cache Management Interface
-
-2. **Clear DNS Cache**
-   
-   - **Clear All Cache**: Remove all cached records
-   - **Clear Specific Domain**: Remove cache for specific domains
-   - **Cache Statistics**: Monitor cache performance
-
-   .. figure:: _static/images/technitium/dns_cache_clear.png
-      :width: 600
-      :alt: Clear DNS Cache
-
-      Figure : DNS Cache Clearing Operations
-
-DHCP-DNS Integration
-~~~~~~~~~~~~~~~~~~~~
-
-**Step 11: Dynamic DNS Updates**
-
-1. **Enable Dynamic Updates**
-   
-   - In zone configuration, enable **"Dynamic Updates"**
-   - Allow DHCP server to update DNS records automatically
-
-   .. code-block:: text
-
-      Dynamic Updates: Enabled
-      Update Policy: Allow updates from DHCP server
-      Secure Updates: Enabled (recommended)
-
-   .. figure:: _static/images/technitium/dns_dynamic_updates.png
-      :width: 600
-      :alt: DNS Dynamic Updates
-
-      Figure : DNS Dynamic Updates Configuration
-
-2. **View DHCP-Generated Records**
-   
-   - Navigate to your forward zone
-   - View automatically created A records for DHCP clients
-   - Check reverse zone for automatically created PTR records
-
-   .. figure:: _static/images/technitium/dns_dhcp_generated_records.png
-      :width: 600
-      :alt: DHCP Generated DNS Records
-
-      Figure : DHCP Generated DNS Records
-
-DNS Monitoring and Troubleshooting
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Step 12: DNS Query Logs**
-
-1. **Enable Query Logging**
-   
-   - Navigate to **"Settings"** → **"Logging"**
-   - Enable DNS query logging
-
-   .. code-block:: text
-
-      Query Logging: Enabled
-      Log Level: Information
-      Log File Size: 100 MB
-      Log Retention: 30 days
-
-   .. figure:: _static/images/technitium/dns_query_logging.png
-      :width: 600
-      :alt: DNS Query Logging
-
-      Figure : DNS Query Logging Configuration
-
-2. **View Query Logs**
-   
-   - Navigate to **"Logs"** → **"Query Logs"**
-   - Filter logs by:
-     - Source IP address
-     - Query type (A, AAAA, CNAME, etc.)
-     - Domain name
-     - Time range
-
-   .. figure:: _static/images/technitium/dns_query_logs_view.png
-      :width: 600
-      :alt: DNS Query Logs View
-
-      Figure : DNS Query Logs Interface
-
-**Step 13: DNS Performance Monitoring**
-
-1. **DNS Statistics Dashboard**
-   
-   - Navigate to **"Dashboard"** for overview statistics
-   - Monitor:
-     - Queries per second
-     - Response times
-     - Cache hit ratios
-     - Zone health status
-
-   .. figure:: _static/images/technitium/dns_performance_stats.png
-      :width: 600
-      :alt: DNS Performance Statistics
-
-      Figure : DNS Performance Statistics
-
-2. **DNS Testing Tools**
-   
-   Use built-in tools to test DNS functionality:
-
-   .. code-block:: bash
-
-      # Test from command line
-      nslookup karios-node-01.karios.local [TECHNITIUM-IP]
-      
-      # Test reverse DNS
-      nslookup 192.168.1.50 [TECHNITIUM-IP]
-      
-      # Test DNS forwarding
-      nslookup google.com [TECHNITIUM-IP]
-
-   .. figure:: _static/images/technitium/dns_testing_tools.png
-      :width: 600
-      :alt: DNS Testing Tools
-
-      Figure : DNS Testing and Validation Tools
 
 View MAC Addresses and DHCP Information
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1997,30 +1531,6 @@ View MAC Addresses and DHCP Information
 
       Figure : DHCP Leases with MAC Addresses
 
-2. **Search and Filter DHCP Information**
-   
-   - **Filter by MAC Address**: Search for specific hardware
-   - **Filter by IP Range**: View leases in specific subnets
-   - **Filter by Host Name**: Find devices by name
-   - **Export Lease Data**: Generate reports for documentation
-
-   .. figure:: _static/images/technitium/dhcp_search_filter.png
-      :width: 600
-      :alt: DHCP Search and Filter
-
-      Figure : DHCP Search and Filter Options
-
-3. **MAC Address Vendor Identification**
-   
-   - **Automatic Vendor Detection**: System identifies device manufacturers
-   - **Device Type Classification**: Categorize devices (computer, mobile, IoT)
-   - **Security Monitoring**: Track unknown devices on network
-
-   .. figure:: _static/images/technitium/dhcp_vendor_identification.png
-      :width: 600
-      :alt: MAC Address Vendor Identification
-
-      Figure : MAC Address Vendor Identification
 
 **Complete Configuration Checklist**
 
