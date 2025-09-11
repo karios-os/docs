@@ -57,6 +57,108 @@ Red Hat OpenShift is an enterprise Kubernetes platform that provides developer a
 * Web console and CLI management tools
 * Support for hybrid and multi-cloud deployments
 
+
+
+1. Creating the OpenShift Cluster
+-----------------------------------------
+
+**Step 1.1: Creating the cluster machine in Karios UI**
+
+- Click on the **Setup Kubernetes** button in the Karios UI.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-1.png
+   :alt: Setup Kubernetes Button
+
+
+.. image:: _static/images/openshift/op-2.png
+   :alt: Setup Kubernetes Button
+
+
+**Step 1.2: Enter the Cluster Details**
+
+- **Cluster name**: Enter a DNS-compliant name (e.g., ``op-test``).
+
+.. note::
+   The ``op`` prefix is added to make the cluster name unique. ``op`` defines openshift.
+
+
+
+.. image:: _static/images/openshift/op-3.png
+   :alt: Attach Ubuntu Image
+
+**Step 1.2: Add Control Plane Nodes**
+
+- Click on **Add Control Plane**.
+
+.. image:: _static/images/openshift/op-4.png
+   :alt: Control Plane Config
+
+- Select the server and VM specs (CPU, memory, disk).
+
+.. note::
+   Minimum requirements:  
+   - 4 vCPUs  
+   - 4 GB memory  
+   - 80 GB disk space  
+
+   Recommended: **3 control plane nodes** for high availability.  
+   Control plane nodes must be **odd in number** to avoid split-brain issues.
+
+
+.. image:: _static/images/openshift/op-5.png
+   :alt: Control Plane Config
+
+- Click **Save** to confirm configuration.  
+- Use the "+" button to add more nodes.
+
+.. image::  _static/images/openshift/op-6.png
+   :alt: Control Plane Config
+
+**Step 1.3: Add Worker Nodes**
+
+- Click on **Add Worker Node**.  
+
+.. image:: _static/images/openshift/op-7.png
+   :alt: Control Plane Config
+
+- Select server and VM specs.
+
+.. note::
+   Minimum requirements:  
+   - 4 vCPUs  
+   - 4 GB memory  
+   - 80 GB disk space  
+
+.. image:: _static/images/openshift/op-8.png
+   :alt: Control Plane Config
+
+.. note::
+   Recommended: At least **1 worker node**.  
+   The number of worker nodes can be even or odd, depending on requirements.
+
+- Click **Save**.  
+- Use the "+" button to add more worker nodes.
+
+**Step 1.4: Add Haproxies**
+During the cluster configuration process, you will see an option for **HAProxy Setup**.
+
+.. image:: _static/images/openshift/op-9.png
+   :alt: HAProxy Setup in Karios
+
+- **Setup HAProxy (checkbox)**:  
+  Selecting this option will enable HAProxy for your cluster.  
+
+.. note::
+   Enabling HAProxy will create **two HAProxy instances** in FreeBSD jails.  
+   These are required for **OpenShift cluster creation** and are used to handle load balancing between the control plane nodes in a high availability (HA) configuration.
+
+- If you want to proceed with a highly available deployment, ensure this box is **checked**.
+- If HAProxy is not needed (for example, in test or single-node setups), you may leave it unchecked.
+
+Once the configuration is complete, click on **Create OpenShift Cluster** to finalize the deployment.
+
+
+
 **Overview:**
 
 OpenShift on Karios combines the operational simplicity of Karios infrastructure management with the comprehensive platform capabilities of OpenShift. This combination provides organizations with a powerful foundation for containerized application development and deployment, offering both the flexibility of Kubernetes and the operational maturity expected in enterprise environments.
@@ -104,6 +206,9 @@ Choose the appropriate platform architecture for your Karios installation.
 
 This option provides the flexibility needed for Karios deployments across different infrastructure environments.
 
+.. image:: _static/images/openshift/Redhat-4.png
+   :alt: Platform Agnostic Selection
+
 Step 4: Installation Method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -113,6 +218,9 @@ Choose your preferred installation method for the OpenShift cluster.
 
 The interactive installation method provides a guided setup process that's perfect for getting started with OpenShift on Karios.
 
+.. image:: _static/images/openshift/Redhat-5.png
+   :alt: Interactive Installation Selection
+
 Step 5: Configure Cluster Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -120,10 +228,13 @@ You'll now see the "Install OpenShift with the Assisted Installer" form. Fill ou
 
 **Required Configuration:**
 
-* **Cluster name**: Enter a DNS-compliant name (e.g., "upi")
+* **Cluster name**: Enter a DNS-compliant name (e.g., "op-test1")
 * **Base domain**: Enter your domain (e.g., "karios.ai")
 * **OpenShift version**: Select appropriate version (e.g., OpenShift 4.19.6)
 * **CPU architecture**: Keep as x86_64
+
+.. image:: _static/images/openshift/Redhat-6.png
+   :alt: Cluster Details Configuration
 
 .. important::
    The cluster name must follow DNS naming requirements. See the `DNS requirements documentation <https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/installing_an_on-premise_cluster_with_the_agent-based_installer/preparing-to-install-with-agent-based-installer#agent-install-dns-none_preparing-to-install-with-agent-based-installer>`_ for detailed guidelines.
@@ -141,15 +252,23 @@ Continue configuring the cluster with these important settings:
 
 * Number of control plane nodes: **"3 (highly available cluster)"**
 
+
 **Network Configuration:**
 
 * Hosts' network configuration: Select **"Static IP, bridges, and bonds"**
+
+
+.. image:: _static/images/openshift/Redhat-7.png
+   :alt: Additional Cluster Settings
 
 **Optional Settings:**
 
 * Leave "Edit pull secret" unchecked (unless you need custom registries)
 * Leave "Include custom manifests" unchecked (unless you need advanced configuration)
 * Disk encryption toggles can be left as default (off) or enabled based on security requirements
+
+
+
 
 Step 7: Proceed to Network Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -170,6 +289,10 @@ You'll now see the "Static network configurations" page. Configure the network s
 * Keep **"Form view"** selected (recommended for basic configurations)
 * Note: YAML view is available for advanced configurations if needed
 
+
+.. image:: _static/images/openshift/Redhat-8.png
+   :alt: Static Network Configuration
+
 **Network-wide Configurations:**
 
 * **Networking stack type**: Select "IPv4" (recommended)
@@ -180,6 +303,10 @@ You'll now see the "Static network configurations" page. Configure the network s
 * **DNS**: Enter your DNS server IP (e.g., "192.168.116.240")
 
 **IPv4 Network Settings:**
+
+
+.. image:: _static/images/openshift/Redhat-9.png
+   :alt: IPv4 Network Settings
 
 * **Subnet**: Configure your network range (e.g., "192.168.116.0 / 24")
 * This will show the available IP range (192.168.116.0 - 192.168.116.255)
@@ -201,6 +328,10 @@ For each host (Host 1, Host 2, Host 3, Host 4), configure the MAC address to IP 
 * **Host 2**: MAC 58:9c:fc:0e:32:8b → IP 192.168.116.61
 * **Host 3**: MAC 58:9c:fc:06:38:a0 → IP 192.168.116.62
 * **Host 4**: MAC 58:9c:fc:0c:b0:e1 → IP 192.168.116.63
+
+.. image:: _static/images/openshift/op-10.png
+   :alt: Host Specific Network Configuration
+
 
 **How to Configure:**
 
@@ -252,6 +383,9 @@ You'll now see the "Operators" selection page where you can choose additional Op
 .. note::
    Choose only the operators you need for your initial deployment. Additional operators can be installed later through the OpenShift console or OperatorHub.
 
+.. image:: _static/images/openshift/op-11.png
+   :alt: Host Specific Network Configuration
+
 Step 12: Continue to Host Discovery
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -289,6 +423,9 @@ You'll now see the "Add hosts" dialog for generating the Discovery ISO. This ISO
 .. warning::
    Make sure to add your SSH public key before generating the ISO. This is essential for accessing and troubleshooting your Karios nodes during the installation process.
 
+.. image:: _static/images/openshift/op-12.png
+   :alt: Generate Discovery ISO
+
 Step 14: Download Discovery ISO
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -307,7 +444,10 @@ After generating the Discovery ISO, you'll need to download it to deploy on your
 * This is particularly useful for automated deployments or remote systems
 
 .. tip::
-   Once you have the Discovery ISO, you can boot your Karios nodes from it. The nodes will automatically register with the cluster and appear in the Host discovery interface for further configuration.
+   Once you have the Discovery ISO, you can boot your Karios nodes from it. The nodes will automatically register with the cluster and appear in the Host discovery interface for further configuration
+   
+.. image:: _static/images/openshift/op-13.png
+   :alt: Download Discovery ISO
 
 Step 15: Download ISO in Karios UI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -366,6 +506,15 @@ Now attach the downloaded Discovery ISO to your designated OpenShift nodes and p
 * Ensure the ISO is set as the primary boot device
 * Configure the boot order to prioritize CD/DVD/ISO boot
 
+.. image:: _static/images/openshift/op-14.png
+   :alt: Attach ISO to Nodes
+
+.. image:: _static/images/openshift/op-15.png
+   :alt: attach ISO to Nodes
+
+.. image:: _static/images/openshift/Redhat-12.png
+   :alt: attach ISO to Nodes
+
 **Start the Machines:**
 
 * **Power on all 4 OpenShift nodes** simultaneously or in sequence
@@ -423,6 +572,9 @@ Return to the OpenShift console and monitor the Host discovery section. Your nod
 .. note::
    If nodes don't appear, check the "Information & Troubleshooting" section for minimum hardware requirements and VM reboot configuration guidance.
 
+.. image:: _static/images/openshift/Redhat-10.png
+   :alt: Node Discovery
+
 Step 19: Proceed to Storage Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -434,6 +586,9 @@ This will take you to the storage configuration phase where you can set up persi
 
 .. tip::
    Your Karios nodes have successfully registered with OpenShift and are ready for cluster deployment. The static network configuration is working correctly.
+
+.. image:: _static/images/openshift/Redhat-11.png
+   :alt: Storage Configuration
 
 Step 20: Configure Networking Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -451,6 +606,9 @@ After completing the Storage configuration, you'll reach the Networking section.
 * Provides full control over network configuration
 * Essential for enterprise Karios deployments with external load balancing
 * Enables integration with existing network infrastructure
+
+.. image:: _static/images/openshift/Redhat-13a.png
+   :alt: User-Managed Networking Selection
 
 **Additional Network Configuration:**
 
@@ -485,7 +643,16 @@ With all configurations complete, finalize your OpenShift installation:
 * **Post-installation configuration** - Add load balancers and additional services
 * **Cluster validation** - Verify successful OpenShift deployment on Karios
 
+
+.. image:: _static/images/openshift/Redhat-14.png
+   :alt: User-Managed Networking Selection
+
+
+
 **Congratulations!** You have successfully configured OpenShift installation on your Karios infrastructure with static networking, discovered nodes, and user-managed networking for flexible load balancer integration.
+
+.. image:: _static/images/openshift/Redhat-17.png
+   :alt: User-Managed Networking Selection
 
 Configuration Summary
 ^^^^^^^^^^^^^^^^^^^^^
@@ -504,8 +671,8 @@ Configuration Summary
 .. note::
    The above detailed steps provide comprehensive guidance for deploying OpenShift on Karios with static networking configuration, eliminating DHCP dependencies for enterprise environments.
 
-Open Source Kubernetes on Ubuntu
----------------------------------
+Open Source Kubernetes on Ubuntu with Karios
+---------------------------------------------
 
 Open source Kubernetes provides the foundational container orchestration platform without vendor-specific additions. Running Kubernetes on Ubuntu through Karios gives you complete control over your cluster configuration while benefiting from Ubuntu's extensive package ecosystem and long-term support options.
 
@@ -525,14 +692,274 @@ This approach is ideal for organizations that prefer to implement their own oper
 
 **Cluster Installation Steps:**
 
-.. note::
-   Detailed installation steps will be provided here, including:
+This guide provides the steps for deploying a **high availability Kubernetes cluster on Ubuntu** through **Karios**.
 
-   * Ubuntu system preparation on Karios
-   * Container runtime installation and configuration
-   * Kubernetes component installation (kubelet, kubeadm, kubectl)
-   * Cluster initialization and node joining
-   * Network plugin configuration and cluster validation
+1. Creating the Ubuntu Kubernetes Cluster
+-----------------------------------------
+
+**Step 1.1: Creating the cluster machine in Karios UI**
+
+- Click on the **Setup Kubernetes** button in the Karios UI.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-1.png
+   :alt: Setup Kubernetes Button
+
+**Step 1.2: Enter the Cluster Details**
+
+- **Cluster name**: Enter a DNS-compliant name (e.g., ``ub-test1``).
+
+.. note::
+   The ``ub`` prefix is added to make the cluster name unique. ``ub`` defines Ubuntu.
+
+- **Enter the username and password** for the cluster.
+
+.. note::
+   These credentials are used to SSH into the VMs.  
+   Avoid using **root** or **admin** as the username.
+
+- **Attach the image** to the cluster.
+
+.. note::
+   The image should be an **Ubuntu cloud image (.img)**.  
+   The image must be uploaded to the Control Center in the Karios UI beforehand.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-2.png
+   :alt: Attach Ubuntu Image
+
+**Step 1.3: Add a Bootstrap Node**
+
+- Click on the **Add Control Node** button.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-3.png
+   :alt: Bootstrap Node Config
+
+- Select the server to add the Kubernetes VM.
+- Select the CPU, memory, and disk size.
+
+.. note::
+   Minimum requirements for the control node:  
+   - 4 vCPUs  
+   - 4 GB memory  
+   - 80 GB disk space
+
+
+
+- Optionally, choose additional tech stack components.
+
+.. note::
+   Supported tech stack includes:  
+   - Prometheus & Grafana (for monitoring)  
+   - ArgoCD (for GitOps)
+
+.. note::
+   - **Prometheus & Grafana**: Collect and visualize cluster metrics.  
+   - **ArgoCD**: Manage the Kubernetes cluster via GitOps workflows.
+
+- Click **Save** to confirm bootstrap node configuration.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu3a.png
+   :alt: Bootstrap Node Config
+
+
+**Step 1.4: Add Control Plane Nodes**
+
+- Click on **Add Control Plane**.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-4.png
+   :alt: Control Plane Config
+
+- Select the server and VM specs (CPU, memory, disk).
+
+.. note::
+   Minimum requirements:  
+   - 4 vCPUs  
+   - 4 GB memory  
+   - 80 GB disk space  
+
+   Recommended: **3 control plane nodes** for high availability.  
+   Control plane nodes must be **odd in number** to avoid split-brain issues.
+
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-5.png
+   :alt: Control Plane Config
+
+- Click **Save** to confirm configuration.  
+- Use the "+" button to add more nodes.
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-6.png
+   :alt: Control Plane Config
+
+**Step 1.5: Add Worker Nodes**
+
+- Click on **Add Worker Node**.  
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-7.png
+   :alt: Control Plane Config
+
+- Select server and VM specs.
+
+.. note::
+   Minimum requirements:  
+   - 4 vCPUs  
+   - 4 GB memory  
+   - 80 GB disk space  
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-8.png
+   :alt: Control Plane Config
+
+.. note::
+   Recommended: At least **1 worker node**.  
+   The number of worker nodes can be even or odd, depending on requirements.
+
+- Click **Save**.  
+- Use the "+" button to add more worker nodes.
+
+
+
+2. SSH and Joining VMs to the Cluster
+-------------------------------------
+
+**Step 2.1: SSH into the Bootstrap Node**
+
+.. code-block:: bash
+
+   ssh <username>@<bootstrap-node-ip>
+
+**Step 2.2: Check Cluster Status**
+
+.. code-block:: bash
+
+   sudo k8s status
+
+
+**Step 2.3: Get Join Token for Control Nodes**
+
+.. code-block:: bash
+
+   sudo k8s get-join-token <vmname>
+
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-9.png
+   :alt: Kubernetes Status
+
+**Step 2.4–2.6: Join Control Plane Nodes**
+
+- SSH into each control plane node:
+
+.. code-block:: bash
+
+   ssh <username>@<control-plane-ip>
+
+- Join to cluster:
+
+.. code-block:: bash
+
+   sudo k8s join-cluster --token <token>
+
+
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-10.png
+   :alt: Kubernetes Status
+
+Repeat for all control plane nodes.
+
+**Step 2.7: Get Join Token for Worker Nodes**
+
+.. code-block:: bash
+
+   sudo k8s get-join-token <vmname> --worker
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-11.png
+   :alt: Worker Join Token
+
+**Step 2.8–2.9: Join Worker Nodes**
+
+- SSH into each worker node:
+
+.. code-block:: bash
+
+   ssh <username>@<worker-node-ip>
+
+- Join to cluster:
+
+.. code-block:: bash
+
+   sudo k8s join-cluster <token>
+
+Repeat for all worker nodes.
+
+**Step 2.10: Verify Cluster High Availability**
+
+.. code-block:: bash
+
+   sudo k8s status
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-13.png
+   :alt: HA Cluster Status
+
+
+3. Accessing the Tech Stack
+---------------------------
+
+3.1 Prometheus and Grafana
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Step 3.1.1: Verify Deployment**
+
+.. code-block:: bash
+
+   sudo k8s kubectl get pods -n observability
+   sudo k8s kubectl get svc -n observability
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-14.png
+   :alt: HA Cluster Status
+
+
+.. note::
+   - Namespace: ``observability``  
+   - Grafana runs on port ``30090``  
+   - Prometheus runs on port ``30091``
+
+
+**Step 3.1.2: Access Grafana Dashboard**
+
+.. code-block:: none
+
+   http://<node-ip>:30090
+   http://<fqdn>:30090
+
+
+**Step 3.1.3: Access Prometheus Dashboard**
+
+.. code-block:: none
+
+   http://<node-ip>:30091
+   http://<fqdn>:30091
+
+
+3.2 ArgoCD
+~~~~~~~~~~
+
+**Step 3.2.1: Verify Deployment**
+
+.. code-block:: bash
+
+   sudo k8s kubectl get pods -n argocd
+   sudo k8s kubectl get svc -n argocd
+
+.. image:: _static/images/UbuntuKubernetes/ubuntu-15.png
+   :alt: Grafana Dashboard
+
+.. note::
+   - Namespace: ``argocd``  
+   - Dashboard runs on port ``31800``
+
+**Step 3.2.2: Access ArgoCD Dashboard**
+
+.. code-block:: none
+
+   http://<node-ip>:31800
+   http://<fqdn>:31800
 
 Next Steps
 ----------
