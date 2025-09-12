@@ -97,6 +97,12 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Technitium DHCP & DNS Setup Guide
+
+   technitium/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: Appendices
    
    appendices/index
