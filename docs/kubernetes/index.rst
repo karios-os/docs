@@ -33,16 +33,180 @@ Sidero is a bare-metal provisioning system designed specifically for Kubernetes 
 
 Sidero simplifies the complexity of bare-metal Kubernetes deployments by providing automated discovery, provisioning, and lifecycle management of physical servers. The platform uses a control plane approach where a management cluster orchestrates the deployment and management of workload clusters across your bare-metal infrastructure.
 
-**Cluster Installation Steps:**
+1. OmniServer Deployment Steps
+------------------------------
+
+**Step 1.1: Creating OmniServer VM**
+
+- Click on the **Setup Kubernetes** button in the Karios UI.
+
+.. image:: _static/images/omni/om-1.png
+   :alt: Setup Kubernetes Button
+
+
+**Step 1.2: Setup Keycloak**
+
+- Click on the **Keycloak** button in the UI.
+
+.. image:: _static/images/omni/om-2.png
+   :alt: Setup Keycloak Button
+
+- This creates a **Keycloak instance** in a FreeBSD jail.  
+- Wait for the Keycloak jail to be created.
 
 .. note::
-   Detailed installation steps will be provided here, including:
+   Keycloak is an open-source identity and access management solution.  
+   It provides single sign-on (SSO), user federation, identity brokering, and social login.  
+   In Sidero, Keycloak manages authentication and authorization for Kubernetes clusters.
 
-   * Prerequisites and hardware requirements
-   * Management cluster setup
-   * Server discovery and registration
-   * Workload cluster deployment
-   * Post-installation configuration and validation
+   Default credentials:  
+   - **Master realm** → ``admin / adminadmin``  
+   - **Omni realm** → ``user@karios.ai / Omni12345``
+
+.. image:: _static/images/omni/om-3.png
+   :alt: Keycloak Setup Complete
+
+
+**Step 1.3: Upload TLS Certificate and Key**
+
+- Click on the **Upload Certificates** button in the UI.
+
+.. image:: _static/images/omni/om-4.png
+   :alt: Upload Certificates Button
+
+- Upload the **wildcard TLS certificate and key** for your domain.
+
+.. note::
+   The TLS certificate secures communication between Sidero components and the Kubernetes clusters.  
+   Use a **wildcard certificate** to cover all subdomains.
+
+.. image:: _static/images/omni/om-5.png
+   :alt: TLS Certificate Upload
+
+
+**Step 1.4: Create OmniServer VM**
+
+- Click on the **Setup Omni Server** button in the UI.  
+- Enter OmniServer VM details (username and password).  
+- Attach an **Ubuntu cloud image (.img)**.
+
+.. note::
+   The Ubuntu image must already be uploaded to the **Control Center** in the Karios UI.
+
+.. image:: _static/images/omni/om-6.png
+   :alt: Setup Omni Server Button
+
+- Select server, storage, and network switch.  
+- Enter VM specs (**CPU, memory, disk**) and click **Save**.
+
+.. image:: _static/images/omni/om-7.png
+   :alt: OmniServer VM Config
+
+
+**Step 1.5: Access the OmniServer Dashboard**
+
+- Once created, access the OmniServer dashboard at:
+
+  ``https://omni.<basedomain>``
+
+- You will be redirected to the Keycloak login page for the **omni realm**.
+
+.. note::
+   Use credentials: ``user@karios.ai / Omni12345``
+
+.. image:: _static/images/omni/om-9.png
+   :alt: Omni Dashboard
+.. image:: _static/images/omni/om-10.png
+   :alt: Keycloak Login
+
+- After login, you will be redirected to the **OmniServer Dashboard**.
+
+
+2. Cluster Installation Steps
+-----------------------------
+
+**Step 2.1: Download the ISO**
+
+- In the OmniServer dashboard, click **Download ISO**.  
+- Select ISO type, Talos version, and click **Generate ISO**.
+
+.. note::
+   For this demo, use ISO type: ``amd64-iso``.
+
+.. image:: _static/images/omni/om.png
+   :alt: Generate ISO
+
+
+**Step 2.2: Upload the ISO in Karios UI**
+
+- In the Karios UI → **Control Center → ISO tab**.  
+- Click **Choose File**, select the ISO, then **Upload**.
+
+.. image:: _static/images/omni/om.png
+   :alt: Upload ISO
+
+
+**Step 2.3: Create Cluster Machines in Karios UI**
+
+- Click on **Setup Kubernetes**.  
+- Enter cluster details and select the uploaded ISO.
+
+.. note::
+   Use prefix ``om`` in the cluster name to identify Omni clusters.
+
+.. image:: _static/images/omni/om-12.png
+   :alt: Cluster Details
+
+- Select server, storage pool, and network switch.  
+- Enter VM specs and click **Update**.  
+- Use the "+" button to add multiple VMs.  
+- Click on **Omni VMs** to create the machines.
+
+.. image:: _static/images/omni/om-13.png
+   :alt: Add VM Config
+.. image:: _static/images/omni/om-14.png
+   :alt: Omni VM Creation
+
+
+**Step 2.4: VM Discovery in OmniServer Dashboard**
+
+- Power on the VMs.  
+- They will appear under the **Machines** tab in the dashboard.
+
+.. image:: _static/images/omni/om-15.png
+   :alt: Machines Tab
+
+
+**Step 2.5: Create the Cluster in OmniServer Dashboard**
+
+- Go to the **Clusters** tab → **Create Cluster**.  
+- Enter cluster name, select Talos version, pool configuration.  
+- Assign roles to machines: **CP0 (control plane)**, **W0 (worker)**.
+
+.. note::
+   Minimum requirements:  
+   - 1 control plane node (CP0)  
+   - 1 worker node (W0)
+
+.. image:: _static/images/omni/om-16.png
+   :alt: Create Cluster Button
+.. image:: _static/images/omni/om-17.png
+   :alt: Cluster Role Assignment
+
+
+**Step 2.6: Monitor Cluster Installation**
+
+- In the **Clusters** tab, click on the cluster name.  
+- View details and monitor installation progress.
+
+.. image:: _static/images/omni/om-18.png
+   :alt: Cluster Installation Progress
+
+- Once installation completes, status changes to **Ready**.
+
+.. image:: _static/images/omni/om-19.png
+   :alt: Cluster Ready
+
 
 OpenShift on Karios
 -------------------
