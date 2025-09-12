@@ -598,8 +598,6 @@ After license validation and resource allocation, users have access to the follo
    :alt: Node Management
    :align: center
 
-
-
 User Management & Permissions
 -----------------------------
 
