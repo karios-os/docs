@@ -2,7 +2,7 @@ import os
 import sys
 
 # -- Project information -----------------------------------------------------
-project = 'DocGod'
+project = 'Karios'
 copyright = '2024, Karios Team'
 author = 'Karios Team'
 release = '1.0'
@@ -58,8 +58,8 @@ html_theme_options = {
 #html_favicon = '_static/images/favicon.ico'
 
 # Additional options
-html_title = 'DocGod'
-html_short_title = 'DocGod'
+html_title = 'Karios'
+html_short_title = 'Karios'
 html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = True
