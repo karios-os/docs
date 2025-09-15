@@ -83,7 +83,7 @@ intersphinx_mapping = {
 }
 extensions = [
     # your other extensions
-    'sphinxcontrib.spelling',
+    #'sphinxcontrib.spelling',
 ]
 
 # Spelling configuration
