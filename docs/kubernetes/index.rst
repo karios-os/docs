@@ -78,7 +78,7 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
 
 .. note::
    The TLS certificate secures communication between Sidero components and the Kubernetes clusters.  
-   Use a **wildcard certificate** to cover all subdomains.
+   Use a **wildcard certificate** to cover all subdomains. and also combine the ca bundle and the certificate in one file.
 
 .. image:: _static/images/omni/om-5.png
    :alt: TLS Certificate Upload
@@ -133,17 +133,21 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
 .. note::
    For this demo, use ISO type: ``amd64-iso``.
 
-.. image:: _static/images/omni/om.png
+.. image:: _static/images/omni/omd-1.png
    :alt: Generate ISO
 
+.. image:: _static/images/omni/omd-2.png
+   :alt: Generate ISO
 
 **Step 2.2: Upload the ISO in Karios UI**
 
 - In the Karios UI → **Control Center → ISO tab**.  
 - Click **Choose File**, select the ISO, then **Upload**.
 
-.. image:: _static/images/omni/om.png
-   :alt: Upload ISO
+.. note::
+   Refer the Upload ISO section in the Karios documentation for detailed steps.
+   The uploaded ISO will appear under **Available ISO's**.
+
 
 
 **Step 2.3: Create Cluster Machines in Karios UI**
@@ -161,12 +165,15 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
 - Enter VM specs and click **Update**.  
 - Use the "+" button to add multiple VMs.  
 - Click on **Omni VMs** to create the machines.
+- After creation start all the vms from the Karios UI.
 
 .. image:: _static/images/omni/om-13.png
    :alt: Add VM Config
 .. image:: _static/images/omni/om-14.png
    :alt: Omni VM Creation
 
+.. image:: _static/images/omni/omd-3.png
+   :alt: Omni VM Creation
 
 **Step 2.4: VM Discovery in OmniServer Dashboard**
 
@@ -192,20 +199,31 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
    :alt: Create Cluster Button
 .. image:: _static/images/omni/om-17.png
    :alt: Cluster Role Assignment
-
+.. image:: _static/images/omni/om-18.png
+   :alt: Cluster Role Assignment
 
 **Step 2.6: Monitor Cluster Installation**
 
 - In the **Clusters** tab, click on the cluster name.  
 - View details and monitor installation progress.
 
-.. image:: _static/images/omni/om-18.png
+.. image:: _static/images/omni/om-19.png
    :alt: Cluster Installation Progress
 
-- Once installation completes, status changes to **Ready**.
+- Once installation completes, status of the cluster changes to **Ready** and nodes show **Running** status.
 
-.. image:: _static/images/omni/om-19.png
+
+.. note::
+   The installation process may take several minutes.  
+   and might have to reboot the vms manually from the Karios UI if they are stuck in provisioning state.
+
+- you can download the kubeconfig file from the OmniServer dashboard to access the Kubernetes cluster.
+
+.. image:: _static/images/omni/om-20.png
    :alt: Cluster Ready
+
+
+
 
 
 OpenShift on Karios
