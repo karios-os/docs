@@ -78,7 +78,7 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
 
 .. note::
    The TLS certificate secures communication between Sidero components and the Kubernetes clusters.  
-   Use a **wildcard certificate** to cover all subdomains. and also combine the ca bundle and the certificate in one file.
+   Use a **wildcard certificate** to cover all subdomains. Combine the CA Bundle and the certificate in one file.
 
 .. image:: _static/images/omni/om-5.png
    :alt: TLS Certificate Upload
@@ -96,7 +96,7 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
 .. image:: _static/images/omni/om-6.png
    :alt: Setup Omni Server Button
 
-- Select server, storage, and network switch.  
+- Select **Server**, **Storage**, and **Network Switch**.  
 - Enter VM specs (**CPU, memory, disk**) and click **Save**.
 
 .. image:: _static/images/omni/om-7.png
