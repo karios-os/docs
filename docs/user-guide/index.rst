@@ -5283,6 +5283,1206 @@ Perform regular maintenance operations to ensure optimal VM performance:
 - **Configuration Changes**: Modify VM settings through the Hardware tab as needed
 - **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
 
+Virtual Machine CLI Commands
+----------------------------
+
+VM Creation and Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Basic VM Creation
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Create a new virtual machine
+   vm create -t template_name vm_name
+
+   # Create VM with custom resources
+   vm create -c 4 -m 8G -d 50G vm_name
+
+   # Create VM from ISO
+   vm create -i /path/to/os.iso -c 2 -m 4G vm_name
+
+Advanced VM Creation
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Create VM with specific disk type
+   vm create -c 4 -m 8G -d 100G -t zvol vm_name
+
+   # Create VM with multiple disks
+   vm create -c 4 -m 8G -d disk0:50G,disk1:100G vm_name
+
+   # Create VM with network configuration
+   vm create -c 4 -m 8G -s bridge0 -n auto vm_name
+
+VM Management Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting and Stopping VMs
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Start a virtual machine
+   vm start vm_name
+
+   # Start VM with console access
+   vm start -c vm_name
+
+   # Start VM with specific boot options
+   vm start -B "-s 31,lpc -l com1,stdio" vm_name
+
+   # Stop a virtual machine
+   vm stop vm_name
+
+   # Force stop (power off)
+   vm poweroff vm_name
+
+   # Restart a virtual machine
+   vm restart vm_name
+
+VM Status and Information
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # List all virtual machines
+   vm list
+
+   # Show detailed VM information
+   vm info vm_name
+
+   # Show VM configuration
+   vm config vm_name
+
+   # Display VM resource usage
+   vm status vm_name
+
+   # Show VM console output
+   vm console vm_name
+
+Resource Management
+~~~~~~~~~~~~~~~~~~~
+
+CPU and Memory Management
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Modify VM CPU count
+   vm config vm_name cpu=8
+
+   # Adjust VM memory
+   vm config vm_name memory=16G
+
+   # Set CPU topology
+   vm config vm_name cpu=4 cores=2 threads=2
+
+   # Configure CPU affinity
+   vm config vm_name cpuset=0,1,2,3
+
+Storage Management
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Add disk to VM
+   vm disk add vm_name disk2 50G
+
+   # Remove disk from VM
+   vm disk remove vm_name disk1
+
+   # Resize VM disk
+   vm disk resize vm_name disk0 100G
+
+   # Create snapshot of VM disk
+   vm snapshot create vm_name@snapshot_name
+
+   # List VM snapshots
+   vm snapshot list vm_name
+
+   # Rollback to snapshot
+   vm snapshot rollback vm_name@snapshot_name
+
+Network Configuration
+~~~~~~~~~~~~~~~~~~~~~~
+
+Network Interface Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Add network interface
+   vm network add vm_name -t bridge -b bridge0
+
+   # Remove network interface
+   vm network remove vm_name tap0
+
+   # Configure VM network
+   vm config vm_name network0_type=bridge network0_switch=bridge0
+
+   # Set MAC address
+   vm config vm_name network0_mac=00:a0:98:12:34:56
+
+   # Configure VLAN
+   vm config vm_name network0_vlan=100
+
+Virtual Switch Operations
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Create virtual switch
+   vm switch create switch_name
+
+   # Add interface to switch
+   vm switch add switch_name em0
+
+   # Remove interface from switch
+   vm switch remove switch_name em0
+
+   # List virtual switches
+   vm switch list
+
+   # Show switch details
+   vm switch info switch_name
+
+Template Management
+~~~~~~~~~~~~~~~~~~~~
+
+Creating and Managing Templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Create template from existing VM
+   vm template create vm_name template_name
+
+   # List available templates
+   vm template list
+
+   # Show template details
+   vm template info template_name
+
+   # Delete template
+   vm template delete template_name
+
+   # Clone VM from template
+   vm clone template_name new_vm_name
+
+Advanced VM Operations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+VM Migration and Cloning
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Clone a virtual machine
+   vm clone source_vm cloned_vm
+
+   # Live migration (if supported)
+   vm migrate vm_name target_host
+
+   # Export VM
+   vm export vm_name /path/to/export.vmx
+
+   # Import VM
+   vm import /path/to/export.vmx imported_vm
+
+
+VM Console and Access
+~~~~~~~~~~~~~~~~~~~~~
+
+Console Management
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Connect to VM console
+   vm console vm_name
+
+   # Connect with specific console type
+   vm console -t vnc vm_name
+
+   # Disconnect from console
+   # Press Ctrl+] to exit console
+
+   # Enable VNC for VM
+   vm config vm_name vnc=on vnc_port=5900
+
+   # Set VNC password
+   vm config vm_name vnc_password=secure_password
+
+Bulk Operations
+~~~~~~~~~~~~~~~~
+
+Managing Multiple VMs
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Start multiple VMs
+   vm start vm1 vm2 vm3
+
+   # Stop all running VMs
+   vm list -r | xargs vm stop
+
+   # List VMs with specific status
+   vm list -s running
+
+   # Bulk configuration change
+   for vm in $(vm list -o name -s stopped); do
+       vm config $vm memory=8G
+   done
+
+VM Monitoring and Logs
+~~~~~~~~~~~~~~~~~~~~~~
+
+Performance Monitoring
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Show VM performance stats
+   vm stats vm_name
+
+   # Monitor VM resource usage
+   vm top
+
+   # Show VM I/O statistics
+   vm iostat vm_name
+
+   # Display VM network statistics
+   vm netstat vm_name
+
+Log Management
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # View VM logs
+   vm logs vm_name
+
+   # Follow VM logs in real-time
+   vm logs -f vm_name
+
+   # Show specific log entries
+   vm logs vm_name | grep ERROR
+
+   # Clear VM logs
+   vm logs clear vm_name
+
+Troubleshooting Commands
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Debugging VM Issues
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Validate VM configuration
+   vm validate vm_name
+
+   # Test VM connectivity
+   vm test network vm_name
+
+   # Check VM dependencies
+   vm dependencies vm_name
+
+   # Show VM process information
+   vm ps vm_name
+
+   # Debug VM startup issues
+   vm start -v vm_name
+
+Recovery Operations
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   # Reset VM configuration to defaults
+   vm config reset vm_name
+
+   # Repair VM filesystem
+   vm repair vm_name
+
+   # Recover from failed state
+   vm recover vm_name
+
+   # Force cleanup of VM resources
+   vm cleanup vm_name --force
+
+
+.. note::
+   Replace ``vm_name``, ``template_name``, and other variables with actual values specific to your environment.
+
+.. warning::
+   Some operations like PCI passthrough and live migration require specific hardware support and configuration.
+
+.. tip::
+   Use ``vm help command_name`` to get detailed information about any specific command and its options.
+
+
+ZFS CLI Commands
+----------------
+
+Pool Related Commands
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zpool create datapool c0t0d0``
+     - Create a basic pool named datapool
+   * - ``zpool create -f datapool c0t0d0``
+     - Force the creation of a pool
+   * - ``zpool create -m /data datapool c0t0d0``
+     - Create a pool with a different mount point than the default
+   * - ``zpool create datapool raidz c3t0d0 c3t1d0 c3t2d0``
+     - Create RAID-Z vdev pool
+   * - ``zpool add datapool raidz c4t0d0 c4t1d0 c4t2d0``
+     - Add RAID-Z vdev to pool datapool
+   * - ``zpool create datapool raidz1 c0t0d0 c0t1d0 c0t2d0 c0t3d0 c0t4d0 c0t5d0``
+     - Create RAID-Z1 pool
+   * - ``zpool create datapool raidz2 c0t0d0 c0t1d0 c0t2d0 c0t3d0 c0t4d0 c0t5d0``
+     - Create RAID-Z2 pool
+   * - ``zpool create datapool mirror c0t0d0 c0t5d0``
+     - Mirror c0t0d0 to c0t5d0
+   * - ``zpool create datapool mirror c0t0d0 c0t5d0 mirror c0t2d0 c0t4d0``
+     - disk c0t0d0 is mirrored with c0t5d0 and disk c0t2d0 is mirrored with c0t4d0
+   * - ``zpool add datapool mirror c3t0d0 c3t1d0``
+     - Add new mirrored vdev to datapool
+   * - ``zpool add datapool spare c1t3d0``
+     - Add spare device c1t3d0 to the datapool
+   * - ``zpool create -n geekpool c1t3d0``
+     - Do a dry run on pool creation
+
+Show File System Info
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zfs list``
+     - List all ZFS file system
+   * - ``zfs get all datapool``
+     - List all properties of a ZFS file system
+
+Mount/Umount Related Commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zfs set mountpoint=/data datapool/fs1``
+     - Set the mount-point of file system fs1 to /data
+   * - ``zfs mount datapool/fs1``
+     - Mount fs1 file system
+   * - ``zfs umount datapool/fs1``
+     - Umount ZFS file system fs1
+   * - ``zfs mount -a``
+     - Mount all ZFS file systems
+   * - ``zfs umount -a``
+     - Umount all ZFS file systems
+
+Import/Export Commands
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zpool import``
+     - List pools available for import
+   * - ``zpool import -a``
+     - Imports all pools found in the search directories
+   * - ``zpool import -d``
+     - To search for pools with block devices not located in /dev/dsk
+   * - ``zpool import -d /zfs datapool``
+     - Search for a pool with block devices created in /zfs
+   * - ``zpool import oldpool newpool``
+     - Import a pool originally named oldpool under new name newpool
+   * - ``zpool import 3987837483``
+     - Import pool using pool ID
+   * - ``zpool export datapool``
+     - Deport a ZFS pool named datapool
+   * - ``zpool export -f datapool``
+     - Force the unmount and deport of a ZFS pool
+
+Clone Commands
+~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zfs clone datapool/fs1@10jan2014 /clones/fs1``
+     - Clone an existing snapshot
+   * - ``zfs destroy datapool/fs1@10jan2014``
+     - Destroy clone
+
+Show Pool Information
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zpool status -x``
+     - Show pool status
+   * - ``zpool status -v datapool``
+     - Show individual pool status in verbose mode
+   * - ``zpool list``
+     - Show all the pools
+   * - ``zpool list -o name,size``
+     - Show particular properties of all the pools (here, name and size)
+   * - ``zpool list -Ho name``
+     - Show all pools without headers and columns
+
+File-system/Volume Related Commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zfs create datapool/fs1``
+     - Create file-system fs1 under datapool
+   * - ``zfs create -V 1gb datapool/vol01``
+     - Create 1 GB volume (Block device) in datapool
+   * - ``zfs destroy -r datapool``
+     - destroy datapool and all datasets under it
+   * - ``zfs destroy -fr datapool/data``
+     - destroy file-system or volume (data) and all related snapshots
+
+Set ZFS File System Properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zfs set quota=1G datapool/fs1``
+     - Set quota of 1 GB on filesystem fs1
+   * - ``zfs set reservation=1G datapool/fs1``
+     - Set Reservation of 1 GB on filesystem fs1
+   * - ``zfs set mountpoint=legacy datapool/fs1``
+     - Disable ZFS auto mounting and enable mounting through /etc/vfstab
+   * - ``zfs set sharenfs=on datapool/fs1``
+     - Share fs1 as NFS
+   * - ``zfs set compression=on datapool/fs1``
+     - Enable compression on fs1
+   * - ``zfs set recordsize=[size] pool/dataset/name``
+     - Set Dataset Record Size (Size should be a value like 16k, 128k, or 1M etc.)
+   * - ``zfs get recordsize pool/dataset/name``
+     - Get Dataset Record Size
+
+ZFS I/O Performance
+~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zpool iostat 2``
+     - Display ZFS I/O Statistics every 2 seconds
+   * - ``zpool iostat -v 2``
+     - Display detailed ZFS I/O statistics every 2 seconds
+
+ZFS Maintenance Commands
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zpool scrub datapool``
+     - Run scrub on all file systems under data pool
+   * - ``zpool offline -t datapool c0t0d0``
+     - Temporarily offline a disk (until next reboot)
+   * - ``zpool online``
+     - Online a disk to clear error count
+   * - ``zpool clear``
+     - Clear error count without a need to the disk
+
+Snapshot Commands
+~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``zfs snapshot datapool/fs1@12jan2014``
+     - Create a snapshot named 12jan2014 of the fs1 filesystem
+   * - ``zfs list -t snapshot``
+     - List snapshots
+   * - ``zfs rollback -r datapool/fs1@10jan2014``
+     - Roll back to 10jan2014 (recursively destroy intermediate snapshots)
+   * - ``zfs rollback -rf datapool/fs1@10jan2014``
+     - Roll back must and force unmount and remount
+   * - ``zfs destroy datapool/fs1@10jan2014``
+     - Destroy snapshot created earlier
+   * - ``zfs send datapool/fs1@oct2013 > /geekpool/fs1/oct2013.bak``
+     - Take a backup of ZFS snapshot locally
+   * - ``zfs receive anotherpool/fs1 < /geekpool/fs1/oct2013.bak``
+     - Restore from the snapshot backup backup taken
+   * - ``zfs send datapool/fs1@oct2013 | zfs receive anotherpool/fs1``
+     - Combine the send and receive operation
+   * - ``zfs send datapool/fs1@oct2013 | ssh node02 "zfs receive testpool/testfs"``
+     - Send the snapshot to a remote system node02
+
+Firewall CLI Commands
+----------------------
+
+.. note::
+   For comprehensive pfctl administration details, refer to the `FreeBSD pfctl documentation <https://docs.freebsd.org/en/books/handbook/firewalls/>`_.
+
+General Commands
+~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -e``
+     - Enable PF
+   * - ``pfctl -d``
+     - Disable PF
+   * - ``pfctl -q``
+     - Only print errors and warnings
+   * - ``pfctl -v``
+     - Produce more verbose output
+
+Loading Rules
+~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -f /etc/pf.conf``
+     - Load the pf.conf file
+   * - ``pfctl -nf /etc/pf.conf``
+     - Parse the file, but don't load it
+   * - ``pfctl -Nf /etc/pf.conf``
+     - Load only the NAT rules from the file
+   * - ``pfctl -Rf /etc/pf.conf``
+     - Load only the filter rules from the file
+
+Flushing Rules
+~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -F nat``
+     - Flush the NAT rules
+   * - ``pfctl -F queue``
+     - Flush the queue rules
+   * - ``pfctl -F rules``
+     - Flush the filter rules
+   * - ``pfctl -F states``
+     - Flush the state table (connections)
+   * - ``pfctl -F Sources``
+     - Flush the source tracking table
+   * - ``pfctl -F info``
+     - Flush the filter information (counters)
+   * - ``pfctl -F Tables``
+     - Flush the tables
+   * - ``pfctl -F osfp``
+     - Flush the passive operating system fingerprints
+   * - ``pfctl -F all``
+     - Flush everything
+
+Showing Information
+~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -s nat``
+     - Show the currently loaded NAT rules
+   * - ``pfctl -s queue``
+     - Show the currently loaded queue rules
+   * - ``pfctl -s rules``
+     - Show the currently loaded filter rules
+   * - ``pfctl -s Anchors``
+     - Show the currently loaded anchors directly attached to the main ruleset
+   * - ``pfctl -s states``
+     - Show the contents of the state table
+   * - ``pfctl -s Sources``
+     - Show the contents of the source tracking table
+   * - ``pfctl -s info``
+     - Show filter information (statistics and counters)
+   * - ``pfctl -s labels``
+     - Show per-rule statistics (bytes, packets, etc.) of filter rules with labels
+   * - ``pfctl -s timeouts``
+     - Show the current global timeouts
+   * - ``pfctl -s memory``
+     - Show the current pool memory hard limits
+   * - ``pfctl -s Tables``
+     - Show the list of tables
+   * - ``pfctl -s osfp``
+     - Show the list of operating system fingerprints
+   * - ``pfctl -s Interfaces``
+     - Show the list of interfaces and interface drivers available
+   * - ``pfctl -s all``
+     - Show everything
+
+Viewing Rules with Line Numbers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -s rules -R``
+     - Show the currently loaded filter rules with line numbers
+   * - ``pfctl -s nat -R``
+     - Show the currently loaded nat rules with line numbers
+   * - ``pfctl -s queue -R``
+     - Show the currently loaded queue rules with line numbers
+
+Debugging
+~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -s rules -vv``
+     - Show filter rules with very verbose output
+   * - ``pfctl -vf /etc/pf.conf``
+     - Load /etc/pf.conf verbosely, showing rule numbers as loaded
+   * - ``pfctl -x loud``
+     - Set the debug level to loud
+
+Statistics
+~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -s info``
+     - Show information and statistics
+   * - ``pfctl -s labels``
+     - Show per-rule statistics for rules that have labels
+   * - ``pfctl -s states``
+     - Show state table
+   * - ``pfctl -s states | grep 192.168.1.1``
+     - Show state table for a specific IP
+   * - ``pfctl -s Sources``
+     - Show source tracking table
+
+Tables
+~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -s Tables``
+     - Show list of tables
+   * - ``pfctl -t tablename -T show``
+     - Show contents of specified table
+   * - ``pfctl -t tablename -T add 1.2.3.4``
+     - Add address to table
+   * - ``pfctl -t tablename -T delete 1.2.3.4``
+     - Delete address from table
+   * - ``pfctl -t tablename -T flush``
+     - Remove all addresses from table
+   * - ``pfctl -t tablename -T kill``
+     - Delete the table entirely
+   * - ``pfctl -t tablename -T load -f filename``
+     - Load addresses into table from file
+   * - ``pfctl -t tablename -T test 1.2.3.4``
+     - Test if address is in table
+   * - ``pfctl -t tablename -T expire``
+     - Show expired addresses in table
+
+Common Usage Examples
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``pfctl -sa | head -30``
+     - Show first 30 lines of everything
+   * - ``pfctl -s states | head -20``
+     - Show first 20 active connections
+   * - ``pfctl -s states -v | grep -v ESTABLISHED``
+     - Show active connections, verbose, without established
+   * - ``pfctl -k 192.168.1.1``
+     - Kill all states for IP 192.168.1.1
+   * - ``pfctl -K 192.168.1.1``
+     - Kill and prevent future connections for IP
+   * - ``pfctl -z``
+     - Clear per-rule statistics
+
+Log Management
+~~~~~~~~~~~~~~
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``tcpdump -n -e -ttt -r /var/log/pflog``
+     - Read pflog file
+   * - ``tcpdump -n -e -ttt -i pflog0``
+     - Monitor pflog in real-time
+   * - ``tcpdump -n -e -ttt -i pflog0 host 192.168.1.1``
+     - Monitor pflog for specific host
+
+
+Storage and File Sharing CLI Commands
+--------------------------------------
+
+.. note::
+   For comprehensive storage system administration, refer to the respective official documentation for each technology.
+
+MooseFS Commands
+~~~~~~~~~~~~~~~~~
+
+MooseFS Master Server
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``mfsmaster start``
+     - Start MooseFS master server
+   * - ``mfsmaster stop``
+     - Stop MooseFS master server
+   * - ``mfsmaster restart``
+     - Restart MooseFS master server
+   * - ``mfsmaster reload``
+     - Reload MooseFS master configuration
+   * - ``mfsmaster test``
+     - Test MooseFS master configuration
+
+MooseFS Chunk Server
+^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``mfschunkserver start``
+     - Start MooseFS chunk server
+   * - ``mfschunkserver stop``
+     - Stop MooseFS chunk server
+   * - ``mfschunkserver restart``
+     - Restart MooseFS chunk server
+   * - ``mfschunkserver reload``
+     - Reload chunk server configuration
+
+MooseFS Client Tools
+^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``mfsmount /mnt/mfs -H mfsmaster``
+     - Mount MooseFS filesystem
+   * - ``mfsgetgoal /path/to/file``
+     - Show file replication goal
+   * - ``mfssetgoal 3 /path/to/file``
+     - Set file replication goal to 3
+   * - ``mfsgettrashtime /path/to/file``
+     - Show file trash time
+   * - ``mfssettrashtime 86400 /path/to/file``
+     - Set trash time to 24 hours
+   * - ``mfscheckfile /path/to/file``
+     - Check file chunks
+   * - ``mfsfileinfo /path/to/file``
+     - Show detailed file information
+   * - ``mfsdirinfo /path/to/directory``
+     - Show directory information
+   * - ``mfsfilepaths /path/to/file``
+     - Show file chunk locations
+
+MooseFS Administration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``lizardfs-admin info``
+     - Show cluster information
+   * - ``lizardfs-admin list-chunkservers``
+     - List all chunk servers
+   * - ``lizardfs-admin list-mounts``
+     - List all mounted clients
+   * - ``mfscli -SCS``
+     - Show chunk server status
+   * - ``mfscli -SMU``
+     - Show memory usage
+
+NFS Commands
+~~~~~~~~~~~~~
+
+NFS Server Management
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``service nfsd start``
+     - Start NFS daemon
+   * - ``service nfsd stop``
+     - Stop NFS daemon
+   * - ``service mountd start``
+     - Start mount daemon
+   * - ``exportfs -a``
+     - Export all directories in /etc/exports
+   * - ``exportfs -r``
+     - Re-export all directories
+   * - ``exportfs -u /path/to/share``
+     - Unexport specific directory
+   * - ``exportfs -v``
+     - Show current exports verbosely
+   * - ``showmount -e localhost``
+     - Show exports on local server
+   * - ``showmount -a``
+     - Show all mount requests
+
+NFS Client Management
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``mount -t nfs server:/path/to/share /mnt/nfs``
+     - Mount NFS share
+   * - ``mount -t nfs -o vers=4 server:/path /mnt/nfs4``
+     - Mount NFSv4 share
+   * - ``umount /mnt/nfs``
+     - Unmount NFS share
+   * - ``showmount -e nfs-server``
+     - Show available exports on server
+   * - ``nfsstat -c``
+     - Show NFS client statistics
+   * - ``nfsstat -s``
+     - Show NFS server statistics
+   * - ``rpcinfo -p nfs-server``
+     - Show RPC services on server
+
+SeaweedFS Commands
+~~~~~~~~~~~~~~~~~~~
+
+SeaweedFS Master
+^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``weed master -port=9333``
+     - Start SeaweedFS master server
+   * - ``weed master -mdir=/tmp/mdata``
+     - Start master with custom data directory
+   * - ``weed master -peers=master1:9333,master2:9333``
+     - Start master with peers for HA
+
+SeaweedFS Volume Server
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``weed volume -port=8080 -dir=/tmp/vol``
+     - Start volume server
+   * - ``weed volume -mserver=localhost:9333``
+     - Start volume server with custom master
+   * - ``weed volume -max=5 -dir=/tmp/vol``
+     - Start volume server with max 5 volumes
+
+SeaweedFS Client Operations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``weed upload -server=localhost:9333 file.txt``
+     - Upload file to SeaweedFS
+   * - ``weed download -server=localhost:9333 3,01637037d6``
+     - Download file by file ID
+   * - ``weed mount -filer=localhost:8888 /mnt/seaweed``
+     - Mount SeaweedFS as filesystem
+   * - ``weed filer -master=localhost:9333``
+     - Start filer server
+   * - ``weed s3 -filer=localhost:8888``
+     - Start S3 API gateway
+
+SeaweedFS Administration
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``weed shell``
+     - Start SeaweedFS shell
+   * - ``echo "cluster.status" | weed shell``
+     - Show cluster status
+   * - ``echo "volume.list" | weed shell``
+     - List all volumes
+   * - ``echo "fs.ls /" | weed shell``
+     - List filesystem root
+
+iSCSI Commands
+~~~~~~~~~~~~~~~
+
+iSCSI Target Management
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``ctladm devlist``
+     - List iSCSI devices
+   * - ``ctladm create -b block -o file=/path/to/disk.img``
+     - Create iSCSI target from file
+   * - ``ctladm remove -b block -l 0``
+     - Remove iSCSI target
+   * - ``ctladm port -l``
+     - List iSCSI ports
+   * - ``ctladm lunlist``
+     - List LUNs
+   * - ``service ctld start``
+     - Start iSCSI target daemon
+   * - ``service ctld stop``
+     - Stop iSCSI target daemon
+
+iSCSI Initiator Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``iscontrol -d -t target-name -p target-portal``
+     - Discover iSCSI targets
+   * - ``iscsictl -A -t target-name -p portal-address``
+     - Add iSCSI target
+   * - ``iscsictl -R -t target-name``
+     - Remove iSCSI target
+   * - ``iscsictl -L``
+     - List configured targets
+   * - ``camcontrol devlist``
+     - List SCSI devices (including iSCSI)
+   * - ``service iscsid start``
+     - Start iSCSI initiator daemon
+
+SMB/CIFS Commands
+~~~~~~~~~~~~~~~~~
+
+Samba Server Management
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``service samba_server start``
+     - Start Samba server
+   * - ``service samba_server stop``
+     - Stop Samba server
+   * - ``testparm``
+     - Test Samba configuration
+   * - ``testparm -s``
+     - Show Samba configuration summary
+   * - ``smbclient -L //server -U username``
+     - List shares on server
+   * - ``smbpasswd -a username``
+     - Add Samba user
+   * - ``smbstatus``
+     - Show Samba server status
+   * - ``smbcontrol all reload-config``
+     - Reload Samba configuration
+
+Samba Client Operations
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``mount -t cifs //server/share /mnt/smb -o username=user``
+     - Mount SMB share
+   * - ``smbclient //server/share -U username``
+     - Connect to SMB share interactively
+   * - ``smbget -R smb://server/share``
+     - Download files recursively
+   * - ``umount /mnt/smb``
+     - Unmount SMB share
+   * - ``smbcacls //server/share filename``
+     - Show ACLs for file
+
+S3 Commands
+~~~~~~~~~~~
+
+AWS CLI Commands
+^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``aws s3 ls``
+     - List S3 buckets
+   * - ``aws s3 ls s3://bucket-name``
+     - List objects in bucket
+   * - ``aws s3 cp file.txt s3://bucket/file.txt``
+     - Upload file to S3
+   * - ``aws s3 cp s3://bucket/file.txt file.txt``
+     - Download file from S3
+   * - ``aws s3 sync /local/path s3://bucket/path``
+     - Sync local directory to S3
+   * - ``aws s3 mb s3://new-bucket``
+     - Create new bucket
+   * - ``aws s3 rb s3://bucket-name``
+     - Delete empty bucket
+   * - ``aws s3 rm s3://bucket/file.txt``
+     - Delete file from S3
+
+MinIO Client (mc) Commands
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``mc alias set myminio http://localhost:9000 access_key secret_key``
+     - Add MinIO server alias
+   * - ``mc ls myminio``
+     - List buckets on MinIO server
+   * - ``mc mb myminio/mybucket``
+     - Create bucket on MinIO
+   * - ``mc cp file.txt myminio/mybucket/``
+     - Copy file to MinIO bucket
+   * - ``mc cp myminio/mybucket/file.txt .``
+     - Copy file from MinIO bucket
+   * - ``mc mirror /local/path myminio/mybucket``
+     - Mirror local directory to bucket
+   * - ``mc stat myminio/mybucket/file.txt``
+     - Show file information
+   * - ``mc rm myminio/mybucket/file.txt``
+     - Remove file from bucket
+
+S3 Server Management
+^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``minio server /data``
+     - Start MinIO server
+   * - ``minio server /data1 /data2 /data3 /data4``
+     - Start MinIO with multiple drives
+   * - ``mc admin info myminio``
+     - Show MinIO server info
+   * - ``mc admin heal myminio``
+     - Heal MinIO objects
+   * - ``mc admin user add myminio newuser newpassword``
+     - Add MinIO user
+   * - ``mc admin policy set myminio readwrite user=newuser``
+     - Set user policy
 
 Support Bundle Collection Instructions
 ---------------------------------------
