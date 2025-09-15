@@ -74,7 +74,7 @@ Sidero simplifies the complexity of bare-metal Kubernetes deployments by providi
 .. image:: _static/images/omni/om-4.png
    :alt: Upload Certificates Button
 
-- Upload the **wildcard TLS certificate and key** for your domain.
+- Upload the **TLS certificate and key** for your domain.
 
 .. note::
    The TLS certificate secures communication between Sidero components and the Kubernetes clusters.  
