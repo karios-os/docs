@@ -5328,9 +5328,6 @@ Starting and Stopping VMs
    # Start a virtual machine
    vm start vm_name
 
-   # Start VM with console access
-   vm start -c vm_name
-
    # Start VM with specific boot options
    vm start -B "-s 31,lpc -l com1,stdio" vm_name
 
@@ -5409,26 +5406,6 @@ Storage Management
 Network Configuration
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Network Interface Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Add network interface
-   vm network add vm_name -t bridge -b bridge0
-
-   # Remove network interface
-   vm network remove vm_name tap0
-
-   # Configure VM network
-   vm config vm_name network0_type=bridge network0_switch=bridge0
-
-   # Set MAC address
-   vm config vm_name network0_mac=00:a0:98:12:34:56
-
-   # Configure VLAN
-   vm config vm_name network0_vlan=100
-
 Virtual Switch Operations
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -5482,9 +5459,6 @@ VM Migration and Cloning
 
    # Clone a virtual machine
    vm clone source_vm cloned_vm
-
-   # Live migration (if supported)
-   vm migrate vm_name target_host
 
    # Export VM
    vm export vm_name /path/to/export.vmx
