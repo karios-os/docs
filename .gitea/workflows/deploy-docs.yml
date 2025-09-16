@@ -1,52 +1,68 @@
-name: Deploy Documentation to FreeBSD
+name: Build Sphinx Documentation
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:  # Allows manual triggering
+    branches: [ main, develop, test ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  deploy-docs:
+  build-docs:
     runs-on: ubuntu-latest
+    container: 
+      image: python:3.11
+      options: --user root
     
     steps:
+    - name: Install Node.js and system dependencies
+      run: |
+        apt-get update && apt-get install -y \
+          curl \
+          make \
+          git \
+          libenchant-2-2 \
+          libenchant-2-dev \
+          && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+          && apt-get install -y nodejs \
+          && rm -rf /var/lib/apt/lists/*
+
     - name: Checkout code
       uses: actions/checkout@v3
-    
-    - name: Deploy to FreeBSD node
-      uses: appleboy/ssh-action@v1.0.0
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
       with:
-        host: 192.168.116.38
-        username: root
-        password: adminadmin
-        port: 22
-        script: |
-          echo "Starting documentation deployment..."
-          
-          # Pull latest changes in the docs jail
-          echo "Pulling latest changes from git..."
-          jexec docs sh -c "cd /usr/local/git/docs && git pull"
-          
-          # Build the documentation with Sphinx
-          echo "Building documentation with Sphinx..."
-          jexec docs sh -c "cd /usr/local/git/docs/docs && python3 -m sphinx -E -a -b html . /usr/local/www/docs"
-          
-          echo "Documentation deployment completed successfully!"
-    
-    - name: Verify deployment
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: 192.168.116.38
-        username: root
-        password: adminadmin
-        port: 22
-        script: |
-          # Check if the build was successful
-          if jexec docs sh -c "test -d /usr/local/www/docs && test -f /usr/local/www/docs/index.html"; then
-            echo "✅ Documentation build verified - index.html exists"
-            jexec docs sh -c "ls -la /usr/local/www/docs/ | head -10"
-          else
-            echo "❌ Documentation build may have failed - checking for errors"
-            exit 1
-          fi
+        path: /root/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build documentation
+      run: |
+        cd docs
+        make html
+        echo "✅ Sphinx documentation build completed successfully!"
+
+    - name: List built documentation
+      run: |
+        echo "📁 Documentation built successfully!"
+        ls -la docs/_build/html/
+        echo "📊 Total files: $(find docs/_build/html/ -type f | wc -l)"
+        echo "📏 Total size: $(du -sh docs/_build/html/)"
+
+    - name: Verify key files exist
+      run: |
+        if [ -f "docs/_build/html/index.html" ]; then
+          echo "✅ index.html found"
+        else
+          echo "❌ index.html missing"
+          exit 1
+        fi
+        
+        echo "📋 Main HTML files:"
+        find docs/_build/html/ -name "*.html" | head -10
