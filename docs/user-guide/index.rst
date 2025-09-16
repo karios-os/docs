@@ -850,7 +850,7 @@ Role Actions
 
 * **Delete**: Remove custom roles (predefined roles cannot be deleted)
 
-.. figure:: _static/Images/rbac/delete_role.png
+.. figure:: _static/images/rbac/delete_role.png
    :width: 600
    :alt: Delete Role Confirmation
 
@@ -863,7 +863,7 @@ Step 1: Access User Management
 
 1. Navigate to admin dropdown → "User Management"
 
-.. figure:: _static/Images/rbac/UserManagement.png
+.. figure:: _static/images/rbac/UserManagement.png
    :width: 600
    :alt: Navigate to User Management
 
@@ -871,7 +871,7 @@ Step 1: Access User Management
 
 2. Click "Register User" button to create new user accounts
 
-.. figure:: _static/Images/rbac/RegisterUser.png
+.. figure:: _static/images/rbac/RegisterUser.png
    :width: 600
    :alt: Register User Interface
 
@@ -887,7 +887,7 @@ The registration dialog requires comprehensive user information:
 * **Last Name**: User's last name for complete identification
 * **Password**: Secure password meeting complexity requirements (8+ characters, 1 number, 1 uppercase, 1 special character)
 
-.. figure:: _static/Images/rbac/UserRegistrationForm.png
+.. figure:: _static/images/rbac/UserRegistrationForm.png
    :width: 600
    :alt: User Registration Form
 
@@ -936,7 +936,7 @@ Full Access Implementation
 2. Locate the target user account
 3. Click "Edit" on the user's row
 
-.. figure:: _static/Images/rbac/EditUser.png
+.. figure:: _static/images/rbac/EditUser.png
    :width: 600
    :alt: Edit User Interface
 
@@ -945,7 +945,7 @@ Full Access Implementation
 4. Change role assignment to "System Admin"
 5. Save changes to grant complete system access
 
-.. figure:: _static/Images/rbac/AssignSystemAdminRole.png
+.. figure:: _static/images/rbac/AssignSystemAdminRole.png
    :width: 600
    :alt: Assign System Admin Role
 
@@ -960,7 +960,7 @@ Full Access Implementation
 4. Save the custom role
 5. Assign the new role to target users
 
-.. figure:: _static/Images/rbac/AssignCustomRole.png
+.. figure:: _static/images/rbac/AssignCustomRole.png
    :width: 600
    :alt: Assign Custom Role
 
@@ -970,7 +970,7 @@ Full Access Implementation
 
 1. After Creating the User , if you wish to give them the restricted eligibility, select the dropdown "Approvals Required" to assign permission
 
-.. figure:: _static/Images/rbac/AssignApprovalRole.png
+.. figure:: _static/images/rbac/AssignApprovalRole.png
    :width: 600
    :alt: Assign Approval Role
 
@@ -978,13 +978,13 @@ Full Access Implementation
 
 2. To assign approvers, select eligible approvers from the popup
 
-.. figure:: _static/Images/rbac/SelectedApprovers.png
+.. figure:: _static/images/rbac/SelectedApprovers.png
    :width: 600
    :alt: Selected Approvers
 
    Figure : Selected Approvers
 
-.. figure:: _static/Images/rbac/SelectApproversPopup.png
+.. figure:: _static/images/rbac/SelectApproversPopup.png
    :width: 600
    :alt: Select Approvers Popup
 
@@ -1035,13 +1035,13 @@ Ongoing account management includes:
 4. **Access Reviews**: Regular review of user accounts and assigned permissions
 5. **Account Deactivation and Deletion**: Process account deactivation / deletion requests by navigating to the user management block in User Management
 
-.. figure:: _static/Images/rbac/AccountDeactivation.png
+.. figure:: _static/images/rbac/AccountDeactivation.png
    :width: 600
    :alt: Account Deactivation
 
    Figure : Account Deactivation
 
-.. figure:: _static/Images/rbac/AccountDeletion.png
+.. figure:: _static/images/rbac/AccountDeletion.png
    :width: 600
    :alt: Account Deletion
 
@@ -1055,7 +1055,7 @@ Two-Factor Management
 
 1. Navigate to the Two-Factor Management section
 
-.. figure:: _static/Images/rbac/NavigateToTwoFactorManagement.png
+.. figure:: _static/images/rbac/NavigateToTwoFactorManagement.png
    :width: 600
    :alt: Navigate to Two-Factor Management
 
@@ -1063,7 +1063,7 @@ Two-Factor Management
 
 2. View and manage two-factor authentication settings and devices 
 
-.. figure:: _static/Images/rbac/TwoFactorManagementDashboard.png
+.. figure:: _static/images/rbac/TwoFactorManagementDashboard.png
    :width: 600
    :alt: Two-Factor Management Dashboard
 
@@ -1071,7 +1071,7 @@ Two-Factor Management
 
 3. Edit and delete devices in the dashboard
 
-.. figure:: _static/Images/rbac/TwoFactorDeviceManagement.png
+.. figure:: _static/images/rbac/TwoFactorDeviceManagement.png
    :width: 600
    :alt: Two-Factor Device Management
 
@@ -1081,7 +1081,7 @@ Two-Factor Management
 
 1. Click on the "Add Device" button in the Two-Factor Device Management dashboard
 
-.. figure:: _static/Images/rbac/AddTwoFactorDevice.png
+.. figure:: _static/images/rbac/AddTwoFactorDevice.png
    :width: 600
    :alt: Add Two-Factor Device
 
@@ -1089,7 +1089,7 @@ Two-Factor Management
 
 2. Follow the prompts to enter new device information for two-factor authentication
 
-   .. figure:: _static/Images/rbac/TwoFactorDeviceEnrollment.png
+   .. figure:: _static/images/rbac/TwoFactorDeviceEnrollment.png
       :width: 600
       :alt: Two-Factor Device Enrollment
 
@@ -1097,7 +1097,7 @@ Two-Factor Management
 
 3. Scan and verify the new device to complete the enrollment process
 
-   .. figure:: _static/Images/rbac/TwoFactorDeviceVerification.png
+   .. figure:: _static/images/rbac/TwoFactorDeviceVerification.png
       :width: 600
       :alt: Two-Factor Device Verification
 
