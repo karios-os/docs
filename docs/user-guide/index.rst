@@ -5297,25 +5297,6 @@ Basic VM Creation
    # Create a new virtual machine
    vm create -t template_name vm_name
 
-   # Create VM with custom resources
-   vm create -c 4 -m 8G -d 50G vm_name
-
-   # Create VM from ISO
-   vm create -i /path/to/os.iso -c 2 -m 4G vm_name
-
-Advanced VM Creation
-^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Create VM with specific disk type
-   vm create -c 4 -m 8G -d 100G -t zvol vm_name
-
-   # Create VM with multiple disks
-   vm create -c 4 -m 8G -d disk0:50G,disk1:100G vm_name
-
-   # Create VM with network configuration
-   vm create -c 4 -m 8G -s bridge0 -n auto vm_name
 
 VM Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -5354,9 +5335,6 @@ VM Status and Information
    # Show VM configuration
    vm config vm_name
 
-   # Display VM resource usage
-   vm status vm_name
-
    # Show VM console output
    vm console vm_name
 
@@ -5374,34 +5352,9 @@ CPU and Memory Management
    # Adjust VM memory
    vm config vm_name memory=16G
 
-   # Set CPU topology
-   vm config vm_name cpu=4 cores=2 threads=2
-
    # Configure CPU affinity
    vm config vm_name cpuset=0,1,2,3
 
-Storage Management
-^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Add disk to VM
-   vm disk add vm_name disk2 50G
-
-   # Remove disk from VM
-   vm disk remove vm_name disk1
-
-   # Resize VM disk
-   vm disk resize vm_name disk0 100G
-
-   # Create snapshot of VM disk
-   vm snapshot create vm_name@snapshot_name
-
-   # List VM snapshots
-   vm snapshot list vm_name
-
-   # Rollback to snapshot
-   vm snapshot rollback vm_name@snapshot_name
 
 Network Configuration
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -5434,37 +5387,20 @@ Creating and Managing Templates
 
 .. code-block:: bash
 
-   # Create template from existing VM
-   vm template create vm_name template_name
+   # Create a template from an existing VM config
+   cp /zroot/vm/vm_name/vm.conf /vm/.templates/template_name.conf
 
    # List available templates
-   vm template list
+   ls /vm/.templates/
 
    # Show template details
-   vm template info template_name
+   cat /vm/.templates/template_name.conf
 
-   # Delete template
-   vm template delete template_name
+   # Delete a template
+   rm /vm/.templates/template_name.conf
 
-   # Clone VM from template
-   vm clone template_name new_vm_name
-
-Advanced VM Operations
-~~~~~~~~~~~~~~~~~~~~~~~
-
-VM Migration and Cloning
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Clone a virtual machine
-   vm clone source_vm cloned_vm
-
-   # Export VM
-   vm export vm_name /path/to/export.vmx
-
-   # Import VM
-   vm import /path/to/export.vmx imported_vm
+   # Create a VM from a template
+   vm create -t template_name new_vm_name
 
 
 VM Console and Access
@@ -5478,39 +5414,18 @@ Console Management
    # Connect to VM console
    vm console vm_name
 
-   # Connect with specific console type
-   vm console -t vnc vm_name
-
    # Disconnect from console
    # Press Ctrl+] to exit console
 
    # Enable VNC for VM
-   vm config vm_name vnc=on vnc_port=5900
+   vm config vm_name vnc=on
+
+   # Set VNC port
+   vm config vm_name vnc_port=5900
 
    # Set VNC password
    vm config vm_name vnc_password=secure_password
 
-Bulk Operations
-~~~~~~~~~~~~~~~~
-
-Managing Multiple VMs
-^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Start multiple VMs
-   vm start vm1 vm2 vm3
-
-   # Stop all running VMs
-   vm list -r | xargs vm stop
-
-   # List VMs with specific status
-   vm list -s running
-
-   # Bulk configuration change
-   for vm in $(vm list -o name -s stopped); do
-       vm config $vm memory=8G
-   done
 
 VM Monitoring and Logs
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -5520,84 +5435,75 @@ Performance Monitoring
 
 .. code-block:: bash
 
-   # Show VM performance stats
-   vm stats vm_name
 
-   # Monitor VM resource usage
-   vm top
+   # Monitor overall system resource usage
+   top -a
 
-   # Show VM I/O statistics
-   vm iostat vm_name
+   # Show CPU usage per core
+   top -P
 
-   # Display VM network statistics
-   vm netstat vm_name
+   # Monitor disk I/O statistics
+   iostat -x 1
 
-Log Management
-^^^^^^^^^^^^^^^
+   # Show live disk statistics per device
+   gstat
 
-.. code-block:: bash
+   # Display network statistics (interfaces)
+   netstat -i
 
-   # View VM logs
-   vm logs vm_name
+   # Show protocol-level network statistics
+   netstat -s
 
-   # Follow VM logs in real-time
-   vm logs -f vm_name
-
-   # Show specific log entries
-   vm logs vm_name | grep ERROR
-
-   # Clear VM logs
-   vm logs clear vm_name
-
-Troubleshooting Commands
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Debugging VM Issues
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Validate VM configuration
-   vm validate vm_name
-
-   # Test VM connectivity
-   vm test network vm_name
-
-   # Check VM dependencies
-   vm dependencies vm_name
-
-   # Show VM process information
-   vm ps vm_name
-
-   # Debug VM startup issues
-   vm start -v vm_name
-
-Recovery Operations
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Reset VM configuration to defaults
-   vm config reset vm_name
-
-   # Repair VM filesystem
-   vm repair vm_name
-
-   # Recover from failed state
-   vm recover vm_name
-
-   # Force cleanup of VM resources
-   vm cleanup vm_name --force
+   # View specific VM process resource usage
+   ps aux | grep bhyve
 
 
 .. note::
    Replace ``vm_name``, ``template_name``, and other variables with actual values specific to your environment.
 
 .. warning::
-   Some operations like PCI passthrough and live migration require specific hardware support and configuration.
+   Some operations like PCI passthrough require specific hardware support and configuration.
 
 .. tip::
    Use ``vm help command_name`` to get detailed information about any specific command and its options.
+
+
+VLAN Interface Configuration
+----------------------------
+
+Creating VLAN Interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Create VLAN interfaces
+   ifconfig vlan102 create vlan 102 vlandev vtnet0
+   ifconfig vlan103 create vlan 103 vlandev vtnet0
+
+Assigning IP Addresses
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Assign IP addresses and bring interfaces up
+   ifconfig vlan102 inet 10.1.102.3/24 up
+   ifconfig vlan103 inet 10.1.103.3/24 up
+
+Making Configuration Persistent
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Make VLAN configuration persistent across reboots
+   sysrc cloned_interfaces+="vlan102 vlan103"
+   sysrc ifconfig_vlan102="inet 10.1.102.3/24"
+   sysrc ifconfig_vlan103="inet 10.1.103.3/24"
+
+.. note::
+   VLAN configuration will be automatically applied on system boot after making it persistent with ``sysrc`` commands.
+
+.. tip::
+   Verify VLAN interface status with ``ifconfig vlan102`` and ``ifconfig vlan103`` after configuration.
 
 
 ZFS CLI Commands
@@ -5892,12 +5798,8 @@ Flushing Rules
      - Flush the filter rules
    * - ``pfctl -F states``
      - Flush the state table (connections)
-   * - ``pfctl -F Sources``
-     - Flush the source tracking table
    * - ``pfctl -F info``
      - Flush the filter information (counters)
-   * - ``pfctl -F Tables``
-     - Flush the tables
    * - ``pfctl -F osfp``
      - Flush the passive operating system fingerprints
    * - ``pfctl -F all``
@@ -5918,12 +5820,8 @@ Showing Information
      - Show the currently loaded queue rules
    * - ``pfctl -s rules``
      - Show the currently loaded filter rules
-   * - ``pfctl -s Anchors``
-     - Show the currently loaded anchors directly attached to the main ruleset
    * - ``pfctl -s states``
      - Show the contents of the state table
-   * - ``pfctl -s Sources``
-     - Show the contents of the source tracking table
    * - ``pfctl -s info``
      - Show filter information (statistics and counters)
    * - ``pfctl -s labels``
@@ -5932,30 +5830,11 @@ Showing Information
      - Show the current global timeouts
    * - ``pfctl -s memory``
      - Show the current pool memory hard limits
-   * - ``pfctl -s Tables``
-     - Show the list of tables
    * - ``pfctl -s osfp``
      - Show the list of operating system fingerprints
-   * - ``pfctl -s Interfaces``
-     - Show the list of interfaces and interface drivers available
    * - ``pfctl -s all``
      - Show everything
 
-Viewing Rules with Line Numbers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``pfctl -s rules -R``
-     - Show the currently loaded filter rules with line numbers
-   * - ``pfctl -s nat -R``
-     - Show the currently loaded nat rules with line numbers
-   * - ``pfctl -s queue -R``
-     - Show the currently loaded queue rules with line numbers
 
 Debugging
 ~~~~~~~~~
@@ -5990,8 +5869,6 @@ Statistics
      - Show state table
    * - ``pfctl -s states | grep 192.168.1.1``
      - Show state table for a specific IP
-   * - ``pfctl -s Sources``
-     - Show source tracking table
 
 Tables
 ~~~~~~
@@ -6002,8 +5879,6 @@ Tables
 
    * - Command
      - Description
-   * - ``pfctl -s Tables``
-     - Show list of tables
    * - ``pfctl -t tablename -T show``
      - Show contents of specified table
    * - ``pfctl -t tablename -T add 1.2.3.4``
@@ -6018,8 +5893,7 @@ Tables
      - Load addresses into table from file
    * - ``pfctl -t tablename -T test 1.2.3.4``
      - Test if address is in table
-   * - ``pfctl -t tablename -T expire``
-     - Show expired addresses in table
+
 
 Common Usage Examples
 ~~~~~~~~~~~~~~~~~~~~~
