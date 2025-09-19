@@ -4333,8 +4333,150 @@ Firewall Rule Components
       - **Service Portfolio:** Comprehensive port access for multiple services and applications
       - **State Management:** Automatic connection state tracking for all services
 
-Rule Editing and Modification
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Simple vs Advanced Mode**
+
+The interface provides two operational modes:
+
+* **Simple Mode**: Quick and easy firewall rules for most common needs
+* **Advanced Mode**: Full PF configuration capabilities for complex scenarios
+
+
+Packet Filter Management - Simple Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Simple Mode interface provides a user-friendly way to configure FreeBSD Packet Filter (PF) rules through an intuitive drag-and-drop interface. This mode is designed for quick and easy firewall rule creation without requiring deep knowledge of PF syntax.
+
+**Interface Components**
+
+**Existing Packet Filters Section**
+
+The left panel displays currently configured packet filter elements organized by type:
+
+* **Variables**: Network interface definitions and other variables
+* **Set Options**: Firewall behavior configuration options  
+* **Rules**: Pass/block rule definitions
+* **Tables**: Address groupings for rule references
+* **Anchors**: NAT/RDR anchor definitions
+
+
+**Adding New Packet Filter Rules**
+
+**Select Rule Type**
+
+Choose from the available rule types:
+
+* **Variables** - Define network interfaces and other variables
+* **Set Options** - Configure firewall behavior options
+* **Tables** - Define address tables for grouping
+* **Rules** - Define pass/block rules
+* **Anchors** - Define NAT/RDR anchors
+* **Anchor Templates** - Predefined service configurations
+
+**Rule Configuration Options**
+
+**Variables**
+
+Configure network interface definitions and custom variables:
+
+* **Variable Name**: Define the variable identifier (e.g., ``ext_if``)
+* **Value**: Set the variable value (e.g., ``igb0``)
+
+**Set Options**
+
+Configure firewall behavior settings:
+
+* **Option Name**: Select from available options (e.g., ``block-policy``)
+* **Value**: Choose the appropriate value from dropdown
+
+**Tables**
+
+Define address groups for use in rules:
+
+* **Table Name**: Specify table identifier (e.g., ``trusted_nets``)
+* **Properties**: Optional table properties
+* **Entries**: Comma-separated list of addresses/networks (e.g., ``192.168.1.0/24, 10.0.0.0/8``)
+
+**Rules**
+
+Create pass/block rules with comprehensive options:
+
+**Rule Creation Mode**: Choose between Custom or Quick Toggle
+
+* **Custom**: Full manual rule configuration
+* **Quick Toggle**: Simplified rule creation for common services
+
+**Basic Rule Configuration**:
+
+* **Action**: pass, block, or reject
+* **Direction**: in, out, or any
+* **Address Family**: inet, inet6, or any
+* **Interface**: Select network interface
+* **Protocol**: TCP, UDP, ICMP, or any
+* **Source/Destination**: Define source and destination criteria
+* **Port**: Specify port ranges
+* **State**: Connection state handling
+
+**Quick Toggle Services**:
+
+* **FTP** (21): File Transfer Protocol
+* **SSH** (22): Secure Shell access
+
+**Anchors**
+
+Define NAT/RDR anchor points:
+
+* **Anchor Type**: NAT Anchor or RDR Anchor
+* **Anchor Name**: Identifier for the anchor (e.g., ``ftp-proxy/*``)
+
+**Anchor Templates**
+
+Select from predefined service configurations:
+
+* **FTP Proxy** (2121): FTP through proxy configuration
+* **ICMP** (N/A): Ping and network diagnostics
+
+**Configuration Process**
+
+**Step-by-Step Rule Creation**
+
+1. **Select Rule Type**: Choose the appropriate rule category from the dropdown
+2. **Configure Parameters**: Fill in the required configuration fields based on rule type
+3. **Add Rule**: Click the relevant "Add" button (Add Variable, Add Table, Add Rule, etc.)
+4. **Drag and Drop**: The new rule appears in the left panel where you can drag it to reorder priority
+5. **Save Changes**: Click **"Save Changes"** to apply the configuration
+
+**Configuration Validation and Application**
+
+When you click **"Save Changes"**:
+
+1. **Syntax Check**: The system validates PF rule syntax
+2. **60-Second Timer**: If syntax is valid, a 60-second confirmation timer begins
+3. **Confirmation Required**: You must confirm the changes within 60 seconds
+4. **Automatic Rollback**: If not confirmed, changes are automatically reverted
+5. **Rule Application**: Upon confirmation, the new PF configuration is saved and applied
+
+.. warning::
+   Always ensure you have alternative access to the system before applying firewall changes. The 60-second confirmation window provides a safety mechanism to prevent lockouts.
+
+
+**Advanced Features**
+
+When Simple Mode limitations are reached, Advanced Mode provides:
+
+* Complex rule matching criteria
+* Advanced NAT/RDR configurations  
+* Queue management and traffic shaping
+* Custom macro definitions
+* Raw PF rule syntax editing
+
+Switch to Advanced Mode when you need capabilities beyond the simplified interface options.
+
+Use the **"Need more options? Switch to Advanced Mode"** link or **"Advanced"** button at the top to access additional configuration options when Simple Mode doesn't provide sufficient flexibility.  
+
+
+Rule Editing and Modification - Advanced Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Interactive Rule Editor:** The firewall interface provides comprehensive rule editing capabilities.
 
@@ -4422,6 +4564,13 @@ Security Considerations:
 - **System Access:** Improper configuration can result in system lockout
 
 - **Best Practices:** Follow established firewall configuration best practices
+
+
+.. seealso::
+   
+   **FreeBSD Documentation**
+      * `FreeBSD Handbook - Firewalls <https://docs.freebsd.org/en/books/handbook/firewalls/>`_
+      * `PF User's Guide <https://www.openbsd.org/faq/pf/>`_   
 
 Security Center Walkthrough
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
