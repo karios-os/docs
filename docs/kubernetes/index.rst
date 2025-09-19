@@ -1,20 +1,31 @@
 Kubernetes on Karios
 ====================
 
-Introduction
-------------
+What is Karios?
+===============
 
-Kubernetes infrastructure doesn't have to be painful. Traditional approaches to spinning up clusters, managing complex dashboards, and debugging failures can feel like solving a puzzle with missing pieces. Karios transforms this experience by making Kubernetes infrastructure modular, swappable, and refreshingly simple.
+Karios makes Kubernetes infrastructure simple. Instead of wrestling with complex dashboards and debugging cluster failures, you define your requirements, deploy your configuration, and you're running.
 
-Built like a stack of building blocks on the robust FreeBSD foundation, Karios lets you define your requirements, ship your configuration, and you're done. Need to spin up a new Kubernetes cluster? The process becomes straightforward and repeatable. Adding specialized workloads like GPU-intensive applications? Simply select the appropriate node type and assign it instantly.
+How it works
+============
 
-The FreeBSD foundation provides significant performance advantages, delivering faster throughput for critical network and storage operations that are essential for modern Kubernetes workloads. This performance edge becomes particularly important in high-throughput scenarios and data-intensive applications.
+Built on FreeBSD, Karios treats infrastructure like modular building blocks. Need a new cluster? The process is straightforward and repeatable. Want to add GPU workloads? Select the right node type and deploy it.
 
-Karios supports any version of Kubernetes with both virtual machine and bare metal worker deployments. The platform's intelligent filtering model enables you to select hypervisor nodes based on specific criteria—whether you need to optimize for power efficiency, cost, performance, or GPU capabilities. You can even mix different hardware types within the same cluster without compatibility issues or downtime.
+Key benefits
+============
 
-One of the most compelling advantages is Karios' ability to easily deploy single-node Kubernetes clusters at the edge. This capability proves invaluable for remote datacenter scenarios where you need Kubernetes orchestration capabilities but have limited infrastructure resources. Instead of complex multi-node deployments, you can quickly establish lightweight Kubernetes clusters that serve your edge computing requirements with minimal overhead.
+**Performance**: FreeBSD delivers faster network and storage operations compared to traditional approaches.
 
-Whether you're deploying enterprise-scale multi-node clusters or lightweight edge installations, Karios eliminates the traditional pain points of Kubernetes infrastructure management, making virtualized infrastructure a stackable, manageable experience.
+**Flexibility**: Run any Kubernetes version on virtual machines or bare metal. Mix different hardware types in the same cluster without compatibility issues.
+
+**Smart filtering**: Choose nodes based on your priorities—power efficiency, cost, performance, or GPU capabilities.
+
+**Edge deployment**: Deploy lightweight, single-node Kubernetes clusters for remote locations with limited infrastructure.
+
+Bottom line
+===========
+
+Whether you need enterprise-scale clusters or edge installations, Karios removes the complexity from Kubernetes infrastructure management.
 
 Sidero Kubernetes
 -----------------------
