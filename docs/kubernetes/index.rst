@@ -16,8 +16,8 @@ One of the most compelling advantages is Karios' ability to easily deploy single
 
 Whether you're deploying enterprise-scale multi-node clusters or lightweight edge installations, Karios eliminates the traditional pain points of Kubernetes infrastructure management, making virtualized infrastructure a stackable, manageable experience.
 
-Sidero Kubernetes
------------------------
+Sidero Kubernetes Overview
+--------------------------
 
 Sidero is a bare-metal provisioning system designed specifically for Kubernetes clusters. Built on Talos Linux, Sidero provides a GitOps-driven approach to managing bare-metal Kubernetes infrastructure with enterprise-grade security and immutable operating system principles.
 
@@ -213,6 +213,14 @@ Cluster Installation
 .. image:: _static/images/omni/om-20.png
    :alt: Cluster Ready
 
+OpenShift Overview
+--------------------------------
+
+OpenShift on Karios combines the **operational simplicity of Karios infrastructure management** with the **enterprise capabilities of OpenShift**.  
+This provides a powerful foundation for containerized application development and deployment, offering both the flexibility of Kubernetes and the operational maturity expected in enterprise environments.
+
+The platform includes integrated CI/CD capabilities, service mesh options, and comprehensive security policies, enabling organizations to adopt cloud-native practices while maintaining governance and compliance requirements.  
+
 Creating the OpenShift Cluster
 ----------------------------------
 
@@ -305,14 +313,6 @@ During cluster configuration, you will see the **HAProxy Setup** option.
 - For test or single-node clusters, HAProxy can remain unchecked.  
 
 - Once configuration is complete, click **Create OpenShift Cluster** to finalize deployment.  
-
-OpenShift Overview
---------------------------------
-
-OpenShift on Karios combines the **operational simplicity of Karios infrastructure management** with the **enterprise capabilities of OpenShift**.  
-This provides a powerful foundation for containerized application development and deployment, offering both the flexibility of Kubernetes and the operational maturity expected in enterprise environments.
-
-The platform includes integrated CI/CD capabilities, service mesh options, and comprehensive security policies, enabling organizations to adopt cloud-native practices while maintaining governance and compliance requirements.  
 
 OpenShift Without DHCP
 --------------------------
@@ -493,8 +493,8 @@ Configuration Summary
 Your OpenShift cluster on Karios is now ready for production workloads.
 
 
-Open Source Kubernetes on Ubuntu with Karios
-----------------------------------------------
+Open Source Kubernetes Overview
+-------------------------------
 
 
 Open source Kubernetes provides the foundational container orchestration platform without vendor-specific additions. Running Kubernetes on **Ubuntu** through Karios gives you complete control over your cluster configuration while benefiting from Ubuntu’s extensive package ecosystem and long-term support options.
@@ -518,7 +518,7 @@ Create the Ubuntu Kubernetes Cluster
 
 **Step 3.1.1: Create the Cluster Machine in Karios UI**
 
-- Click **Setup Kubernetes** in the Karios UI.
+- Click **Setup Kubernetes** in the Karios UI, and Select **Ubuntu**.
 
 .. image:: _static/images/UbuntuKubernetes/ubuntu-1.png
    :alt: Setup Kubernetes Button
@@ -550,7 +550,7 @@ Create the Ubuntu Kubernetes Cluster
 .. image:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Bootstrap Node Config
 
-- Select server, CPU, memory, and disk size.  
+- Select **Server**, **CPU**, **Memory**, and **Disk Size**.  
 
 .. note::
    Minimum requirements for the bootstrap/control node:  
@@ -572,7 +572,7 @@ Create the Ubuntu Kubernetes Cluster
 .. image:: _static/images/UbuntuKubernetes/ubuntu-4.png
    :alt: Control Plane Config
 
-- Select server and configure CPU, memory, and disk size.  
+- Select **Server**, **CPU**, **Memory**, and **Disk Size**. 
 
 .. note::
    Minimum requirements per control plane node:  
@@ -598,7 +598,7 @@ Create the Ubuntu Kubernetes Cluster
 .. image:: _static/images/UbuntuKubernetes/ubuntu-7.png
    :alt: Worker Node Config
 
-- Select server and configure VM specs.  
+- Select **Server** and configure VM specs.  
 
 .. note::
    Minimum requirements per worker node:  
