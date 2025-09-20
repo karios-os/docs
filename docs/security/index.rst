@@ -48,10 +48,41 @@ Displays critical security metrics at a glance:
 
    * - Field
      - Description
-   * - Risk Percentage
-     - Current security risk as a percentage (lower values indicate better security)
+   * - Compliance Score Percentage
+     - Current Compliance Score as a percentage (higher values indicate better security)
    * - System Status
      - Overall system health status based on latest scan results (e.g., "Needs Attention")
+
+Compliance Score
+----------------
+
+- **How this score is calculated:**
+  - The CAT I / CAT II / CAT III counts directly drive this compliance score — each issue reduces the score based on severity and total volume.
+
+- **CAT I (Critical):**
+  - Largest impact; each lowers compliance by ~1.5–2 points.
+
+- **CAT II (High/Medium):**
+  - Moderate impact; each lowers compliance by ~0.25–0.60 point.
+
+- **CAT III (Low):**
+  - Smallest impact; each lowers compliance by ~0.1–0.2 points.
+
+- **Volume Factor:**
+  - More total findings → each new one counts a bit more (up to ~30% extra impact).
+
+- **Calculation:**
+  - Compliance = 100 – (Weighted Findings × Volume Factor ÷ 10)
+  - Final score is clamped to 0–100. If no findings → 100% compliance.
+
+- **Score Ranges:**
+
+  * - **≥50% — Compliant:** 
+    - System is in acceptable state.
+  * - **30–49% — Partially Compliant:** 
+    - Gaps exist, needs attention.
+  * - **<30% — Non-Compliant:** 
+    - System at risk, immediate action required.     
 
 **Center Panel - System Information:**
 
@@ -152,8 +183,8 @@ Track and analyze vulnerability trends across multiple scans with historical dat
      - Timestamp and target of the scan
    * - Status
      - Completion status (COMPLETED/FAILED)
-   * - Risk Score
-     - Risk score calculated from scan findings
+   * - Compliance Score
+     - Compliance score calculated from scan findings
    * - Vulnerabilities
      - Total vulnerabilities found during the scan
    * - Duration
@@ -237,7 +268,7 @@ CVE Matching
 Scoring & Reporting
 ^^^^^^^^^^^^^^^^^^^
 
-* Risk Score calculated based on findings and severity
+* Compliance score calculated based on findings and severity
 * Scan results, scores, and logs saved to database
 * Results displayed in Security tab interface
 
@@ -267,7 +298,7 @@ CVE Tracking
 Risk Assessment and Scoring
 ---------------------------
 
-**Risk Score Calculation:** The Risk Score provides a comprehensive assessment of system vulnerability based on:
+**Compliance Score Calculation:** The Compliance Score provides a comprehensive assessment of system security posture based on:
 
 * **Number of Security Findings:** Total count of identified vulnerabilities
 * **Severity Weighting:** Critical, High, Medium, Low severity impact factors
@@ -309,6 +340,14 @@ Current Remediation Capabilities
 * **Configuration Corrections:** Adjusting permissions, disabling unsafe services
 * **File Permission Fixes:** Correcting overly permissive file and directory access
 
+**Recommendation Flow:**
+
+* **Safety-First Remediation** - All XCCDF rules include automated checks with manual remediation for high-risk changes that could cause system lockout (SSH, PAM, firewall modifications).
+* **Industry Standard Compliance** - Rules follow CIS FreeBSD 14 Benchmark v1.0.1 with proper CVE identifiers, CVSS scores, and NIST 800-53 control mappings for enterprise compliance frameworks.
+* **Package Vulnerability Management** - Separate CVE rules track critical package vulnerabilities (PostgreSQL, SQLite, libxslt) with Karios certification status clearly indicated.
+* **Service Continuity Protection** - Remediation scripts avoid automatic service restarts and include clear warnings about potential disruption to critical services like SSH and databases.
+* **Operational Documentation** - Each rule includes comprehensive warning, remediation, and recommendation sections with specific manual steps for safe implementation in production environments.
+
 Remediation Process
 -------------------
 
@@ -325,7 +364,7 @@ Remediation Process
 
 * **Automatic Fixes:** Limited automated vulnerability remediation for supported issues
 * **Step-by-Step Guides:** Detailed manual remediation instructions
-* **Verification:** Automated verification of successful remediation
+* **Verification:** Automated verification of successful manual remediation on the next scan
 * **Tracking:** Complete remediation progress and completion monitoring
 
 Future Remediation Enhancements
@@ -349,7 +388,7 @@ Scan Results and Details
 
 * **Scan Time:** Precise scan execution timestamp
 * **Initiator:** Scan trigger source (System/User initiated)
-* **Risk Score:** Calculated risk score from scan results
+* **Compliance Score:** Calculated compliance score from scan results
 * **Vulnerability Count:** Total number of vulnerabilities discovered
 
 Report Generation
@@ -409,7 +448,7 @@ Performance Metrics and Improvements
 
 **Historical Analysis:**
 
-* **Risk Score Trends:** Long-term risk score analysis and trending
+* **Compliance Score Trends:** Long-term compliance score analysis and trending
 * **Vulnerability Trends:** Tracking vulnerability discovery and remediation over time
 * **Compliance History:** Historical compliance status and improvement tracking
 * **Change Analytics:** Analysis of security changes and their impacts
@@ -461,13 +500,13 @@ Dashboard
      - Description
    * - ``/api/v1/security/{scan_target}/dashboard/score-panel-new``
      - GET
-     - Returns the top-line security panel (risk %, compliance, counts) for the latest scan.
+     - Returns the top-line security panel (Compliance %, compliance, counts) for the latest scan.
    * - ``/api/v1/security/{scan_target}/dashboard/cat-analysis``
      - GET
      - Returns CAT I/II/III breakdown and pass/fail stats.
    * - ``/api/v1/security/{scan_target}/dashboard/risk-trend?days={n}``
      - GET
-     - Returns risk score trend data over the past ``n`` days (default example: 90).
+     - Returns compliance score trend data over the past ``n`` days (default example: 90).
    * - ``/api/v1/security/{scan_target}/dashboard/recent-scan-stats``
      - GET
      - Returns recent-scan summary (duration, findings, status) for quick at-a-glance metrics.

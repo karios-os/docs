@@ -4333,8 +4333,150 @@ Firewall Rule Components
       - **Service Portfolio:** Comprehensive port access for multiple services and applications
       - **State Management:** Automatic connection state tracking for all services
 
-Rule Editing and Modification
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Simple vs Advanced Mode**
+
+The interface provides two operational modes:
+
+* **Simple Mode**: Quick and easy firewall rules for most common needs
+* **Advanced Mode**: Full PF configuration capabilities for complex scenarios
+
+
+Packet Filter Management - Simple Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Simple Mode interface provides a user-friendly way to configure FreeBSD Packet Filter (PF) rules through an intuitive drag-and-drop interface. This mode is designed for quick and easy firewall rule creation without requiring deep knowledge of PF syntax.
+
+**Interface Components**
+
+**Existing Packet Filters Section**
+
+The left panel displays currently configured packet filter elements organized by type:
+
+* **Variables**: Network interface definitions and other variables
+* **Set Options**: Firewall behavior configuration options  
+* **Rules**: Pass/block rule definitions
+* **Tables**: Address groupings for rule references
+* **Anchors**: NAT/RDR anchor definitions
+
+
+**Adding New Packet Filter Rules**
+
+**Select Rule Type**
+
+Choose from the available rule types:
+
+* **Variables** - Define network interfaces and other variables
+* **Set Options** - Configure firewall behavior options
+* **Tables** - Define address tables for grouping
+* **Rules** - Define pass/block rules
+* **Anchors** - Define NAT/RDR anchors
+* **Anchor Templates** - Predefined service configurations
+
+**Rule Configuration Options**
+
+**Variables**
+
+Configure network interface definitions and custom variables:
+
+* **Variable Name**: Define the variable identifier (e.g., ``ext_if``)
+* **Value**: Set the variable value (e.g., ``igb0``)
+
+**Set Options**
+
+Configure firewall behavior settings:
+
+* **Option Name**: Select from available options (e.g., ``block-policy``)
+* **Value**: Choose the appropriate value from dropdown
+
+**Tables**
+
+Define address groups for use in rules:
+
+* **Table Name**: Specify table identifier (e.g., ``trusted_nets``)
+* **Properties**: Optional table properties
+* **Entries**: Comma-separated list of addresses/networks (e.g., ``192.168.1.0/24, 10.0.0.0/8``)
+
+**Rules**
+
+Create pass/block rules with comprehensive options:
+
+**Rule Creation Mode**: Choose between Custom or Quick Toggle
+
+* **Custom**: Full manual rule configuration
+* **Quick Toggle**: Simplified rule creation for common services
+
+**Basic Rule Configuration**:
+
+* **Action**: pass, block, or reject
+* **Direction**: in, out, or any
+* **Address Family**: inet, inet6, or any
+* **Interface**: Select network interface
+* **Protocol**: TCP, UDP, ICMP, or any
+* **Source/Destination**: Define source and destination criteria
+* **Port**: Specify port ranges
+* **State**: Connection state handling
+
+**Quick Toggle Services**:
+
+* **FTP** (21): File Transfer Protocol
+* **SSH** (22): Secure Shell access
+
+**Anchors**
+
+Define NAT/RDR anchor points:
+
+* **Anchor Type**: NAT Anchor or RDR Anchor
+* **Anchor Name**: Identifier for the anchor (e.g., ``ftp-proxy/*``)
+
+**Anchor Templates**
+
+Select from predefined service configurations:
+
+* **FTP Proxy** (2121): FTP through proxy configuration
+* **ICMP** (N/A): Ping and network diagnostics
+
+**Configuration Process**
+
+**Step-by-Step Rule Creation**
+
+1. **Select Rule Type**: Choose the appropriate rule category from the dropdown
+2. **Configure Parameters**: Fill in the required configuration fields based on rule type
+3. **Add Rule**: Click the relevant "Add" button (Add Variable, Add Table, Add Rule, etc.)
+4. **Drag and Drop**: The new rule appears in the left panel where you can drag it to reorder priority
+5. **Save Changes**: Click **"Save Changes"** to apply the configuration
+
+**Configuration Validation and Application**
+
+When you click **"Save Changes"**:
+
+1. **Syntax Check**: The system validates PF rule syntax
+2. **60-Second Timer**: If syntax is valid, a 60-second confirmation timer begins
+3. **Confirmation Required**: You must confirm the changes within 60 seconds
+4. **Automatic Rollback**: If not confirmed, changes are automatically reverted
+5. **Rule Application**: Upon confirmation, the new PF configuration is saved and applied
+
+.. warning::
+   Always ensure you have alternative access to the system before applying firewall changes. The 60-second confirmation window provides a safety mechanism to prevent lockouts.
+
+
+**Advanced Features**
+
+When Simple Mode limitations are reached, Advanced Mode provides:
+
+* Complex rule matching criteria
+* Advanced NAT/RDR configurations  
+* Queue management and traffic shaping
+* Custom macro definitions
+* Raw PF rule syntax editing
+
+Switch to Advanced Mode when you need capabilities beyond the simplified interface options.
+
+Use the **"Need more options? Switch to Advanced Mode"** link or **"Advanced"** button at the top to access additional configuration options when Simple Mode doesn't provide sufficient flexibility.  
+
+
+Rule Editing and Modification - Advanced Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Interactive Rule Editor:** The firewall interface provides comprehensive rule editing capabilities.
 
@@ -4423,6 +4565,13 @@ Security Considerations:
 
 - **Best Practices:** Follow established firewall configuration best practices
 
+
+.. seealso::
+   
+   **FreeBSD Documentation**
+      * `FreeBSD Handbook - Firewalls <https://docs.freebsd.org/en/books/handbook/firewalls/>`_
+      * `PF User's Guide <https://www.openbsd.org/faq/pf/>`_   
+
 Security Center Walkthrough
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -4438,7 +4587,7 @@ Security Center Navigation
    - Navigate to the "Security" tab on any node in the node's main menu
    - The below image clearly indicates where to find the 'Security' tab on the interface.
 
-   .. figure:: _static/images/security/security_tab_pointer.png
+   .. figure:: _static/images/security/security_tab_pointer_new.png
       :width: 600
       :alt: Security Tab Pointer
 
@@ -4455,7 +4604,7 @@ Security Dashboard Interface
    - Key metrics include risk percentage, system status, last scan status and top risk category
    - The below image clearly shows where to find 'Scan' Button
 
-   .. figure:: _static/images/security/security_scan_pointer.png
+   .. figure:: _static/images/security/security_scan_pointer_new.png
       :width: 600
       :alt: Security Scan Button
 
@@ -4466,6 +4615,38 @@ Initiating Security Scans
    - Click the 'Scan' button to initiate a new security scan
    - The system will perform vulnerability assessment and risk analysis
    - Scan results will be displayed in real-time on the dashboard
+
+Compliance Score
+""""""""""""""""
+
+- **How this score is calculated:**
+  - The CAT I / CAT II / CAT III counts directly drive this compliance score — each issue reduces the score based on severity and total volume.
+
+- **CAT I (Critical):**
+  - Largest impact; each lowers compliance by ~1.5–2 points.
+
+- **CAT II (High/Medium):**
+  - Moderate impact; each lowers compliance by ~0.25–0.60 point.
+
+- **CAT III (Low):**
+  - Smallest impact; each lowers compliance by ~0.1–0.2 points.
+
+- **Volume Factor:**
+  - More total findings → each new one counts a bit more (up to ~30% extra impact).
+
+- **Calculation:**
+  - Compliance = 100 – (Weighted Findings × Volume Factor ÷ 10)
+  - Final score is clamped to 0–100. If no findings → 100% compliance.
+
+- **Score Ranges:**
+
+  * - **≥50% — Compliant:** 
+    - System is in acceptable state.
+  * - **30–49% — Partially Compliant:** 
+    - Gaps exist, needs attention.
+  * - **<30% — Non-Compliant:** 
+    - System at risk, immediate action required.   
+
 
 Security Vulnerability Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4479,7 +4660,7 @@ Vulnerability Assessment Interface
    - Scroll Down to view detailed vulnerabilities information along with remediation options
    - Please click on the vulnerability to know more information about it
 
-   .. figure:: _static/images/security/security_vuln_info.png
+   .. figure:: _static/images/security/security_vuln_info_new.png
       :width: 600
       :alt: Vulnerability Information
 
@@ -4490,7 +4671,7 @@ Vulnerability Details and Information
    - Click on any vulnerability to access detailed information
    - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links
 
-   .. figure:: _static/images/security/security_vuln_popup.png
+   .. figure:: _static/images/security/security_vuln_popup_new.png
       :width: 600
       :alt: Vulnerability Popup
 
@@ -4515,7 +4696,7 @@ Automated Remediation Interface
    .. note::
       One-click Remediation is available for very few vulnerabilities at this point to make sure that it does not hamper the system functionality.
 
-   .. figure:: _static/images/security/security_vuln_remediation_pointer_section.png
+   .. figure:: _static/images/security/security_vuln_remediation_pointer_section_new.png
       :width: 600
       :alt: Vulnerability Remediation Pointer
 
@@ -4528,6 +4709,34 @@ Remediation Process
    - Monitor remediation progress and validate fixes
    - Verify system functionality after remediation
 
+Recommendation Process
+""""""""""""""""""""""  
+   - Safety-First Remediation - All XCCDF rules include automated checks with manual remediation for high-risk changes that could cause system lockout (SSH, PAM, firewall modifications).
+   - Industry Standard Compliance - Rules follow CIS FreeBSD 14 Benchmark v1.0.1 with proper CVE identifiers, CVSS scores, and NIST 800-53 control mappings for enterprise compliance frameworks.
+   - Service Continuity Protection - Remediation scripts avoid automatic service restarts and include clear warnings about potential disruption to critical services like SSH and databases.
+   - Operational Documentation - Each rule includes comprehensive warning, remediation, and recommendation sections with specific manual steps for safe implementation in production environments.
+
+   .. figure:: _static/images/security/recommendation_pointer_new.png
+      :width: 600
+      :alt: Vulnerability Recommendation Pointer
+
+      Figure 6: Vulnerability Recommendation Pointer
+
+Recommendation Pop-up
+"""""""""""""""""""""
+   - Click on the 'Recommendation' button to view detailed recommendation information
+   - The recommendation pop-up contains:
+     - Detailed recommendation description
+     - Risk assessment information
+     - Potential impact analysis
+     - Manual remediation steps
+
+   .. figure:: _static/images/security/recommendation_popup_new.png
+      :width: 600
+      :alt: Vulnerability Recommendation Popup
+
+      Figure 7: Vulnerability Recommendation Popup
+
 Scan History and Reporting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -4539,44 +4748,44 @@ Security Scan History Navigation
    - Review past scan results and reports
    - Please click on the 'Metrics' button beside the 'Scan' button to navigate to Security Scan History Page
 
-   .. figure:: _static/images/security/security_navigate_to_history_page.png
+   .. figure:: _static/images/security/security_navigate_to_history_page_new.png
       :width: 600
       :alt: Security Scan History Pointer
 
-      Figure 6: Security Scan History Pointer
+      Figure 8: Security Scan History Pointer
 
 Security Scan History Dashboard
 """""""""""""""""""""""""""""""
    - The Security Scan History Page provides a metrics dashboard for previous scans performed
    - Review historical reports in html and PDF formats
-   - You can find the previous scan details, risk score from earlier scan and other additional details in this Security Scan History Page
+   - You can find the previous scan details, Compliance Score from earlier scan and other additional details in this Security Scan History Page
 
-   .. figure:: _static/images/security/security_history_page.png
+   .. figure:: _static/images/security/security_history_page_new.png
       :width: 600
       :alt: Security History Page
 
-      Figure 7: Security History Page
+      Figure 9: Security History Page
 
 Security Report Generation
 """"""""""""""""""""""""""
-   - The below image clearly indicates where to find the pdf & html report download options under the Scan History section
+   - The below image clearly indicates where to find the PDF & HTML report download options under the Scan History section
 
-   .. figure:: _static/images/security/security_report_pointer.png
+   .. figure:: _static/images/security/security_report_pointer_new.png
       :width: 600
       :alt: Security Report Pointer
 
-      Figure 8: Security Report Pointer
+      Figure 10: Security Report Pointer
 
 Security Report Content
 """""""""""""""""""""""
    - Once downloaded, the security report will contain detailed information of all the vulnerabilities identified in the scan
    - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details
 
-   .. figure:: _static/images/security/security_report_content.png
+   .. figure:: _static/images/security/security_report_content_new.png
       :width: 600
       :alt: Security Report Content
 
-      Figure 9: Security Report Content
+      Figure 11: Security Report Content
 
 **Security Report Components**
 
@@ -5297,25 +5506,6 @@ Basic VM Creation
    # Create a new virtual machine
    vm create -t template_name vm_name
 
-   # Create VM with custom resources
-   vm create -c 4 -m 8G -d 50G vm_name
-
-   # Create VM from ISO
-   vm create -i /path/to/os.iso -c 2 -m 4G vm_name
-
-Advanced VM Creation
-^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Create VM with specific disk type
-   vm create -c 4 -m 8G -d 100G -t zvol vm_name
-
-   # Create VM with multiple disks
-   vm create -c 4 -m 8G -d disk0:50G,disk1:100G vm_name
-
-   # Create VM with network configuration
-   vm create -c 4 -m 8G -s bridge0 -n auto vm_name
 
 VM Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -5354,9 +5544,6 @@ VM Status and Information
    # Show VM configuration
    vm config vm_name
 
-   # Display VM resource usage
-   vm status vm_name
-
    # Show VM console output
    vm console vm_name
 
@@ -5374,34 +5561,9 @@ CPU and Memory Management
    # Adjust VM memory
    vm config vm_name memory=16G
 
-   # Set CPU topology
-   vm config vm_name cpu=4 cores=2 threads=2
-
    # Configure CPU affinity
    vm config vm_name cpuset=0,1,2,3
 
-Storage Management
-^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Add disk to VM
-   vm disk add vm_name disk2 50G
-
-   # Remove disk from VM
-   vm disk remove vm_name disk1
-
-   # Resize VM disk
-   vm disk resize vm_name disk0 100G
-
-   # Create snapshot of VM disk
-   vm snapshot create vm_name@snapshot_name
-
-   # List VM snapshots
-   vm snapshot list vm_name
-
-   # Rollback to snapshot
-   vm snapshot rollback vm_name@snapshot_name
 
 Network Configuration
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -5434,37 +5596,20 @@ Creating and Managing Templates
 
 .. code-block:: bash
 
-   # Create template from existing VM
-   vm template create vm_name template_name
+   # Create a template from an existing VM config
+   cp /zroot/vm/vm_name/vm.conf /vm/.templates/template_name.conf
 
    # List available templates
-   vm template list
+   ls /vm/.templates/
 
    # Show template details
-   vm template info template_name
+   cat /vm/.templates/template_name.conf
 
-   # Delete template
-   vm template delete template_name
+   # Delete a template
+   rm /vm/.templates/template_name.conf
 
-   # Clone VM from template
-   vm clone template_name new_vm_name
-
-Advanced VM Operations
-~~~~~~~~~~~~~~~~~~~~~~~
-
-VM Migration and Cloning
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Clone a virtual machine
-   vm clone source_vm cloned_vm
-
-   # Export VM
-   vm export vm_name /path/to/export.vmx
-
-   # Import VM
-   vm import /path/to/export.vmx imported_vm
+   # Create a VM from a template
+   vm create -t template_name new_vm_name
 
 
 VM Console and Access
@@ -5478,39 +5623,18 @@ Console Management
    # Connect to VM console
    vm console vm_name
 
-   # Connect with specific console type
-   vm console -t vnc vm_name
-
    # Disconnect from console
    # Press Ctrl+] to exit console
 
    # Enable VNC for VM
-   vm config vm_name vnc=on vnc_port=5900
+   vm config vm_name vnc=on
+
+   # Set VNC port
+   vm config vm_name vnc_port=5900
 
    # Set VNC password
    vm config vm_name vnc_password=secure_password
 
-Bulk Operations
-~~~~~~~~~~~~~~~~
-
-Managing Multiple VMs
-^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Start multiple VMs
-   vm start vm1 vm2 vm3
-
-   # Stop all running VMs
-   vm list -r | xargs vm stop
-
-   # List VMs with specific status
-   vm list -s running
-
-   # Bulk configuration change
-   for vm in $(vm list -o name -s stopped); do
-       vm config $vm memory=8G
-   done
 
 VM Monitoring and Logs
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -5520,84 +5644,75 @@ Performance Monitoring
 
 .. code-block:: bash
 
-   # Show VM performance stats
-   vm stats vm_name
 
-   # Monitor VM resource usage
-   vm top
+   # Monitor overall system resource usage
+   top -a
 
-   # Show VM I/O statistics
-   vm iostat vm_name
+   # Show CPU usage per core
+   top -P
 
-   # Display VM network statistics
-   vm netstat vm_name
+   # Monitor disk I/O statistics
+   iostat -x 1
 
-Log Management
-^^^^^^^^^^^^^^^
+   # Show live disk statistics per device
+   gstat
 
-.. code-block:: bash
+   # Display network statistics (interfaces)
+   netstat -i
 
-   # View VM logs
-   vm logs vm_name
+   # Show protocol-level network statistics
+   netstat -s
 
-   # Follow VM logs in real-time
-   vm logs -f vm_name
-
-   # Show specific log entries
-   vm logs vm_name | grep ERROR
-
-   # Clear VM logs
-   vm logs clear vm_name
-
-Troubleshooting Commands
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Debugging VM Issues
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Validate VM configuration
-   vm validate vm_name
-
-   # Test VM connectivity
-   vm test network vm_name
-
-   # Check VM dependencies
-   vm dependencies vm_name
-
-   # Show VM process information
-   vm ps vm_name
-
-   # Debug VM startup issues
-   vm start -v vm_name
-
-Recovery Operations
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: bash
-
-   # Reset VM configuration to defaults
-   vm config reset vm_name
-
-   # Repair VM filesystem
-   vm repair vm_name
-
-   # Recover from failed state
-   vm recover vm_name
-
-   # Force cleanup of VM resources
-   vm cleanup vm_name --force
+   # View specific VM process resource usage
+   ps aux | grep bhyve
 
 
 .. note::
    Replace ``vm_name``, ``template_name``, and other variables with actual values specific to your environment.
 
 .. warning::
-   Some operations like PCI passthrough and live migration require specific hardware support and configuration.
+   Some operations like PCI passthrough require specific hardware support and configuration.
 
 .. tip::
    Use ``vm help command_name`` to get detailed information about any specific command and its options.
+
+
+VLAN Interface Configuration
+----------------------------
+
+Creating VLAN Interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Create VLAN interfaces
+   ifconfig vlan102 create vlan 102 vlandev vtnet0
+   ifconfig vlan103 create vlan 103 vlandev vtnet0
+
+Assigning IP Addresses
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Assign IP addresses and bring interfaces up
+   ifconfig vlan102 inet 10.1.102.3/24 up
+   ifconfig vlan103 inet 10.1.103.3/24 up
+
+Making Configuration Persistent
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Make VLAN configuration persistent across reboots
+   sysrc cloned_interfaces+="vlan102 vlan103"
+   sysrc ifconfig_vlan102="inet 10.1.102.3/24"
+   sysrc ifconfig_vlan103="inet 10.1.103.3/24"
+
+.. note::
+   VLAN configuration will be automatically applied on system boot after making it persistent with ``sysrc`` commands.
+
+.. tip::
+   Verify VLAN interface status with ``ifconfig vlan102`` and ``ifconfig vlan103`` after configuration.
 
 
 ZFS CLI Commands
@@ -5892,12 +6007,8 @@ Flushing Rules
      - Flush the filter rules
    * - ``pfctl -F states``
      - Flush the state table (connections)
-   * - ``pfctl -F Sources``
-     - Flush the source tracking table
    * - ``pfctl -F info``
      - Flush the filter information (counters)
-   * - ``pfctl -F Tables``
-     - Flush the tables
    * - ``pfctl -F osfp``
      - Flush the passive operating system fingerprints
    * - ``pfctl -F all``
@@ -5918,12 +6029,8 @@ Showing Information
      - Show the currently loaded queue rules
    * - ``pfctl -s rules``
      - Show the currently loaded filter rules
-   * - ``pfctl -s Anchors``
-     - Show the currently loaded anchors directly attached to the main ruleset
    * - ``pfctl -s states``
      - Show the contents of the state table
-   * - ``pfctl -s Sources``
-     - Show the contents of the source tracking table
    * - ``pfctl -s info``
      - Show filter information (statistics and counters)
    * - ``pfctl -s labels``
@@ -5932,30 +6039,11 @@ Showing Information
      - Show the current global timeouts
    * - ``pfctl -s memory``
      - Show the current pool memory hard limits
-   * - ``pfctl -s Tables``
-     - Show the list of tables
    * - ``pfctl -s osfp``
      - Show the list of operating system fingerprints
-   * - ``pfctl -s Interfaces``
-     - Show the list of interfaces and interface drivers available
    * - ``pfctl -s all``
      - Show everything
 
-Viewing Rules with Line Numbers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``pfctl -s rules -R``
-     - Show the currently loaded filter rules with line numbers
-   * - ``pfctl -s nat -R``
-     - Show the currently loaded nat rules with line numbers
-   * - ``pfctl -s queue -R``
-     - Show the currently loaded queue rules with line numbers
 
 Debugging
 ~~~~~~~~~
@@ -5990,8 +6078,6 @@ Statistics
      - Show state table
    * - ``pfctl -s states | grep 192.168.1.1``
      - Show state table for a specific IP
-   * - ``pfctl -s Sources``
-     - Show source tracking table
 
 Tables
 ~~~~~~
@@ -6002,8 +6088,6 @@ Tables
 
    * - Command
      - Description
-   * - ``pfctl -s Tables``
-     - Show list of tables
    * - ``pfctl -t tablename -T show``
      - Show contents of specified table
    * - ``pfctl -t tablename -T add 1.2.3.4``
@@ -6018,8 +6102,7 @@ Tables
      - Load addresses into table from file
    * - ``pfctl -t tablename -T test 1.2.3.4``
      - Test if address is in table
-   * - ``pfctl -t tablename -T expire``
-     - Show expired addresses in table
+
 
 Common Usage Examples
 ~~~~~~~~~~~~~~~~~~~~~
