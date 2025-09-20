@@ -4566,12 +4566,6 @@ Security Considerations:
 - **Best Practices:** Follow established firewall configuration best practices
 
 
-.. seealso::
-   
-   **FreeBSD Documentation**
-      * `FreeBSD Handbook - Firewalls <https://docs.freebsd.org/en/books/handbook/firewalls/>`_
-      * `PF User's Guide <https://www.openbsd.org/faq/pf/>`_   
-
 Security Center Walkthrough
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
