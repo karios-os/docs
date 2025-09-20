@@ -124,6 +124,10 @@ Cluster Installation
 **Step 1.2.1: Download the ISO**
 
 - In OmniServer dashboard, click **Download ISO**.  
+
+.. image:: _static/images/omni/omd-1.png
+   :alt: Generate ISO
+
 - Select ISO type, Talos version, and click **Generate ISO**.
 
 .. note::
@@ -131,8 +135,7 @@ Cluster Installation
    For VM clusters, add the following kernel argument to avoid ``kexec`` issues:  
    ``sysctl.kernel.kexec_load_disabled=1``
 
-.. image:: _static/images/omni/omd-1.png
-   :alt: Generate ISO
+
 .. image:: _static/images/omni/omd-2.png
    :alt: Generate ISO
 
@@ -147,7 +150,12 @@ Cluster Installation
 
 **Step 1.2.3: Create Cluster Machines in Karios UI**
 
-- Click **Setup Kubernetes**.  
+- Click **Setup Kubernetes**. 
+- Click on **OmniServer** 
+
+.. image:: _static/images/omni/om-1.png
+   :alt: Cluster Deta
+
 - Enter cluster details and select the uploaded ISO.
 
 .. note::
@@ -157,15 +165,21 @@ Cluster Installation
    :alt: Cluster Details
 
 - Select server, storage pool, and network switch.  
-- Enter VM specs and click **Update**.  
-- Use the "+" button to add multiple VMs.  
-- Click **Omni VMs** to create the machines.  
-- Start all VMs from the Karios UI.
+- Enter VM specs and click **Update**. 
 
 .. image:: _static/images/omni/om-13.png
-   :alt: Add VM Config
+   :alt: Add VM Config 
+
+- Use the "+" button to add multiple VMs.  
+- Click **Omni VMs** to create the machines.  
+
 .. image:: _static/images/omni/om-14.png
    :alt: Omni VM Creation
+
+- Start all VMs from the Karios UI.
+
+
+
 .. image:: _static/images/omni/omd-3.png
    :alt: Omni VM Creation
 
@@ -228,8 +242,10 @@ Creating the OpenShift Cluster
 
 - Click **Setup Kubernetes** in the Karios UI.
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-1.png
+.. image:: _static/images/openshift/op-1.png
    :alt: Setup Kubernetes Button
+
+- Select **OpenShift**.
 
 .. image:: _static/images/openshift/op-2.png
    :alt: Setup Kubernetes Button
@@ -332,32 +348,32 @@ Before starting installation, ensure you have:
 Installation Steps
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Step 2.3.2.1: Navigate to Red Hat Console**
+**Step 2.2.1: Navigate to Red Hat Console**
 
 - Go to: https://console.redhat.com/openshift/create/datacenter  
 
-**Step 2.3.2.2: Authentication**
+**Step 2.2.2: Authentication**
 
 - Log in with your **Red Hat credentials**.  
 
 .. warning::
    Ensure your account has the required permissions to create OpenShift clusters.  
 
-**Step 2.3.2.3: Platform Selection**
+**Step 2.2.3: Platform Selection**
 
 - Select **"Platform agnostic (x86_64)"**.  
 
 .. image:: _static/images/openshift/Redhat-4.png
    :alt: Platform Agnostic Selection
 
-**Step 2.3.2.4: Installation Method**
+**Step 2.2.4: Installation Method**
 
 - Select **"Interactive"** (guided setup).  
 
 .. image:: _static/images/openshift/Redhat-5.png
    :alt: Interactive Installation Selection
 
-**Step 2.3.2.5: Configure Cluster Details**
+**Step 2.2.5: Configure Cluster Details**
 
 - Fill out the installer form:  
 
@@ -373,7 +389,7 @@ Installation Steps
    The cluster name must follow DNS requirements. See:  
    `DNS requirements documentation <https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/installing_an_on-premise_cluster_with_the_agent-based_installer/preparing-to-install-with-agent-based-installer#agent-install-dns-none_preparing-to-install-with-agent-based-installer>`_
 
-**Step 2.3.2.6: Configure Additional Settings**
+**Step 2.2.6: Configure Additional Settings**
 
 - Platform: **No platform integration**  
 - Control Plane: **3 nodes (HA)**  
@@ -382,7 +398,7 @@ Installation Steps
 .. image:: _static/images/openshift/Redhat-7.png
    :alt: Additional Settings
 
-**Step 2.3.2.7: Configure Static Networking**
+**Step 2.2.7: Configure Static Networking**
 
 - Use **Form view**.  
 - Example:  
@@ -393,12 +409,13 @@ Installation Steps
 .. image:: _static/images/openshift/Redhat-8.png
    :alt: Static Network Configuration
 
-**Step 2.3.2.8: Map Hosts (MAC to IP)**
+**Step 2.2.8: Map Hosts (MAC to IP)**
 
-- Host 1 → 58:9c:fc:01:72:82 → 192.168.116.60  
-- Host 2 → 58:9c:fc:0e:32:8b → 192.168.116.61  
-- Host 3 → 58:9c:fc:06:38:a0 → 192.168.116.62  
-- Host 4 → 58:9c:fc:0c:b0:e1 → 192.168.116.63  
+- Host 1 → 58:9c:fc:01:4f:a1 → 192.168.116.30
+- Host 2 → 58:9c:fc:0f:66:4c → 192.168.116.31
+- Host 3 → 58:9c:fc:0e:6f:55 → 192.168.116.32
+- Host 4 → 58:9c:fc:08:2e:26 → 192.168.116.36
+- Host 5 → 58:9c:fc:0e:00:09 → 192.168.116.39  
 
 .. image:: _static/images/openshift/op-10.png
    :alt: Host-Specific Config
@@ -406,7 +423,7 @@ Installation Steps
 .. important::
    After modifying network settings, regenerate the Discovery ISO.  
 
-**Step 2.3.2.9: Generate Discovery ISO**
+**Step 2.2.9: Generate Discovery ISO**
 
 - Select **Full image file - self-contained ISO**.  
 - Paste SSH public key.  
@@ -415,26 +432,42 @@ Installation Steps
 .. image:: _static/images/openshift/op-12.png
    :alt: Generate Discovery ISO
 
-**Step 2.3.2.10: Download ISO in Karios UI**
+**Step 2.2.10: Download ISO in Karios UI**
 
-- Copy wget link from Red Hat console.  
-- In **Karios → Control Center → ISO tab**, paste link.  
-- Click **Download**.  
+- Copy wget link from Red Hat console. 
 
 .. image:: _static/images/openshift/op-13.png
    :alt: Download Discovery ISO
 
-**Step 2.3.2.11: Attach ISO and Boot Nodes**
+- In **Karios → Control Center → ISO tab**, paste link.  
+- Click **Download**.  
 
-- Attach ISO to nodes.  
+
+
+**Step 2.2.11: Attach ISO and Boot Nodes**
+
+- Click on the Vm. 
+
+.. image:: _static/images/openshift/op-14.png
+   :alt: Download Discovery ISO
+
+- Attach ISO to nodes. 
+
+.. image:: _static/images/openshift/op-15.png
+   :alt: Download Discovery ISO
+
+.. image:: _static/images/openshift/Redhat-12.png
+   :alt: Download Discovery ISO
+
 - Ensure ISO is primary boot device.  
 - Power on nodes.  
 
 .. image:: _static/images/openshift/op-14.png
    :alt: Attach ISO to Nodes
 
-**Step 2.3.2.12: Node Discovery**
+**Step 2.2.12: Node Discovery**
 
+- Go Back to the OpenShift Console page and wait for the nodes to show up.
 - Nodes boot into CoreOS Live.  
 - Static IPs are applied.  
 - Nodes appear in OpenShift console.  
@@ -442,32 +475,32 @@ Installation Steps
 .. image:: _static/images/openshift/Redhat-10.png
    :alt: Node Discovery
 
-**Step 2.3.2.13: Configure Storage**
+**Step 2.2.13: Configure Storage**
 
 - Assign persistent volumes.  
 
 .. image:: _static/images/openshift/Redhat-11.png
    :alt: Storage Configuration
 
-**Step 2.3.2.14: Networking**
+**Step 2.2.14: Networking**
 
 - Select **User-Managed Networking** (required).  
 
 .. image:: _static/images/openshift/Redhat-13a.png
    :alt: Networking Settings
 
-**Step 2.3.2.15: Review and Create**
+**Step 2.2.15: Review and Create**
 
 - Review all configurations.  
-- Click **Create**.  
-
-**Step 2.3.2.16: Monitor Installation**
-
-- Track progress in OpenShift console.  
-- Configure external load balancers after completion.  
+- Click **Install cluster**.
 
 .. image:: _static/images/openshift/Redhat-14.png
    :alt: Installation Complete
+
+**Step 2.2.16: Monitor Installation**
+
+- Track progress in OpenShift console.  
+- Configure external load balancers after completion.  
 
 .. image:: _static/images/openshift/Redhat-17.png
    :alt: Post Installation
@@ -540,7 +573,7 @@ Create the Ubuntu Kubernetes Cluster
 .. note::
    The Ubuntu image must be uploaded to the **Control Center** in Karios beforehand.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-2.png
+.. image:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Attach Ubuntu Image
 
 **Step 3.1.3: Add a Bootstrap Node**
@@ -549,6 +582,10 @@ Create the Ubuntu Kubernetes Cluster
 
 .. image:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Bootstrap Node Config
+
+.. note::
+   In many setups, the bootstrap node is also the master node. This means it not only helps other nodes join the cluster but also takes on the responsibility of controlling and managing cluster operations like scheduling, orchestration, and resource allocation.
+
 
 - Select **Server**, **CPU**, **Memory**, and **Disk Size**.  
 
@@ -571,6 +608,10 @@ Create the Ubuntu Kubernetes Cluster
 
 .. image:: _static/images/UbuntuKubernetes/ubuntu-4.png
    :alt: Control Plane Config
+
+.. note::
+   Control plane nodes manage the Kubernetes cluster state and handle API requests.  
+   For high availability, it is recommended to have multiple control plane nodes.
 
 - Select **Server**, **CPU**, **Memory**, and **Disk Size**. 
 
@@ -597,6 +638,9 @@ Create the Ubuntu Kubernetes Cluster
 
 .. image:: _static/images/UbuntuKubernetes/ubuntu-7.png
    :alt: Worker Node Config
+
+.. note::
+   Worker nodes run the applications and workloads in the cluster.
 
 - Select **Server** and configure VM specs.  
 
@@ -725,6 +769,12 @@ Accessing the Tech Stack
    http://<node-ip>:30091
    http://<fqdn>:30091
 
+.. note::
+   you can access the dashboards using the bootstrap/control plane node IP or any worker node IP.
+   The default credentials for Grafana are:
+   - User: ``admin``
+   - Password: ``prom-operator``
+
 3.3.2 ArgoCD
 ~~~~~~~~~~~~
 
@@ -749,6 +799,10 @@ Accessing the Tech Stack
    http://<node-ip>:31800
    http://<fqdn>:31800
 
+.. note::
+   you can access the dashboard using the bootstrap/control plane node IP or any worker node IP.
+
+
 Next Steps
 --------------
 
@@ -760,3 +814,10 @@ After selecting and deploying your preferred Kubernetes distribution, consider t
 * **Day-2 Operations**: Plan for ongoing maintenance, updates, and scaling operations  
 
 For additional support and advanced configuration options, refer to the respective documentation for your chosen Kubernetes distribution and consult the Karios operational guides.
+
+- **Sidero Omni documentation**: https://docs.siderolabs.com/omni/overview/what-is-omni  
+- **OpenShift documentation**: https://docs.openshift.com/container-platform/latest/welcome/index.html  
+- **Ubuntu Kubernetes documentation**: https://documentation.ubuntu.com/canonical-kubernetes/latest/about/  
+- **ArgoCD documentation**: https://argo-cd.readthedocs.io/en/stable/  
+- **Prometheus documentation**: https://prometheus.io/docs/introduction/overview/  
+- **Grafana documentation**: https://grafana.com/docs/grafana/latest/ 
