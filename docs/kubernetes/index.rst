@@ -760,6 +760,10 @@ SSH and Join VMs to the Cluster
    ssh ubuntu@192.168.1.100         
    # Password: yourpassword
 
+.. note::
+   With the cluster creation, the bootstrap node is the first control plane node in the cluster. 
+
+
 **Step 3.2.2: Check Cluster Status**
 
 .. code-block:: bash
