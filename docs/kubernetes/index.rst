@@ -566,6 +566,9 @@ Installation Steps
 .. image:: _static/images/openshift/Redhat-10.png
    :alt: Node Discovery
 
+.. note::
+   It might take few minutes for the nodes to appear.
+
 **Step 2.2.13: Configure Storage**
 
 - Assign persistent volumes.  
@@ -753,6 +756,7 @@ SSH and Join VMs to the Cluster
 
 **Step 3.2.1: SSH into the Bootstrap Node**
 - Using the Terminal, SSH into the node using the Device IP.
+
 .. code-block:: bash
 
    ssh <username>@<bootstrap-node-ip>
@@ -785,6 +789,9 @@ SSH and Join VMs to the Cluster
    Replace ``<vmname>`` with the actual name of the control plane node you want to join.  
    The command will output a token and instructions for joining the cluster.
    Only a bootstrap node can be the one to generate the join token.
+
+..warning::
+   please ensure that the vmname provided matches the name of the control plane node you intend to join.
 
 **Step 3.2.4: Join Control Plane Node**
 
