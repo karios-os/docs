@@ -3654,6 +3654,178 @@ Please select the appropriate ISO/RAW files from your system and click “Upload
 - **Validation:** Automatic file format validation during upload process
 
 
+PCIe Devices 
+~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^^
+
+The PCIe Devices interface allows you to view and manage all PCIe (Peripheral Component Interconnect Express) devices installed in your server. PCIe is the modern standard for connecting hardware components like graphics cards, network cards, and storage devices to your computer's motherboard.
+
+Think of PCIe devices as the various pieces of hardware that plug into slots on your computer's motherboard to give it different capabilities - like adding graphics processing, network connectivity, or storage functions.
+
+What is PCIe?
+^^^^^^^^^^^^^
+
+**PCIe Definition**
+   PCIe stands for "Peripheral Component Interconnect Express." It's a high-speed connection standard that allows different hardware components to communicate with your computer's processor and memory.
+
+**Why PCIe Matters**
+   * **Speed**: Much faster than older connection types
+   * **Flexibility**: Supports many different types of devices
+   * **Expandability**: Allows you to add new capabilities to your server
+   
+
+Physical vs Virtual Functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Understanding PFs and VFs**
+
+**Physical Functions (PFs)**
+   * **Definition**: The actual, physical network ports on the hardware card
+   * **Use**: Direct hardware access for maximum performance
+
+**Virtual Functions (VFs)**
+   * **Definition**: Software-created network interfaces that share the physical hardware
+   * **Use**: Allows multiple virtual machines to share one physical network card
+
+
+Virtual Function Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Creating Virtual Functions**
+
+The interface allows you to create VFs (Virtual Functions) for supported devices:
+
+**Step 1: Identify Capable Devices**
+   Look for devices showing "PFs" and "VFs" counters (like the X710 showing "2 PFs" and "4 VFs").
+
+**Step 2: Click Create VFs Button**
+   Click the blue "Create VFs" button next to supported devices.
+
+**Step 3: Configure Virtual Functions**
+   A dialog box appears with the following options:
+
+   * **Device Selection**: Shows the selected device (e.g., "ix1 - Ethernet Controller X710 for 10GbE SFP+")
+   * **Number of Virtual Functions**: Enter how many VFs to create (e.g., 4)
+   * **Information**: "Each virtual function will appear as a separate PCIe device"
+
+**Step 4: Create VFs**
+   Click "Create VFs" to generate the virtual functions.
+
+**What Happens Next**
+   * New virtual network interfaces are created
+   * Each VF appears as a separate device in your system
+   * Virtual machines can use these VFs for dedicated network access
+
+**Virtual Function Details**
+
+Once created, VFs appear in the "Virtual Functions" section:
+
+**VF Information Displayed**
+   * **Interface Name**: ppt0, ppt1, ppt2, ppt3 (example names)
+   * **Bus Location**: Shows PCIe bus address (e.g., 5.0.16, 5.0.17)
+   * **Function Type**: "Virtual Function" label
+   * **Description**: "Ethernet Virtual Function 700 Series"
+   * **Technology**: "SR-IOV Virtual Function"
+
+**Assignment Status**
+   * **Unassigned**: VF is available for use
+   * **Assigned**: VF is currently used by a virtual machine (shows assignment like "router-1")
+
+**Device Categories and Filtering**
+
+The interface provides filtering to help you find specific types of devices:
+
+**All Categories**
+   Shows every PCIe device installed in the system, regardless of type.
+
+**Network**
+   Displays only networking-related devices such as:
+   * Ethernet controllers
+   * Wireless network adapters
+   * Network interface cards
+
+**Storage**
+   Shows only storage-related devices such as:
+   * NVMe SSDs
+   * RAID controllers
+   * Storage host adapters
+
+
+Common Use Cases
+^^^^^^^^^^^^^^^^
+
+**Typical PCIe Device Scenarios**
+
+**Storage Expansion**
+   * **Scenario**: Need more or faster storage
+   * **Solution**: Add NVMe PCIe SSDs for high-speed storage
+   * **Benefit**: Much faster than traditional hard drives
+
+**Network Performance**
+   * **Scenario**: Need faster network connections
+   * **Solution**: Install 10GbE or higher speed network cards
+   * **Benefit**: Faster data transfer for server applications
+
+**Virtualization**
+   * **Scenario**: Multiple virtual machines need dedicated network access
+   * **Solution**: Create Virtual Functions (VFs) on capable network cards
+   * **Benefit**: Each VM gets its own virtual network interface
+
+**Wireless Connectivity**
+   * **Scenario**: Server needs Wi-Fi capabilities
+   * **Solution**: Install PCIe wireless network adapter
+   * **Benefit**: Wireless connectivity without external dongles
+
+
+**Status Indicators**
+
+**1 PF (Physical Function)**
+   * **Meaning**: Device has 1 physical port/interface
+   * **Color**: Blue text
+   * **Usage**: Shows actual hardware capabilities
+
+**4 VFs (Virtual Functions)**
+   * **Meaning**: Device can create up to 4 virtual interfaces
+   * **Color**: Green text
+   * **Usage**: Indicates virtualization capabilities
+
+**Create VFs Button**
+   * **Appearance**: Blue button
+   * **Function**: Allows creation of virtual functions
+   * **Availability**: Only on SR-IOV capable devices
+
+**Assignment Status**
+   * **router-1**: Green text showing VF is assigned to a virtual machine
+   * **Unassigned**: VF is available for use
+
+
+Troubleshooting Common Issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Device Recognition Problems**
+
+**Issue**: Device not appearing in list
+   * **Cause**: Device not properly seated in PCIe slot
+   * **Solution**: Check physical connection and reseat card
+
+**Issue**: Device shows but no functions available
+   * **Cause**: Driver not loaded or incompatible
+   * **Solution**: Install proper device drivers
+
+**Virtual Function Issues**
+
+**Issue**: Cannot create VFs
+   * **Cause**: Device doesn't support SR-IOV
+   * **Solution**: Verify device specifications for SR-IOV support
+
+**Issue**: VFs not appearing after creation
+   * **Cause**: Insufficient system resources or BIOS settings
+   * **Solution**: Check BIOS for virtualization settings
+
+
+
 Node Storage Management
 ~~~~~~~~~~~~~~~~~~~~~~~
 
