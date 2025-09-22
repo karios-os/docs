@@ -2887,6 +2887,251 @@ Advanced Features
 For detailed information regarding system release management, advanced update procedures, rollback processes, and comprehensive release deployment strategies, please refer to Section 9: System Release Management.
 
 
+Data Center Efficiency 
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^^
+
+The Data Center Efficiency Overview provides comprehensive monitoring and analysis of power efficiency metrics for datacenter operations. This system tracks three critical efficiency measurements: Power Usage Effectiveness (PUE), Carbon Usage Effectiveness (CUE), and Water Usage Effectiveness (WUE) to help optimize datacenter environmental performance and operational costs.
+
+The efficiency dashboard enables administrators to:
+
+* Monitor real-time power efficiency metrics across configurable date ranges
+* Track carbon footprint and environmental impact
+* Analyze water usage patterns for cooling systems
+* Compare efficiency trends year-over-year
+* Generate reports for sustainability compliance
+
+Interface Components
+^^^^^^^^^^^^^^^^^^^^^
+
+**Efficiency Metrics Dashboard**
+
+The main dashboard displays three primary efficiency indicators with current values and historical context:
+
+**Power Usage Effectiveness (PUE)**
+   Current efficiency rating with contextual interpretation
+
+**Carbon Usage Effectiveness (CUE)**  
+   Environmental impact measurement based on power consumption
+
+**Water Usage Effectiveness (WUE)**
+   Cooling system efficiency and water consumption metrics
+
+**Date Range Selection**
+
+**PUE & CUE Date Range Configuration**
+   * **Start Date**: Beginning of analysis period
+   * **End Date**: End of analysis period  
+   * **Apply Button**: Execute analysis for selected timeframe
+
+**WUE Annual Selection**
+   * **Year Dropdown**: Select specific year for water usage analysis
+   * **Apply Button**: Generate annual water usage effectiveness report
+
+Power Usage Effectiveness (PUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Definition and Measurement**
+
+Power Usage Effectiveness measures how efficiently a datacenter uses energy by comparing total facility energy consumption to IT equipment energy consumption.
+
+**Formula:**
+
+.. math::
+
+   PUE = \frac{\text{Total Facility Energy}}{\text{IT Equipment Energy}}
+
+**Interpretation Guidelines:**
+
+.. list-table:: PUE Rating Scale
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - PUE Value
+     - Efficiency Rating
+     - Description
+   * - 1.0
+     - Perfect (Theoretical)
+     - All energy consumed by IT equipment only
+   * - 1.2 - 1.5
+     - Excellent
+     - Highly efficient datacenter operation
+   * - 1.5 - 2.0
+     - Good
+     - Industry average performance
+   * - 2.0 - 3.0
+     - Fair
+     - Room for improvement
+   * - > 3.0
+     - Poor
+     - Significant inefficiency
+
+**Current PUE Analysis**
+
+**Displayed Value: 0.90**
+
+This PUE value of 0.90 indicates exceptional efficiency, suggesting the datacenter is operating below the theoretical minimum. This may indicate:
+
+* Measurement calibration issues requiring verification
+* On-site renewable energy generation offsetting grid consumption  
+* Advanced cooling technologies providing net energy benefits
+* Potential calculation errors in measurement methodology
+
+.. note::
+   A PUE below 1.0 is physically impossible under normal circumstances. This reading should be investigated to ensure measurement accuracy.
+
+**Optimization Guidance:**
+   Lower PUE values indicate more efficient power utilization, with the goal of approaching 1.0 for optimal efficiency.
+
+Carbon Usage Effectiveness (CUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Definition and Measurement**
+
+Carbon Usage Effectiveness quantifies the greenhouse gas emissions associated with powering IT equipment, based on the carbon intensity of the electricity used.
+
+**Formula:**
+
+.. math::
+
+   CUE = \frac{\text{Total CO}_2\text{ Emissions}}{\text{IT Equipment Energy}}
+
+**Calculation Components:**
+
+* **Total CO₂ Emissions**: Greenhouse gas emissions from all facility power consumption
+* **IT Equipment Energy**: Power consumed specifically by computing, storage, and networking equipment
+* **Carbon Intensity**: CO₂ emissions per unit of electricity (varies by grid source)
+
+**Current CUE Analysis**
+
+**Environmental Impact Assessment:**
+
+.. list-table:: CUE Performance Benchmarks
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - CUE Range
+     - Environmental Rating
+     - Typical Power Sources
+   * - 0.4 - 0.5
+     - Average
+     - Mixed renewable and clean sources
+   * - 0.5 - 0.7
+     - Average to Poor
+     - Standard grid mix
+   * - 0.7 - 0.9
+     - Poor
+     - Coal-heavy electrical grid
+   * - > 0.8
+     - Very Poor
+     - Heavy fossil fuel dependence
+
+**Improvement Strategies:**
+   Lower CUE values indicate cleaner power sources and reduced environmental impact.
+
+Water Usage Effectiveness (WUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Definition and Measurement**
+
+Water Usage Effectiveness measures the amount of water a datacenter consumes for cooling and operations relative to the IT energy load.
+
+**Formula:**
+
+.. math::
+
+   WUE = \frac{\text{Annual Water Usage}}{\text{IT Equipment Energy}}
+
+**Measurement Units:**
+   Typically expressed in liters per kilowatt-hour (L/kWh) of IT equipment energy consumption.
+
+**Current WUE Analysis**
+
+**Water Efficiency Benchmarks:**
+
+.. list-table:: WUE Performance Standards
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - WUE Range (L/kWh)
+     - Efficiency Rating
+     - Cooling Technology
+   * - 0.0 - 0.5
+     - Excellent
+     - Air-cooled systems, arid climates
+   * - 0.5 - 1.0
+     - Good
+     - Efficient evaporative cooling
+   * - 1.0 - 2.0
+     - Average
+     - Standard chilled water systems
+   * - 2.0 - 4.0
+     - Poor
+     - Inefficient cooling systems
+   * - > 4.0
+     - Very Poor
+     - Legacy cooling infrastructure
+
+**Water Conservation Strategies:**
+   Lower WUE values indicate more efficient water usage and reduced environmental impact on local water resources.
+
+Monitoring and Analysis
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Date Range Configuration**
+
+**PUE & CUE Analysis Period**
+   Configure start and end dates to analyze efficiency trends over specific timeframes:
+
+   * **Historical Analysis**: Compare seasonal efficiency variations
+   * **Trend Identification**: Identify efficiency improvements or degradation
+   * **Event Correlation**: Analyze efficiency changes after infrastructure modifications
+   * **Compliance Reporting**: Generate data for regulatory or certification requirements
+
+**WUE Annual Analysis**
+   Select specific years for water usage effectiveness comparison:
+
+   * **Year-over-Year Comparison**: Track WUE improvements across multiple years
+   * **Seasonal Patterns**: Understand annual water usage cycles
+   * **Infrastructure Impact**: Measure efficiency changes after cooling system upgrades
+
+**Performance Interpretation**
+
+**Efficiency Trend Analysis**
+
+Understanding the relationship between the three metrics:
+
+* **PUE Impact on CUE**: Lower PUE typically results in lower CUE through reduced total power consumption
+* **Cooling Efficiency**: High WUE may indicate cooling systems contributing to higher PUE
+* **Regional Factors**: Local climate and grid carbon intensity significantly impact CUE and WUE values
+
+**Optimization Priorities**
+
+.. list-table:: Efficiency Optimization Framework
+   :widths: 25 25 25 25
+   :header-rows: 1
+
+   * - Metric
+     - Current Status
+     - Target Range
+     - Optimization Actions
+   * - PUE (0.90)
+     - Verify accuracy
+     - 1.2 - 1.5
+     - Investigate measurement methodology
+   * - CUE (0.40)
+     - Good performance
+     - < 0.3
+     - Increase renewable energy usage
+   * - WUE (2.00)
+     - Average efficiency
+     - < 1.0
+     - Upgrade cooling systems
+
+
+
 Node Level Management
 ---------------------
 
