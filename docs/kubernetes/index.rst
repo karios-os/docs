@@ -53,6 +53,9 @@ OmniServer Deployment
 - This creates a **Keycloak instance** in a FreeBSD jail.  
 - Wait for the Keycloak jail to finish creation.
 
+.. image:: _static/images/omni/om-3.png
+   :alt: Keycloak Setup Complete
+
 .. note::
    Keycloak is an open-source identity and access management solution.  
    It provides single sign-on (SSO), user federation, identity brokering, and social login.  
@@ -62,8 +65,6 @@ OmniServer Deployment
    - **Master realm** → ``admin / adminadmin``  
    - **Omni realm** → ``user@karios.ai / Omni12345``
 
-.. image:: _static/images/omni/om-3.png
-   :alt: Keycloak Setup Complete
 
 **Step 1.1.3: Upload TLS Certificate and Key**
 
@@ -74,13 +75,13 @@ OmniServer Deployment
 
 - Upload the **wildcard TLS certificate and key** for your domain.
 
+.. image:: _static/images/omni/om-5.png
+   :alt: TLS Certificate Upload
+
 .. note::
    TLS secures communication between Sidero components and Kubernetes clusters.  
    Ensure the certificate covers ``omni.<basedomain>``.  
    Combine the CA bundle and certificate into one file before upload.
-
-.. image:: _static/images/omni/om-5.png
-   :alt: TLS Certificate Upload
 
 **Step 1.1.4: Setup OmniServer VM**
 
@@ -88,14 +89,14 @@ OmniServer Deployment
 - Enter OmniServer VM details (username and password).  
 - Attach an **Ubuntu cloud image (.img)**.  
 
-.. note::
-   The Ubuntu image must already be uploaded to the **Control Center** in the Karios UI.
-
 .. image:: _static/images/omni/om-6.png
    :alt: Setup Omni Server Button
 
+.. note::
+   The Ubuntu image must already be uploaded to the **Control Center** in the Karios UI.
+
 - Select **Server**, **Storage**, and **Network switch**.  
-- Enter VM specs (**CPU, memory, disk**) and click **Save**.
+- Enter VM specs **CPU's, Memory(GB), Disk Size(GB)** and click **Save**.
 
 .. image:: _static/images/omni/om-7.png
    :alt: OmniServer VM Config
@@ -108,15 +109,15 @@ OmniServer Deployment
 
 - You will be redirected to the Keycloak login page for the **omni realm**.
 
-.. note::
-   Use credentials: ``user@karios.ai / Omni12345``
-
 .. image:: _static/images/omni/om-9.png
    :alt: Omni Dashboard
 .. image:: _static/images/omni/om-10.png
    :alt: Keycloak Login
 
 - After login, you will be redirected to the **OmniServer Dashboard**.
+
+.. note::
+   Use credentials: ``user@karios.ai / Omni12345``
 
 Cluster Installation
 --------------------------
@@ -130,15 +131,14 @@ Cluster Installation
 
 - Select ISO type, Talos version, and click **Generate ISO**.
 
+.. image:: _static/images/omni/omd-2.png
+   :alt: Generate ISO
+
 .. note::
    For demos, use ISO type: ``amd64-iso``.  
    please use v1.11.1 of Talos.
    For VM clusters, add the following kernel argument to avoid ``kexec`` issues:  
    ``sysctl.kernel.kexec_load_disabled=1``
-
-
-.. image:: _static/images/omni/omd-2.png
-   :alt: Generate ISO
 
 **Step 1.2.2: Upload the ISO in Karios UI**
 
@@ -159,14 +159,14 @@ Cluster Installation
 
 - Enter cluster details and select the uploaded ISO.
 
-.. note::
-   Use the prefix ``om`` in the cluster name to identify Omni clusters.
-
 .. image:: _static/images/omni/om-12.png
    :alt: Cluster Details
 
-- Select server, storage pool, and network switch.  
-- Enter VM specs and click **Update**. 
+.. note::
+   Use the prefix ``om`` in the cluster name to identify Omni clusters.
+
+- Select **Server**, **Storage Pool**, and **Network Switch**.  
+- Enter VM specs **CPU's, Memory(GB), Disk Size(GB)** and click **Update**.
 
 .. image:: _static/images/omni/om-13.png
    :alt: Add VM Config 
@@ -194,21 +194,35 @@ Cluster Installation
 
 **Step 1.2.5: Create the Cluster in OmniServer Dashboard**
 
-- Go to **Clusters → Create Cluster**.  
-- Enter cluster name, select Talos version, and pool configuration.  
+- Click on the **Clusters** tab.
+
+.. image:: _static/images/omni/om-16.png
+   :alt: Create Cluster Button 
+
+- Click on **Create Cluster**.
+
+.. image:: _static/images/omni/om-17.png
+   :alt: Cluster Role Assignment
+
+- Enter **cluster name**, **select Talos version**, and **machine set configuration**. 
+
+.. image:: _static/images/omni/omd-4.png
+   :alt: Cluster Details
+
+..note::
+  Select the same Talos version used to generate the ISO.
+  Machine Set is a grouping of machines that are managed together. Select the different machine sets based on the roles you want to assign to the machines.
+
 - Assign roles: **CP0 (control plane)**, **W0 (worker)**.
+
+.. image:: _static/images/omni/om-18.png
+   :alt: Cluster Role Assignment
 
 .. note::
    Minimum requirements:  
    - 1 control plane node (CP0)  
    - 1 worker node (W0)
 
-.. image:: _static/images/omni/om-16.png
-   :alt: Create Cluster Button
-.. image:: _static/images/omni/om-17.png
-   :alt: Cluster Role Assignment
-.. image:: _static/images/omni/om-18.png
-   :alt: Cluster Role Assignment
 
 **Step 1.2.6: Monitor Cluster Installation**
 
@@ -255,7 +269,16 @@ Step 1.3.1 Click on the **Control Center** in the Karios UI. under the **Devices
 .. image:: _static/images/omni/keycloak.png
    :alt: Device IP
 
-Step 1.3.2 SSH into the node using the Device IP.
+Step 1.3.2 Using the Terminal, SSH into the node using the Device IP.
+
+.. code-block:: bash
+
+   ssh root@<Device-IP>
+   # Example:
+   ssh root@192.168.1.100
+   # Password: karios12345
+
+Step 1.3.3 Remove the Keycloak Jail
 
 . **Run the following commands in sequence:**
 
@@ -326,10 +349,12 @@ Creating the OpenShift Cluster
 
 - Click **Add Control Plane**.  
 
+- Select the server and configure VM specs **CPU's**, **Memory(GB)** , **Disk Size(GB)**.
+
+- Click **Save** to confirm configuration. 
+
 .. image:: _static/images/openshift/op-4.png
    :alt: Control Plane Config
-
-- Select the server and configure VM specs (CPU, memory, disk).
 
 .. note::
    Minimum requirements:  
@@ -340,23 +365,27 @@ Creating the OpenShift Cluster
    Recommended: **3 control plane nodes** for high availability.  
    Control plane nodes must be **odd in number** to avoid split-brain issues.  
 
+- Use the "+" button to add more control plane nodes. 
+
 .. image:: _static/images/openshift/op-5.png
    :alt: Control Plane Config
-
-- Click **Save** to confirm configuration.  
-- Use the "+" button to add more control plane nodes.  
-
-.. image:: _static/images/openshift/op-6.png
-   :alt: Control Plane Config
+ 
 
 **Step 2.1.4: Add Worker Nodes**
 
 - Click **Add Worker Node**.  
 
+.. image:: _static/images/openshift/op-6.png
+   :alt: Control Plane Config
+
+_ Select the **Server** , **Storage Pool** , and **Network Switch**._
+
+- Select the server and configure VM specs **CPU's**, **Memory(GB)** , **Disk Size(GB)**.
+
 .. image:: _static/images/openshift/op-7.png
    :alt: Worker Node Config
 
-- Select the server and configure VM specs.  
+
 
 .. note::
    Minimum requirements:  
@@ -367,21 +396,21 @@ Creating the OpenShift Cluster
    Recommended: At least **1 worker node**.  
    Worker nodes can be an even or odd number depending on workload needs.  
 
-.. image:: _static/images/openshift/op-8.png
-   :alt: Worker Node Config
-
 - Click **Save**.  
 - Use the "+" button to add additional worker nodes.  
+
+.. image:: _static/images/openshift/op-8.png
+   :alt: Worker Node Config
 
 **Step 2.1.5: Configure HAProxy**
 
 During cluster configuration, you will see the **HAProxy Setup** option.
 
+- **Setup HAProxy (checkbox)**:  
+  Selecting this enables HAProxy for your cluster. 
+
 .. image:: _static/images/openshift/op-9.png
    :alt: HAProxy Setup
-
-- **Setup HAProxy (checkbox)**:  
-  Selecting this enables HAProxy for your cluster.  
 
 .. note::
    Enabling HAProxy creates **two HAProxy instances** in FreeBSD jails.  
@@ -649,7 +678,7 @@ Create the Ubuntu Kubernetes Cluster
    In many setups, the bootstrap node is also the master node. This means it not only helps other nodes join the cluster but also takes on the responsibility of controlling and managing cluster operations like scheduling, orchestration, and resource allocation.
 
 
-- Select **Server**, **CPU**, **Memory**, and **Disk Size**.  
+- Select **Server**, **CPU's**, **Memory(GB)**, and **Disk Size(GB)**.  
 
 .. note::
    Minimum requirements for the bootstrap/control node:  
@@ -675,7 +704,7 @@ Create the Ubuntu Kubernetes Cluster
    Control plane nodes manage the Kubernetes cluster state and handle API requests.  
    For high availability, it is recommended to have multiple control plane nodes.
 
-- Select **Server**, **CPU**, **Memory**, and **Disk Size**. 
+- Select **Server**, **CPU's**, **Memory(GB)**, and **Disk Size(GB)**. 
 
 .. note::
    Minimum requirements per control plane node:  
@@ -723,10 +752,13 @@ SSH and Join VMs to the Cluster
 -----------------------------------
 
 **Step 3.2.1: SSH into the Bootstrap Node**
-
+- Using the Terminal, SSH into the node using the Device IP.
 .. code-block:: bash
 
    ssh <username>@<bootstrap-node-ip>
+   # Example:
+   ssh ubuntu@192.168.1.100         
+   # Password: yourpassword
 
 **Step 3.2.2: Check Cluster Status**
 
@@ -752,7 +784,8 @@ SSH and Join VMs to the Cluster
 
 **Step 3.2.4: Join Control Plane Node**
 
-- SSH into control plane node:
+
+- Using the Terminal SSH into control plane node:
 
 .. code-block:: bash
 
