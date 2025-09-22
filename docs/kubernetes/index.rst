@@ -132,6 +132,7 @@ Cluster Installation
 
 .. note::
    For demos, use ISO type: ``amd64-iso``.  
+   please use v1.11.1 of Talos.
    For VM clusters, add the following kernel argument to avoid ``kexec`` issues:  
    ``sysctl.kernel.kexec_load_disabled=1``
 
@@ -226,6 +227,67 @@ Cluster Installation
 
 .. image:: _static/images/omni/om-20.png
    :alt: Cluster Ready
+
+
+1.3 Manual Removal of Keycloak Jail Deployment
+-----------------------------------------------
+
+Overview
+--------
+
+**Keycloak** is an open-source identity and access management (IAM) solution.  
+It provides authentication, authorization, and user management capabilities for applications and services.  
+
+In the context of **OmniServer (SideroLabs Omni Dashboard)**, Keycloak is used as the **authentication and identity provider**.  
+It ensures secure login, centralized user control.
+
+When OmniServer is uninstalled or removed from a node, the Keycloak jail is **not automatically removed**. 
+
+Therefore, Keycloak needs to be removed manually from the node.
+
+Removal Procedure
+-----------------
+
+To manually remove the Keycloak jail, follow these steps:
+
+Step 1.3.1 Click on the **Control Center** in the Karios UI. under the **Devices** section,  you can find the **Device IP** of the node. 
+
+.. image:: _static/images/omni/keycloak.png
+   :alt: Device IP
+
+Step 1.3.2 SSH into the node using the Device IP.
+
+. **Run the following commands in sequence:**
+
+.. code-block:: bash
+
+   jls
+   jail -R karios-keycloak
+   zfs umount -f zroot/jails/karios-keycloak
+   zfs destroy -r zroot/jails/karios-keycloak
+
+Command Explanation
+-------------------
+- ``jls``  
+  Lists all running jails on the system. Confirm that the ``karios-keycloak`` jail is present.
+
+- ``jail -R karios-keycloak``  
+  Removes the running jail instance named ``karios-keycloak``.
+
+- ``zfs umount -f zroot/jails/karios-keycloak``  
+  Forcefully unmounts the ZFS dataset associated with the jail.
+
+- ``zfs destroy -r zroot/jails/karios-keycloak``  
+  Recursively destroys the dataset and all of its child datasets, permanently removing the jail’s data.
+
+Post-Removal Notes
+------------------
+
+- After performing these steps, the Keycloak jail and its associated datasets are fully removed.  
+- Any configurations, users, or authentication data stored in this jail are **not recoverable** unless previously backed up.  
+- If OmniServer or other services were relying on Keycloak, ensure that an **alternative identity provider** is configured to avoid authentication issues.
+
+
 
 OpenShift Overview
 --------------------------------
@@ -553,7 +615,7 @@ Create the Ubuntu Kubernetes Cluster
 
 - Click **Setup Kubernetes** in the Karios UI, and Select **Ubuntu**.
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-1.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-1.png
    :alt: Setup Kubernetes Button
 
 **Step 3.1.2: Enter Cluster Details**
@@ -573,14 +635,14 @@ Create the Ubuntu Kubernetes Cluster
 .. note::
    The Ubuntu image must be uploaded to the **Control Center** in Karios beforehand.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-3.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Attach Ubuntu Image
 
 **Step 3.1.3: Add a Bootstrap Node**
 
 - Click **Add Control Node**.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-3.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Bootstrap Node Config
 
 .. note::
@@ -624,19 +686,19 @@ Create the Ubuntu Kubernetes Cluster
    Recommended: **3 control plane nodes** for high availability.  
    Control plane nodes must be **odd in number** to prevent split-brain.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-5.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-5.png
    :alt: Control Plane Config
 
 - Save the configuration and add more nodes as required.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-6.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-6.png
    :alt: Control Plane Config
 
 **Step 3.1.5: Add Worker Nodes**
 
 - Click **Add Worker Node**.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-7.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-7.png
    :alt: Worker Node Config
 
 .. note::
@@ -652,7 +714,7 @@ Create the Ubuntu Kubernetes Cluster
 
    Recommended: At least **1 worker node**.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-8.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-8.png
    :alt: Worker Node Config
 
 - Save and add more workers as needed.  
@@ -677,13 +739,20 @@ SSH and Join VMs to the Cluster
 
 **Step 3.2.3: Get Join Token for Control Nodes**
 
+- From the bootstrap node, get the join token for control plane nodes:
+
 .. code-block:: bash
 
    sudo k8s get-join-token <vmname>
 
-**Step 3.2.4–3.2.6: Join Control Plane Nodes**
+.. note::
+   Replace ``<vmname>`` with the actual name of the control plane node you want to join.  
+   The command will output a token and instructions for joining the cluster.
+   The Only a bootstrap node can be the one to generate the join token.
 
-- SSH into each control plane node:
+**Step 3.2.4: Join Control Plane Node**
+
+- SSH into control plane node:
 
 .. code-block:: bash
 
@@ -693,23 +762,27 @@ SSH and Join VMs to the Cluster
 
 .. code-block:: bash
 
-   sudo k8s join-cluster --token <token>
+   sudo k8s join-cluster <token>
 
-Repeat for all control plane nodes.  
+.. note::
+   Replace ``<token>`` with the actual token obtained in Step 3.2.3. 
+   Repeat Steps 3.2.3 and 3.2.4 for all control plane nodes to join them in the cluster.
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-10.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-10.png
    :alt: Control Plane Join
 
-**Step 3.2.7: Get Join Token for Worker Nodes**
+**Step 3.2.5: Get Join Token for Worker Nodes**
+
+- From the bootstrap node, get the join token for worker nodes:
 
 .. code-block:: bash
 
    sudo k8s get-join-token <vmname> --worker
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-11.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-11.png
    :alt: Worker Join Token
 
-**Step 3.2.8–3.2.9: Join Worker Nodes**
+**Step 3.2.6: Join Worker Nodes**
 
 - SSH into each worker node:
 
@@ -723,15 +796,18 @@ Repeat for all control plane nodes.
 
    sudo k8s join-cluster <token>
 
-Repeat for all worker nodes.  
+.. note::
+   Replace ``<token>`` with the actual token obtained in Step 3.2.5. 
+   Repeat steps 3.2.5 and 3.2.6 for all worker nodes to join them in the cluster.
 
-**Step 3.2.10: Verify Cluster High Availability**
+**Step 3.2.7: Verify Cluster High Availability**
 
 .. code-block:: bash
 
    sudo k8s status
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-13.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-13.png
+   :target: _static/images/UbuntuKubernetes/ubuntu-13.png
    :alt: HA Cluster Status
 
 Accessing the Tech Stack
@@ -747,7 +823,7 @@ Accessing the Tech Stack
    sudo k8s kubectl get pods -n observability
    sudo k8s kubectl get svc -n observability
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-14.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-14.png
    :alt: Observability Namespace
 
 .. note::
