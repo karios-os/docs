@@ -4566,12 +4566,6 @@ Security Considerations:
 - **Best Practices:** Follow established firewall configuration best practices
 
 
-.. seealso::
-   
-   **FreeBSD Documentation**
-      * `FreeBSD Handbook - Firewalls <https://docs.freebsd.org/en/books/handbook/firewalls/>`_
-      * `PF User's Guide <https://www.openbsd.org/faq/pf/>`_   
-
 Security Center Walkthrough
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -4587,7 +4581,7 @@ Security Center Navigation
    - Navigate to the "Security" tab on any node in the node's main menu
    - The below image clearly indicates where to find the 'Security' tab on the interface.
 
-   .. figure:: _static/images/security/security_tab_pointer.png
+   .. figure:: _static/images/security/security_tab_pointer_new.png
       :width: 600
       :alt: Security Tab Pointer
 
@@ -4604,7 +4598,7 @@ Security Dashboard Interface
    - Key metrics include risk percentage, system status, last scan status and top risk category
    - The below image clearly shows where to find 'Scan' Button
 
-   .. figure:: _static/images/security/security_scan_pointer.png
+   .. figure:: _static/images/security/security_scan_pointer_new.png
       :width: 600
       :alt: Security Scan Button
 
@@ -4615,6 +4609,38 @@ Initiating Security Scans
    - Click the 'Scan' button to initiate a new security scan
    - The system will perform vulnerability assessment and risk analysis
    - Scan results will be displayed in real-time on the dashboard
+
+Compliance Score
+""""""""""""""""
+
+- **How this score is calculated:**
+  - The CAT I / CAT II / CAT III counts directly drive this compliance score — each issue reduces the score based on severity and total volume.
+
+- **CAT I (Critical):**
+  - Largest impact; each lowers compliance by ~1.5–2 points.
+
+- **CAT II (High/Medium):**
+  - Moderate impact; each lowers compliance by ~0.25–0.60 point.
+
+- **CAT III (Low):**
+  - Smallest impact; each lowers compliance by ~0.1–0.2 points.
+
+- **Volume Factor:**
+  - More total findings → each new one counts a bit more (up to ~30% extra impact).
+
+- **Calculation:**
+  - Compliance = 100 – (Weighted Findings × Volume Factor ÷ 10)
+  - Final score is clamped to 0–100. If no findings → 100% compliance.
+
+- **Score Ranges:**
+
+  * - **≥50% — Compliant:** 
+    - System is in acceptable state.
+  * - **30–49% — Partially Compliant:** 
+    - Gaps exist, needs attention.
+  * - **<30% — Non-Compliant:** 
+    - System at risk, immediate action required.   
+
 
 Security Vulnerability Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4628,7 +4654,7 @@ Vulnerability Assessment Interface
    - Scroll Down to view detailed vulnerabilities information along with remediation options
    - Please click on the vulnerability to know more information about it
 
-   .. figure:: _static/images/security/security_vuln_info.png
+   .. figure:: _static/images/security/security_vuln_info_new.png
       :width: 600
       :alt: Vulnerability Information
 
@@ -4639,7 +4665,7 @@ Vulnerability Details and Information
    - Click on any vulnerability to access detailed information
    - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links
 
-   .. figure:: _static/images/security/security_vuln_popup.png
+   .. figure:: _static/images/security/security_vuln_popup_new.png
       :width: 600
       :alt: Vulnerability Popup
 
@@ -4664,7 +4690,7 @@ Automated Remediation Interface
    .. note::
       One-click Remediation is available for very few vulnerabilities at this point to make sure that it does not hamper the system functionality.
 
-   .. figure:: _static/images/security/security_vuln_remediation_pointer_section.png
+   .. figure:: _static/images/security/security_vuln_remediation_pointer_section_new.png
       :width: 600
       :alt: Vulnerability Remediation Pointer
 
@@ -4677,6 +4703,34 @@ Remediation Process
    - Monitor remediation progress and validate fixes
    - Verify system functionality after remediation
 
+Recommendation Process
+""""""""""""""""""""""  
+   - Safety-First Remediation - All XCCDF rules include automated checks with manual remediation for high-risk changes that could cause system lockout (SSH, PAM, firewall modifications).
+   - Industry Standard Compliance - Rules follow CIS FreeBSD 14 Benchmark v1.0.1 with proper CVE identifiers, CVSS scores, and NIST 800-53 control mappings for enterprise compliance frameworks.
+   - Service Continuity Protection - Remediation scripts avoid automatic service restarts and include clear warnings about potential disruption to critical services like SSH and databases.
+   - Operational Documentation - Each rule includes comprehensive warning, remediation, and recommendation sections with specific manual steps for safe implementation in production environments.
+
+   .. figure:: _static/images/security/recommendation_pointer_new.png
+      :width: 600
+      :alt: Vulnerability Recommendation Pointer
+
+      Figure 6: Vulnerability Recommendation Pointer
+
+Recommendation Pop-up
+"""""""""""""""""""""
+   - Click on the 'Recommendation' button to view detailed recommendation information
+   - The recommendation pop-up contains:
+     - Detailed recommendation description
+     - Risk assessment information
+     - Potential impact analysis
+     - Manual remediation steps
+
+   .. figure:: _static/images/security/recommendation_popup_new.png
+      :width: 600
+      :alt: Vulnerability Recommendation Popup
+
+      Figure 7: Vulnerability Recommendation Popup
+
 Scan History and Reporting
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -4688,44 +4742,44 @@ Security Scan History Navigation
    - Review past scan results and reports
    - Please click on the 'Metrics' button beside the 'Scan' button to navigate to Security Scan History Page
 
-   .. figure:: _static/images/security/security_navigate_to_history_page.png
+   .. figure:: _static/images/security/security_navigate_to_history_page_new.png
       :width: 600
       :alt: Security Scan History Pointer
 
-      Figure 6: Security Scan History Pointer
+      Figure 8: Security Scan History Pointer
 
 Security Scan History Dashboard
 """""""""""""""""""""""""""""""
    - The Security Scan History Page provides a metrics dashboard for previous scans performed
    - Review historical reports in html and PDF formats
-   - You can find the previous scan details, risk score from earlier scan and other additional details in this Security Scan History Page
+   - You can find the previous scan details, Compliance Score from earlier scan and other additional details in this Security Scan History Page
 
-   .. figure:: _static/images/security/security_history_page.png
+   .. figure:: _static/images/security/security_history_page_new.png
       :width: 600
       :alt: Security History Page
 
-      Figure 7: Security History Page
+      Figure 9: Security History Page
 
 Security Report Generation
 """"""""""""""""""""""""""
-   - The below image clearly indicates where to find the pdf & html report download options under the Scan History section
+   - The below image clearly indicates where to find the PDF & HTML report download options under the Scan History section
 
-   .. figure:: _static/images/security/security_report_pointer.png
+   .. figure:: _static/images/security/security_report_pointer_new.png
       :width: 600
       :alt: Security Report Pointer
 
-      Figure 8: Security Report Pointer
+      Figure 10: Security Report Pointer
 
 Security Report Content
 """""""""""""""""""""""
    - Once downloaded, the security report will contain detailed information of all the vulnerabilities identified in the scan
    - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details
 
-   .. figure:: _static/images/security/security_report_content.png
+   .. figure:: _static/images/security/security_report_content_new.png
       :width: 600
       :alt: Security Report Content
 
-      Figure 9: Security Report Content
+      Figure 11: Security Report Content
 
 **Security Report Components**
 
