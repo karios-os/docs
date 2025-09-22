@@ -3674,7 +3674,7 @@ What is PCIe?
    * **Speed**: Much faster than older connection types
    * **Flexibility**: Supports many different types of devices
    * **Expandability**: Allows you to add new capabilities to your server
-   
+
 
 Physical vs Virtual Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -5404,6 +5404,10 @@ Menu Options
 **Run All Tools**  
    Execute all supported diagnostic tools sequentially with default or prompted parameters.
 
+   Prerequisites: Configure all the required parameters for each tool to execute all tools successfully.
+
+   Click on "Execute All" to run all the tools sequentially.
+
 **Generate PDF Report**
    Create a consolidated PDF report from previously collected diagnostic outputs.
 
@@ -5714,6 +5718,203 @@ Security Considerations
       * ``man fstat`` - File descriptor diagnostics
       * ``man tcpdump`` - Network packet capture
       * ``man ktrace`` - Kernel tracing utility
+
+
+Support Bundle Collection Instructions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The support bundle tool collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team.
+
+**When to Use**
+
+Run this tool when requested by support for:
+
+* Troubleshooting system issues
+* Diagnostic analysis
+* System health evaluation
+* Performance problem investigation
+
+Collection Process
+^^^^^^^^^^^^^^^^^^^
+
+How to Generate a Support Bundle from UI
+
+1. **Navigate to Support Bundle**
+
+   * Click on the "Support Bundle" tab in the main navigation menu
+
+2. **Review the Information**
+
+   * Read the description: "Collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team"
+   * Check the "When to use" scenarios to confirm this matches your needs:
+
+     * Troubleshooting system issues
+     * Diagnostic analysis
+     * System health evaluation
+     * Performance problem investigation
+
+3. **Generate the Bundle**
+
+   * Click the blue "Generate Bundle" button
+
+4. **Wait for Processing**
+
+   * The system will collect logs and diagnostic data
+   * Package everything into an encrypted .7z archive
+   * This may take a few minutes depending on system size
+
+5. **Download the Bundle**
+
+   * Once complete, download the generated .7z file
+   * This encrypted archive can be shared with the support team for analysis
+   
+
+Generate Support Bundle via Command Line   
+
+1. Connect to the Console
+
+Use SSH or direct console access to log in to your FreeBSD machine.
+
+.. code-block:: bash
+
+   ssh admin@your-freebsd-machine
+
+.. tip::
+   Ensure you have administrative privileges before proceeding with support bundle collection.
+
+2. Navigate to the Tool Location
+
+Change directory to where the support_bundle binary is placed:
+
+.. code-block:: bash
+
+   cd /path/to/support_bundle
+
+.. note::
+   Replace ``/path/to/support_bundle`` with the actual installation path on your system.
+
+3. Run the Support Bundle Tool
+
+Execute the tool:
+
+.. code-block:: bash
+
+   ./support_bundle
+
+When prompted, enter a password to encrypt the archive.
+
+.. important::
+   Remember this password—you will need to share it with support for archive decryption.
+
+.. warning::
+   Choose a strong password for the archive encryption. This password protects sensitive system information during transmission.
+
+4. Verify the Archive
+
+After completion, check that the archive was created:
+
+.. code-block:: bash
+
+   ls -l support_bundle.7z
+
+Expected output should show the created archive file with its size and timestamp.
+
+5. Share the Archive
+
+Send the ``support_bundle.7z`` file and the password to the support team via the provided support email for further analysis.
+
+
+Email Template
+^^^^^^^^^^^^^^^
+
+Use the following template when submitting your support bundle:
+
+**Subject Line:**
+
+.. code-block:: text
+
+   Subject: Support Bundle for Analysis
+
+**Email Body:**
+
+.. code-block:: text
+
+   Attached is the support_bundle.7z file collected from our FreeBSD system.
+   Password for the archive: [your password]
+   
+   Please let us know if you need further information.
+
+Security Considerations
+^^^^^^^^^^^^^^^^^^^^^^^
+
+**Password Protection**
+    The archive is encrypted to protect sensitive system information during transmission
+
+**Secure Transmission**
+    Only send the support bundle through official support channels
+
+**Password Sharing**
+    Share the archive password through a separate, secure communication channel when possible
+
+**Data Contents**
+    The bundle may contain sensitive system logs and configuration information
+
+
+Troubleshooting Collection Issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Permission Denied**
+    Ensure you have execute permissions on the support_bundle binary:
+
+    .. code-block:: bash
+
+       chmod +x support_bundle
+
+**Binary Not Found**
+    Verify the correct path to the support_bundle tool:
+
+    .. code-block:: bash
+
+       find / -name "support_bundle" -type f 2>/dev/null
+
+**Insufficient Disk Space**
+    Check available disk space before running the tool:
+
+    .. code-block:: bash
+
+       df -h
+
+    .. note::
+       The support bundle may require significant temporary disk space during collection and compression.
+
+**Collection Timeout**
+    If the collection process appears to hang:
+
+    * Wait for completion (large systems may take several minutes)
+    * Check system load with ``top`` or ``htop``
+    * Verify no other intensive processes are running
+
+Archive Information
+^^^^^^^^^^^^^^^^^^^^
+
+**File Format**
+    The output file uses 7-Zip compression format (``.7z``) for optimal compression ratio
+
+**Contents**
+    The archive typically includes:
+
+    * System logs (``/var/log/*``)
+    * Configuration files (sanitized)
+    * Hardware information
+    * Network configuration
+    * Process information
+    * Performance metrics
+
+**Encryption**
+    AES-256 encryption protects the archive contents during transmission
+
+.. tip::
+   The support bundle tool automatically excludes sensitive files like private keys and passwords from the collection process.
 
 
 Virtual Machine Management
@@ -7522,170 +7723,6 @@ AWS CLI Commands
      - Delete empty bucket
    * - ``aws s3 rm s3://bucket/file.txt``
      - Delete file from S3
-
-
-
-Support Bundle Collection Instructions
----------------------------------------
-
-The support bundle tool collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team.
-
-**When to Use**
-
-Run this tool when requested by support for:
-
-* Troubleshooting system issues
-* Diagnostic analysis
-* System health evaluation
-* Performance problem investigation
-
-Collection Process
-~~~~~~~~~~~~~~~~~~
-
-1. Connect to the Console
-
-Use SSH or direct console access to log in to your FreeBSD machine.
-
-.. code-block:: bash
-
-   ssh admin@your-freebsd-machine
-
-.. tip::
-   Ensure you have administrative privileges before proceeding with support bundle collection.
-
-2. Navigate to the Tool Location
-
-Change directory to where the support_bundle binary is placed:
-
-.. code-block:: bash
-
-   cd /path/to/support_bundle
-
-.. note::
-   Replace ``/path/to/support_bundle`` with the actual installation path on your system.
-
-3. Run the Support Bundle Tool
-
-Execute the tool:
-
-.. code-block:: bash
-
-   ./support_bundle
-
-When prompted, enter a password to encrypt the archive.
-
-.. important::
-   Remember this password—you will need to share it with support for archive decryption.
-
-.. warning::
-   Choose a strong password for the archive encryption. This password protects sensitive system information during transmission.
-
-4. Verify the Archive
-
-After completion, check that the archive was created:
-
-.. code-block:: bash
-
-   ls -l support_bundle.7z
-
-Expected output should show the created archive file with its size and timestamp.
-
-5. Share the Archive
-
-Send the ``support_bundle.7z`` file and the password to the support team via the provided support email for further analysis.
-
-
-Email Template
-~~~~~~~~~~~~~~~
-
-Use the following template when submitting your support bundle:
-
-**Subject Line:**
-
-.. code-block:: text
-
-   Subject: Support Bundle for Analysis
-
-**Email Body:**
-
-.. code-block:: text
-
-   Attached is the support_bundle.7z file collected from our FreeBSD system.
-   Password for the archive: [your password]
-   
-   Please let us know if you need further information.
-
-Security Considerations
-~~~~~~~~~~~~~~~~~~~~~~~
-
-**Password Protection**
-    The archive is encrypted to protect sensitive system information during transmission
-
-**Secure Transmission**
-    Only send the support bundle through official support channels
-
-**Password Sharing**
-    Share the archive password through a separate, secure communication channel when possible
-
-**Data Contents**
-    The bundle may contain sensitive system logs and configuration information
-
-
-Troubleshooting Collection Issues
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Permission Denied**
-    Ensure you have execute permissions on the support_bundle binary:
-
-    .. code-block:: bash
-
-       chmod +x support_bundle
-
-**Binary Not Found**
-    Verify the correct path to the support_bundle tool:
-
-    .. code-block:: bash
-
-       find / -name "support_bundle" -type f 2>/dev/null
-
-**Insufficient Disk Space**
-    Check available disk space before running the tool:
-
-    .. code-block:: bash
-
-       df -h
-
-    .. note::
-       The support bundle may require significant temporary disk space during collection and compression.
-
-**Collection Timeout**
-    If the collection process appears to hang:
-
-    * Wait for completion (large systems may take several minutes)
-    * Check system load with ``top`` or ``htop``
-    * Verify no other intensive processes are running
-
-Archive Information
-~~~~~~~~~~~~~~~~~~~
-
-**File Format**
-    The output file uses 7-Zip compression format (``.7z``) for optimal compression ratio
-
-**Contents**
-    The archive typically includes:
-
-    * System logs (``/var/log/*``)
-    * Configuration files (sanitized)
-    * Hardware information
-    * Network configuration
-    * Process information
-    * Performance metrics
-
-**Encryption**
-    AES-256 encryption protects the archive contents during transmission
-
-.. tip::
-   The support bundle tool automatically excludes sensitive files like private keys and passwords from the collection process.
 
 
 API Integration
