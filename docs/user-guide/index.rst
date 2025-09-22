@@ -4914,6 +4914,389 @@ Log Export and Management
 
 - **Batch Processing:** Efficient handling of large log volumes
 
+FreeBSD Debug Framework
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^^
+
+The FreeBSD Debug Framework provides comprehensive system diagnostic capabilities through both REST API and command-line interfaces. This unified framework enables administrators to collect, analyze, and export system diagnostics from FreeBSD environments efficiently.
+
+The framework enables you to:
+
+* Run system diagnostic tools
+* Collect their outputs in organized directories
+* Generate and download consolidated PDF reports
+* Manage outputs automatically with cleanup policies
+* Access diagnostics through both API and CLI interfaces
+
+This simplifies debugging workflows by providing consistent interfaces for system analysis and reporting.
+
+Key Features
+^^^^^^^^^^^^^
+
+**System Integration**
+
+* **Run System Tools**: Execute FreeBSD diagnostic tools (``fstat``, ``vmstat``, ``ktrace``, ``tcpdump``)
+* **Parameterized Execution**: Supply parameters like interface, PID, command, interval, or count
+* **Batch Execution**: Run all tools simultaneously with tool-specific parameters
+* **Process Discovery**: Retrieve running processes to identify PIDs for tracing tools
+
+**Output Management**
+
+* **Organized Storage**: Tool outputs saved in timestamped directories
+* **PDF Report Generation**: Consolidate results into comprehensive reports
+* **Automatic Cleanup**: Results older than 24 hours deleted hourly
+* **File Management**: Automatic cleanup of temporary trace files
+
+**Documentation and Usability**
+
+* **Interactive API Documentation**: Swagger UI available at ``/swagger/``
+* **CLI Menu System**: User-friendly command-line interface with searchable tool selection
+* **Error Handling**: Robust timeout and error management
+* **Extensible Architecture**: Easy addition of new diagnostic tools
+
+
+Command-Line Interface
+^^^^^^^^^^^^^^^^^^^^^^
+
+The FreeBSD Debugging Framework CLI provides an interactive menu-driven interface for system diagnostics.
+
+**Starting the CLI**
+
+Execute the debugging framework::
+
+   ./freebsd-debug
+
+**Interactive Menu System**
+
+The CLI presents a main menu with the following options:
+
+.. code-block:: text
+
+   FreeBSD Performance Debug Framework
+   ==================================
+   ? Choose an option:  [Run Tool, Run All Tools, Generate PDF Report, Exit]
+
+Menu Options
+^^^^^^^^^^^^
+
+**Run Tool**
+   Select and execute a single diagnostic tool with interactive parameter input.
+
+**Run All Tools**  
+   Execute all supported diagnostic tools sequentially with default or prompted parameters.
+
+**Generate PDF Report**
+   Create a consolidated PDF report from previously collected diagnostic outputs.
+
+**Exit**
+   Terminate the debugging framework.
+
+CLI Features
+^^^^^^^^^^^^^
+
+**Tool Selection**
+
+* **Searchable Interface**: Use ``promptui`` for intuitive tool selection
+* **Tool Descriptions**: Each tool includes descriptive information
+* **Parameter Prompting**: Interactive input for required tool parameters
+
+**Output Organization**
+
+* **Timestamped Directories**: Results stored in ``/tmp/freebsd-debug/<timestamp>/``
+* **Individual Files**: Each tool's output saved in separate text files
+* **PDF Reports**: Generated in the same directory with system information and clickable table of contents
+
+**Error Handling**
+
+* **Command Timeouts**: Prevent infinite hangs (10 second default timeout)
+* **Graceful Errors**: Errors displayed without crashing the application
+* **Automatic Cleanup**: Raw trace files automatically removed after processing
+
+Example CLI Workflow
+
+Complete diagnostic collection and reporting workflow:
+
+1. **Start the Framework**::
+
+      ./freebsd-debug
+
+2. **Execute All Tools**:
+   
+   Select "Run All Tools" from the menu::
+
+      > Run All Tools
+      Running fstat...
+      Running netstat-s...  
+      Running tcpdump...
+      ...
+      Outputs saved in: /tmp/freebsd-debug/2025-09-19T12-45-30Z/
+
+3. **Generate PDF Report**:
+   
+   Select "Generate PDF Report"::
+
+      > Generate PDF Report
+      Report generated: /tmp/freebsd-debug/2025-09-19T12-45-30Z/report-2025-09-19T12-45-30Z.pdf
+
+4. **Access Results**:
+   
+   Navigate to the output directory::
+
+      cd /tmp/freebsd-debug/2025-09-19T12-45-30Z/
+      ls -la
+
+Diagnostic Tools
+^^^^^^^^^^^^^^^^^
+
+The framework includes a comprehensive set of FreeBSD diagnostic tools:
+
+**System Information**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose  
+     - Key Parameters
+   * - ``fstat``
+     - File descriptor usage
+     - Process ID, user
+   * - ``vmstat``
+     - Virtual memory statistics
+     - Interval, count
+   * - ``iostat``
+     - I/O statistics
+     - Interval, count, devices
+
+**Network Diagnostics**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose
+     - Key Parameters  
+   * - ``netstat``
+     - Network connections and statistics
+     - Protocol, interface
+   * - ``tcpdump``
+     - Network packet capture
+     - Interface, filter, count
+   * - ``sockstat``
+     - Socket information
+     - Protocol, process
+
+**Process and Kernel Analysis**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose
+     - Key Parameters
+   * - ``ktrace``
+     - Kernel call tracing  
+     - Command, process ID, trace type
+   * - ``ps``
+     - Process information
+     - Format options, sorting
+   * - ``top``
+     - Real-time process monitoring
+     - Update interval, process count
+
+**Storage Analysis**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose
+     - Key Parameters
+   * - ``zpool iostat``
+     - ZFS pool I/O statistics
+     - Pool name, interval, count
+   * - ``zfs list``
+     - ZFS filesystem information
+     - Dataset types, properties
+   * - ``gstat``
+     - GEOM storage statistics
+     - Interval, batch mode
+
+
+Output Management
+^^^^^^^^^^^^^^^^^^
+
+**Directory Structure**
+
+All diagnostic outputs are organized in timestamped directories::
+
+   /tmp/freebsd-debug/
+   ├── 2025-09-19T12-45-30Z/
+   │   ├── fstat-output.txt
+   │   ├── netstat-output.txt
+   │   ├── tcpdump-output.txt
+   │   ├── ktrace-output.txt
+   │   └── report-2025-09-19T12-45-30Z.pdf
+   └── 2025-09-19T14-20-15Z/
+       └── ...
+
+**PDF Report Structure**
+
+Generated PDF reports include:
+
+**System Information Section**
+   * Hardware configuration
+   * Kernel version and build information  
+   * Memory configuration
+   * Network interface details
+
+**Table of Contents**
+   * Clickable links to each diagnostic section
+   * Tool execution timestamps
+   * Output file references
+
+**Diagnostic Outputs**
+   * Individual sections for each executed tool
+   * Formatted command outputs
+   * Error messages and warnings
+
+**Appendices**
+   * Raw data files location
+   * Tool parameter summaries
+   * System state at collection time
+
+Automatic Cleanup
+^^^^^^^^^^^^^^^^^
+
+The framework implements automatic cleanup policies:
+
+* **Retention Period**: 24 hours for diagnostic outputs
+* **Cleanup Frequency**: Hourly cleanup process  
+* **Cleanup Scope**: Complete directory removal including PDF reports
+* **Protection**: Active diagnostic sessions protected from cleanup
+
+.. warning::
+   Diagnostic outputs are automatically deleted after 24 hours. Archive important reports before the retention period expires.
+
+Configuration and Extensibility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Customizing Output Locations**
+
+Default output directory can be configured::
+
+   export FREEBSD_DEBUG_DIR="/var/log/diagnostics"
+
+**PDF Report Customization**
+
+Report generation supports customization:
+
+* **Custom Headers**: Organization branding and contact information
+* **Section Filtering**: Include/exclude specific diagnostic outputs  
+* **Format Options**: Page layout and styling preferences
+
+
+Common Issues
+^^^^^^^^^^^^^^
+
+**Permission Errors**
+
+Some diagnostic tools require elevated privileges::
+
+   # Run as root or with sudo
+   sudo ./freebsd-debug
+
+Alternatively, configure appropriate permissions for specific tools.
+
+**Tool Timeouts**
+
+Increase timeout values for long-running diagnostics::
+
+   export FREEBSD_DEBUG_TIMEOUT=60
+
+**Network Interface Issues**
+
+Verify interface names before using network diagnostic tools::
+
+   ifconfig -a
+
+**Storage Access Problems**
+
+Ensure ZFS pools are accessible for storage diagnostics::
+
+   zpool status
+
+**API Connection Issues**
+
+Verify API service status and network connectivity::
+
+   curl -X GET http://localhost:8080/api/v1/debug/tools
+
+**Log Analysis**
+
+Check system logs for diagnostic framework errors::
+
+   tail -f /var/log/messages
+   journalctl -f -u freebsd-debug
+
+Performance Considerations
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Resource Usage**
+
+* **CPU Impact**: Diagnostic tools may consume significant CPU resources
+* **Disk Space**: Large diagnostic outputs require adequate storage
+* **Network Bandwidth**: Network capture tools generate substantial data
+* **Memory Usage**: PDF generation requires additional memory
+
+**Optimization Strategies**
+
+* **Selective Execution**: Run only required diagnostic tools
+* **Parameter Tuning**: Adjust collection intervals and durations
+* **Scheduled Collection**: Use cron for off-peak diagnostic collection
+* **Storage Management**: Implement custom cleanup policies for long-term retention
+
+Best Practices
+^^^^^^^^^^^^^^^
+
+**Diagnostic Collection**
+
+* **Baseline Establishment**: Collect diagnostics during normal operation
+* **Problem Reproduction**: Capture diagnostics during issue occurrence
+* **Comprehensive Coverage**: Use "Run All Tools" for unknown issues
+* **Targeted Analysis**: Select specific tools for known problem areas
+
+**Report Management**
+
+* **Immediate Analysis**: Review reports promptly due to 24-hour retention
+* **Archive Important Data**: Save critical diagnostics to permanent storage  
+* **Documentation**: Include problem descriptions with diagnostic reports
+* **Sharing**: Use PDF reports for collaboration with support teams
+
+Security Considerations
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Sensitive Data**: Review outputs for confidential information before sharing
+* **Access Control**: Restrict access to diagnostic framework and outputs
+* **Network Captures**: Be cautious with tcpdump outputs containing sensitive traffic
+* **Process Information**: Process lists may reveal sensitive application details
+
+
+.. seealso::
+   
+   **FreeBSD Documentation**
+      * `FreeBSD Debugging <https://docs.freebsd.org/en/books/developers-handbook/kerneldebug/>`_
+
+   **Diagnostic Tools Documentation**
+      * ``man fstat`` - File descriptor diagnostics
+      * ``man tcpdump`` - Network packet capture
+      * ``man ktrace`` - Kernel tracing utility
 
 
 Virtual Machine Management
@@ -5485,6 +5868,280 @@ Perform regular maintenance operations to ensure optimal VM performance:
 - **Security Patches**: Apply security updates and patches promptly
 - **Configuration Changes**: Modify VM settings through the Hardware tab as needed
 - **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
+
+PCIe Device Passthrough - GPU and NIC Passthrough
+--------------------------------------------------
+
+Overview
+~~~~~~~~~
+
+PCIe passthrough allows virtual machines to directly access physical hardware devices, providing near-native performance for graphics cards, network interfaces, and other PCIe devices. Karios implements PCIe passthrough through FreeBSD's bhyve hypervisor with IOMMU support, enabling dedicated hardware access for virtualized workloads.
+
+**Performance Requirements**
+
+* **GPU Workloads**: Machine learning, AI training, graphics rendering, and cryptocurrency mining require direct GPU access for optimal performance
+* **Network Performance**: High-throughput networking applications benefit from dedicated NIC access, bypassing virtualization overhead
+* **Real-time Applications**: Time-sensitive workloads need direct hardware access to minimize latency
+
+**Enterprise Use Cases**
+
+* **GPU Compute Clusters**: Dedicated GPU resources for computational workloads
+* **VDI (Virtual Desktop Infrastructure)**: Graphics acceleration for virtual desktops
+* **Network Function Virtualization (NFV)**: Dedicated network interfaces for virtual network appliances
+* **Development and Testing**: Isolated hardware access for driver development and testing
+
+**Hardware Isolation**
+
+* **Security**: Physical isolation between VMs at the hardware level
+* **Resource Allocation**: Guaranteed hardware resources without sharing
+* **Compliance**: Meeting regulatory requirements for hardware isolation
+
+GPU Passthrough
+~~~~~~~~~~~~~~~~
+
+GPU passthrough provides virtual machines with direct access to graphics processing units, enabling near-native performance for GPU-accelerated applications.
+
+
+Hardware Requirements
+^^^^^^^^^^^^^^^^^^^^^^
+
+* **IOMMU Support**: Intel VT-d or AMD-Vi enabled in BIOS/UEFI
+* **Multiple GPUs**: Host system requires at least one GPU for console access (or integrated graphics)
+* **Compatible GPU**: Modern GPUs with UEFI support (NVIDIA, AMD, Intel Arc)
+* **Sufficient PCIe Lanes**: Adequate bandwidth for GPU operation
+
+System Requirements
+^^^^^^^^^^^^^^^^^^^
+
+* **FreeBSD with bhyve**: IOMMU-enabled kernel
+* **Sufficient RAM**: Additional memory overhead for VM and GPU operations
+* **Power Supply**: Adequate power for additional GPU hardware
+
+Configuration Steps
+~~~~~~~~~~~~~~~~~~~
+
+1. **IOMMU Enable**
+   
+   Verify IOMMU is enabled in system BIOS/UEFI and FreeBSD kernel::
+   
+       # Check IOMMU status
+       sysctl hw.vmm.iommu.enable
+       
+       # Enable if needed (requires reboot)
+       echo 'hw.vmm.iommu.enable=1' >> /boot/loader.conf
+
+2. **Identify PCIe Devices**
+   
+   Navigate to the **PCIe Devices** section in the Kairos interface to view available GPUs.
+
+3. **Attach GPU to VM**
+   
+   * Click the **"Attach"** button in the PCIe Devices interface
+   * Select the target GPU from the **GPU Devices** section
+   * Choose the destination virtual machine
+   * Click **"Attach Devices"** to confirm
+
+4. **Confirmation Process**
+   
+   The system displays a confirmation dialog showing:
+   
+   * Target VM name (e.g., "freetest")
+   * Selected device details (BDF: Bus/Device/Function identifier)
+   * Device category and vendor information
+
+5. **Device Management**
+   
+   Once attached, the device appears in the VM's PCIe device list with:
+   
+   * **Device Information**: Vendor, model, and BDF details
+   * **Category**: Device type classification
+   * **Functions**: Number of PCIe functions
+   * **Detach Option**: Ability to remove device from VM
+
+GPU Passthrough Use Cases
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Graphics and Rendering
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* **CAD Workstations**: Professional graphics applications requiring GPU acceleration
+* **Gaming VMs**: Near-native gaming performance in virtualized environments
+* **Video Processing**: Hardware-accelerated video encoding and transcoding
+
+Scientific Computing
+^^^^^^^^^^^^^^^^^^^^^
+
+* **CUDA Applications**: Direct access to NVIDIA CUDA cores
+* **OpenCL Workloads**: Cross-platform parallel computing
+* **Simulation Software**: GPU-accelerated scientific simulations
+
+NIC Passthrough
+~~~~~~~~~~~~~~~~
+
+Network Interface Card (NIC) passthrough provides virtual machines with dedicated network hardware access, enabling high-performance networking applications.
+
+Benefits of NIC Passthrough
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Performance Advantages**
+
+* **Reduced Latency**: Elimination of virtualization network stack overhead
+* **Higher Throughput**: Direct access to full network interface bandwidth
+* **CPU Efficiency**: Reduced host CPU usage for network processing
+* **Hardware Offloading**: Access to NIC hardware acceleration features
+
+**Advanced Features**
+
+* **SR-IOV Support**: Single Root I/O Virtualization for multiple VMs
+* **DPDK Applications**: Data Plane Development Kit compatibility
+* **Network Function Virtualization**: Dedicated interfaces for virtual appliances
+* **Quality of Service**: Hardware-level traffic management
+
+Configuration Steps
+^^^^^^^^^^^^^^^^^^^
+
+1. **Identify Network Devices**
+   
+   Available network interfaces appear in the **Network Devices** section, showing:
+   
+   * **Device Model**: Ethernet controller information (e.g., Intel I226-LM, I226-V)
+   * **BDF Address**: PCIe bus/device/function location
+   * **Status Indicator**: Green (available), Red (in use/incompatible)
+
+2. **Select Network Interface**
+   
+   * Choose the appropriate network interface from available devices
+   * Note any dependencies or conflicts (indicated by red status)
+   * Verify interface is not currently in use by host system
+
+3. **Attach to Virtual Machine**
+   
+   * Select target VM from the dropdown
+   * Click **"Attach Devices"** to assign the interface
+   * Confirm the attachment in the confirmation dialog
+
+4. **VM Network Configuration**
+   
+   Within the virtual machine:
+   
+   * Install appropriate network drivers
+   * Configure network settings for the passed-through interface
+   * Verify connectivity and performance
+
+NIC Passthrough Use Cases
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Network Appliances
+^^^^^^^^^^^^^^^^^^^
+
+* **Firewalls**: Dedicated interfaces for security appliances
+* **Load Balancers**: High-performance traffic distribution
+* **VPN Gateways**: Hardware-accelerated encryption processing
+* **Network Monitoring**: Dedicated capture interfaces for analysis tools
+
+High-Performance Applications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* **High-Frequency Trading**: Ultra-low latency network access
+* **Real-time Communications**: Dedicated bandwidth for VoIP/video systems
+* **Database Clusters**: Direct network access for distributed databases
+* **Storage Networks**: Dedicated interfaces for SAN/NAS access
+
+Development and Testing
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Network Driver Development**: Direct hardware access for testing
+* **Protocol Testing**: Isolated network environments
+* **Performance Benchmarking**: Accurate network performance measurement
+
+**Best Practices**
+
+Hardware Planning
+~~~~~~~~~~~~~~~~~
+
+Device Allocation
+^^^^^^^^^^^^^^^^^
+
+* **Reserve Host Resources**: Ensure host system retains necessary devices
+* **IOMMU Groups**: Understand PCIe device grouping limitations
+* **Power and Cooling**: Account for additional hardware power requirements
+* **PCIe Lane Distribution**: Optimize bandwidth allocation across devices
+
+VM Resource Planning
+^^^^^^^^^^^^^^^^^^^^
+
+* **Memory Allocation**: Provide sufficient RAM for GPU/NIC operations
+* **CPU Assignment**: Allocate appropriate CPU cores for device-intensive workloads
+* **Storage Performance**: Ensure storage subsystem can support additional I/O
+
+Security Considerations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Access Control
+^^^^^^^^^^^^^^
+
+* **Device Ownership**: Clearly define which VMs own which devices
+* **Physical Security**: Secure physical access to passthrough-capable hardware
+* **Firmware Updates**: Maintain current firmware on passthrough devices
+
+Isolation Verification
+^^^^^^^^^^^^^^^^^^^^^^
+
+* **IOMMU Validation**: Verify proper hardware isolation
+* **Cross-VM Communication**: Ensure devices cannot access other VM memory
+* **Host Protection**: Confirm host system stability with device assignments
+
+Troubleshooting
+~~~~~~~~~~~~~~~~
+
+IOMMU Problems
+^^^^^^^^^^^^^^
+
+* **IOMMU Not Enabled**: Verify BIOS/UEFI and FreeBSD configuration
+* **Grouping Issues**: Check IOMMU group assignments with ``pciconf -lv``
+* **Device Conflicts**: Ensure devices aren't bound to host drivers
+
+Device Recognition
+^^^^^^^^^^^^^^^^^^
+
+* **Driver Issues**: Install appropriate drivers in guest VM
+* **Firmware Compatibility**: Ensure device firmware supports passthrough
+* **Resource Conflicts**: Check for PCIe resource allocation problems
+
+Performance Issues
+^^^^^^^^^^^^^^^^^^
+
+* **Bandwidth Limitations**: Verify adequate PCIe lane allocation
+* **Memory Mapping**: Ensure proper IOMMU page table configuration
+* **Interrupt Handling**: Check MSI/MSI-X interrupt configuration
+
+Monitoring and Maintenance
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Device Health
+^^^^^^^^^^^^^
+
+* **Temperature Monitoring**: Track GPU/device temperatures
+* **Performance Metrics**: Monitor throughput and latency
+* **Error Logging**: Review system logs for hardware issues
+
+System Impact
+^^^^^^^^^^^^^
+
+* **Host Performance**: Monitor impact on host system resources
+* **VM Performance**: Track guest VM performance metrics
+* **Network Utilization**: Monitor bandwidth usage and efficiency
+
+
+
+.. seealso::
+   
+   **FreeBSD Documentation**
+      * `FreeBSD Virtualization with bhyve <https://docs.freebsd.org/en/books/handbook/virtualization/>`_
+   
+   **Hardware Specifications**
+      * `AMD-Vi Specification <https://www.amd.com/system/files/TechDocs/34434.pdf>`_
+
 
 Virtual Machine CLI Commands
 ----------------------------
@@ -6120,8 +6777,8 @@ Common Usage Examples
    * - ``pfctl -z``
      - Clear per-rule statistics
 
-Log Management
-~~~~~~~~~~~~~~
+Network Traffic Monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :widths: 70 30
@@ -6155,7 +6812,7 @@ MooseFS Master Server
 
    * - Command
      - Description
-   * - ``mfsmaster start``
+   * - ``mfsmaster``
      - Start MooseFS master server
    * - ``mfsmaster stop``
      - Stop MooseFS master server
@@ -6165,6 +6822,7 @@ MooseFS Master Server
      - Reload MooseFS master configuration
    * - ``mfsmaster test``
      - Test MooseFS master configuration
+  
 
 MooseFS Chunk Server
 ^^^^^^^^^^^^^^^^^^^^^
@@ -6212,31 +6870,12 @@ MooseFS Client Tools
    * - ``mfsfilepaths /path/to/file``
      - Show file chunk locations
 
-MooseFS Administration
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``lizardfs-admin info``
-     - Show cluster information
-   * - ``lizardfs-admin list-chunkservers``
-     - List all chunk servers
-   * - ``lizardfs-admin list-mounts``
-     - List all mounted clients
-   * - ``mfscli -SCS``
-     - Show chunk server status
-   * - ``mfscli -SMU``
-     - Show memory usage
 
 NFS Commands
-~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
 NFS Server Management
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :widths: 70 30
@@ -6250,21 +6889,19 @@ NFS Server Management
      - Stop NFS daemon
    * - ``service mountd start``
      - Start mount daemon
-   * - ``exportfs -a``
-     - Export all directories in /etc/exports
-   * - ``exportfs -r``
-     - Re-export all directories
-   * - ``exportfs -u /path/to/share``
-     - Unexport specific directory
-   * - ``exportfs -v``
-     - Show current exports verbosely
+   * - ``service rpcbind start``
+     - Start RPC bind daemon (required)
+   * - ``kill -HUP $(cat /var/run/mountd.pid)``
+     - Re-read /etc/exports file
    * - ``showmount -e localhost``
      - Show exports on local server
    * - ``showmount -a``
-     - Show all mount requests
+     - Show all active mounts
+   * - ``nfsstat -s``
+     - Show NFS server statistics
 
 NFS Client Management
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :widths: 70 30
@@ -6274,7 +6911,7 @@ NFS Client Management
      - Description
    * - ``mount -t nfs server:/path/to/share /mnt/nfs``
      - Mount NFS share
-   * - ``mount -t nfs -o vers=4 server:/path /mnt/nfs4``
+   * - ``mount -t nfs -o nfsv4 server:/path /mnt/nfs4``
      - Mount NFSv4 share
    * - ``umount /mnt/nfs``
      - Unmount NFS share
@@ -6282,10 +6919,9 @@ NFS Client Management
      - Show available exports on server
    * - ``nfsstat -c``
      - Show NFS client statistics
-   * - ``nfsstat -s``
-     - Show NFS server statistics
    * - ``rpcinfo -p nfs-server``
      - Show RPC services on server
+
 
 SeaweedFS Commands
 ~~~~~~~~~~~~~~~~~~~
@@ -6342,23 +6978,6 @@ SeaweedFS Client Operations
    * - ``weed s3 -filer=localhost:8888``
      - Start S3 API gateway
 
-SeaweedFS Administration
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``weed shell``
-     - Start SeaweedFS shell
-   * - ``echo "cluster.status" | weed shell``
-     - Show cluster status
-   * - ``echo "volume.list" | weed shell``
-     - List all volumes
-   * - ``echo "fs.ls /" | weed shell``
-     - List filesystem root
 
 iSCSI Commands
 ~~~~~~~~~~~~~~~
@@ -6487,53 +7106,7 @@ AWS CLI Commands
    * - ``aws s3 rm s3://bucket/file.txt``
      - Delete file from S3
 
-MinIO Client (mc) Commands
-^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``mc alias set myminio http://localhost:9000 access_key secret_key``
-     - Add MinIO server alias
-   * - ``mc ls myminio``
-     - List buckets on MinIO server
-   * - ``mc mb myminio/mybucket``
-     - Create bucket on MinIO
-   * - ``mc cp file.txt myminio/mybucket/``
-     - Copy file to MinIO bucket
-   * - ``mc cp myminio/mybucket/file.txt .``
-     - Copy file from MinIO bucket
-   * - ``mc mirror /local/path myminio/mybucket``
-     - Mirror local directory to bucket
-   * - ``mc stat myminio/mybucket/file.txt``
-     - Show file information
-   * - ``mc rm myminio/mybucket/file.txt``
-     - Remove file from bucket
-
-S3 Server Management
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``minio server /data``
-     - Start MinIO server
-   * - ``minio server /data1 /data2 /data3 /data4``
-     - Start MinIO with multiple drives
-   * - ``mc admin info myminio``
-     - Show MinIO server info
-   * - ``mc admin heal myminio``
-     - Heal MinIO objects
-   * - ``mc admin user add myminio newuser newpassword``
-     - Add MinIO user
-   * - ``mc admin policy set myminio readwrite user=newuser``
-     - Set user policy
 
 Support Bundle Collection Instructions
 ---------------------------------------
