@@ -780,7 +780,7 @@ SSH and Join VMs to the Cluster
 .. note::
    Replace ``<vmname>`` with the actual name of the control plane node you want to join.  
    The command will output a token and instructions for joining the cluster.
-   The Only a bootstrap node can be the one to generate the join token.
+   Only a bootstrap node can be the one to generate the join token.
 
 **Step 3.2.4: Join Control Plane Node**
 
