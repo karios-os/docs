@@ -14,6 +14,10 @@ Karios includes a bundled Technitium DNS-DHCP Server that provides comprehensive
    - Standalone web interface accessible at port 5380
 
 
+.. note::
+   The console interface for Technitium DNS Server virtual machines will not be accessible through the standard VM console view. This is due to the headless nature of DNS server deployments, which typically operate without graphical interfaces. For Technitium VM management and configuration, use SSH access or the web-based DNS administration interface instead of the console tab.
+
+
 Technitium Overview
 ~~~~~~~~~~~~~~~~~~~~
 

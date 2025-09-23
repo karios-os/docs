@@ -6503,7 +6503,7 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
    :alt: VM Hardware Configuration
 
-**Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "attach" button to attach the PCIe device.
+**Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "Attach" button to attach the PCIe device.
 
 .. figure:: _static/images/vmcreation/attach_pcie_device.png
    :width: 600
@@ -6716,47 +6716,6 @@ System Requirements
 * **Sufficient RAM**: Additional memory overhead for VM and GPU operations
 * **Power Supply**: Adequate power for additional GPU hardware
 
-Configuration Steps
-~~~~~~~~~~~~~~~~~~~
-
-1. **IOMMU Enable**
-   
-   Verify IOMMU is enabled in system BIOS/UEFI and FreeBSD kernel::
-   
-       # Check IOMMU status
-       sysctl hw.vmm.iommu.enable
-       
-       # Enable if needed (requires reboot)
-       echo 'hw.vmm.iommu.enable=1' >> /boot/loader.conf
-
-2. **Identify PCIe Devices**
-   
-   Navigate to the **PCIe Devices** section in the Kairos interface to view available GPUs.
-
-3. **Attach GPU to VM**
-   
-   * Click the **"Attach"** button in the PCIe Devices interface
-   * Select the target GPU from the **GPU Devices** section
-   * Choose the destination virtual machine
-   * Click **"Attach Devices"** to confirm
-
-4. **Confirmation Process**
-   
-   The system displays a confirmation dialog showing:
-   
-   * Target VM name (e.g., "freetest")
-   * Selected device details (BDF: Bus/Device/Function identifier)
-   * Device category and vendor information
-
-5. **Device Management**
-   
-   Once attached, the device appears in the VM's PCIe device list with:
-   
-   * **Device Information**: Vendor, model, and BDF details
-   * **Category**: Device type classification
-   * **Functions**: Number of PCIe functions
-   * **Detach Option**: Ability to remove device from VM
-
 GPU Passthrough Use Cases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -6796,36 +6755,6 @@ Benefits of NIC Passthrough
 * **Network Function Virtualization**: Dedicated interfaces for virtual appliances
 * **Quality of Service**: Hardware-level traffic management
 
-Configuration Steps
-^^^^^^^^^^^^^^^^^^^
-
-1. **Identify Network Devices**
-   
-   Available network interfaces appear in the **Network Devices** section, showing:
-   
-   * **Device Model**: Ethernet controller information (e.g., Intel I226-LM, I226-V)
-   * **BDF Address**: PCIe bus/device/function location
-   * **Status Indicator**: Green (available), Red (in use/incompatible)
-
-2. **Select Network Interface**
-   
-   * Choose the appropriate network interface from available devices
-   * Note any dependencies or conflicts (indicated by red status)
-   * Verify interface is not currently in use by host system
-
-3. **Attach to Virtual Machine**
-   
-   * Select target VM from the dropdown
-   * Click **"Attach Devices"** to assign the interface
-   * Confirm the attachment in the confirmation dialog
-
-4. **VM Network Configuration**
-   
-   Within the virtual machine:
-   
-   * Install appropriate network drivers
-   * Configure network settings for the passed-through interface
-   * Verify connectivity and performance
 
 NIC Passthrough Use Cases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
