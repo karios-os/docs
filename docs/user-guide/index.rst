@@ -1459,12 +1459,6 @@ To connect Karios to Netbox, follow these configuration steps:
 
 - **Sensors Dropdown**: Select "Sensors" to view different available sensors
 
-.. figure:: _static/images/control_center/liquid_cooling/LQ_select_sensors.png
-   :alt: Select Sensors
-   :width: 800
-
-Figure
-
 .. figure:: _static/images/control_center/liquid_cooling/LQ_monitoring_controls.png
    :alt: Monitoring Controls
    :width: 800
