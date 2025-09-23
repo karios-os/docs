@@ -1401,6 +1401,12 @@ To connect Karios to Netbox, follow these configuration steps:
 - **Click "Configure Netbox"**
    Initiates the setup process within the Karios interface
 
+   .. figure:: _static/images/control_center/liquid_cooling/LQ_configure_netbox_button.png
+      :alt: Configure Netbox Button
+      :width: 600px
+   
+   Figure : Configure Netbox Button
+
 - **Enter the Netbox URL**
    Provide the web address where your Netbox instance is located (e.g., http://example.com:8000)
 
@@ -3669,6 +3675,10 @@ The PCIe Devices interface allows you to view and manage all PCIe (Peripheral Co
 
 Think of PCIe devices as the various pieces of hardware that plug into slots on your computer's motherboard to give it different capabilities - like adding graphics processing, network connectivity, or storage functions.
 
+.. figure:: _static/images/nodemanagement/PCIE_tab.png
+   :alt: PCIe Devices
+   :width: 600
+
 What is PCIe?
 ^^^^^^^^^^^^^
 
@@ -3705,11 +3715,23 @@ The interface allows you to create VFs (Virtual Functions) for SRIOV supported d
 **Step 1: Identify Capable Devices**
    Look for devices showing "PFs" and "VFs" counters (like the X710 showing "2 PFs" and "4 VFs"). Click the device to expand details.
 
+   .. figure:: _static/images/nodemanagement/PCIE_tab_with_VFs.png
+         :alt: PCIe Devices with VFs
+         :width: 600
+
 **Step 2: Click Create VFs Button**
    Click the blue "Create VFs" button next to supported devices.
 
+   .. figure:: _static/images/nodemanagement/PCIE_create_VFs_button.png
+      :alt: Create VFs Button
+      :width: 600
+
 **Step 3: Configure Virtual Functions**
    A dialog box appears with the following options:
+
+   .. figure:: _static/images/nodemanagement/PCIE_create_VFs_dialog.png
+      :alt: Create VFs Dialog
+      :width: 600
 
    * **Device Selection**: Shows the selected device (e.g., "ix1 - Ethernet Controller X710 for 10GbE SFP+")
    * **Number of Virtual Functions**: Enter how many VFs to create (e.g., 4)
@@ -3718,6 +3740,10 @@ The interface allows you to create VFs (Virtual Functions) for SRIOV supported d
 **Step 4: Create VFs**
    Click "Create VFs" to generate the virtual functions.
 
+   .. figure:: _static/images/nodemanagement/PCIE_create_VFs_confirm.png
+      :alt: Confirm Create VFs
+      :width: 600
+
 **What Happens Next**
    * New virtual network interfaces are created
    * Each VF appears as a separate device in your system
@@ -3725,14 +3751,28 @@ The interface allows you to create VFs (Virtual Functions) for SRIOV supported d
 
 **Virtual Function Details**
 
-Once created, VFs appear in the "Virtual Functions" section.
+Once created, VFs appear in the "Virtual Functions" section:
+
+.. figure:: _static/images/nodemanagement/PCIE_VFs_list.png
+   :alt: Virtual Functions List
+   :width: 600
+
 
 **Device Categories and Filtering**
 
 The interface provides filtering to help you find specific types of devices:
 
+.. figure:: _static/images/nodemanagement/PCIE_filter_dropdown.png
+   :alt: PCIe Device Filter
+   :width: 600
+
 **All Categories**
    Shows every PCIe device installed in the system, regardless of type.
+
+
+.. figure:: _static/images/nodemanagement/PCIE_all_devices.png
+   :alt: All PCIe Devices
+   :width: 600
 
 **Network**
    Displays only networking-related devices such as:
@@ -3740,11 +3780,19 @@ The interface provides filtering to help you find specific types of devices:
    * Wireless network adapters
    * Network interface cards
 
+   .. figure:: _static/images/nodemanagement/PCIE_network_devices.png
+      :alt: Network PCIe Devices
+      :width: 600
+
 **Storage**
    Shows only storage-related devices such as:
    * NVMe SSDs
    * RAID controllers
    * Storage host adapters
+
+   .. figure:: _static/images/nodemanagement/PCIE_storage_devices.png
+      :alt: Storage PCIe Devices
+      :width: 600
 
 **GPU**
    Shows only graphics processing devices such as:
@@ -3752,6 +3800,10 @@ The interface provides filtering to help you find specific types of devices:
    * Integrated graphics processors
    * GPU compute accelerators
    * Professional workstation graphics cards
+
+   .. figure:: _static/images/nodemanagement/PCIE_gpu_devices.png
+      :alt: GPU PCIe Devices
+      :width: 600
 
 
 Common Use Cases
@@ -6453,13 +6505,37 @@ The Hardware tab allows dynamic modification of VM specifications:
 
 **Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "attach" button to attach the PCIe device.
 
+.. figure:: _static/images/vmcreation/attach_pcie_device.png
+   :width: 600
+   :alt: Attach PCIe Device
+
 Select the PCIe devices to attach to the VM and click on the "Attach Devices" button.
+
+.. figure:: _static/images/vmcreation/select_pcie_device.png
+   :width: 600
+   :alt: Select PCIe Device
 
 Confirm the PCIe devices to be attached to the VM. Click on the "Attach Devices" button to proceed. 
 
+.. figure:: _static/images/vmcreation/confirm_pcie_device.png
+   :width: 600
+   :alt: Confirm PCIe Device
+
 Attached devices will be listed in the Hardware tab.
 
+.. figure:: _static/images/vmcreation/attached_pcie_device.png
+   :width: 600
+   :alt: Attached PCIe Device
+
 **Detach PCIe Device**: Detach the PCIe devices from the VM. Click on the "detach" button to detach the PCIe device.
+
+.. figure:: _static/images/vmcreation/detach_pcie_device_popup.png
+   :width: 600
+   :alt: Detach PCIe Device
+
+.. figure:: _static/images/vmcreation/detach_pcie_device_confirmation.png
+   :width: 600
+   :alt: Detach PCIe Device
 
 **VM Power Operations**
 
