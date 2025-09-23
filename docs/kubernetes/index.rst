@@ -844,9 +844,19 @@ SSH and Join VMs to the Cluster
 
    sudo k8s status
 
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-9.png
-   :alt: Kubernetes Status
-   :width: 600
+.. code-block:: none
+
+   demo@ub-joec2-controlplane:~$ sudo k8s status
+   cluster status:           ready
+   control plane nodes:      192.168.116.27:6400 (voter)
+   high availability:        no
+   datastore:                etcd
+   network:                  enabled
+   dns:                      enabled at 10.152.183.94
+   ingress:                  enabled
+   load-balancer:            disabled
+   local-storage:            enabled at /var/snap/k8s/common/rawfile-storage
+   gateway                   enabled
 
 **Step 3.2.3: Get Join Token for Control Nodes**
 
@@ -856,16 +866,22 @@ SSH and Join VMs to the Cluster
 
    sudo k8s get-join-token <vmname>
 
+Example output:
+
+.. code-block:: none
+
+   steve@ub-joec2-controlplane:~$ sudo k8s get-join-token ub-joec2-controlplane2
+   eyJzZWNyZXQiOiI3OWRlMWRkNjVlNGYxYzk5Y2MyMzczOTZlNWQyZmFmOTIxOTUxODIzZjk0OWY0ZmJkZjZjMWFjYTI1NTJjYjlhIiwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiam9pbl9hZGRyZXNzZXMiOlsiMTkyLjE2OC4xMTYuMjc6NjQwMCJdfQ==
+
 .. note::
    Replace ``<vmname>`` with the actual name of the control plane node you want to join.  
    The command will output a token and instructions for joining the cluster.
    Only a bootstrap node can be the one to generate the join token.
 
-..warning::
-   please ensure that the vmname provided matches the name of the control plane node you intend to join.
+.. warning::
+   Please ensure that the vmname provided matches the name of the control plane node you intend to join.
 
 **Step 3.2.4: Join Control Plane Node**
-
 
 - Using the Terminal SSH into control plane node:
 
@@ -879,13 +895,22 @@ SSH and Join VMs to the Cluster
 
    sudo k8s join-cluster <token>
 
+Example session:
+
+.. code-block:: none
+
+   steve@ub-joec2-controlplane:~$ ssh steve@ub-joec2-controlplane2
+   steve@ub-joec2-controlplane2's password:
+   Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-141-generic x86_64)
+   ...
+   steve@ub-joec2-controlplane2:~$ sudo k8s join-cluster eyJzZWNyZXQiOiI3OWRlMWRkNjVlNGYxYzk5Y2MyMzczOTZlNWQyZmFmOTIxOTUxODIzZjk0OWY0ZmJkZjZjMWFjYTI1NTJjYjlhIiwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiam9pbl9hZGRyZXNzZXMiOlsiMTkyLjE2OC4xMTYuMjc6NjQwMCJdfQ==
+   Joining the cluster. This may take a few seconds, please wait.
+   Cluster services have started on "ub-joec2-controlplane2".
+   Please allow some time for initial Kubernetes node registration.
+
 .. note::
    Replace ``<token>`` with the actual token obtained in Step 3.2.3. 
    Repeat Steps 3.2.3 and 3.2.4 for all control plane nodes to join them in the cluster.
-
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-10.png
-   :alt: Control Plane Join
-   :width: 600
 
 **Step 3.2.5: Get Join Token for Worker Nodes**
 
@@ -895,9 +920,12 @@ SSH and Join VMs to the Cluster
 
    sudo k8s get-join-token <vmname> --worker
 
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-11.png
-   :alt: Worker Join Token
-   :width: 600
+Example output:
+
+.. code-block:: none
+
+   steve@ub-joec2-controlplane:~$ sudo k8s get-join-token ub-joec2-worker1 --worker
+   eyJ0b2tlbiI6IiIsInNlY3JldCI6Indvcmtlcjo6NTFlNmEwYThmZGQwNDZkYWNhMTRmNmMyMTU0YzhkNGZiNjNlZGI4ZSIsImpvaW5fYWRkcmVzc2VzIjpbIjE5Mi4xNjguMTE2LjI3OjY0MDAiXSwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiXyI6Im0hISJ9
 
 **Step 3.2.6: Join Worker Nodes**
 
@@ -913,6 +941,19 @@ SSH and Join VMs to the Cluster
 
    sudo k8s join-cluster <token>
 
+Example session:
+
+.. code-block:: none
+
+   steve@ub-joec2-controlplane:~$ ssh steve@ub-joec2-worker1
+   steve@ub-joec2-worker1's password:
+   Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-141-generic x86_64)
+   ...
+   steve@ub-joec2-worker1:~$ sudo k8s join-cluster eyJ0b2tlbiI6IiIsInNlY3JldCI6Indvcmtlcjo6NTFlNmEwYThmZGQwNDZkYWNhMTRmNmMyMTU0YzhkNGZiNjNlZGI4ZSIsImpvaW5fYWRkcmVzc2VzIjpbIjE5Mi4xNjguMTE2LjI3OjY0MDAiXSwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiXyI6Im0hISJ9
+   Joining the cluster. This may take a few seconds, please wait.
+   Cluster services have started on "ub-joec2-worker1".
+   Please allow some time for initial Kubernetes node registration.
+
 .. note::
    Replace ``<token>`` with the actual token obtained in Step 3.2.5. 
    Repeat steps 3.2.5 and 3.2.6 for all worker nodes to join them in the cluster.
@@ -922,11 +963,33 @@ SSH and Join VMs to the Cluster
 .. code-block:: bash
 
    sudo k8s status
+   sudo k8s kubectl get nodes
 
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-13.png
-   :target: _static/images/UbuntuKubernetes/ubuntu-13.png
-   :alt: HA Cluster Status
-   :width: 600
+Example output:
+
+.. code-block:: none
+
+   steve@ub-joec2-controlplane:~$ sudo k8s status
+   cluster status:           ready
+   control plane nodes:      192.168.116.27:6400 (voter), 192.168.116.19:6400 (voter), 192.168.116.39:6400 (voter)
+   high availability:        yes
+   datastore:                etcd
+   network:                  enabled
+   dns:                      enabled at 10.152.183.94
+   ingress:                  enabled
+   load-balancer:            disabled
+   local-storage:            enabled at /var/snap/k8s/common/rawfile-storage
+   gateway                   enabled
+   
+   steve@ub-joec2-controlplane:~$ sudo k8s kubectl get nodes
+   NAME                     STATUS   ROLES                  AGE   VERSION
+   ub-joec2-controlplane    Ready    control-plane,worker   41m   v1.32.8
+   ub-joec2-controlplane2   Ready    control-plane,worker   10m   v1.32.8
+   ub-joec2-controlplane3   Ready    control-plane,worker   71s   v1.32.8
+   ub-joec2-worker1         Ready    worker                 25s   v1.32.8
+
+.. note::
+   With multiple control plane nodes, the cluster now shows "high availability: yes" and lists all control plane nodes as voters.
 
 Accessing the Tech Stack
 ----------------------------
@@ -941,14 +1004,37 @@ Accessing the Tech Stack
    sudo k8s kubectl get pods -n observability
    sudo k8s kubectl get svc -n observability
 
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-14.png
-   :alt: Observability Namespace
-   :width: 600
+Example output:
+
+.. code-block:: none
+
+   steve@ub-joec2-controlplane:~$ sudo k8s kubectl get pods -n observability
+   NAME                                                     READY   STATUS    RESTARTS      AGE
+   alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0             46m
+   prometheus-grafana-674cf8cb44-kfck6                      3/3     Running   0             46m
+   prometheus-kube-prometheus-operator-6694cc948f-8f5bc     1/1     Running   0             46m
+   prometheus-kube-state-metrics-7c5fb9d798-f5z4d           1/1     Running   0             46m
+   prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0             46m
+   prometheus-prometheus-node-exporter-fpnpj                1/1     Running   0             16m
+   prometheus-prometheus-node-exporter-k96s8                1/1     Running   0             46m
+   prometheus-prometheus-node-exporter-rkh45                1/1     Running   0             6m31s
+   prometheus-prometheus-node-exporter-w2g4r                1/1     Running   0             5m45s
+   
+   steve@ub-joec2-controlplane:~$ sudo k8s kubectl get svc -n observability
+   NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+   alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP      46m
+   prometheus-grafana                        NodePort    10.152.183.19    <none>        80:30091/TCP                    46m
+   prometheus-kube-prometheus-alertmanager   ClusterIP   10.152.183.125   <none>        9093/TCP,8080/TCP               46m
+   prometheus-kube-prometheus-operator       ClusterIP   10.152.183.199   <none>        443/TCP                         46m
+   prometheus-kube-prometheus-prometheus     NodePort    10.152.183.58    <none>        9090:30090/TCP,8080:31198/TCP   46m
+   prometheus-kube-state-metrics             ClusterIP   10.152.183.72    <none>        8080/TCP                        46m
+   prometheus-operated                       ClusterIP   None             <none>        9090/TCP                        46m
+   prometheus-prometheus-node-exporter       ClusterIP   10.152.183.196   <none>        9100/TCP                        46m
 
 .. note::
    - Namespace: ``observability``  
-   - Grafana → port ``30090``  
-   - Prometheus → port ``30091``  
+   - Grafana → port ``30091``  
+   - Prometheus → port ``30090``  
 
 **Step 3.3.1.2: Access Grafana Dashboard**
 
