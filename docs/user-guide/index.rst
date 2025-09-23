@@ -1459,6 +1459,12 @@ To connect Karios to Netbox, follow these configuration steps:
 
 - **Sensors Dropdown**: Select "Sensors" to view different available sensors
 
+.. figure:: _static/images/control_center/liquid_cooling/LQ_select_sensors.png
+   :alt: Select Sensors
+   :width: 800
+
+Figure
+
 .. figure:: _static/images/control_center/liquid_cooling/LQ_monitoring_controls.png
    :alt: Monitoring Controls
    :width: 800
@@ -2910,6 +2916,10 @@ Interface Components
 
 The main dashboard displays three primary efficiency indicators with current values and historical context:
 
+.. figure:: _static/images/control_center/node_monitoring/efficiency_dashboard.png
+   :alt: Efficiency Dashboard
+   :width: 600
+
 **Power Usage Effectiveness (PUE)**
    Current efficiency rating with contextual interpretation
 
@@ -3182,9 +3192,9 @@ Home Dashboard
 
 .. figure:: _static/images/nodemanagement/Image_071.png
    :width: 600
+   :alt: Node Home Dashboard
 
-
-
+   Figure: Worker Node Home Dashboard
 
 **System Uptime:**
 
@@ -4758,6 +4768,9 @@ The interface provides two operational modes:
 * **Simple Mode**: Quick and easy firewall rules for most common needs
 * **Advanced Mode**: Full PF configuration capabilities for complex scenarios
 
+.. figure:: _static/images/networking/firewall_simple.png
+   :alt: Firewall Simple vs Advanced Mode
+   :width: 600
 
 Packet Filter Management - Simple Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4775,6 +4788,10 @@ The left panel displays currently configured packet filter elements organized by
 * **Rules**: Pass/block rule definitions
 * **Tables**: Address groupings for rule references
 * **Anchors**: NAT/RDR anchor definitions
+
+.. figure:: _static/images/networking/firewall_existing_rules.png
+   :alt: Existing Packet Filters
+   :width: 600
 
 
 **Adding New Packet Filter Rules**
@@ -4799,6 +4816,11 @@ Configure network interface definitions and custom variables:
 * **Variable Name**: Define the variable identifier (e.g., ``ext_if``)
 * **Value**: Set the variable value (e.g., ``igb0``)
 
+
+.. figure:: _static/images/networking/firewall_add_variable.png
+   :alt: Add Variable
+   :width: 600
+
 **Set Options**
 
 Configure firewall behavior settings:
@@ -4806,13 +4828,21 @@ Configure firewall behavior settings:
 * **Option Name**: Select from available options (e.g., ``block-policy``)
 * **Value**: Choose the appropriate value from dropdown
 
+.. figure:: _static/images/networking/firewall_set_options.png
+   :alt: Set Options
+   :width: 600
+
 **Tables**
 
 Define address groups for use in rules:
 
-* **Table Name**: Specify table identifier (e.g., ``trusted_nets``)
+* **Table Name**: Spplified rule creation fecify table identifier (e.g., ``trusted_nets``)
 * **Properties**: Optional table properties
 * **Entries**: Comma-separated list of addresses/networks (e.g., ``192.168.1.0/24, 10.0.0.0/8``)
+
+.. figure:: _static/images/networking/firewall_add_table.png
+   :alt: Add Table
+   :width: 600
 
 **Rules**
 
@@ -4822,6 +4852,10 @@ Create pass/block rules with comprehensive options:
 
 * **Custom**: Full manual rule configuration
 * **Quick Toggle**: Simplified rule creation for common services
+
+.. figure:: _static/images/networking/firewall_add_rule.png
+   :alt: Add Rule
+   :width: 600
 
 **Basic Rule Configuration**:
 
@@ -4839,6 +4873,10 @@ Create pass/block rules with comprehensive options:
 * **FTP** (21): File Transfer Protocol
 * **SSH** (22): Secure Shell access
 
+.. figure:: _static/images/networking/firewall_quick_toggle.png
+   :alt: Quick Toggle Services
+   :width: 600
+
 **Anchors**
 
 Define NAT/RDR anchor points:
@@ -4846,12 +4884,20 @@ Define NAT/RDR anchor points:
 * **Anchor Type**: NAT Anchor or RDR Anchor
 * **Anchor Name**: Identifier for the anchor (e.g., ``ftp-proxy/*``)
 
+.. figure:: _static/images/networking/firewall_add_anchor.png
+   :alt: Add Anchor
+   :width: 600
+
 **Anchor Templates**
 
 Select from predefined service configurations:
 
 * **FTP Proxy** (2121): FTP through proxy configuration
 * **ICMP** (N/A): Ping and network diagnostics
+
+.. figure:: _static/images/networking/firewall_add_anchor_template.png
+   :alt: Add Anchor Template
+   :width: 600
 
 **Configuration Process**
 
@@ -4861,7 +4907,16 @@ Select from predefined service configurations:
 2. **Configure Parameters**: Fill in the required configuration fields based on rule type
 3. **Add Rule**: Click the relevant "Add" button (Add Variable, Add Table, Add Rule, etc.)
 4. **Drag and Drop**: The new rule appears in the left panel where you can drag it to reorder priority
+
+.. figure:: _static/images/networking/firewall_drag_drop.png
+   :alt: Drag and Drop Rule
+   :width: 600
+
 5. **Save Changes**: Click **"Save Changes"** to apply the configuration
+
+.. figure:: _static/images/networking/firewall_save_changes.png
+   :alt: Save Changes
+   :width: 600
 
 **Configuration Validation and Application**
 
@@ -5401,15 +5456,27 @@ Menu Options
 **Run Tool**
    Select and execute a single diagnostic tool with interactive parameter input.
 
+.. figure:: _static/images/debug/cli_run_tool.png
+   :width: 600
+   :alt: CLI Run Tool
+
 **Run All Tools**  
    Execute all supported diagnostic tools sequentially with default or prompted parameters.
 
-   Prerequisites: Configure all the required parameters for each tool to execute all tools successfully.
-
+**Prerequisites**
+   Configure all the required parameters for each tool to execute all tools successfully.
    Click on "Execute All" to run all the tools sequentially.
+
+.. figure:: _static/images/debug/cli_run_all_tools.png
+   :width: 600
+   :alt: CLI Run All Tools
 
 **Generate PDF Report**
    Create a consolidated PDF report from previously collected diagnostic outputs.
+
+.. figure:: _static/images/debug/cli_generate_report.png
+   :width: 600
+   :alt: CLI Generate Report
 
 **Exit**
    Terminate the debugging framework.
@@ -5743,6 +5810,10 @@ How to Generate a Support Bundle from UI
 
    * Click on the "Support Bundle" tab in the main navigation menu
 
+   .. figure:: _static/images/support-bundle/support-bundle-tab.png
+      :width: 600
+      :alt: Support Bundle Tab
+
 2. **Review the Information**
 
    * Read the description: "Collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team"
@@ -5756,6 +5827,10 @@ How to Generate a Support Bundle from UI
 3. **Generate the Bundle**
 
    * Click the blue "Generate Bundle" button
+
+   .. figure:: _static/images/support-bundle/support-bundle-generate-button.png
+      :width: 600
+      :alt: Generate Bundle Button
 
 4. **Wait for Processing**
 
@@ -6435,8 +6510,10 @@ The Bhyve Logs tab provides comprehensive access to virtual machine hypervisor l
 
 - **Real-time Log Monitoring**: View live bhyve hypervisor logs with automatic updates
 
-.. figure:: 
+.. figure:: _static/images/vmcreation/vm_bhyve_logs.png
    :width: 600
+   :alt: VM Bhyve Logs
+
 
 - **Log Entry Details**: Each log entry displays timestamp and detailed system messages
 - **VM Initialization Tracking**: Monitor VM startup sequence including:
