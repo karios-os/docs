@@ -6526,10 +6526,6 @@ The Bhyve Logs tab provides comprehensive access to virtual machine hypervisor l
   * Primary disk attachment
 
 - **Log Refresh Control**: Manual refresh capability to update log entries on demand
-
-.. figure:: 
-   :width: 600
-
 - **Total Log Count Display**: Shows complete number of log entries (e.g., "Total logs: 24")
 - **Chronological Log Organization**: Entries numbered sequentially with precise timestamps
 - **System Event Correlation**: Track VM state changes and correlate with system events
