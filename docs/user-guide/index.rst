@@ -431,6 +431,7 @@ The License Features popup provides three main tabs for comprehensive license ma
    :alt: Available Quota Tab
    :align: center
 
+
 .. list-table::
    :widths: 20 50 30
    :header-rows: 1
@@ -3699,10 +3700,10 @@ Virtual Function Management
 
 **Creating Virtual Functions**
 
-The interface allows you to create VFs (Virtual Functions) for supported devices:
+The interface allows you to create VFs (Virtual Functions) for SRIOV supported devices:
 
 **Step 1: Identify Capable Devices**
-   Look for devices showing "PFs" and "VFs" counters (like the X710 showing "2 PFs" and "4 VFs").
+   Look for devices showing "PFs" and "VFs" counters (like the X710 showing "2 PFs" and "4 VFs"). Click the device to expand details.
 
 **Step 2: Click Create VFs Button**
    Click the blue "Create VFs" button next to supported devices.
@@ -3724,18 +3725,7 @@ The interface allows you to create VFs (Virtual Functions) for supported devices
 
 **Virtual Function Details**
 
-Once created, VFs appear in the "Virtual Functions" section:
-
-**VF Information Displayed**
-   * **Interface Name**: ppt0, ppt1, ppt2, ppt3 (example names)
-   * **Bus Location**: Shows PCIe bus address (e.g., 5.0.16, 5.0.17)
-   * **Function Type**: "Virtual Function" label
-   * **Description**: "Ethernet Virtual Function 700 Series"
-   * **Technology**: "SR-IOV Virtual Function"
-
-**Assignment Status**
-   * **Unassigned**: VF is available for use
-   * **Assigned**: VF is currently used by a virtual machine (shows assignment like "router-1")
+Once created, VFs appear in the "Virtual Functions" section.
 
 **Device Categories and Filtering**
 
@@ -3755,6 +3745,13 @@ The interface provides filtering to help you find specific types of devices:
    * NVMe SSDs
    * RAID controllers
    * Storage host adapters
+
+**GPU**
+   Shows only graphics processing devices such as:
+   * Dedicated graphics cards
+   * Integrated graphics processors
+   * GPU compute accelerators
+   * Professional workstation graphics cards
 
 
 Common Use Cases
@@ -6453,6 +6450,16 @@ The Hardware tab allows dynamic modification of VM specifications:
 .. figure:: _static/images/vmcreation/vm_delete_unused_disk.png
    :width: 600
    :alt: VM Hardware Configuration
+
+**Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "attach" button to attach the PCIe device.
+
+Select the PCIe devices to attach to the VM and click on the "Attach Devices" button.
+
+Confirm the PCIe devices to be attached to the VM. Click on the "Attach Devices" button to proceed. 
+
+Attached devices will be listed in the Hardware tab.
+
+**Detach PCIe Device**: Detach the PCIe devices from the VM. Click on the "detach" button to detach the PCIe device.
 
 **VM Power Operations**
 
