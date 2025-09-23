@@ -5767,7 +5767,7 @@ How to Generate a Support Bundle from UI
 
    * Once complete, download the generated .7z file
    * This encrypted archive can be shared with the support team for analysis
-   
+
 
 Generate Support Bundle via Command Line   
 
@@ -6428,6 +6428,37 @@ The Snapshots tab enables comprehensive snapshot operations:
 - **Snapshot Management**: View, delete, and organize existing snapshots
 - **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
 
+VM Bhyve Logs
+~~~~~~~~~~~~~~
+
+The Bhyve Logs tab provides comprehensive access to virtual machine hypervisor logs:
+
+- **Real-time Log Monitoring**: View live bhyve hypervisor logs with automatic updates
+
+.. figure:: 
+   :width: 600
+
+- **Log Entry Details**: Each log entry displays timestamp and detailed system messages
+- **VM Initialization Tracking**: Monitor VM startup sequence including:
+  
+  * MAC address generation
+  * Boot loader initialization  
+  * CPU and memory allocation
+  * Network bridge configuration
+  * UUID assignment and debug mode status
+  * Primary disk attachment
+
+- **Log Refresh Control**: Manual refresh capability to update log entries on demand
+
+.. figure:: 
+   :width: 600
+
+- **Total Log Count Display**: Shows complete number of log entries (e.g., "Total logs: 24")
+- **Chronological Log Organization**: Entries numbered sequentially with precise timestamps
+- **System Event Correlation**: Track VM state changes and correlate with system events
+- **Troubleshooting Support**: Detailed logging for diagnosing VM startup and operational issues
+
+The Bhyve Logs interface provides essential diagnostic information for understanding VM behavior, troubleshooting boot issues, and monitoring hypervisor-level operations during virtual machine lifecycle management.
 
 VM Monitoring
 ~~~~~~~~~~~~~
