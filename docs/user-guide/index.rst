@@ -431,6 +431,7 @@ The License Features popup provides three main tabs for comprehensive license ma
    :alt: Available Quota Tab
    :align: center
 
+
 .. list-table::
    :widths: 20 50 30
    :header-rows: 1
@@ -1399,6 +1400,12 @@ To connect Karios to Netbox, follow these configuration steps:
 
 - **Click "Configure Netbox"**
    Initiates the setup process within the Karios interface
+
+   .. figure:: _static/images/control_center/liquid_cooling/LQ_configure_netbox_button.png
+      :alt: Configure Netbox Button
+      :width: 600px
+   
+   Figure : Configure Netbox Button
 
 - **Enter the Netbox URL**
    Provide the web address where your Netbox instance is located (e.g., http://example.com:8000)
@@ -2887,6 +2894,255 @@ Advanced Features
 For detailed information regarding system release management, advanced update procedures, rollback processes, and comprehensive release deployment strategies, please refer to Section 9: System Release Management.
 
 
+Data Center Efficiency 
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^^
+
+The Data Center Efficiency Overview provides comprehensive monitoring and analysis of power efficiency metrics for datacenter operations. This system tracks three critical efficiency measurements: Power Usage Effectiveness (PUE), Carbon Usage Effectiveness (CUE), and Water Usage Effectiveness (WUE) to help optimize datacenter environmental performance and operational costs.
+
+The efficiency dashboard enables administrators to:
+
+* Monitor real-time power efficiency metrics across configurable date ranges
+* Track carbon footprint and environmental impact
+* Analyze water usage patterns for cooling systems
+* Compare efficiency trends year-over-year
+* Generate reports for sustainability compliance
+
+Interface Components
+^^^^^^^^^^^^^^^^^^^^^
+
+**Efficiency Metrics Dashboard**
+
+The main dashboard displays three primary efficiency indicators with current values and historical context:
+
+.. figure:: _static/images/control_center/node_monitoring/efficiency_dashboard.png
+   :alt: Efficiency Dashboard
+   :width: 600
+
+**Power Usage Effectiveness (PUE)**
+   Current efficiency rating with contextual interpretation
+
+**Carbon Usage Effectiveness (CUE)**  
+   Environmental impact measurement based on power consumption
+
+**Water Usage Effectiveness (WUE)**
+   Cooling system efficiency and water consumption metrics
+
+**Date Range Selection**
+
+**PUE & CUE Date Range Configuration**
+   * **Start Date**: Beginning of analysis period
+   * **End Date**: End of analysis period  
+   * **Apply Button**: Execute analysis for selected timeframe
+
+**WUE Annual Selection**
+   * **Year Dropdown**: Select specific year for water usage analysis
+   * **Apply Button**: Generate annual water usage effectiveness report
+
+Power Usage Effectiveness (PUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Definition and Measurement**
+
+Power Usage Effectiveness measures how efficiently a datacenter uses energy by comparing total facility energy consumption to IT equipment energy consumption.
+
+**Formula:**
+
+.. math::
+
+   PUE = \frac{\text{Total Facility Energy}}{\text{IT Equipment Energy}}
+
+**Interpretation Guidelines:**
+
+.. list-table:: PUE Rating Scale
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - PUE Value
+     - Efficiency Rating
+     - Description
+   * - 1.0
+     - Perfect (Theoretical)
+     - All energy consumed by IT equipment only
+   * - 1.2 - 1.5
+     - Excellent
+     - Highly efficient datacenter operation
+   * - 1.5 - 2.0
+     - Good
+     - Industry average performance
+   * - 2.0 - 3.0
+     - Fair
+     - Room for improvement
+   * - > 3.0
+     - Poor
+     - Significant inefficiency
+
+**Current PUE Analysis**
+
+**Displayed Value: 0.90**
+
+This PUE value of 0.90 indicates exceptional efficiency, suggesting the datacenter is operating below the theoretical minimum. This may indicate:
+
+* Measurement calibration issues requiring verification
+* On-site renewable energy generation offsetting grid consumption  
+* Advanced cooling technologies providing net energy benefits
+* Potential calculation errors in measurement methodology
+
+.. note::
+   A PUE below 1.0 is physically impossible under normal circumstances. This reading should be investigated to ensure measurement accuracy.
+
+**Optimization Guidance:**
+   Lower PUE values indicate more efficient power utilization, with the goal of approaching 1.0 for optimal efficiency.
+
+Carbon Usage Effectiveness (CUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Definition and Measurement**
+
+Carbon Usage Effectiveness quantifies the greenhouse gas emissions associated with powering IT equipment, based on the carbon intensity of the electricity used.
+
+**Formula:**
+
+.. math::
+
+   CUE = \frac{\text{Total CO}_2\text{ Emissions}}{\text{IT Equipment Energy}}
+
+**Calculation Components:**
+
+* **Total CO₂ Emissions**: Greenhouse gas emissions from all facility power consumption
+* **IT Equipment Energy**: Power consumed specifically by computing, storage, and networking equipment
+* **Carbon Intensity**: CO₂ emissions per unit of electricity (varies by grid source)
+
+**Current CUE Analysis**
+
+**Environmental Impact Assessment:**
+
+.. list-table:: CUE Performance Benchmarks
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - CUE Range
+     - Environmental Rating
+     - Typical Power Sources
+   * - 0.4 - 0.5
+     - Average
+     - Mixed renewable and clean sources
+   * - 0.5 - 0.7
+     - Average to Poor
+     - Standard grid mix
+   * - 0.7 - 0.9
+     - Poor
+     - Coal-heavy electrical grid
+   * - > 0.8
+     - Very Poor
+     - Heavy fossil fuel dependence
+
+**Improvement Strategies:**
+   Lower CUE values indicate cleaner power sources and reduced environmental impact.
+
+Water Usage Effectiveness (WUE)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Definition and Measurement**
+
+Water Usage Effectiveness measures the amount of water a datacenter consumes for cooling and operations relative to the IT energy load.
+
+**Formula:**
+
+.. math::
+
+   WUE = \frac{\text{Annual Water Usage}}{\text{IT Equipment Energy}}
+
+**Measurement Units:**
+   Typically expressed in liters per kilowatt-hour (L/kWh) of IT equipment energy consumption.
+
+**Current WUE Analysis**
+
+**Water Efficiency Benchmarks:**
+
+.. list-table:: WUE Performance Standards
+   :widths: 20 30 50
+   :header-rows: 1
+
+   * - WUE Range (L/kWh)
+     - Efficiency Rating
+     - Cooling Technology
+   * - 0.0 - 0.5
+     - Excellent
+     - Air-cooled systems, arid climates
+   * - 0.5 - 1.0
+     - Good
+     - Efficient evaporative cooling
+   * - 1.0 - 2.0
+     - Average
+     - Standard chilled water systems
+   * - 2.0 - 4.0
+     - Poor
+     - Inefficient cooling systems
+   * - > 4.0
+     - Very Poor
+     - Legacy cooling infrastructure
+
+**Water Conservation Strategies:**
+   Lower WUE values indicate more efficient water usage and reduced environmental impact on local water resources.
+
+Monitoring and Analysis
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Date Range Configuration**
+
+**PUE & CUE Analysis Period**
+   Configure start and end dates to analyze efficiency trends over specific timeframes:
+
+   * **Historical Analysis**: Compare seasonal efficiency variations
+   * **Trend Identification**: Identify efficiency improvements or degradation
+   * **Event Correlation**: Analyze efficiency changes after infrastructure modifications
+   * **Compliance Reporting**: Generate data for regulatory or certification requirements
+
+**WUE Annual Analysis**
+   Select specific years for water usage effectiveness comparison:
+
+   * **Year-over-Year Comparison**: Track WUE improvements across multiple years
+   * **Seasonal Patterns**: Understand annual water usage cycles
+   * **Infrastructure Impact**: Measure efficiency changes after cooling system upgrades
+
+**Performance Interpretation**
+
+**Efficiency Trend Analysis**
+
+Understanding the relationship between the three metrics:
+
+* **PUE Impact on CUE**: Lower PUE typically results in lower CUE through reduced total power consumption
+* **Cooling Efficiency**: High WUE may indicate cooling systems contributing to higher PUE
+* **Regional Factors**: Local climate and grid carbon intensity significantly impact CUE and WUE values
+
+**Optimization Priorities**
+
+.. list-table:: Efficiency Optimization Framework
+   :widths: 25 25 25 25
+   :header-rows: 1
+
+   * - Metric
+     - Current Status
+     - Target Range
+     - Optimization Actions
+   * - PUE (0.90)
+     - Verify accuracy
+     - 1.2 - 1.5
+     - Investigate measurement methodology
+   * - CUE (0.40)
+     - Good performance
+     - < 0.3
+     - Increase renewable energy usage
+   * - WUE (2.00)
+     - Average efficiency
+     - < 1.0
+     - Upgrade cooling systems
+
+
+
 Node Level Management
 ---------------------
 
@@ -2937,9 +3193,9 @@ Home Dashboard
 
 .. figure:: _static/images/nodemanagement/Image_071.png
    :width: 600
+   :alt: Node Home Dashboard
 
-
-
+   Figure: Worker Node Home Dashboard
 
 **System Uptime:**
 
@@ -3407,6 +3663,220 @@ Please select the appropriate ISO/RAW files from your system and click “Upload
 - **ISO Files:** Standard ISO 9660 disk image files
 - **RAW Files:** Raw disk image files and virtual machine disk formats
 - **Validation:** Automatic file format validation during upload process
+
+
+PCIe Devices 
+~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^^
+
+The PCIe Devices interface allows you to view and manage all PCIe (Peripheral Component Interconnect Express) devices installed in your server. PCIe is the modern standard for connecting hardware components like graphics cards, network cards, and storage devices to your computer's motherboard.
+
+Think of PCIe devices as the various pieces of hardware that plug into slots on your computer's motherboard to give it different capabilities - like adding graphics processing, network connectivity, or storage functions.
+
+.. figure:: _static/images/nodemanagement/PCIE_tab.png
+   :alt: PCIe Devices
+   :width: 600
+
+What is PCIe?
+^^^^^^^^^^^^^
+
+**PCIe Definition**
+   PCIe stands for "Peripheral Component Interconnect Express." It's a high-speed connection standard that allows different hardware components to communicate with your computer's processor and memory.
+
+**Why PCIe Matters**
+   * **Speed**: Much faster than older connection types
+   * **Flexibility**: Supports many different types of devices
+   * **Expandability**: Allows you to add new capabilities to your server
+
+
+Physical vs Virtual Functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Understanding PFs and VFs**
+
+**Physical Functions (PFs)**
+   * **Definition**: The actual, physical network ports on the hardware card
+   * **Use**: Direct hardware access for maximum performance
+
+**Virtual Functions (VFs)**
+   * **Definition**: Software-created network interfaces that share the physical hardware
+   * **Use**: Allows multiple virtual machines to share one physical network card
+
+
+Virtual Function Management
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Creating Virtual Functions**
+
+The interface allows you to create VFs (Virtual Functions) for SRIOV supported devices:
+
+**Step 1: Identify Capable Devices**
+   Look for devices showing "PFs" and "VFs" counters (like the X710 showing "2 PFs" and "4 VFs"). Click the device to expand details.
+
+   .. figure:: _static/images/nodemanagement/PCIE_tab_with_VFs.png
+         :alt: PCIe Devices with VFs
+         :width: 600
+
+**Step 2: Click Create VFs Button**
+   Click the blue "Create VFs" button next to supported devices.
+
+   .. figure:: _static/images/nodemanagement/PCIE_create_VFs_button.png
+      :alt: Create VFs Button
+      :width: 600
+
+**Step 3: Configure Virtual Functions**
+   A dialog box appears with the following options:
+
+   .. figure:: _static/images/nodemanagement/PCIE_create_VFs_dialog.png
+      :alt: Create VFs Dialog
+      :width: 600
+
+   * **Device Selection**: Shows the selected device (e.g., "ix1 - Ethernet Controller X710 for 10GbE SFP+")
+   * **Number of Virtual Functions**: Enter how many VFs to create (e.g., 4)
+   * **Information**: "Each virtual function will appear as a separate PCIe device"
+
+**Step 4: Create VFs**
+   Click "Create VFs" to generate the virtual functions.
+
+   .. figure:: _static/images/nodemanagement/PCIE_create_VFs_confirm.png
+      :alt: Confirm Create VFs
+      :width: 600
+
+**What Happens Next**
+   * New virtual network interfaces are created
+   * Each VF appears as a separate device in your system
+   * Virtual machines can use these VFs for dedicated network access
+
+**Virtual Function Details**
+
+Once created, VFs appear in the "Virtual Functions" section:
+
+.. figure:: _static/images/nodemanagement/PCIE_VFs_list.png
+   :alt: Virtual Functions List
+   :width: 600
+
+
+**Device Categories and Filtering**
+
+The interface provides filtering to help you find specific types of devices:
+
+.. figure:: _static/images/nodemanagement/PCIE_filter_dropdown.png
+   :alt: PCIe Device Filter
+   :width: 600
+
+**All Categories**
+   Shows every PCIe device installed in the system, regardless of type.
+
+
+.. figure:: _static/images/nodemanagement/PCIE_all_devices.png
+   :alt: All PCIe Devices
+   :width: 600
+
+**Network**
+   Displays only networking-related devices such as:
+   * Ethernet controllers
+   * Wireless network adapters
+   * Network interface cards
+
+   .. figure:: _static/images/nodemanagement/PCIE_network_devices.png
+      :alt: Network PCIe Devices
+      :width: 600
+
+**Storage**
+   Shows only storage-related devices such as:
+   * NVMe SSDs
+   * RAID controllers
+   * Storage host adapters
+
+   .. figure:: _static/images/nodemanagement/PCIE_storage_devices.png
+      :alt: Storage PCIe Devices
+      :width: 600
+
+**GPU**
+   Shows only graphics processing devices such as:
+   * Dedicated graphics cards
+   * Integrated graphics processors
+   * GPU compute accelerators
+   * Professional workstation graphics cards
+
+   .. figure:: _static/images/nodemanagement/PCIE_gpu_devices.png
+      :alt: GPU PCIe Devices
+      :width: 600
+
+
+Common Use Cases
+^^^^^^^^^^^^^^^^
+
+**Typical PCIe Device Scenarios**
+
+**Storage Expansion**
+   * **Scenario**: Need more or faster storage
+   * **Solution**: Add NVMe PCIe SSDs for high-speed storage
+   * **Benefit**: Much faster than traditional hard drives
+
+**Network Performance**
+   * **Scenario**: Need faster network connections
+   * **Solution**: Install 10GbE or higher speed network cards
+   * **Benefit**: Faster data transfer for server applications
+
+**Virtualization**
+   * **Scenario**: Multiple virtual machines need dedicated network access
+   * **Solution**: Create Virtual Functions (VFs) on capable network cards
+   * **Benefit**: Each VM gets its own virtual network interface
+
+**Wireless Connectivity**
+   * **Scenario**: Server needs Wi-Fi capabilities
+   * **Solution**: Install PCIe wireless network adapter
+   * **Benefit**: Wireless connectivity without external dongles
+
+
+**Status Indicators**
+
+**1 PF (Physical Function)**
+   * **Meaning**: Device has 1 physical port/interface
+   * **Color**: Blue text
+   * **Usage**: Shows actual hardware capabilities
+
+**4 VFs (Virtual Functions)**
+   * **Meaning**: Device can create up to 4 virtual interfaces
+   * **Color**: Green text
+   * **Usage**: Indicates virtualization capabilities
+
+**Create VFs Button**
+   * **Appearance**: Blue button
+   * **Function**: Allows creation of virtual functions
+   * **Availability**: Only on SR-IOV capable devices
+
+**Assignment Status**
+   * **router-1**: Green text showing VF is assigned to a virtual machine
+   * **Unassigned**: VF is available for use
+
+
+Troubleshooting Common Issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Device Recognition Problems**
+
+**Issue**: Device not appearing in list
+   * **Cause**: Device not properly seated in PCIe slot
+   * **Solution**: Check physical connection and reseat card
+
+**Issue**: Device shows but no functions available
+   * **Cause**: Driver not loaded or incompatible
+   * **Solution**: Install proper device drivers
+
+**Virtual Function Issues**
+
+**Issue**: Cannot create VFs
+   * **Cause**: Device doesn't support SR-IOV
+   * **Solution**: Verify device specifications for SR-IOV support
+
+**Issue**: VFs not appearing after creation
+   * **Cause**: Insufficient system resources or BIOS settings
+   * **Solution**: Check BIOS for virtualization settings
+
 
 
 Node Storage Management
@@ -4341,6 +4811,9 @@ The interface provides two operational modes:
 * **Simple Mode**: Quick and easy firewall rules for most common needs
 * **Advanced Mode**: Full PF configuration capabilities for complex scenarios
 
+.. figure:: _static/images/networking/firewall_simple.png
+   :alt: Firewall Simple vs Advanced Mode
+   :width: 600
 
 Packet Filter Management - Simple Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -4358,6 +4831,10 @@ The left panel displays currently configured packet filter elements organized by
 * **Rules**: Pass/block rule definitions
 * **Tables**: Address groupings for rule references
 * **Anchors**: NAT/RDR anchor definitions
+
+.. figure:: _static/images/networking/firewall_existing_rules.png
+   :alt: Existing Packet Filters
+   :width: 600
 
 
 **Adding New Packet Filter Rules**
@@ -4382,6 +4859,11 @@ Configure network interface definitions and custom variables:
 * **Variable Name**: Define the variable identifier (e.g., ``ext_if``)
 * **Value**: Set the variable value (e.g., ``igb0``)
 
+
+.. figure:: _static/images/networking/firewall_add_variable.png
+   :alt: Add Variable
+   :width: 600
+
 **Set Options**
 
 Configure firewall behavior settings:
@@ -4389,13 +4871,21 @@ Configure firewall behavior settings:
 * **Option Name**: Select from available options (e.g., ``block-policy``)
 * **Value**: Choose the appropriate value from dropdown
 
+.. figure:: _static/images/networking/firewall_set_options.png
+   :alt: Set Options
+   :width: 600
+
 **Tables**
 
 Define address groups for use in rules:
 
-* **Table Name**: Specify table identifier (e.g., ``trusted_nets``)
+* **Table Name**: Spplified rule creation fecify table identifier (e.g., ``trusted_nets``)
 * **Properties**: Optional table properties
 * **Entries**: Comma-separated list of addresses/networks (e.g., ``192.168.1.0/24, 10.0.0.0/8``)
+
+.. figure:: _static/images/networking/firewall_add_table.png
+   :alt: Add Table
+   :width: 600
 
 **Rules**
 
@@ -4405,6 +4895,10 @@ Create pass/block rules with comprehensive options:
 
 * **Custom**: Full manual rule configuration
 * **Quick Toggle**: Simplified rule creation for common services
+
+.. figure:: _static/images/networking/firewall_add_rule.png
+   :alt: Add Rule
+   :width: 600
 
 **Basic Rule Configuration**:
 
@@ -4422,6 +4916,10 @@ Create pass/block rules with comprehensive options:
 * **FTP** (21): File Transfer Protocol
 * **SSH** (22): Secure Shell access
 
+.. figure:: _static/images/networking/firewall_quick_toggle.png
+   :alt: Quick Toggle Services
+   :width: 600
+
 **Anchors**
 
 Define NAT/RDR anchor points:
@@ -4429,12 +4927,20 @@ Define NAT/RDR anchor points:
 * **Anchor Type**: NAT Anchor or RDR Anchor
 * **Anchor Name**: Identifier for the anchor (e.g., ``ftp-proxy/*``)
 
+.. figure:: _static/images/networking/firewall_add_anchor.png
+   :alt: Add Anchor
+   :width: 600
+
 **Anchor Templates**
 
 Select from predefined service configurations:
 
 * **FTP Proxy** (2121): FTP through proxy configuration
 * **ICMP** (N/A): Ping and network diagnostics
+
+.. figure:: _static/images/networking/firewall_add_anchor_template.png
+   :alt: Add Anchor Template
+   :width: 600
 
 **Configuration Process**
 
@@ -4444,7 +4950,16 @@ Select from predefined service configurations:
 2. **Configure Parameters**: Fill in the required configuration fields based on rule type
 3. **Add Rule**: Click the relevant "Add" button (Add Variable, Add Table, Add Rule, etc.)
 4. **Drag and Drop**: The new rule appears in the left panel where you can drag it to reorder priority
+
+.. figure:: _static/images/networking/firewall_drag_drop.png
+   :alt: Drag and Drop Rule
+   :width: 600
+
 5. **Save Changes**: Click **"Save Changes"** to apply the configuration
+
+.. figure:: _static/images/networking/firewall_save_changes.png
+   :alt: Save Changes
+   :width: 600
 
 **Configuration Validation and Application**
 
@@ -4565,12 +5080,6 @@ Security Considerations:
 
 - **Best Practices:** Follow established firewall configuration best practices
 
-
-.. seealso::
-   
-   **FreeBSD Documentation**
-      * `FreeBSD Handbook - Firewalls <https://docs.freebsd.org/en/books/handbook/firewalls/>`_
-      * `PF User's Guide <https://www.openbsd.org/faq/pf/>`_   
 
 Security Center Walkthrough
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4920,6 +5429,610 @@ Log Export and Management
 
 - **Batch Processing:** Efficient handling of large log volumes
 
+FreeBSD Debug Framework
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^^
+
+The FreeBSD Debug Framework provides comprehensive system diagnostic capabilities through both REST API and command-line interfaces. This unified framework enables administrators to collect, analyze, and export system diagnostics from FreeBSD environments efficiently.
+
+The framework enables you to:
+
+* Run system diagnostic tools
+* Collect their outputs in organized directories
+* Generate and download consolidated PDF reports
+* Manage outputs automatically with cleanup policies
+* Access diagnostics through both API and CLI interfaces
+
+This simplifies debugging workflows by providing consistent interfaces for system analysis and reporting.
+
+Key Features
+^^^^^^^^^^^^^
+
+**System Integration**
+
+* **Run System Tools**: Execute FreeBSD diagnostic tools (``fstat``, ``vmstat``, ``ktrace``, ``tcpdump``)
+* **Parameterized Execution**: Supply parameters like interface, PID, command, interval, or count
+* **Batch Execution**: Run all tools simultaneously with tool-specific parameters
+* **Process Discovery**: Retrieve running processes to identify PIDs for tracing tools
+
+**Output Management**
+
+* **Organized Storage**: Tool outputs saved in timestamped directories
+* **PDF Report Generation**: Consolidate results into comprehensive reports
+* **Automatic Cleanup**: Results older than 24 hours deleted hourly
+* **File Management**: Automatic cleanup of temporary trace files
+
+**Documentation and Usability**
+
+* **Interactive API Documentation**: Swagger UI available at ``/swagger/``
+* **CLI Menu System**: User-friendly command-line interface with searchable tool selection
+* **Error Handling**: Robust timeout and error management
+* **Extensible Architecture**: Easy addition of new diagnostic tools
+
+
+Command-Line Interface
+^^^^^^^^^^^^^^^^^^^^^^
+
+The FreeBSD Debugging Framework CLI provides an interactive menu-driven interface for system diagnostics.
+
+**Starting the CLI**
+
+Execute the debugging framework::
+
+   ./freebsd-debug
+
+**Interactive Menu System**
+
+The CLI presents a main menu with the following options:
+
+.. code-block:: text
+
+   FreeBSD Performance Debug Framework
+   ==================================
+   ? Choose an option:  [Run Tool, Run All Tools, Generate PDF Report, Exit]
+
+Menu Options
+^^^^^^^^^^^^
+
+**Run Tool**
+   Select and execute a single diagnostic tool with interactive parameter input.
+
+.. figure:: _static/images/debug/cli_run_tool.png
+   :width: 600
+   :alt: CLI Run Tool
+
+**Run All Tools**  
+   Execute all supported diagnostic tools sequentially with default or prompted parameters.
+
+**Prerequisites**
+   Configure all the required parameters for each tool to execute all tools successfully.
+   Click on "Execute All" to run all the tools sequentially.
+
+.. figure:: _static/images/debug/cli_run_all_tools.png
+   :width: 600
+   :alt: CLI Run All Tools
+
+**Generate PDF Report**
+   Create a consolidated PDF report from previously collected diagnostic outputs.
+
+.. figure:: _static/images/debug/cli_generate_report.png
+   :width: 600
+   :alt: CLI Generate Report
+
+**Exit**
+   Terminate the debugging framework.
+
+CLI Features
+^^^^^^^^^^^^^
+
+**Tool Selection**
+
+* **Searchable Interface**: Use ``promptui`` for intuitive tool selection
+* **Tool Descriptions**: Each tool includes descriptive information
+* **Parameter Prompting**: Interactive input for required tool parameters
+
+**Output Organization**
+
+* **Timestamped Directories**: Results stored in ``/tmp/freebsd-debug/<timestamp>/``
+* **Individual Files**: Each tool's output saved in separate text files
+* **PDF Reports**: Generated in the same directory with system information and clickable table of contents
+
+**Error Handling**
+
+* **Command Timeouts**: Prevent infinite hangs (10 second default timeout)
+* **Graceful Errors**: Errors displayed without crashing the application
+* **Automatic Cleanup**: Raw trace files automatically removed after processing
+
+Example CLI Workflow
+
+Complete diagnostic collection and reporting workflow:
+
+1. **Start the Framework**::
+
+      ./freebsd-debug
+
+2. **Execute All Tools**:
+   
+   Select "Run All Tools" from the menu::
+
+      > Run All Tools
+      Running fstat...
+      Running netstat-s...  
+      Running tcpdump...
+      ...
+      Outputs saved in: /tmp/freebsd-debug/2025-09-19T12-45-30Z/
+
+3. **Generate PDF Report**:
+   
+   Select "Generate PDF Report"::
+
+      > Generate PDF Report
+      Report generated: /tmp/freebsd-debug/2025-09-19T12-45-30Z/report-2025-09-19T12-45-30Z.pdf
+
+4. **Access Results**:
+   
+   Navigate to the output directory::
+
+      cd /tmp/freebsd-debug/2025-09-19T12-45-30Z/
+      ls -la
+
+Diagnostic Tools
+^^^^^^^^^^^^^^^^^
+
+The framework includes a comprehensive set of FreeBSD diagnostic tools:
+
+**System Information**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose  
+     - Key Parameters
+   * - ``fstat``
+     - File descriptor usage
+     - Process ID, user
+   * - ``vmstat``
+     - Virtual memory statistics
+     - Interval, count
+   * - ``iostat``
+     - I/O statistics
+     - Interval, count, devices
+
+**Network Diagnostics**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose
+     - Key Parameters  
+   * - ``netstat``
+     - Network connections and statistics
+     - Protocol, interface
+   * - ``tcpdump``
+     - Network packet capture
+     - Interface, filter, count
+   * - ``sockstat``
+     - Socket information
+     - Protocol, process
+
+**Process and Kernel Analysis**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose
+     - Key Parameters
+   * - ``ktrace``
+     - Kernel call tracing  
+     - Command, process ID, trace type
+   * - ``ps``
+     - Process information
+     - Format options, sorting
+   * - ``top``
+     - Real-time process monitoring
+     - Update interval, process count
+
+**Storage Analysis**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - Tool
+     - Purpose
+     - Key Parameters
+   * - ``zpool iostat``
+     - ZFS pool I/O statistics
+     - Pool name, interval, count
+   * - ``zfs list``
+     - ZFS filesystem information
+     - Dataset types, properties
+   * - ``gstat``
+     - GEOM storage statistics
+     - Interval, batch mode
+
+
+Output Management
+^^^^^^^^^^^^^^^^^^
+
+**Directory Structure**
+
+All diagnostic outputs are organized in timestamped directories::
+
+   /tmp/freebsd-debug/
+   ├── 2025-09-19T12-45-30Z/
+   │   ├── fstat-output.txt
+   │   ├── netstat-output.txt
+   │   ├── tcpdump-output.txt
+   │   ├── ktrace-output.txt
+   │   └── report-2025-09-19T12-45-30Z.pdf
+   └── 2025-09-19T14-20-15Z/
+       └── ...
+
+**PDF Report Structure**
+
+Generated PDF reports include:
+
+**System Information Section**
+   * Hardware configuration
+   * Kernel version and build information  
+   * Memory configuration
+   * Network interface details
+
+**Table of Contents**
+   * Clickable links to each diagnostic section
+   * Tool execution timestamps
+   * Output file references
+
+**Diagnostic Outputs**
+   * Individual sections for each executed tool
+   * Formatted command outputs
+   * Error messages and warnings
+
+**Appendices**
+   * Raw data files location
+   * Tool parameter summaries
+   * System state at collection time
+
+Automatic Cleanup
+^^^^^^^^^^^^^^^^^
+
+The framework implements automatic cleanup policies:
+
+* **Retention Period**: 24 hours for diagnostic outputs
+* **Cleanup Frequency**: Hourly cleanup process  
+* **Cleanup Scope**: Complete directory removal including PDF reports
+* **Protection**: Active diagnostic sessions protected from cleanup
+
+.. warning::
+   Diagnostic outputs are automatically deleted after 24 hours. Archive important reports before the retention period expires.
+
+Configuration and Extensibility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Customizing Output Locations**
+
+Default output directory can be configured::
+
+   export FREEBSD_DEBUG_DIR="/var/log/diagnostics"
+
+**PDF Report Customization**
+
+Report generation supports customization:
+
+* **Custom Headers**: Organization branding and contact information
+* **Section Filtering**: Include/exclude specific diagnostic outputs  
+* **Format Options**: Page layout and styling preferences
+
+
+Common Issues
+^^^^^^^^^^^^^^
+
+**Permission Errors**
+
+Some diagnostic tools require elevated privileges::
+
+   # Run as root or with sudo
+   sudo ./freebsd-debug
+
+Alternatively, configure appropriate permissions for specific tools.
+
+**Tool Timeouts**
+
+Increase timeout values for long-running diagnostics::
+
+   export FREEBSD_DEBUG_TIMEOUT=60
+
+**Network Interface Issues**
+
+Verify interface names before using network diagnostic tools::
+
+   ifconfig -a
+
+**Storage Access Problems**
+
+Ensure ZFS pools are accessible for storage diagnostics::
+
+   zpool status
+
+**API Connection Issues**
+
+Verify API service status and network connectivity::
+
+   curl -X GET http://localhost:8080/api/v1/debug/tools
+
+**Log Analysis**
+
+Check system logs for diagnostic framework errors::
+
+   tail -f /var/log/messages
+   journalctl -f -u freebsd-debug
+
+Performance Considerations
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Resource Usage**
+
+* **CPU Impact**: Diagnostic tools may consume significant CPU resources
+* **Disk Space**: Large diagnostic outputs require adequate storage
+* **Network Bandwidth**: Network capture tools generate substantial data
+* **Memory Usage**: PDF generation requires additional memory
+
+**Optimization Strategies**
+
+* **Selective Execution**: Run only required diagnostic tools
+* **Parameter Tuning**: Adjust collection intervals and durations
+* **Scheduled Collection**: Use cron for off-peak diagnostic collection
+* **Storage Management**: Implement custom cleanup policies for long-term retention
+
+Best Practices
+^^^^^^^^^^^^^^^
+
+**Diagnostic Collection**
+
+* **Baseline Establishment**: Collect diagnostics during normal operation
+* **Problem Reproduction**: Capture diagnostics during issue occurrence
+* **Comprehensive Coverage**: Use "Run All Tools" for unknown issues
+* **Targeted Analysis**: Select specific tools for known problem areas
+
+**Report Management**
+
+* **Immediate Analysis**: Review reports promptly due to 24-hour retention
+* **Archive Important Data**: Save critical diagnostics to permanent storage  
+* **Documentation**: Include problem descriptions with diagnostic reports
+* **Sharing**: Use PDF reports for collaboration with support teams
+
+Security Considerations
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Sensitive Data**: Review outputs for confidential information before sharing
+* **Access Control**: Restrict access to diagnostic framework and outputs
+* **Network Captures**: Be cautious with tcpdump outputs containing sensitive traffic
+* **Process Information**: Process lists may reveal sensitive application details
+
+
+.. seealso::
+   
+   **FreeBSD Documentation**
+      * `FreeBSD Debugging <https://docs.freebsd.org/en/books/developers-handbook/kerneldebug/>`_
+
+   **Diagnostic Tools Documentation**
+      * ``man fstat`` - File descriptor diagnostics
+      * ``man tcpdump`` - Network packet capture
+      * ``man ktrace`` - Kernel tracing utility
+
+
+Support Bundle Collection Instructions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The support bundle tool collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team.
+
+**When to Use**
+
+Run this tool when requested by support for:
+
+* Troubleshooting system issues
+* Diagnostic analysis
+* System health evaluation
+* Performance problem investigation
+
+Collection Process
+^^^^^^^^^^^^^^^^^^^
+
+How to Generate a Support Bundle from UI
+
+1. **Navigate to Support Bundle**
+
+   * Click on the "Support Bundle" tab in the main navigation menu
+
+   .. figure:: _static/images/support-bundle/support-bundle-tab.png
+      :width: 600
+      :alt: Support Bundle Tab
+
+2. **Review the Information**
+
+   * Read the description: "Collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team"
+   * Check the "When to use" scenarios to confirm this matches your needs:
+
+     * Troubleshooting system issues
+     * Diagnostic analysis
+     * System health evaluation
+     * Performance problem investigation
+
+3. **Generate the Bundle**
+
+   * Click the blue "Generate Bundle" button
+
+   .. figure:: _static/images/support-bundle/support-bundle-generate-button.png
+      :width: 600
+      :alt: Generate Bundle Button
+
+4. **Wait for Processing**
+
+   * The system will collect logs and diagnostic data
+   * Package everything into an encrypted .7z archive
+   * This may take a few minutes depending on system size
+
+5. **Download the Bundle**
+
+   * Once complete, download the generated .7z file
+   * This encrypted archive can be shared with the support team for analysis
+
+
+Generate Support Bundle via Command Line   
+
+1. Connect to the Console
+
+Use SSH or direct console access to log in to your FreeBSD machine.
+
+.. code-block:: bash
+
+   ssh admin@your-freebsd-machine
+
+.. tip::
+   Ensure you have administrative privileges before proceeding with support bundle collection.
+
+2. Navigate to the Tool Location
+
+Change directory to where the support_bundle binary is placed:
+
+.. code-block:: bash
+
+   cd /path/to/support_bundle
+
+.. note::
+   Replace ``/path/to/support_bundle`` with the actual installation path on your system.
+
+3. Run the Support Bundle Tool
+
+Execute the tool:
+
+.. code-block:: bash
+
+   ./support_bundle
+
+When prompted, enter a password to encrypt the archive.
+
+.. important::
+   Remember this password—you will need to share it with support for archive decryption.
+
+.. warning::
+   Choose a strong password for the archive encryption. This password protects sensitive system information during transmission.
+
+4. Verify the Archive
+
+After completion, check that the archive was created:
+
+.. code-block:: bash
+
+   ls -l support_bundle.7z
+
+Expected output should show the created archive file with its size and timestamp.
+
+5. Share the Archive
+
+Send the ``support_bundle.7z`` file and the password to the support team via the provided support email for further analysis.
+
+
+Email Template
+^^^^^^^^^^^^^^^
+
+Use the following template when submitting your support bundle:
+
+**Subject Line:**
+
+.. code-block:: text
+
+   Subject: Support Bundle for Analysis
+
+**Email Body:**
+
+.. code-block:: text
+
+   Attached is the support_bundle.7z file collected from our FreeBSD system.
+   Password for the archive: [your password]
+   
+   Please let us know if you need further information.
+
+Security Considerations
+^^^^^^^^^^^^^^^^^^^^^^^
+
+**Password Protection**
+    The archive is encrypted to protect sensitive system information during transmission
+
+**Secure Transmission**
+    Only send the support bundle through official support channels
+
+**Password Sharing**
+    Share the archive password through a separate, secure communication channel when possible
+
+**Data Contents**
+    The bundle may contain sensitive system logs and configuration information
+
+
+Troubleshooting Collection Issues
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Permission Denied**
+    Ensure you have execute permissions on the support_bundle binary:
+
+    .. code-block:: bash
+
+       chmod +x support_bundle
+
+**Binary Not Found**
+    Verify the correct path to the support_bundle tool:
+
+    .. code-block:: bash
+
+       find / -name "support_bundle" -type f 2>/dev/null
+
+**Insufficient Disk Space**
+    Check available disk space before running the tool:
+
+    .. code-block:: bash
+
+       df -h
+
+    .. note::
+       The support bundle may require significant temporary disk space during collection and compression.
+
+**Collection Timeout**
+    If the collection process appears to hang:
+
+    * Wait for completion (large systems may take several minutes)
+    * Check system load with ``top`` or ``htop``
+    * Verify no other intensive processes are running
+
+Archive Information
+^^^^^^^^^^^^^^^^^^^^
+
+**File Format**
+    The output file uses 7-Zip compression format (``.7z``) for optimal compression ratio
+
+**Contents**
+    The archive typically includes:
+
+    * System logs (``/var/log/*``)
+    * Configuration files (sanitized)
+    * Hardware information
+    * Network configuration
+    * Process information
+    * Performance metrics
+
+**Encryption**
+    AES-256 encryption protects the archive contents during transmission
+
+.. tip::
+   The support bundle tool automatically excludes sensitive files like private keys and passwords from the collection process.
 
 
 Virtual Machine Management
@@ -5390,6 +6503,40 @@ The Hardware tab allows dynamic modification of VM specifications:
    :width: 600
    :alt: VM Hardware Configuration
 
+**Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "Attach" button to attach the PCIe device.
+
+.. figure:: _static/images/vmcreation/attach_pcie_device.png
+   :width: 600
+   :alt: Attach PCIe Device
+
+Select the PCIe devices to attach to the VM and click on the "Attach Devices" button.
+
+.. figure:: _static/images/vmcreation/select_pcie_device.png
+   :width: 600
+   :alt: Select PCIe Device
+
+Confirm the PCIe devices to be attached to the VM. Click on the "Attach Devices" button to proceed. 
+
+.. figure:: _static/images/vmcreation/confirm_pcie_device.png
+   :width: 600
+   :alt: Confirm PCIe Device
+
+Attached devices will be listed in the Hardware tab.
+
+.. figure:: _static/images/vmcreation/attached_pcie_device.png
+   :width: 600
+   :alt: Attached PCIe Device
+
+**Detach PCIe Device**: Detach the PCIe devices from the VM. Click on the "detach" button to detach the PCIe device.
+
+.. figure:: _static/images/vmcreation/detach_pcie_device_popup.png
+   :width: 600
+   :alt: Detach PCIe Device
+
+.. figure:: _static/images/vmcreation/detach_pcie_device_confirmation.png
+   :width: 600
+   :alt: Detach PCIe Device
+
 **VM Power Operations**
 
 Standard VM management operations include:
@@ -5433,6 +6580,35 @@ The Snapshots tab enables comprehensive snapshot operations:
 - **Snapshot Management**: View, delete, and organize existing snapshots
 - **Snapshot Scheduling**: Configure automated snapshot creation for regular backups
 
+VM Bhyve Logs
+~~~~~~~~~~~~~~
+
+The Bhyve Logs tab provides comprehensive access to virtual machine hypervisor logs:
+
+- **Real-time Log Monitoring**: View live bhyve hypervisor logs with automatic updates
+
+.. figure:: _static/images/vmcreation/vm_bhyve_logs.png
+   :width: 600
+   :alt: VM Bhyve Logs
+
+
+- **Log Entry Details**: Each log entry displays timestamp and detailed system messages
+- **VM Initialization Tracking**: Monitor VM startup sequence including:
+  
+  * MAC address generation
+  * Boot loader initialization  
+  * CPU and memory allocation
+  * Network bridge configuration
+  * UUID assignment and debug mode status
+  * Primary disk attachment
+
+- **Log Refresh Control**: Manual refresh capability to update log entries on demand
+- **Total Log Count Display**: Shows complete number of log entries (e.g., "Total logs: 24")
+- **Chronological Log Organization**: Entries numbered sequentially with precise timestamps
+- **System Event Correlation**: Track VM state changes and correlate with system events
+- **Troubleshooting Support**: Detailed logging for diagnosing VM startup and operational issues
+
+The Bhyve Logs interface provides essential diagnostic information for understanding VM behavior, troubleshooting boot issues, and monitoring hypervisor-level operations during virtual machine lifecycle management.
 
 VM Monitoring
 ~~~~~~~~~~~~~
@@ -5491,6 +6667,209 @@ Perform regular maintenance operations to ensure optimal VM performance:
 - **Security Patches**: Apply security updates and patches promptly
 - **Configuration Changes**: Modify VM settings through the Hardware tab as needed
 - **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
+
+PCIe Device Passthrough - GPU and NIC Passthrough
+--------------------------------------------------
+
+Overview
+~~~~~~~~~
+
+PCIe passthrough allows virtual machines to directly access physical hardware devices, providing near-native performance for graphics cards, network interfaces, and other PCIe devices. Karios implements PCIe passthrough through FreeBSD's bhyve hypervisor with IOMMU support, enabling dedicated hardware access for virtualized workloads.
+
+**Performance Requirements**
+
+* **GPU Workloads**: Machine learning, AI training, graphics rendering, and cryptocurrency mining require direct GPU access for optimal performance
+* **Network Performance**: High-throughput networking applications benefit from dedicated NIC access, bypassing virtualization overhead
+* **Real-time Applications**: Time-sensitive workloads need direct hardware access to minimize latency
+
+**Enterprise Use Cases**
+
+* **GPU Compute Clusters**: Dedicated GPU resources for computational workloads
+* **VDI (Virtual Desktop Infrastructure)**: Graphics acceleration for virtual desktops
+* **Network Function Virtualization (NFV)**: Dedicated network interfaces for virtual network appliances
+* **Development and Testing**: Isolated hardware access for driver development and testing
+
+**Hardware Isolation**
+
+* **Security**: Physical isolation between VMs at the hardware level
+* **Resource Allocation**: Guaranteed hardware resources without sharing
+* **Compliance**: Meeting regulatory requirements for hardware isolation
+
+GPU Passthrough
+~~~~~~~~~~~~~~~~
+
+GPU passthrough provides virtual machines with direct access to graphics processing units, enabling near-native performance for GPU-accelerated applications.
+
+
+Hardware Requirements
+^^^^^^^^^^^^^^^^^^^^^^
+
+* **IOMMU Support**: Intel VT-d or AMD-Vi enabled in BIOS/UEFI
+* **Multiple GPUs**: Host system requires at least one GPU for console access (or integrated graphics)
+* **Compatible GPU**: Modern GPUs with UEFI support (NVIDIA, AMD, Intel Arc)
+* **Sufficient PCIe Lanes**: Adequate bandwidth for GPU operation
+
+System Requirements
+^^^^^^^^^^^^^^^^^^^
+
+* **FreeBSD with bhyve**: IOMMU-enabled kernel
+* **Sufficient RAM**: Additional memory overhead for VM and GPU operations
+* **Power Supply**: Adequate power for additional GPU hardware
+
+GPU Passthrough Use Cases
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Graphics and Rendering
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* **CAD Workstations**: Professional graphics applications requiring GPU acceleration
+* **Gaming VMs**: Near-native gaming performance in virtualized environments
+* **Video Processing**: Hardware-accelerated video encoding and transcoding
+
+Scientific Computing
+^^^^^^^^^^^^^^^^^^^^^
+
+* **CUDA Applications**: Direct access to NVIDIA CUDA cores
+* **OpenCL Workloads**: Cross-platform parallel computing
+* **Simulation Software**: GPU-accelerated scientific simulations
+
+NIC Passthrough
+~~~~~~~~~~~~~~~~
+
+Network Interface Card (NIC) passthrough provides virtual machines with dedicated network hardware access, enabling high-performance networking applications.
+
+Benefits of NIC Passthrough
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Performance Advantages**
+
+* **Reduced Latency**: Elimination of virtualization network stack overhead
+* **Higher Throughput**: Direct access to full network interface bandwidth
+* **CPU Efficiency**: Reduced host CPU usage for network processing
+* **Hardware Offloading**: Access to NIC hardware acceleration features
+
+**Advanced Features**
+
+* **SR-IOV Support**: Single Root I/O Virtualization for multiple VMs
+* **DPDK Applications**: Data Plane Development Kit compatibility
+* **Network Function Virtualization**: Dedicated interfaces for virtual appliances
+* **Quality of Service**: Hardware-level traffic management
+
+
+NIC Passthrough Use Cases
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Network Appliances
+^^^^^^^^^^^^^^^^^^^
+
+* **Firewalls**: Dedicated interfaces for security appliances
+* **Load Balancers**: High-performance traffic distribution
+* **VPN Gateways**: Hardware-accelerated encryption processing
+* **Network Monitoring**: Dedicated capture interfaces for analysis tools
+
+High-Performance Applications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* **High-Frequency Trading**: Ultra-low latency network access
+* **Real-time Communications**: Dedicated bandwidth for VoIP/video systems
+* **Database Clusters**: Direct network access for distributed databases
+* **Storage Networks**: Dedicated interfaces for SAN/NAS access
+
+Development and Testing
+^^^^^^^^^^^^^^^^^^^^^^^
+
+* **Network Driver Development**: Direct hardware access for testing
+* **Protocol Testing**: Isolated network environments
+* **Performance Benchmarking**: Accurate network performance measurement
+
+**Best Practices**
+
+Hardware Planning
+~~~~~~~~~~~~~~~~~
+
+Device Allocation
+^^^^^^^^^^^^^^^^^
+
+* **Reserve Host Resources**: Ensure host system retains necessary devices
+* **IOMMU Groups**: Understand PCIe device grouping limitations
+* **Power and Cooling**: Account for additional hardware power requirements
+* **PCIe Lane Distribution**: Optimize bandwidth allocation across devices
+
+VM Resource Planning
+^^^^^^^^^^^^^^^^^^^^
+
+* **Memory Allocation**: Provide sufficient RAM for GPU/NIC operations
+* **CPU Assignment**: Allocate appropriate CPU cores for device-intensive workloads
+* **Storage Performance**: Ensure storage subsystem can support additional I/O
+
+Security Considerations
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Access Control
+^^^^^^^^^^^^^^
+
+* **Device Ownership**: Clearly define which VMs own which devices
+* **Physical Security**: Secure physical access to passthrough-capable hardware
+* **Firmware Updates**: Maintain current firmware on passthrough devices
+
+Isolation Verification
+^^^^^^^^^^^^^^^^^^^^^^
+
+* **IOMMU Validation**: Verify proper hardware isolation
+* **Cross-VM Communication**: Ensure devices cannot access other VM memory
+* **Host Protection**: Confirm host system stability with device assignments
+
+Troubleshooting
+~~~~~~~~~~~~~~~~
+
+IOMMU Problems
+^^^^^^^^^^^^^^
+
+* **IOMMU Not Enabled**: Verify BIOS/UEFI and FreeBSD configuration
+* **Grouping Issues**: Check IOMMU group assignments with ``pciconf -lv``
+* **Device Conflicts**: Ensure devices aren't bound to host drivers
+
+Device Recognition
+^^^^^^^^^^^^^^^^^^
+
+* **Driver Issues**: Install appropriate drivers in guest VM
+* **Firmware Compatibility**: Ensure device firmware supports passthrough
+* **Resource Conflicts**: Check for PCIe resource allocation problems
+
+Performance Issues
+^^^^^^^^^^^^^^^^^^
+
+* **Bandwidth Limitations**: Verify adequate PCIe lane allocation
+* **Memory Mapping**: Ensure proper IOMMU page table configuration
+* **Interrupt Handling**: Check MSI/MSI-X interrupt configuration
+
+Monitoring and Maintenance
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Device Health
+^^^^^^^^^^^^^
+
+* **Temperature Monitoring**: Track GPU/device temperatures
+* **Performance Metrics**: Monitor throughput and latency
+* **Error Logging**: Review system logs for hardware issues
+
+System Impact
+^^^^^^^^^^^^^
+
+* **Host Performance**: Monitor impact on host system resources
+* **VM Performance**: Track guest VM performance metrics
+* **Network Utilization**: Monitor bandwidth usage and efficiency
+
+
+
+.. seealso::
+   
+   **FreeBSD Documentation**
+      * `FreeBSD Virtualization with bhyve <https://docs.freebsd.org/en/books/handbook/virtualization/>`_
+   
+   **Hardware Specifications**
+      * `AMD-Vi Specification <https://www.amd.com/system/files/TechDocs/34434.pdf>`_
+
 
 Virtual Machine CLI Commands
 ----------------------------
@@ -6126,8 +7505,8 @@ Common Usage Examples
    * - ``pfctl -z``
      - Clear per-rule statistics
 
-Log Management
-~~~~~~~~~~~~~~
+Network Traffic Monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :widths: 70 30
@@ -6161,7 +7540,7 @@ MooseFS Master Server
 
    * - Command
      - Description
-   * - ``mfsmaster start``
+   * - ``mfsmaster``
      - Start MooseFS master server
    * - ``mfsmaster stop``
      - Stop MooseFS master server
@@ -6171,6 +7550,7 @@ MooseFS Master Server
      - Reload MooseFS master configuration
    * - ``mfsmaster test``
      - Test MooseFS master configuration
+  
 
 MooseFS Chunk Server
 ^^^^^^^^^^^^^^^^^^^^^
@@ -6218,31 +7598,12 @@ MooseFS Client Tools
    * - ``mfsfilepaths /path/to/file``
      - Show file chunk locations
 
-MooseFS Administration
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``lizardfs-admin info``
-     - Show cluster information
-   * - ``lizardfs-admin list-chunkservers``
-     - List all chunk servers
-   * - ``lizardfs-admin list-mounts``
-     - List all mounted clients
-   * - ``mfscli -SCS``
-     - Show chunk server status
-   * - ``mfscli -SMU``
-     - Show memory usage
 
 NFS Commands
-~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
 NFS Server Management
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :widths: 70 30
@@ -6256,21 +7617,19 @@ NFS Server Management
      - Stop NFS daemon
    * - ``service mountd start``
      - Start mount daemon
-   * - ``exportfs -a``
-     - Export all directories in /etc/exports
-   * - ``exportfs -r``
-     - Re-export all directories
-   * - ``exportfs -u /path/to/share``
-     - Unexport specific directory
-   * - ``exportfs -v``
-     - Show current exports verbosely
+   * - ``service rpcbind start``
+     - Start RPC bind daemon (required)
+   * - ``kill -HUP $(cat /var/run/mountd.pid)``
+     - Re-read /etc/exports file
    * - ``showmount -e localhost``
      - Show exports on local server
    * - ``showmount -a``
-     - Show all mount requests
+     - Show all active mounts
+   * - ``nfsstat -s``
+     - Show NFS server statistics
 
 NFS Client Management
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table::
    :widths: 70 30
@@ -6280,7 +7639,7 @@ NFS Client Management
      - Description
    * - ``mount -t nfs server:/path/to/share /mnt/nfs``
      - Mount NFS share
-   * - ``mount -t nfs -o vers=4 server:/path /mnt/nfs4``
+   * - ``mount -t nfs -o nfsv4 server:/path /mnt/nfs4``
      - Mount NFSv4 share
    * - ``umount /mnt/nfs``
      - Unmount NFS share
@@ -6288,10 +7647,9 @@ NFS Client Management
      - Show available exports on server
    * - ``nfsstat -c``
      - Show NFS client statistics
-   * - ``nfsstat -s``
-     - Show NFS server statistics
    * - ``rpcinfo -p nfs-server``
      - Show RPC services on server
+
 
 SeaweedFS Commands
 ~~~~~~~~~~~~~~~~~~~
@@ -6348,23 +7706,6 @@ SeaweedFS Client Operations
    * - ``weed s3 -filer=localhost:8888``
      - Start S3 API gateway
 
-SeaweedFS Administration
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``weed shell``
-     - Start SeaweedFS shell
-   * - ``echo "cluster.status" | weed shell``
-     - Show cluster status
-   * - ``echo "volume.list" | weed shell``
-     - List all volumes
-   * - ``echo "fs.ls /" | weed shell``
-     - List filesystem root
 
 iSCSI Commands
 ~~~~~~~~~~~~~~~
@@ -6492,216 +7833,6 @@ AWS CLI Commands
      - Delete empty bucket
    * - ``aws s3 rm s3://bucket/file.txt``
      - Delete file from S3
-
-MinIO Client (mc) Commands
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``mc alias set myminio http://localhost:9000 access_key secret_key``
-     - Add MinIO server alias
-   * - ``mc ls myminio``
-     - List buckets on MinIO server
-   * - ``mc mb myminio/mybucket``
-     - Create bucket on MinIO
-   * - ``mc cp file.txt myminio/mybucket/``
-     - Copy file to MinIO bucket
-   * - ``mc cp myminio/mybucket/file.txt .``
-     - Copy file from MinIO bucket
-   * - ``mc mirror /local/path myminio/mybucket``
-     - Mirror local directory to bucket
-   * - ``mc stat myminio/mybucket/file.txt``
-     - Show file information
-   * - ``mc rm myminio/mybucket/file.txt``
-     - Remove file from bucket
-
-S3 Server Management
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``minio server /data``
-     - Start MinIO server
-   * - ``minio server /data1 /data2 /data3 /data4``
-     - Start MinIO with multiple drives
-   * - ``mc admin info myminio``
-     - Show MinIO server info
-   * - ``mc admin heal myminio``
-     - Heal MinIO objects
-   * - ``mc admin user add myminio newuser newpassword``
-     - Add MinIO user
-   * - ``mc admin policy set myminio readwrite user=newuser``
-     - Set user policy
-
-Support Bundle Collection Instructions
----------------------------------------
-
-The support bundle tool collects system logs and diagnostic information, encrypts them, and packages them into a .7z archive for analysis by the support team.
-
-**When to Use**
-
-Run this tool when requested by support for:
-
-* Troubleshooting system issues
-* Diagnostic analysis
-* System health evaluation
-* Performance problem investigation
-
-Collection Process
-~~~~~~~~~~~~~~~~~~
-
-1. Connect to the Console
-
-Use SSH or direct console access to log in to your FreeBSD machine.
-
-.. code-block:: bash
-
-   ssh admin@your-freebsd-machine
-
-.. tip::
-   Ensure you have administrative privileges before proceeding with support bundle collection.
-
-2. Navigate to the Tool Location
-
-Change directory to where the support_bundle binary is placed:
-
-.. code-block:: bash
-
-   cd /path/to/support_bundle
-
-.. note::
-   Replace ``/path/to/support_bundle`` with the actual installation path on your system.
-
-3. Run the Support Bundle Tool
-
-Execute the tool:
-
-.. code-block:: bash
-
-   ./support_bundle
-
-When prompted, enter a password to encrypt the archive.
-
-.. important::
-   Remember this password—you will need to share it with support for archive decryption.
-
-.. warning::
-   Choose a strong password for the archive encryption. This password protects sensitive system information during transmission.
-
-4. Verify the Archive
-
-After completion, check that the archive was created:
-
-.. code-block:: bash
-
-   ls -l support_bundle.7z
-
-Expected output should show the created archive file with its size and timestamp.
-
-5. Share the Archive
-
-Send the ``support_bundle.7z`` file and the password to the support team via the provided support email for further analysis.
-
-
-Email Template
-~~~~~~~~~~~~~~~
-
-Use the following template when submitting your support bundle:
-
-**Subject Line:**
-
-.. code-block:: text
-
-   Subject: Support Bundle for Analysis
-
-**Email Body:**
-
-.. code-block:: text
-
-   Attached is the support_bundle.7z file collected from our FreeBSD system.
-   Password for the archive: [your password]
-   
-   Please let us know if you need further information.
-
-Security Considerations
-~~~~~~~~~~~~~~~~~~~~~~~
-
-**Password Protection**
-    The archive is encrypted to protect sensitive system information during transmission
-
-**Secure Transmission**
-    Only send the support bundle through official support channels
-
-**Password Sharing**
-    Share the archive password through a separate, secure communication channel when possible
-
-**Data Contents**
-    The bundle may contain sensitive system logs and configuration information
-
-
-Troubleshooting Collection Issues
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Permission Denied**
-    Ensure you have execute permissions on the support_bundle binary:
-
-    .. code-block:: bash
-
-       chmod +x support_bundle
-
-**Binary Not Found**
-    Verify the correct path to the support_bundle tool:
-
-    .. code-block:: bash
-
-       find / -name "support_bundle" -type f 2>/dev/null
-
-**Insufficient Disk Space**
-    Check available disk space before running the tool:
-
-    .. code-block:: bash
-
-       df -h
-
-    .. note::
-       The support bundle may require significant temporary disk space during collection and compression.
-
-**Collection Timeout**
-    If the collection process appears to hang:
-
-    * Wait for completion (large systems may take several minutes)
-    * Check system load with ``top`` or ``htop``
-    * Verify no other intensive processes are running
-
-Archive Information
-~~~~~~~~~~~~~~~~~~~
-
-**File Format**
-    The output file uses 7-Zip compression format (``.7z``) for optimal compression ratio
-
-**Contents**
-    The archive typically includes:
-
-    * System logs (``/var/log/*``)
-    * Configuration files (sanitized)
-    * Hardware information
-    * Network configuration
-    * Process information
-    * Performance metrics
-
-**Encryption**
-    AES-256 encryption protects the archive contents during transmission
-
-.. tip::
-   The support bundle tool automatically excludes sensitive files like private keys and passwords from the collection process.
 
 
 API Integration
