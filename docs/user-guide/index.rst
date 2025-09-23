@@ -3335,6 +3335,10 @@ Storage System Overview
    :width: 600
 
 
+.. note::
+   Click on any storage controller in the list to view additional details about the device, including hardware specifications, health status, NVMe health metrics.
+
+
 
 Network Interface Management
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -6310,9 +6314,6 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 
 
 
-
-
-
 **User Account Configuration**
 
 Cloud-Init VMs require initial user account setup:
@@ -6323,6 +6324,7 @@ Cloud-Init VMs require initial user account setup:
 
 .. figure:: _static/images/vmcreation/Image_121.png
    :width: 600
+
 
 SSH Key Authentication (Enhanced Security)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -6508,6 +6510,9 @@ The Hardware tab allows dynamic modification of VM specifications:
 .. figure:: _static/images/vmcreation/attach_pcie_device.png
    :width: 600
    :alt: Attach PCIe Device
+
+.. note::
+   When passing through NVIDIA GPUs to virtual machines running Linux-based operating systems, ensure you blacklist the nouveau driver to prevent conflicts with NVIDIA proprietary drivers.
 
 Select the PCIe devices to attach to the VM and click on the "Attach Devices" button.
 
@@ -7528,129 +7533,6 @@ Storage and File Sharing CLI Commands
 .. note::
    For comprehensive storage system administration, refer to the respective official documentation for each technology.
 
-MooseFS Commands
-~~~~~~~~~~~~~~~~~
-
-MooseFS Master Server
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``mfsmaster``
-     - Start MooseFS master server
-   * - ``mfsmaster stop``
-     - Stop MooseFS master server
-   * - ``mfsmaster restart``
-     - Restart MooseFS master server
-   * - ``mfsmaster reload``
-     - Reload MooseFS master configuration
-   * - ``mfsmaster test``
-     - Test MooseFS master configuration
-  
-
-MooseFS Chunk Server
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``mfschunkserver start``
-     - Start MooseFS chunk server
-   * - ``mfschunkserver stop``
-     - Stop MooseFS chunk server
-   * - ``mfschunkserver restart``
-     - Restart MooseFS chunk server
-   * - ``mfschunkserver reload``
-     - Reload chunk server configuration
-
-MooseFS Client Tools
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``mfsmount /mnt/mfs -H mfsmaster``
-     - Mount MooseFS filesystem
-   * - ``mfsgetgoal /path/to/file``
-     - Show file replication goal
-   * - ``mfssetgoal 3 /path/to/file``
-     - Set file replication goal to 3
-   * - ``mfsgettrashtime /path/to/file``
-     - Show file trash time
-   * - ``mfssettrashtime 86400 /path/to/file``
-     - Set trash time to 24 hours
-   * - ``mfscheckfile /path/to/file``
-     - Check file chunks
-   * - ``mfsfileinfo /path/to/file``
-     - Show detailed file information
-   * - ``mfsdirinfo /path/to/directory``
-     - Show directory information
-   * - ``mfsfilepaths /path/to/file``
-     - Show file chunk locations
-
-
-NFS Commands
-~~~~~~~~~~~~
-
-NFS Server Management
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``service nfsd start``
-     - Start NFS daemon
-   * - ``service nfsd stop``
-     - Stop NFS daemon
-   * - ``service mountd start``
-     - Start mount daemon
-   * - ``service rpcbind start``
-     - Start RPC bind daemon (required)
-   * - ``kill -HUP $(cat /var/run/mountd.pid)``
-     - Re-read /etc/exports file
-   * - ``showmount -e localhost``
-     - Show exports on local server
-   * - ``showmount -a``
-     - Show all active mounts
-   * - ``nfsstat -s``
-     - Show NFS server statistics
-
-NFS Client Management
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``mount -t nfs server:/path/to/share /mnt/nfs``
-     - Mount NFS share
-   * - ``mount -t nfs -o nfsv4 server:/path /mnt/nfs4``
-     - Mount NFSv4 share
-   * - ``umount /mnt/nfs``
-     - Unmount NFS share
-   * - ``showmount -e nfs-server``
-     - Show available exports on server
-   * - ``nfsstat -c``
-     - Show NFS client statistics
-   * - ``rpcinfo -p nfs-server``
-     - Show RPC services on server
-
-
 SeaweedFS Commands
 ~~~~~~~~~~~~~~~~~~~
 
@@ -7699,140 +7581,153 @@ SeaweedFS Client Operations
      - Upload file to SeaweedFS
    * - ``weed download -server=localhost:9333 3,01637037d6``
      - Download file by file ID
-   * - ``weed mount -filer=localhost:8888 /mnt/seaweed``
+   * - ``weed mount -dir=/mnt/seaweed -filer=localhost:8888``
      - Mount SeaweedFS as filesystem
    * - ``weed filer -master=localhost:9333``
      - Start filer server
-   * - ``weed s3 -filer=localhost:8888``
-     - Start S3 API gateway
 
 
-iSCSI Commands
-~~~~~~~~~~~~~~~
+Network File System (NFS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-iSCSI Target Management
-^^^^^^^^^^^^^^^^^^^^^^^
+   **FreeBSD NFS Documentation**
+      `FreeBSD Handbook - Network File System (NFS) <https://docs-archive.freebsd.org/doc/7.3-RELEASE/usr/share/doc/handbook/network-nfs.html>`_
+
+Server Message Block (SMB/CIFS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   **FreeBSD SMB/CIFS Resources**
+      * `SMB/CIFS on FreeBSD - Vermaden's Guide <https://vermaden.wordpress.com/2018/12/27/smb-cifs-on-freebsd/>`_
+      * `Accessing SMB Shares with Samba Client - FreeBSD Wiki <https://wiki.freebsd.org/MateuszPiotrowski/AccessingSmbSharesWithSambaClient>`_
+
+Internet Small Computer Systems Interface (iSCSI)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   **FreeBSD iSCSI Documentation**
+      `FreeBSD Handbook - iSCSI Implementation <https://docs-archive.freebsd.org/doc/10.3-RELEASE/usr/local/share/doc/freebsd/en/books/handbook/network-iscsi.html>`_
+
+MooseFS Distributed File System
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   **FreeBSD MooseFS Tutorial**
+      `MooseFS on FreeBSD - IPv6.rs Tutorial <https://ipv6.rs/tutorial/FreeBSD_Latest/MooseFS/>`_
+
+
+Karios Management Commands
+---------------------------
+
+For troubleshooting scenarios where Karios services are unresponsive, you can manually control individual services using FreeBSD's service management commands.
+
+.. warning::
+   Only perform manual service operations when services are not responding through the normal Karios interface. Always check service status before making changes.
+
+Backend APIs
+~~~~~~~~~~~~~
+
+Control the core Karios backend services:
 
 .. list-table::
-   :widths: 70 30
+   :widths: 50 50
    :header-rows: 1
 
    * - Command
      - Description
-   * - ``ctladm devlist``
-     - List iSCSI devices
-   * - ``ctladm create -b block -o file=/path/to/disk.img``
-     - Create iSCSI target from file
-   * - ``ctladm remove -b block -l 0``
-     - Remove iSCSI target
-   * - ``ctladm port -l``
-     - List iSCSI ports
-   * - ``ctladm lunlist``
-     - List LUNs
-   * - ``service ctld start``
-     - Start iSCSI target daemon
-   * - ``service ctld stop``
-     - Stop iSCSI target daemon
+   * - ``service karios_core start``
+     - Start the Karios core backend service
+   * - ``service karios_core stop``
+     - Stop the Karios core backend service
+   * - ``service karios_core restart``
+     - Restart the Karios core backend service
+   * - ``service karios_core status``
+     - Check Karios core service status
 
-iSCSI Initiator Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Release Management Service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Manage the Karios Release Management System:
 
 .. list-table::
-   :widths: 70 30
+   :widths: 50 50
    :header-rows: 1
 
    * - Command
      - Description
-   * - ``iscontrol -d -t target-name -p target-portal``
-     - Discover iSCSI targets
-   * - ``iscsictl -A -t target-name -p portal-address``
-     - Add iSCSI target
-   * - ``iscsictl -R -t target-name``
-     - Remove iSCSI target
-   * - ``iscsictl -L``
-     - List configured targets
-   * - ``camcontrol devlist``
-     - List SCSI devices (including iSCSI)
-   * - ``service iscsid start``
-     - Start iSCSI initiator daemon
+   * - ``service karios_rms start``
+     - Start the Release Management Service
+   * - ``service karios_rms stop``
+     - Stop the Release Management Service  
+   * - ``service karios_rms restart``
+     - Restart the Release Management Service
+   * - ``service karios_rms status``
+     - Check RMS service status
 
-SMB/CIFS Commands
-~~~~~~~~~~~~~~~~~
+Security Services
+~~~~~~~~~~~~~~~~~~
 
-Samba Server Management
-^^^^^^^^^^^^^^^^^^^^^^^
+Control Karios security and licensing components:
 
 .. list-table::
-   :widths: 70 30
+   :widths: 50 50
    :header-rows: 1
 
    * - Command
      - Description
-   * - ``service samba_server start``
-     - Start Samba server
-   * - ``service samba_server stop``
-     - Stop Samba server
-   * - ``testparm``
-     - Test Samba configuration
-   * - ``testparm -s``
-     - Show Samba configuration summary
-   * - ``smbclient -L //server -U username``
-     - List shares on server
-   * - ``smbpasswd -a username``
-     - Add Samba user
-   * - ``smbstatus``
-     - Show Samba server status
-   * - ``smbcontrol all reload-config``
-     - Reload Samba configuration
+   * - ``service kshield start``
+     - Start the Karios security shield service
+   * - ``service kshield stop``
+     - Stop the Karios security shield service
+   * - ``service kshield restart``
+     - Restart the Karios security shield service
+   * - ``service kshield status``
+     - Check security shield status
+   * - ``service karios_license start``
+     - Start the Karios license service
+   * - ``service karios_license stop``
+     - Stop the Karios license service
+   * - ``service karios_license restart``
+     - Restart the Karios license service
+   * - ``service karios_license status``
+     - Check license service status
 
-Samba Client Operations
-^^^^^^^^^^^^^^^^^^^^^^^
+Database and Infrastructure Services
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Manage supporting database and web services:
 
 .. list-table::
-   :widths: 70 30
+   :widths: 50 50
    :header-rows: 1
 
    * - Command
      - Description
-   * - ``mount -t cifs //server/share /mnt/smb -o username=user``
-     - Mount SMB share
-   * - ``smbclient //server/share -U username``
-     - Connect to SMB share interactively
-   * - ``smbget -R smb://server/share``
-     - Download files recursively
-   * - ``umount /mnt/smb``
-     - Unmount SMB share
-   * - ``smbcacls //server/share filename``
-     - Show ACLs for file
+   * - ``service postgresql start``
+     - Start PostgreSQL database service
+   * - ``service postgresql stop``
+     - Stop PostgreSQL database service
+   * - ``service postgresql restart``
+     - Restart PostgreSQL database service
+   * - ``service postgresql status``
+     - Check PostgreSQL service status
+   * - ``service influxdb start``
+     - Start InfluxDB time-series database
+   * - ``service influxdb stop``
+     - Stop InfluxDB time-series database
+   * - ``service influxdb restart``
+     - Restart InfluxDB time-series database
+   * - ``service influxdb status``
+     - Check InfluxDB service status
+   * - ``service nginx start``
+     - Start Nginx web server
+   * - ``service nginx stop``
+     - Stop Nginx web server
+   * - ``service nginx restart``
+     - Restart Nginx web server
+   * - ``service nginx status``
+     - Check Nginx service status
 
-S3 Commands
-~~~~~~~~~~~
 
-AWS CLI Commands
-^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 70 30
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``aws s3 ls``
-     - List S3 buckets
-   * - ``aws s3 ls s3://bucket-name``
-     - List objects in bucket
-   * - ``aws s3 cp file.txt s3://bucket/file.txt``
-     - Upload file to S3
-   * - ``aws s3 cp s3://bucket/file.txt file.txt``
-     - Download file from S3
-   * - ``aws s3 sync /local/path s3://bucket/path``
-     - Sync local directory to S3
-   * - ``aws s3 mb s3://new-bucket``
-     - Create new bucket
-   * - ``aws s3 rb s3://bucket-name``
-     - Delete empty bucket
-   * - ``aws s3 rm s3://bucket/file.txt``
-     - Delete file from S3
+.. caution::
+   Always backup your system before performing service restarts in production environments. Database service interruptions may affect running virtual machines and storage operations.
 
 
 API Integration
