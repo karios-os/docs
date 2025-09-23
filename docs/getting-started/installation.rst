@@ -389,6 +389,41 @@ The Karios installation follows a two-phase process:
 
    The FreeBSD Handbook provides detailed guidance on installation options, disk partitioning, network configuration, and system setup that forms the foundation for your Karios deployment.
 
+
+**Post-Installation Prerequisites**
+
+After completing the FreeBSD operating system installation, perform the following essential configuration steps before proceeding with Karios deployment.
+
+1. Update the FreeBSD base system to ensure you have the latest security patches and system components::
+
+       freebsd-update fetch
+       freebsd-update install
+
+2. Install the sudo package for administrative privilege management::
+
+       pkg install sudo
+
+
+3. Configure and enable the Packet Filter (PF) firewall system:
+
+        a. **Load the PF kernel module**::
+
+               kldload pf
+
+        b. **Enable PF operation**::
+
+               pfctl -e
+
+        c. **Verify PF status**::
+
+              pfctl -s info
+
+.. note::
+   These PF commands need to be executed with root privileges. The PF firewall is essential for network security and will be managed through the Karios interface after installation.
+
+.. warning::
+   Ensure you have console or physical access to the system before enabling PF, as improper firewall configuration can lock you out of remote access.
+
 **Phase 2: Karios Bootstrap**
 
 After FreeBSD installation is complete and the node is up, execute the following commands:

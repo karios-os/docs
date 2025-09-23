@@ -265,7 +265,7 @@ Cluster Installation
    :width: 600
 
 
-1.3 Manual Removal of Keycloak Jail Deployment
+Manual Removal of Keycloak Jail Deployment
 -----------------------------------------------
 
 Overview
