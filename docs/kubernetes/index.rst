@@ -40,21 +40,24 @@ OmniServer Deployment
 
 - Click **Setup Kubernetes** in the Karios UI.
 
-.. image:: _static/images/omni/om-1.png
+.. figure:: _static/images/omni/om-1.png
    :alt: Setup Kubernetes Button
+   :width: 600
 
 **Step 1.1.2: Setup Keycloak**
 
 - Click **Keycloak** in the UI.
 
-.. image:: _static/images/omni/om-2.png
+.. figure:: _static/images/omni/om-2.png
    :alt: Setup Keycloak Button
+   :width: 600
 
 - This creates a **Keycloak instance** in a FreeBSD jail.  
 - Wait for the Keycloak jail to finish creation.
 
-.. image:: _static/images/omni/om-3.png
+.. figure:: _static/images/omni/om-3.png
    :alt: Keycloak Setup Complete
+   :width: 600
 
 .. note::
    Keycloak is an open-source identity and access management solution.  
@@ -70,13 +73,15 @@ OmniServer Deployment
 
 - Click **Upload Certificates** in the UI.
 
-.. image:: _static/images/omni/om-4.png
+.. figure:: _static/images/omni/om-4.png
    :alt: Upload Certificates Button
+   :width: 600
 
 - Upload the **wildcard TLS certificate and key** for your domain.
 
-.. image:: _static/images/omni/om-5.png
+.. figure:: _static/images/omni/om-5.png
    :alt: TLS Certificate Upload
+   :width: 600
 
 .. note::
    TLS secures communication between Sidero components and Kubernetes clusters.  
@@ -89,8 +94,9 @@ OmniServer Deployment
 - Enter OmniServer VM details (username and password).  
 - Attach an **Ubuntu cloud image (.img)**.  
 
-.. image:: _static/images/omni/om-6.png
+.. figure:: _static/images/omni/om-6.png
    :alt: Setup Omni Server Button
+   :width: 600
 
 .. note::
    The Ubuntu image must already be uploaded to the **Control Center** in the Karios UI.
@@ -98,8 +104,9 @@ OmniServer Deployment
 - Select **Server**, **Storage**, and **Network switch**.  
 - Enter VM specs **CPU's, Memory(GB), Disk Size(GB)** and click **Save**.
 
-.. image:: _static/images/omni/om-7.png
+.. figure:: _static/images/omni/om-7.png
    :alt: OmniServer VM Config
+   :width: 600
 
 **Step 1.1.5: Access the OmniServer Dashboard**
 
@@ -109,10 +116,13 @@ OmniServer Deployment
 
 - You will be redirected to the Keycloak login page for the **omni realm**.
 
-.. image:: _static/images/omni/om-9.png
+.. figure:: _static/images/omni/om-9.png
    :alt: Omni Dashboard
-.. image:: _static/images/omni/om-10.png
+   :width: 600
+
+.. figure:: _static/images/omni/om-10.png
    :alt: Keycloak Login
+   :width: 600
 
 - After login, you will be redirected to the **OmniServer Dashboard**.
 
@@ -126,13 +136,15 @@ Cluster Installation
 
 - In OmniServer dashboard, click **Download ISO**.  
 
-.. image:: _static/images/omni/omd-1.png
+.. figure:: _static/images/omni/omd-1.png
    :alt: Generate ISO
+   :width: 600
 
 - Select ISO type, Talos version, and click **Generate ISO**.
 
-.. image:: _static/images/omni/omd-2.png
+.. figure:: _static/images/omni/omd-2.png
    :alt: Generate ISO
+   :width: 600
 
 .. note::
    For demos, use ISO type: ``amd64-iso``.  
@@ -154,13 +166,15 @@ Cluster Installation
 - Click **Setup Kubernetes**. 
 - Click on **OmniServer** 
 
-.. image:: _static/images/omni/om-1.png
+.. figure:: _static/images/omni/om-1.png
    :alt: Cluster Deta
+   :width: 600
 
 - Enter cluster details and select the uploaded ISO.
 
-.. image:: _static/images/omni/om-12.png
+.. figure:: _static/images/omni/om-12.png
    :alt: Cluster Details
+   :width: 600
 
 .. note::
    Use the prefix ``om`` in the cluster name to identify Omni clusters.
@@ -168,46 +182,51 @@ Cluster Installation
 - Select **Server**, **Storage Pool**, and **Network Switch**.  
 - Enter VM specs **CPU's, Memory(GB), Disk Size(GB)** and click **Update**.
 
-.. image:: _static/images/omni/om-13.png
-   :alt: Add VM Config 
+.. figure:: _static/images/omni/om-13.png
+   :alt: Add VM Config
+   :width: 600
 
 - Use the "+" button to add multiple VMs.  
 - Click **Omni VMs** to create the machines.  
 
-.. image:: _static/images/omni/om-14.png
+.. figure:: _static/images/omni/om-14.png
    :alt: Omni VM Creation
+   :width: 600
 
 - Start all VMs from the Karios UI.
 
-
-
-.. image:: _static/images/omni/omd-3.png
+.. figure:: _static/images/omni/omd-3.png
    :alt: Omni VM Creation
+   :width: 600
 
 **Step 1.2.4: VM Discovery in OmniServer Dashboard**
 
 - Power on the VMs.  
 - They will appear under the **Machines** tab.
 
-.. image:: _static/images/omni/om-15.png
+.. figure:: _static/images/omni/om-15.png
    :alt: Machines Tab
+   :width: 600
 
 **Step 1.2.5: Create the Cluster in OmniServer Dashboard**
 
 - Click on the **Clusters** tab.
 
-.. image:: _static/images/omni/om-16.png
-   :alt: Create Cluster Button 
+.. figure:: _static/images/omni/om-16.png
+   :alt: Create Cluster Button
+   :width: 600
 
 - Click on **Create Cluster**.
 
-.. image:: _static/images/omni/om-17.png
+.. figure:: _static/images/omni/om-17.png
    :alt: Cluster Role Assignment
+   :width: 600
 
 - Enter **cluster name**, **select Talos version**, and **machine set configuration**. 
 
-.. image:: _static/images/omni/omd-4.png
+.. figure:: _static/images/omni/omd-4.png
    :alt: Cluster Details
+   :width: 600
 
 ..note::
   Select the same Talos version used to generate the ISO.
@@ -215,8 +234,9 @@ Cluster Installation
 
 - Assign roles: **CP0 (control plane)**, **W0 (worker)**.
 
-.. image:: _static/images/omni/om-18.png
+.. figure:: _static/images/omni/om-18.png
    :alt: Cluster Role Assignment
+   :width: 600
 
 .. note::
    Minimum requirements:  
@@ -229,8 +249,9 @@ Cluster Installation
 - In **Clusters**, click the cluster name.  
 - Monitor installation progress.
 
-.. image:: _static/images/omni/om-19.png
+.. figure:: _static/images/omni/om-19.png
    :alt: Cluster Installation Progress
+   :width: 600
 
 - When complete, the cluster status changes to **Ready** and nodes show **Running**.
 
@@ -239,8 +260,9 @@ Cluster Installation
    If VMs are stuck in provisioning, reboot them from the Karios UI.  
    Download the ``kubeconfig`` file from OmniServer dashboard to access the cluster.
 
-.. image:: _static/images/omni/om-20.png
+.. figure:: _static/images/omni/om-20.png
    :alt: Cluster Ready
+   :width: 600
 
 
 1.3 Manual Removal of Keycloak Jail Deployment
@@ -266,8 +288,9 @@ To manually remove the Keycloak jail, follow these steps:
 
 Step 1.3.1 Click on the **Control Center** in the Karios UI. under the **Devices** section,  you can find the **Device IP** of the node. 
 
-.. image:: _static/images/omni/keycloak.png
+.. figure:: _static/images/omni/keycloak.png
    :alt: Device IP
+   :width: 600
 
 Step 1.3.2 Using the Terminal, SSH into the node using the Device IP.
 
@@ -301,7 +324,7 @@ Command Explanation
   Forcefully unmounts the ZFS dataset associated with the jail.
 
 - ``zfs destroy -r zroot/jails/karios-keycloak``  
-  Recursively destroys the dataset and all of its child datasets, permanently removing the jail’s data.
+  Recursively destroys the dataset and all of its child datasets, permanently removing the jail's data.
 
 Post-Removal Notes
 ------------------
@@ -327,13 +350,15 @@ Creating the OpenShift Cluster
 
 - Click **Setup Kubernetes** in the Karios UI.
 
-.. image:: _static/images/openshift/op-1.png
+.. figure:: _static/images/openshift/op-1.png
    :alt: Setup Kubernetes Button
+   :width: 600
 
 - Select **OpenShift**.
 
-.. image:: _static/images/openshift/op-2.png
+.. figure:: _static/images/openshift/op-2.png
    :alt: Setup Kubernetes Button
+   :width: 600
 
 **Step 2.1.2: Enter the Cluster Details**
 
@@ -342,8 +367,9 @@ Creating the OpenShift Cluster
 .. note::
    The ``op`` prefix is recommended to uniquely identify OpenShift clusters.  
 
-.. image:: _static/images/openshift/op-3.png
+.. figure:: _static/images/openshift/op-3.png
    :alt: Cluster Details
+   :width: 600
 
 **Step 2.1.3: Add Control Plane Nodes**
 
@@ -353,8 +379,9 @@ Creating the OpenShift Cluster
 
 - Click **Save** to confirm configuration. 
 
-.. image:: _static/images/openshift/op-4.png
+.. figure:: _static/images/openshift/op-4.png
    :alt: Control Plane Config
+   :width: 600
 
 .. note::
    Minimum requirements:  
@@ -367,25 +394,26 @@ Creating the OpenShift Cluster
 
 - Use the "+" button to add more control plane nodes. 
 
-.. image:: _static/images/openshift/op-5.png
+.. figure:: _static/images/openshift/op-5.png
    :alt: Control Plane Config
+   :width: 600
  
 
 **Step 2.1.4: Add Worker Nodes**
 
 - Click **Add Worker Node**.  
 
-.. image:: _static/images/openshift/op-6.png
+.. figure:: _static/images/openshift/op-6.png
    :alt: Control Plane Config
+   :width: 600
 
 _ Select the **Server** , **Storage Pool** , and **Network Switch**._
 
 - Select the server and configure VM specs **CPU's**, **Memory(GB)** , **Disk Size(GB)**.
 
-.. image:: _static/images/openshift/op-7.png
+.. figure:: _static/images/openshift/op-7.png
    :alt: Worker Node Config
-
-
+   :width: 600
 
 .. note::
    Minimum requirements:  
@@ -399,8 +427,9 @@ _ Select the **Server** , **Storage Pool** , and **Network Switch**._
 - Click **Save**.  
 - Use the "+" button to add additional worker nodes.  
 
-.. image:: _static/images/openshift/op-8.png
+.. figure:: _static/images/openshift/op-8.png
    :alt: Worker Node Config
+   :width: 600
 
 **Step 2.1.5: Configure HAProxy**
 
@@ -409,8 +438,9 @@ During cluster configuration, you will see the **HAProxy Setup** option.
 - **Setup HAProxy (checkbox)**:  
   Selecting this enables HAProxy for your cluster. 
 
-.. image:: _static/images/openshift/op-9.png
+.. figure:: _static/images/openshift/op-9.png
    :alt: HAProxy Setup
+   :width: 600
 
 .. note::
    Enabling HAProxy creates **two HAProxy instances** in FreeBSD jails.  
@@ -454,15 +484,17 @@ Installation Steps
 
 - Select **"Platform agnostic (x86_64)"**.  
 
-.. image:: _static/images/openshift/Redhat-4.png
+.. figure:: _static/images/openshift/Redhat-4.png
    :alt: Platform Agnostic Selection
+   :width: 600
 
 **Step 2.2.4: Installation Method**
 
 - Select **"Interactive"** (guided setup).  
 
-.. image:: _static/images/openshift/Redhat-5.png
+.. figure:: _static/images/openshift/Redhat-5.png
    :alt: Interactive Installation Selection
+   :width: 600
 
 **Step 2.2.5: Configure Cluster Details**
 
@@ -473,8 +505,9 @@ Installation Steps
   * OpenShift version: e.g., 4.19.6  
   * CPU architecture: ``x86_64``  
 
-.. image:: _static/images/openshift/Redhat-6.png
+.. figure:: _static/images/openshift/Redhat-6.png
    :alt: Cluster Details
+   :width: 600
 
 .. important::
    The cluster name must follow DNS requirements. See:  
@@ -486,8 +519,9 @@ Installation Steps
 - Control Plane: **3 nodes (HA)**  
 - Networking: **Static IP, bridges, and bonds**  
 
-.. image:: _static/images/openshift/Redhat-7.png
+.. figure:: _static/images/openshift/Redhat-7.png
    :alt: Additional Settings
+   :width: 600
 
 **Step 2.2.7: Configure Static Networking**
 
@@ -497,8 +531,9 @@ Installation Steps
   * Gateway: ``192.168.116.253``  
   * DNS: ``192.168.116.240``  
 
-.. image:: _static/images/openshift/Redhat-8.png
+.. figure:: _static/images/openshift/Redhat-8.png
    :alt: Static Network Configuration
+   :width: 600
 
 **Step 2.2.8: Map Hosts (MAC to IP)**
 
@@ -508,8 +543,9 @@ Installation Steps
 - Host 4 → 58:9c:fc:08:2e:26 → 192.168.116.36
 - Host 5 → 58:9c:fc:0e:00:09 → 192.168.116.39  
 
-.. image:: _static/images/openshift/op-10.png
+.. figure:: _static/images/openshift/op-10.png
    :alt: Host-Specific Config
+   :width: 600
 
 .. important::
    After modifying network settings, regenerate the Discovery ISO.  
@@ -520,15 +556,17 @@ Installation Steps
 - Paste SSH public key.  
 - Click **Generate Discovery ISO**.  
 
-.. image:: _static/images/openshift/op-12.png
+.. figure:: _static/images/openshift/op-12.png
    :alt: Generate Discovery ISO
+   :width: 600
 
 **Step 2.2.10: Download ISO in Karios UI**
 
 - Copy wget link from Red Hat console. 
 
-.. image:: _static/images/openshift/op-13.png
+.. figure:: _static/images/openshift/op-13.png
    :alt: Download Discovery ISO
+   :width: 600
 
 - In **Karios → Control Center → ISO tab**, paste link.  
 - Click **Download**.  
@@ -539,22 +577,26 @@ Installation Steps
 
 - Click on the Vm. 
 
-.. image:: _static/images/openshift/op-14.png
+.. figure:: _static/images/openshift/op-14.png
    :alt: Download Discovery ISO
+   :width: 600
 
 - Attach ISO to nodes. 
 
-.. image:: _static/images/openshift/op-15.png
+.. figure:: _static/images/openshift/op-15.png
    :alt: Download Discovery ISO
+   :width: 600
 
-.. image:: _static/images/openshift/Redhat-12.png
+.. figure:: _static/images/openshift/Redhat-12.png
    :alt: Download Discovery ISO
+   :width: 600
 
 - Ensure ISO is primary boot device.  
 - Power on nodes.  
 
-.. image:: _static/images/openshift/op-14.png
+.. figure:: _static/images/openshift/op-14.png
    :alt: Attach ISO to Nodes
+   :width: 600
 
 **Step 2.2.12: Node Discovery**
 
@@ -563,8 +605,9 @@ Installation Steps
 - Static IPs are applied.  
 - Nodes appear in OpenShift console.  
 
-.. image:: _static/images/openshift/Redhat-10.png
+.. figure:: _static/images/openshift/Redhat-10.png
    :alt: Node Discovery
+   :width: 600
 
 .. note::
    It might take few minutes for the nodes to appear.
@@ -573,31 +616,35 @@ Installation Steps
 
 - Assign persistent volumes.  
 
-.. image:: _static/images/openshift/Redhat-11.png
+.. figure:: _static/images/openshift/Redhat-11.png
    :alt: Storage Configuration
+   :width: 600
 
 **Step 2.2.14: Networking**
 
 - Select **User-Managed Networking** (required).  
 
-.. image:: _static/images/openshift/Redhat-13a.png
+.. figure:: _static/images/openshift/Redhat-13a.png
    :alt: Networking Settings
+   :width: 600
 
 **Step 2.2.15: Review and Create**
 
 - Review all configurations.  
 - Click **Install cluster**.
 
-.. image:: _static/images/openshift/Redhat-14.png
+.. figure:: _static/images/openshift/Redhat-14.png
    :alt: Installation Complete
+   :width: 600
 
 **Step 2.2.16: Monitor Installation**
 
 - Track progress in OpenShift console.  
 - Configure external load balancers after completion.  
 
-.. image:: _static/images/openshift/Redhat-17.png
+.. figure:: _static/images/openshift/Redhat-17.png
    :alt: Post Installation
+   :width: 600
 
 Configuration Summary
 -------------------------
@@ -624,7 +671,7 @@ Open Source Kubernetes Overview
 -------------------------------
 
 
-Open source Kubernetes provides the foundational container orchestration platform without vendor-specific additions. Running Kubernetes on **Ubuntu** through Karios gives you complete control over your cluster configuration while benefiting from Ubuntu’s extensive package ecosystem and long-term support options.
+Open source Kubernetes provides the foundational container orchestration platform without vendor-specific additions. Running Kubernetes on **Ubuntu** through Karios gives you complete control over your cluster configuration while benefiting from Ubuntu's extensive package ecosystem and long-term support options.
 
 **Key Features:**
 
@@ -649,6 +696,7 @@ Create the Ubuntu Kubernetes Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-1.png
    :alt: Setup Kubernetes Button
+   :width: 600
 
 **Step 3.1.2: Enter Cluster Details**
 
@@ -669,6 +717,7 @@ Create the Ubuntu Kubernetes Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Attach Ubuntu Image
+   :width: 600
 
 **Step 3.1.3: Add a Bootstrap Node**
 
@@ -676,6 +725,7 @@ Create the Ubuntu Kubernetes Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-3.png
    :alt: Bootstrap Node Config
+   :width: 600
 
 .. note::
    In many setups, the bootstrap node is also the master node. This means it not only helps other nodes join the cluster but also takes on the responsibility of controlling and managing cluster operations like scheduling, orchestration, and resource allocation.
@@ -693,15 +743,17 @@ Create the Ubuntu Kubernetes Cluster
    - **Prometheus & Grafana** (monitoring)  
    - **ArgoCD** (GitOps workflows)  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu3a.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu3a.png
    :alt: Bootstrap Node Config
+   :width: 600
 
 **Step 3.1.4: Add Control Plane Nodes**
 
 - Click **Add Control Plane**.  
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-4.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-4.png
    :alt: Control Plane Config
+   :width: 600
 
 .. note::
    Control plane nodes manage the Kubernetes cluster state and handle API requests.  
@@ -720,11 +772,13 @@ Create the Ubuntu Kubernetes Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-5.png
    :alt: Control Plane Config
+   :width: 600
 
 - Save the configuration and add more nodes as required.  
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-6.png
    :alt: Control Plane Config
+   :width: 600
 
 **Step 3.1.5: Add Worker Nodes**
 
@@ -732,6 +786,7 @@ Create the Ubuntu Kubernetes Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-7.png
    :alt: Worker Node Config
+   :width: 600
 
 .. note::
    Worker nodes run the applications and workloads in the cluster.
@@ -748,8 +803,23 @@ Create the Ubuntu Kubernetes Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-8.png
    :alt: Worker Node Config
+   :width: 600
 
 - Save and add more workers as needed.  
+
+**Step 3.1.6: Start all VMs**
+
+- After creating all the VMs for your cluster, you need to start them.
+- In the left sidebar under **CONTROL CENTER**, select your cluster (e.g., ``ub-joec2``).
+- Click the **Start** button to power on all VMs simultaneously.
+
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-start-vms.png
+   :alt: Start All VMs
+   :width: 600
+
+.. note::
+   All VMs in the cluster must be running before proceeding with the cluster join process.
+   The VMs will boot using the Ubuntu cloud image specified during configuration.
 
 SSH and Join VMs to the Cluster
 -----------------------------------
@@ -774,8 +844,9 @@ SSH and Join VMs to the Cluster
 
    sudo k8s status
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-9.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-9.png
    :alt: Kubernetes Status
+   :width: 600
 
 **Step 3.2.3: Get Join Token for Control Nodes**
 
@@ -814,6 +885,7 @@ SSH and Join VMs to the Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-10.png
    :alt: Control Plane Join
+   :width: 600
 
 **Step 3.2.5: Get Join Token for Worker Nodes**
 
@@ -825,6 +897,7 @@ SSH and Join VMs to the Cluster
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-11.png
    :alt: Worker Join Token
+   :width: 600
 
 **Step 3.2.6: Join Worker Nodes**
 
@@ -853,6 +926,7 @@ SSH and Join VMs to the Cluster
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-13.png
    :target: _static/images/UbuntuKubernetes/ubuntu-13.png
    :alt: HA Cluster Status
+   :width: 600
 
 Accessing the Tech Stack
 ----------------------------
@@ -869,6 +943,7 @@ Accessing the Tech Stack
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-14.png
    :alt: Observability Namespace
+   :width: 600
 
 .. note::
    - Namespace: ``observability``  
@@ -905,8 +980,9 @@ Accessing the Tech Stack
    sudo k8s kubectl get pods -n argocd
    sudo k8s kubectl get svc -n argocd
 
-.. image:: _static/images/UbuntuKubernetes/ubuntu-15.png
+.. figure:: _static/images/UbuntuKubernetes/ubuntu-15.png
    :alt: ArgoCD Namespace
+   :width: 600
 
 .. note::
    - Namespace: ``argocd``  
@@ -940,4 +1016,4 @@ For additional support and advanced configuration options, refer to the respecti
 - **Ubuntu Kubernetes documentation**: https://documentation.ubuntu.com/canonical-kubernetes/latest/about/  
 - **ArgoCD documentation**: https://argo-cd.readthedocs.io/en/stable/  
 - **Prometheus documentation**: https://prometheus.io/docs/introduction/overview/  
-- **Grafana documentation**: https://grafana.com/docs/grafana/latest/ 
+- **Grafana documentation**: https://grafana.com/docs/grafana/latest/
