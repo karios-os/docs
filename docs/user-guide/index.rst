@@ -6110,6 +6110,13 @@ The "Setup VM" button provides access to virtual machine creation with two disti
 .. figure:: _static/images/vmcreation/vmsetup.png
    :width: 600
 
+
+.. note::
+
+   Please setup the technitium DHCP and DNS server before proceeding with the vm installation.
+   Refer to `Technitium DHCP and DNS Setup <https://docs.karios.ai/technitium/index.html>`_ documentation for detailed instructions.
+
+
 Standard VM Setup
 ~~~~~~~~~~~~~~~~~
 
