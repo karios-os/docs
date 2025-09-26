@@ -16,6 +16,11 @@ One of the most compelling advantages is Karios' ability to easily deploy single
 
 Whether you're deploying enterprise-scale multi-node clusters or lightweight edge installations, Karios eliminates the traditional pain points of Kubernetes infrastructure management, making virtualized infrastructure a stackable, manageable experience.
 
+.. note::
+
+   Please setup the technitium DHCP and DNS server before proceeding with the Kubernetes installation.
+   Refer to `Technitium DHCP and DNS Setup <https://docs.karios.ai/technitium/index.html>`_ documentation for detailed instructions.
+
 Sidero Kubernetes Overview
 --------------------------
 
@@ -127,7 +132,7 @@ OmniServer Deployment
 - After login, you will be redirected to the **OmniServer Dashboard**.
 
 .. note::
-   Use credentials: ``user@karios.ai / Omni12345``
+   Use credentials: ``user@<basedomain> / Omni12345``
 
 Cluster Installation
 --------------------------
