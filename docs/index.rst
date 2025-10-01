@@ -49,6 +49,12 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Getting Support
+
+   support/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: System Updates and Releases
 
    administration/index
