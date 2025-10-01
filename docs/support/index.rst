@@ -89,7 +89,7 @@ After submitting your registration:
    Figure 4: Karios Discourse Activation Link
 
 .. tip::
-   The activation email is sent from ``notifications@discourse.karios.ai``. You may want to add this to your contacts to ensure delivery.
+   The activation email is sent from ``notifications@karios.discoursemail.com``. You may want to add this to your contacts to ensure delivery.
 
 .. important::
    You must activate your account via email before you can create support tickets or participate in discussions.
