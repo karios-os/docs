@@ -30,37 +30,40 @@ Open your web browser and navigate to:
 
    https://discourse.karios.ai
 
-You will see the Karios Discourse welcome page.
 
 Step 2: Begin Registration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Click the **Sign Up** button on the welcome page
 2. You will be presented with a registration form
-
-Step 3: Complete Registration Form
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Fill in the required information:
+3. Fill in the required information:
 
 * **Email**: Enter your email address (this will not be shown publicly)
 * **Username**: Choose a unique username for the forum
 * **Password**: Create a secure password for your account
 
-.. note::
-   Your email address is never shown to the public and will only be used for account verification and important notifications.
-
-Step 4: Accept Terms
-^^^^^^^^^^^^^^^^^^^^^
-
 Review and accept the privacy policy and terms of service by checking the agreement box.
 
-Step 5: Submit Registration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/images/discourse_registration_filled.png
+   :alt: Filled Karios Discourse Registration Form
+   :align: center
+
+   Figure 1: Filled Karios Discourse Registration Form
+
 
 Click the **Sign Up** button to submit your registration.
 
-Step 6: Email Verification
+4. You will be prompted to Go to your email to complete the registration process.
+
+.. figure:: _static/images/discourse_registration_submit.png
+   :alt: Karios Discourse Registration Submitted
+   :align: center
+
+   Figure 2: Karios Discourse Registration Submitted
+
+
+Step 3: Email Verification
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After submitting your registration:
@@ -69,16 +72,24 @@ After submitting your registration:
 2. The email will be sent to the address you provided during registration
 3. If you don't see the email within a few minutes, check your spam folder
 
-.. tip::
-   The activation email is sent from ``notifications@discourse.karios.ai``. You may want to add this to your contacts to ensure delivery.
+.. figure:: _static/images/discourse_email.png
+   :alt: Karios Discourse Activation Email
+   :align: center
 
-Step 7: Activate Your Account
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Figure 3: Karios Discourse Activation Email
 
-1. Open the activation email
 2. Click the activation link provided in the email
 3. You will be redirected to the Discourse forum
-4. Your account is now activated and ready to use
+
+
+.. figure:: _static/images/activated_discource_page.png
+   :alt: Karios Discourse Activation Link
+   :align: center
+
+   Figure 4: Karios Discourse Activation Link
+
+.. tip::
+   The activation email is sent from ``notifications@discourse.karios.ai``. You may want to add this to your contacts to ensure delivery.
 
 .. important::
    You must activate your account via email before you can create support tickets or participate in discussions.
@@ -98,6 +109,13 @@ Create New Topic
 ^^^^^^^^^^^^^^^^^^
 
 1. Click the **New Topic** button (usually located in the upper right corner)
+
+.. figure:: _static/images/discourse_new_topic.png
+   :alt: Karios Discourse New Topic Button
+   :align: center
+
+   Figure 5: Karios Discourse New Topic Button
+
 2. Select the appropriate category for your issue:
    
    * **Support** - For technical support requests
@@ -105,47 +123,12 @@ Create New Topic
    * **Feature Requests** - For suggesting new features
    * **General** - For general questions and discussions
 
-Compose Your Ticket
-^^^^^^^^^^^^^^^^^^^^
+.. figure:: _static/images/discourse_category.png
+   :alt: Karios Discourse Category Selection
+   :align: center
 
-Provide detailed information to help the support team assist you:
+   Figure 6: Karios Discourse Category Selection
 
-**Title**
-
-Create a clear, descriptive title that summarizes your issue.
-
-Good example: ``AMT provisioning fails with UnexpectedParseError on FreeBSD``
-
-Avoid: ``Help!`` or ``Problem with system``
-
-**Description**
-
-Include the following information:
-
-* Detailed description of the issue
-* Steps to reproduce the problem
-* Expected behavior vs. actual behavior
-* Your environment details:
-  
-  * Karios version
-  * Operating system (FreeBSD, Linux distribution, etc.)
-  * Hardware specifications (if relevant)
-  * Network configuration (if relevant)
-
-* Error messages or logs (use code blocks for formatting)
-* Screenshots or recordings (if applicable)
-
-**Using Code Blocks**
-
-Format logs, configuration files, and error messages using code blocks:
-
-.. code-block:: text
-
-   ```
-   Your log content here
-   ```
-
-Or for inline code, use single backticks: ``inline code``
 
 Submit Your Ticket
 ^^^^^^^^^^^^^^^^^^^^^
@@ -153,6 +136,15 @@ Submit Your Ticket
 1. Review your post for clarity and completeness
 2. Add relevant tags if available
 3. Click **Create Topic** to submit your support ticket
+
+.. tip::
+   If the category does not match your request, choose "**General Issues**"
+
+.. figure:: _static/images/discourse_submit_topic.png
+   :alt: Karios Discourse Submit Topic Button
+   :align: center
+
+   Figure 7: Karios Discourse Submit Topic Button
 
 What Happens Next
 ~~~~~~~~~~~~~~~~~~
