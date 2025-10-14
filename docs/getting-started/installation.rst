@@ -914,9 +914,14 @@ If you don't have your bootstrap download link:
 
 The bootstrap script download location and preparation steps vary depending on your chosen execution method. Follow the appropriate section below based on your security requirements.
 
+**Bootstrap Download and Common Preparation**
+
+.. note::
+   **Bootstrap Download Link**: Contact your Karios sales representative or support team to obtain the official bootstrap download URL. Each customer receives a unique, secure download link for their specific deployment.
+
 **Execution Method Selection**
 
-Choose one of the following three methods based on your security requirements and system configuration:
+Choose one of the following methods based on your security requirements and system configuration:
 
 Method 1: Using sudo (Recommended - Highest Security)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -928,106 +933,30 @@ Method 1: Using sudo (Recommended - Highest Security)
 - Non-root user account must exist
 - User must have sudo privileges configured
 
-
-.. note::
-   **Bootstrap Download Link**: Contact your Karios sales representative or support team to obtain the official bootstrap download URL. Each customer receives a unique, secure download link for their specific deployment.
-
-**Step 1: Download and Prepare Bootstrap Script**
+**Steps:**
 
 .. code-block:: bash
 
-   # Ensure you have sudo installed
+   # Install sudo if not present
    pkg install sudo
 
-   # Download bootstrap script to user directory (replace URL with your provided link)
+   # Download bootstrap script to user directory
    fetch --no-verify-peer --no-verify-hostname "YOUR_PROVIDED_BOOTSTRAP_URL" -o bootstrap.sh
-   
-   # Set executable permissions
-   chmod o+x bootstrap.sh
+   chmod +x bootstrap.sh
 
-
-**Step 2: Security Verification**
-
-.. code-block:: bash
-
-   # Verify sudo access
+   # Verify sudo access and review script
    sudo whoami  # Should return "root"
-   
-   # Review script contents before execution
    less bootstrap.sh
-   # or
-   cat bootstrap.sh
 
-**Step 3: Execute Bootstrap Script**
-
-.. code-block:: bash
-
-   # Execute bootstrap with sudo from user directory
+   # Execute bootstrap with sudo
    sudo ./bootstrap.sh
-   
 
 **sudo Security Benefits:**
 - Time-limited privilege escalation (default 5-minute timeout)
-- User accountability and traceability
+- User accountability and traceability  
 - Granular permission control
 - Script executed from user directory, not root filesystem
 
-Method 2: Direct Root Execution (Use Only When Necessary)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. warning::
-   **Security Warning**: This method should only be used when no other users are available or when explicitly required. It provides the least security and audit capability.
-
-**When to Use Direct Root Execution:**
-- Single-user systems during initial setup
-- Emergency situations where sudo/doas are unavailable
-- Automated deployment scripts (with proper safeguards)
-
-**Step 1: Download and Prepare Bootstrap Script**
-
-.. code-block:: bash
-
-   # Ensure you are logged in as root
-   whoami  # Should return "root"
-   
-   # Navigate to root directory
-   cd /root/
-   
-   # Download bootstrap script from official source (replace URL with your provided link)
-   fetch --no-verify-peer --no-verify-hostname "YOUR_PROVIDED_BOOTSTRAP_URL" -o bootstrap.sh
-
-   # Set executable permissions
-   chmod o+x bootstrap.sh
-
-**Step 2: Final Security Verification**
-
-.. code-block:: bash
-
-   # Review script contents one more time
-   less bootstrap.sh
-   # or
-   cat bootstrap.sh
-   
-   # Verify file integrity
-   ls -la bootstrap.sh
-
-**Step 3: Execute Bootstrap Script**
-
-.. code-block:: bash
-
-   # Execute bootstrap script directly
-   ./bootstrap.sh
-   
-   # Monitor system logs during execution
-   # Open another terminal and monitor:
-   tail -f /var/log/messages
-
-**Additional Security Measures for Root Execution:**
-- Enable detailed logging before execution
-- Document the execution for audit purposes
-- Restrict root access after installation completion
-- Implement additional monitoring during execution
-- Script executed from root directory (/root/)
 
 **Installation Security Checklist**
 
