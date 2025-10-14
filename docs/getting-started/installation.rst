@@ -372,26 +372,215 @@ Creating a Bootable USB Drive
 Installation Process
 --------------------
 
+.. _filesystem-requirements:
+
+Critical Filesystem Requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. danger::
+   **MANDATORY REQUIREMENT: ZFS Filesystem Only**
+   
+   Karios **requires** ZFS as the root filesystem and will not function with UFS or any other filesystem. Installing with UFS will result in a completely broken system that cannot be recovered without reinstallation.
+
+**Why ZFS is Required:**
+
+- **Storage Management**: Karios storage pools depend on ZFS features
+- **Snapshot Technology**: VM snapshots require ZFS snapshot capabilities  
+- **Data Integrity**: ZFS checksumming is essential for data protection
+- **Performance**: ZFS caching and compression optimize VM performance
+- **Replication**: Backup and replication features require ZFS send/receive
+
+.. warning::
+   **Installation Failure Modes**
+   
+   Installing Karios on UFS will cause:
+   - Storage pool creation failures
+   - VM creation and management failures  
+   - Backup and snapshot system failures
+   - Complete system unusability requiring full reinstallation
+
+FreeBSD Installation with ZFS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Step-by-Step ZFS Installation Process**
+
+Follow these specific steps during the FreeBSD installation phase to ensure ZFS is properly configured:
+
+**Phase 1: FreeBSD Base Installation with ZFS**
+
+1. **Boot from USB Drive**
+   - Insert the USB drive and boot from it
+   - Select "Install" from the FreeBSD installer menu
+
+2. **Installer Welcome Screen**
+   - Press Enter to continue with installation
+
+3. **Keymap Selection**
+   - Select appropriate keymap for your region
+   - Press Enter to continue
+
+4. **Hostname Configuration**
+   - Enter your desired hostname (e.g., "karios-node01")
+   - Press Enter to continue
+
+5. **Distribution Selection**
+   - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", and "ports" are selected
+   - Use spacebar to select/deselect components
+   - Press Enter to continue
+
+6. **MANDATORY: Partitioning and ZFS Setup**
+
+.. danger::
+   **STOP: Critical Filesystem Selection**
+   
+   This is the most critical step. Selecting the wrong option will brick your Karios installation.
+
+**Partitioning Menu Options:**
+
+.. code-block:: text
+
+   Partitioning
+   
+   How would you like to partition your disk?
+   
+   [ ] Auto (UFS)         ← DO NOT SELECT THIS
+   [X] Auto (ZFS)         ← SELECT THIS OPTION
+   [ ] Manual
+   [ ] Shell
+
+**ZFS Configuration Steps:**
+
+a. **Select "Auto (ZFS)"** - This is mandatory for Karios
+
+b. **ZFS Configuration Menu:**
+
+   .. code-block:: text
+   
+      ZFS Configuration
+      
+      T Pool Type/Disks:    stripe: 1 disk
+      - Rescan Devices
+      - Disk Info  
+      - Pool Name          zroot
+      - Force 4K Sectors?  YES
+      - Encrypt Disks?     NO (recommended for first installation)
+      - Partition Scheme   GPT (UEFI)
+      - Swap Size          4g (adjust based on RAM)
+      - Mirror Swap?       NO
+      - Encrypt Swap?      NO
+
+c. **Pool Type Selection** (choose based on your hardware):
+
+   .. list-table:: 
+      :header-rows: 1
+      :widths: 25 75
+
+      * - Configuration
+        - When to Use
+      * - **stripe: 1 disk**
+        - Single disk installation (testing/evaluation)
+      * - **mirror: 2 disks**  
+        - Two identical disks (recommended for production)
+      * - **raidz1: 3+ disks**
+        - Three or more disks with single parity
+      * - **raidz2: 4+ disks**
+        - Four or more disks with double parity (high availability)
+
+d. **Disk Selection:**
+   - Use spacebar to select your target disk(s)
+   - Verify correct disks are selected
+   - **WARNING**: All data on selected disks will be destroyed
+
+e. **Final ZFS Configuration:**
+   - Review all settings carefully
+   - Ensure "Pool Name" is set to "zroot"
+   - Press Enter to proceed
+
+f. **Confirmation:**
+   - **LAST CHANCE**: Verify ZFS configuration is correct
+   - Type "YES" to proceed with disk formatting
+   - Installation will begin
+
+7. **Continue Standard Installation**
+   - Set root password
+   - Configure network interfaces  
+   - Select time zone
+   - Enable system services (sshd recommended)
+   - Add users if desired
+   - Apply configuration and exit installer
+
+8. **Reboot Verification**
+   - Remove USB drive when prompted
+   - Allow system to reboot
+   - Verify ZFS boot by checking: `zpool status`
+
+**ZFS Verification Commands**
+
+After FreeBSD installation completes, verify ZFS is properly configured:
+
+.. code-block:: bash
+
+   # Verify ZFS pool exists and is healthy
+   zpool status
+   
+   # Should show output similar to:
+   #   pool: zroot
+   #   state: ONLINE
+   
+   # Verify ZFS filesystems
+   zfs list
+   
+   # Should show zroot filesystem tree
+   
+   # Verify ZFS is mounted as root
+   df -h /
+   
+   # Should show /dev/zvol/zroot/... as root filesystem
+
+**Common ZFS Installation Issues**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Issue
+     - Solution
+   * - **"Auto (UFS)" was selected**
+     - Restart installation from beginning, select "Auto (ZFS)"
+   * - **ZFS pool won't create**
+     - Verify disk has no existing partitions, use "Shell" to wipe disk with `gpart destroy -F ada0`
+   * - **Boot failure after installation**
+     - Verify UEFI boot mode is enabled in BIOS, check for GPT partition scheme
+   * - **"zpool status" shows errors**
+     - Restart installation, verify disk health before proceeding
+
 Kickstart Installation Steps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Karios installation follows a two-phase process:
 
-**Phase 1: FreeBSD Base Installation**
-
-1. Boot from the USB drive
-2. Follow the FreeBSD installation prompts
-3. Wait for the base system installation to complete
-4. Allow the system to reboot
-
-.. note::
-   **Detailed FreeBSD Installation Guide**: For comprehensive step-by-step FreeBSD installation instructions, refer to the official FreeBSD Handbook: `FreeBSD Installation Guide <https://docs.freebsd.org/en/books/handbook/bsdinstall/>`_
-
-   The FreeBSD Handbook provides detailed guidance on installation options, disk partitioning, network configuration, and system setup that forms the foundation for your Karios deployment.
+**Phase 1: FreeBSD Base Installation with ZFS** ✓ Completed Above
 
 **Phase 2: Karios Bootstrap**
 
-After FreeBSD installation is complete and the node is up, execute the following commands:
+.. important::
+   **Prerequisites Verification**
+   
+   Before proceeding with bootstrap, verify ZFS is properly installed:
+
+.. code-block:: bash
+
+   # MANDATORY: Verify ZFS before bootstrap
+   zpool status zroot
+   # Must show: state: ONLINE
+   
+   # Verify ZFS root filesystem  
+   df -h / | grep zfs
+   # Must show ZFS filesystem mounted as root
+
+If either command fails or doesn't show ZFS, **DO NOT PROCEED** with bootstrap installation. You must reinstall FreeBSD with ZFS.
+
+After FreeBSD installation is complete and ZFS is verified, execute the bootstrap commands:
 
 .. tip::
    **What is Bootstrap?** A bootstrap script is an automated installer that downloads and configures all necessary software components. It eliminates manual setup by handling package installation, configuration, and service initialization automatically.
