@@ -412,6 +412,10 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
    - Insert the USB drive and boot from it
    - Select "Install" from the FreeBSD installer menu
 
+.. figure:: _static/images/freebsd-installation/welcome-menu.png
+   :width: 600
+   :alt: FreeBSD installer welcome menu
+
 2. **Installer Welcome Screen**
    - Press Enter to continue with installation
 
@@ -423,10 +427,18 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
    - Enter your desired hostname (e.g., "karios-node01")
    - Press Enter to continue
 
+.. figure:: _static/images/freebsd-installation/hostname-configuration.png
+   :width: 600
+   :alt: FreeBSD hostname configuration screen
+
 5. **Distribution Selection**
    - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", and "ports" are selected
    - Use spacebar to select/deselect components
    - Press Enter to continue
+
+.. figure:: _static/images/freebsd-installation/component-selection.png
+   :width: 600
+   :alt: FreeBSD component selection screen
 
 6. **MANDATORY: Partitioning and ZFS Setup**
 
@@ -436,6 +448,10 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
    This is the most critical step. Selecting the wrong option will brick your Karios installation.
 
 **Partitioning Menu Options:**
+
+.. figure:: _static/images/freebsd-installation/partitioning-choices.png
+   :width: 600
+   :alt: FreeBSD partitioning choices menu showing Auto (ZFS) option
 
 .. code-block:: text
 
@@ -454,6 +470,10 @@ a. **Select "Auto (ZFS)"** - This is mandatory for Karios
 
 b. **ZFS Configuration Menu:**
 
+.. figure:: _static/images/freebsd-installation/zfs-configuration-menu.png
+   :width: 600
+   :alt: ZFS configuration menu with pool settings
+
    .. code-block:: text
    
       ZFS Configuration
@@ -470,6 +490,10 @@ b. **ZFS Configuration Menu:**
       - Encrypt Swap?      NO
 
 c. **Pool Type Selection** (choose based on your hardware):
+
+.. figure:: _static/images/freebsd-installation/zfs-pool-type.png
+   :width: 600
+   :alt: ZFS pool type selection menu
 
    .. list-table:: 
       :header-rows: 1
@@ -491,6 +515,10 @@ d. **Disk Selection:**
    - Verify correct disks are selected
    - **WARNING**: All data on selected disks will be destroyed
 
+.. figure:: _static/images/freebsd-installation/zfs-disk-selection.png
+   :width: 600
+   :alt: ZFS disk selection screen
+
 e. **Final ZFS Configuration:**
    - Review all settings carefully
    - Ensure "Pool Name" is set to "zroot"
@@ -500,6 +528,10 @@ f. **Confirmation:**
    - **LAST CHANCE**: Verify ZFS configuration is correct
    - Type "YES" to proceed with disk formatting
    - Installation will begin
+
+.. figure:: _static/images/freebsd-installation/zfs-final-warning.png
+   :width: 600
+   :alt: ZFS final warning before installation begins
 
 7. **Continue Standard Installation**
    - Set root password
