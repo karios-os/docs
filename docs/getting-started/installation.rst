@@ -315,18 +315,56 @@ Critical Configuration Notes
 Downloading the Karios ISO Image (Roadmap Ahead)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. Navigate to the official Karios download page
-2. Select the appropriate version based on your hardware architecture (typically x86_64)
-3. If unsure about architecture, consult with your system administrator
+.. important::
+   **Always Use Latest FreeBSD Release**
+   
+   Karios requires the latest stable FreeBSD release for optimal security, performance, and hardware compatibility. Always download FreeBSD 14.3 or the most current stable release available.
+
+**Download Steps:**
+
+1. Navigate to the official FreeBSD download page: https://www.freebsd.org/where/
+2. **Download FreeBSD 14.3** (or latest stable version)
+3. Select the appropriate version based on your hardware architecture (typically x86_64)
+4. **Recommended ISO**: Use `FreeBSD-14.3-RELEASE-amd64-disc1.iso` for complete offline installation
+5. If unsure about architecture, consult with your system administrator
+
+**Why Latest Release Matters:**
+
+- **Security Updates**: Latest patches and vulnerability fixes
+- **Hardware Support**: Improved driver support for newer hardware
+- **Performance**: Optimized kernel and system components
+- **Compatibility**: Best compatibility with Karios components
+- **Long-term Support**: Extended maintenance and update lifecycle
 
 **Verify Download Integrity**
 
 .. code-block:: bash
 
-   # On Linux/macOS, verify the ISO checksum
-   sha256sum karios-installer.iso
+   # On Linux/macOS, verify the FreeBSD 14.3 ISO checksum
+   sha256sum FreeBSD-14.3-RELEASE-amd64-disc1.iso
    
-   # Compare with the official checksum from the download page
+   # On FreeBSD, use:
+   sha256 FreeBSD-14.3-RELEASE-amd64-disc1.iso
+   
+   # On Windows (PowerShell), use:
+   Get-FileHash FreeBSD-14.3-RELEASE-amd64-disc1.iso -Algorithm SHA256
+   
+   # Compare with the official checksum from FreeBSD download page:
+   # https://www.freebsd.org/where/
+
+.. important::
+   **Official FreeBSD 14.3 Checksums**
+   
+   Always verify your downloaded ISO matches the official FreeBSD checksums:
+   - Download the CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64 file
+   - Compare the calculated hash with the official checksum
+   - **Never proceed with installation if checksums don't match**
+
+.. code-block:: bash
+
+   # Automated verification on FreeBSD/Linux:
+   fetch https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64
+   sha256sum -c CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64 FreeBSD-14.3-RELEASE-amd64-disc1.iso
 
 Creating a Bootable USB Drive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -399,6 +437,123 @@ Critical Filesystem Requirements
    - Backup and snapshot system failures
    - Complete system unusability requiring full reinstallation
 
+Understanding ZFS RAID Levels and Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Critical Knowledge for Operators**
+
+Before proceeding with installation, operators must understand ZFS RAID levels and their implications for system reliability, performance, and storage capacity.
+
+.. important::
+   **Hardware Requirements for ZFS RAID**
+   
+   For mirror and RAID configurations, disks **MUST** be:
+   - **Same physical size** (exact same capacity in bytes)
+   - **Same model and manufacturer** (identical part numbers recommended)
+   - **Same interface type** (all SATA or all NVMe)
+   - **Same performance characteristics** (RPM for spinning disks, similar specs for SSDs)
+
+**ZFS Pool Types Explained:**
+
+.. list-table:: ZFS RAID Configuration Guide
+   :header-rows: 1
+   :widths: 15 20 20 25 20
+
+   * - RAID Type
+     - Minimum Disks
+     - Fault Tolerance
+     - Storage Efficiency
+     - Use Case
+   * - **Stripe**
+     - 1 disk
+     - **None** - Single disk failure = total data loss
+     - 100% of disk space
+     - Testing, evaluation, single-disk systems
+   * - **Mirror**
+     - 2 identical disks
+     - **1 disk failure** tolerated
+     - 50% of total disk space
+     - **Production recommended** - High reliability
+   * - **RAIDZ1**
+     - 3+ disks
+     - **1 disk failure** tolerated
+     - ~67-90% depending on disk count
+     - General production use
+   * - **RAIDZ2**
+     - 4+ disks
+     - **2 disk failures** tolerated
+     - ~50-85% depending on disk count
+     - **Mission-critical** systems
+   * - **RAIDZ3**
+     - 5+ disks
+     - **3 disk failures** tolerated
+     - ~40-80% depending on disk count
+     - Ultra-high availability systems
+
+**Stripe Configuration (Single Disk):**
+
+.. warning::
+   **No Redundancy - Data Loss Risk**
+   
+   Stripe configuration provides no protection against disk failure. Any disk failure results in complete data loss. Only use for testing or evaluation environments.
+
+**Mirror Configuration (Recommended for Production):**
+
+.. note::
+   **Mirror Requirements for Optimal Performance**
+   
+   - **Identical disks required**: Use exact same model, capacity, and manufacturer
+   - **Performance**: Reads are faster (load balanced), writes are slightly slower
+   - **Capacity**: Only 50% of total disk space available
+   - **Reliability**: System continues operating with one disk failure
+   - **Recovery**: Failed disk can be replaced and automatically resilvered
+
+**RAIDZ Configurations (Software RAID-5/6 equivalent):**
+
+- **RAIDZ1**: Similar to RAID-5, requires minimum 3 disks, tolerates 1 failure
+- **RAIDZ2**: Similar to RAID-6, requires minimum 4 disks, tolerates 2 failures  
+- **RAIDZ3**: Advanced configuration, requires minimum 5 disks, tolerates 3 failures
+
+**Disk Selection Best Practices:**
+
+1. **Purchase identical disks in sets** - Same part number, same batch if possible
+2. **Test disks before installation** - Run disk health checks
+3. **Keep spare disk available** - For quick replacement in RAID configurations
+4. **Document disk serial numbers** - For tracking and warranty purposes
+5. **Avoid mixing disk types** - Don't mix SSDs with HDDs in same pool
+
+ZFS Swap Calculation Formula
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Critical for ZFS Root Installations**
+
+ZFS requires specific swap calculations for optimal performance and system stability.
+
+.. important::
+   **ZFS Swap Calculation Formula**
+   
+   **Recommended Swap Size = 1.5 × RAM + 2GB**
+   
+   **Examples:**
+   - 16GB RAM: (16 × 1.5) + 2 = **26GB swap**
+   - 32GB RAM: (32 × 1.5) + 2 = **50GB swap**  
+   - 64GB RAM: (64 × 1.5) + 2 = **98GB swap**
+   - 128GB RAM: (128 × 1.5) + 2 = **194GB swap**
+
+**Why This Formula:**
+
+- **ZFS ARC Cache**: ZFS uses large amounts of RAM for caching
+- **System Stability**: Prevents memory pressure during heavy VM loads  
+- **Crash Dumps**: Ensures sufficient space for kernel crash dumps
+- **VM Overcommit**: Allows for memory overcommitment in virtualization
+- **Performance**: Reduces disk I/O during memory pressure
+
+**Swap Configuration Notes:**
+
+- **Mirror Swap**: In mirrored configurations, swap should also be mirrored
+- **Performance Impact**: Insufficient swap can cause system instability
+- **Monitoring**: Monitor swap usage in production environments
+
 FreeBSD Installation with ZFS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -432,13 +587,43 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
    :alt: FreeBSD hostname configuration screen
 
 5. **Distribution Selection**
-   - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", and "ports" are selected
+   - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", "ports", and **"src"** are selected
+   - **MANDATORY**: Always install the source tree ("src") for Karios compatibility
    - Use spacebar to select/deselect components
    - Press Enter to continue
 
 .. figure:: _static/images/freebsd-installation/component-selection.png
    :width: 600
    :alt: FreeBSD component selection screen
+
+**Required Components Explained:**
+
+.. list-table:: FreeBSD Component Requirements
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Component
+     - Purpose and Requirement
+   * - **base-dbg**
+     - **Required** - Debug symbols for base system troubleshooting
+   * - **kernel-dbg**  
+     - **Required** - Kernel debug symbols for system analysis
+   * - **lib32**
+     - **Required** - 32-bit compatibility libraries for legacy applications
+   * - **ports**
+     - **Required** - FreeBSD Ports Collection for software installation
+   * - **src**
+     - **MANDATORY** - Complete FreeBSD source code required for Karios operation
+
+.. important::
+   **Source Tree Requirement**
+   
+   The FreeBSD source tree ("src") is **mandatory** for Karios installations. This provides:
+   - Kernel module compilation capabilities
+   - Device driver building support  
+   - System customization options
+   - Karios component integration
+   - Security update compilation
 
 6. **MANDATORY: Partitioning and ZFS Setup**
 
@@ -487,9 +672,31 @@ b. **ZFS Configuration Menu:**
    - Force 4K Sectors?  YES
    - Encrypt Disks?     NO (recommended for first installation)
    - Partition Scheme   GPT (UEFI)
-   - Swap Size          4g (adjust based on RAM)
+   - Swap Size          [CALCULATE USING FORMULA]
    - Mirror Swap?       NO
    - Encrypt Swap?      NO
+
+**Swap Size Configuration:**
+
+.. important::
+   **Use ZFS Swap Formula**
+   
+   **Calculate: (RAM in GB × 1.5) + 2GB**
+   
+   **Examples for common configurations:**
+   - 16GB RAM → **26GB** swap (enter: 26g)
+   - 32GB RAM → **50GB** swap (enter: 50g)
+   - 64GB RAM → **98GB** swap (enter: 98g)
+   - 128GB RAM → **194GB** swap (enter: 194g)
+
+.. warning::
+   **Critical Swap Sizing**
+   
+   Incorrect swap sizing can cause:
+   - System instability under load
+   - VM creation failures
+   - Memory allocation errors
+   - Poor ZFS performance
 
 c. **Pool Type Selection** (choose based on your hardware):
 
@@ -833,6 +1040,92 @@ After successful bootstrap completion, verify system security:
 .. figure:: _static/images/installation/installation5.png
    :width: 600
    :alt: Bootstrap installation completed
+
+**Critical FreeBSD Installation Security Settings**
+
+.. important::
+   **Security Hardening During Installation**
+   
+   During the FreeBSD installation process (before bootstrap), you will encounter security hardening options. **SELECT ALL SECURITY OPTIONS** for production Karios deployments:
+
+**Required Security Hardening Options:**
+
+.. list-table:: Security Options to Enable
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Security Option
+     - Purpose and Requirement
+   * - **hide_uids**
+     - **Enable** - Hide processes from other users for better security
+   * - **hide_gids**
+     - **Enable** - Hide group processes for enhanced privacy
+   * - **hide_jail**
+     - **Enable** - Hide jail processes for container security
+   * - **read_msgbuf**
+     - **Enable** - Disable kernel message buffer access for unprivileged users
+   * - **proc_debug**
+     - **Enable** - Disable process debugging for non-privileged users
+   * - **random_pid**
+     - **Enable** - Randomize process IDs for security
+   * - **clear_tmp**
+     - **Enable** - Clean /tmp directory on system startup
+   * - **disable_syslogd**
+     - **Enable** - Secure syslogd network socket configuration
+   * - **disable_sendmail**
+     - **Enable** - Disable sendmail service (not needed for Karios)
+   * - **secure_console**
+     - **Enable** - Require root password for single-user mode
+   * - **disable_ddtrace**
+     - **Enable** - Disable destructive DTrace operations
+   * - **enable_aslr**
+     - **Enable** - Enable Address Space Layout Randomization
+
+.. warning::
+   **Security Requirement**
+   
+   For production Karios deployments, **ALL** security hardening options must be enabled during FreeBSD installation. This provides essential security baseline required for hypervisor environments.
+
+**User Account Creation Requirements**
+
+.. important::
+   **Administrative User Configuration**
+   
+   During FreeBSD installation, when prompted to create user accounts, **ALL** users must be added to the `wheel` group for proper administrative access in Karios environments.
+
+**User Creation Best Practices:**
+
+.. list-table:: User Account Requirements
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Setting
+     - Required Configuration
+   * - **Username**
+     - Use descriptive, unique usernames (e.g., admin, karios-admin)
+   * - **Full Name**
+     - Complete administrator name for accountability
+   * - **Login Group**
+     - Leave blank (default user group will be created)
+   * - **Additional Groups**
+     - **MANDATORY**: Enter `wheel` for administrative privileges
+   * - **Shell**
+     - Recommend: `/bin/sh` or `/bin/tcsh` for reliability
+   * - **Password**
+     - Strong password required (complex, minimum 12 characters)
+   * - **Account Status**
+     - Do NOT lock account after creation
+
+.. warning::
+   **Wheel Group Requirement**
+   
+   Users **must** be added to the `wheel` group during installation. This provides:
+   - `sudo` access capabilities
+   - Administrative command execution
+   - System configuration privileges
+   - Karios management interface access
+   
+   **Without wheel group membership, users cannot perform administrative tasks required for Karios operation.**
 
 .. code-block:: bash
 
