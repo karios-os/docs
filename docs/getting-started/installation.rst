@@ -474,20 +474,22 @@ b. **ZFS Configuration Menu:**
    :width: 600
    :alt: ZFS configuration menu with pool settings
 
-   .. code-block:: text
+   ZFS Configuration Menu
+
+.. code-block:: text
+
+   ZFS Configuration
    
-      ZFS Configuration
-      
-      T Pool Type/Disks:    stripe: 1 disk
-      - Rescan Devices
-      - Disk Info  
-      - Pool Name          zroot
-      - Force 4K Sectors?  YES
-      - Encrypt Disks?     NO (recommended for first installation)
-      - Partition Scheme   GPT (UEFI)
-      - Swap Size          4g (adjust based on RAM)
-      - Mirror Swap?       NO
-      - Encrypt Swap?      NO
+   T Pool Type/Disks:    stripe: 1 disk
+   - Rescan Devices
+   - Disk Info  
+   - Pool Name          zroot
+   - Force 4K Sectors?  YES
+   - Encrypt Disks?     NO (recommended for first installation)
+   - Partition Scheme   GPT (UEFI)
+   - Swap Size          4g (adjust based on RAM)
+   - Mirror Swap?       NO
+   - Encrypt Swap?      NO
 
 c. **Pool Type Selection** (choose based on your hardware):
 
@@ -495,20 +497,22 @@ c. **Pool Type Selection** (choose based on your hardware):
    :width: 600
    :alt: ZFS pool type selection menu
 
-   .. list-table:: 
-      :header-rows: 1
-      :widths: 25 75
+   ZFS Pool Type Selection Menu
 
-      * - Configuration
-        - When to Use
-      * - **stripe: 1 disk**
-        - Single disk installation (testing/evaluation)
-      * - **mirror: 2 disks**  
-        - Two identical disks (recommended for production)
-      * - **raidz1: 3+ disks**
-        - Three or more disks with single parity
-      * - **raidz2: 4+ disks**
-        - Four or more disks with double parity (high availability)
+.. list-table:: 
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Configuration
+     - When to Use
+   * - **stripe: 1 disk**
+     - Single disk installation (testing/evaluation)
+   * - **mirror: 2 disks**  
+     - Two identical disks (recommended for production)
+   * - **raidz1: 3+ disks**
+     - Three or more disks with single parity
+   * - **raidz2: 4+ disks**
+     - Four or more disks with double parity (high availability)
 
 d. **Disk Selection:**
    - Use spacebar to select your target disk(s)
