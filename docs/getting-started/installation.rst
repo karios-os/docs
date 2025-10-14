@@ -929,7 +929,7 @@ Method 1: Using sudo (Recommended - Highest Security)
 - User must have sudo privileges configured
 
 **Steps:**
-**Bootstrap Link Access**: Replace "placeholder link" with the actual bootstrap download URL provided by your Karios sales team. Each customer receives a unique, time-limited download link for security purposes.
+
 .. code-block:: bash
 
    # Install sudo if not present
