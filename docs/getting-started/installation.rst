@@ -654,7 +654,7 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 6. **MANDATORY: Partitioning and ZFS Setup**
 
-.. danger::
+.. warning::
    **STOP: Critical Filesystem Selection**
    
    This is the most critical step. Selecting the wrong option will brick your Karios installation.
