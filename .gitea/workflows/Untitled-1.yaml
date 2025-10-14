@@ -1,0 +1,35 @@
+name: Build Sphinx Documentation
+on:
+  push:
+    branches: [ main, develop, test ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build-docs:
+    runs-on: ub
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Install dependencies and build
+      run: |
+        # Install FreeBSD packages
+        pkg install -y py311-pip py311-sqlite3 gmake git
+        
+        # Install Python dependencies
+        python3.11 -m pip install --upgrade pip
+        python3.11 -m pip install -r requirements.txt
+        
+        # Build documentation
+        cd docs
+        gmake html
+        
+        # Verify build
+        if [ -f "_build/html/index.html" ]; then
+          echo "Build successful - index.html found"
+          ls -lh _build/html/
+        else
+          echo "Build failed - index.html not found"
+          exit 1
+        fi
