@@ -383,7 +383,7 @@ Creating a Bootable USB Drive
 .. warning::
    All data on the selected USB drive will be erased.
 
-3. Click the "SELECT" button and browse to the downloaded Karios ISO image file
+3. Click the "SELECT" button and browse to the downloaded FreeBSD 14.3 ISO file
 4. Set partition scheme to "MBR" or "GPT" based on your system's BIOS/UEFI settings
 
 .. tip::
@@ -394,7 +394,7 @@ Creating a Bootable USB Drive
 **Etcher Instructions (Cross-Platform)**
 
 1. Download and run Etcher
-2. Click "Flash from file" and select the Karios ISO image
+2. Click "Flash from file" and select the FreeBSD 14.3 ISO file
 3. Select your USB drive as the target device
 4. Click "Flash!"
 
@@ -404,11 +404,38 @@ Creating a Bootable USB Drive
 
    # Replace /dev/sdX with your USB drive identifier
    # Use 'lsblk' or 'fdisk -l' to identify the correct drive
-   sudo dd if=karios-installer.iso of=/dev/sdX bs=4M status=progress
+   sudo dd if=FreeBSD-14.3-RELEASE-amd64-disc1.iso of=/dev/sdX bs=4M status=progress
    sudo sync
 
 Installation Process
 --------------------
+
+**Complete Installation Overview**
+
+For new users, here's the complete installation process from start to finish:
+
+.. important::
+   **Installation Summary Checklist**
+   
+   **Phase 1: Preparation**
+   ✓ Download FreeBSD 14.3 ISO and verify checksum
+   ✓ Create bootable USB drive
+   ✓ Configure BIOS/UEFI settings (enable VT-x/AMD-V, IOMMU)
+   
+   **Phase 2: FreeBSD Installation**
+   ✓ Boot from USB drive
+   ✓ Select all components (base-dbg, kernel-dbg, lib32, ports, **src**)
+   ✓ **CRITICAL**: Select "Auto (ZFS)" - NOT UFS
+   ✓ Configure ZFS with proper swap size formula: (RAM × 1.5) + 2GB
+   ✓ Enable ALL security hardening options
+   ✓ Create user account and add to wheel group
+   ✓ Verify ZFS after reboot: `zpool status`
+   
+   **Phase 3: Karios Bootstrap**
+   ✓ Obtain bootstrap URL from Karios support
+   ✓ Download and execute bootstrap script
+   ✓ Accept EULA by typing exactly "yes"
+   ✓ Access web interface after completion
 
 .. _filesystem-requirements:
 
@@ -863,6 +890,28 @@ After FreeBSD installation is complete and ZFS is verified, execute the bootstra
 Bootstrap Script Download and Preparation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. important::
+   **Bootstrap Access Required**
+   
+   Before proceeding with this section, you **must** have:
+   - Completed FreeBSD installation with ZFS
+   - Obtained your unique bootstrap download URL from Karios
+   - Verified ZFS is working: `zpool status` shows "ONLINE"
+
+**How to Obtain Bootstrap URL**
+
+If you don't have your bootstrap download link:
+
+1. **Contact Karios Support**: Email support@karios.ai 
+2. **Sales Representative**: Contact your assigned Karios sales representative  
+3. **Customer Portal**: Check your customer portal for download links
+4. **Phone Support**: Call the support number provided in your welcome email
+
+.. warning::
+   **Do Not Proceed Without Valid URL**
+   
+   Attempting to install without a valid bootstrap URL will fail. The bootstrap script contains customer-specific configurations and cannot be downloaded from public sources.
+
 The bootstrap script download location and preparation steps vary depending on your chosen execution method. Follow the appropriate section below based on your security requirements.
 
 **Execution Method Selection**
@@ -881,7 +930,7 @@ Method 1: Using sudo (Recommended - Highest Security)
 
 
 .. note::
-   **Bootstrap Link Access**: Replace "placeholder link" with the actual bootstrap download URL provided by your Karios sales team. Each customer receives a unique, time-limited download link for security purposes.
+   **Bootstrap Download Link**: Contact your Karios sales representative or support team to obtain the official bootstrap download URL. Each customer receives a unique, secure download link for their specific deployment.
 
 **Step 1: Download and Prepare Bootstrap Script**
 
@@ -890,8 +939,8 @@ Method 1: Using sudo (Recommended - Highest Security)
    # Ensure you have sudo installed
    pkg install sudo
 
-   # Download bootstrap script to user directory
-   fetch --no-verify-peer --no-verify-hostname "placeholder link" -o bootstrap.sh
+   # Download bootstrap script to user directory (replace URL with your provided link)
+   fetch --no-verify-peer --no-verify-hostname "YOUR_PROVIDED_BOOTSTRAP_URL" -o bootstrap.sh
    
    # Set executable permissions
    chmod o+x bootstrap.sh
@@ -944,9 +993,8 @@ Method 2: Direct Root Execution (Use Only When Necessary)
    # Navigate to root directory
    cd /root/
    
-   # Download bootstrap script from official source
-   
-   fetch --no-verify-peer --no-verify-hostname "placeholder link" -o bootstrap.sh
+   # Download bootstrap script from official source (replace URL with your provided link)
+   fetch --no-verify-peer --no-verify-hostname "YOUR_PROVIDED_BOOTSTRAP_URL" -o bootstrap.sh
 
    # Set executable permissions
    chmod o+x bootstrap.sh
@@ -1166,6 +1214,43 @@ If the system prompts about reinstallation during bootstrap execution:
 Post-Installation Configuration
 -------------------------------
 
+**Installation Success Verification**
+
+After bootstrap completion, verify your Karios installation:
+
+.. code-block:: bash
+
+   # Verify all Karios services are running
+   service karios_core status
+   service karios_license status
+   service karios_rms status
+   service karios_rms_client status
+   service kshield status
+   
+   # Check if all Karios services are listening on their ports
+   sockstat -l | grep karios
+   # Should show:
+   # karios_core on port 8080 (main web interface)
+   # karios_license on port 8069 (licensing service)
+   # karios_rms on port 9094 (RMS management)
+   # karios_rms_client on port 9096 (RMS client)
+   
+   # Check security shield service
+   sockstat -l | grep kshield
+   # Should show kshield on port 9592
+   
+   # Verify ZFS pools are healthy
+   zpool status
+   
+   # Check system logs for any errors
+   tail -n 50 /var/log/messages
+
+**Expected Results:**
+- All Karios services should show "running" status
+- Ports 8080, 8069, 9094, 9096, and 9592 should be listening
+- ZFS pool should show "ONLINE" status  
+- No critical errors in system logs
+
 Accessing the Karios Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1251,12 +1336,56 @@ If you need assistance with the installation process:
 Next Steps
 ----------
 
-After successful installation, proceed to:
+**Immediate Post-Installation Tasks**
 
-- **User Guide**: Navigate to the user guide for further instructions on accessing the Karios GUI
-- **Security Configuration**: Implement additional security hardening measures for production use
-- **Management Configuration**: Review the management section for detailed setup procedures
-- **Component Configuration**: Configure individual Karios components with appropriate security settings
-- **Backup and Recovery**: Establish comprehensive backup and disaster recovery procedures
+After successful installation, complete these essential tasks in order:
+
+1. **Access Web Interface**
+   - Open browser and navigate to: `https://YOUR_SERVER_IP`
+   - Accept SSL certificate warning (self-signed)
+   - Login with credentials created during FreeBSD installation
+
+2. **Complete Initial Setup**
+   - Follow the Karios setup wizard
+   - Configure network settings
+   - Set up storage pools
+   - Create initial virtual machine
+
+3. **Documentation Review**
+   - **User Guide**: Navigate to the user guide for detailed Karios operation
+   - **Management Configuration**: Review network and storage configuration options
+   - **Security Configuration**: Implement additional security measures for production
+
+4. **System Validation**
+   - Create a test virtual machine
+   - Verify network connectivity  
+   - Test snapshot functionality
+   - Validate backup procedures
+
+**If Installation Failed**
+
+Common failure recovery steps:
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Problem
+     - Solution
+   * - **UFS was installed instead of ZFS**
+     - **Complete reinstall required** - Boot from USB, start over with ZFS
+   * - **Bootstrap script fails**
+     - Check internet connectivity, verify bootstrap URL, check logs in /tmp/bootstrap.log
+   * - **Web interface not accessible**
+     - Verify services with `sockstat -l | grep karios`, check firewall settings
+   * - **ZFS errors after installation**
+     - Run `zpool scrub zroot`, check disk health, verify BIOS settings
+
+**Getting Additional Help**
+
+- **Documentation**: https://docs.karios.ai/
+- **Support Portal**: Contact information provided in your welcome package
+- **Community Forums**: Access through your customer portal
+- **Emergency Support**: Phone numbers provided with your license
 
    
