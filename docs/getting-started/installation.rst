@@ -907,12 +907,7 @@ If you don't have your bootstrap download link:
 3. **Customer Portal**: Check your customer portal for download links
 4. **Phone Support**: Call the support number provided in your welcome email
 
-.. warning::
-   **Do Not Proceed Without Valid URL**
-   
-   Attempting to install without a valid bootstrap URL will fail. The bootstrap script contains customer-specific configurations and cannot be downloaded from public sources.
 
-The bootstrap script download location and preparation steps vary depending on your chosen execution method. Follow the appropriate section below based on your security requirements.
 
 **Bootstrap Download and Common Preparation**
 
@@ -934,7 +929,7 @@ Method 1: Using sudo (Recommended - Highest Security)
 - User must have sudo privileges configured
 
 **Steps:**
-
+**Bootstrap Link Access**: Replace "placeholder link" with the actual bootstrap download URL provided by your Karios sales team. Each customer receives a unique, time-limited download link for security purposes.
 .. code-block:: bash
 
    # Install sudo if not present
