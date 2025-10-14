@@ -415,10 +415,10 @@ Installation Process
 Critical Filesystem Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. danger::
-   **MANDATORY REQUIREMENT: ZFS Filesystem Only**
+.. important::
+   **ZFS Filesystem Requirement**
    
-   Karios **requires** ZFS as the root filesystem and will not function with UFS or any other filesystem. Installing with UFS will result in a completely broken system that cannot be recovered without reinstallation.
+   Karios requires ZFS to be installed and will not work on FreeBSD systems installed with UFS. Please ensure you select ZFS.
 
 **Why ZFS is Required:**
 
