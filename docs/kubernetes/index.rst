@@ -1138,8 +1138,8 @@ Example:
 
 .. code-block:: none
 
-   prometheus-grafana              NodePort  80:30091/TCP
-   prometheus-kube-prometheus      NodePort  9090:30090/TCP
+   prometheus-grafana              
+   prometheus-kube-prometheus      
 
 .. note::
    - Grafana → port ``30091``  
