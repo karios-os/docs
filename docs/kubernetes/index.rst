@@ -812,158 +812,15 @@ Create the Ubuntu Kubernetes Cluster
 
 - Save and add more workers as needed.  
 
-**Step 3.1.6: Start all VMs**
-
-- After creating all the VMs for your cluster, you need to start them.
-- In the left sidebar under **CONTROL CENTER**, select your cluster (e.g., ``ub-joec2``).
-- Click the **Start** button to power on all VMs simultaneously.
-
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-start-vms.png
-   :alt: Start All VMs
-   :width: 600
+**Step 3.1.6: Wait for cluster VMs to be ready**
+- Wait for the cluster Vm's to be ready for the cluster.
 
 .. note::
-   All VMs in the cluster must be running before proceeding with the cluster join process.
-   The VMs will boot using the Ubuntu cloud image specified during configuration.
+   It may take several minutes for all VMs to be ready in the cluster.
+   Once the Vm's are ready the job status button disappears from the Karios UI.
 
-SSH and Join VMs to the Cluster
------------------------------------
-
-**Step 3.2.1: SSH into the Bootstrap Node**
-- Using the Terminal, SSH into the node using the Device IP.
-
-.. code-block:: bash
-
-   ssh <username>@<bootstrap-node-ip>
-   # Example:
-   ssh ubuntu@192.168.1.100         
-   # Password: yourpassword
-
-.. note::
-   With the cluster creation, the bootstrap node is the first control plane node in the cluster. 
-
-
-**Step 3.2.2: Check Cluster Status**
-
-.. code-block:: bash
-
-   sudo k8s status
-
-.. code-block:: none
-
-   demo@ub-joec2-controlplane:~$ sudo k8s status
-   cluster status:           ready
-   control plane nodes:      192.168.116.27:6400 (voter)
-   high availability:        no
-   datastore:                etcd
-   network:                  enabled
-   dns:                      enabled at 10.152.183.94
-   ingress:                  enabled
-   load-balancer:            disabled
-   local-storage:            enabled at /var/snap/k8s/common/rawfile-storage
-   gateway                   enabled
-
-**Step 3.2.3: Get Join Token for Control Nodes**
-
-- From the bootstrap node, get the join token for control plane nodes:
-
-.. code-block:: bash
-
-   sudo k8s get-join-token <vmname>
-
-Example output:
-
-.. code-block:: none
-
-   steve@ub-joec2-controlplane:~$ sudo k8s get-join-token ub-joec2-controlplane2
-   eyJzZWNyZXQiOiI3OWRlMWRkNjVlNGYxYzk5Y2MyMzczOTZlNWQyZmFmOTIxOTUxODIzZjk0OWY0ZmJkZjZjMWFjYTI1NTJjYjlhIiwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiam9pbl9hZGRyZXNzZXMiOlsiMTkyLjE2OC4xMTYuMjc6NjQwMCJdfQ==
-
-.. note::
-   Replace ``<vmname>`` with the actual name of the control plane node you want to join.  
-   The command will output a token and instructions for joining the cluster.
-   Only a bootstrap node can be the one to generate the join token.
-
-.. warning::
-   Please ensure that the vmname provided matches the name of the control plane node you intend to join.
-
-**Step 3.2.4: Join Control Plane Node**
-
-- Using the Terminal SSH into control plane node:
-
-.. code-block:: bash
-
-   ssh <username>@<control-plane-ip>
-
-- Join the cluster:
-
-.. code-block:: bash
-
-   sudo k8s join-cluster <token>
-
-Example session:
-
-.. code-block:: none
-
-   steve@ub-joec2-controlplane:~$ ssh steve@ub-joec2-controlplane2
-   steve@ub-joec2-controlplane2's password:
-   Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-141-generic x86_64)
-   ...
-   steve@ub-joec2-controlplane2:~$ sudo k8s join-cluster eyJzZWNyZXQiOiI3OWRlMWRkNjVlNGYxYzk5Y2MyMzczOTZlNWQyZmFmOTIxOTUxODIzZjk0OWY0ZmJkZjZjMWFjYTI1NTJjYjlhIiwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiam9pbl9hZGRyZXNzZXMiOlsiMTkyLjE2OC4xMTYuMjc6NjQwMCJdfQ==
-   Joining the cluster. This may take a few seconds, please wait.
-   Cluster services have started on "ub-joec2-controlplane2".
-   Please allow some time for initial Kubernetes node registration.
-
-.. note::
-   Replace ``<token>`` with the actual token obtained in Step 3.2.3. 
-   Repeat Steps 3.2.3 and 3.2.4 for all control plane nodes to join them in the cluster.
-
-**Step 3.2.5: Get Join Token for Worker Nodes**
-
-- From the bootstrap node, get the join token for worker nodes:
-
-.. code-block:: bash
-
-   sudo k8s get-join-token <vmname> --worker
-
-Example output:
-
-.. code-block:: none
-
-   steve@ub-joec2-controlplane:~$ sudo k8s get-join-token ub-joec2-worker1 --worker
-   eyJ0b2tlbiI6IiIsInNlY3JldCI6Indvcmtlcjo6NTFlNmEwYThmZGQwNDZkYWNhMTRmNmMyMTU0YzhkNGZiNjNlZGI4ZSIsImpvaW5fYWRkcmVzc2VzIjpbIjE5Mi4xNjguMTE2LjI3OjY0MDAiXSwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiXyI6Im0hISJ9
-
-**Step 3.2.6: Join Worker Nodes**
-
-- SSH into each worker node:
-
-.. code-block:: bash
-
-   ssh <username>@<worker-node-ip>
-
-- Join the cluster:
-
-.. code-block:: bash
-
-   sudo k8s join-cluster <token>
-
-Example session:
-
-.. code-block:: none
-
-   steve@ub-joec2-controlplane:~$ ssh steve@ub-joec2-worker1
-   steve@ub-joec2-worker1's password:
-   Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-141-generic x86_64)
-   ...
-   steve@ub-joec2-worker1:~$ sudo k8s join-cluster eyJ0b2tlbiI6IiIsInNlY3JldCI6Indvcmtlcjo6NTFlNmEwYThmZGQwNDZkYWNhMTRmNmMyMTU0YzhkNGZiNjNlZGI4ZSIsImpvaW5fYWRkcmVzc2VzIjpbIjE5Mi4xNjguMTE2LjI3OjY0MDAiXSwiZmluZ2VycHJpbnQiOiIzNGFiMmY1OGM2MzE4MmYyMzk0MzhkZmJmYjA1OTljNjgwNGUxZmMwN2U5MGU2Yzc3YTM2MjU1ZjM3OTNlNGQzIiwiXyI6Im0hISJ9
-   Joining the cluster. This may take a few seconds, please wait.
-   Cluster services have started on "ub-joec2-worker1".
-   Please allow some time for initial Kubernetes node registration.
-
-.. note::
-   Replace ``<token>`` with the actual token obtained in Step 3.2.5. 
-   Repeat steps 3.2.5 and 3.2.6 for all worker nodes to join them in the cluster.
-
-**Step 3.2.7: Verify Cluster High Availability**
+**Step 3.1.7: Verify Cluster High Availability**
+If high availability was configured with multiple control plane nodes, verify the setup:
 
 .. code-block:: bash
 
@@ -986,23 +843,16 @@ Example output:
    local-storage:            enabled at /var/snap/k8s/common/rawfile-storage
    gateway                   enabled
    
-   steve@ub-joec2-controlplane:~$ sudo k8s kubectl get nodes
-   NAME                     STATUS   ROLES                  AGE   VERSION
-   ub-joec2-controlplane    Ready    control-plane,worker   41m   v1.32.8
-   ub-joec2-controlplane2   Ready    control-plane,worker   10m   v1.32.8
-   ub-joec2-controlplane3   Ready    control-plane,worker   71s   v1.32.8
-   ub-joec2-worker1         Ready    worker                 25s   v1.32.8
-
 .. note::
    With multiple control plane nodes, the cluster now shows "high availability: yes" and lists all control plane nodes as voters.
 
 Accessing the Tech Stack
 ----------------------------
 
-3.3.1 Prometheus and Grafana
+3.2.1 Prometheus and Grafana
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Step 3.3.1.1: Verify Deployment**
+**Step 3.2.1.1: Verify Deployment**
 
 .. code-block:: bash
 
@@ -1041,14 +891,14 @@ Example output:
    - Grafana → port ``30091``  
    - Prometheus → port ``30090``  
 
-**Step 3.3.1.2: Access Grafana Dashboard**
+**Step 3.2.1.2: Access Grafana Dashboard**
 
 .. code-block:: none
 
    http://<node-ip>:30090
    http://<fqdn>:30090
 
-**Step 3.3.1.3: Access Prometheus Dashboard**
+**Step 3.2.1.3: Access Prometheus Dashboard**
 
 .. code-block:: none
 
@@ -1090,6 +940,256 @@ Example output:
    you can access the dashboard using the bootstrap/control plane node IP or any worker node IP.
 
 
+Create the K3s Cluster
+=============================
+
+4.0 About K3s (Lightweight Kubernetes)
+----------------------------------------
+
+K3s is a fully certified CNCF Kubernetes distribution designed to be:
+
+* **Lightweight** - optimized for edge, resource-constrained, and embedded environments  
+* **Easy to install** - a single binary under 100MB  
+* **High availability capable** using an external datastore  
+* **Secure** - packaged with minimal dependencies and reduced attack surface  
+* **Fast to bootstrap** - reduced Kubernetes components and simplified architecture  
+
+Key internal differences from traditional Kubernetes:
+
+* Uses **containerd** by default (Docker not needed)  
+* Uses a **single process** model (k3s server / k3s agent)  
+* Provides a built-in **service load balancer**, **local storage provider**, and **Traefik ingress**  
+* Supports **SQLite** on non-HA clusters, and **etcd / MySQL / Postgres** for HA mode  
+* Ideal for:  
+  * Edge devices  
+  * Branch locations  
+  * Lightweight virtual machines  
+  * Fast CI testing labs  
+
+.. note::
+   K3s is not a “reduced feature” Kubernetes. It is a **complete Kubernetes** distribution with optimizations that make it lighter, simpler, and easier to operate.
+
+----------------------------------------
+4.1 Create the K3s Cluster
+----------------------------------------
+
+4.1.1 Create the Cluster Machine in Karios UI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Click **Setup Kubernetes** in the Karios UI, and select **K3s**.
+
+.. figure:: _static/images/k3s/K3sFirstpage.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+
+4.1.2 Enter Cluster Details
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **Cluster name**: Enter a DNS-compliant name (e.g., ``k3s-test1``).
+
+.. note::
+   Using the ``k3s`` prefix helps identify lightweight clusters.
+
+- **Username and password**: Specify credentials for SSH login.
+
+.. note::
+   Avoid reserved usernames such as ``root`` or ``admin``.
+
+- **Attach the image**: Select a **K3s-ready cloud image (.img)**.
+
+.. note::
+   The image must first be uploaded to the **Control Center** in Karios.
+
+.. figure:: _static/images/k3s/K3sCluster1.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+4.1.3 Add a Bootstrap Node
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Click **Add Control Node**.
+image 
+.. note::
+   The first K3s control node acts as the **primary server** and initializes the cluster.
+
+- Select **Server**, **CPU**, **Memory**, and **Disk**.
+
+.. note::
+   Minimum recommended for K3s server:
+   
+   - 2-4 vCPUs  
+   - 2-4 GB memory  
+   - 40-80 GB disk space  
+
+- Optional stack components:
+
+  - **Prometheus & Grafana**  
+  - **ArgoCD**
+
+.. figure:: _static/images/k3s/K3sCluster2.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+
+4.1.4 Add Additional Server Nodes (K3s Control Plane)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Click **Add Control Plane**.
+
+.. figure:: _static/images/k3s/K3sCluster3.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+.. note::
+   K3s high availability requires **multiple server nodes** and an **external datastore**.
+
+- Configure CPU, memory, and storage.
+
+.. note::
+   Recommended for HA:
+   
+   - 3 server nodes  
+   - Odd number of nodes to prevent split-brain  
+   - 2-4 vCPUs, 2-4 GB memory, 40-80 GB disk  
+
+
+4.1.5 Add Worker Nodes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Click **Add Worker Node**.
+
+.. figure:: _static/images/k3s/K3sCluster4.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+.. note::
+   Worker nodes run the cluster workloads.
+
+- Configure CPU, memory, disk size.
+
+.. figure:: _static/images/k3s/K3sCluster6.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+.. note::
+   Minimum per worker:
+
+   - 2 vCPUs  
+   - 2 GB RAM  
+   - 40-80 GB storage  
+
+.. figure:: _static/images/k3s/K3sCluster7.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+
+4.1.6 Wait for Cluster VMs to Become Ready
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Wait for all VMs to be provisioned.
+- Click the **Job Status** icon in the Karios UI to monitor progress.
+
+image
+
+.. note::
+   When provisioning completes, the Job Status icon disappears.
+
+
+4.1.7 Verify Cluster High Availability
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Run the following commands on the bootstrap server:
+
+.. code-block:: bash
+
+   sudo k3s kubectl get nodes
+   sudo k3s kubectl get endpoints -A
+
+Example output:
+
+.. code-block:: none
+
+   NAME           STATUS   ROLES                  AGE   VERSION
+   k3s-srv1       Ready    control-plane,master   20m   v1.29.x
+   k3s-srv2       Ready    control-plane,master   18m   v1.29.x
+   k3s-srv3       Ready    control-plane,master   17m   v1.29.x
+   k3s-worker1    Ready    <none>                 15m   v1.29.x
+
+.. note::
+   With three server nodes, K3s now operates in fully redundant HA mode.
+
+----------------------------------------
+4.2 Accessing the Tech Stack
+----------------------------------------
+
+4.2.1 Prometheus and Grafana
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+4.2.1.1 Verify Deployment
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+   sudo k3s kubectl get pods -n observability
+   sudo k3s kubectl get svc -n observability
+
+Example:
+
+.. code-block:: none
+
+   prometheus-grafana              NodePort  80:30091/TCP
+   prometheus-kube-prometheus      NodePort  9090:30090/TCP
+
+.. note::
+   - Grafana → port ``30091``  
+   - Prometheus → port ``30090``  
+
+
+4.2.1.2 Access Grafana Dashboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: none
+
+   http://<node-ip>/grafana
+   http://<fqdn>/grafana
+
+
+4.2.1.3 Access Prometheus Dashboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: none
+
+   http://<node-ip>/prometheus
+   http://<fqdn>/prometheus
+
+.. note::
+   Default Grafana credentials:
+   
+   - User: ``admin``  
+   - Password: ``prom-operator``  
+
+
+----------------------------------------
+4.3 Next Steps
+----------------------------------------
+
+After deploying your K3s cluster, consider:
+
+* **Monitoring and Observability**
+* **Backup and Disaster Recovery**
+* **Security Hardening**
+* **Day-2 Operations and Upgrades**
+
+For additional help, consult:
+
+* **K3s Documentation** - https://docs.k3s.io  
+* **Prometheus Documentation** - https://prometheus.io  
+* **Grafana Documentation** - https://grafana.com  
+* **ArgoCD Documentation** - https://argo-cd.readthedocs.io  
+
+
+
 Next Steps
 --------------
 
@@ -1108,3 +1208,5 @@ For additional support and advanced configuration options, refer to the respecti
 - **ArgoCD documentation**: https://argo-cd.readthedocs.io/en/stable/  
 - **Prometheus documentation**: https://prometheus.io/docs/introduction/overview/  
 - **Grafana documentation**: https://grafana.com/docs/grafana/latest/
+
+
