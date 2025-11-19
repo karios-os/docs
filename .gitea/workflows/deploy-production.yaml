@@ -1,0 +1,230 @@
+name: Deploy Documentation to Production
+
+on:
+  push:
+    branches:
+      - public-release
+  pull_request:
+    branches:
+      - public-release
+    types: [closed]
+
+jobs:
+  deploy-production-docs:
+    # Only run on merged PRs or direct pushes to public-release
+    if: github.event_name == 'push' || (github.event.pull_request.merged == true)
+    runs-on: ub
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: public-release
+      
+      - name: Setup Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Build Sphinx Documentation
+        run: |
+          cd docs
+          make html
+          
+          # Verify build success
+          if [ ! -f "_build/html/index.html" ]; then
+            echo "❌ Build failed - index.html not found"
+            exit 1
+          fi
+          
+          echo "✅ Build successful - index.html found"
+          ls -lh _build/html/
+      
+      - name: Create Documentation Archive
+        run: |
+          cd docs/_build
+          tar -czf docs-en.tar.gz html/
+          mv docs-en.tar.gz ../../
+          cd ../../
+          
+          # Verify archive created
+          if [ ! -f "docs-en.tar.gz" ]; then
+            echo "❌ Archive creation failed"
+            exit 1
+          fi
+          
+          echo "✅ Archive created successfully"
+          ls -lh docs-en.tar.gz
+      
+      - name: Setup SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.KARIOS_SPHINX_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/karios-central.pem
+          chmod 600 ~/.ssh/karios-central.pem
+          
+          # Create SSH config
+          cat > ~/.ssh/config <<EOF
+          Host docs-server
+              HostName 172.31.48.55
+              User ec2-user
+              ForwardAgent yes
+              StrictHostKeyChecking no
+              IdentityFile ~/.ssh/karios-central.pem
+
+          Host sphinx-server
+              HostName 172.31.48.55
+              User sphinx
+              ForwardAgent yes
+              StrictHostKeyChecking no
+              IdentityFile ~/.ssh/karios-central.pem
+          EOF
+          
+          chmod 600 ~/.ssh/config
+          
+          echo "✅ SSH configuration complete"
+      
+      - name: Documentation Server Status Check
+        run: |
+          echo "📊 DOCUMENTATION SERVER STATUS CHECK"
+          echo "===================================="
+          
+          # Test SSH connection
+          if timeout 10 ssh -o ConnectTimeout=5 docs-server 'echo "OK"' 2>/dev/null; then
+            echo "✅ SSH connection to docs-server: OK"
+            
+            # Check server health
+            SERVER_STATUS=$(ssh docs-server 'curl -s http://localhost/health' 2>/dev/null || echo "UNAVAILABLE")
+            if [ "$SERVER_STATUS" != "UNAVAILABLE" ]; then
+              echo "✅ Health check: OK"
+            else
+              echo "⚠️  Health check: Not responding (will continue anyway)"
+            fi
+            
+            # Check disk space
+            DISK_USAGE=$(ssh docs-server 'df -h / | tail -1 | awk "{print \$5}"' 2>/dev/null || echo "N/A")
+            echo "📊 Disk usage: $DISK_USAGE"
+            
+            # Check if sphinx user exists
+            if ssh docs-server 'id sphinx' >/dev/null 2>&1; then
+              echo "✅ Sphinx user: Exists"
+            else
+              echo "❌ Sphinx user: Not found"
+              exit 1
+            fi
+          else
+            echo "❌ SSH connection failed"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ Pre-deployment checks passed"
+      
+      - name: Deploy Documentation
+        run: |
+          DOCS_FILE="docs-en.tar.gz"
+          LANGUAGE="en"
+          
+          echo "🚀 Deploying documentation from: $DOCS_FILE (Language: $LANGUAGE)"
+          echo "📦 Copying to documentation server..."
+          
+          # Copy to docs server /tmp directory
+          if scp -o ConnectTimeout=10 "$DOCS_FILE" docs-server:/tmp/; then
+            echo "✅ File copied to /tmp successfully"
+            
+            # Move to sphinx home and change ownership
+            echo "📝 Moving file to sphinx home directory..."
+            ssh docs-server "sudo mv /tmp/$DOCS_FILE /home/sphinx/ && sudo chown sphinx:sphinx /home/sphinx/$DOCS_FILE"
+            
+            if [ $? -eq 0 ]; then
+              echo "✅ File ownership transferred to sphinx user"
+              
+              # Execute build script on sphinx server
+              echo "🔨 Building documentation on sphinx server..."
+              ssh sphinx-server "/home/sphinx/build-docs.sh '$DOCS_FILE' '$LANGUAGE'"
+              
+              if [ $? -eq 0 ]; then
+                echo "✅ Documentation deployed successfully!"
+                echo "🌐 Access documentation at: https://docs.karios.ai/"
+              else
+                echo "❌ Build failed on sphinx server!"
+                exit 1
+              fi
+            else
+              echo "❌ File ownership transfer failed!"
+              exit 1
+            fi
+          else
+            echo "❌ File transfer failed!"
+            exit 1
+          fi
+      
+      - name: Verify Deployment
+        run: |
+          echo "🔍 Verifying deployment..."
+          
+          # Wait a few seconds for nginx to serve updated content
+          sleep 5
+          
+          # Check if documentation is accessible
+          HEALTH_CHECK=$(ssh docs-server 'curl -s -o /dev/null -w "%{http_code}" http://localhost/' 2>/dev/null || echo "000")
+          
+          if [ "$HEALTH_CHECK" = "200" ]; then
+            echo "✅ Documentation is accessible (HTTP 200)"
+          else
+            echo "⚠️  Documentation HTTP status: $HEALTH_CHECK"
+          fi
+          
+          # Get deployment timestamp
+          DEPLOY_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "📅 Deployment completed at: $DEPLOY_TIME"
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          # Remove SSH key
+          rm -f ~/.ssh/karios-central.pem
+          rm -f ~/.ssh/config
+          
+          # Remove documentation archive
+          rm -f docs-en.tar.gz
+          
+          echo "✅ Cleanup complete"
+      
+      - name: Deployment Summary
+        if: success()
+        run: |
+          echo ""
+          echo "╔════════════════════════════════════════════════╗"
+          echo "║   📚 DOCUMENTATION DEPLOYMENT SUCCESSFUL       ║"
+          echo "╚════════════════════════════════════════════════╝"
+          echo ""
+          echo "🌐 Live Documentation: https://docs.karios.ai/"
+          echo "📦 Language: English (en)"
+          echo "🔖 Branch: public-release"
+          echo "📝 Commit: ${{ github.sha }}"
+          echo ""
+          echo "✅ All deployment steps completed successfully!"
+      
+      - name: Deployment Failed Notification
+        if: failure()
+        run: |
+          echo ""
+          echo "╔════════════════════════════════════════════════╗"
+          echo "║   ❌ DOCUMENTATION DEPLOYMENT FAILED           ║"
+          echo "╚════════════════════════════════════════════════╝"
+          echo ""
+          echo "Please check the logs above for details"
+          echo "Common issues:"
+          echo "  - SSH connection failure"
+          echo "  - Sphinx build errors"
+          echo "  - Permission issues"
+          echo "  - Disk space issues"
+          echo ""
+          exit 1
