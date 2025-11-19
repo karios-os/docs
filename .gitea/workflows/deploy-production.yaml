@@ -190,18 +190,18 @@ jobs:
           echo "📦 Archive: $DOCS_FILE"
           echo ""
           
-          # Cleanup old files on bastion
-          echo "🧹 Cleaning up old files on bastion..."
-          ssh bastion 'rm -f ~/docs-*.tar.gz' || true
+          # Cleanup old archives on bastion
+          echo "🧹 Cleaning up old archives on bastion..."
+          ssh bastion 'rm -f ~/docs-*.tar.gz /home/ec2-user/docs-*.tar.gz' || true
           
           # Copy archive to bastion
           echo "📤 Copying $DOCS_FILE to bastion..."
-          if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:~/; then
-            echo "✅ Copied to bastion"
+          if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:/home/ec2-user/; then
+            echo "✅ Copied to bastion: /home/ec2-user/$DOCS_FILE"
             
             # Run deployment script on bastion
             echo "🚀 Running deployment script..."
-            ssh bastion "/home/ec2-user/deploy-html-to-sphinx.sh ~/docs-en.tar.gz"
+            ssh bastion "/home/ec2-user/deploy-html-to-sphinx.sh /home/ec2-user/$DOCS_FILE"
             
             if [ $? -eq 0 ]; then
               echo ""
