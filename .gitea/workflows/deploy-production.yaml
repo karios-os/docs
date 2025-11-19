@@ -185,60 +185,30 @@ jobs:
       - name: Deploy Documentation via Bastion
         run: |
           DOCS_FILE="docs-en.tar.gz"
-          LANGUAGE="en"
           
-          echo "🚀 Deploying pre-built HTML documentation via bastion"
-          echo "📦 Archive: $DOCS_FILE (Language: $LANGUAGE)"
+          echo "🚀 Deploying pre-built HTML documentation"
+          echo "📦 Archive: $DOCS_FILE"
           echo ""
           
-          # Cleanup old files on bastion first
+          # Cleanup old files on bastion
           echo "🧹 Cleaning up old files on bastion..."
           ssh bastion 'rm -f ~/docs-*.tar.gz' || true
           
-          # Copy documentation archive to bastion
-          echo "📤 Copying $DOCS_FILE to bastion server..."
+          # Copy archive to bastion
+          echo "📤 Copying $DOCS_FILE to bastion..."
           if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:~/; then
-            echo "✅ File copied to bastion successfully"
+            echo "✅ Copied to bastion"
             
-            # Deploy pre-built HTML directly to sphinx server
-            echo "🔨 Deploying HTML to sphinx server..."
-            ssh bastion << 'DEPLOY_SCRIPT'
-              # Copy to docs server and extract directly to web directory
-              scp docs-en.tar.gz docs-server:/tmp/
-              
-              # Extract and deploy on sphinx server
-              ssh sphinx-server << 'SPHINX_DEPLOY'
-                # Move file to sphinx home
-                sudo mv /tmp/docs-en.tar.gz /home/sphinx/
-                sudo chown sphinx:sphinx /home/sphinx/docs-en.tar.gz
-                
-                # Extract to temporary location
-                cd /home/sphinx
-                rm -rf /tmp/sphinx-deploy
-                mkdir -p /tmp/sphinx-deploy
-                tar -xzf docs-en.tar.gz -C /tmp/sphinx-deploy
-                
-                # Deploy to web directory
-                sudo rm -rf /var/www/sphinx-docs/*
-                sudo cp -r /tmp/sphinx-deploy/html/* /var/www/sphinx-docs/
-                sudo chown -R nginx:nginx /var/www/sphinx-docs
-                
-                # Cleanup
-                rm -rf /tmp/sphinx-deploy
-                rm -f /home/sphinx/docs-en.tar.gz
-                
-                echo "✅ HTML deployed to /var/www/sphinx-docs/"
-          SPHINX_DEPLOY
-              
-              # Cleanup bastion
-              rm -f ~/docs-en.tar.gz
-          DEPLOY_SCRIPT
+            # Run deployment script on bastion
+            echo "🚀 Running deployment script..."
+            ssh bastion "/home/ec2-user/deploy-html-to-sphinx.sh ~/docs-en.tar.gz"
             
             if [ $? -eq 0 ]; then
+              echo ""
               echo "✅ Documentation deployed successfully!"
-              echo "🌐 Access documentation at: https://docs.karios.ai/"
+              echo "🌐 https://docs.karios.ai/"
             else
-              echo "❌ Deployment failed!"
+              echo "❌ Deployment script failed!"
               exit 1
             fi
           else
