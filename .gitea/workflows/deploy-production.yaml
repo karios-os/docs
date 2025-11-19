@@ -1,0 +1,279 @@
+name: Deploy Documentation to Production
+
+on:
+  push:
+    branches:
+      - Public-release
+  pull_request:
+    branches:
+      - Public-release
+    types: [closed]
+
+jobs:
+  deploy-production-docs:
+    # Only run on merged PRs or direct pushes to Public-release
+    if: github.event_name == 'push' || (github.event.pull_request.merged == true)
+    runs-on: ub
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: Public-release
+      
+      - name: Install Dependencies and Build Documentation
+        run: |
+          # Install FreeBSD packages
+          pkg install -y py311-pip py311-sqlite3 gmake git
+          
+          # Install Python dependencies
+          python3.11 -m pip install --upgrade pip
+          python3.11 -m pip install -r requirements.txt
+          
+          # Build documentation
+          cd docs
+          gmake html
+          
+          # Verify build success
+          if [ ! -f "_build/html/index.html" ]; then
+            echo "❌ Build failed - index.html not found"
+            exit 1
+          fi
+          
+          echo "✅ Build successful - index.html found"
+          ls -lh _build/html/
+      
+      - name: Create Documentation Archive
+        run: |
+          cd docs/_build
+          tar -czf docs-en.tar.gz html/
+          mv docs-en.tar.gz ../../
+          cd ../../
+          
+          # Verify archive created
+          if [ ! -f "docs-en.tar.gz" ]; then
+            echo "❌ Archive creation failed"
+            exit 1
+          fi
+          
+          echo "✅ Archive created successfully"
+          ls -lh docs-en.tar.gz
+      
+      - name: Setup SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.KARIOS_SPHINX_DEPLOY_KEY }}
+        run: |
+          # Install openssh if not present
+          pkg install -y openssh-portable
+          
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/karios-bastion.pem
+          chmod 600 ~/.ssh/karios-bastion.pem
+          
+          # Verify key was created
+          if [ ! -f ~/.ssh/karios-bastion.pem ]; then
+            echo "❌ SSH key file not created"
+            exit 1
+          fi
+          
+          echo "📝 SSH key size: $(wc -l < ~/.ssh/karios-bastion.pem) lines"
+          
+          # Create SSH config for bastion host
+          cat > ~/.ssh/config <<'SSHCONFIG'
+          Host bastion
+              HostName 3.147.57.128
+              User ec2-user
+              StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
+              IdentityFile ~/.ssh/karios-bastion.pem
+          SSHCONFIG
+          
+          chmod 600 ~/.ssh/config
+          
+          # Test SSH key permissions
+          ls -la ~/.ssh/karios-bastion.pem
+          
+          echo "✅ SSH configuration complete"
+      
+      - name: Bastion Server Status Check
+        run: |
+          echo "📊 BASTION SERVER STATUS CHECK"
+          echo "===================================="
+          
+          # Verify SSH key exists
+          if [ ! -f ~/.ssh/karios-bastion.pem ]; then
+            echo "❌ SSH key file missing!"
+            exit 1
+          fi
+          
+          echo "✅ SSH key file exists"
+          
+          # Test SSH connection to bastion
+          echo "🔍 Testing SSH connection to bastion..."
+          if timeout 15 ssh -o ConnectTimeout=10 bastion 'echo "OK"' 2>&1; then
+            echo "✅ SSH connection to bastion: OK"
+            
+            # Check bastion status
+            echo "📊 Running status check on bastion..."
+            ssh bastion 'bash -s' <<'REMOTESCRIPT'
+          #!/bin/bash
+          echo "🖥️  Bastion Hostname: $(hostname)"
+          echo "📍 Bastion IP: $(hostname -I | awk '{print $1}')"
+          echo "⏰ Uptime: $(uptime -p 2>/dev/null || uptime)"
+          echo "💾 Disk usage: $(df -h / | tail -1 | awk '{print $5}')"
+          echo ""
+          
+          # Check if deploy-docs.sh exists
+          if [ -f ~/deploy-docs.sh ]; then
+            echo "✅ deploy-docs.sh script: Found"
+          else
+            echo "❌ deploy-docs.sh script: Not found"
+            exit 1
+          fi
+          
+          # Check SSH config for docs server
+          if grep -q "docs-server" ~/.ssh/config 2>/dev/null; then
+            echo "✅ SSH config: Configured"
+            DOCS_IP=$(grep -A 5 "Host docs-server" ~/.ssh/config | grep "HostName" | awk '{print $2}' | head -1)
+            echo "📍 Docs server IP: $DOCS_IP"
+            
+            # Test connection from bastion to docs server
+            echo "🔍 Testing connection from bastion to docs server..."
+            if timeout 10 ssh -o ConnectTimeout=5 docs-server 'echo "OK"' >/dev/null 2>&1; then
+              echo "✅ Bastion → Docs server: OK"
+            else
+              echo "❌ Bastion → Docs server: Failed"
+              exit 1
+            fi
+            
+            # Test connection from bastion to sphinx server
+            echo "🔍 Testing connection from bastion to sphinx server..."
+            if timeout 10 ssh -o ConnectTimeout=5 sphinx-server 'echo "OK"' >/dev/null 2>&1; then
+              echo "✅ Bastion → Sphinx server: OK"
+            else
+              echo "❌ Bastion → Sphinx server: Failed"
+              exit 1
+            fi
+          else
+            echo "❌ SSH config: Not configured"
+            exit 1
+          fi
+          REMOTESCRIPT
+            
+            if [ $? -eq 0 ]; then
+              echo ""
+              echo "✅ All pre-deployment checks passed"
+            else
+              echo "❌ Pre-deployment checks failed"
+              exit 1
+            fi
+          else
+            echo "❌ SSH connection to bastion failed"
+            echo "🔍 Debugging information:"
+            echo "   - Runner IP: $(hostname -I 2>/dev/null || echo 'Unknown')"
+            echo "   - Target: bastion server"
+            echo ""
+            echo "Please check:"
+            echo "  1. Bastion IP is correctly configured in workflow"
+            echo "  2. SSH key secret matches bastion server key"
+            echo "  3. Network connectivity between runner and bastion"
+            exit 1
+          fi
+      
+      - name: Deploy Documentation via Bastion
+        run: |
+          DOCS_FILE="docs-en.tar.gz"
+          LANGUAGE="en"
+          
+          echo "🚀 Deploying documentation via bastion host"
+          echo "📦 Archive: $DOCS_FILE (Language: $LANGUAGE)"
+          echo ""
+          
+          # Copy documentation archive to bastion
+          echo "📤 Copying $DOCS_FILE to bastion server..."
+          if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:~/; then
+            echo "✅ File copied to bastion successfully"
+            
+            # Execute deploy-docs.sh on bastion
+            echo "🔨 Executing deploy-docs.sh on bastion server..."
+            ssh bastion "./deploy-docs.sh '$DOCS_FILE' '$LANGUAGE'"
+            
+            if [ $? -eq 0 ]; then
+              echo "✅ Documentation deployed successfully!"
+              echo "🌐 Access documentation at: https://docs.karios.ai/"
+            else
+              echo "❌ Deployment failed on bastion!"
+              exit 1
+            fi
+          else
+            echo "❌ File transfer to bastion failed!"
+            exit 1
+          fi
+      
+      - name: Verify Deployment
+        run: |
+          echo "🔍 Verifying deployment..."
+          
+          # Wait a few seconds for nginx to serve updated content
+          sleep 5
+          
+          # Check if documentation is accessible via bastion
+          echo "🌐 Checking documentation accessibility..."
+          HEALTH_CHECK=$(ssh bastion 'ssh docs-server "curl -s -o /dev/null -w \"%{http_code}\" http://localhost/"' 2>/dev/null || echo "000")
+          
+          if [ "$HEALTH_CHECK" = "200" ]; then
+            echo "✅ Documentation is accessible (HTTP 200)"
+          else
+            echo "⚠️  Documentation HTTP status: $HEALTH_CHECK (may still be deploying)"
+          fi
+          
+          # Get deployment timestamp
+          DEPLOY_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          echo "📅 Deployment completed at: $DEPLOY_TIME"
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          # Remove SSH key
+          rm -f ~/.ssh/karios-bastion.pem
+          rm -f ~/.ssh/config
+          
+          # Remove documentation archive from runner
+          rm -f docs-en.tar.gz
+          
+          # Cleanup archive from bastion (optional, comment out if you want to keep it)
+          ssh bastion 'rm -f ~/docs-en.tar.gz' 2>/dev/null || true
+          
+          echo "✅ Cleanup complete"
+      
+      - name: Deployment Summary
+        if: success()
+        run: |
+          echo ""
+          echo "╔════════════════════════════════════════════════╗"
+          echo "║   📚 DOCUMENTATION DEPLOYMENT SUCCESSFUL       ║"
+          echo "╚════════════════════════════════════════════════╝"
+          echo ""
+          echo "🌐 Live Documentation: https://docs.karios.ai/"
+          echo "📦 Language: English (en)"
+          echo "🔖 Branch: Public-release"
+          echo "📝 Commit: ${{ github.sha }}"
+          echo ""
+          echo "✅ All deployment steps completed successfully!"
+      
+      - name: Deployment Failed Notification
+        if: failure()
+        run: |
+          echo ""
+          echo "╔════════════════════════════════════════════════╗"
+          echo "║   ❌ DOCUMENTATION DEPLOYMENT FAILED           ║"
+          echo "╚════════════════════════════════════════════════╝"
+          echo ""
+          echo "Please check the logs above for details"
+          echo "Common issues:"
+          echo "  - SSH connection failure"
+          echo "  - Sphinx build errors"
+          echo "  - Permission issues"
+          echo "  - Disk space issues"
+          echo ""
+          exit 1
