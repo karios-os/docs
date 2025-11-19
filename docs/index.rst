@@ -117,7 +117,5 @@ Community & Support
 ===================
 
 * **Website**: https://www.karios.ai
-* **GitHub**: https://github.com/karios/karios
-* **Issues**: https://github.com/karios/karios/issues
-* **Discussions**: https://github.com/karios/karios/discussions
+* **Discussions**: https://discourse.karios.ai/t/welcome-to-karios-discourse/5
 
