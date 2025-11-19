@@ -191,10 +191,18 @@ jobs:
           echo "📦 Archive: $DOCS_FILE (Language: $LANGUAGE)"
           echo ""
           
+          # Cleanup old files on bastion first
+          echo "🧹 Cleaning up old files on bastion..."
+          ssh bastion 'rm -f ~/docs-*.tar.gz' || true
+          
           # Copy documentation archive to bastion
           echo "📤 Copying $DOCS_FILE to bastion server..."
           if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:~/; then
             echo "✅ File copied to bastion successfully"
+            
+            # Verify file exists on bastion
+            echo "🔍 Verifying file on bastion..."
+            ssh bastion "ls -lh ~/$DOCS_FILE"
             
             # Execute deploy-docs.sh on bastion
             echo "🔨 Executing deploy-docs.sh on bastion server..."
