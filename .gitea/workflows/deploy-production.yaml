@@ -277,7 +277,7 @@ jobs:
           curl -X POST "${{ secrets.ZOHO_CLIQ_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "✅ *Documentation Deployed Successfully*\n\n📚 **Karios Documentation Deployment**\n\n*Status:* ✅ Success\n*URL:* https://docs.karios.ai/\n*Branch:* Public-release\n*Commit:* '"$COMMIT_SHORT"'\n*Message:* '"$COMMIT_MSG"'\n*Time:* '"$DEPLOY_TIME"'"
+              "text": "**Karios Documentation - Deployment Successful** ✅\n\n──────────────────────\n\n🌐 **Live URL:** https://docs.karios.ai/\n\n🔖 **Branch:** Public-release\n📝 **Commit:** '"$COMMIT_SHORT"'\n⌨️  **Message:** '"$COMMIT_MSG"'\n🕒 **Deployed:** '"$DEPLOY_TIME"'\n\n──────────────────────"
             }' || echo "⚠️  Zoho Cliq notification failed (non-critical)"
       
       - name: Deployment Failed Notification
@@ -301,9 +301,10 @@ jobs:
         run: |
           COMMIT_SHORT=$(echo "${{ github.sha }}" | cut -c1-7)
           DEPLOY_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          LOG_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           
           curl -X POST "${{ secrets.ZOHO_CLIQ_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
             -d '{
-              "text": "❌ *Documentation Deployment Failed*\n\n📚 **Karios Documentation Deployment**\n\n*Status:* ❌ Failed\n*Branch:* Public-release\n*Commit:* '"$COMMIT_SHORT"'\n*Time:* '"$DEPLOY_TIME"'\n*Logs:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              "text": "**Karios Documentation - Deployment Failed** ❌\n\n──────────────────────\n\n⚠️ **Action Required:** Check deployment logs\n\n🔖 **Branch:** Public-release\n📝 **Commit:** '"$COMMIT_SHORT"'\n🕒 **Failed At:** '"$DEPLOY_TIME"'\n\n🔍 **View Logs:** '"$LOG_URL"'\n\n──────────────────────"
             }' || echo "⚠️  Zoho Cliq notification failed"
