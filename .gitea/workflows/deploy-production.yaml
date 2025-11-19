@@ -3,15 +3,15 @@ name: Deploy Documentation to Production
 on:
   push:
     branches:
-      - public-release
+      - Public-release
   pull_request:
     branches:
-      - public-release
+      - Public-release
     types: [closed]
 
 jobs:
   deploy-production-docs:
-    # Only run on merged PRs or direct pushes to public-release
+    # Only run on merged PRs or direct pushes to Public-release
     if: github.event_name == 'push' || (github.event.pull_request.merged == true)
     runs-on: ub
     
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: public-release
+          ref: Public-release
       
       - name: Setup Python Environment
         uses: actions/setup-python@v4
@@ -207,7 +207,7 @@ jobs:
           echo ""
           echo "🌐 Live Documentation: https://docs.karios.ai/"
           echo "📦 Language: English (en)"
-          echo "🔖 Branch: public-release"
+          echo "🔖 Branch: Public-release"
           echo "📝 Commit: ${{ github.sha }}"
           echo ""
           echo "✅ All deployment steps completed successfully!"
