@@ -21,20 +21,18 @@ jobs:
         with:
           ref: Public-release
       
-      - name: Setup Python Environment
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      
-      - name: Install Dependencies
+      - name: Install Dependencies and Build Documentation
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      
-      - name: Build Sphinx Documentation
-        run: |
+          # Install FreeBSD packages
+          pkg install -y py311-pip py311-sqlite3 gmake git
+          
+          # Install Python dependencies
+          python3.11 -m pip install --upgrade pip
+          python3.11 -m pip install -r requirements.txt
+          
+          # Build documentation
           cd docs
-          make html
+          gmake html
           
           # Verify build success
           if [ ! -f "_build/html/index.html" ]; then
