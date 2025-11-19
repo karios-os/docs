@@ -9,6 +9,11 @@ on:
       - Public-release
     types: [closed]
 
+# Prevent concurrent deployments
+concurrency:
+  group: production-docs-deployment
+  cancel-in-progress: false
+
 jobs:
   deploy-production-docs:
     # Only run on merged PRs or direct pushes to Public-release
