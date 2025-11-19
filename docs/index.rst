@@ -3,6 +3,9 @@ Karios Documentation
 
 Welcome to the comprehensive documentation for Karios, the software-defined foundation for modern IT infrastructure.
 
+.. note::
+   Documentation updated November 2025 with new branding and improved deployment workflow.
+
 What is Karios?
 ---------------
 

@@ -42,13 +42,15 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
         mkdir -p sphinx-deploy
         tar -xzf "$DOCS_FILE" -C sphinx-deploy
         
-        # Deploy to web directory
-        sudo rm -rf /var/www/sphinx-docs/*
-        sudo cp -r sphinx-deploy/html/* /var/www/sphinx-docs/
-        sudo chown -R nginx:nginx /var/www/sphinx-docs
+        # Extract HTML to /tmp/sphinx-build
+        rm -rf /tmp/sphinx-build
+        cp -r sphinx-deploy/html /tmp/sphinx-build
+        
+        # Use existing deployment script (has NOPASSWD sudo)
+        sudo /usr/local/bin/deploy-sphinx-docs.sh /var/www/sphinx-docs
         
         # Cleanup
-        rm -rf sphinx-deploy
+        rm -rf sphinx-deploy /tmp/sphinx-build
         rm -f "$DOCS_FILE"
         
         echo "✅ Deployed to /var/www/sphinx-docs/"
