@@ -24,7 +24,10 @@ if [ ! -f "$DOCS_FILE" ]; then
     exit 1
 fi
 
-echo "📦 Deploying documentation: $DOCS_FILE (Language: $LANGUAGE)"
+# Extract just the filename from the path
+DOCS_FILENAME=$(basename "$DOCS_FILE")
+
+echo "📦 Deploying documentation: $DOCS_FILENAME (Language: $LANGUAGE)"
 echo "📤 Copying to docs-server..."
 
 # Copy via docs-server, then move to sphinx user's home
@@ -32,7 +35,7 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
     echo "✅ Copied to docs-server"
     
     # Move file to sphinx home with proper ownership
-    ssh docs-server "sudo mv /tmp/$DOCS_FILE /home/sphinx/ && sudo chown sphinx:sphinx /home/sphinx/$DOCS_FILE"
+    ssh docs-server "sudo mv /tmp/$DOCS_FILENAME /home/sphinx/ && sudo chown sphinx:sphinx /home/sphinx/$DOCS_FILENAME"
     
     # Deploy HTML on sphinx server
     echo "🔨 Deploying on sphinx-server..."
@@ -40,7 +43,7 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
         cd /home/sphinx
         rm -rf sphinx-deploy
         mkdir -p sphinx-deploy
-        tar -xzf "$DOCS_FILE" -C sphinx-deploy
+        tar -xzf "$DOCS_FILENAME" -C sphinx-deploy
         
         # Extract HTML to /tmp/sphinx-build
         rm -rf /tmp/sphinx-build
@@ -52,7 +55,7 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
         
         # Cleanup
         rm -rf sphinx-deploy /tmp/sphinx-build
-        rm -f "$DOCS_FILE"
+        rm -f "$DOCS_FILENAME"
         
         echo "✅ Deployed to /var/www/sphinx-docs/"
         echo "📊 File count: \$(find /var/www/sphinx-docs -type f | wc -l)"

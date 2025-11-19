@@ -192,16 +192,16 @@ jobs:
           
           # Cleanup old archives on bastion
           echo "🧹 Cleaning up old archives on bastion..."
-          ssh bastion 'rm -f ~/docs-*.tar.gz /home/ec2-user/docs-*.tar.gz' || true
+          ssh bastion 'rm -f /tmp/docs-*.tar.gz' || true
           
-          # Copy archive to bastion
-          echo "📤 Copying $DOCS_FILE to bastion..."
-          if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:/home/ec2-user/; then
-            echo "✅ Copied to bastion: /home/ec2-user/$DOCS_FILE"
+          # Copy archive to bastion /tmp (accessible by all users)
+          echo "📤 Copying $DOCS_FILE to bastion /tmp/..."
+          if scp -o ConnectTimeout=10 "$DOCS_FILE" bastion:/tmp/; then
+            echo "✅ Copied to bastion: /tmp/$DOCS_FILE"
             
             # Run deployment script on bastion
             echo "🚀 Running deployment script..."
-            ssh bastion "/home/ec2-user/deploy-html-to-sphinx.sh /home/ec2-user/$DOCS_FILE"
+            ssh bastion "/home/ec2-user/deploy-html-to-sphinx.sh /tmp/$DOCS_FILE"
             
             if [ $? -eq 0 ]; then
               echo ""
