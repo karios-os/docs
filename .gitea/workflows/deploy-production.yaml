@@ -63,17 +63,29 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.KARIOS_SPHINX_DEPLOY_KEY }}
         run: |
+          # Install openssh if not present
+          pkg install -y openssh-portable
+          
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/karios-central.pem
           chmod 600 ~/.ssh/karios-central.pem
           
+          # Verify key was created
+          if [ ! -f ~/.ssh/karios-central.pem ]; then
+            echo "❌ SSH key file not created"
+            exit 1
+          fi
+          
+          echo "📝 SSH key size: $(wc -l < ~/.ssh/karios-central.pem) lines"
+          
           # Create SSH config
-          cat > ~/.ssh/config <<EOF
+          cat > ~/.ssh/config <<'EOF'
           Host docs-server
               HostName 172.31.48.55
               User ec2-user
               ForwardAgent yes
               StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
               IdentityFile ~/.ssh/karios-central.pem
 
           Host sphinx-server
@@ -81,10 +93,14 @@ jobs:
               User sphinx
               ForwardAgent yes
               StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
               IdentityFile ~/.ssh/karios-central.pem
           EOF
           
           chmod 600 ~/.ssh/config
+          
+          # Test SSH key permissions
+          ls -la ~/.ssh/karios-central.pem
           
           echo "✅ SSH configuration complete"
       
@@ -93,8 +109,29 @@ jobs:
           echo "📊 DOCUMENTATION SERVER STATUS CHECK"
           echo "===================================="
           
-          # Test SSH connection
-          if timeout 10 ssh -o ConnectTimeout=5 docs-server 'echo "OK"' 2>/dev/null; then
+          # Debug: Show SSH version and config
+          echo "🔍 SSH client version:"
+          ssh -V 2>&1 || echo "SSH not found, installing..."
+          
+          # Verify SSH key exists
+          if [ ! -f ~/.ssh/karios-central.pem ]; then
+            echo "❌ SSH key file missing!"
+            exit 1
+          fi
+          
+          echo "✅ SSH key file exists"
+          
+          # Test basic connectivity
+          echo "🔍 Testing network connectivity to 172.31.48.55..."
+          if ping -c 2 172.31.48.55 >/dev/null 2>&1; then
+            echo "✅ Network connectivity: OK"
+          else
+            echo "⚠️ Ping failed (may be blocked by firewall, continuing...)"
+          fi
+          
+          # Test SSH connection with verbose output
+          echo "🔍 Testing SSH connection..."
+          if timeout 15 ssh -v -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/karios-central.pem ec2-user@172.31.48.55 'echo "OK"' 2>&1; then
             echo "✅ SSH connection to docs-server: OK"
             
             # Check server health
@@ -118,6 +155,16 @@ jobs:
             fi
           else
             echo "❌ SSH connection failed"
+            echo "🔍 Debugging information:"
+            echo "   - Runner IP: $(hostname -I 2>/dev/null || echo 'Unknown')"
+            echo "   - Target: ec2-user@172.31.48.55"
+            echo "   - Key file: ~/.ssh/karios-central.pem"
+            echo ""
+            echo "Possible issues:"
+            echo "  1. SSH key secret not configured correctly in Gitea"
+            echo "  2. Network connectivity between runner and docs server"
+            echo "  3. Firewall blocking SSH port 22"
+            echo "  4. SSH key doesn't match the one on docs server"
             exit 1
           fi
           
