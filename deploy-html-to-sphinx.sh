@@ -44,7 +44,8 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
         
         # Extract HTML to /tmp/sphinx-build
         rm -rf /tmp/sphinx-build
-        cp -r sphinx-deploy/html /tmp/sphinx-build
+        mkdir -p /tmp/sphinx-build
+        cp -r sphinx-deploy/html/* /tmp/sphinx-build/
         
         # Use existing deployment script (has NOPASSWD sudo)
         sudo /usr/local/bin/deploy-sphinx-docs.sh /var/www/sphinx-docs
