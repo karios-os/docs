@@ -18,7 +18,7 @@ jobs:
   deploy-production-docs:
     # Only run on merged PRs or direct pushes to Public-release
     if: github.event_name == 'push' || (github.event.pull_request.merged == true)
-    runs-on: ub:host
+    runs-on: ub
     
     steps:
       - name: Checkout Repository
