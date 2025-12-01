@@ -1336,6 +1336,104 @@ Click on "more" to select actions:
 - **Configure**: Installing all required services and packages to provide a ready-to-use node
 - **Override BMC Status**: Cleans the existing file system and allows you to reprovision your node
 - **Unregister**: The node will be removed from the GUI. Run the scan again to discover the node
+- **BMO**: Baremetal operator. Used to perform various baremetal operations like power control, BIOS attribute updates, firmware updates, and hardware inventory capturing prior to provisioning.
+
+Baremetal operator (BMO)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Baremetal Management & Inventory (BMO) module enables centralized management and automation for Supermicro servers using their Baseboard Management Controllers (BMCs) via the Redfish protocol.
+
+**Key Capabilities:**
+
+- **Hardware Inventory:** Automatically collects detailed server information (CPU, memory, network, BIOS, etc.) by securely connecting to the BMC. Inventory data is stored for audit and reporting.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo1.png
+   :width: 900
+   :alt: BMO Hardware Inventory Overview
+   :align: center
+
+   Figure: Overview of hardware inventory showing server details.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo2.png
+   :width: 900
+   :alt: BMO Memory Information
+   :align: center
+
+   Figure: Memory inventory details.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo3.png
+   :width: 900
+   :alt: BMO Processor Information
+   :align: center
+
+   Figure: Processor inventory details.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo4.png
+   :width: 900
+   :alt: BMO Network Configuration
+   :align: center
+
+   Figure: Network configuration and PCIe device summary.
+
+- **BIOS Management:** View, update, and monitor BIOS attributes. Changes are applied through Redfish jobs, with status tracking and restart options.
+
+.. figure:: _static/images/bmo/bmo_biosattributes.png
+   :width: 900
+   :alt: BMO BIOS Attributes Management
+   :align: center
+
+   Figure: BIOS attribute management interface.
+
+- **Power Control:** Remotely monitor and control server power states (on, off, restart) with real-time feedback.
+
+.. figure:: _static/images/bmo/bmo_poweractions.png
+   :width: 900
+   :alt: BMO Power Control Interface
+   :align: center
+
+   Figure: Power control interface showing current power state and reset options.
+
+- **Firmware Updates:** View current BIOS/BMC firmware versions and perform updates by uploading firmware files. Progress is tracked and logged.
+
+.. figure:: _static/images/bmo/bmo_firmwareupdates.png
+   :width: 900
+   :alt: BMO Firmware Updates Management
+   :align: center
+
+   Figure: Firmware management interface for BIOS and BMC updates.
+
+- **BMO Hardware Reveal:** Build, list, mount, and delete custom inventory ISOs. Virtual media mounting and reboots are automated via Redfish.
+
+.. figure:: _static/images/bmo/bmo_hardwarereveal.png
+   :width: 900
+   :alt: BMO Hardware Reveal Interface
+   :align: center
+
+   Figure: Hardware reveal interface for managing inventory ISOs.
+
+- **Security & Permissions:** Role-based access ensures only authorized users can perform sensitive operations (e.g., firmware updates, BIOS changes).
+
+- **Node Unprovision** : Allows administrators to unprovision a node, cleaning up configurations and preparing it for future use.
+
+.. figure:: _static/images/bmo/bmo_nodeunprovision.png
+   :width: 900
+   :alt: BMO Node Unprovision Interface
+   :align: center
+
+   Figure: Node unprovision interface for cleaning up server configurations.
+
+**Technical Flow:**
+
+1. User selects a server and provides BMC credentials.
+2. BMO interacts with the BMC using Redfish APIs to perform inventory, BIOS, power, firmware, and ISO operations.
+3. All actions are validated, logged, and tracked for troubleshooting and compliance.
+4. The modular backend design allows for future extension to other hardware vendors and Redfish features.
+
+**Typical User Workflow:**
+
+- Select server → Register → Patch BIOS Attributres → Restart if needed → Update firmware → Monitor job status → Manage,Build custom ISOs for hardware reveal → Node Unprovision
+
+BMO is designed for reliability, security, and extensibility, making it a robust solution for baremetal lifecycle management in Karios.
 
 Server Information Display
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
