@@ -1341,7 +1341,7 @@ Click on "more" to select actions:
 Baremetal operator (BMO)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Baremetal Management & Inventory (BMO) module enables centralized management and automation for Supermicro servers using their Baseboard Management Controllers (BMCs) via the Redfish protocol.
+The Baremetal Management & Inventory (BMO) module enables centralized management and automation for Supermicro/Dell servers using their Baseboard Management Controllers (BMCs) via the Redfish protocol.
 
 **Key Capabilities:**
 
