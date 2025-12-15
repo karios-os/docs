@@ -169,7 +169,10 @@ Cluster Installation
 **Step 1.2.3: Create Cluster Machines in Karios UI**
 
 - Click **Setup Kubernetes**. 
-- Click on **OmniServer** 
+- Click on **Omni** 
+- You have two options to create the cluster machines:  
+  - **AddVM**: For virtual machine clusters.  
+  - **Add Node**: For bare metal clusters.
 
 .. figure:: _static/images/omni/om-1.png
    :alt: Cluster Deta
@@ -183,6 +186,8 @@ Cluster Installation
 
 .. note::
    Use the prefix ``om`` in the cluster name to identify Omni clusters.
+   for the baremetal Clusters , the nodes in the registered nodes will be shown here to select from. 
+
 
 - Select **Server**, **Storage Pool**, and **Network Switch**.  
 - Enter VM specs **CPU's, Memory(GB), Disk Size(GB)** and click **Update**.
@@ -337,7 +342,6 @@ Post-Removal Notes
 - After performing these steps, the Keycloak jail and its associated datasets are fully removed.  
 - Any configurations, users, or authentication data stored in this jail are **not recoverable** unless previously backed up.  
 - If OmniServer or other services were relying on Keycloak, ensure that an **alternative identity provider** is configured to avoid authentication issues.
-
 
 
 OpenShift Overview
@@ -692,14 +696,20 @@ This deployment option offers maximum flexibility for organizations that want to
 
 This approach is ideal for organizations that prefer to implement their own operational tooling around Kubernetes or have specific compliance requirements that benefit from a fully open source stack. The combination provides **enterprise-ready infrastructure capabilities** while maintaining **transparency and control** over the technology stack.
 
-Create the Ubuntu Kubernetes Cluster
-----------------------------------------
+Create the Ubuntu Kubernetes Virtual-Machines Cluster
+------------------------------------------------------
 
 **Step 3.1.1: Create the Cluster Machine in Karios UI**
 
 - Click **Setup Kubernetes** in the Karios UI, and Select **Ubuntu**.
 
 .. figure:: _static/images/UbuntuKubernetes/ubuntu-1.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+- Click on the **Provision Vm Cluster** to provision the Virtual Machines
+
+.. figure:: _static/images/UbuntuKubernetes/Ubuntuprovisioningpage.png
    :alt: Setup Kubernetes Button
    :width: 600
 
@@ -940,6 +950,44 @@ Example output:
    you can access the dashboard using the bootstrap/control plane node IP or any worker node IP.
 
 
+Create Ubuntu Kubernetes Bare Metal Cluster
+----------------------------------------------------
+**Step 3.4.1: Create the Cluster Machine in Karios UI**
+
+- Click **Setup Kubernetes** in the Karios UI, and Select **Ubuntu**.
+
+- Click on the **Provision Bare Metal Cluster** to provision the Bare Metal Nodes
+
+.. figure:: _static/images/UbuntuKubernetes/Ubuntuprovisioningpage.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+**Step 3.4.2: Enter Cluster Details**
+
+- **Cluster name**: Enter a DNS-compliant name (e.g., ``ub-bm-test1``).
+ 
+.. note::
+   The ``ub-bm`` prefix helps uniquely identify Ubuntu Bare Metal clusters.   
+
+- Enter **HostName**, **BMC IP Address** , **NodeType** , and **Additional techstack** If required.
+
+.. figure:: _static/images/UbuntuKubernetes/UbuntuK8s-baremetal-2.png
+   :alt: Attach Ubuntu Image
+   :width: 600
+
+- Click on the **Add Node** button to add Bare Metal Nodes to the Cluster.
+
+
+**Step 3.4.3: Wait for cluster Nodes to be ready**
+
+- Wait for the cluster Nodes to be ready for the cluster. Wait for them to report the ip
+
+
+... note::
+   It may take several minutes for all Nodes to be ready in the cluster.
+   Once the Nodes are ready the job status button disappears from the Karios UI.
+   And you can Access the Tech stack as mentioned in the previous section, Along with the verification of the Cluster setup.
+
 Create the K3s Cluster
 =============================
 
@@ -969,22 +1017,21 @@ Key internal differences from traditional Kubernetes:
 .. note::
    K3s is not a “reduced feature” Kubernetes. It is a **complete Kubernetes** distribution with optimizations that make it lighter, simpler, and easier to operate.
 
-----------------------------------------
 4.1 Create the K3s Cluster
-----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 4.1.1 Create the Cluster Machine in Karios UI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Click **Setup Kubernetes** in the Karios UI, and select **K3s**.
+- Click on the **Provision Vm Cluster** to provision the Virtual Machines
 
-.. figure:: _static/images/k3s/K3sFirstpage.png
+.. figure:: _static/images/k3s/k3sKubernetesBaremetalprovision-3.png
    :alt: Setup Kubernetes Button
    :width: 600
 
-
 4.1.2 Enter Cluster Details
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - **Cluster name**: Enter a DNS-compliant name (e.g., ``k3s-test1``).
 
@@ -1006,10 +1053,10 @@ Key internal differences from traditional Kubernetes:
    :width: 600
 
 4.1.3 Add a Bootstrap Node
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Click **Add Control Node**.
-image 
+
 .. note::
    The first K3s control node acts as the **primary server** and initializes the cluster.
 
@@ -1033,7 +1080,7 @@ image
 
 
 4.1.4 Add Additional Server Nodes (K3s Control Plane)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Click **Add Control Plane**.
 
@@ -1055,7 +1102,7 @@ image
 
 
 4.1.5 Add Worker Nodes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 - Click **Add Worker Node**.
 
@@ -1085,7 +1132,7 @@ image
 
 
 4.1.6 Wait for Cluster VMs to Become Ready
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Wait for all VMs to be provisioned.
 - Click the **Job Status** icon in the Karios UI to monitor progress.
@@ -1097,7 +1144,7 @@ image
 
 
 4.1.7 Verify Cluster High Availability
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Run the following commands on the bootstrap server:
 
@@ -1147,7 +1194,7 @@ Example:
 
 
 4.2.1.2 Access Grafana Dashboard
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""
 
 .. code-block:: none
 
@@ -1156,7 +1203,7 @@ Example:
 
 
 4.2.1.3 Access Prometheus Dashboard
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""
 
 .. code-block:: none
 
@@ -1170,9 +1217,47 @@ Example:
    - Password: ``prom-operator``  
 
 
-----------------------------------------
-4.3 Next Steps
-----------------------------------------
+Create K3s Kubernetes Bare Metal Cluster
+----------------------------------------------------
+**Step 4.3.1: Create the Cluster Machine in Karios UI**
+- Click **Setup Kubernetes** in the Karios UI, and Select **K3s**.
+
+.. figure:: _static/images/k3s/K3sFristpage.png
+   :alt: Setup Kubernetes Button
+   :width: 600
+
+- Click on the **Provision Bare Metal Cluster** to provision the Bare Metal Nodes
+
+.. figure:: _static/images/k3s/K3sKubernetesBaremetalprovision-2.png
+   :alt: Setup Kubernetes Button
+   :width: 600 
+
+**Step 4.3.2: Enter Cluster Details**
+
+- **Cluster name**: Enter a DNS-compliant name (e.g., ``k3s-bm-test1``).
+
+.. note::
+   The ``k3s-bm`` prefix helps uniquely identify K3s Bare Metal clusters.
+
+- Enter **HostName**, **BMC IP Address** , **NodeType** , and **Additional techstack** If required.
+
+.. figure:: _static/images/k3s/k3sKubernetesBaremetalprovision-3.png
+   :alt: Attach Ubuntu Image
+   :width: 600
+
+- Click on the **Add Node** button to add Bare Metal Nodes to the Cluster.
+
+**Step 4.3.3: Wait for cluster Nodes to be ready**
+- Wait for the cluster Nodes to be ready for the cluster. Wait for them to report the ip
+
+.. note::
+   It may take several minutes for all Nodes to be ready in the cluster.
+   Once the Nodes are ready the job status button disappears from the Karios UI.
+   And you can Access the Tech stack if selected during the cluster creation, using the similar steps mentioned in section 4.2.
+
+
+4.4 Next Steps
+~~~~~~~~~~~~~~~
 
 After deploying your K3s cluster, consider:
 
