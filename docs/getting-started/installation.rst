@@ -312,21 +312,20 @@ Critical Configuration Notes
 - Validate IOMMU device grouping
 - Confirm GPU pass-through capabilities if required
 
-Downloading the Karios ISO Image (Roadmap Ahead)
+Downloading the Karios ISO (Roadmap Ahead)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
-   **Always Use Latest FreeBSD Release**
+   **Always Use Latest KariosBSD Release**
    
-   Karios requires the latest stable FreeBSD release for optimal security, performance, and hardware compatibility. Always download FreeBSD 14.3 or the most current stable release available.
+   Karios requires the latest stable KariosBSD release for optimal security, performance, and hardware compatibility. Always download KariosBSD 14.3 or the most current stable release available.
 
 **Download Steps:**
 
-1. Navigate to the official FreeBSD download page: https://www.freebsd.org/where/
-2. **Download FreeBSD 14.3** (or latest stable version)
-3. Select the appropriate version based on your hardware architecture (typically x86_64)
-4. **Recommended ISO**: Use `FreeBSD-14.3-RELEASE-amd64-disc1.iso` for complete offline installation
-5. If unsure about architecture, consult with your system administrator
+1. Navigate to the official KariosBSD download page: https://
+2. **Download KariosBSD 14.3** (or latest stable version)
+3. **Recommended ISO**: Use `KariosBSD-14.3-RELEASE-amd64-disc1.iso` for complete offline installation
+4. If unsure about architecture, consult with your system administrator
 
 **Why Latest Release Matters:**
 
@@ -335,36 +334,6 @@ Downloading the Karios ISO Image (Roadmap Ahead)
 - **Performance**: Optimized kernel and system components
 - **Compatibility**: Best compatibility with Karios components
 - **Long-term Support**: Extended maintenance and update lifecycle
-
-**Verify Download Integrity**
-
-.. code-block:: bash
-
-   # On Linux/macOS, verify the FreeBSD 14.3 ISO checksum
-   sha256sum FreeBSD-14.3-RELEASE-amd64-disc1.iso
-   
-   # On FreeBSD, use:
-   sha256 FreeBSD-14.3-RELEASE-amd64-disc1.iso
-   
-   # On Windows (PowerShell), use:
-   Get-FileHash FreeBSD-14.3-RELEASE-amd64-disc1.iso -Algorithm SHA256
-   
-   # Compare with the official checksum from FreeBSD download page:
-   # https://www.freebsd.org/where/
-
-.. important::
-   **Official FreeBSD 14.3 Checksums**
-   
-   Always verify your downloaded ISO matches the official FreeBSD checksums:
-   - Download the CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64 file
-   - Compare the calculated hash with the official checksum
-   - **Never proceed with installation if checksums don't match**
-
-.. code-block:: bash
-
-   # Automated verification on FreeBSD/Linux:
-   fetch https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64
-   sha256sum -c CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64 FreeBSD-14.3-RELEASE-amd64-disc1.iso
 
 Creating a Bootable USB Drive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -383,7 +352,7 @@ Creating a Bootable USB Drive
 .. warning::
    All data on the selected USB drive will be erased.
 
-3. Click the "SELECT" button and browse to the downloaded FreeBSD 14.3 ISO file
+3. Click the "SELECT" button and browse to the downloaded KariosBSD 14.3 ISO file
 4. Set partition scheme to "MBR" or "GPT" based on your system's BIOS/UEFI settings
 
 .. tip::
@@ -394,7 +363,7 @@ Creating a Bootable USB Drive
 **Etcher Instructions (Cross-Platform)**
 
 1. Download and run Etcher
-2. Click "Flash from file" and select the FreeBSD 14.3 ISO file
+2. Click "Flash from file" and select the KariosBSD 14.3 ISO file
 3. Select your USB drive as the target device
 4. Click "Flash!"
 
@@ -404,7 +373,7 @@ Creating a Bootable USB Drive
 
    # Replace /dev/sdX with your USB drive identifier
    # Use 'lsblk' or 'fdisk -l' to identify the correct drive
-   sudo dd if=FreeBSD-14.3-RELEASE-amd64-disc1.iso of=/dev/sdX bs=4M status=progress
+   sudo dd if=KariosBSD-14.3-RELEASE-amd64-disc1.iso of=/dev/sdX bs=4M status=progress
    sudo sync
 
 Installation Process
@@ -430,11 +399,6 @@ For new users, here's the complete installation process from start to finish:
    ✓ Enable ALL security hardening options
    ✓ Create user account and add to wheel group
    ✓ Verify ZFS after reboot: `zpool status`
-   
-   **Phase 3: Karios Bootstrap**
-   ✓ Obtain bootstrap URL from Karios support
-   ✓ Download and execute bootstrap script
-   ✓ Accept EULA by typing exactly "yes"
    ✓ Access web interface after completion
 
 .. _filesystem-requirements:
@@ -445,7 +409,7 @@ Critical Filesystem Requirements
 .. important::
    **ZFS Filesystem Requirement**
    
-   Karios requires ZFS to be installed and will not work on FreeBSD systems installed with UFS. Please ensure you select ZFS.
+   Karios requires ZFS to be installed and will not work on KariosBSD systems installed with UFS. Please ensure you select ZFS.
 
 **Why ZFS is Required:**
 
@@ -588,22 +552,30 @@ FreeBSD Installation with ZFS
 
 Follow these specific steps during the FreeBSD installation phase to ensure ZFS is properly configured:
 
-**Phase 1: FreeBSD Base Installation with ZFS**
+**Phase 1: KariosBSD Base Installation with ZFS**
 
 1. **Boot from USB Drive**
    - Insert the USB drive and boot from it
-   - Select "Install" from the FreeBSD installer menu
 
 .. figure:: _static/images/freebsd-installation/welcome-menu.png
    :width: 600
    :alt: FreeBSD installer welcome menu
 
 2. **Installer Welcome Screen**
+   - Select "Install" from the KariosBSD installer menu
    - Press Enter to continue with installation
+
+.. figure:: _static/images/freebsd-installation/welcome-menu_install.png
+   :width: 600
+   :alt: FreeBSD installer welcome menu
 
 3. **Keymap Selection**
    - Select appropriate keymap for your region
    - Press Enter to continue
+
+.. figure:: _static/images/freebsd-installation/key_map.png
+   :width: 600
+   :alt: FreeBSD installer welcome menu
 
 4. **Hostname Configuration**
    - Enter your desired hostname (e.g., "karios-node01")
@@ -771,10 +743,37 @@ f. **Confirmation:**
    :width: 600
    :alt: ZFS final warning before installation begins
 
+g. **Checksum Verification:**
+   - Installer will verify ISO checksum
+   - Wait for verification to complete
+
+.. figure:: _static/images/freebsd-installation/checksum-verification.png
+   :width: 600
+   :alt: Checksum verification screen
+
+h. **Archive Extraction:**
+   - Installer will extract and install selected components
+   - This may take several minutes
+
+.. figure:: _static/images/freebsd-installation/extraction.png
+   :width: 600
+   :alt: Extraction progress screen
+
 7. **Continue Standard Installation**
    - Set root password
    - Configure network interfaces  
+
+.. figure:: _static/images/freebsd-installation/configure_network.png
+   :width: 600
+   :alt: Configure network interface screen
+
+7a.**Continue Standard Installation**
    - Select time zone
+
+.. figure:: _static/images/freebsd-installation/time_zone.png
+   :width: 600
+   :alt: Configure time zone screen
+
    - Enable system services (sshd recommended)
    - Add users if desired
    - Apply configuration and exit installer
@@ -786,7 +785,7 @@ f. **Confirmation:**
 
 **ZFS Verification Commands**
 
-After FreeBSD installation completes, verify ZFS is properly configured:
+After KariosBSD installation completes, verify ZFS is properly configured:
 
 .. code-block:: bash
 
@@ -824,7 +823,7 @@ After FreeBSD installation completes, verify ZFS is properly configured:
    * - **"zpool status" shows errors**
      - Restart installation, verify disk health before proceeding
 
-Kickstart Installation Steps
+Karios Bootstrap Auto-Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Karios installation follows a two-phase process:
@@ -833,24 +832,11 @@ The Karios installation follows a two-phase process:
 
 **Phase 2: Karios Bootstrap**
 
-.. important::
-   **Prerequisites Verification**
-   
-   Before proceeding with bootstrap, verify ZFS is properly installed:
+.. figure:: _static/images/freebsd-installation/second_welcome.png
+   :width: 600
+   :alt: Second Bootstrap welcome screen
 
-.. code-block:: bash
-
-   # MANDATORY: Verify ZFS before bootstrap
-   zpool status zroot
-   # Must show: state: ONLINE
-   
-   # Verify ZFS root filesystem  
-   df -h / | grep zfs
-   # Must show ZFS filesystem mounted as root
-
-If either command fails or doesn't show ZFS, **DO NOT PROCEED** with bootstrap installation. You must reinstall FreeBSD with ZFS.
-
-After FreeBSD installation is complete and ZFS is verified, execute the bootstrap commands:
+After KariosBSD installation is complete, bootstrap automatically installs and configures Karios components:
 
 .. tip::
    **What is Bootstrap?** A bootstrap script is an automated installer that downloads and configures all necessary software components. It eliminates manual setup by handling package installation, configuration, and service initialization automatically.
@@ -887,176 +873,27 @@ After FreeBSD installation is complete and ZFS is verified, execute the bootstra
 - **Use sudo for**: Complex environments requiring granular control, extensive logging, or plugin support
 - **Avoid direct root for**: Any multi-user environment or production system where accountability and security are required
 
-Bootstrap Script Download and Preparation
+Auto-Bootstrap Installation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important::
-   **Bootstrap Access Required**
-   
-   Before proceeding with this section, you **must** have:
-   - Completed FreeBSD installation with ZFS
-   - Obtained your unique bootstrap download URL from Karios
-   - Verified ZFS is working: `zpool status` shows "ONLINE"
+After completing the KariosBSD installation with ZFS, the system will automatically initiate the Karios bootstrap process upon first boot.
 
-**How to Obtain Bootstrap URL**
-
-If you don't have your bootstrap download link:
-
-1. **Contact Karios Support**: Email support@karios.ai 
-2. **Sales Representative**: Contact your assigned Karios sales representative  
-3. **Customer Portal**: Check your customer portal for download links
-4. **Phone Support**: Call the support number provided in your welcome email
-
-
-
-**Bootstrap Download and Common Preparation**
-
-.. note::
-   **Bootstrap Download Link**: Contact your Karios sales representative or support team to obtain the official bootstrap download URL. Each customer receives a unique, secure download link for their specific deployment.
-
-**Execution Method Selection**
-
-Choose one of the following methods based on your security requirements and system configuration:
-
-Method 1: Using sudo (Recommended - Highest Security)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. tip::
-   **Best Practice**: This is the recommended approach for production environments as it provides the highest level of security and audit capabilities.
-
-**Prerequisites:**
-- Non-root user account must exist
-- User must have sudo privileges configured
-
-**Steps:**
-
-.. code-block:: bash
-
-   # Install sudo if not present
-   pkg install sudo
-
-   # Download bootstrap script to user directory
-   fetch --no-verify-peer --no-verify-hostname "YOUR_PROVIDED_BOOTSTRAP_URL" -o bootstrap.sh
-   chmod +x bootstrap.sh
-
-   # Verify sudo access and review script
-   sudo whoami  # Should return "root"
-   less bootstrap.sh
-
-   # Execute bootstrap with sudo
-   sudo ./bootstrap.sh
-
-**sudo Security Benefits:**
-- Time-limited privilege escalation (default 5-minute timeout)
-- User accountability and traceability  
-- Granular permission control
-- Script executed from user directory, not root filesystem
-
-
-**Installation Security Checklist**
-
-Implement this comprehensive security checklist during installation:
-
-.. list-table:: 
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Security Check
-     - Verification Steps
-   * - **Script Source Verification**
-     - Confirm bootstrap script URL is from official Karios sources
-   * - **Network Security**
-     - Ensure secure network connection during download and installation
-   * - **Script Content Review**
-     - Examine bootstrap script contents for expected commands and functionality
-   * - **User Privilege Management**
-     - Use appropriate privilege escalation (sudo/doas instead of direct root access)
-   * - **System Backup**
-     - Backup critical data before installation to prevent data loss
-
-EULA Agreement and License Acceptance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-During the bootstrap installation, you will be prompted to accept the End User License Agreement (EULA).
-
-.. note::
-   **What is EULA?** An End User License Agreement is a legal contract between the software provider and user that defines terms, conditions, limitations, and rights for software use. EULA acceptance is mandatory to proceed with Karios installation.
-
-**EULA Acceptance Process:**
-
-1. **Comprehensive Review**: Thoroughly read the license agreement terms displayed on screen
-2. **Legal Compliance**: Ensure your organization's policies allow acceptance of the license terms
-3. **Precise Acceptance**: When prompted for EULA agreement, type exactly ``yes`` (lowercase)
-4. **Confirmation**: Press Enter to confirm your acceptance and proceed with installation
-
-.. warning::
-   **Critical Input Requirement**: The confirmation text must be exactly lowercase ``yes``. Any other format (Yes, YES, y, etc.) will terminate the script and prevent installation from continuing. This precision is required for legal compliance verification.
-
-
-**Post-Bootstrap Security Validation**
-
-After successful bootstrap completion, verify system security:
-
-.. figure:: _static/images/installation/installation1.png
+.. figure:: _static/images/freebsd-installation/bootstrap1.png
    :width: 600
    :alt: Bootstrap installation initiated  
 
-.. figure:: _static/images/installation/installation2.png
+.. figure:: _static/images/freebsd-installation/bootstrap2.png
    :width: 600
-   :alt: Bootstrap installation started
+   :alt: Bootstrap installation initiated  
 
-.. figure:: _static/images/installation/installation3.png
+.. figure:: _static/images/freebsd-installation/bootstrap3.png
    :width: 600
-   :alt: Bootstrap installation in progress    
+   :alt: Bootstrap installation initiated  
 
-.. figure:: _static/images/installation/installation5.png
+.. figure:: _static/images/freebsd-installation/bootstrap4.png
    :width: 600
-   :alt: Bootstrap installation completed
+   :alt: Bootstrap installation initiated  
 
-**Critical FreeBSD Installation Security Settings**
-
-.. important::
-   **Security Hardening During Installation**
-   
-   During the FreeBSD installation process (before bootstrap), you will encounter security hardening options. **SELECT ALL SECURITY OPTIONS** for production Karios deployments:
-
-**Required Security Hardening Options:**
-
-.. list-table:: Security Options to Enable
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Security Option
-     - Purpose and Requirement
-   * - **hide_uids**
-     - **Enable** - Hide processes from other users for better security
-   * - **hide_gids**
-     - **Enable** - Hide group processes for enhanced privacy
-   * - **hide_jail**
-     - **Enable** - Hide jail processes for container security
-   * - **read_msgbuf**
-     - **Enable** - Disable kernel message buffer access for unprivileged users
-   * - **proc_debug**
-     - **Enable** - Disable process debugging for non-privileged users
-   * - **random_pid**
-     - **Enable** - Randomize process IDs for security
-   * - **clear_tmp**
-     - **Enable** - Clean /tmp directory on system startup
-   * - **disable_syslogd**
-     - **Enable** - Secure syslogd network socket configuration
-   * - **disable_sendmail**
-     - **Enable** - Disable sendmail service (not needed for Karios)
-   * - **secure_console**
-     - **Enable** - Require root password for single-user mode
-   * - **disable_ddtrace**
-     - **Enable** - Disable destructive DTrace operations
-   * - **enable_aslr**
-     - **Enable** - Enable Address Space Layout Randomization
-
-.. warning::
-   **Security Requirement**
-   
-   For production Karios deployments, **ALL** security hardening options must be enabled during FreeBSD installation. This provides essential security baseline required for hypervisor environments.
 
 **User Account Creation Requirements**
 
@@ -1102,16 +939,100 @@ After successful bootstrap completion, verify system security:
 .. code-block:: bash
 
    # Verify bootstrap installation logs
-   tail -f /tmp/bootstrap.log
-   
-   # Check system security status
-   sudo service status
+   cat /var/log/bootstrap_ansible.log
    
    # Verify network security configuration
    netstat -an | grep LISTEN
 
 .. note::
-   The bootstrap script automatically installs and configures all Karios components, security settings, and service dependencies after successful EULA acceptance and execution.
+   The bootstrap script automatically installs and configures all Karios components, security settings and service dependencies.
+
+
+**Karios Configuration Completed**
+
+.. figure:: _static/images/freebsd-installation/credentials.png
+   :width: 600
+   :alt: Bootstrap installation completed with credentials screen 
+
+Upon successful completion of the bootstrap installation, you will see a configuration summary screen displaying all system credentials and access information:
+
+.. important::
+   **CRITICAL: Save These Credentials Immediately!**
+   
+   The configuration completion screen displays all default credentials for Karios components. **You must save these credentials before proceeding** as they are required to access and manage your Karios system.
+
+**Credentials Displayed on Completion Screen:**
+
+.. list-table:: Karios System Credentials
+   :header-rows: 1
+   :widths: 30 25 25 20
+
+   * - Component
+     - Username
+     - Password
+     - Port/URL
+   * - **Karios HCI Admin**
+     - admin
+     - (displayed on screen)
+     - https://karios-node01.XXX.com
+   * - **Karios ATLAS (NetBox)**
+     - admin
+     - (displayed on screen)
+     - http://karios-node01.XXX.com:8000
+   * - **Grafana Monitoring**
+     - admin
+     - (displayed on screen)
+     - http://karios-node01.XXX.com:3000
+
+.. warning::
+   **Security Best Practice**
+   
+   - **Save all credentials immediately** in a secure password manager
+   - **Do not share credentials** via insecure channels (email, chat, etc.)
+   - **Document the access URLs** with their respective ports for future reference
+
+**Access Information:**
+
+The completion screen will display:
+
+- **Karios Management Interface**: Primary HCI administration portal
+- **ATLAS/NetBox Interface**: Network and infrastructure documentation system
+- **Grafana Monitoring Interface**: System metrics and performance dashboards
+
+.. code-block:: text
+
+   ================================================================
+   ▣ Karios HCI Platform Successfully Deployed! ▣
+   ================================================================
+   
+   ================================================================
+                    SAVE THESE CREDENTIALS IMMEDIATELY!
+   ================================================================
+   
+   Karios HCI Admin Credentials:
+     Username: admin
+     Password: [generated_password]
+   
+   Karios ATLAS (NetBox) Credentials:
+     Username: admin
+     Password: [generated_password]
+   
+   Grafana Monitoring Credentials:
+     Username: admin
+     Password: [generated_password]
+   
+   Karios Management Interface: https://karios-node01.XXX.com
+   ATLAS/NetBox Interface: http://karios-node01.XXX.com:8000
+   Grafana Monitoring Interface: http://karios-node01.XXX.com:3000
+   
+   ▣  CRITICAL: Save these credentials before proceeding!
+   
+   Press Enter to exit...
+
+**Post-Credential Save Actions:**
+
+1. **Document all credentials** in your organization's secure credential management system
+2. **Test access** to each interface using the provided credentials
 
 
 **Reinstallation Security Considerations**
@@ -1175,17 +1096,124 @@ After bootstrap completion, verify your Karios installation:
 - ZFS pool should show "ONLINE" status  
 - No critical errors in system logs
 
+Retrieving Saved Credentials
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you need to retrieve the system credentials after installation, all credentials are saved in a text file on the Karios node.
+
+.. figure:: _static/images/freebsd-installation/install_info.png
+   :width: 600
+   :alt: Karios installation credentials file
+
+.. important::
+   **Credential Storage Location**
+   
+   All installation credentials are automatically saved to ``/root/karios_install_info.txt`` for future reference.
+
+**To View Saved Credentials:**
+
+.. code-block:: bash
+
+   # Login as root or use sudo to view the credentials file
+   cat /root/karios_install_info.txt
+
+**Credential File Contents:**
+
+The ``karios_install_info.txt`` file contains all system access credentials and URLs:
+
+.. code-block:: text
+
+   KARIOS_NODE_FQDN="karios-node1.example.com"
+   KARIOS_ADMIN_PASSWORD="[generated_password]"
+   
+   ATLAS_USERNAME="admin"
+   ATLAS_PASSWORD="[generated_password]"
+   ATLAS_URL="http://karios-node1.example.com:8000"
+   
+   GRAFANA_USERNAME="admin"
+   GRAFANA_PASSWORD="[generated_password]"
+   GRAFANA_URL="http://karios-node1.example.com:3000"
+   
+   NODE_FQDN="karios-node1.example.com"
+   KARIOS_DOMAIN="example.com"
+   TECHNITIUM_VM_IP="192.168.x.xx"
+   TECHNITIUM_VM_NAME="technitium-dns"
+   TECHNITIUM_ADMIN_PASSWORD="[generated_password]"
+   TECHNITIUM_WEB_URL="http://192.168.x.xx:5380"
+
+**Information Stored in Credentials File:**
+
+.. list-table:: 
+   :header-rows: 1
+   :widths: 35 65
+
+   * - Credential/Setting
+     - Description
+   * - **KARIOS_NODE_FQDN**
+     - Fully Qualified Domain Name of the Karios node
+   * - **KARIOS_ADMIN_PASSWORD**
+     - Password for Karios HCI administrative interface
+   * - **ATLAS_USERNAME**
+     - Username for ATLAS/NetBox infrastructure documentation system
+   * - **ATLAS_PASSWORD**
+     - Password for ATLAS/NetBox system
+   * - **ATLAS_URL**
+     - Complete URL to access ATLAS interface (port 8000)
+   * - **GRAFANA_USERNAME**
+     - Username for Grafana monitoring dashboards
+   * - **GRAFANA_PASSWORD**
+     - Password for Grafana monitoring system
+   * - **GRAFANA_URL**
+     - Complete URL to access Grafana interface (port 3000)
+   * - **NODE_FQDN**
+     - Node Fully Qualified Domain Name
+   * - **KARIOS_DOMAIN**
+     - Domain name for the Karios deployment
+   * - **TECHNITIUM_VM_IP**
+     - IP address of the Technitium DNS virtual machine
+   * - **TECHNITIUM_VM_NAME**
+     - Name of the Technitium DNS VM
+   * - **TECHNITIUM_ADMIN_PASSWORD**
+     - Administrative password for Technitium DNS server
+   * - **TECHNITIUM_WEB_URL**
+     - Web interface URL for Technitium DNS (port 5380)
+
+.. tip::
+   **Quick Credential Retrieval**
+   
+   You can quickly search for specific credentials using grep:
+   
+   .. code-block:: bash
+   
+      # Find Karios admin password
+      grep KARIOS_ADMIN_PASSWORD /root/karios_install_info.txt
+      
+      # Find all URLs
+      grep URL /root/karios_install_info.txt
+      
+      # View Grafana credentials only
+      grep GRAFANA /root/karios_install_info.txt
+
+.. warning::
+   **File Security**
+   
+   - The credentials file is stored in ``/root/`` directory with restricted access
+   - Only root user can read this file by default
+   - **Backup this file securely** to your password management system
+   - **Do not share** this file via insecure channels
+   - Consider **encrypting backups** of this file
+
 Accessing the Karios Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once installation is complete, access the Karios management interface:
 
-.. figure:: _static/images/installation/installation4.png
+.. figure:: _static/images/freebsd-installation/ui_screen.png
    :width: 600
    :alt: Bootstrap installation completed
 
 1. **Web Browser**: Open a web browser on a computer connected to the same network
-2. **Management URL**: Navigate to the Karios management interface URL (typically ``https://<server-ip>``)
+2. **Management URL**: Navigate to the Karios management interface URL (typically ``https://<server-fqdn>``)
 3. **Login Credentials**: Use the administrative credentials created during installation
 4. **Initial Setup Wizard**: Complete the guided setup process
 
@@ -1246,13 +1274,10 @@ If you need assistance with the installation process:
 .. code-block:: bash
 
    # Installation logs
-   /var/log/karios-install.log
+   /var/log/bootstrap_ansible.log
    
    # System logs
    /var/log/messages
-   
-   # Bootstrap logs
-   /tmp/bootstrap.log
    
    # sudo/doas activity logs
    /var/log/secure
@@ -1265,7 +1290,7 @@ Next Steps
 After successful installation, complete these essential tasks in order:
 
 1. **Access Web Interface**
-   - Open browser and navigate to: `https://YOUR_SERVER_IP`
+   - Open browser and navigate to: `https://YOUR_SERVER_FQDN`
    - Accept SSL certificate warning (self-signed)
    - Login with credentials created during FreeBSD installation
 
