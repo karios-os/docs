@@ -53,12 +53,19 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
         # Use existing deployment script (has NOPASSWD sudo)
         sudo /usr/local/bin/deploy-sphinx-docs.sh /var/www/sphinx-docs
         
+        # Fix permissions for nginx to read the files
+        echo "🔐 Fixing permissions..."
+        sudo chown -R www-data:www-data /var/www/sphinx-docs/ 2>/dev/null || sudo chown -R nginx:nginx /var/www/sphinx-docs/ 2>/dev/null || true
+        sudo chmod -R 755 /var/www/sphinx-docs/
+        sudo find /var/www/sphinx-docs -type f -exec chmod 644 {} \;
+        
         # Cleanup
         rm -rf sphinx-deploy /tmp/sphinx-build
         rm -f "$DOCS_FILENAME"
         
         echo "✅ Deployed to /var/www/sphinx-docs/"
         echo "📊 File count: \$(find /var/www/sphinx-docs -type f | wc -l)"
+        echo "📁 Permissions: \$(ls -ld /var/www/sphinx-docs)"
 EOF
 
     if [ $? -eq 0 ]; then
