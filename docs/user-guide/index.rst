@@ -5255,7 +5255,7 @@ Security Center Navigation
    - Navigate to the "Security" tab on any node in the node's main menu
    - The below image clearly indicates where to find the 'Security' tab on the interface.
 
-   .. figure:: _static/images/security/security_tab_pointer_new.png
+   .. figure:: _static/images/security/security_tab_pointer_newui2.png
       :width: 600
       :alt: Security Tab Pointer
 
@@ -5272,7 +5272,7 @@ Security Dashboard Interface
    - Key metrics include risk percentage, system status, last scan status and top risk category
    - The below image clearly shows where to find 'Scan' Button
 
-   .. figure:: _static/images/security/security_scan_pointer_new.png
+   .. figure:: _static/images/security/security_scan_pointer_newui.png
       :width: 600
       :alt: Security Scan Button
 
@@ -5328,7 +5328,7 @@ Vulnerability Assessment Interface
    - Scroll Down to view detailed vulnerabilities information along with remediation options
    - Please click on the vulnerability to know more information about it
 
-   .. figure:: _static/images/security/security_vuln_info_new.png
+   .. figure:: _static/images/security/security_vuln_info_newui.png
       :width: 600
       :alt: Vulnerability Information
 
@@ -5339,7 +5339,7 @@ Vulnerability Details and Information
    - Click on any vulnerability to access detailed information
    - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links
 
-   .. figure:: _static/images/security/security_vuln_popup_new.png
+   .. figure:: _static/images/security/security_vuln_popup_newui.png
       :width: 600
       :alt: Vulnerability Popup
 
@@ -5384,7 +5384,7 @@ Recommendation Process
    - Service Continuity Protection - Remediation scripts avoid automatic service restarts and include clear warnings about potential disruption to critical services like SSH and databases.
    - Operational Documentation - Each rule includes comprehensive warning, remediation, and recommendation sections with specific manual steps for safe implementation in production environments.
 
-   .. figure:: _static/images/security/recommendation_pointer_new.png
+   .. figure:: _static/images/security/recommendation_pointer_newui.png
       :width: 600
       :alt: Vulnerability Recommendation Pointer
 
@@ -5399,7 +5399,7 @@ Recommendation Pop-up
      - Potential impact analysis
      - Manual remediation steps
 
-   .. figure:: _static/images/security/recommendation_popup_new.png
+   .. figure:: _static/images/security/recommendation_popup_newui.png
       :width: 600
       :alt: Vulnerability Recommendation Popup
 
@@ -5416,7 +5416,7 @@ Security Scan History Navigation
    - Review past scan results and reports
    - Please click on the 'Metrics' button beside the 'Scan' button to navigate to Security Scan History Page
 
-   .. figure:: _static/images/security/security_navigate_to_history_page_new.png
+   .. figure:: _static/images/security/security_navigate_to_history_page_newui.png
       :width: 600
       :alt: Security Scan History Pointer
 
@@ -5428,7 +5428,7 @@ Security Scan History Dashboard
    - Review historical reports in html and PDF formats
    - You can find the previous scan details, Compliance Score from earlier scan and other additional details in this Security Scan History Page
 
-   .. figure:: _static/images/security/security_history_page_new.png
+   .. figure:: _static/images/security/security_history_page_newui.png
       :width: 600
       :alt: Security History Page
 
@@ -5438,7 +5438,7 @@ Security Report Generation
 """"""""""""""""""""""""""
    - The below image clearly indicates where to find the PDF & HTML report download options under the Scan History section
 
-   .. figure:: _static/images/security/security_report_pointer_new.png
+   .. figure:: _static/images/security/security_report_pointer_newui.png
       :width: 600
       :alt: Security Report Pointer
 
@@ -5449,11 +5449,25 @@ Security Report Content
    - Once downloaded, the security report will contain detailed information of all the vulnerabilities identified in the scan
    - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details
 
-   .. figure:: _static/images/security/security_report_content_new.png
+   .. figure:: _static/images/security/security_report_content_newui.png
       :width: 600
       :alt: Security Report Content
 
       Figure 11: Security Report Content
+
+Virtual Machine Security Scan
+"""""""""""""""""""""""""""""
+   - When a VM is created with CloudInit, Kshield Agent installs automatically on first boot and performs the security scan.
+   - Click the Scan action for a VM to start a security scan from the Security Center view.
+   - Review all virtual machines with their FQDN/IP, OS type, creation time, and current compliance score.
+   - Ubuntu and RHEL virtual machines are currently supported; Windows virtual machine scanning is coming soon.
+
+   .. figure:: _static/images/security/virtual_machine_security_scan_newui.png
+      :width: 600
+      :alt: Virtual Machine Security Scan
+
+      Figure 12: Virtual Machine Security Scan
+
 
 **Security Report Components**
 
