@@ -5157,7 +5157,7 @@ Security Center Navigation
    - Navigate to the "Security" tab on any node in the node's main menu
    - The below image clearly indicates where to find the 'Security' tab on the interface.
 
-   .. figure:: _static/images/security/security_tab_pointer_newui.png
+   .. figure:: _static/images/security/security_tab_pointer_newui2.png
       :width: 600
       :alt: Security Tab Pointer
 
