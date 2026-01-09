@@ -1175,6 +1175,82 @@ After bootstrap completion, verify your Karios installation:
 - ZFS pool should show "ONLINE" status  
 - No critical errors in system logs
 
+
+Setup DNS and DHCP Services
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Karios includes a bundled Technitium DNS-DHCP Server for comprehensive network management.
+
+**Quick Access Information:**
+
+1. **Get DNS Server IP Address**
+
+   .. code-block:: bash
+
+      cat /root/karios_info.txt
+
+   .. figure:: _static/images/installation/Technitium_Ip.png
+      :width: 600
+      :alt: Karios info file showing DNS server IP address
+
+2. **Access Technitium Web Interface**
+
+   - **URL**: ``http://<DNS_SERVER_IP>:5380``
+   - **Default Username**: ``admin``
+   - **Default Password**: ``adminadmin``
+
+   .. figure:: _static/images/installation/Technitium_Login.png
+      :width: 600
+      :alt: Technitium DNS server login screen
+
+3. **Pre-configured DHCP Services**
+
+   The DHCP server is automatically configured to serve IP addresses within your network's subnet range.
+
+   .. figure:: _static/images/installation/Technitium_DHCP.png
+      :width: 600
+      :alt: Technitium DNS server DHCP configuration screen
+
+4. **Pre-configured DNS Services**
+
+   DNS server resolves local VM hostnames within the primary domain.
+
+   .. figure:: _static/images/installation/Technitium_DNS.png
+      :width: 600
+      :alt: Technitium DNS server DNS configuration screen
+
+.. hint::
+   **Verify Network Configuration**
+   
+   Check the Primary Domain and Search Domains configured in Technitium:
+   
+   .. code-block:: bash
+   
+      cat /etc/resolv.conf
+
+**Complete DNS and DHCP Configuration Guide:**
+
+For comprehensive step-by-step configuration instructions covering all DNS and DHCP features, refer to the dedicated Technitium documentation:
+
+.. note::
+   **Technitium DHCP & DNS Setup Guide**
+   
+   For detailed configuration instructions including:
+   
+   - DNS zones management (Primary, Secondary, Reverse DNS)
+   - DNS records (A, CNAME, PTR, MX, TXT, SRV)
+   - Zone transfers and replication
+   - DHCP scope configuration and management
+   - DHCP reservations and lease monitoring
+   - MAC address tracking and vendor identification
+   - Migration from existing DHCP/DNS infrastructure
+   - Dynamic DNS integration
+   - Troubleshooting and monitoring
+
+.. important::
+   **See Complete Guide**: `Technitium DHCP & DNS Setup Guide <../technitium/index.html>`_
+
+
 Accessing the Karios Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
