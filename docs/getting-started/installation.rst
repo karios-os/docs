@@ -10,6 +10,9 @@ Overview
 
 Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components pre-configured for optimal performance and security.
 
+.. note::
+   **Last Updated**: January 2026 - Simplified installation with automatic installer.
+
 
 .. _system-requirements:
 
