@@ -212,10 +212,6 @@ jobs:
               echo ""
               echo "✅ Documentation deployed successfully!"
               echo "🌐 https://docs.karios.ai/"
-              
-              # Reload nginx to serve updated content
-              echo "🔄 Reloading nginx on sphinx server..."
-              ssh bastion 'ssh sphinx-server "sudo systemctl reload nginx || sudo nginx -s reload"' && echo "✅ Nginx reloaded" || echo "⚠️ Nginx reload may have failed"
             else
               echo "❌ Deployment script failed!"
               exit 1

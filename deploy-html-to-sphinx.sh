@@ -53,10 +53,6 @@ if scp "$DOCS_FILE" docs-server:/tmp/; then
         # Use existing deployment script (has NOPASSWD sudo)
         sudo /usr/local/bin/deploy-sphinx-docs.sh /var/www/sphinx-docs
         
-        # Reload nginx to serve updated content
-        echo "🔄 Reloading nginx..."
-        sudo systemctl reload nginx 2>/dev/null || sudo nginx -s reload 2>/dev/null || echo "⚠️ nginx reload skipped"
-        
         # Cleanup
         rm -rf sphinx-deploy /tmp/sphinx-build
         rm -f "$DOCS_FILENAME"
