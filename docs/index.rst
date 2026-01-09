@@ -103,6 +103,12 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Software-Defined Networking
+
+   sdn/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: Technitium DHCP & DNS Setup Guide
 
    technitium/index
