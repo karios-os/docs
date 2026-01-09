@@ -1336,6 +1336,104 @@ Click on "more" to select actions:
 - **Configure**: Installing all required services and packages to provide a ready-to-use node
 - **Override BMC Status**: Cleans the existing file system and allows you to reprovision your node
 - **Unregister**: The node will be removed from the GUI. Run the scan again to discover the node
+- **BMO**: Baremetal operator. Used to perform various baremetal operations like power control, BIOS attribute updates, firmware updates, and hardware inventory capturing prior to provisioning.
+
+Baremetal operator (BMO)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Baremetal Management & Inventory (BMO) module enables centralized management and automation for Supermicro/Dell servers using their Baseboard Management Controllers (BMCs) via the Redfish protocol.
+
+**Key Capabilities:**
+
+- **Hardware Inventory:** Automatically collects detailed server information (CPU, memory, network, BIOS, etc.) by securely connecting to the BMC. Inventory data is stored for audit and reporting.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo1.png
+   :width: 900
+   :alt: BMO Hardware Inventory Overview
+   :align: center
+
+   Figure: Overview of hardware inventory showing server details.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo2.png
+   :width: 900
+   :alt: BMO Memory Information
+   :align: center
+
+   Figure: Memory inventory details.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo3.png
+   :width: 900
+   :alt: BMO Processor Information
+   :align: center
+
+   Figure: Processor inventory details.
+
+.. figure:: _static/images/bmo/bmo_hardwareInventoryInfo4.png
+   :width: 900
+   :alt: BMO Network Configuration
+   :align: center
+
+   Figure: Network configuration and PCIe device summary.
+
+- **BIOS Management:** View, update, and monitor BIOS attributes. Changes are applied through Redfish jobs, with status tracking and restart options.
+
+.. figure:: _static/images/bmo/bmo_biosattributes.png
+   :width: 900
+   :alt: BMO BIOS Attributes Management
+   :align: center
+
+   Figure: BIOS attribute management interface.
+
+- **Power Control:** Remotely monitor and control server power states (on, off, restart) with real-time feedback.
+
+.. figure:: _static/images/bmo/bmo_poweractions.png
+   :width: 900
+   :alt: BMO Power Control Interface
+   :align: center
+
+   Figure: Power control interface showing current power state and reset options.
+
+- **Firmware Updates:** View current BIOS/BMC firmware versions and perform updates by uploading firmware files. Progress is tracked and logged.
+
+.. figure:: _static/images/bmo/bmo_firmwareupdates.png
+   :width: 900
+   :alt: BMO Firmware Updates Management
+   :align: center
+
+   Figure: Firmware management interface for BIOS and BMC updates.
+
+- **BMO Hardware Reveal:** Build, list, mount, and delete custom inventory ISOs. Virtual media mounting and reboots are automated via Redfish.
+
+.. figure:: _static/images/bmo/bmo_hardwarereveal.png
+   :width: 900
+   :alt: BMO Hardware Reveal Interface
+   :align: center
+
+   Figure: Hardware reveal interface for managing inventory ISOs.
+
+- **Security & Permissions:** Role-based access ensures only authorized users can perform sensitive operations (e.g., firmware updates, BIOS changes).
+
+- **Node Unprovision** : Allows administrators to unprovision a node, cleaning up configurations and preparing it for future use.
+
+.. figure:: _static/images/bmo/bmo_nodeunprovision.png
+   :width: 900
+   :alt: BMO Node Unprovision Interface
+   :align: center
+
+   Figure: Node unprovision interface for cleaning up server configurations.
+
+**Technical Flow:**
+
+1. User selects a server and provides BMC credentials.
+2. BMO interacts with the BMC using Redfish APIs to perform inventory, BIOS, power, firmware, and ISO operations.
+3. All actions are validated, logged, and tracked for troubleshooting and compliance.
+4. The modular backend design allows for future extension to other hardware vendors and Redfish features.
+
+**Typical User Workflow:**
+
+- Select server → Register → Patch BIOS Attributres → Restart if needed → Update firmware → Monitor job status → Manage,Build custom ISOs for hardware reveal → Node Unprovision
+
+BMO is designed for reliability, security, and extensibility, making it a robust solution for baremetal lifecycle management in Karios.
 
 Server Information Display
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -5157,7 +5255,7 @@ Security Center Navigation
    - Navigate to the "Security" tab on any node in the node's main menu
    - The below image clearly indicates where to find the 'Security' tab on the interface.
 
-   .. figure:: _static/images/security/security_tab_pointer_new.png
+   .. figure:: _static/images/security/security_tab_pointer_newui2.png
       :width: 600
       :alt: Security Tab Pointer
 
@@ -5174,7 +5272,7 @@ Security Dashboard Interface
    - Key metrics include risk percentage, system status, last scan status and top risk category
    - The below image clearly shows where to find 'Scan' Button
 
-   .. figure:: _static/images/security/security_scan_pointer_new.png
+   .. figure:: _static/images/security/security_scan_pointer_newui.png
       :width: 600
       :alt: Security Scan Button
 
@@ -5230,7 +5328,7 @@ Vulnerability Assessment Interface
    - Scroll Down to view detailed vulnerabilities information along with remediation options
    - Please click on the vulnerability to know more information about it
 
-   .. figure:: _static/images/security/security_vuln_info_new.png
+   .. figure:: _static/images/security/security_vuln_info_newui.png
       :width: 600
       :alt: Vulnerability Information
 
@@ -5241,7 +5339,7 @@ Vulnerability Details and Information
    - Click on any vulnerability to access detailed information
    - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links
 
-   .. figure:: _static/images/security/security_vuln_popup_new.png
+   .. figure:: _static/images/security/security_vuln_popup_newui.png
       :width: 600
       :alt: Vulnerability Popup
 
@@ -5286,7 +5384,7 @@ Recommendation Process
    - Service Continuity Protection - Remediation scripts avoid automatic service restarts and include clear warnings about potential disruption to critical services like SSH and databases.
    - Operational Documentation - Each rule includes comprehensive warning, remediation, and recommendation sections with specific manual steps for safe implementation in production environments.
 
-   .. figure:: _static/images/security/recommendation_pointer_new.png
+   .. figure:: _static/images/security/recommendation_pointer_newui.png
       :width: 600
       :alt: Vulnerability Recommendation Pointer
 
@@ -5301,7 +5399,7 @@ Recommendation Pop-up
      - Potential impact analysis
      - Manual remediation steps
 
-   .. figure:: _static/images/security/recommendation_popup_new.png
+   .. figure:: _static/images/security/recommendation_popup_newui.png
       :width: 600
       :alt: Vulnerability Recommendation Popup
 
@@ -5318,7 +5416,7 @@ Security Scan History Navigation
    - Review past scan results and reports
    - Please click on the 'Metrics' button beside the 'Scan' button to navigate to Security Scan History Page
 
-   .. figure:: _static/images/security/security_navigate_to_history_page_new.png
+   .. figure:: _static/images/security/security_navigate_to_history_page_newui.png
       :width: 600
       :alt: Security Scan History Pointer
 
@@ -5330,7 +5428,7 @@ Security Scan History Dashboard
    - Review historical reports in html and PDF formats
    - You can find the previous scan details, Compliance Score from earlier scan and other additional details in this Security Scan History Page
 
-   .. figure:: _static/images/security/security_history_page_new.png
+   .. figure:: _static/images/security/security_history_page_newui.png
       :width: 600
       :alt: Security History Page
 
@@ -5340,7 +5438,7 @@ Security Report Generation
 """"""""""""""""""""""""""
    - The below image clearly indicates where to find the PDF & HTML report download options under the Scan History section
 
-   .. figure:: _static/images/security/security_report_pointer_new.png
+   .. figure:: _static/images/security/security_report_pointer_newui.png
       :width: 600
       :alt: Security Report Pointer
 
@@ -5351,11 +5449,25 @@ Security Report Content
    - Once downloaded, the security report will contain detailed information of all the vulnerabilities identified in the scan
    - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details
 
-   .. figure:: _static/images/security/security_report_content_new.png
+   .. figure:: _static/images/security/security_report_content_newui.png
       :width: 600
       :alt: Security Report Content
 
       Figure 11: Security Report Content
+
+Virtual Machine Security Scan
+"""""""""""""""""""""""""""""
+   - When a VM is created with CloudInit, Kshield Agent installs automatically on first boot and performs the security scan.
+   - Click the Scan action for a VM to start a security scan from the Security Center view.
+   - Review all virtual machines with their FQDN/IP, OS type, creation time, and current compliance score.
+   - Ubuntu and RHEL virtual machines are currently supported; Windows virtual machine scanning is coming soon.
+
+   .. figure:: _static/images/security/virtual_machine_security_scan_newui.png
+      :width: 600
+      :alt: Virtual Machine Security Scan
+
+      Figure 12: Virtual Machine Security Scan
+
 
 **Security Report Components**
 
