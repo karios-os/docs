@@ -887,252 +887,119 @@ After FreeBSD installation is complete and ZFS is verified, execute the bootstra
 - **Use sudo for**: Complex environments requiring granular control, extensive logging, or plugin support
 - **Avoid direct root for**: Any multi-user environment or production system where accountability and security are required
 
-Bootstrap Script Download and Preparation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Automatic Karios Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. important::
-   **Bootstrap Access Required**
+   **Simplified Installation Process**
    
-   Before proceeding with this section, you **must** have:
-   - Completed FreeBSD installation with ZFS
-   - Obtained your unique bootstrap download URL from Karios
-   - Verified ZFS is working: `zpool status` shows "ONLINE"
+   The Karios ISO includes all necessary components pre-packaged. After completing the OS installation and rebooting, the Karios installer will automatically start and configure your system without any manual intervention required.
 
-**How to Obtain Bootstrap URL**
+**What Happens After Installation:**
 
-If you don't have your bootstrap download link:
-
-1. **Contact Karios Support**: Email support@karios.ai 
-2. **Sales Representative**: Contact your assigned Karios sales representative  
-3. **Customer Portal**: Check your customer portal for download links
-4. **Phone Support**: Call the support number provided in your welcome email
-
-
-
-**Bootstrap Download and Common Preparation**
+1. **Complete OS Installation**: Follow the FreeBSD installation steps as described above
+2. **System Reboot**: After OS installation completes, the system will reboot automatically
+3. **Automatic Installer Launch**: Upon first boot, the Karios installer automatically starts
+4. **Unattended Configuration**: All Karios components, services, and configurations are installed automatically
+5. **Ready to Use**: Once installation completes, your Karios system is fully operational
 
 .. note::
-   **Bootstrap Download Link**: Contact your Karios sales representative or support team to obtain the official bootstrap download URL. Each customer receives a unique, secure download link for their specific deployment.
+   **No Manual Bootstrap Required**: Unlike previous versions, you no longer need to download or execute any bootstrap scripts. The ISO contains everything needed for a complete Karios deployment.
 
-**Execution Method Selection**
+**Installation Progress:**
 
-Choose one of the following methods based on your security requirements and system configuration:
+During the automatic installation process, you will see progress indicators showing:
 
-Method 1: Using sudo (Recommended - Highest Security)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. tip::
-   **Best Practice**: This is the recommended approach for production environments as it provides the highest level of security and audit capabilities.
-
-**Prerequisites:**
-- Non-root user account must exist
-- User must have sudo privileges configured
-
-**Steps:**
-
-.. code-block:: bash
-
-   # Install sudo if not present
-   pkg install sudo
-
-   # Download bootstrap script to user directory
-   fetch --no-verify-peer --no-verify-hostname "YOUR_PROVIDED_BOOTSTRAP_URL" -o bootstrap.sh
-   chmod +x bootstrap.sh
-
-   # Verify sudo access and review script
-   sudo whoami  # Should return "root"
-   less bootstrap.sh
-
-   # Execute bootstrap with sudo
-   sudo ./bootstrap.sh
-
-**sudo Security Benefits:**
-- Time-limited privilege escalation (default 5-minute timeout)
-- User accountability and traceability  
-- Granular permission control
-- Script executed from user directory, not root filesystem
-
-
-**Installation Security Checklist**
-
-Implement this comprehensive security checklist during installation:
-
-.. list-table:: 
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Security Check
-     - Verification Steps
-   * - **Script Source Verification**
-     - Confirm bootstrap script URL is from official Karios sources
-   * - **Network Security**
-     - Ensure secure network connection during download and installation
-   * - **Script Content Review**
-     - Examine bootstrap script contents for expected commands and functionality
-   * - **User Privilege Management**
-     - Use appropriate privilege escalation (sudo/doas instead of direct root access)
-   * - **System Backup**
-     - Backup critical data before installation to prevent data loss
-
-EULA Agreement and License Acceptance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-During the bootstrap installation, you will be prompted to accept the End User License Agreement (EULA).
-
-.. note::
-   **What is EULA?** An End User License Agreement is a legal contract between the software provider and user that defines terms, conditions, limitations, and rights for software use. EULA acceptance is mandatory to proceed with Karios installation.
-
-**EULA Acceptance Process:**
-
-1. **Comprehensive Review**: Thoroughly read the license agreement terms displayed on screen
-2. **Legal Compliance**: Ensure your organization's policies allow acceptance of the license terms
-3. **Precise Acceptance**: When prompted for EULA agreement, type exactly ``yes`` (lowercase)
-4. **Confirmation**: Press Enter to confirm your acceptance and proceed with installation
-
-.. warning::
-   **Critical Input Requirement**: The confirmation text must be exactly lowercase ``yes``. Any other format (Yes, YES, y, etc.) will terminate the script and prevent installation from continuing. This precision is required for legal compliance verification.
-
-
-**Post-Bootstrap Security Validation**
-
-After successful bootstrap completion, verify system security:
+- Package installation and configuration
+- Service initialization
+- Security hardening application
+- Network configuration
+- Storage pool setup
 
 .. figure:: _static/images/installation/installation1.png
    :width: 600
-   :alt: Bootstrap installation initiated  
+   :alt: Karios installation initiated  
 
 .. figure:: _static/images/installation/installation2.png
    :width: 600
-   :alt: Bootstrap installation started
+   :alt: Karios installation started
 
 .. figure:: _static/images/installation/installation3.png
    :width: 600
-   :alt: Bootstrap installation in progress    
+   :alt: Karios installation in progress    
 
 .. figure:: _static/images/installation/installation5.png
    :width: 600
-   :alt: Bootstrap installation completed
+   :alt: Karios installation completed
 
-**Critical FreeBSD Installation Security Settings**
+.. tip::
+   **Installation Duration**: The automatic installation typically completes within 10-15 minutes depending on hardware performance. Do not interrupt the system during this process.
 
-.. important::
-   **Security Hardening During Installation**
-   
-   During the FreeBSD installation process (before bootstrap), you will encounter security hardening options. **SELECT ALL SECURITY OPTIONS** for production Karios deployments:
 
-**Required Security Hardening Options:**
+First Login Credentials
+~~~~~~~~~~~~~~~~~~~~~~~
 
-.. list-table:: Security Options to Enable
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Security Option
-     - Purpose and Requirement
-   * - **hide_uids**
-     - **Enable** - Hide processes from other users for better security
-   * - **hide_gids**
-     - **Enable** - Hide group processes for enhanced privacy
-   * - **hide_jail**
-     - **Enable** - Hide jail processes for container security
-   * - **read_msgbuf**
-     - **Enable** - Disable kernel message buffer access for unprivileged users
-   * - **proc_debug**
-     - **Enable** - Disable process debugging for non-privileged users
-   * - **random_pid**
-     - **Enable** - Randomize process IDs for security
-   * - **clear_tmp**
-     - **Enable** - Clean /tmp directory on system startup
-   * - **disable_syslogd**
-     - **Enable** - Secure syslogd network socket configuration
-   * - **disable_sendmail**
-     - **Enable** - Disable sendmail service (not needed for Karios)
-   * - **secure_console**
-     - **Enable** - Require root password for single-user mode
-   * - **disable_ddtrace**
-     - **Enable** - Disable destructive DTrace operations
-   * - **enable_aslr**
-     - **Enable** - Enable Address Space Layout Randomization
-
-.. warning::
-   **Security Requirement**
-   
-   For production Karios deployments, **ALL** security hardening options must be enabled during FreeBSD installation. This provides essential security baseline required for hypervisor environments.
-
-**User Account Creation Requirements**
+After the automatic installation completes, all login credentials and system information are stored in a configuration file on the system.
 
 .. important::
-   **Administrative User Configuration**
+   **Credentials Location**
    
-   During FreeBSD installation, when prompted to create user accounts, **ALL** users must be added to the `wheel` group for proper administrative access in Karios environments.
+   Your first login credentials and service URLs are saved to ``/root/karios_install_info.txt``. Access this file to retrieve all necessary login information.
 
-**User Creation Best Practices:**
-
-.. list-table:: User Account Requirements
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Setting
-     - Required Configuration
-   * - **Username**
-     - Use descriptive, unique usernames (e.g., admin, karios-admin)
-   * - **Full Name**
-     - Complete administrator name for accountability
-   * - **Login Group**
-     - Leave blank (default user group will be created)
-   * - **Additional Groups**
-     - **MANDATORY**: Enter `wheel` for administrative privileges
-   * - **Shell**
-     - Recommend: `/bin/sh` or `/bin/tcsh` for reliability
-   * - **Password**
-     - Strong password required (complex, minimum 12 characters)
-   * - **Account Status**
-     - Do NOT lock account after creation
-
-.. warning::
-   **Wheel Group Requirement**
-   
-   Users **must** be added to the `wheel` group during installation. This provides:
-   - `sudo` access capabilities
-   - Administrative command execution
-   - System configuration privileges
-   - Karios management interface access
-   
-   **Without wheel group membership, users cannot perform administrative tasks required for Karios operation.**
+**Retrieve Your Credentials:**
 
 .. code-block:: bash
 
-   # Verify bootstrap installation logs
-   tail -f /tmp/bootstrap.log
-   
-   # Check system security status
-   sudo service status
-   
-   # Verify network security configuration
-   netstat -an | grep LISTEN
+   cat /root/karios_install_info.txt
 
-.. note::
-   The bootstrap script automatically installs and configures all Karios components, security settings, and service dependencies after successful EULA acceptance and execution.
+**Example Output:**
 
+.. code-block:: text
 
-**Reinstallation Security Considerations**
+   KARIOS_NODE_FQDN="karios-node.example.com"
+   KARIOS_ADMIN_PASSWORD="<auto-generated-password>"
 
-If the system prompts about reinstallation during bootstrap execution:
+   ATLAS_USERNAME="karios"
+   ATLAS_PASSWORD="<auto-generated-password>"
+   ATLAS_URL="http://karios-node.example.com:8000"
+
+   GRAFANA_USERNAME="admin"
+   GRAFANA_PASSWORD="<auto-generated-password>"
+   GRAFANA_URL="http://karios-node.example.com:3000"
+
+   NODE_FQDN="karios-node.example.com"
+   KARIOS_DOMAIN="example.com"
+
+   TECHNITIUM_VM_IP="10.0.0.100"
+   TECHNITIUM_VM_NAME="technitium-dns"
+   TECHNITIUM_ADMIN_PASSWORD="<auto-generated-password>"
+   TECHNITIUM_WEB_URL="http://10.0.0.100:5380"
+
+   DEPLOYED_AT="2025-01-09T12:00:00Z"
+
+.. list-table:: Service Access Summary
+   :header-rows: 1
+   :widths: 25 25 50
+
+   * - Service
+     - Default Username
+     - Access URL
+   * - **Karios Web UI**
+     - ``admin``
+     - ``http://<NODE_FQDN>:8080``
+   * - **Atlas Dashboard**
+     - ``karios``
+     - ``http://<NODE_FQDN>:8000``
+   * - **Grafana Monitoring**
+     - ``admin``
+     - ``http://<NODE_FQDN>:3000``
+   * - **Technitium DNS**
+     - ``admin``
+     - ``http://<TECHNITIUM_VM_IP>:5380``
 
 .. warning::
-   **Reinstallation Impact**: Reinstalling Karios will completely remove all existing configurations, virtual machines, storage pools, network settings, and user data. This action is irreversible without proper backups.
-
-**Reinstallation Decision Process:**
-
-.. figure:: _static/images/installation/bootstrap.png
-   :width: 600
-   :alt: Bootstrap Execution Screen
-
-- **Type "yes"** only if you specifically need to reinstall Karios and have verified all data is backed up
-- **Press Enter to exit** if uncertain about reinstallation requirements or lack proper backups
-- **Backup Verification**: Ensure comprehensive backups exist before proceeding with any reinstallation
-
-.. tip::
-   **Backup Recommendations**: Before any reinstallation, create complete backups of virtual machines, configuration files, storage pools, and user data. Test backup restoration procedures to ensure data recovery capability.
+   **Security Recommendation**: Change all default passwords immediately after first login. Store your credentials securely and restrict access to the ``karios_install_info.txt`` file.
 
 
 Post-Installation Configuration
@@ -1140,7 +1007,7 @@ Post-Installation Configuration
 
 **Installation Success Verification**
 
-After bootstrap completion, verify your Karios installation:
+After installation completion, verify your Karios installation:
 
 .. code-block:: bash
 
