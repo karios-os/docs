@@ -45,7 +45,7 @@ OmniServer Deployment
 
 - Click **Setup Kubernetes** in the Karios UI.
 
-.. figure:: _static/images/omni/om-1.png
+.. figure:: _static/images/omni/OmniServer-Controlcenter.png
    :alt: Setup Kubernetes Button
    :width: 600
 
@@ -174,7 +174,7 @@ Cluster Installation
   - **AddVM**: For virtual machine clusters.  
   - **Add Node**: For bare metal clusters.
 
-.. figure:: _static/images/omni/om-1.png
+.. figure:: _static/images/omni/OmniServer-Controlcenter.png
    :alt: Cluster Deta
    :width: 600
 
@@ -359,14 +359,9 @@ Creating the OpenShift Cluster
 
 - Click **Setup Kubernetes** in the Karios UI.
 
-.. figure:: _static/images/openshift/op-1.png
-   :alt: Setup Kubernetes Button
-   :width: 600
-
 - Select **OpenShift**.
 
-.. figure:: _static/images/openshift/op-2.png
-   :alt: Setup Kubernetes Button
+.. figure:: _static/images/openshift/Openshift-Dashboard.png    
    :width: 600
 
 **Step 2.1.2: Enter the Cluster Details**
@@ -703,7 +698,7 @@ Create the Ubuntu Kubernetes Virtual-Machines Cluster
 
 - Click **Setup Kubernetes** in the Karios UI, and Select **Ubuntu**.
 
-.. figure:: _static/images/UbuntuKubernetes/ubuntu-1.png
+.. figure:: _static/images/UbuntuKubernetes/Ubuntu-ControlCenter.png   
    :alt: Setup Kubernetes Button
    :width: 600
 
@@ -989,7 +984,7 @@ Create Ubuntu Kubernetes Bare Metal Cluster
    And you can Access the Tech stack as mentioned in the previous section, Along with the verification of the Cluster setup.
 
 Create the K3s Cluster
-=============================
+----------------------
 
 4.0 About K3s (Lightweight Kubernetes)
 ----------------------------------------
@@ -1048,7 +1043,7 @@ Key internal differences from traditional Kubernetes:
 .. note::
    The image must first be uploaded to the **Control Center** in Karios.
 
-.. figure:: _static/images/k3s/K3sCluster1.png
+.. figure:: _static/images/k3s/K3s-Controlcenter.png    
    :alt: Setup Kubernetes Button
    :width: 600
 
