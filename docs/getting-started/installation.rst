@@ -1049,7 +1049,43 @@ After installation completion, verify your Karios installation:
 Setup DNS and DHCP Services
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Karios includes a bundled Technitium DNS-DHCP Server for comprehensive network management.
+Karios automatically deploys **Technitium DNS Server** as a system VM during installation. This provides DNS and DHCP services for all Karios nodes, VMs, and Kubernetes clusters.
+
+.. _stop-upstream-dhcp:
+
+⛔ CRITICAL: Disable Upstream DHCP Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning::
+   **You MUST disable any existing DHCP server** on the Karios network segment before proceeding. Two DHCP servers on the same network will cause IP conflicts.
+
+**Why This Is Required:**
+
+- Technitium is now the **authoritative** DHCP/DNS server for all Karios operations
+- All nodes and VMs receive automatic FQDNs from Technitium
+- Kubernetes clusters depend on Technitium DNS for service discovery
+- Bare-metal provisioning uses Technitium DHCP for IP assignment
+
+**Disable Your Upstream DHCP Server:**
+
+.. code-block:: bash
+
+   # Linux (ISC DHCP)
+   sudo systemctl stop isc-dhcp-server
+   sudo systemctl disable isc-dhcp-server
+
+   # Windows Server DHCP
+   Stop-Service DHCPServer
+   Set-Service DHCPServer -StartupType Disabled
+
+   # Router-based DHCP
+   # Login to router admin UI → Disable DHCP server
+
+.. note::
+   **Rollback**: If you need to revert, stop the Technitium VM with ``vm poweroff technitium-dns`` and re-enable your upstream DHCP.
+
+Access Technitium DNS Server
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Quick Access Information:**
 

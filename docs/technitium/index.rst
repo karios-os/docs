@@ -1,6 +1,22 @@
 Network Setup Prerequisites
 ---------------------------
 
+.. important::
+   **Dedicated Network Required**
+   
+   Karios deploys Technitium as a **system VM** that provides DNS/DHCP services for all nodes. Your Karios deployment must be on a **dedicated network segment** (VLAN or physical) where Technitium will be the sole DHCP/DNS provider.
+   
+   **After installation**, you must disable any upstream DHCP server on the Karios network. See :ref:`stop-upstream-dhcp` in the Installation Guide.
+
+**Why Technitium is Required**
+
+Technitium is not optional—it's a core Karios dependency:
+
+- **FQDN Generation**: All nodes and VMs receive automatic fully-qualified domain names
+- **Service Discovery**: Internal Karios services locate each other via DNS
+- **Kubernetes Support**: K8s clusters depend on DNS for pod and service resolution
+- **Node Provisioning**: DHCP assigns IPs to newly provisioned bare-metal nodes and VMs
+
 Karios includes a bundled Technitium DNS-DHCP Server that provides comprehensive network management capabilities. This standalone service is pre-configured to an extent and ready to use immediately upon installation, with DHCP scopes automatically configured to match your discovered node IP ranges.
 
 .. note::
