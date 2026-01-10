@@ -1,7 +1,7 @@
 Integrated Firewall
 ====================
 
-What is PF (Packet Filter)?
+What is PF (Packet Filter)
 ---------------------------
 
 Think of a firewall like a security guard at the entrance of a building (your network). It checks every visitor (data packet) to decide who gets in or out based on rules you set. PF (Packet Filter) is a powerful and flexible firewall used on systems like FreeBSD to:
