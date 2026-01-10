@@ -1212,10 +1212,12 @@ After successful installation, complete these essential tasks in order:
 
 1. **Access Web Interface**
    - Open browser and navigate to: `https://YOUR_SERVER_IP`
-   - Accept SSL certificate warning (self-signed)
    - Login with credentials created during FreeBSD installation
 
-2. **Complete Initial Setup**
+2. **Install Karios Root CA Certificate** (Recommended)
+   - See :ref:`browser-certificate-setup` below to eliminate browser security warnings
+
+3. **Complete Initial Setup**
    - Follow the Karios setup wizard
    - Configure network settings
    - Set up storage pools
@@ -1258,4 +1260,86 @@ Common failure recovery steps:
 - **Community Forums**: Access through your customer portal
 - **Emergency Support**: Phone numbers provided with your license
 
+.. _browser-certificate-setup:
+
+Browser Certificate Setup
+-------------------------
+
+Karios uses a private Certificate Authority (CA) to secure HTTPS communications. To avoid browser security warnings, install the Karios Root CA certificate on your workstation.
+
+.. note::
+   You only need to install the Root CA certificate **once**. After installation, all Karios nodes (master and slaves) will be automatically trusted.
+
+Download the Root CA Certificate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Option 1: SCP from Master Node** (Recommended)
+
+.. code-block:: bash
+
+   scp root@<master-ip>:/usr/local/share/ca-certificates/karios-root-ca.crt .
+
+**Option 2: SSH and Copy**
+
+.. code-block:: bash
+
+   ssh root@<master-ip> cat /usr/local/etc/step/certs/root_ca.crt
+   # Copy the output (including BEGIN/END lines) and save as karios-root-ca.crt
+
+Install on Windows
+~~~~~~~~~~~~~~~~~~
+
+1. Double-click the ``karios-root-ca.crt`` file
+2. Click **"Install Certificate..."**
+3. Select **"Local Machine"** → Next
+4. Select **"Place all certificates in the following store"**
+5. Click **"Browse..."** → Select **"Trusted Root Certification Authorities"**
+6. Click **Next** → **Finish**
+7. **Restart your browser**
+
+Install on macOS
+~~~~~~~~~~~~~~~~
+
+1. Double-click the ``karios-root-ca.crt`` file
+2. Keychain Access will open → Select **"System"** keychain → Click **"Add"**
+3. Find the certificate (search "Karios") → Double-click → Expand **"Trust"**
+4. Set **"When using this certificate"** to **"Always Trust"**
+5. Close and enter your password
+6. **Restart your browser**
+
+Install on Linux (Ubuntu/Debian)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   sudo cp karios-root-ca.crt /usr/local/share/ca-certificates/
+   sudo update-ca-certificates
+   # Restart your browser
+
+Install on Linux (RHEL/CentOS/Fedora)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   sudo cp karios-root-ca.crt /etc/pki/ca-trust/source/anchors/
+   sudo update-ca-trust
+   # Restart your browser
+
+Mozilla Firefox (All Platforms)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Firefox uses its own certificate store:
+
+1. Open Firefox → **Settings** → Search for **"certificates"**
+2. Click **"View Certificates..."** → **"Authorities"** tab
+3. Click **"Import..."** → Select ``karios-root-ca.crt``
+4. Check **"Trust this CA to identify websites"** → Click **OK**
+
+Verification
+~~~~~~~~~~~~
+
+After installation, navigate to ``https://<master-node-ip>`` - you should see a secure connection (padlock icon) without warnings.
+
+.. tip::
+   **Troubleshooting**: If you still see warnings, ensure you installed the **Root CA** (not a node certificate), installed it to **Trusted Root Certification Authorities**, and restarted your browser.
    

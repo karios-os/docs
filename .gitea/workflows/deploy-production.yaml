@@ -206,7 +206,7 @@ jobs:
             
             # Run deployment script on bastion
             echo "🚀 Running deployment script..."
-            ssh bastion "/home/ec2-user/deploy-docs.sh /tmp/$DOCS_FILE"
+            ssh bastion "/home/ec2-user/deploy-html-to-sphinx.sh /tmp/$DOCS_FILE"
             
             if [ $? -eq 0 ]; then
               echo ""
