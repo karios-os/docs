@@ -65,6 +65,12 @@ jobs:
           
           echo "✅ Archive created successfully"
           ls -lh docs-en.tar.gz
+
+          # Use a unique filename per run to avoid races
+          STAMP=$(date +%s)
+          UNIQUE_FILE="docs-en-${STAMP}.tar.gz"
+          mv docs-en.tar.gz "$UNIQUE_FILE"
+          echo "DOCS_FILE=$UNIQUE_FILE" >> $GITHUB_ENV
       
       - name: Setup SSH Key
         env:
@@ -189,7 +195,7 @@ jobs:
       
       - name: Deploy Documentation via Bastion
         run: |
-          DOCS_FILE="docs-en.tar.gz"
+          DOCS_FILE="${DOCS_FILE:-docs-en.tar.gz}"
           
           echo "🚀 Deploying pre-built HTML documentation"
           echo "📦 Archive: $DOCS_FILE"

@@ -1,32 +1,27 @@
 #!/bin/bash
 #
-# deploy-html-to-sphinx.sh - Fixed version
-# Deploy pre-built HTML docs from bastion to sphinx server
-#
-# Upload this to bastion: scp deploy-html-to-sphinx.sh ec2-user@bastion:~/
-# Make executable: chmod +x ~/deploy-html-to-sphinx.sh
+# deploy-html-to-sphinx.sh - Fixed version with race condition protection
 #
 
-set -euo pipefail
+# Acquire lock to prevent concurrent deployments
+LOCKFILE="/tmp/deploy-sphinx.lock"
+exec 200>"$LOCKFILE"
+if ! flock -n 200; then
+    echo "⏳ Another deployment is in progress, waiting..."
+    flock 200
+fi
+echo "🔒 Lock acquired"
 
 if [ -z "$1" ]; then
-    echo "Usage: $0 <docs-archive.tar.gz | html-dir> [language]"
-    echo "Examples:"
-    echo "  $0 /tmp/docs-en.tar.gz en"
-    echo "  $0 ~/html en"
+    echo "Usage: $0 <documentation-tar-file> [language]"
     exit 1
 fi
 
 DOCS_FILE="$1"
 LANGUAGE="${2:-en}"
 
-SRC_TYPE="archive"
-if [ -d "$DOCS_FILE" ]; then
-    SRC_TYPE="dir"
-elif [ -f "$DOCS_FILE" ]; then
-    SRC_TYPE="archive"
-else
-    echo "Error: Source $DOCS_FILE not found"
+if [ ! -f "$DOCS_FILE" ]; then
+    echo "Error: File $DOCS_FILE not found"
     exit 1
 fi
 
@@ -35,38 +30,35 @@ DOCS_FILENAME=$(basename "$DOCS_FILE")
 echo "📦 Deploying documentation: $DOCS_FILENAME (Language: $LANGUAGE)"
 echo "📤 Copying to docs-server..."
 
-if [ "$SRC_TYPE" = "archive" ]; then
-    # Copy archive to docs-server /tmp/
-
-    # Archive-only deployment: extract remotely on docs-server using gzip→tar streaming
-    echo "🔨 Deploying on docs-server (archive extract)..."
-    ssh -tt docs-server "sudo bash -lc 'set -euo pipefail; \
-        rm -rf /tmp/sphinx-deploy; \
-        mkdir -p /tmp/sphinx-deploy; \
-        gzip -dc /tmp/$DOCS_FILENAME | tar -C /tmp/sphinx-deploy -xvf -; \
-        test -f /tmp/sphinx-deploy/html/index.html; \
-        rm -rf /var/www/sphinx-docs/*; \
-        cp -r /tmp/sphinx-deploy/html/* /var/www/sphinx-docs/; \
-        chown -R nginx:nginx /var/www/sphinx-docs/ || chown -R www-data:www-data /var/www/sphinx-docs/; \
-        chmod -R 755 /var/www/sphinx-docs/; \
-        find /var/www/sphinx-docs -type f -exec chmod 644 {} \;; \
-        rm -rf /tmp/sphinx-deploy /tmp/$DOCS_FILENAME; \
-        echo \"✅ Deployed to /var/www/sphinx-docs/\"; \
-        echo \"📊 File count: \$(find /var/www/sphinx-docs -type f | wc -l)\"'"
-        echo \"✅ Deployed to /var/www/sphinx-docs/\"; \
-        echo \"📊 File count: \$(find /var/www/sphinx-docs -type f | wc -l)\"'"
+# Copy to docs-server
+if ! scp "$DOCS_FILE" docs-server:/tmp/; then
+    echo "❌ File transfer failed!"
+    exit 1
 fi
+echo "✅ Copied to docs-server"
 
-[ "$SRC_TYPE" = "archive" ] && rm -rf "$TMPDIR"
+# Move file to sphinx home with proper ownership
+ssh docs-server "sudo mv /tmp/$DOCS_FILENAME /home/sphinx/ && sudo chown sphinx:sphinx /home/sphinx/$DOCS_FILENAME"
+
+# Deploy HTML on sphinx server (no heredoc - use -c instead)
+echo "🔨 Deploying on sphinx-server..."
+ssh sphinx-server "cd /home/sphinx && \
+    rm -rf sphinx-deploy && \
+    mkdir -p sphinx-deploy && \
+    tar -xzf $DOCS_FILENAME -C sphinx-deploy && \
+    rm -rf /tmp/sphinx-build && \
+    mkdir -p /tmp/sphinx-build && \
+    cp -r sphinx-deploy/html/* /tmp/sphinx-build/ && \
+    sudo /usr/local/bin/deploy-sphinx-docs.sh /var/www/sphinx-docs && \
+    rm -rf sphinx-deploy /tmp/sphinx-build && \
+    rm -f $DOCS_FILENAME && \
+    echo '✅ Deployed to /var/www/sphinx-docs/' && \
+    echo \"📊 File count: \$(find /var/www/sphinx-docs -type f | wc -l)\""
 
 if [ $? -eq 0 ]; then
     echo ""
     echo "✅ Documentation deployed successfully!"
-    if [ "$LANGUAGE" = "it" ]; then
-        echo "🌐 https://docs.karios.ai/it/"
-    else
-        echo "🌐 https://docs.karios.ai/"
-    fi
+    echo "🌐 https://docs.karios.ai/"
 else
     echo "❌ Deployment failed!"
     exit 1

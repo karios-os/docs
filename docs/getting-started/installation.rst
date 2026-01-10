@@ -315,59 +315,27 @@ Critical Configuration Notes
 - Validate IOMMU device grouping
 - Confirm GPU pass-through capabilities if required
 
-Downloading the Karios ISO Image (Roadmap Ahead)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Downloading the Karios BSD ISO Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
-   **Always Use Latest FreeBSD Release**
+   **Use the Official Karios BSD ISO**
    
-   Karios requires the latest stable FreeBSD release for optimal security, performance, and hardware compatibility. Always download FreeBSD 14.3 or the most current stable release available.
+   Karios requires the custom Karios BSD ISO which includes all necessary packages and components pre-configured. Do not use a standard FreeBSD ISO.
 
 **Download Steps:**
 
-1. Navigate to the official FreeBSD download page: https://www.freebsd.org/where/
-2. **Download FreeBSD 14.3** (or latest stable version)
-3. Select the appropriate version based on your hardware architecture (typically x86_64)
-4. **Recommended ISO**: Use `FreeBSD-14.3-RELEASE-amd64-disc1.iso` for complete offline installation
-5. If unsure about architecture, consult with your system administrator
+1. Download the official Karios BSD ISO from: https://download.karios.ai/kariosbsd-14.3-custom.iso
+2. Save the ISO file to your local system
+3. Proceed to create a bootable USB drive
 
-**Why Latest Release Matters:**
+**Why Karios BSD ISO:**
 
-- **Security Updates**: Latest patches and vulnerability fixes
-- **Hardware Support**: Improved driver support for newer hardware
-- **Performance**: Optimized kernel and system components
-- **Compatibility**: Best compatibility with Karios components
-- **Long-term Support**: Extended maintenance and update lifecycle
-
-**Verify Download Integrity**
-
-.. code-block:: bash
-
-   # On Linux/macOS, verify the FreeBSD 14.3 ISO checksum
-   sha256sum FreeBSD-14.3-RELEASE-amd64-disc1.iso
-   
-   # On FreeBSD, use:
-   sha256 FreeBSD-14.3-RELEASE-amd64-disc1.iso
-   
-   # On Windows (PowerShell), use:
-   Get-FileHash FreeBSD-14.3-RELEASE-amd64-disc1.iso -Algorithm SHA256
-   
-   # Compare with the official checksum from FreeBSD download page:
-   # https://www.freebsd.org/where/
-
-.. important::
-   **Official FreeBSD 14.3 Checksums**
-   
-   Always verify your downloaded ISO matches the official FreeBSD checksums:
-   - Download the CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64 file
-   - Compare the calculated hash with the official checksum
-   - **Never proceed with installation if checksums don't match**
-
-.. code-block:: bash
-
-   # Automated verification on FreeBSD/Linux:
-   fetch https://download.freebsd.org/releases/amd64/amd64/ISO-IMAGES/14.3/CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64
-   sha256sum -c CHECKSUM.SHA256-FreeBSD-14.3-RELEASE-amd64 FreeBSD-14.3-RELEASE-amd64-disc1.iso
+- **Pre-configured**: All Karios components included and configured
+- **Optimized**: Tuned for hyper-converged infrastructure workloads
+- **Security**: Hardened configuration out of the box
+- **Simplified Setup**: Automated installer with minimal manual steps
+- **Compatibility**: Tested and validated with Karios platform
 
 Creating a Bootable USB Drive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -386,7 +354,7 @@ Creating a Bootable USB Drive
 .. warning::
    All data on the selected USB drive will be erased.
 
-3. Click the "SELECT" button and browse to the downloaded FreeBSD 14.3 ISO file
+3. Click the "SELECT" button and browse to the downloaded Karios BSD ISO file
 4. Set partition scheme to "MBR" or "GPT" based on your system's BIOS/UEFI settings
 
 .. tip::
@@ -397,7 +365,7 @@ Creating a Bootable USB Drive
 **Etcher Instructions (Cross-Platform)**
 
 1. Download and run Etcher
-2. Click "Flash from file" and select the FreeBSD 14.3 ISO file
+2. Click "Flash from file" and select the Karios BSD ISO file
 3. Select your USB drive as the target device
 4. Click "Flash!"
 
@@ -407,7 +375,7 @@ Creating a Bootable USB Drive
 
    # Replace /dev/sdX with your USB drive identifier
    # Use 'lsblk' or 'fdisk -l' to identify the correct drive
-   sudo dd if=FreeBSD-14.3-RELEASE-amd64-disc1.iso of=/dev/sdX bs=4M status=progress
+   sudo dd if=kariosbsd-14.3-custom.iso of=/dev/sdX bs=4M status=progress
    sudo sync
 
 Installation Process
@@ -421,13 +389,13 @@ For new users, here's the complete installation process from start to finish:
    **Installation Summary Checklist**
    
    **Phase 1: Preparation**
-   ✓ Download FreeBSD 14.3 ISO and verify checksum
-   ✓ Create bootable USB drive
+   ✓ Download Karios BSD ISO from https://download.karios.ai/kariosbsd-14.3-custom.iso
+   ✓ Verify checksum and create bootable USB drive
    ✓ Configure BIOS/UEFI settings (enable VT-x/AMD-V, IOMMU)
    
-   **Phase 2: FreeBSD Installation**
+   **Phase 2: Karios BSD Installation**
    ✓ Boot from USB drive
-   ✓ Select all components (base-dbg, kernel-dbg, lib32, ports, **src**)
+   ✓ Follow the automated installer prompts
    ✓ **CRITICAL**: Select "Auto (ZFS)" - NOT UFS
    ✓ Configure ZFS with proper swap size formula: (RAM × 1.5) + 2GB
    ✓ Enable ALL security hardening options
@@ -584,22 +552,22 @@ ZFS requires specific swap calculations for optimal performance and system stabi
 - **Performance Impact**: Insufficient swap can cause system instability
 - **Monitoring**: Monitor swap usage in production environments
 
-FreeBSD Installation with ZFS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Karios BSD Installation with ZFS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Step-by-Step ZFS Installation Process**
 
-Follow these specific steps during the FreeBSD installation phase to ensure ZFS is properly configured:
+Follow these specific steps during the Karios BSD installation phase to ensure ZFS is properly configured:
 
-**Phase 1: FreeBSD Base Installation with ZFS**
+**Phase 1: Karios BSD Base Installation with ZFS**
 
 1. **Boot from USB Drive**
    - Insert the USB drive and boot from it
-   - Select "Install" from the FreeBSD installer menu
+   - Select "Install" from the installer menu
 
 .. figure:: _static/images/freebsd-installation/welcome-menu.png
    :width: 600
-   :alt: FreeBSD installer welcome menu
+   :alt: Karios BSD installer welcome menu
 
 2. **Installer Welcome Screen**
    - Press Enter to continue with installation
@@ -614,7 +582,7 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/hostname-configuration.png
    :width: 600
-   :alt: FreeBSD hostname configuration screen
+   :alt: Hostname configuration screen
 
 5. **Distribution Selection**
    - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", "ports", and **"src"** are selected
@@ -624,11 +592,11 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/component-selection.png
    :width: 600
-   :alt: FreeBSD component selection screen
+   :alt: Component selection screen
 
 **Required Components Explained:**
 
-.. list-table:: FreeBSD Component Requirements
+.. list-table:: Component Requirements
    :header-rows: 1
    :widths: 20 80
 
@@ -641,14 +609,14 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
    * - **lib32**
      - **Required** - 32-bit compatibility libraries for legacy applications
    * - **ports**
-     - **Required** - FreeBSD Ports Collection for software installation
+     - **Required** - Ports Collection for software installation
    * - **src**
-     - **MANDATORY** - Complete FreeBSD source code required for Karios operation
+     - **MANDATORY** - Complete source code required for Karios operation
 
 .. important::
    **Source Tree Requirement**
    
-   The FreeBSD source tree ("src") is **mandatory** for Karios installations. This provides:
+   The source tree ("src") is **mandatory** for Karios installations. This provides:
    - Kernel module compilation capabilities
    - Device driver building support  
    - System customization options
@@ -666,7 +634,7 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/partitioning-choices.png
    :width: 600
-   :alt: FreeBSD partitioning choices menu showing Auto (ZFS) option
+   :alt: Partitioning choices menu showing Auto (ZFS) option
 
 .. code-block:: text
 
@@ -789,7 +757,7 @@ f. **Confirmation:**
 
 **ZFS Verification Commands**
 
-After FreeBSD installation completes, verify ZFS is properly configured:
+After Karios BSD installation completes, verify ZFS is properly configured:
 
 .. code-block:: bash
 
@@ -832,7 +800,7 @@ Kickstart Installation Steps
 
 The Karios installation follows a two-phase process:
 
-**Phase 1: FreeBSD Base Installation with ZFS** ✓ Completed Above
+**Phase 1: Karios BSD Base Installation with ZFS** ✓ Completed Above
 
 **Phase 2: Karios Bootstrap**
 
@@ -851,9 +819,9 @@ The Karios installation follows a two-phase process:
    df -h / | grep zfs
    # Must show ZFS filesystem mounted as root
 
-If either command fails or doesn't show ZFS, **DO NOT PROCEED** with bootstrap installation. You must reinstall FreeBSD with ZFS.
+If either command fails or doesn't show ZFS, **DO NOT PROCEED** with bootstrap installation. You must reinstall Karios BSD with ZFS.
 
-After FreeBSD installation is complete and ZFS is verified, execute the bootstrap commands:
+After Karios BSD installation is complete and ZFS is verified, execute the bootstrap commands:
 
 .. tip::
    **What is Bootstrap?** A bootstrap script is an automated installer that downloads and configures all necessary software components. It eliminates manual setup by handling package installation, configuration, and service initialization automatically.
@@ -901,7 +869,7 @@ Automatic Karios Installation
 
 **What Happens After Installation:**
 
-1. **Complete OS Installation**: Follow the FreeBSD installation steps as described above
+1. **Complete OS Installation**: Follow the Karios BSD installation steps as described above
 2. **System Reboot**: After OS installation completes, the system will reboot automatically
 3. **Automatic Installer Launch**: Upon first boot, the Karios installer automatically starts
 4. **Unattended Configuration**: All Karios components, services, and configurations are installed automatically
@@ -1248,7 +1216,7 @@ After successful installation, complete these essential tasks in order:
 
 1. **Access Web Interface**
    - Open browser and navigate to: `https://YOUR_SERVER_IP`
-   - Login with credentials created during FreeBSD installation
+   - Login with credentials created during Karios BSD installation
 
 2. **Install Karios Root CA Certificate** (Recommended)
    - See :ref:`browser-certificate-setup` below to eliminate browser security warnings
