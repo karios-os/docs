@@ -315,27 +315,28 @@ Critical Configuration Notes
 - Validate IOMMU device grouping
 - Confirm GPU pass-through capabilities if required
 
-Downloading the Karios BSD ISO Image
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Downloading the Karios ISO (Roadmap Ahead)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
-   **Use the Official Karios BSD ISO**
+   **Always Use Latest KariosBSD Release**
    
-   Karios requires the custom Karios BSD ISO which includes all necessary packages and components pre-configured. Do not use a standard FreeBSD ISO.
+   Karios requires the latest stable KariosBSD release for optimal security, performance, and hardware compatibility. Always download KariosBSD 14.3 or the most current stable release available.
 
 **Download Steps:**
 
-1. Download the official Karios BSD ISO from: https://download.karios.ai/kariosbsd-14.3-custom.iso
-2. Save the ISO file to your local system
-3. Proceed to create a bootable USB drive
+1. Navigate to the official KariosBSD download page: https://
+2. **Download KariosBSD 14.3** (or latest stable version)
+3. **Recommended ISO**: Use `KariosBSD-14.3-RELEASE-amd64-disc1.iso` for complete offline installation
+4. If unsure about architecture, consult with your system administrator
 
-**Why Karios BSD ISO:**
+**Why Latest Release Matters:**
 
-- **Pre-configured**: All Karios components included and configured
-- **Optimized**: Tuned for hyper-converged infrastructure workloads
-- **Security**: Hardened configuration out of the box
-- **Simplified Setup**: Automated installer with minimal manual steps
-- **Compatibility**: Tested and validated with Karios platform
+- **Security Updates**: Latest patches and vulnerability fixes
+- **Hardware Support**: Improved driver support for newer hardware
+- **Performance**: Optimized kernel and system components
+- **Compatibility**: Best compatibility with Karios components
+- **Long-term Support**: Extended maintenance and update lifecycle
 
 Creating a Bootable USB Drive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -354,7 +355,7 @@ Creating a Bootable USB Drive
 .. warning::
    All data on the selected USB drive will be erased.
 
-3. Click the "SELECT" button and browse to the downloaded Karios BSD ISO file
+3. Click the "SELECT" button and browse to the downloaded KariosBSD 14.3 ISO file
 4. Set partition scheme to "MBR" or "GPT" based on your system's BIOS/UEFI settings
 
 .. tip::
@@ -365,7 +366,7 @@ Creating a Bootable USB Drive
 **Etcher Instructions (Cross-Platform)**
 
 1. Download and run Etcher
-2. Click "Flash from file" and select the Karios BSD ISO file
+2. Click "Flash from file" and select the KariosBSD 14.3 ISO file
 3. Select your USB drive as the target device
 4. Click "Flash!"
 
@@ -375,7 +376,7 @@ Creating a Bootable USB Drive
 
    # Replace /dev/sdX with your USB drive identifier
    # Use 'lsblk' or 'fdisk -l' to identify the correct drive
-   sudo dd if=kariosbsd-14.3-custom.iso of=/dev/sdX bs=4M status=progress
+   sudo dd if=KariosBSD-14.3-RELEASE-amd64-disc1.iso of=/dev/sdX bs=4M status=progress
    sudo sync
 
 Installation Process
@@ -401,11 +402,6 @@ For new users, here's the complete installation process from start to finish:
    ✓ Enable ALL security hardening options
    ✓ Create user account and add to wheel group
    ✓ Verify ZFS after reboot: `zpool status`
-   
-   **Phase 3: Karios Bootstrap**
-   ✓ Obtain bootstrap URL from Karios support
-   ✓ Download and execute bootstrap script
-   ✓ Accept EULA by typing exactly "yes"
    ✓ Access web interface after completion
 
 .. _filesystem-requirements:
@@ -416,7 +412,7 @@ Critical Filesystem Requirements
 .. important::
    **ZFS Filesystem Requirement**
    
-   Karios requires ZFS to be installed and will not work on FreeBSD systems installed with UFS. Please ensure you select ZFS.
+   Karios requires ZFS to be installed and will not work on KariosBSD systems installed with UFS. Please ensure you select ZFS.
 
 **Why ZFS is Required:**
 
@@ -559,22 +555,30 @@ Karios BSD Installation with ZFS
 
 Follow these specific steps during the Karios BSD installation phase to ensure ZFS is properly configured:
 
-**Phase 1: Karios BSD Base Installation with ZFS**
+**Phase 1: KariosBSD Base Installation with ZFS**
 
 1. **Boot from USB Drive**
    - Insert the USB drive and boot from it
-   - Select "Install" from the installer menu
 
 .. figure:: _static/images/freebsd-installation/welcome-menu.png
    :width: 600
    :alt: Karios BSD installer welcome menu
 
 2. **Installer Welcome Screen**
+   - Select "Install" from the KariosBSD installer menu
    - Press Enter to continue with installation
+
+.. figure:: _static/images/freebsd-installation/welcome-menu_install.png
+   :width: 600
+   :alt: FreeBSD installer welcome menu
 
 3. **Keymap Selection**
    - Select appropriate keymap for your region
    - Press Enter to continue
+
+.. figure:: _static/images/freebsd-installation/key_map.png
+   :width: 600
+   :alt: FreeBSD installer welcome menu
 
 4. **Hostname Configuration**
    - Enter your desired hostname (e.g., "karios-node01")
@@ -742,10 +746,37 @@ f. **Confirmation:**
    :width: 600
    :alt: ZFS final warning before installation begins
 
+g. **Checksum Verification:**
+   - Installer will verify ISO checksum
+   - Wait for verification to complete
+
+.. figure:: _static/images/freebsd-installation/checksum-verification.png
+   :width: 600
+   :alt: Checksum verification screen
+
+h. **Archive Extraction:**
+   - Installer will extract and install selected components
+   - This may take several minutes
+
+.. figure:: _static/images/freebsd-installation/extraction.png
+   :width: 600
+   :alt: Extraction progress screen
+
 7. **Continue Standard Installation**
    - Set root password
    - Configure network interfaces  
+
+.. figure:: _static/images/freebsd-installation/configure_network.png
+   :width: 600
+   :alt: Configure network interface screen
+
+7a.**Continue Standard Installation**
    - Select time zone
+
+.. figure:: _static/images/freebsd-installation/time_zone.png
+   :width: 600
+   :alt: Configure time zone screen
+
    - Enable system services (sshd recommended)
    - Add users if desired
    - Apply configuration and exit installer
@@ -757,7 +788,7 @@ f. **Confirmation:**
 
 **ZFS Verification Commands**
 
-After Karios BSD installation completes, verify ZFS is properly configured:
+After KariosBSD installation completes, verify ZFS is properly configured:
 
 .. code-block:: bash
 
@@ -795,7 +826,7 @@ After Karios BSD installation completes, verify ZFS is properly configured:
    * - **"zpool status" shows errors**
      - Restart installation, verify disk health before proceeding
 
-Kickstart Installation Steps
+Karios Bootstrap Auto-Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Karios installation follows a two-phase process:
@@ -804,24 +835,11 @@ The Karios installation follows a two-phase process:
 
 **Phase 2: Karios Bootstrap**
 
-.. important::
-   **Prerequisites Verification**
-   
-   Before proceeding with bootstrap, verify ZFS is properly installed:
+.. figure:: _static/images/freebsd-installation/second_welcome.png
+   :width: 600
+   :alt: Second Bootstrap welcome screen
 
-.. code-block:: bash
-
-   # MANDATORY: Verify ZFS before bootstrap
-   zpool status zroot
-   # Must show: state: ONLINE
-   
-   # Verify ZFS root filesystem  
-   df -h / | grep zfs
-   # Must show ZFS filesystem mounted as root
-
-If either command fails or doesn't show ZFS, **DO NOT PROCEED** with bootstrap installation. You must reinstall Karios BSD with ZFS.
-
-After Karios BSD installation is complete and ZFS is verified, execute the bootstrap commands:
+After KariosBSD installation is complete, bootstrap automatically installs and configures Karios components:
 
 .. tip::
    **What is Bootstrap?** A bootstrap script is an automated installer that downloads and configures all necessary software components. It eliminates manual setup by handling package installation, configuration, and service initialization automatically.
@@ -858,116 +876,171 @@ After Karios BSD installation is complete and ZFS is verified, execute the boots
 - **Use sudo for**: Complex environments requiring granular control, extensive logging, or plugin support
 - **Avoid direct root for**: Any multi-user environment or production system where accountability and security are required
 
+Auto-Bootstrap Installation 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Automatic Karios Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+After completing the KariosBSD installation with ZFS, the system will automatically initiate the Karios bootstrap process upon first boot.
 
-.. important::
-   **Simplified Installation Process**
-   
-   The Karios ISO includes all necessary components pre-packaged. After completing the OS installation and rebooting, the Karios installer will automatically start and configure your system without any manual intervention required.
-
-**What Happens After Installation:**
-
-1. **Complete OS Installation**: Follow the Karios BSD installation steps as described above
-2. **System Reboot**: After OS installation completes, the system will reboot automatically
-3. **Automatic Installer Launch**: Upon first boot, the Karios installer automatically starts
-4. **Unattended Configuration**: All Karios components, services, and configurations are installed automatically
-5. **Ready to Use**: Once installation completes, your Karios system is fully operational
-
-.. note::
-   **No Manual Bootstrap Required**: Unlike previous versions, you no longer need to download or execute any bootstrap scripts. The ISO contains everything needed for a complete Karios deployment.
-
-**Installation Progress:**
-
-During the automatic installation process, you will see progress indicators showing:
-
-- Package installation and configuration
-- Service initialization
-- Security hardening application
-- Network configuration
-- Storage pool setup
-
-.. figure:: _static/images/installation/installation1.png
+.. figure:: _static/images/freebsd-installation/bootstrap1.png
    :width: 600
    :alt: Karios installation initiated  
 
-.. figure:: _static/images/installation/installation2.png
+.. figure:: _static/images/freebsd-installation/bootstrap2.png
    :width: 600
-   :alt: Karios installation started
+   :alt: Bootstrap installation initiated  
 
-.. figure:: _static/images/installation/installation3.png
+.. figure:: _static/images/freebsd-installation/bootstrap3.png
    :width: 600
-   :alt: Karios installation in progress    
+   :alt: Bootstrap installation initiated  
 
-.. figure:: _static/images/installation/installation5.png
+.. figure:: _static/images/freebsd-installation/bootstrap4.png
    :width: 600
-   :alt: Karios installation completed
-
-.. tip::
-   **Installation Duration**: The automatic installation typically completes within 10-15 minutes depending on hardware performance. Do not interrupt the system during this process.
+   :alt: Bootstrap installation initiated  
 
 
-First Login Credentials
-~~~~~~~~~~~~~~~~~~~~~~~
-
-After the automatic installation completes, all login credentials and system information are stored in a configuration file on the system.
+**User Account Creation Requirements**
 
 .. important::
-   **Credentials Location**
+   **Administrative User Configuration**
    
-   Your first login credentials and service URLs are saved to ``/root/karios_install_info.txt``. Access this file to retrieve all necessary login information.
+   During FreeBSD installation, when prompted to create user accounts, **ALL** users must be added to the `wheel` group for proper administrative access in Karios environments.
 
-**Retrieve Your Credentials:**
+**User Creation Best Practices:**
+
+.. list-table:: User Account Requirements
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Setting
+     - Required Configuration
+   * - **Username**
+     - Use descriptive, unique usernames (e.g., admin, karios-admin)
+   * - **Full Name**
+     - Complete administrator name for accountability
+   * - **Login Group**
+     - Leave blank (default user group will be created)
+   * - **Additional Groups**
+     - **MANDATORY**: Enter `wheel` for administrative privileges
+   * - **Shell**
+     - Recommend: `/bin/sh` or `/bin/tcsh` for reliability
+   * - **Password**
+     - Strong password required (complex, minimum 12 characters)
+   * - **Account Status**
+     - Do NOT lock account after creation
+
+.. warning::
+   **Wheel Group Requirement**
+   
+   Users **must** be added to the `wheel` group during installation. This provides:
+   - `sudo` access capabilities
+   - Administrative command execution
+   - System configuration privileges
+   - Karios management interface access
+   
+   **Without wheel group membership, users cannot perform administrative tasks required for Karios operation.**
 
 .. code-block:: bash
 
-   cat /root/karios_install_info.txt
+   # Verify bootstrap installation logs
+   cat /var/log/bootstrap_ansible.log
+   
+   # Verify network security configuration
+   netstat -an | grep LISTEN
 
-**Example Output:**
+.. note::
+   The bootstrap script automatically installs and configures all Karios components, security settings and service dependencies.
+
+
+**Karios Configuration Completed**
+
+.. figure:: _static/images/freebsd-installation/credentials.png
+   :width: 600
+   :alt: Bootstrap installation completed with credentials screen 
+
+Upon successful completion of the bootstrap installation, you will see a configuration summary screen displaying all system credentials and access information:
+
+.. important::
+   **CRITICAL: Save These Credentials Immediately!**
+   
+   The configuration completion screen displays all default credentials for Karios components. **You must save these credentials before proceeding** as they are required to access and manage your Karios system.
+
+**Credentials Displayed on Completion Screen:**
+
+.. list-table:: Karios System Credentials
+   :header-rows: 1
+   :widths: 30 25 25 20
+
+   * - Component
+     - Username
+     - Password
+     - Port/URL
+   * - **Karios HCI Admin**
+     - admin
+     - (displayed on screen)
+     - https://karios-node01.XXX.com
+   * - **Karios ATLAS (NetBox)**
+     - admin
+     - (displayed on screen)
+     - http://karios-node01.XXX.com:8000
+   * - **Grafana Monitoring**
+     - admin
+     - (displayed on screen)
+     - http://karios-node01.XXX.com:3000
+
+.. warning::
+   **Security Best Practice**
+   
+   - **Save all credentials immediately** in a secure password manager
+   - **Do not share credentials** via insecure channels (email, chat, etc.)
+   - **Document the access URLs** with their respective ports for future reference
+
+**Access Information:**
+
+The completion screen will display:
+
+- **Karios Management Interface**: Primary HCI administration portal
+- **ATLAS/NetBox Interface**: Network and infrastructure documentation system
+- **Grafana Monitoring Interface**: System metrics and performance dashboards
 
 .. code-block:: text
 
-   KARIOS_NODE_FQDN="karios-node.example.com"
-   KARIOS_ADMIN_PASSWORD="<auto-generated-password>"
+   ================================================================
+   ▣ Karios HCI Platform Successfully Deployed! ▣
+   ================================================================
+   
+   ================================================================
+                    SAVE THESE CREDENTIALS IMMEDIATELY!
+   ================================================================
+   
+   Karios HCI Admin Credentials:
+     Username: admin
+     Password: [generated_password]
+   
+   Karios ATLAS (NetBox) Credentials:
+     Username: admin
+     Password: [generated_password]
+   
+   Grafana Monitoring Credentials:
+     Username: admin
+     Password: [generated_password]
+   
+   Karios Management Interface: https://karios-node01.XXX.com
+   ATLAS/NetBox Interface: http://karios-node01.XXX.com:8000
+   Grafana Monitoring Interface: http://karios-node01.XXX.com:3000
+   
+   ▣  CRITICAL: Save these credentials before proceeding!
+   
+   Press Enter to exit...
 
-   ATLAS_USERNAME="karios"
-   ATLAS_PASSWORD="<auto-generated-password>"
-   ATLAS_URL="http://karios-node.example.com:8000"
+**Post-Credential Save Actions:**
 
-   GRAFANA_USERNAME="admin"
-   GRAFANA_PASSWORD="<auto-generated-password>"
-   GRAFANA_URL="http://karios-node.example.com:3000"
+1. **Document all credentials** in your organization's secure credential management system
+2. **Test access** to each interface using the provided credentials
 
-   NODE_FQDN="karios-node.example.com"
-   KARIOS_DOMAIN="example.com"
 
-   TECHNITIUM_VM_IP="10.0.0.100"
-   TECHNITIUM_VM_NAME="technitium-dns"
-   TECHNITIUM_ADMIN_PASSWORD="<auto-generated-password>"
-   TECHNITIUM_WEB_URL="http://10.0.0.100:5380"
+**Reinstallation Security Considerations**
 
-   DEPLOYED_AT="2025-01-09T12:00:00Z"
-
-.. list-table:: Service Access Summary
-   :header-rows: 1
-   :widths: 25 25 50
-
-   * - Service
-     - Default Username
-     - Access URL
-   * - **Karios Web UI**
-     - ``admin``
-     - ``http://<NODE_FQDN>:8080``
-   * - **Atlas Dashboard**
-     - ``karios``
-     - ``http://<NODE_FQDN>:8000``
-   * - **Grafana Monitoring**
-     - ``admin``
-     - ``http://<NODE_FQDN>:3000``
-   * - **Technitium DNS**
-     - ``admin``
-     - ``http://<TECHNITIUM_VM_IP>:5380``
+If the system prompts about reinstallation during bootstrap execution:
 
 .. warning::
    **Security Recommendation**: Change all default passwords immediately after first login. Store your credentials securely and restrict access to the ``karios_install_info.txt`` file.
@@ -1013,129 +1086,124 @@ After installation completion, verify your Karios installation:
 - ZFS pool should show "ONLINE" status  
 - No critical errors in system logs
 
+Retrieving Saved Credentials
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Setup DNS and DHCP Services
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you need to retrieve the system credentials after installation, all credentials are saved in a text file on the Karios node.
 
-Karios automatically deploys **Technitium DNS Server** as a system VM during installation. This provides DNS and DHCP services for all Karios nodes, VMs, and Kubernetes clusters.
+.. figure:: _static/images/freebsd-installation/install_info.png
+   :width: 600
+   :alt: Karios installation credentials file
 
-.. _stop-upstream-dhcp:
+.. important::
+   **Credential Storage Location**
+   
+   All installation credentials are automatically saved to ``/root/karios_install_info.txt`` for future reference.
 
-⛔ CRITICAL: Disable Upstream DHCP Server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. warning::
-   **You MUST disable any existing DHCP server** on the Karios network segment before proceeding. Two DHCP servers on the same network will cause IP conflicts.
-
-**Why This Is Required:**
-
-- Technitium is now the **authoritative** DHCP/DNS server for all Karios operations
-- All nodes and VMs receive automatic FQDNs from Technitium
-- Kubernetes clusters depend on Technitium DNS for service discovery
-- Bare-metal provisioning uses Technitium DHCP for IP assignment
-
-**Disable Your Upstream DHCP Server:**
+**To View Saved Credentials:**
 
 .. code-block:: bash
 
-   # Linux (ISC DHCP)
-   sudo systemctl stop isc-dhcp-server
-   sudo systemctl disable isc-dhcp-server
+   # Login as root or use sudo to view the credentials file
+   cat /root/karios_install_info.txt
 
-   # Windows Server DHCP
-   Stop-Service DHCPServer
-   Set-Service DHCPServer -StartupType Disabled
+**Credential File Contents:**
 
-   # Router-based DHCP
-   # Login to router admin UI → Disable DHCP server
+The ``karios_install_info.txt`` file contains all system access credentials and URLs:
 
-.. note::
-   **Rollback**: If you need to revert, stop the Technitium VM with ``vm poweroff technitium-dns`` and re-enable your upstream DHCP.
+.. code-block:: text
 
-Access Technitium DNS Server
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   KARIOS_NODE_FQDN="karios-node1.example.com"
+   KARIOS_ADMIN_PASSWORD="[generated_password]"
+   
+   ATLAS_USERNAME="admin"
+   ATLAS_PASSWORD="[generated_password]"
+   ATLAS_URL="http://karios-node1.example.com:8000"
+   
+   GRAFANA_USERNAME="admin"
+   GRAFANA_PASSWORD="[generated_password]"
+   GRAFANA_URL="http://karios-node1.example.com:3000"
+   
+   NODE_FQDN="karios-node1.example.com"
+   KARIOS_DOMAIN="example.com"
+   TECHNITIUM_VM_IP="192.168.x.xx"
+   TECHNITIUM_VM_NAME="technitium-dns"
+   TECHNITIUM_ADMIN_PASSWORD="[generated_password]"
+   TECHNITIUM_WEB_URL="http://192.168.x.xx:5380"
 
-**Quick Access Information:**
+**Information Stored in Credentials File:**
 
-1. **Get DNS Server IP Address**
+.. list-table:: 
+   :header-rows: 1
+   :widths: 35 65
 
+   * - Credential/Setting
+     - Description
+   * - **KARIOS_NODE_FQDN**
+     - Fully Qualified Domain Name of the Karios node
+   * - **KARIOS_ADMIN_PASSWORD**
+     - Password for Karios HCI administrative interface
+   * - **ATLAS_USERNAME**
+     - Username for ATLAS/NetBox infrastructure documentation system
+   * - **ATLAS_PASSWORD**
+     - Password for ATLAS/NetBox system
+   * - **ATLAS_URL**
+     - Complete URL to access ATLAS interface (port 8000)
+   * - **GRAFANA_USERNAME**
+     - Username for Grafana monitoring dashboards
+   * - **GRAFANA_PASSWORD**
+     - Password for Grafana monitoring system
+   * - **GRAFANA_URL**
+     - Complete URL to access Grafana interface (port 3000)
+   * - **NODE_FQDN**
+     - Node Fully Qualified Domain Name
+   * - **KARIOS_DOMAIN**
+     - Domain name for the Karios deployment
+   * - **TECHNITIUM_VM_IP**
+     - IP address of the Technitium DNS virtual machine
+   * - **TECHNITIUM_VM_NAME**
+     - Name of the Technitium DNS VM
+   * - **TECHNITIUM_ADMIN_PASSWORD**
+     - Administrative password for Technitium DNS server
+   * - **TECHNITIUM_WEB_URL**
+     - Web interface URL for Technitium DNS (port 5380)
+
+.. tip::
+   **Quick Credential Retrieval**
+   
+   You can quickly search for specific credentials using grep:
+   
    .. code-block:: bash
-
-      cat /root/karios_info.txt
-
-   .. figure:: _static/images/installation/Technitium_Ip.png
-      :width: 600
-      :alt: Karios info file showing DNS server IP address
-
-2. **Access Technitium Web Interface**
-
-   - **URL**: ``http://<DNS_SERVER_IP>:5380``
-   - **Default Username**: ``admin``
-   - **Default Password**: ``adminadmin``
-
-   .. figure:: _static/images/installation/Technitium_Login.png
-      :width: 600
-      :alt: Technitium DNS server login screen
-
-3. **Pre-configured DHCP Services**
-
-   The DHCP server is automatically configured to serve IP addresses within your network's subnet range.
-
-   .. figure:: _static/images/installation/Technitium_DHCP.png
-      :width: 600
-      :alt: Technitium DNS server DHCP configuration screen
-
-4. **Pre-configured DNS Services**
-
-   DNS server resolves local VM hostnames within the primary domain.
-
-   .. figure:: _static/images/installation/Technitium_DNS.png
-      :width: 600
-      :alt: Technitium DNS server DNS configuration screen
-
-.. hint::
-   **Verify Network Configuration**
    
-   Check the Primary Domain and Search Domains configured in Technitium:
+      # Find Karios admin password
+      grep KARIOS_ADMIN_PASSWORD /root/karios_install_info.txt
+      
+      # Find all URLs
+      grep URL /root/karios_install_info.txt
+      
+      # View Grafana credentials only
+      grep GRAFANA /root/karios_install_info.txt
+
+.. warning::
+   **File Security**
    
-   .. code-block:: bash
-   
-      cat /etc/resolv.conf
-
-**Complete DNS and DHCP Configuration Guide:**
-
-For comprehensive step-by-step configuration instructions covering all DNS and DHCP features, refer to the dedicated Technitium documentation:
-
-.. note::
-   **Technitium DHCP & DNS Setup Guide**
-   
-   For detailed configuration instructions including:
-   
-   - DNS zones management (Primary, Secondary, Reverse DNS)
-   - DNS records (A, CNAME, PTR, MX, TXT, SRV)
-   - Zone transfers and replication
-   - DHCP scope configuration and management
-   - DHCP reservations and lease monitoring
-   - MAC address tracking and vendor identification
-   - Migration from existing DHCP/DNS infrastructure
-   - Dynamic DNS integration
-   - Troubleshooting and monitoring
-
-.. important::
-   **See Complete Guide**: `Technitium DHCP & DNS Setup Guide <../technitium/index.html>`_
-
+   - The credentials file is stored in ``/root/`` directory with restricted access
+   - Only root user can read this file by default
+   - **Backup this file securely** to your password management system
+   - **Do not share** this file via insecure channels
+   - Consider **encrypting backups** of this file
 
 Accessing the Karios Interface
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once installation is complete, access the Karios management interface:
 
-.. figure:: _static/images/installation/installation4.png
+.. figure:: _static/images/freebsd-installation/ui_screen.png
    :width: 600
    :alt: Bootstrap installation completed
 
 1. **Web Browser**: Open a web browser on a computer connected to the same network
-2. **Management URL**: Navigate to the Karios management interface URL (typically ``https://<server-ip>``)
+2. **Management URL**: Navigate to the Karios management interface URL (typically ``https://<server-fqdn>``)
 3. **Login Credentials**: Use the administrative credentials created during installation
 4. **Initial Setup Wizard**: Complete the guided setup process
 
@@ -1196,13 +1264,10 @@ If you need assistance with the installation process:
 .. code-block:: bash
 
    # Installation logs
-   /var/log/karios-install.log
+   /var/log/bootstrap_ansible.log
    
    # System logs
    /var/log/messages
-   
-   # Bootstrap logs
-   /tmp/bootstrap.log
    
    # sudo/doas activity logs
    /var/log/secure
@@ -1215,8 +1280,9 @@ Next Steps
 After successful installation, complete these essential tasks in order:
 
 1. **Access Web Interface**
-   - Open browser and navigate to: `https://YOUR_SERVER_IP`
-   - Login with credentials created during Karios BSD installation
+   - Open browser and navigate to: `https://YOUR_SERVER_FQDN`
+   - Accept SSL certificate warning (self-signed)
+   - Login with credentials created during FreeBSD installation
 
 2. **Install Karios Root CA Certificate** (Recommended)
    - See :ref:`browser-certificate-setup` below to eliminate browser security warnings
