@@ -1233,7 +1233,7 @@ Datacenter Management
 - **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
 
 
-.. figure:: _static/images/web_interface_management/control_center_overview.png
+.. figure:: _static/images/web_interface_management/.png
    :width: 800
    :alt: Control Center Overview
    :align: center
