@@ -1346,4 +1346,16 @@ After installation, navigate to ``https://<master-node-ip>`` - you should see a 
 
 .. tip::
    **Troubleshooting**: If you still see warnings, ensure you installed the **Root CA** (not a node certificate), installed it to **Trusted Root Certification Authorities**, and restarted your browser.
+
+Next Steps
+----------
+
+After installation:
+
+1. Access the web interface at the configured IP address
+2. Retrieve the admin password from ``/root/karios_install_info.txt``
+3. **Complete the mandatory control node registration** - See :ref:`Control Node Registration <control-node-registration>`
+
+.. important::
+   On first login, you must complete the control node registration form before using Karios ATLAS. This is a one-time requirement.
    

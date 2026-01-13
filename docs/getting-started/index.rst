@@ -5,6 +5,13 @@ Introduction
    :description: Introduction to Karios, the software-defined foundation for modern IT infrastructure
    :keywords: Karios, HCI, hyper-converged, virtualization, ZFS
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   installation
+   control-node-registration
+
 Welcome to Karios!
 ------------------
 
