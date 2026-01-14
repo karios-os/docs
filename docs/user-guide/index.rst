@@ -410,7 +410,7 @@ The License Features modal provides three main tabs for comprehensive license ma
 
 **License Dashboard Access**
 
-Access detailed license information through the "License Dashboard" button located in the top banner of the interface.
+Access detailed license information through the "License Dashboard" button located at the side panel of the interface.
 
 .. figure:: _static/images/getting_started/license_dashboard_access.png
    :alt: License Dashboard Interface
