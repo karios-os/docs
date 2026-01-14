@@ -410,7 +410,7 @@ The License Features modal provides three main tabs for comprehensive license ma
 
 **License Dashboard Access**
 
-Access detailed license information through the "License Dashboard" button located in the top banner of the interface.
+Access detailed license information through the "License Dashboard" button located at the side panel of the interface.
 
 .. figure:: _static/images/getting_started/license_dashboard_access.png
    :alt: License Dashboard Interface
@@ -1000,8 +1000,15 @@ Full Access Implementation
 
    Figure : Edit User Interface
 
-4. Change role assignment to "System Admin"
-5. Save changes to grant complete system access
+4. Click assign role button.
+
+.. figure:: _static/images/rbac/role_assign_edit_user.png
+   :width: 600
+   :alt: Assign System Admin Role
+
+   Figure : Assign System Admin Role
+
+5. Change role assignment to "System Admin" and save changes to grant complete system access
 
 .. figure:: _static/images/rbac/AssignSystemAdminRole.png
    :width: 600
