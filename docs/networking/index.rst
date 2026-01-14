@@ -477,41 +477,6 @@ Best Practices
 * Validate gateway and inter-VLAN reachability prior to tunnel creation to avoid incomplete deployments.  
 * Document tunnel endpoints and IP plans, as overlays introduce additional address spaces that must be tracked.  
 
-Advanced Networking Features
-=============================
-
-Software-Defined Networking (Coming Soon)
------------------------------------------
-
-SDN architecture implementing centralized network control with separation of control and data planes, enabling programmable network behavior through OpenFlow integration and policy automation.
-
-**What it does:**
-- Provides centralized network control with distributed forwarding capabilities
-- Enables dynamic flow programming and intelligent traffic engineering
-- Supports automated service orchestration and policy deployment
-- Implements fine-grained security controls and micro-segmentation policies
-- Offers comprehensive network automation and orchestration capabilities
-
-**How Karios integrates SDN:**
-- Future SDN implementation will leverage FreeBSD's flexible networking stack with OpenFlow protocol support, integrated policy engines, and automated deployment systems while maintaining compatibility with existing network infrastructure.
-- Planned SDN features will provide graphical policy design tools, automated deployment workflows, real-time network programming capabilities, and comprehensive service orchestration through the unified management interface.
-
-Netgraph Advanced Framework (Coming Soon)
------------------------------------------
-
-Netgraph is a modular, kernel-level networking framework enabling custom protocol implementations, advanced packet processing scenarios, and flexible network topology creation with dynamic reconfiguration capabilities.
-
-**What it does:**
-- Provides building blocks for custom network protocols and processing
-- Enables advanced scenarios including tunneling, encryption, and traffic shaping
-- Supports dynamic network topology modifications without service interruption
-- Offers high-performance packet processing with kernel-level efficiency
-- Implements modular architecture with reusable network function components
-
-**How Karios integrates Netgraph:**
-- Future Netgraph integration will provide visual topology design tools, pre-configured protocol modules, automated validation systems, and seamless integration with existing virtual switching infrastructure.
-- Planned Netgraph features will include drag-and-drop topology builders, extensive protocol module libraries, configuration templates for common scenarios, and comprehensive debugging and monitoring tools.
-
 Troubleshooting and Best Practices
 ===================================
 
