@@ -1000,8 +1000,15 @@ Full Access Implementation
 
    Figure : Edit User Interface
 
-4. Change role assignment to "System Admin"
-5. Save changes to grant complete system access
+4. Click assign role button.
+
+.. figure:: _static/images/rbac/role_assign_edit_user.png
+   :width: 600
+   :alt: Assign System Admin Role
+
+   Figure : Assign System Admin Role
+
+5. Change role assignment to "System Admin" and save changes to grant complete system access
 
 .. figure:: _static/images/rbac/AssignSystemAdminRole.png
    :width: 600
