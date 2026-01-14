@@ -1098,13 +1098,7 @@ Ongoing account management includes:
 2. **Role Modifications**: Update user roles based on changing responsibilities
 3. **Approval Management**: Manage approval workflows for sensitive role assignments
 4. **Access Reviews**: Regular review of user accounts and assigned permissions
-5. **Account Deactivation and Deletion**: Process account deactivation / deletion requests by navigating to the user management block in User Management
-
-.. figure:: _static/images/rbac/AccountDeactivation.png
-   :width: 600
-   :alt: Account Deactivation
-
-   Figure : Account Deactivation
+5. **Account Deletion**: Process account deletion requests by navigating to the user management block.
 
 .. figure:: _static/images/rbac/AccountDeletion.png
    :width: 600
