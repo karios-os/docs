@@ -816,7 +816,7 @@ Role Creation Process
 
    Figure : Role List
 
-3. Use the "Create Role" section on the left to define new roles
+3. Use the "Create Role" section on the right to define new roles
 
 .. figure:: _static/images/rbac/create_role.png
    :width: 600
