@@ -747,7 +747,7 @@ g. **Checksum Verification:**
    - Installer will verify ISO checksum
    - Wait for verification to complete
 
-.. figure:: _static/images/freebsd-installation/checksum-verification.png
+.. figure:: _static/images/freebsd-installation/checksum-verificaton.png
    :width: 600
    :alt: Checksum verification screen
 
@@ -824,7 +824,7 @@ After KariosBSD installation completes, verify ZFS is properly configured:
      - Restart installation, verify disk health before proceeding
 
 Karios Bootstrap Auto-Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Karios installation follows a two-phase process:
 
