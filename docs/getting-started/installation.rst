@@ -750,6 +750,10 @@ g. **Checksum Verification:**
    - Installer will verify ISO checksum
    - Wait for verification to complete
 
+.. figure:: _static/images/freebsd-installation/checksum-verificaton.png
+   :width: 600
+   :alt: Checksum verification screen
+
 h. **Archive Extraction:**
    - Installer will extract and install selected components
    - This may take several minutes
@@ -766,20 +770,19 @@ h. **Archive Extraction:**
    :width: 600
    :alt: Configure network interface screen
 
-7a.**Continue Standard Installation**
+7a. **Continue Standard Installation**
    - Select time zone
 
 .. figure:: _static/images/freebsd-installation/time_zone.png
    :width: 600
    :alt: Configure time zone screen
 
-   Configure time zone screen
-
+8. **Complete Installation**
    - Enable system services (sshd recommended)
    - Add users if desired
    - Apply configuration and exit installer
 
-8. **Reboot Verification**
+9. **Reboot Verification**
    - Remove USB drive when prompted
    - Allow system to reboot
    - Verify ZFS boot by checking: `zpool status`
