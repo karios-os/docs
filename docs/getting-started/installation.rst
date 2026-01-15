@@ -750,10 +750,6 @@ g. **Checksum Verification:**
    - Installer will verify ISO checksum
    - Wait for verification to complete
 
-.. figure:: _static/images/freebsd-installation/checksum-verification.png
-   :width: 600
-   :alt: Checksum verification screen
-
 h. **Archive Extraction:**
    - Installer will extract and install selected components
    - This may take several minutes
@@ -776,6 +772,8 @@ h. **Archive Extraction:**
 .. figure:: _static/images/freebsd-installation/time_zone.png
    :width: 600
    :alt: Configure time zone screen
+
+   Configure time zone screen
 
    - Enable system services (sshd recommended)
    - Add users if desired
@@ -827,7 +825,7 @@ After KariosBSD installation completes, verify ZFS is properly configured:
      - Restart installation, verify disk health before proceeding
 
 Karios Bootstrap Auto-Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Karios installation follows a two-phase process:
 

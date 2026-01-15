@@ -1237,7 +1237,7 @@ Datacenter Management
 - **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
 
 
-.. figure:: _static/images/web_interface_management/.png
+.. figure:: _static/images/web_interface_management/control_center_overview.png
    :width: 800
    :alt: Control Center Overview
    :align: center
@@ -6680,7 +6680,7 @@ The Hardware tab allows dynamic modification of VM specifications:
 
 **Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "Attach" button to attach the PCIe device.
 
-.. figure:: _static/images/vmcreation/attach_pcie_device.png
+.. figure:: _static/images/vmcreation/attached_pcie_device.png
    :width: 600
    :alt: Attach PCIe Device
 
