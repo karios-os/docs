@@ -175,7 +175,7 @@ that the controller setup is running asynchronously.
 
 
 Setting Up an FRR Router
-=======================
+========================
 
 After the SDN controller is successfully provisioned, Karios enables administrators to deploy and configure FRR routers through a guided, multi-step workflow.
 This workflow ensures routers are provisioned correctly, validated incrementally, and aligned with the intended routing design before becoming operational.

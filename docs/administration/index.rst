@@ -34,12 +34,12 @@ Update Notifications
    * - Update Status
      - Clear indication of update availability and urgency
 
-.. figure:: _static/images/releases/Releases_downloads.png
+.. figure:: _static/images/releases/Release_download.png
    :alt: Update Notification Banner
    :align: center
    :width: 90%
 
-   Update Notification Banner in Karios ATLAS Interface
+   Update Notification Banner in Karios Releases
 
 Update Types
 ------------
@@ -70,7 +70,7 @@ Karios supports multiple categories of updates:
    :align: center
    :width: 90%
 
-   Supported Update Types in Karios ATLAS
+   Supported Update Types in Karios Releases
 
 **Update Classifications:** 
 
@@ -94,7 +94,7 @@ Karios supports multiple categories of updates:
    :align: center
    :width: 90%
 
-   Update Classifications in Karios ATLAS
+   Update Classifications in Karios Releases
 
 Update Discovery and Download
 =============================
@@ -119,12 +119,12 @@ Update Detection
    * - Update Metadata
      - Detailed information about each available update
 
-.. figure:: _static/images/releases/Releases_downloads.png
+.. figure:: _static/images/releases/Release_download.png
    :alt: Update Detection
    :align: center
    :width: 90%
 
-   Automatic Update Detection in Karios ATLAS
+   Automatic Update Detection in Karios Releases
 
 Update Download Process
 -----------------------
@@ -247,7 +247,7 @@ Real-time Monitoring
    :align: center
    :width: 90%
 
-   Real-time Installation Monitoring in Karios ATLAS
+   Real-time Installation Monitoring in Karios Releases
 
 **Monitoring Features:**
 
@@ -312,7 +312,7 @@ Installation History
    :align: center
    :width: 90%
 
-   Installation History Tracking in Karios ATLAS
+   Installation History Tracking in Karios Releases
 
 Version Management
 ------------------
@@ -339,7 +339,7 @@ Version Management
    :align: center
    :width: 90%
 
-   Version Management in Karios ATLAS
+   Version Management in Karios Releases
 
 Update Coordination
 ===================
