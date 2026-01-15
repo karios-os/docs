@@ -16,7 +16,7 @@ Have this information ready:
 
 * Device name, site, rack, and position
 * Manufacturer and device type
-* (Optional) Serial number, asset tag
+* (Optional) Serial number, asset tag  
 * (Optional) Primary IPv4/IPv6 addresses
 * (Optional) BMC IP, username, and password
 
