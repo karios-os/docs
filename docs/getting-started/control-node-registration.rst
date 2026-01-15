@@ -94,6 +94,6 @@ Once complete:
 * BMC operations enabled (if credentials provided)
 * Network interfaces configured
 
-.. seealso::
+.. tip::
    * Installation guide - Initial setup steps
    * User Guide - Managing devices and infrastructure
