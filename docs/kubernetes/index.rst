@@ -98,6 +98,7 @@ OmniServer Deployment
 - Click **Setup Omni Server**.  
 - Enter OmniServer VM details (username and password).  
 - Attach an **Ubuntu cloud image (.img)**.  
+- Select **DNS Zone** 
 
 .. figure:: _static/images/omni/om-6.png
    :alt: Setup Omni Server Button
@@ -367,6 +368,7 @@ Creating the OpenShift Cluster
 **Step 2.1.2: Enter the Cluster Details**
 
 - **Cluster name**: Enter a DNS-compliant name (e.g., ``op-test``).
+- **DNS Zone**: Select the DNS zone created in Technitium DNS sever.
 
 .. note::
    The ``op`` prefix is recommended to uniquely identify OpenShift clusters.  
@@ -708,6 +710,7 @@ Create the Ubuntu Kubernetes Virtual-Machines Cluster
    :alt: Setup Kubernetes Button
    :width: 600
 
+
 **Step 3.1.2: Enter Cluster Details**
 
 - **Cluster name**: Enter a DNS-compliant name (e.g., ``ub-test1``).  
@@ -721,6 +724,8 @@ Create the Ubuntu Kubernetes Virtual-Machines Cluster
    Avoid using reserved usernames like **root** or **admin**.  
 
 - **Attach the image**: Select an **Ubuntu cloud image (.img)**.  
+
+- Select **DNS Zone** created in Technitium DNS server.
 
 .. note::
    The Ubuntu image must be uploaded to the **Control Center** in Karios beforehand.  
@@ -978,7 +983,7 @@ Create Ubuntu Kubernetes Bare Metal Cluster
 - Wait for the cluster Nodes to be ready for the cluster. Wait for them to report the ip
 
 
-... note::
+.. note::
    It may take several minutes for all Nodes to be ready in the cluster.
    Once the Nodes are ready the job status button disappears from the Karios UI.
    And you can Access the Tech stack as mentioned in the previous section, Along with the verification of the Cluster setup.
@@ -1019,6 +1024,11 @@ Key internal differences from traditional Kubernetes:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Click **Setup Kubernetes** in the Karios UI, and select **K3s**.
+
+.. figure:: _static/images/k3s/K3s-Controlcenter.png    
+   :alt: Setup Kubernetes Button
+   :width: 600
+
 - Click on the **Provision Vm Cluster** to provision the Virtual Machines
 
 .. figure:: _static/images/k3s/k3sKubernetesBaremetalprovision-3.png
@@ -1043,9 +1053,9 @@ Key internal differences from traditional Kubernetes:
 .. note::
    The image must first be uploaded to the **Control Center** in Karios.
 
-.. figure:: _static/images/k3s/K3s-Controlcenter.png    
-   :alt: Setup Kubernetes Button
-   :width: 600
+- Select the **DNS Zone**.
+
+
 
 4.1.3 Add a Bootstrap Node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1222,6 +1232,8 @@ Create K3s Kubernetes Bare Metal Cluster
    :width: 600
 
 - Click on the **Provision Bare Metal Cluster** to provision the Bare Metal Nodes
+
+- Select the **DNS Zone**.
 
 .. figure:: _static/images/k3s/K3sKubernetesBaremetalprovision-2.png
    :alt: Setup Kubernetes Button

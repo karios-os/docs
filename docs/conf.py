@@ -15,7 +15,6 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
-    'myst_parser',
     'sphinx_copybutton',
     'sphinx_design',
     'sphinxext.opengraph',

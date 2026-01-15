@@ -118,10 +118,4 @@ Ideal Configuration
 Next Steps
 ----------
 
-Ready to get started? Check out the installation guide and basic concepts.
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Getting Started
-   
-   installation
+Ready to get started? Check out the installation guide and basic concepts in the sections above.
