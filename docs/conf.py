@@ -15,7 +15,6 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
-    'myst_parser',
     'sphinx_copybutton',
     'sphinx_design',
     'sphinxext.opengraph',
@@ -23,8 +22,8 @@ extensions = [
 
 # Support for Markdown files
 source_suffix = {
-    '.rst': None,
-    '.md': 'myst_parser',
+    '.rst': 'restructuredtext',
+    '.txt': 'restructuredtext',
 }
 
 templates_path = ['_templates']
