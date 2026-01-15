@@ -2,15 +2,24 @@
 
 /* Brand Color Variables - Light Mode Only */
 :root {
-    --karios-navy: #1a1f3a;         /* Dark navy background */
-    --karios-deep-navy: #0f1729;    /* Deeper navy for backgrounds */
-    --karios-bright-green: #9ACD32; /* Bright lime green */
-    --karios-blue-accent: #2E4A8B;  /* Blue from the servers */
-    --karios-light-blue: #4A90E2;   /* Lighter blue accent */
-    --karios-tech-gray: #f4f6f8;    /* Subtle off-white */
-    --karios-muted-gray: #e8eaf0;   /* Muted backgrounds */
-    --karios-dark-gray: #6c757d;    /* Text gray */
-    --karios-white: #ffffff;        /* Pure white */
+    --karios-navy: #1a1f3a;
+    /* Dark navy background */
+    --karios-deep-navy: #0f1729;
+    /* Deeper navy for backgrounds */
+    --karios-bright-green: #9ACD32;
+    /* Bright lime green */
+    --karios-blue-accent: #2E4A8B;
+    /* Blue from the servers */
+    --karios-light-blue: #4A90E2;
+    /* Lighter blue accent */
+    --karios-tech-gray: #f4f6f8;
+    /* Subtle off-white */
+    --karios-muted-gray: #e8eaf0;
+    /* Muted backgrounds */
+    --karios-dark-gray: #6c757d;
+    /* Text gray */
+    --karios-white: #ffffff;
+    /* Pure white */
 
     /* Light mode specific colors */
     --bg-primary: linear-gradient(135deg, #f4f6f8 0%, #ffffff 50%, #e8eaf0 100%);
@@ -132,7 +141,7 @@ body::after {
     box-shadow: 0 2px 8px rgba(154, 205, 50, 0.3);
 }
 
-.wy-menu-vertical li.current > a {
+.wy-menu-vertical li.current>a {
     border: none;
 }
 
@@ -383,13 +392,14 @@ code {
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
+
     /* Adjust banner for mobile */
     .wy-body-for-nav::after {
         left: 0;
         font-size: 16px;
         padding-left: 60px;
     }
-    
+
     .wy-nav-top {
         background: var(--karios-navy);
     }
@@ -397,19 +407,19 @@ code {
     .wy-nav-top i {
         color: var(--karios-bright-green);
     }
-    
+
     /* Adjust content for mobile */
     .wy-nav-content {
         margin: 10px;
         padding: 16px;
     }
-    
+
     /* Make tables scrollable on mobile */
     .wy-table-responsive {
         border: 1px solid #dde1e7;
         border-radius: 8px;
     }
-    
+
     /* Prevent text wrapping in table cells */
     .wy-table td,
     .wy-table th {
@@ -428,4 +438,10 @@ code {
         color: var(--karios-navy) !important;
         text-decoration: none !important;
     }
+}
+
+/* Bold links in warning and note admonitions */
+.admonition.warning a.reference.external,
+.admonition.note a.reference.external {
+    font-weight: 700;
 }

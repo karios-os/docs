@@ -605,6 +605,9 @@ Before using Karios, ensure your environment meets the following prerequisites:
    **Technitium information**:
    Please wait for the Technitium information to populate in the **karios_install_info.txt** file located at `/root/karios_install_info.txt` on the control node. This will take approx 10 mins.
 
+   Refer to `Technitium DHCP and DNS Setup <https://docs.karios.ai/technitium/index.html>`_ documentation for detailed instructions.
+
+
 Interface Overview
 ~~~~~~~~~~~~~~~~~~
 
@@ -4369,6 +4372,12 @@ Node Monitoring
 
 **Monitoring Overview:** The Monitoring tab provides comprehensive real-time performance monitoring and historical analysis for individual worker nodes, enabling administrators to track system performance, identify trends, and optimize resource utilization.
 
+Feature available under "Diagnostics" tab.
+
+.. figure:: _static/images/power-monitoring/image_0001.png
+   :align: center
+
+
 **Monitoring Interface:** The monitoring interface features a time-based performance dashboard with configurable time ranges and multiple performance metrics displayed in detailed graphical format.
 
 Time Range Selection
@@ -5520,7 +5529,10 @@ Security Configuration Management
 Node Log Management
 ~~~~~~~~~~~~~~~~~~~
 
+Feature available under "Diagnostics" tab.
+
 **Log Overview:** The Logs tab provides comprehensive system log monitoring and analysis for individual worker nodes, featuring real-time log streaming, filtering capabilities, and log export functionality for troubleshooting and system analysis.
+
 
 **Log Viewer Interface:** The Log Viewer displays system logs in a structured format with filtering options, search capabilities, and export tools for efficient log management and analysis.
 
@@ -5669,6 +5681,11 @@ The CLI presents a main menu with the following options:
 
 Menu Options
 ^^^^^^^^^^^^
+This feature is available under "Diagnostics" tab.
+
+.. figure:: _static/images/debug/cli_run_all_tools10.png
+   :width: 600
+   :alt: CLI Run All Tools
 
 **Run Tool**
    Select and execute a single diagnostic tool with interactive parameter input.
@@ -6025,7 +6042,7 @@ How to Generate a Support Bundle from UI
 
 1. **Navigate to Support Bundle**
 
-   * Click on the "Support Bundle" tab in the main navigation menu
+   * Click on "Ondemand Services" tab under "Diagnostics" and select "Support Bundle".
 
    .. figure:: _static/images/support-bundle/support-bundle-tab.png
       :width: 600
@@ -6262,16 +6279,10 @@ Configure virtual machine resources based on requirements:
 - **Memory**: Allocate RAM from available server memory
 - **CPU Sockets**: Configure CPU socket topology
 
-.. figure:: _static/images/vmcreation/Image_114.png
-   :width: 600
-
 **Storage Configuration**
 
 - **Storage Pool**: Select from available storage pools
 - **Disk Size**: Specify virtual disk size based on requirements
-
-.. figure:: _static/images/vmcreation/Image_115.png
-   :width: 600
 
 **Network Configuration**
 
@@ -6279,8 +6290,7 @@ Configure virtual machine resources based on requirements:
 - **Network Driver**: Choose network driver type for optimal performance
 - **Network Adapter**: Configure virtual network adapter settings
 
-.. figure:: _static/images/vmcreation/Image_116.png
-   :width: 600
+
 
 Windows Virtual Machine Installation Guide
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -6330,11 +6340,6 @@ Installation Steps
 * **Memory (RAM)**: Allocate system memory (minimum 4GB for Windows 10)
 * **Resource Validation**: System checks available resources against allocation
 
-.. figure:: _static/images/vmcreation/windows_vm_hardware_configuration.png
-   :width: 600
-   :alt: Windows VM Hardware Configuration
-
-   Figure: Windows VM Hardware Configuration
 
 **Step 4: Storage Configuration**: Configure virtual disk settings
 
@@ -6343,11 +6348,6 @@ Installation Steps
 * **Storage Type**: Automatically optimized for Windows workloads
 * **Performance**: VirtIO storage drivers for enhanced I/O performance
 
-.. figure:: _static/images/vmcreation/windows_vm_storage_configuration.png
-   :width: 600
-   :alt: Windows VM Storage Configuration
-
-   Figure: Windows VM Storage Configuration
 
 **Step 5: Network Configuration**: Setup network connectivity
 
@@ -6355,11 +6355,7 @@ Installation Steps
 * **Virtual Switch**: Choose appropriate network segment
 * **Network Profile**: Configure based on intended use case
 
-.. figure:: _static/images/vmcreation/windows_vm_network_configuration.png
-   :width: 600
-   :alt: Windows VM Network Configuration
 
-   Figure: Windows VM Network Configuration
 
 **Step 6: Review & Installation**: Finalize and Access VM
 

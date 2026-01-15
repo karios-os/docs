@@ -242,7 +242,7 @@ Real-time Monitoring
    * - Installation States
      - Clear indication of installation states (running, failed, success, error)
 
-.. figure:: _static/images/releases/Release_log.png
+.. figure:: _static/images/releases/Releases_log.png
    :alt: Installation Monitoring
    :align: center
    :width: 90%
@@ -307,7 +307,7 @@ Installation History
 * **Search Capabilities:** Search through installation history and logs
 * **Export Options:** Export history data for analysis and reporting
 
-.. figure:: _static/images/releases/Release_history.png
+.. figure:: _static/images/releases/Releases_history.png
    :alt: Installation History
    :align: center
    :width: 90%
@@ -451,10 +451,3 @@ Troubleshooting
      - Automated error recovery and resolution
    * - Support Integration
      - Integration with support systems for issue resolution
-
-.. figure:: _static/images/releases/Release_support.png
-   :alt: Troubleshooting Tools
-   :align: center
-   :width: 90%
-
-   Troubleshooting and Support Tools in Karios ATLAS
