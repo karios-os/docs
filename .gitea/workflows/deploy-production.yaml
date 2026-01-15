@@ -65,6 +65,12 @@ jobs:
           
           echo "✅ Archive created successfully"
           ls -lh docs-en.tar.gz
+
+          # Use a unique filename per run to avoid races
+          STAMP=$(date +%s)
+          UNIQUE_FILE="docs-en-${STAMP}.tar.gz"
+          mv docs-en.tar.gz "$UNIQUE_FILE"
+          echo "DOCS_FILE=$UNIQUE_FILE" >> $GITHUB_ENV
       
       - name: Setup SSH Key
         env:
@@ -189,7 +195,7 @@ jobs:
       
       - name: Deploy Documentation via Bastion
         run: |
-          DOCS_FILE="docs-en.tar.gz"
+          DOCS_FILE="${DOCS_FILE:-docs-en.tar.gz}"
           
           echo "🚀 Deploying pre-built HTML documentation"
           echo "📦 Archive: $DOCS_FILE"
@@ -279,11 +285,17 @@ jobs:
           COMMIT_MSG=$(git log -1 --pretty=%B | head -1)
           DEPLOY_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           
-          curl -X POST "${{ secrets.ZOHO_CLIQ_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "text": "**Karios Documentation - Deployment Successful** ✅\n\n──────────────────────\n\n🌐 **Live URL:** https://docs.karios.ai/\n\n🔖 **Branch:** Public-release\n📝 **Commit:** '"$COMMIT_SHORT"'\n⌨️  **Message:** '"$COMMIT_MSG"'\n🕒 **Deployed:** '"$DEPLOY_TIME"'\n\n──────────────────────"
-            }' || echo "⚠️  Zoho Cliq notification failed (non-critical)"
+          # Check if webhook URL is configured
+          if [ -z "${{ secrets.ZOHO_CLIQ_TOKEN }}" ]; then
+            echo "⚠️  ZOHO_CLIQ_TOKEN secret not configured - skipping notification"
+          else
+            echo "📤 Sending notification to Zoho Cliq..."
+            curl -k -X POST "${{ secrets.ZOHO_CLIQ_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "text": "**Karios Documentation - Deployment Successful** ✅\n\n──────────────────────\n\n🌐 **Live URL:** https://docs.karios.ai/\n\n🔖 **Branch:** Public-release\n📝 **Commit:** '"$COMMIT_SHORT"'\n⌨️  **Message:** '"$COMMIT_MSG"'\n🕒 **Deployed:** '"$DEPLOY_TIME"'\n\n──────────────────────"
+              }' && echo "✅ Notification sent successfully" || echo "⚠️  Notification failed (non-critical)"
+          fi
       
       - name: Deployment Failed Notification
         if: failure()
@@ -308,8 +320,14 @@ jobs:
           DEPLOY_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           LOG_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           
-          curl -X POST "${{ secrets.ZOHO_CLIQ_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "text": "**Karios Documentation - Deployment Failed** ❌\n\n──────────────────────\n\n⚠️ **Action Required:** Check deployment logs\n\n🔖 **Branch:** Public-release\n📝 **Commit:** '"$COMMIT_SHORT"'\n🕒 **Failed At:** '"$DEPLOY_TIME"'\n\n🔍 **View Logs:** '"$LOG_URL"'\n\n──────────────────────"
-            }' || echo "⚠️  Zoho Cliq notification failed"
+          # Check if webhook URL is configured
+          if [ -z "${{ secrets.ZOHO_CLIQ_TOKEN }}" ]; then
+            echo "⚠️  ZOHO_CLIQ_TOKEN secret not configured - skipping notification"
+          else
+            echo "📤 Sending failure notification to Zoho Cliq..."
+            curl -k -X POST "${{ secrets.ZOHO_CLIQ_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "text": "**Karios Documentation - Deployment Failed** ❌\n\n──────────────────────\n\n⚠️ **Action Required:** Check deployment logs\n\n🔖 **Branch:** Public-release\n📝 **Commit:** '"$COMMIT_SHORT"'\n🕒 **Failed At:** '"$DEPLOY_TIME"'\n\n🔍 **View Logs:** '"$LOG_URL"'\n\n──────────────────────"
+              }' && echo "✅ Notification sent successfully" || echo "⚠️  Notification failed"
+          fi

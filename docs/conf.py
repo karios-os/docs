@@ -25,7 +25,7 @@ extensions = [
 source_suffix = ['.rst', '.md']
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'lib/**', 'include/**', 'bin/**']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'lib', 'lib64', 'bin', 'include', 'pyvenv.cfg', '*.egg-info']
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'

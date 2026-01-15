@@ -10,6 +10,9 @@ Overview
 
 Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components pre-configured for optimal performance and security.
 
+.. note::
+   **Last Updated**: January 2026 - Simplified installation with automatic installer.
+
 
 .. _system-requirements:
 
@@ -387,13 +390,13 @@ For new users, here's the complete installation process from start to finish:
    **Installation Summary Checklist**
    
    **Phase 1: Preparation**
-   ✓ Download FreeBSD 14.3 ISO and verify checksum
-   ✓ Create bootable USB drive
+   ✓ Download Karios BSD ISO from https://download.karios.ai/kariosbsd-14.3-custom.iso
+   ✓ Verify checksum and create bootable USB drive
    ✓ Configure BIOS/UEFI settings (enable VT-x/AMD-V, IOMMU)
    
-   **Phase 2: FreeBSD Installation**
+   **Phase 2: Karios BSD Installation**
    ✓ Boot from USB drive
-   ✓ Select all components (base-dbg, kernel-dbg, lib32, ports, **src**)
+   ✓ Follow the automated installer prompts
    ✓ **CRITICAL**: Select "Auto (ZFS)" - NOT UFS
    ✓ Configure ZFS with proper swap size formula: (RAM × 1.5) + 2GB
    ✓ Enable ALL security hardening options
@@ -545,12 +548,12 @@ ZFS requires specific swap calculations for optimal performance and system stabi
 - **Performance Impact**: Insufficient swap can cause system instability
 - **Monitoring**: Monitor swap usage in production environments
 
-FreeBSD Installation with ZFS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Karios BSD Installation with ZFS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Step-by-Step ZFS Installation Process**
 
-Follow these specific steps during the FreeBSD installation phase to ensure ZFS is properly configured:
+Follow these specific steps during the Karios BSD installation phase to ensure ZFS is properly configured:
 
 **Phase 1: KariosBSD Base Installation with ZFS**
 
@@ -559,7 +562,7 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/welcome-menu.png
    :width: 600
-   :alt: FreeBSD installer welcome menu
+   :alt: Karios BSD installer welcome menu
 
 2. **Installer Welcome Screen**
    - Select "Install" from the KariosBSD installer menu
@@ -583,7 +586,7 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/hostname-configuration.png
    :width: 600
-   :alt: FreeBSD hostname configuration screen
+   :alt: Hostname configuration screen
 
 5. **Distribution Selection**
    - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", "ports", and **"src"** are selected
@@ -593,11 +596,11 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/component-selection.png
    :width: 600
-   :alt: FreeBSD component selection screen
+   :alt: Component selection screen
 
 **Required Components Explained:**
 
-.. list-table:: FreeBSD Component Requirements
+.. list-table:: Component Requirements
    :header-rows: 1
    :widths: 20 80
 
@@ -610,14 +613,14 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
    * - **lib32**
      - **Required** - 32-bit compatibility libraries for legacy applications
    * - **ports**
-     - **Required** - FreeBSD Ports Collection for software installation
+     - **Required** - Ports Collection for software installation
    * - **src**
-     - **MANDATORY** - Complete FreeBSD source code required for Karios operation
+     - **MANDATORY** - Complete source code required for Karios operation
 
 .. important::
    **Source Tree Requirement**
    
-   The FreeBSD source tree ("src") is **mandatory** for Karios installations. This provides:
+   The source tree ("src") is **mandatory** for Karios installations. This provides:
    - Kernel module compilation capabilities
    - Device driver building support  
    - System customization options
@@ -635,7 +638,7 @@ Follow these specific steps during the FreeBSD installation phase to ensure ZFS 
 
 .. figure:: _static/images/freebsd-installation/partitioning-choices.png
    :width: 600
-   :alt: FreeBSD partitioning choices menu showing Auto (ZFS) option
+   :alt: Partitioning choices menu showing Auto (ZFS) option
 
 .. code-block:: text
 
@@ -828,7 +831,7 @@ Karios Bootstrap Auto-Installation
 
 The Karios installation follows a two-phase process:
 
-**Phase 1: FreeBSD Base Installation with ZFS** ✓ Completed Above
+**Phase 1: Karios BSD Base Installation with ZFS** ✓ Completed Above
 
 **Phase 2: Karios Bootstrap**
 
@@ -880,7 +883,7 @@ After completing the KariosBSD installation with ZFS, the system will automatica
 
 .. figure:: _static/images/freebsd-installation/bootstrap1.png
    :width: 600
-   :alt: Bootstrap installation initiated  
+   :alt: Karios installation initiated  
 
 .. figure:: _static/images/freebsd-installation/bootstrap2.png
    :width: 600
@@ -1040,20 +1043,7 @@ The completion screen will display:
 If the system prompts about reinstallation during bootstrap execution:
 
 .. warning::
-   **Reinstallation Impact**: Reinstalling Karios will completely remove all existing configurations, virtual machines, storage pools, network settings, and user data. This action is irreversible without proper backups.
-
-**Reinstallation Decision Process:**
-
-.. figure:: _static/images/installation/bootstrap.png
-   :width: 600
-   :alt: Bootstrap Execution Screen
-
-- **Type "yes"** only if you specifically need to reinstall Karios and have verified all data is backed up
-- **Press Enter to exit** if uncertain about reinstallation requirements or lack proper backups
-- **Backup Verification**: Ensure comprehensive backups exist before proceeding with any reinstallation
-
-.. tip::
-   **Backup Recommendations**: Before any reinstallation, create complete backups of virtual machines, configuration files, storage pools, and user data. Test backup restoration procedures to ensure data recovery capability.
+   **Security Recommendation**: Change all default passwords immediately after first login. Store your credentials securely and restrict access to the ``karios_install_info.txt`` file.
 
 
 Post-Installation Configuration
@@ -1061,7 +1051,7 @@ Post-Installation Configuration
 
 **Installation Success Verification**
 
-After bootstrap completion, verify your Karios installation:
+After installation completion, verify your Karios installation:
 
 .. code-block:: bash
 
@@ -1294,7 +1284,10 @@ After successful installation, complete these essential tasks in order:
    - Accept SSL certificate warning (self-signed)
    - Login with credentials created during FreeBSD installation
 
-2. **Complete Initial Setup**
+2. **Install Karios Root CA Certificate** (Recommended)
+   - See :ref:`browser-certificate-setup` below to eliminate browser security warnings
+
+3. **Complete Initial Setup**
    - Follow the Karios setup wizard
    - Configure network settings
    - Set up storage pools
@@ -1337,4 +1330,98 @@ Common failure recovery steps:
 - **Community Forums**: Access through your customer portal
 - **Emergency Support**: Phone numbers provided with your license
 
+.. _browser-certificate-setup:
+
+Browser Certificate Setup
+-------------------------
+
+Karios uses a private Certificate Authority (CA) to secure HTTPS communications. To avoid browser security warnings, install the Karios Root CA certificate on your workstation.
+
+.. note::
+   You only need to install the Root CA certificate **once**. After installation, all Karios nodes (master and slaves) will be automatically trusted.
+
+Download the Root CA Certificate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Option 1: SCP from Master Node** (Recommended)
+
+.. code-block:: bash
+
+   scp root@<master-ip>:/usr/local/share/ca-certificates/karios-root-ca.crt .
+
+**Option 2: SSH and Copy**
+
+.. code-block:: bash
+
+   ssh root@<master-ip> cat /usr/local/etc/step/certs/root_ca.crt
+   # Copy the output (including BEGIN/END lines) and save as karios-root-ca.crt
+
+Install on Windows
+~~~~~~~~~~~~~~~~~~
+
+1. Double-click the ``karios-root-ca.crt`` file
+2. Click **"Install Certificate..."**
+3. Select **"Local Machine"** → Next
+4. Select **"Place all certificates in the following store"**
+5. Click **"Browse..."** → Select **"Trusted Root Certification Authorities"**
+6. Click **Next** → **Finish**
+7. **Restart your browser**
+
+Install on macOS
+~~~~~~~~~~~~~~~~
+
+1. Double-click the ``karios-root-ca.crt`` file
+2. Keychain Access will open → Select **"System"** keychain → Click **"Add"**
+3. Find the certificate (search "Karios") → Double-click → Expand **"Trust"**
+4. Set **"When using this certificate"** to **"Always Trust"**
+5. Close and enter your password
+6. **Restart your browser**
+
+Install on Linux (Ubuntu/Debian)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   sudo cp karios-root-ca.crt /usr/local/share/ca-certificates/
+   sudo update-ca-certificates
+   # Restart your browser
+
+Install on Linux (RHEL/CentOS/Fedora)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   sudo cp karios-root-ca.crt /etc/pki/ca-trust/source/anchors/
+   sudo update-ca-trust
+   # Restart your browser
+
+Mozilla Firefox (All Platforms)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Firefox uses its own certificate store:
+
+1. Open Firefox → **Settings** → Search for **"certificates"**
+2. Click **"View Certificates..."** → **"Authorities"** tab
+3. Click **"Import..."** → Select ``karios-root-ca.crt``
+4. Check **"Trust this CA to identify websites"** → Click **OK**
+
+Verification
+~~~~~~~~~~~~
+
+After installation, navigate to ``https://<master-node-ip>`` - you should see a secure connection (padlock icon) without warnings.
+
+.. tip::
+   **Troubleshooting**: If you still see warnings, ensure you installed the **Root CA** (not a node certificate), installed it to **Trusted Root Certification Authorities**, and restarted your browser.
+
+Next Steps
+----------
+
+After installation:
+
+1. Access the web interface at the configured IP address
+2. Retrieve the admin password from ``/root/karios_install_info.txt``
+3. **Complete the mandatory control node registration** - See :ref:`Control Node Registration <control-node-registration>`
+
+.. important::
+   On first login, you must complete the control node registration form before using Karios ATLAS. This is a one-time requirement.
    
