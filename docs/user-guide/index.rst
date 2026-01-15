@@ -605,6 +605,9 @@ Before using Karios, ensure your environment meets the following prerequisites:
    **Technitium information**:
    Please wait for the Technitium information to populate in the **karios_install_info.txt** file located at `/root/karios_install_info.txt` on the control node. This will take approx 10 mins.
 
+   Refer to `Technitium DHCP and DNS Setup <https://docs.karios.ai/technitium/index.html>`_ documentation for detailed instructions.
+
+
 Interface Overview
 ~~~~~~~~~~~~~~~~~~
 
