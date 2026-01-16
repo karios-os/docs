@@ -816,7 +816,7 @@ Role Creation Process
 
    Figure : Role List
 
-3. Use the "Create Role" section on the left to define new roles
+3. Use the "Create Role" section on the right to define new roles
 
 .. figure:: _static/images/rbac/create_role.png
    :width: 600
@@ -6257,7 +6257,8 @@ Standard VM Setup
 3. **Basic Configuration**: Configure fundamental VM parameters
 4. **Resource Allocation**: Set CPU, memory, and storage resources
 5. **Network Configuration**: Configure network connectivity
-6. **VM Creation**: Finalize and create the virtual machine
+6. **DNS Zone Configuration**: The domain under which this VM's hostname will be created.
+7. **VM Creation**: Finalize and create the virtual machine
 
 .. figure:: _static/images/vmcreation/Image_112.png
    :width: 600
@@ -6277,7 +6278,6 @@ Configure virtual machine resources based on requirements:
 
 - **CPU Cores**: Select number of CPU cores from available range
 - **Memory**: Allocate RAM from available server memory
-- **CPU Sockets**: Configure CPU socket topology
 
 **Storage Configuration**
 
@@ -6355,6 +6355,9 @@ Installation Steps
 * **Virtual Switch**: Choose appropriate network segment
 * **Network Profile**: Configure based on intended use case
 
+**Step 6: Zone Configuration**: Setup DNS zone for VM hostname
+
+* **DNS Zone Selection**: Choose existing DNS zone or create new
 
 
 **Step 6: Review & Installation**: Finalize and Access VM
@@ -6471,6 +6474,7 @@ Cloud-Init setup provides automated VM deployment with pre-configuration capabil
 - **Storage Pool**: Select the storage pool for the VM's disk.
 - **Disk Size**: Specify the size of the virtual disk.
 - **Network Switch**: Choose the network switch for VM connectivity.
+- **DNS Zone**: Select the DNS zone for the VM's hostname.
 
 .. figure:: _static/images/vmcreation/Image_119.png
    :width: 600
