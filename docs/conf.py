@@ -29,7 +29,18 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'lib', 'lib64', 'bin', '
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+html_static_path = [
+    '_static',
+    'getting-started/_static',
+    'kubernetes/_static',
+    'user-guide/_static',
+    'sdn/_static',
+    'security/_static',
+    'networking/_static',
+    'support/_static',
+    'technitium/_static',
+    'monitoring/_static',
+]
 html_favicon = '_static/favicon.png'
 html_css_files = ['css/custom.css']
 

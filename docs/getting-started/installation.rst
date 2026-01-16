@@ -1092,7 +1092,7 @@ Retrieving Saved Credentials
 
 If you need to retrieve the system credentials after installation, all credentials are saved in a text file on the Karios node.
 
-.. figure:: _static/images/freebsd-installation/install_info.png
+.. figure:: _static/images/freebsd-installation/install_info.PNG
    :width: 600
    :alt: Karios installation credentials file
 
@@ -1199,7 +1199,7 @@ Accessing the Karios Interface
 
 Once installation is complete, access the Karios management interface:
 
-.. figure:: _static/images/freebsd-installation/ui_screen.png
+.. figure:: _static/images/freebsd-installation/ui_screen.PNG
    :width: 600
    :alt: Bootstrap installation completed
 
