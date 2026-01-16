@@ -1237,7 +1237,7 @@ Datacenter Management
 - **Datacenter Selection**: Use the datacenter dropdown to select and manage different datacenter environments
 
 
-.. figure:: _static/images/web_interface_management/.png
+.. figure:: _static/images/web_interface_management/control_center_overview.png
    :width: 800
    :alt: Control Center Overview
    :align: center
@@ -2324,8 +2324,8 @@ Storage Operations
 
 For detailed information regarding storage protocols, configuration options, advanced features, and comprehensive storage management, please refer to Flexible Storage.
 
-SeaweedFS Storage
-^^^^^^^^^^^^^^^^^
+SeaweedFS Storage (This is optional - the Future releases of Karios are going to have a more robust solution for distributed storage)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **SeaweedFS Distributed Object Storage:**
 SeaweedFS is a distributed file system that provides scalable object and file storage with automatic replication. It offers both S3-compatible object storage and POSIX file system interfaces for flexible data access.
@@ -6684,7 +6684,7 @@ The Hardware tab allows dynamic modification of VM specifications:
 
 **Attach PCIe Device**: Attach PCIe devices like GPU and NIC to the VM. Click on the "Attach" button to attach the PCIe device.
 
-.. figure:: _static/images/vmcreation/attach_pcie_device.png
+.. figure:: _static/images/vmcreation/attached_pcie_device.png
    :width: 600
    :alt: Attach PCIe Device
 

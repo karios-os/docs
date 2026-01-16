@@ -750,7 +750,7 @@ g. **Checksum Verification:**
    - Installer will verify ISO checksum
    - Wait for verification to complete
 
-.. figure:: _static/images/freebsd-installation/checksum-verification.png
+.. figure:: _static/images/freebsd-installation/checksum-verificaton.png
    :width: 600
    :alt: Checksum verification screen
 
@@ -770,18 +770,19 @@ h. **Archive Extraction:**
    :width: 600
    :alt: Configure network interface screen
 
-7a.**Continue Standard Installation**
+7a. **Continue Standard Installation**
    - Select time zone
 
 .. figure:: _static/images/freebsd-installation/time_zone.png
    :width: 600
    :alt: Configure time zone screen
 
+8. **Complete Installation**
    - Enable system services (sshd recommended)
    - Add users if desired
    - Apply configuration and exit installer
 
-8. **Reboot Verification**
+9. **Reboot Verification**
    - Remove USB drive when prompted
    - Allow system to reboot
    - Verify ZFS boot by checking: `zpool status`
@@ -827,7 +828,7 @@ After KariosBSD installation completes, verify ZFS is properly configured:
      - Restart installation, verify disk health before proceeding
 
 Karios Bootstrap Auto-Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Karios installation follows a two-phase process:
 
@@ -1420,8 +1421,64 @@ After installation:
 
 1. Access the web interface at the configured IP address
 2. Retrieve the admin password from ``/root/karios_install_info.txt``
-3. **Complete the mandatory control node registration** - See :ref:`Control Node Registration <control-node-registration>`
+3. **Complete the mandatory control node registration** - See :doc:`control-node-registration`
 
 .. important::
    On first login, you must complete the control node registration form before using Karios ATLAS. This is a one-time requirement.
-   
+
+
+**Access Technitium Portal**
+
+1. Open a web browser and navigate to the Technitium portal:
+
+   .. code-block:: shell-session
+
+      $cat /root/karios_install_info.txt
+
+   Open the `TECHNITIUM_WEB_URL` in your browser.
+
+
+2. Log in using the default credentials:
+
+.. note::
+   - **Username**: `admin`
+   - **Password**: `adminadmin`
+
+.. figure:: ../technitium/_static/images/technitium/login_interface.png
+   :width: 600
+   :alt: Technitium Login
+
+   Figure : Technitium Login
+
+3. Navigate to the "DHCP" section to configure network settings, DHCP scope is already set to match your network configuration.
+
+.. figure:: ../technitium/_static/images/technitium/dhcp_scopes_list.png
+   :width: 600
+   :alt: Technitium DHCP
+
+   Figure : Technitium DHCP
+
+4. Enable the DHCP scope before proceeding.
+
+.. figure:: ../technitium/_static/images/technitium/dhcp_enable_disable_scope.png
+   :width: 600
+   :alt: Technitium DHCP Scope Configuration
+
+   Figure : Technitium DHCP Scope Configuration
+
+5. Navigate to Zones section to configure DNS settings. A DNS zone is already set to match your network configuration.
+
+.. figure:: ../technitium/_static/images/technitium/dns_zones_navigation.png
+   :width: 600
+   :alt: Technitium DNS
+
+   Figure : Technitium DNS
+
+.. warning::
+   **Critical Network Configuration Notice** 
+   Disable any DHCP or DNS services running on your network to avoid conflicts.
+
+   **Technitium information**:
+   Please wait for the Technitium information to populate in the **karios_install_info.txt** file located at `/root/karios_install_info.txt` on the control node. This will take approx 10 mins.
+
+   **Refer to the** :doc:`Technitium DHCP and DNS Setup </technitium/index>` **for detailed instructions.**

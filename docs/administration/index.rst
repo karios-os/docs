@@ -34,6 +34,13 @@ Update Notifications
    * - Update Status
      - Clear indication of update availability and urgency
 
+.. figure:: _static/images/releases/Release_download.png
+   :alt: Update Notification Banner
+   :align: center
+   :width: 90%
+
+   Update Notification Banner in Karios Releases
+
 Update Types
 ------------
 
@@ -58,7 +65,14 @@ Karios supports multiple categories of updates:
    * - Core Updates
      - Core system component updates and fixes
 
-**Update Classifications:**
+.. figure:: _static/images/releases/Releases_current.png
+   :alt: Update Types
+   :align: center
+   :width: 90%
+
+   Supported Update Types in Karios Releases
+
+**Update Classifications:** 
 
 .. list-table::
    :widths: 30 70
@@ -74,6 +88,13 @@ Karios supports multiple categories of updates:
      - Urgent fixes for critical issues
    * - Maintenance Updates
      - Routine maintenance and optimization updates
+
+.. figure:: _static/images/releases/Releases_update_types.png
+   :alt: Update Classifications
+   :align: center
+   :width: 90%
+
+   Update Classifications in Karios Releases
 
 Update Discovery and Download
 =============================
@@ -97,6 +118,13 @@ Update Detection
      - Verification of update compatibility with current system
    * - Update Metadata
      - Detailed information about each available update
+
+.. figure:: _static/images/releases/Release_download.png
+   :alt: Update Detection
+   :align: center
+   :width: 90%
+
+   Automatic Update Detection in Karios Releases
 
 Update Download Process
 -----------------------
@@ -214,6 +242,13 @@ Real-time Monitoring
    * - Installation States
      - Clear indication of installation states (running, failed, success, error)
 
+.. figure:: _static/images/releases/Releases_log.png
+   :alt: Installation Monitoring
+   :align: center
+   :width: 90%
+
+   Real-time Installation Monitoring in Karios Releases
+
 **Monitoring Features:**
 
 * **Live Log Streaming:** Real-time log streaming during installation
@@ -241,48 +276,6 @@ Installation Control
    * - Emergency Stop
      - Emergency controls for critical installation issues
 
-Rollback and Recovery
-=====================
-
-Automatic Rollback
-------------------
-
-**Failure Recovery:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Recovery Feature
-     - Description
-   * - Automatic Rollback
-     - Automatic rollback to previous version on installation failure
-   * - State Preservation
-     - Preservation of previous system state before updates
-   * - Recovery Validation
-     - Validation of system state after rollback
-   * - Rollback Logging
-     - Comprehensive logging of rollback operations
-
-Manual Rollback Options
------------------------
-
-**Manual Recovery:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Recovery Option
-     - Description
-   * - Rollback Interface
-     - User interface for manual rollback operations
-   * - Version Selection
-     - Ability to select specific versions for rollback
-   * - Rollback Validation
-     - Pre-rollback validation and confirmation
-   * - Recovery Verification
-     - Post-rollback system verification and testing
 
 Update History and Tracking
 ===========================
@@ -314,6 +307,13 @@ Installation History
 * **Search Capabilities:** Search through installation history and logs
 * **Export Options:** Export history data for analysis and reporting
 
+.. figure:: _static/images/releases/Releases_history.png
+   :alt: Installation History
+   :align: center
+   :width: 90%
+
+   Installation History Tracking in Karios Releases
+
 Version Management
 ------------------
 
@@ -333,6 +333,13 @@ Version Management
      - Compatibility information between different versions
    * - Update Paths
      - Clear update paths and version dependencies
+
+.. figure:: _static/images/releases/Release_job_detail.png
+   :alt: Version Management
+   :align: center
+   :width: 90%
+
+   Version Management in Karios Releases
 
 Update Coordination
 ===================
@@ -357,25 +364,6 @@ Multi-Node Updates
    * - Service Continuity
      - Ensure service continuity during rolling updates
 
-Maintenance Mode
-----------------
-
-**Maintenance Management:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Feature
-     - Description
-   * - Automatic Maintenance Mode
-     - Automatic maintenance mode during updates
-   * - Service Migration
-     - Migrate services during node updates
-   * - Maintenance Scheduling
-     - Schedule maintenance windows for updates
-   * - Service Restoration
-     - Automatic service restoration after updates
 
 Security and Integrity
 ======================
@@ -420,28 +408,6 @@ Audit and Compliance
    * - Regulatory Compliance
      - Support for regulatory compliance requirements
 
-Update Policies and Configuration
-=================================
-
-Update Policies
----------------
-
-**Policy Management:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Policy Feature
-     - Description
-   * - Update Policies
-     - Configurable policies for automatic updates
-   * - Approval Workflows
-     - Approval workflows for critical updates
-   * - Risk Assessment
-     - Risk assessment for update installation
-   * - Policy Enforcement
-     - Automated policy enforcement and compliance
 
 Configuration Management
 ------------------------
@@ -485,71 +451,3 @@ Troubleshooting
      - Automated error recovery and resolution
    * - Support Integration
      - Integration with support systems for issue resolution
-
-Support Features
-----------------
-
-**Support Capabilities:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Support Feature
-     - Description
-   * - Log Collection
-     - Automated collection of installation logs for support
-   * - Diagnostic Reports
-     - Generate diagnostic reports for support analysis
-   * - Remote Support
-     - Remote support capabilities for update issues
-   * - Knowledge Base
-     - Integration with knowledge base for common issues
-
-Performance and Optimization
-============================
-
-Performance Monitoring
-----------------------
-
-**Performance Tracking:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Metric
-     - Description
-   * - Installation Performance
-     - Monitor installation performance and timing
-   * - Network Impact
-     - Track network impact of update downloads
-   * - Resource Usage
-     - Monitor resource usage during updates
-   * - Performance Optimization
-     - Optimize update processes for better performance
-
-Optimization Features
----------------------
-
-**Optimization Capabilities:**
-
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
-
-   * - Optimization Feature
-     - Description
-   * - Download Optimization
-     - Optimize download processes for efficiency
-   * - Installation Scheduling
-     - Optimize installation scheduling for minimal impact
-   * - Resource Management
-     - Efficient resource management during updates
-   * - Performance Tuning
-     - Continuous performance tuning and optimization
-
-Conclusion
-==========
-
-The System Updates and Releases component provides a robust and comprehensive update management solution for the Karios infrastructure. With its advanced features for update discovery, installation management, monitoring, and rollback capabilities, administrators can maintain system security and stability while minimizing operational impact. The flexible scheduling options, comprehensive tracking, and strong security features ensure that updates are deployed safely and efficiently across the entire infrastructure.
