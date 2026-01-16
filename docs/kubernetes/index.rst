@@ -646,7 +646,7 @@ Installation Steps
 - Track progress in OpenShift console.  
 - Configure external load balancers after completion.  
 
-.. figure:: _static/images/openshift/Redhat-17.png
+.. figure:: _static/images/openshift/redhat-17.png
    :alt: Post Installation
    :width: 600
 

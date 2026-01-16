@@ -4374,7 +4374,7 @@ Node Monitoring
 
 Feature available under "Diagnostics" tab.
 
-.. figure:: _static/images/power-monitoring/image_0001.png
+.. figure:: _static/images/power-monitoring/Image_0001.png
    :align: center
 
 
