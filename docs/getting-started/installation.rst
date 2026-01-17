@@ -589,8 +589,7 @@ Follow these specific steps during the Karios BSD installation phase to ensure Z
    :alt: Hostname configuration screen
 
 5. **Distribution Selection**
-   - **CRITICAL**: Ensure "base-dbg", "kernel-dbg", "lib32", "ports", and **"src"** are selected
-   - **MANDATORY**: Always install the source tree ("src") for Karios compatibility
+   - **Uncheck all optional components** or keep only "kernel-dbg" and "lib32" if desired
    - Use spacebar to select/deselect components
    - Press Enter to continue
 
@@ -598,34 +597,14 @@ Follow these specific steps during the Karios BSD installation phase to ensure Z
    :width: 600
    :alt: Component selection screen
 
-**Required Components Explained:**
-
-.. list-table:: Component Requirements
-   :header-rows: 1
-   :widths: 20 80
-
-   * - Component
-     - Purpose and Requirement
-   * - **base-dbg**
-     - **Required** - Debug symbols for base system troubleshooting
-   * - **kernel-dbg**  
-     - **Required** - Kernel debug symbols for system analysis
-   * - **lib32**
-     - **Required** - 32-bit compatibility libraries for legacy applications
-   * - **ports**
-     - **Required** - Ports Collection for software installation
-   * - **src**
-     - **MANDATORY** - Complete source code required for Karios operation
-
-.. important::
-   **Source Tree Requirement**
+.. note::
+   **Optional Components**
    
-   The source tree ("src") is **mandatory** for Karios installations. This provides:
-   - Kernel module compilation capabilities
-   - Device driver building support  
-   - System customization options
-   - Karios component integration
-   - Security update compilation
+   You can optionally keep these components checked:
+   - **kernel-dbg**: Kernel debug symbols for system analysis
+   - **lib32**: 32-bit compatibility libraries for legacy applications
+   
+   All other components (base-dbg, ports, src) are not required for Karios operation.
 
 6. **MANDATORY: Partitioning and ZFS Setup**
 
@@ -1056,13 +1035,6 @@ After installation completion, verify your Karios installation:
 
 .. code-block:: bash
 
-   # Verify all Karios services are running
-   service karios_core status
-   service karios_license status
-   service karios_rms status
-   service karios_rms_client status
-   service kshield status
-   
    # Check if all Karios services are listening on their ports
    sockstat -l | grep karios
    # Should show:
@@ -1092,7 +1064,7 @@ Retrieving Saved Credentials
 
 If you need to retrieve the system credentials after installation, all credentials are saved in a text file on the Karios node.
 
-.. figure:: _static/images/freebsd-installation/install_info.png
+.. figure:: _static/images/freebsd-installation/install_info.PNG
    :width: 600
    :alt: Karios installation credentials file
 
@@ -1199,7 +1171,7 @@ Accessing the Karios Interface
 
 Once installation is complete, access the Karios management interface:
 
-.. figure:: _static/images/freebsd-installation/ui_screen.png
+.. figure:: _static/images/freebsd-installation/ui_screen.PNG
    :width: 600
    :alt: Bootstrap installation completed
 
