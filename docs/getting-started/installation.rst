@@ -1035,13 +1035,6 @@ After installation completion, verify your Karios installation:
 
 .. code-block:: bash
 
-   # Verify all Karios services are running
-   service karios_core status
-   service karios_license status
-   service karios_rms status
-   service karios_rms_client status
-   service kshield status
-   
    # Check if all Karios services are listening on their ports
    sockstat -l | grep karios
    # Should show:
