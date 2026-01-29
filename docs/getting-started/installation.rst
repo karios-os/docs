@@ -323,12 +323,7 @@ Downloading the Karios ISO (Roadmap Ahead)
    
    Karios requires the latest stable KariosBSD release for optimal security, performance, and hardware compatibility. Always download KariosBSD 14.3 or the most current stable release available.
 
-**Download Steps:**
-
-1. Navigate to the official KariosBSD download page: https://
-2. **Download KariosBSD 14.3** (or latest stable version)
-3. **Recommended ISO**: Use `KariosBSD-14.3-RELEASE-amd64-disc1.iso` for complete offline installation
-4. If unsure about architecture, consult with your system administrator
+Download link: https://download.karios.ai/kariosbsd-14.3-custom.iso
 
 **Why Latest Release Matters:**
 
@@ -341,10 +336,15 @@ Downloading the Karios ISO (Roadmap Ahead)
 Creating a Bootable USB Drive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. tip::
+   **USB Drive Performance Matters**
+   
+   Use a high-quality USB 3.0 or USB 3.1 drive with fast read/write speeds (minimum 100 MB/s read) to avoid I/O latency during installation. Slower USB drives can significantly increase installation time and may cause timeouts or performance issues.
+
 **Recommended Software**
 
+- **Etcher** (Cross-platform) - **Preferred option for all platforms**
 - **Rufus** (Windows)
-- **Etcher** (Cross-platform) 
 - **dd** command (Linux/macOS)
 
 **Rufus Instructions (Windows)**
