@@ -974,8 +974,8 @@ MinIO
 * **Written in**: Go language
 * **Best for**: High-performance scenarios, cloud-native applications
 
-SeaweedFS
-~~~~~~~~~
+SeaweedFS (Optional)
+~~~~~~~~~~~~~~~~~~~~~
 
 * **What it is**: Distributed object storage with S3 compatibility
 * **Written in**: Go language

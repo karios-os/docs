@@ -65,11 +65,13 @@ What Makes Karios SDN Essential
 * Built-in validation and coordinated operations to reduce routing-related risk.
 
 * Full routing lifecycle management: configure, observe, validate, and troubleshoot—from one place.
+
 SDN Landing Page and Controller Provisioning
-============================================
+=============================================
+
 
 SDN Landing Page (UI Overview)
-------------------------------
+-------------------------------
 
 The **SDN – FRR Routes** landing page serves as the entry point for managing
 software-defined routing in Karios.
@@ -175,7 +177,7 @@ that the controller setup is running asynchronously.
 
 
 Setting Up an FRR Router
-=======================
+========================
 
 After the SDN controller is successfully provisioned, Karios enables administrators to deploy and configure FRR routers through a guided, multi-step workflow.
 This workflow ensures routers are provisioned correctly, validated incrementally, and aligned with the intended routing design before becoming operational.
