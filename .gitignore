@@ -19,6 +19,7 @@ env.bak/
 venv.bak/
 .venv/
 .env/
+trash/
 
 # Python
 __pycache__/
