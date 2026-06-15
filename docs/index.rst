@@ -61,12 +61,6 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: System Updates and Releases
-
-   administration/index
-
-.. toctree::
-   :maxdepth: 2
    :caption: Networking
    
    networking/index
@@ -85,33 +79,9 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Liquid Cooling Management
-
-   liquid/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Security & Compliance
-   
-   security/index
-
-.. toctree::
-   :maxdepth: 2
    :caption: Storage & Data Management
 
    storage/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Power Monitoring & Metrics
-   
-   monitoring/index
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Software-Defined Networking
-
-   sdn/index
 
 .. toctree::
    :maxdepth: 2

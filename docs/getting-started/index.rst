@@ -22,18 +22,8 @@ Beyond Virtualization
 
 Karios is not just a virtualization platform, it is a foundation for future growth. A dynamic environment that evolves alongside your business, extending its reach beyond virtualization to manage resources like cooling and power, ensuring optimal performance and sustainability.
 
-.. admonition:: New: Enhanced Security & Compliance
-   :class: important
-   
-   Now, with integrated security scanning and automated compliance checks, Karios proactively safeguards your hypervisor and virtual machines, ensuring adherence to industry regulations, providing peace of mind and simplifying complex governance requirements.
-
 Core Philosophy
 ---------------
-
-.. epigraph::
-   "Security shouldn't be a premium feature. It's fundamental."
-   
-   -- Karios Design Principles
 
 Karios is built around three core principles:
 

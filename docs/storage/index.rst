@@ -248,11 +248,11 @@ Block-Level Encryption
 Data is encrypted at the block level using AES in either CBC or GCM mode:
 
 * **AES-128-CCM**: Counter with CBC-MAC for authenticated encryption
-* **AES-192-CCM**: Extended key length for higher security
-* **AES-256-CCM**: Maximum security with 256-bit keys
+* **AES-192-CCM**: Extended key length for stronger encryption
+* **AES-256-CCM**: Maximum strength with 256-bit keys
 * **AES-128-GCM**: Galois/Counter Mode for high-performance authenticated encryption
 * **AES-192-GCM**: Extended GCM implementation
-* **AES-256-GCM**: Maximum security GCM implementation
+* **AES-256-GCM**: Maximum strength GCM implementation
 
 **Hardware Acceleration**: Leverages AES-NI instructions on supported processors for optimal encryption performance.
 
@@ -261,7 +261,7 @@ File-Level vs Pool-Level Considerations
 
 **Dataset Granularity**: ZFS encryption operates at the dataset level, providing more granular control than pool-level encryption while maintaining reasonable overhead.
 
-**Key Hierarchy**: Allows for complex key management scenarios where different datasets have different security requirements and key rotation schedules.
+**Key Hierarchy**: Allows for complex key management scenarios where different datasets have different encryption requirements and key rotation schedules.
 
 ARC (Adaptive Replacement Cache) Memory Management
 ==================================================
@@ -523,7 +523,6 @@ Different storage protocols exist because they solve different problems:
 * **Performance Requirements**: Some applications need rapid access to data
 * **Compatibility**: Different operating systems prefer different protocols
 * **Scalability**: Some protocols work better with many users or large amounts of data
-* **Security**: Different protocols offer different levels of security
 * **Cost**: Some protocols require expensive hardware, others work with commodity equipment
 
 Basic Concepts You Need to Know
@@ -749,7 +748,7 @@ FreeBSD has excellent built-in NFS support:
 * **Kernel NFS Server**: High-performance server built into the kernel
 * **Mature Client**: Rock-solid NFS client implementation
 * **ZFS Integration**: Seamless integration with ZFS file system
-* **Kerberos Support**: Strong security through Kerberos authentication
+* **Kerberos Support**: Strong authentication via Kerberos
 
 Setting Up NFS Server on FreeBSD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -835,18 +834,18 @@ Close-to-Open Consistency
 * When a file is closed, any cached writes are flushed to server
 * Ensures reasonable consistency between multiple clients
 
-NFS Security
-------------
+NFS Access Control
+------------------
 
-Basic Security (Host-Based)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Host-Based Access Control
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Uses IP addresses to control access
 * Simple but not very secure
 * Good for trusted networks
 
-Kerberos Security
-~~~~~~~~~~~~~~~~~
+Kerberos Authentication
+~~~~~~~~~~~~~~~~~~~~~~~
 
 * Strong mutual authentication
 * Encrypted communications
@@ -917,7 +916,6 @@ Consider Alternatives When
 
 * **Windows-Heavy Environment**: SMB/CIFS might be more appropriate
 * **High-Performance Databases**: Direct block storage (iSCSI) might be better
-* **Very High Security Requirements**: Object storage with encryption might be preferred
 
 S3 (Simple Storage Service) Compatible Storage
 ===============================================
@@ -1171,14 +1169,14 @@ SMB1/CIFS (1984-1996)
 
 * Original protocol developed by IBM and Microsoft
 * Basic file sharing functionality
-* Security vulnerabilities led to deprecation
+* Known vulnerabilities led to deprecation
 * **Status**: Should not be used (disabled by default in modern systems)
 
 SMB2 (2006)
 ~~~~~~~~~~~
 
 * Complete protocol redesign with Windows Vista/Server 2008
-* Better performance and security
+* Better performance
 * Reduced "chattiness" (fewer network round trips)
 * Larger read/write sizes
 
@@ -1194,7 +1192,6 @@ SMB3 (2012)
 SMB3.1.1 (2015)
 ~~~~~~~~~~~~~~~
 
-* Enhanced security features
 * Pre-authentication integrity
 * AES-128 encryption
 * Better performance optimizations
@@ -1297,7 +1294,6 @@ Consider Alternatives When
 * **Pure Linux/UNIX Environment**: NFS might be more appropriate
 * **High-Performance Computing**: iSCSI or other protocols might be faster
 * **Internet-Facing Services**: SMB not designed for internet exposure
-* **Very High Security Requirements**: Consider more secure protocols
 
 iSCSI (Internet Small Computer System Interface)
 ================================================
@@ -1477,14 +1473,14 @@ Authentication Methods
 
 **No Authentication**:
 
-* No security, anyone can connect
+* No authentication, anyone can connect
 * Only suitable for trusted networks
 * Fastest performance
 
 **Mutual CHAP**:
 
 * Both target and initiator authenticate each other
-* Higher security
+* Stronger authentication
 * Slightly more complex setup
 
 Multiple Connections per Session (MC/S)
@@ -1552,7 +1548,6 @@ Consider Alternatives When
 
 * **Simple File Sharing**: NFS or SMB might be easier to manage
 * **Object Storage Needs**: S3-compatible storage for unstructured data
-* **Very High Security**: Consider encrypted file systems or object storage
 * **Internet Access**: iSCSI not designed for internet exposure
 
 SeaweedFS
@@ -1727,7 +1722,7 @@ File ID System
 
 * **Volume ID** (3): Which volume contains the file
 * **File Key** (01637037d6): Unique identifier within the volume
-* **Cookie**: Optional security token
+* **Cookie**: Optional verification token
 
 **File Lookup Process**:
 
@@ -1934,8 +1929,8 @@ Vertical Scaling (More Powerful Servers)
 * **Good**: S3, SeaweedFS
 * **Limited**: MooseFS (distributed by design)
 
-Security Comparison
--------------------
+Encryption Comparison
+---------------------
 
 Built-in Encryption
 ~~~~~~~~~~~~~~~~~~~
@@ -2011,8 +2006,7 @@ Primary Factors
 Secondary Factors
 -----------------
 
-1. **Security Requirements**: What level of security is needed?
-2. **Availability Requirements**: How much downtime is acceptable?
+1. **Availability Requirements**: How much downtime is acceptable?
 3. **Budget**: What are the cost constraints?
 4. **Future Growth**: How will requirements change?
 

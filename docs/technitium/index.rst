@@ -438,7 +438,7 @@ Advanced DHCP Configuration
 
 - **Backup Configuration**: Export DHCP configuration before major changes
 - **Regular Health Checks**: Monitor DHCP service status and performance
-- **Security Considerations**: Implement appropriate network access controls
+- **Access Controls**: Implement appropriate network access controls
 
 
 .. warning::
@@ -730,10 +730,10 @@ View MAC Addresses and DHCP Information
    - Document all static IP reservations and their purposes
 
 .. warning::
-   **Configuration Security Considerations**
-   
+   **Configuration Considerations**
+
    - Restrict zone transfers to authorized servers only
-   - Enable DNS query logging for security monitoring
+   - Enable DNS query logging for monitoring
    - Use strong passwords for Technitium administrative access
    - Regularly backup DNS zone files and DHCP configuration
    - Monitor for unauthorized devices using MAC address tracking

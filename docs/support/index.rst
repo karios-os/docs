@@ -186,7 +186,7 @@ Before creating a new ticket, search the forum to see if your issue has already 
 
 Create separate tickets for different issues to keep discussions focused and organized.
 
-**Privacy and Security**
+**Privacy**
 
 **Protecting Sensitive Information**
 
@@ -200,7 +200,7 @@ Create separate tickets for different issues to keep discussions focused and org
 
 If your issue requires sharing sensitive information, note this in your ticket and a support team member will contact you through a private channel.
 
-**Account Security**
+**Account Protection**
 
 * Use a strong, unique password for your Discourse account
 * Enable two-factor authentication if available

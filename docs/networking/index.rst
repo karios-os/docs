@@ -53,7 +53,7 @@ What Makes Karios Essential
 ---------------------------
 
 * A **comprehensive network management platform** that simplifies FreeBSD networking without losing its performance advantages.  
-* Unified control over **virtual switches, VLANs, VALE switches, VXLANs, and tunnels**.  
+* Unified control over **virtual switches, VLANs, and VALE switches**.
 * Automated configuration validation and warnings to reduce risk.  
 * Full lifecycle management: design, deploy, monitor, and troubleshoot—all from one place.  
 
@@ -307,7 +307,7 @@ What VLANs Are in Karios
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 * **Logical Interfaces** – Each VLAN you create in Karios appears as its own network interface, built on top of a physical NIC.  
-* **Segmentation Tool** – VLANs separate traffic for different roles: management, storage, tenant workloads, or underlay for VALE/VXLAN.  
+* **Segmentation Tool** – VLANs separate traffic for different roles: management, storage, tenant workloads, or underlay for VALE.
 * **Always Monitored** – Every VLAN in Karios is actively tracked: gateway reachability, external connectivity, packet counters, and error rates.  
 * **Persistent** – Once created, VLANs are written into system configuration and restored after reboot.  
 
@@ -380,102 +380,10 @@ Best Practices in Karios
 
 How VLANs Fit Into the Bigger Picture
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* **Switch Attachment** – VLANs are common parents for virtual switches, enabling VMs to join the segmented network.  
-* **VALE Eligibility** – Only unused VLANs (not already tied to switches/VMs) may serve as VALE parents.  
-* **VXLAN Underlay** – Active VLANs often act as the underlay fabric for VXLAN overlays.  
-* **Segmentation by Design** – VLANs allow you to separate management, storage, and tenant workloads cleanly in Karios.  
+* **Switch Attachment** – VLANs are common parents for virtual switches, enabling VMs to join the segmented network.
+* **VALE Eligibility** – Only unused VLANs (not already tied to switches/VMs) may serve as VALE parents.
+* **Segmentation by Design** – VLANs allow you to separate management, storage, and tenant workloads cleanly in Karios.
  
-
-Virtual Extensible LAN (VXLAN) Overlay Networks
------------------------------------------------
-
-Overview
-~~~~~~~~
-
-VXLAN is a network virtualization technology that extends Layer 2 segments across Layer 3 boundaries using encapsulation.  
-It addresses the limitations of VLANs, providing a 24-bit VXLAN Network Identifier (VNI) space with support for up to 16 million segments.  
-Karios integrates VXLAN within its networking stack, enabling scalable overlay connectivity between nodes while enforcing validation and configuration consistency.
-
-Protocol and Standards
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-VXLAN is defined in RFC 7348 and operates by encapsulating Ethernet frames within UDP packets. Key aspects include:
-
-* **Encapsulation** – VXLAN encapsulates Ethernet frames in UDP packets (port 4789), allowing Layer 2 networks to traverse Layer 3 infrastructure.  
-* **VNI Space** – 24-bit VNIs provide 16,777,216 possible segments, far exceeding the 4094 limit of VLANs.  
-* **Transport Requirements** – The underlay network must support appropriate MTU sizes to accommodate VXLAN overhead without fragmentation.  
-
-Karios VXLAN Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Karios abstracts VXLAN creation and lifecycle management into a controlled workflow:  
-
-* **VLAN Dependency** – Only active, reachable VLANs can serve as VXLAN tunnel endpoints (VTEPs).  
-* **Node Validation** – Both participating nodes must be online, with IP reachability confirmed before tunnel instantiation.  
-* **Static IP Requirement** – VXLAN endpoints require static addressing; DHCP is not supported for overlay interfaces.  
-* **VNI Allocation** – Karios allocates VNIs from a defined range, ensuring uniqueness and preventing conflicts.  
-* **Configuration Persistence** – All VXLAN definitions are persisted into system configuration for restoration on reboot.  
-
-Tunnel Lifecycle
-~~~~~~~~~~~~~~~~~
-
-VXLAN tunnels in Karios are established and managed with the following phases:
-
-1. **Pre-Deployment Validation**
-
-   - Verify node availability and inter-VLAN connectivity.  
-   - Detect existing tunnels between node pairs to prevent duplicates.  
-   - Reserve a VNI and overlay subnet.  
-
-2. **Tunnel Configuration**
-
-   - Create VXLAN interfaces on each node with identical VNI assignment.  
-   - Assign static tunnel IP addresses within a common subnet.  
-   - Bind the VXLAN interface to the selected VLAN parent.  
-
-.. figure:: _static/images/network/vxlan_steps.png
-   :alt: VXLAN Tunnel Creation
-   :width: 800
-
-   Figure: Example VXLAN creation flow.
-
-Configuration Model
-~~~~~~~~~~~~~~~~~~~~~
-
-Each VXLAN tunnel in Karios consists of two endpoints, each defined by:
-* **Node** – The Karios node hosting the VXLAN interface.
-* **VLAN Parent** – The active VLAN interface that serves as the underlay for the VXLAN tunnel.
-* **VNI** – The unique VXLAN Network Identifier assigned to the tunnel.
-
-A VXLAN tunnel connects two VLAN interfaces across distinct nodes:
-
-.. figure:: _static/images/network/create_tunnel.png
-   :alt: VXLAN Tunnel Creation
-   :width: 800
-
-   Figure: Example VXLAN configuration between two nodes with VLAN endpoints and static tunnel IPs.
-
-Operational Considerations
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **MTU Planning** – The underlay must support larger MTUs (typically +50 bytes) to accommodate encapsulated traffic.  
-* **Firewall Requirements** – UDP/4789 must be permitted between VXLAN endpoints.  
-* **Immutability of Core Parameters** – VNIs, node pairings, and VLAN parents cannot be modified after creation; re-deployment is required.  
-* **Monitoring Integration** – Tunnel health, packet counters, and endpoint reachability are continuously tracked in Karios.  
-
-Integration with Karios Networking
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **Virtual Switch Attachment** – VXLAN interfaces are automatically integrated into the virtual switch framework, providing a bridge for VM attachment.  
-* **Isolation by Design** – Each VNI provides full isolation from other overlays, ensuring strict traffic segmentation in multi-tenant environments.  
-* **Scalability** – VXLAN overlays allow Karios clusters to span across racks, data centers, or distributed sites without the limitations of VLANs.  
-
-Best Practices
-~~~~~~~~~~~~~~~
-* Allocate VNIs systematically (e.g., project-based ranges) to simplify management at scale.  
-* Use dedicated VLANs as VXLAN underlays to separate overlay traffic from management or storage paths.  
-* Validate gateway and inter-VLAN reachability prior to tunnel creation to avoid incomplete deployments.  
-* Document tunnel endpoints and IP plans, as overlays introduce additional address spaces that must be tracked.  
 
 Troubleshooting and Best Practices
 ===================================
@@ -533,15 +441,6 @@ Common Issues and Resolution Strategies
 2. **BMC/IPMI Access**: Verify out-of-band management capabilities before NIC reassignment
 3. **Network Recovery**: Understand rollback procedures for critical network changes
 4. **Service Recovery**: Know how to restart network services without full system reboot
-
-Security Best Practices
------------------------
-
-**Network Segmentation:**
-
-- Implement proper VLAN segmentation for security boundaries
-- Use isolated networks for sensitive workloads and testing environments
-- Configure appropriate firewall rules for each network segment
 
 Conclusion
 ==========

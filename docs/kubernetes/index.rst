@@ -24,7 +24,7 @@ Whether you're deploying enterprise-scale multi-node clusters or lightweight edg
 Sidero Kubernetes Overview
 --------------------------
 
-Sidero is a bare-metal provisioning system designed specifically for Kubernetes clusters. Built on Talos Linux, Sidero provides a GitOps-driven approach to managing bare-metal Kubernetes infrastructure with enterprise-grade security and immutable operating system principles.
+Sidero is a bare-metal provisioning system designed specifically for Kubernetes clusters. Built on Talos Linux, Sidero provides a GitOps-driven approach to managing bare-metal Kubernetes infrastructure with immutable operating system principles.
 
 **Key Features:**
 
@@ -351,7 +351,7 @@ OpenShift Overview
 OpenShift on Karios combines the **operational simplicity of Karios infrastructure management** with the **enterprise capabilities of OpenShift**.  
 This provides a powerful foundation for containerized application development and deployment, offering both the flexibility of Kubernetes and the operational maturity expected in enterprise environments.
 
-The platform includes integrated CI/CD capabilities, service mesh options, and comprehensive security policies, enabling organizations to adopt cloud-native practices while maintaining governance and compliance requirements.  
+The platform includes integrated CI/CD capabilities and service mesh options, enabling organizations to adopt cloud-native practices while maintaining governance and compliance requirements.
 
 Creating the OpenShift Cluster
 ----------------------------------
@@ -460,7 +460,7 @@ During cluster configuration, you will see the **HAProxy Setup** option.
 OpenShift Without DHCP
 --------------------------
 
-For enterprise environments requiring **static networking** and full control over network configuration, OpenShift can be deployed on Karios without DHCP. This approach provides enhanced security, predictable networking, and better integration with enterprise networks.
+For enterprise environments requiring **static networking** and full control over network configuration, OpenShift can be deployed on Karios without DHCP. This approach provides predictable networking and better integration with enterprise networks.
 
 Prerequisites
 ~~~~~~~~~~~~~~~~~~~
@@ -683,7 +683,7 @@ Open source Kubernetes provides the foundational container orchestration platfor
 
 * Pure upstream Kubernetes experience  
 * Full customization and configuration control  
-* Ubuntu LTS support and security updates  
+* Ubuntu LTS support and updates
 * Extensive community ecosystem and tooling  
 * Cost-effective solution for diverse workloads  
 
@@ -1270,7 +1270,6 @@ After deploying your K3s cluster, consider:
 
 * **Monitoring and Observability**
 * **Backup and Disaster Recovery**
-* **Security Hardening**
 * **Day-2 Operations and Upgrades**
 
 For additional help, consult:
@@ -1287,10 +1286,9 @@ Next Steps
 
 After selecting and deploying your preferred Kubernetes distribution, consider the following operational aspects:
 
-* **Monitoring and Observability**: Implement comprehensive monitoring solutions for both the Karios infrastructure and Kubernetes workloads  
-* **Backup and Disaster Recovery**: Establish backup procedures for both cluster state and persistent data  
-* **Security Hardening**: Apply security best practices specific to your chosen Kubernetes distribution  
-* **Day-2 Operations**: Plan for ongoing maintenance, updates, and scaling operations  
+* **Monitoring and Observability**: Implement comprehensive monitoring solutions for both the Karios infrastructure and Kubernetes workloads
+* **Backup and Disaster Recovery**: Establish backup procedures for both cluster state and persistent data
+* **Day-2 Operations**: Plan for ongoing maintenance, updates, and scaling operations
 
 For additional support and advanced configuration options, refer to the respective documentation for your chosen Kubernetes distribution and consult the Karios operational guides.
 

@@ -18,7 +18,7 @@ If you encounter problems during installation:
 **Storage Issues**
    Verify storage hardware is properly connected, functional, and has sufficient capacity.
 
-**Security-Related Issues**
+**Access and Permissions Issues**
    Review privilege escalation settings, user permissions, and script execution policies.
 
 
@@ -91,9 +91,9 @@ To access the full capabilities of the Karios platform:
 3. **Role Assignment**: Request appropriate role assignment based on job responsibilities
 4. **Access Validation**: Verify upgraded permissions through system access testing
 
-**Security Considerations**
+**Access Considerations**
 
 - **Principle of Least Privilege**: Request only the minimum permissions necessary for job functions
 - **Regular Access Review**: Periodically review and validate user access permissions
-- **Security Compliance**: Follow organizational security policies for account management
+- **Policy Compliance**: Follow organizational access policies for account management
 - **Administrative Coordination**: Coordinate with system administrators 

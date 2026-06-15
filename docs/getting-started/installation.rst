@@ -8,7 +8,7 @@ Installation
 Overview
 --------
 
-Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components pre-configured for optimal performance and security.
+Karios is built on the robust FreeBSD operating system, providing a complete hyper-converged infrastructure solution. The Karios installer contains all necessary packages and components pre-configured for optimal performance.
 
 .. note::
    **Last Updated**: January 2026 - Simplified installation with automatic installer.
@@ -19,7 +19,7 @@ Karios is built on the robust FreeBSD operating system, providing a complete hyp
 System Requirements
 -------------------
 
-Security Considerations
+Hardware Considerations
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Mitigating Spectre & Meltdown Vulnerabilities
@@ -321,13 +321,12 @@ Downloading the Karios ISO (Roadmap Ahead)
 .. important::
    **Always Use Latest KariosBSD Release**
    
-   Karios requires the latest stable KariosBSD release for optimal security, performance, and hardware compatibility. Always download KariosBSD 14.3 or the most current stable release available.
+   Karios requires the latest stable KariosBSD release for optimal performance and hardware compatibility. Always download KariosBSD 14.3 or the most current stable release available.
 
 Download link: https://download.karios.ai/kariosbsd-14.3-custom.iso
 
 **Why Latest Release Matters:**
 
-- **Security Updates**: Latest patches and vulnerability fixes
 - **Hardware Support**: Improved driver support for newer hardware
 - **Performance**: Optimized kernel and system components
 - **Compatibility**: Best compatibility with Karios components
@@ -399,7 +398,6 @@ For new users, here's the complete installation process from start to finish:
    ✓ Follow the automated installer prompts
    ✓ **CRITICAL**: Select "Auto (ZFS)" - NOT UFS
    ✓ Configure ZFS with proper swap size formula: (RAM × 1.5) + 2GB
-   ✓ Enable ALL security hardening options
    ✓ Create user account and add to wheel group
    ✓ Verify ZFS after reboot: `zpool status`
    ✓ Access web interface after completion
@@ -825,18 +823,18 @@ After KariosBSD installation is complete, bootstrap automatically installs and c
    **What is Bootstrap?** A bootstrap script is an automated installer that downloads and configures all necessary software components. It eliminates manual setup by handling package installation, configuration, and service initialization automatically.
 
 
-**Understanding Privilege Escalation Security**
+**Understanding Privilege Escalation**
 
 .. tip::
    **Why Privilege Escalation Matters**
-   
-   Running commands as root (superuser) provides unlimited system access, which creates significant security risks. Privilege escalation tools like sudo and doas allow users to execute specific commands with elevated privileges while maintaining security controls and accountability.
+
+   Running commands as root (superuser) provides unlimited system access, which creates significant risks. Privilege escalation tools like sudo and doas allow users to execute specific commands with elevated privileges while maintaining accountability and oversight.
 
 **Sudo: Industry Standard Privilege Escalation**
 
-**Sudo (Superuser Do)** is the most widely used privilege escalation tool across Unix and Linux systems, providing comprehensive security features:
+**Sudo (Superuser Do)** is the most widely used privilege escalation tool across Unix and Linux systems, providing comprehensive features:
 
-**Core Security Features:**
+**Core Features:**
 
 - **Audit Trails and Logging**: Every sudo command is logged with timestamps, user information, command executed, and working directory.
 
@@ -851,10 +849,10 @@ After KariosBSD installation is complete, bootstrap automatically installs and c
 - **Plugin Architecture**: Supports plugins for advanced authentication (LDAP, Kerberos), logging, and policy enforcement.
 
 
-**Security Recommendations:**
+**Recommendations:**
 
 - **Use sudo for**: Complex environments requiring granular control, extensive logging, or plugin support
-- **Avoid direct root for**: Any multi-user environment or production system where accountability and security are required
+- **Avoid direct root for**: Any multi-user environment or production system where accountability is required
 
 Auto-Bootstrap Installation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -923,12 +921,12 @@ After completing the KariosBSD installation with ZFS, the system will automatica
 
    # Verify bootstrap installation logs
    cat /var/log/bootstrap_ansible.log
-   
-   # Verify network security configuration
+
+   # Verify network configuration
    netstat -an | grep LISTEN
 
 .. note::
-   The bootstrap script automatically installs and configures all Karios components, security settings and service dependencies.
+   The bootstrap script automatically installs and configures all Karios components and service dependencies.
 
 
 **Karios Configuration Completed**
@@ -968,8 +966,8 @@ Upon successful completion of the bootstrap installation, you will see a configu
      - http://karios-node01.XXX.com:3000
 
 .. warning::
-   **Security Best Practice**
-   
+   **Credential Handling Best Practice**
+
    - **Save all credentials immediately** in a secure password manager
    - **Do not share credentials** via insecure channels (email, chat, etc.)
    - **Document the access URLs** with their respective ports for future reference
@@ -1018,12 +1016,12 @@ The completion screen will display:
 2. **Test access** to each interface using the provided credentials
 
 
-**Reinstallation Security Considerations**
+**Reinstallation Considerations**
 
 If the system prompts about reinstallation during bootstrap execution:
 
 .. warning::
-   **Security Recommendation**: Change all default passwords immediately after first login. Store your credentials securely and restrict access to the ``karios_install_info.txt`` file.
+   **Recommendation**: Change all default passwords immediately after first login. Store your credentials securely and restrict access to the ``karios_install_info.txt`` file.
 
 
 Post-Installation Configuration
@@ -1040,13 +1038,7 @@ After installation completion, verify your Karios installation:
    # Should show:
    # karios_core on port 8080 (main web interface)
    # karios_license on port 8069 (licensing service)
-   # karios_rms on port 9094 (RMS management)
-   # karios_rms_client on port 9096 (RMS client)
-   
-   # Check security shield service
-   sockstat -l | grep kshield
-   # Should show kshield on port 9592
-   
+
    # Verify ZFS pools are healthy
    zpool status
    
@@ -1055,7 +1047,7 @@ After installation completion, verify your Karios installation:
 
 **Expected Results:**
 - All Karios services should show "running" status
-- Ports 8080, 8069, 9094, 9096, and 9592 should be listening
+- Ports 8080 and 8069 should be listening
 - ZFS pool should show "ONLINE" status  
 - No critical errors in system logs
 
@@ -1158,8 +1150,8 @@ The ``karios_install_info.txt`` file contains all system access credentials and 
       grep GRAFANA /root/karios_install_info.txt
 
 .. warning::
-   **File Security**
-   
+   **Credentials File Handling**
+
    - The credentials file is stored in ``/root/`` directory with restricted access
    - Only root user can read this file by default
    - **Backup this file securely** to your password management system
@@ -1189,33 +1181,6 @@ To access the web-based user interface, we recommend using one of the following 
 - **Safari**: A release from the current year
 
 
-Post-Installation Security Hardening
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Implement these security measures immediately after installation:
-
-.. list-table:: 
-   :header-rows: 1
-   :widths: 30 70
-
-   * - Security Measure
-     - Implementation Steps
-   * - **Change Default Passwords**
-     - Modify all default administrative credentials immediately after first login
-   * - **Enable Comprehensive Logging**
-     - Configure system, security, and audit logging for compliance and monitoring
-   * - **Network Security Configuration**
-     - Implement firewall rules, network segmentation, and access controls
-   * - **Update Management**
-     - Establish procedures for regular security updates and patch management
-   * - **User Access Control**
-     - Implement proper user permissions, role-based access, and authentication policies
-
-.. note::
-   For detailed post-installation security hardening steps, refer to the Karios User Guide:
-   https://docs.karios.ai/user-guide/index.html
-   
-
 Installation Troubleshooting
 -----------------------------
 
@@ -1228,9 +1193,9 @@ Getting Help
 
 If you need assistance with the installation process:
 
-- **Documentation**: Refer to the comprehensive Karios documentation and security guides
-- **Support Resources**: Access available support channels and community forums  
-- **Log Files**: Review installation and security logs for detailed error information
+- **Documentation**: Refer to the comprehensive Karios documentation
+- **Support Resources**: Access available support channels and community forums
+- **Log Files**: Review installation logs for detailed error information
 
 **Common Log Locations**
 
@@ -1258,7 +1223,7 @@ After successful installation, complete these essential tasks in order:
    - Login with credentials created during FreeBSD installation
 
 2. **Install Karios Root CA Certificate** (Recommended)
-   - See :ref:`browser-certificate-setup` below to eliminate browser security warnings
+   - See :ref:`browser-certificate-setup` below to eliminate browser certificate warnings
 
 3. **Complete Initial Setup**
    - Follow the Karios setup wizard
@@ -1269,7 +1234,6 @@ After successful installation, complete these essential tasks in order:
 3. **Documentation Review**
    - **User Guide**: Navigate to the user guide for detailed Karios operation
    - **Management Configuration**: Review network and storage configuration options
-   - **Security Configuration**: Implement additional security measures for production
 
 4. **System Validation**
    - Create a test virtual machine
@@ -1308,7 +1272,7 @@ Common failure recovery steps:
 Browser Certificate Setup
 -------------------------
 
-Karios uses a private Certificate Authority (CA) to secure HTTPS communications. To avoid browser security warnings, install the Karios Root CA certificate on your workstation.
+Karios uses a private Certificate Authority (CA) to secure HTTPS communications. To avoid browser certificate warnings, install the Karios Root CA certificate on your workstation.
 
 .. note::
    You only need to install the Root CA certificate **once**. After installation, all Karios nodes (master and slaves) will be automatically trusted.

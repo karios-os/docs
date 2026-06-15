@@ -64,7 +64,6 @@ To access the Karios management interface, open a supported web browser (Chrome 
 - **Read-Only Access**: New registered users have limited permissions
 - **Administrative Access**: Full system capabilities require administrative privileges
 - **Permission Management**: Contact system administrators for permission upgrades (Refer User Management & Permissions section)
-- **Security Best Practice**: Use administrative accounts only when necessary
 
 .. figure:: _static/images/getting_started/new_user_registration.png
       :width: 600
@@ -72,10 +71,9 @@ To access the Karios management interface, open a supported web browser (Chrome 
 
       Figure : New User Registration
 
-**Account Management & Security**
+**Account Management**
 
 - To return to the login page, click "Existing User? Login."
-- **Password Security is Critical**: Implement strong password policies for all accounts. Change your password regularly.
 
 **2FA Setup Requirements**
 
@@ -306,7 +304,7 @@ After successful login, the system will display the "Access Karios" license vali
 **Step 3: Upload License File**
 
 1. Return to the Karios interface (the validation modal)
-2. In the "Security Configuration File (JSON)" section, upload your downloaded license file using one of these methods:
+2. In the "License Configuration File (JSON)" section, upload your downloaded license file using one of these methods:
 
    - Drag and drop the file into the designated area
    - Click "click to browse" and select the file from your computer
@@ -344,29 +342,6 @@ After successful login, the system will display the "Access Karios" license vali
 
    It is critical to set BMC credentials for the node to enable fetching system updates and performing essential system calls.
 
-**BMC Security Configuration**
-
-.. danger::
-   **CRITICAL SECURITY NOTICE**
-   
-   Before connecting your BMCs to the Provisioning Center, **secure their credentials immediately**. Using default passwords creates serious security vulnerabilities.
-
-**Password Security Requirements**
-
-.. warning::
-   **Password Configuration - Critical Security Step**
-   
-   **Strong Password Requirements:**
-   - At least 12 characters long
-   - Mix of uppercase, lowercase, numbers, and symbols  
-   - Avoid common words or personal information
-   - Change regularly (recommended every 90 days)
-
-.. error::
-   **Do not skip this crucial security step!**
-   
-   Failure to secure BMC credentials before network connection exposes your infrastructure to potential compromise.
-
 **Step 5: Set BMC Credentials**
 How to set BMC credentials:
 
@@ -398,7 +373,7 @@ Upon successful license validation, you'll access the Karios Provisioning Center
 **Dashboard Overview**
 
 - **Control Center**: Provides access to the main control center interface
-- **Navigation Menu**: Offers quick access to key system components (Provisioning Center, Storage, Seaweed, ISO, Network, Event logs, Stats, Releases)
+- **Navigation Menu**: Offers quick access to key system components (Provisioning Center, Storage, Seaweed, ISO, Network, Event logs, Stats)
 - **License Status**: Displays your license expiration date in the top banner
 - **User Profile**: Allows you to manage your user settings and profile information
 - **System Statistics**: Provides real-time system status and resource counters
@@ -446,9 +421,6 @@ The License Features popup provides three main tabs for comprehensive license ma
    * - Power
      - Power management feature availability
      - x remaining
-   * - Security
-     - Security feature availability
-     - x remaining
 
 Available Resources Overview:
 
@@ -456,7 +428,6 @@ Available Resources Overview:
 - **Used Sockets**: Number of CPU sockets currently allocated to nodes
 - **Available Sockets**: Remaining CPU sockets available for allocation
 - **Power Features**: Total, used, and available Power features
-- **Security Features**: Total, used, and available Security features
 
 2. **Usage Tab**
    
@@ -503,7 +474,7 @@ Available Resources Overview:
       :alt: Currently Used Tab
       :align: center
 
-   - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets, Power, and Security features) to the node.
+   - **Add Features Tab**: Allows allocation of available cluster resources (such as CPU sockets and Power) to the node.
 
    .. figure:: _static/images/getting_started/add_features_tab.png
       :alt: Add Features Tab
@@ -524,7 +495,7 @@ Available Resources Overview:
 
    - **Cluster-Wide Licensing**: License resources are shared across the entire cluster.
    - **CPU Socket Allocation**: Distribute available CPU sockets among multiple nodes.
-   - **Feature Distribution**: Allocate Power and Security features to required nodes.
+   - **Feature Distribution**: Allocate Power features to required nodes.
    - **Usage Monitoring**: Track actual resource consumption across the infrastructure.
 
    License Renewal Process
@@ -625,7 +596,6 @@ After license validation and resource allocation, users have access to the follo
 - **Network**: Network configuration and monitoring
 - **Event Logs**: System event monitoring, and log management
 - **Stats**: System statistics and performance metrics
-- **Releases**: System release and update management
 
 .. figure:: _static/images/getting_started/navigation_elements.png
    :width: 600
@@ -682,7 +652,7 @@ RBAC Architecture and Design Philosophy
 
 **Permission-Based Authorization**: The RBAC system implements a granular permission model where access is controlled through specific permissions rather than broad administrative categories. This provides:
 
-**Principle of Least Privilege**: Users are granted only the minimum permissions necessary to perform their required tasks, reducing security risks and preventing accidental system modifications.
+**Principle of Least Privilege**: Users are granted only the minimum permissions necessary to perform their required tasks, preventing accidental system modifications.
 
 **Separation of Duties**: Different administrative functions are separated into distinct roles, preventing any single user from having unlimited system access and creating accountability trails.
 
@@ -697,7 +667,7 @@ Predefined Role Definitions
 **System Admin Role**
 
 * **Scope**: Complete system administration with full access to all subsystems
-* **Permissions**: All available permissions including user management and security configuration
+* **Permissions**: All available permissions including user management
 
 **Node Admin Role**
 
@@ -732,13 +702,6 @@ Predefined Role Definitions
 * **Scope**: UPS management, power distribution monitoring, energy reporting
 * **Integration**: Node visibility for power consumption monitoring
 * **Operational Focus**: Power policy configuration and emergency power management
-
-**Security Admin Role**
-
-* **Domain**: Security policy enforcement and monitoring
-* **Responsibilities**: Firewall configuration, security policy implementation, audit compliance
-* **Access**: Console access for security incident response
-* **Scope**: Security configuration across all system components
 
 **Cooling Admin Role**
 
@@ -861,7 +824,6 @@ The interface provides a comprehensive checkbox grid with all available permissi
 * **NODE_CONSOLE**: Physical node console access
 * **CONSOLE**: System console access
 * **CONTROL_CENTER_VIEW / CONTROL_CENTER_MANAGE**: Management interface access
-* **SECURITY_VIEW / SECURITY_MANAGE**: Security system administration
 * **COOLING_VIEW / COOLING_MANAGE**: Cooling system management
 
 
@@ -888,7 +850,6 @@ System Roles
 * **Storage Admin**: Storage system administration
 * **Node Admin**: Physical infrastructure management
 * **Power Admin**: Power system management
-* **Security Admin**: Security policy management
 * **Cooling Admin**: Thermal management system
 * **Netbox Admin**: Network documentation management
 * **ReadOnly User**: Comprehensive read-only access
@@ -974,7 +935,6 @@ Role Assignment Display
 Each user shows their currently assigned role:
 
 * **System Admin**: Complete administrative privileges
-* **Security Admin**: Security-focused administrative access
 * **ReadOnly User**: View-only access across all systems
 * **Custom Roles**: Specialized roles created for specific requirements
 
@@ -1065,17 +1025,15 @@ Users can be assigned specialized roles based on job function:
 
 * **Storage Administrators**: Storage Admin role for ZFS and storage management
 * **Network Engineers**: Network Admin role for network infrastructure
-* **Security Personnel**: Security Admin role for security policy management
 * **Operations Staff**: ReadOnly User role for monitoring and reporting
 
 
 .. warning::
-   Full access roles carry significant security implications:
+   Full access roles carry significant operational implications:
 
    * **Complete System Control**: Ability to modify any system configuration
    * **Data Access**: Unrestricted access to all stored data and configurations
    * **User Management**: Ability to create, modify, or delete user accounts
-   * **Security Policy Control**: Can modify security policies and access controls
 
 
 User Lifecycle Management
@@ -1168,11 +1126,11 @@ Two-Factor Management
 Best Practices
 --------------
 
-Account Security
-~~~~~~~~~~~~~~~~~
+Account Management
+~~~~~~~~~~~~~~~~~~~
 
-- **Strong Passwords**: Use strong, unique passwords for account security.
-- **Regular Updates**: Update passwords regularly according to security policies.
+- **Strong Passwords**: Use strong, unique passwords for your account.
+- **Regular Updates**: Update passwords regularly.
 - **Session Management**: Log out properly when finished using the system.
 - **Access Monitoring**: Monitor account access and report suspicious activity.
 
@@ -1192,18 +1150,6 @@ System Usage
 - **Change Management**: Follow proper change management procedures for system modifications.
 - **Support Utilization**: Utilize available support resources and documentation effectively.
 
-Security Recommendations
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. important::
-   Follow these security best practices:
-
-   * Implement the principle of least privilege
-   * Regularly review user permissions and roles
-   * Use approval workflows for sensitive role assignments
-   * Monitor user activity and access patterns
-   * Maintain proper documentation of role assignments
-
 Operational Guidelines
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1214,7 +1160,7 @@ Operational Guidelines
 * **Emergency Procedures**: Maintain emergency access procedures for critical situations
 
 .. note::
-   This practical implementation guide provides step-by-step instructions for managing roles and users through the Karios web interface, ensuring proper access control while maintaining system security and operational efficiency.
+   This practical implementation guide provides step-by-step instructions for managing roles and users through the Karios web interface, ensuring proper access control while maintaining operational efficiency.
 
 
 Web Interface Navigation   
@@ -1415,8 +1361,6 @@ The Baremetal Management & Inventory (BMO) module enables centralized management
 
    Figure: Hardware reveal interface for managing inventory ISOs.
 
-- **Security & Permissions:** Role-based access ensures only authorized users can perform sensitive operations (e.g., firmware updates, BIOS changes).
-
 - **Node Unprovision** : Allows administrators to unprovision a node, cleaning up configurations and preparing it for future use.
 
 .. figure:: _static/images/bmo/bmo_nodeunprovision.png
@@ -1437,7 +1381,7 @@ The Baremetal Management & Inventory (BMO) module enables centralized management
 
 - Select server → Register → Patch BIOS Attributres → Restart if needed → Update firmware → Monitor job status → Manage,Build custom ISOs for hardware reveal → Node Unprovision
 
-BMO is designed for reliability, security, and extensibility, making it a robust solution for baremetal lifecycle management in Karios.
+BMO is designed for reliability and extensibility, making it a robust solution for baremetal lifecycle management in Karios.
 
 Server Information Display
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1505,7 +1449,6 @@ Component Navigation Process
 - **Network**: Network configuration and management
 - **Event logs**: System event monitoring, and log management
 - **Stats**: Performance metrics and monitoring
-- **Releases**: System updates and patch management
 
 .. figure:: _static/images/control_center/control_center_management.png
    :width: 800
@@ -1516,260 +1459,6 @@ Component Navigation Process
 - **Tab Organization**: Use tabs to organize different management functions
 - **Context Awareness**: Understand the current context (control node vs. worker node)
 - **Permission Levels**: Ensure appropriate permissions for accessing different components
-
-Liquid Cooling Management Operations - (Special Feature. Contact Sales)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. note::
-   **Preview Feature Notice**
-   This section on Liquid Cooling is currently reflecting the preview version of the feature. Expect updates and enhancements as it progresses towards general availability (GA).
-
-**Karios Cool Integration:** The Liquid Cooling tab provides access to the Karios Cool thermal management system for monitoring and controlling liquid cooling infrastructure across your deployment.
-
-**Liquid Cooling Interface:** The interface provides two main management categories:
-Immersion Cooling and Rack Level.
-
-.. figure:: _static/images/control_center/liquid_cooling/liquid_cooling_management.png
-   :alt: Liquid Cooling Interface
-   :width: 925px
-   :height: 283px
-
-Immersion Cooling Tab
-^^^^^^^^^^^^^^^^^^^^^
-
-**Immersion Cooling Systems:** The Immersion Cooling tab provides comprehensive management of immersion cooling systems and components:
-
-**Netbox Configuration:**
-
-Netbox is a system that acts as a central repository ("single source of truth") for all information about your datacenter. It runs in the background (backend) to manage and track assets and configurations.
-
-**How does it work with Karios?**
-
-Karios uses Netbox by creating connections (northbound/southbound APIs) to pull data from and send data to Netbox. This allows Karios to retrieve information about your datacenter.
-
-**Integration Benefits:**
-
-- Centralized asset management and tracking
-- Automated configuration synchronization
-- Real-time datacenter information access
-- Unified infrastructure visibility
-
-
-To connect Karios to Netbox, follow these configuration steps:
-
-- **Click "Configure Netbox"**
-   Initiates the setup process within the Karios interface
-
-   .. figure:: _static/images/control_center/liquid_cooling/LQ_configure_netbox_button.png
-      :alt: Configure Netbox Button
-      :width: 600px
-   
-   Figure : Configure Netbox Button
-
-- **Enter the Netbox URL**
-   Provide the web address where your Netbox instance is located (e.g., http://example.com:8000)
-
-- **Enter an API Token**
-   This token acts as authentication credentials for Karios to access and modify data within Netbox
-
-- **Click "Save Configuration"**
-   Applies the settings and establishes the connection between Karios and Netbox
-
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_configure_netbox.png
-   :alt: Netbox Configuration
-   :width: 679px
-   :height: 405px
-
-**Rack Selection:** After configuring Netbox, administrators can select and manage available racks:
-
-- **DEV Rack**: Active rack with detailed specifications
-- **Physical Specifications**: View rack dimensions, device counts, and power requirements
-- **Rack Management**: Access rack-level cooling controls and monitoring
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_rack_selection.png
-   :alt: Rack Selection
-   :width: 913px
-   :height: 396px
-
-**Immersion Cooling Loop Control:** The system provides visual control of the immersion cooling loop:
-
-- **Tank**: Coolant tank with visual fluid level indicators
-- **Pump**: Circulation pump with control capabilities
-- **Servers**: Server units (U1-U10) with cooling connections
-- **Chiller**: Cooling chiller with temperature control
-- **Coolant Flow**: Visual representation of coolant flow paths
-
-**Coolant Flow Management:**
-
-- **Flow Control**: ON/OFF button to control coolant flow
-- **Flow Direction**: Visual indicators showing coolant flow from Tank → Pump → Servers → Chiller → Tank
-- **Flow Status**: Real-time status of coolant circulation
-- **Temperature Zones**: Cold water (blue) and warm water (red) flow indicators
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_coolant_flow_management.png
-   :alt: Coolant Flow Management
-   :width: 800
-
-**Server Information Display:** Individual server information within the immersion cooling system:
-
-- **Server Status**: Active/inactive status for each server unit
-- **Server Identification**: Unit positions (U1, U2, U3, etc.)
-- **Temperature Monitoring**: Per-server temperature monitoring
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_server_information.png
-   :alt: Server Information
-   :width: 800
-
-**Monitoring Controls:**
-
-- **Sensors Dropdown**: Select "Sensors" to view different available sensors
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_monitoring_controls.png
-   :alt: Monitoring Controls
-   :width: 800
-
-**Sensor Types and Monitoring:** The system provides comprehensive sensor monitoring with 8 different sensor types:
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_sensor_types.png
-   :alt: Sensor Types Overview
-   :width: 800
-
-**Flame Sensor:** Fire detection and safety monitoring for the cooling system
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_flame_sensor.png
-   :alt: Flame Sensor
-   :width: 800
-
-**Motor:** Motor status and performance monitoring for pumps and fans
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_motor_monitoring.png
-   :alt: Motor Monitoring
-   :width: 800
-
-**Temperature Sensor (CPU):** CPU temperature monitoring for thermal management
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_cpu_temperature_sensor.png
-   :alt: CPU Temperature Sensor
-   :width: 800
-
-**Flow Rate Sensor (Outlet):** Coolant flow rate monitoring at outlet points
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_flow_rate_sensor.png
-   :alt: Flow Rate Sensor
-   :width: 800
-
-**CDU (Coolant Distribution Unit) Security:** Security monitoring for coolant distribution systems
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_cdu_security.png
-   :alt: CDU Security
-   :width: 937px
-   :height: 508px
-
-**Temperature Sensor (Coolant Tank):** Coolant tank temperature monitoring
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_coolant_tank_temperature.png
-   :alt: Coolant Tank Temperature
-   :width: 800
-
-**Leak Detection Sensor:** Leak detection and prevention monitoring
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_leak_detection_sensor.png
-   :alt: Leak Detection Sensor
-   :width: 800
-
-**Tank Level Sensor:** Coolant tank level monitoring and management
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_tank_level_sensor.png
-   :alt: Tank Level Sensor
-   :width: 800
-
-**Sensor Capabilities:**
-
-- **Real-time Monitoring**: Live sensor data collection and display
-- **Alert Generation**: Automatic alerts for sensor threshold breaches
-- **Historical Data**: Sensor data history and trend analysis
-- **Safety Monitoring**: Critical safety sensors including flame and leak detection
-- **Performance Tracking**: Operational sensors for flow, temperature, and motor performance
-
-**Metrics Button:** Click "Metrics" to access real-time performance data
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_click_metrics_interface.png
-   :alt: Metrics Interface
-   :width: 800
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_metrics_data.png
-   :alt: Metrics Data
-   :width: 800
-
-**Real-time Updates:** Live monitoring of cooling system performance
-
-Rack Level Tab
-^^^^^^^^^^^^^^
-
-**Rack-Level Cooling Management:** The Rack Level tab provides detailed rack-level cooling management:
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_rack_level_management.png
-   :alt: Rack Level Management
-   :width: 910px
-   :height: 403px
-
-**Available Nodes Display:** The system shows available nodes with comprehensive information:
-
-- **Name**: Node identifier (e.g., "DEV Rack")
-- **Status**: Operational status (Active/Inactive)
-- **Physical Dimensions**: Width (19 inches) and Height (15U) specifications
-- **Device Count**: Number of devices in the rack (18 devices)
-- **Power Feeds**: Number of power connections (2 power feeds)
-
-Real-time Monitoring and Metrics
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Sensor Information:** Access detailed sensor information through the Sensors tab
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_sensor_information.png
-   :alt: Sensor Information
-   :width: 800
-
-**Coolant Distribution System:**
-
-.. figure:: _static/images/control_center/liquid_cooling/LQ_coolant_distribution_system.png
-   :alt: Coolant Distribution System
-   :width: 800
-
-**Interactive Monitoring:**
-
-- **Real-time Graphs**: Access real-time graphical data for each metric
-- **Historical Data**: View historical trends and patterns
-- **Alert Thresholds**: Configure alert thresholds for temperature and flow parameters
-- **Performance Analysis**: Analyze cooling system performance over time
-
-Operational Controls
-^^^^^^^^^^^^^^^^^^^^
-
-**Cooling System Control:**
-
-- **Flow Control**: Start/stop coolant circulation with ON/OFF controls
-- **Temperature Management**: Monitor and control temperature across the system
-- **Pump Management**: Control pump operation and speed
-- **Chiller Control**: Manage chiller operation and temperature settings
-
-**System Status Monitoring:**
-
-- **Visual Status Indicators**: Real-time visual indicators for system components
-- **Component Health**: Monitor health status of pumps, chillers, and sensors
-- **Flow Visualization**: Visual representation of coolant flow throughout the system
-- **Temperature Mapping**: Visual temperature mapping across server units
-
-**Navigation and Usage:**
-
-- **Tab Navigation**: Switch between Immersion Cooling and Rack Level tabs
-- **Back to Racks**: Return to rack overview with "Back to Racks" button
-- **Node Selection**: Select specific nodes for detailed management
-- **Configuration Access**: Access configuration options for cooling systems
-- **Status Monitoring**: Monitor cooling system status and performance
-
-For detailed information regarding liquid cooling functionality, configuration options, and advanced features, please refer to Section 5: Liquid Cooling Management.
 
 Storage Management Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2121,9 +1810,8 @@ For hypervisors like Karios, NFS offers several crucial advantages:
 **Technical Considerations:**
 
 - Network bandwidth requirements for storage traffic
-- NFS server performance impact on VM operations  
+- NFS server performance impact on VM operations
 - Network reliability requirements for storage availability
-- Security considerations for network-attached storage
 
 .. figure:: _static/images/control_center/storage_management/storage_nfs_storage_interface.png
    :alt: NFS Storage Interface
@@ -2161,7 +1849,7 @@ Click Next to proceed to mount configuration
 .. tip::
    **Mount Point:** The local directory path on the client system where the remote NFS share will be attached and accessed. This is an empty directory on your local system (e.g., /mnt/nfs-storage, /data/shared) that serves as the access point for the remote files.
 
-   **Mount Options:** Configuration parameters that control how the NFS file system is mounted and behaves, including NFS protocol version (NFSv3, NFSv4), read/write permissions, timeout settings, cache behavior, and security options. These options determine the performance characteristics and access rules for the mounted file system.
+   **Mount Options:** Configuration parameters that control how the NFS file system is mounted and behaves, including NFS protocol version (NFSv3, NFSv4), read/write permissions, timeout settings, and cache behavior. These options determine the performance characteristics and access rules for the mounted file system.
 
 **Step 3: Configure Options**
 
@@ -2533,7 +2221,7 @@ Please enter the following fields for the vale switch configuration:
 .. tip::
    **TAP Interface:** A virtual network interface that operates at Layer 2 (Ethernet level), simulating a complete network card that can send and receive raw Ethernet frames. It's commonly used to connect virtual machines to networks by creating a virtual ethernet adapter that appears as a real network device to the operating system.
 
-   **VLAN:** A Virtual Local Area Network that logically segments a physical network into multiple isolated networks using VLAN tags. VLANs allow you to create separate network segments on the same physical infrastructure, improving security and organization by grouping devices logically rather than physically.
+   **VLAN:** A Virtual Local Area Network that logically segments a physical network into multiple isolated networks using VLAN tags. VLANs allow you to create separate network segments on the same physical infrastructure, improving organization by grouping devices logically rather than physically.
 
 .. figure:: _static/images/control_center/network_management/vale_switch_configuration.png
    :alt: Vale Switch Configuration
@@ -2722,7 +2410,7 @@ Provide all the information given below and click "Create VLAN"
 - **Selecting IP:** If you choose to allow Dynamic IP assignment based on the Tag ID you entered, you can skip entering the Static IP address and Subnet Mask. (It will either automatically assign an IP within 15 seconds or asks you to enter Static IP While Entering Static IP addresses it is recommended to enter IP as per the tag ID, and the subnet (the recommended formats are entered in the place holders).
 
 .. tip::
-   - **Subnet:** A logical subdivision of an IP network that groups devices within a specific IP address range using subnet masks (e.g., 192.168.1.0/24). Subnets organize network traffic and improve security by creating logical network boundaries.
+   - **Subnet:** A logical subdivision of an IP network that groups devices within a specific IP address range using subnet masks (e.g., 192.168.1.0/24). Subnets organize network traffic by creating logical network boundaries.
    - **Dynamic IP:** An IP address automatically assigned to a device by a DHCP server from a predefined pool of available addresses. The address can change when the device reconnects or when the lease expires.
    - **Static IP:** A permanently assigned IP address that remains constant and is manually configured on a device. Static IPs provide consistent network identity and are essential for servers and network infrastructure that need predictable addressing.
 
@@ -2876,182 +2564,6 @@ Performance Monitoring Capabilities
 - **Capacity Planning**: Resource usage insights for infrastructure planning
 - **Health Monitoring**: Continuous monitoring of system health and operational status
 - **Optimization Insights**: Data-driven recommendations for performance improvements
-
-System Releases Operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Releases Navigation Structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- **Releases Tab Selection**: Access system releases and updates by selecting the Releases tab from the main navigation
-- **Four Main Sections**: Navigate between Versions, Updates, History, and Install Jobs tabs
-- **Host Management**: Filter and search functionality for managing multiple hosts and nodes
-- **Remote Server Integration**: Fetch updates from remote servers with timestamp tracking
-
-.. figure:: _static/images/control_center/releases_and_updates/releases_navigation.png
-   :alt: Releases Navigation
-   :width: 600
-
-Versions Tab
-^^^^^^^^^^^^
-
-Click on versions tab and select any node to view the update versions.
-
-- **Host Listing**: Display all available hosts with expandable rows for detailed version information
-- **Version Count Indicators**: Show number of available versions per host with numeric badges
-- **Search and Filter**: Filter by Host Name, Update Type (All/Core/OS), and Version numbers
-- **Expandable Interface**: Click on host names to expand and view detailed version information
-- **Version Details**: View specific update types (CORE, OS) with version numbers and request timestamps
-
-.. figure:: _static/images/control_center/releases_and_updates/versions_tab.png
-   :alt: Versions Tab
-   :width: 600
-
-.. figure:: _static/images/control_center/releases_and_updates/versions_tab_details.png
-   :alt: Version Details
-   :width: 600
-
-Updates Tab
-^^^^^^^^^^^
-
-**Available Updates:** Click on the updates tab to display all available system updates with comprehensive details
-
-.. figure:: _static/images/control_center/releases_and_updates/updates_tab.png
-   :alt: Updates Tab
-   :width: 600
-
-- **Remote Server Sync**: Shows "Fetched from remote server" status with last fetch timestamp
-- **Update Information**: Display update name, version, description, type, and available actions
-- **Download and Install**: Direct download and install buttons for each available update
-
-.. figure:: _static/images/control_center/releases_and_updates/download_button.png
-   :alt: Update Information
-   :width: 600
-
-Once you click the Download button, the update package will be downloaded to the system. When the download is complete, the Install button will become active, allowing you to proceed with the installation. Click on "install" button to open the install update dialog.
-
-.. figure:: _static/images/control_center/releases_and_updates/install_button.png
-   :alt: Install Button
-   :width: 600
-
-.. figure:: _static/images/control_center/releases_and_updates/install_update_dialog.png
-   :alt: Install Update Dialog
-   :width: 600
-
-- **Update Categories**: Filter updates by type (Core, OS, Security) and priority levels
-- **Action Controls**: Install, Download, and Logs buttons for update management
-
-Update Installation Process
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Install Update Dialog:** Comprehensive installation interface with multiple configuration options
-- **Update Details**: Display update type (CORE, OS, UI) and version information
-- **Node Selection**: Multi-select interface for choosing target nodes for installation
-- **Installation Status**: Track Already Updated, Pending, and Scheduled installation states
-- **Schedule Management**: Optional scheduling with date/time picker for future installations
-
-**Steps to install an update:**
-
-1. Select a node from the available list.
-2. Choose between immediate installation or scheduled deployment
-3. Click on "install now" for immediate installation.
-
-.. figure:: _static/images/control_center/releases_and_updates/installation_steps.png
-   :alt: Installation Steps
-   :width: 600
-
-.. note::
-   We have two update install options i.e., "install now" for instant installation and "set schedule time" for later installation.
-
-Installation Scheduling
-^^^^^^^^^^^^^^^^^^^^^^^
-
-- **Schedule Options**: Set specific date and time for update installation
-- **Future Date Validation**: Ensure scheduled installations are set for future dates and times
-- **Schedule Management**: Click on "Set Schedule Time" for scheduled update deployment.
-
-.. figure:: _static/images/control_center/releases_and_updates/schedule_options_1.png
-   :alt: Schedule Options 1
-   :width: 600
-
-.. figure:: _static/images/control_center/releases_and_updates/schedule_options_2.png
-   :alt: Schedule Options 2
-   :width: 600
-
-- **Clear Schedule**: Option to clear scheduled time and install immediately
-- **Multi-Node Support**: Schedule installations across multiple selected nodes
-
-History Tab
-^^^^^^^^^^^
-
-Click on "history" tab to view
-
-- **Update History**: Complete historical record of all system updates and installations
-- **Filter Options**: Filter by Update Type, Host Name, Action, and Status
-- **Detailed Records**: View update type, host name, action, version, initiated by, status, and request timestamp
-- **Status Tracking**: Track SUCCESS, ERROR, and other status indicators for historical updates
-- **User Attribution**: Show which user initiated each update or installation
-- **Chronological View**: Updates displayed in chronological order with timestamps
-
-.. figure:: _static/images/control_center/releases_and_updates/update_history.png
-   :alt: Update History
-   :width: 600
-
-Install Jobs Tab
-^^^^^^^^^^^^^^^^
-
-Click on the "install jobs" tab
-
-- **Job Management**: Monitor and manage all installation jobs and their current status
-- **Job Filtering**: Filter by Update Type, Status, Requested By, and Scheduled status
-- **Job Details**: Display Job ID, Update Type, Version, Requested By, Scheduled status, Nodes count, Success/Failure counts, and overall Status
-- **Status Monitoring**: Track PENDING, FAILED, SUCCESS, and other job statuses
-- **Scheduled Jobs**: Identify and manage scheduled installations with "Yes/No" indicators
-- **Job Statistics**: View success and failure counts for each installation job
-
-.. figure:: _static/images/control_center/releases_and_updates/install_jobs.png
-   :alt: Install Jobs
-   :width: 600
-
-Installation Monitoring
-^^^^^^^^^^^^^^^^^^^^^^^
-
-- **Install Summary**: Comprehensive installation summary with timestamp, Job ID, and node count
-- **Status Tracking**: Real-time status updates (FAILED, SUCCESS, PENDING, IN PROGRESS)
-- **Success and Failure Counts**: Track installation success and failure statistics
-
-.. figure:: _static/images/control_center/releases_and_updates/installation_monitoring.png
-   :alt: Installation Monitoring
-   :width: 600
-
-- **Detailed Status View**: Click on installation jobs to view detailed status information
-- **Host-Level Details**: View individual host installation status with timestamps
-- **Error Logging**: Access detailed installation logs for troubleshooting failed installations
-
-Installation Logs and Details
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. figure:: _static/images/control_center/releases_and_updates/installation_logs.png
-   :alt: Installation Logs
-   :width: 600
-
-- **Detailed Log Access**: View comprehensive installation logs for each host
-- **Error Diagnosis**: Detailed error messages and failure analysis
-- **Installation Timeline**: Track installation start time, completion time, and duration
-- **Log Status**: Monitor log status (ERROR, SUCCESS) for each installation attempt
-- **Rollback Information**: View rollback procedures and restoration details when installations fail
-- **Filter by Status**: Filter installation details by All, Success, Failed, Pending, and In Progress
-
-Advanced Features
-^^^^^^^^^^^^^^^^^
-
-- **Multi-Node Management**: Support for managing updates across multiple nodes simultaneously
-- **Remote Update Fetching**: Automatic fetching of updates from remote servers with status indicators
-- **Installation Rollback**: Automatic rollback capabilities for failed installations
-- **Comprehensive Logging**: Detailed logging for all installation activities and system changes
-- **Status Filtering**: Advanced filtering options for monitoring specific installation states
-
-For detailed information regarding system release management, advanced update procedures, rollback processes, and comprehensive release deployment strategies, please refer to Section 9: System Release Management.
-
 
 Data Center Efficiency 
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -3335,9 +2847,7 @@ To access worker node level management, administrators must first navigate to th
 
 - **Network:** Network interface management and connectivity status
 
-- **Firewall:** Node-level firewall configuration and security policies
-
-- **Security:** Server-specific security settings and compliance monitoring
+- **Firewall:** Node-level firewall configuration
 
 - **Logs:** System logs and event monitoring for the individual server
 
@@ -3443,32 +2953,6 @@ Add-in Card and PCIe Devices
 
 .. figure:: _static/images/nodemanagement/Image_072.png
    :width: 600
-
-
-Power Monitoring
-^^^^^^^^^^^^^^^^
-
-**Real-time Power Metrics:** The Power section provides comprehensive power consumption monitoring and energy efficiency tracking.
-
-**Power Consumption Metrics:**
-
-- **Current:** Real-time current draw measurement (e.g., “0.34 A”)
-- **Energy:** Cumulative energy consumption tracking (e.g., “15250.86 Wh (15.25 kWh)”)
-- **Power:** Instantaneous power consumption (e.g., “38.53 W”)
-- **Voltage:** Current voltage levels (e.g., “114.05 V”)
-
-.. figure:: _static/images/nodemanagement/Image_073.png
-   :width: 600
-
-
-
-
-**Power Management Features:**
-
-- **Energy Efficiency:** Track power usage effectiveness and optimization opportunities
-- **Power Trends:** Historical power consumption patterns and analysis
-- **Cost Monitoring:** Energy cost tracking and budgeting assistance
-- **Environmental Impact:** Carbon footprint monitoring and sustainability metrics
 
 
 Storage System Overview
@@ -3589,7 +3073,7 @@ Accessing Node Console
 
 **Authentication Requirements:**
 
-- **Console Access**: Requires valid system credentials for security
+- **Console Access**: Requires valid system credentials
 - **User Authentication**: Password-based authentication for console access
 - **Session Management**: Secure session handling for terminal access
 - **Credential Validation**: Real-time credential verification
@@ -3606,7 +3090,6 @@ The console authentication interface provides secure access to the node's comman
 - **Credentials Header**: "Credentials" dialog title
 - **Password Field**: Secure password input field for user authentication
 - **Send Credentials Button**: Submit authentication credentials to establish console session
-- **Security Prompt**: Password-protected access to prevent unauthorized console access
 
 **Authentication Process:**
 
@@ -3718,13 +3201,13 @@ Advanced Console Operations
    jobs                  # Display active jobs
    nohup <command> &     # Run command in background
 
-Console Security and Best Practices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Console Best Practices
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Security Considerations
-"""""""""""""""""""""""
+Operational Considerations
+"""""""""""""""""""""""""""
 
-**Console Access Security:**
+**Console Access:**
 
 - **Authentication Required**: All console access requires valid system credentials
 - **Session Management**: Secure handling of console sessions and authentication
@@ -4172,7 +3655,7 @@ Ideal for organizing file-based storage into logical, isolated datasets.
 
 
 .. tip:: ZFS Encryption
-   Provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets based on security requirements.
+   Provides data-at-rest protection by encrypting datasets at the storage level, ensuring that sensitive data remains unreadable even if physical drives are compromised, stolen, or improperly disposed of. This native encryption feature supports regulatory compliance requirements (HIPAA, PCI-DSS, GDPR) while maintaining high performance through hardware acceleration and granular control over different datasets.
 
 
 **View Datasets:**
@@ -4529,212 +4012,6 @@ Historical Performance Analysis
 - **Trend Analysis:** Long-term performance trend analysis and forecasting
 - **Capacity Planning:** Performance data for infrastructure capacity planning
 
-Node Power Management
-~~~~~~~~~~~~~~~~~~~~~
-
-**Power Management Overview:** The Power tab provides comprehensive power monitoring and management capabilities for individual worker nodes, enabling administrators to track power consumption, optimize energy efficiency, and manage power profiles for optimal performance and cost savings.
-
-**Power Interface Features:** The Power management interface offers dual view modes and comprehensive power analytics:
-
-- **View Mode Selection:** Switch between “Power Metrics” and “Power Monitoring” views
-- **Time Range Controls:** Flexible time range selection for power analysis
-- **Real-time Monitoring:** Live power consumption tracking and visualization
-- **Power Profile Management:** Configure and optimize power profiles for different workloads
-
-Power Metrics View
-^^^^^^^^^^^^^^^^^^
-**Power Metrics Dashboard:** The Power Metrics view provides detailed real-time power consumption monitoring with comprehensive electrical measurements:
-
-**Power Consumption Graph:** The Power (W) graph displays instantaneous power consumption over time:
-
-**Power Monitoring Features:**
-
-- **Y-Axis Scale:** Dynamic power scale from 0W to 133W (adjustable based on consumption)
-- **Real-time Visualization:** Green area chart showing power consumption patterns
-- **Power Fluctuations:** Visual representation of power usage variations and spikes
-- **Time-based Analysis:** Detailed timestamp tracking for power consumption trends
-
-
-**Voltage Monitoring:** The Voltage (V) graph provides electrical voltage monitoring:
-
-**Voltage Characteristics:**
-
-- **Stable Voltage Display:** Orange line graph showing consistent voltage levels
-- **Voltage Range:** Monitoring voltage from 0V to 119V range
-- **Interactive Tooltips:** Hover tooltips showing precise voltage measurements
-- **Voltage Stability:** Visual indication of voltage stability (e.g., “Voltage: 113.36V” at “Time: 11:20:42 AM”)
-
-**Current Monitoring:** The Current (A) graph tracks electrical current consumption:
-
-**Current Measurement Features:**
-
-- **Current Range:** Monitoring current from 0A to 6A range
-- **Current Stability:** Red line graph showing consistent current draw
-- **Real-time Updates:** Live current measurement with tooltip information
-- **Current Precision:** Detailed current measurements (e.g., “Current: 1.00A” at “Time: 11:16:33 AM”)``
-
-**Energy Consumption Tracking:** The Energy (kWh) graph provides cumulative energy consumption monitoring:
-
-**Energy Tracking Features:**
-
-- **Cumulative Energy:** Blue area chart showing total energy consumption over time
-- **Energy Scale:** Large scale energy tracking (e.g., 0 to 30831 kWh)
-- **Energy Tooltips:** Detailed energy consumption data (e.g., “Energy: 30760.09 kWh” at “Time: 11:10:37 AM”)
-- **Long-term Analysis:** Historical energy consumption tracking for cost analysis
-
-Power Monitoring View
-^^^^^^^^^^^^^^^^^^^^^
-
-**Power Monitoring Dashboard:** The Power Monitoring view provides comprehensive power analytics and management capabilities:
-
-**View Mode Selection:** Toggle between different power monitoring views:
-
-- **Power Metrics:** Real-time electrical measurements and graphs
-- **Power Monitoring:** Comprehensive power analytics and CPU core monitoring
-
-**Power Supply Unit Data:** The Power Supply Unit Data section displays detailed PSU information:
-
-**PSU Information Display:**
-
-**PSU Details:** Complete PSU specifications including model, current, power, and voltage ratings
-
-- **PSU Model:** Power supply model information (e.g., “SS Gemini 900A”)
-- **Electrical Specifications:** Current rating (77.5 A), power rating (900 W), voltage (12 V)
-- **Network Integration:** Node IP address association (e.g., “192.168.116.111”)
-- **Efficiency Rating:** 80 Plus certification and rating (e.g., “80 Plus: 90, 80 Plus Rating: Platinum”)
-- **Management Actions:** Edit and delete PSU configuration options
-
-.. figure:: _static/images/power-management/image_001.png
-   :align: center
-
-To add a new power supply unit data:
-
-
-**Add Power Supply Configuration:**
-
-**To add a power supply to your system, provide the following information:**
-
-**Required Fields:**
-
-- **Power Supply Name:** Enter a descriptive name for the power supply unit
-- **Current (A):** Specify the current rating in amperes
-- **Power (W):** Enter the power rating in watts
-- **Voltage (V):** Specify the voltage rating in volts
-- **By Pass Rating:** Enter the bypass power rating
-- **Status:** Set the current operational status of the power supply
-
-**Step: Complete Configuration** Click **Add** to save the power supply configuration, or **Cancel** to abort the setup
-
-.. figure:: _static/images/power-management/image_002.png
-   :align: center
-
-Server Power Metrics
-^^^^^^^^^^^^^^^^^^^^
-
-**Comprehensive Power Analytics:** The Server Power Metrics section provides detailed power consumption analysis and CPU core monitoring
-
-**Core Usage Monitoring:** Individual CPU core usage tracking with color-coded visualization:
-
-**CPU Core Performance:**
-
-- **32-Core Monitoring:** Individual monitoring of all CPU cores (Core 0 through Core 31)
-- **Usage Percentage:** Real-time usage percentage for each core
-- **Color-coded Display:** Visual color coding for different usage levels:
-- **Green:** Low to moderate usage (0% to ~20%)
-- **Orange:** Moderate to high usage (~21% to ~50%)
-- **Red:** High usage (100% indicates full utilization)
-- **Color Graduation:** Progressive color changes based on usage intensity
-
-**Core Usage Examples:**
-
-- **Core 5:** 100% utilization (displayed in red)
-- **Core 20:** 31.58% utilization (displayed in orange)
-- **Core 21:** 16.67% utilization (displayed in green)
-- **Idle Cores:** 0% utilization (displayed in light green)
-
-.. figure:: _static/images/power-management/image_003.png
-   :align: center
-
-System Resource Summary
-^^^^^^^^^^^^^^^^^^^^^^^
-
-**Resource Utilization Overview:** The system provides a comprehensive summary of overall resource utilization:
-
-**Resource Metrics:**
-
-- **CPU Usage:** Overall CPU utilization percentage (e.g., “4.86%”)
-- **Memory Usage:** System memory consumption (e.g., “22.31%”)
-- **Storage Usage:** Storage capacity utilization (e.g., “13.38%”)
-- **Workload Efficiency:** Overall system efficiency rating (e.g., “88%”)
-- **Power Profile Management:** Intelligent power profile recommendations and management:
-
-**Power Profile Features:**
-
-- **Profile Recommendation:** AI-driven power profile recommendations (e.g., “Balanced”)
-- **Profile Description:** Detailed profile descriptions (e.g., “Mixed workload - maintain responsiveness”)
-- **Profile Selection:** Multiple power profile options:
-   - **Performance:** Maximum performance for demanding workloads
-   - **Balanced:** Optimal balance between performance and power efficiency
-   - **Power Saving:** Maximum power efficiency for light workloads
-
-Power Profile Configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Power Profile Settings:** The Set Power-Profile section enables dynamic power profile management:
-
-**Profile Selection Options:**
-
-- **Performance Profile:** Optimized for maximum computational performance
-- **Balanced Profile:** Balanced performance and power efficiency
-- **Power Saving Profile:** Optimized for minimum power consumption
-
-**Current Power Configuration:**
-
-- **Current Profile:** Currently active power profile (e.g., “Power Saving”)
-- **Profile Editor:** Edit button for custom power profile configuration
-- **Profile Validation:** Check mark and X buttons for profile confirmation
-
-
-Frequency Management
-^^^^^^^^^^^^^^^^^^^^
-
-**CPU Frequency Control:** The system provides detailed CPU frequency monitoring and management:
-
-**Frequency Information:**
-
-- **Current Frequency:** Real-time CPU frequency (e.g., “1500 MHz”)
-
-- **Suggested Frequency:** System-recommended frequency for optimal performance (e.g., “2400 MHz”)
-
-**Frequency Optimization:** Automatic frequency recommendations based on workload analysis
-
-**Dynamic Scaling:** Real-time frequency adjustments based on power profile and workload demands
-
-**Frequency Management Benefits:**
-
-- **Performance Optimization:** Optimal frequency selection for workload requirements
-- **Power Efficiency:** Frequency scaling for power consumption optimization
-- **Thermal Management:** Frequency control for thermal management
-- **Workload Adaptation:** Dynamic frequency adjustment based on workload characteristics
-
-Power Management Best Practices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Effective Power Management**
-
-- **Profile Selection:** Choose appropriate power profiles based on workload characteristics
-- **Monitoring:** Regular monitoring of power consumption and efficiency metrics
-- **Optimization:** Use power recommendations for optimal system configuration
-- **Frequency Management:** Leverage frequency scaling for performance and efficiency balance
-
-**Power Efficiency Optimization**
-
-- **Workload Analysis:** Analyze workload patterns for optimal power profile selection
-- **Resource Utilization:** Monitor resource utilization for power efficiency opportunities
-- **Profile Tuning:** Fine-tune power profiles based on specific workload requirements
-- **Energy Cost Management:** Use power monitoring for energy cost optimization and budgeting
-
-
 Network Management
 ~~~~~~~~~~~~~~~~~~
 
@@ -4845,16 +4122,16 @@ Network Configuration Best Practices
    - **Resource Allocation:** Allocate interfaces efficiently across switches
    - **Status Monitoring:** Regular monitoring of switch operational status
 
-- **Network Security:**
+- **Network Management:**
    - **Access Control:** Implement appropriate network access controls
-   - **Traffic Monitoring:** Monitor network traffic for security threats
+   - **Traffic Monitoring:** Monitor network traffic for anomalies
    - **Configuration Validation:** Validate network configuration changes
 
 
 Firewall Management
 ~~~~~~~~~~~~~~~~~~~
 
-**Overview:** The Firewall tab provides comprehensive packet filter (PF) rule management for individual worker nodes, enabling administrators to configure network security policies, manage traffic filtering rules, and maintain system security through advanced firewall configuration.
+**Overview:** The Firewall tab provides comprehensive packet filter (PF) rule management for individual worker nodes, enabling administrators to configure network policies and manage traffic filtering rules through advanced firewall configuration.
 
 **Firewall Rule Management:** The firewall interface features a code-based rule editor with syntax highlighting, real-time validation, and safety mechanisms to prevent system lockout through configuration errors.
 
@@ -4868,7 +4145,7 @@ Packet Filter Rules Interface
 
 **Connection Protection Rules**
 
-This PF rule acts as a security guard for your server, preventing connection flooding and brute-force attacks. It works by implementing multiple security mechanisms:
+This PF rule acts as a guard for your server, preventing connection flooding and brute-force attacks. It works by implementing multiple protection mechanisms:
 
 **Limiting Connections**
    Restricts the number of simultaneous connections and rate of new connection attempts from any single IP address
@@ -4913,8 +4190,7 @@ Proper configuration is crucial for rule effectiveness:
 
 **Advanced Configuration Warning:**
 
-   - **Security Notice:** Prominent warning about advanced configuration complexity
-   - **Risk Assessment:** Clear indication of potential security vulnerabilities
+   - **Risk Assessment:** Clear indication of potential configuration issues
    - **Expertise Requirement:** Emphasis on required expertise for rule modification
    - **System Lockout Prevention:** Warning about potential system access issues
 
@@ -4956,7 +4232,6 @@ Firewall Rule Components
    - **Default Block:** For comprehensive inbound traffic blocking
    - **Selective Blocking:** For controlled outbound access
    - **Anti-Spoof:** For IP spoofing prevention
-   - **Security Enforcement:** Comprehensive blocking with exception-based access
 
 **Service Access Rules:**
 
@@ -5237,294 +4512,6 @@ The firewall system includes a comprehensive safety mechanism to prevent system 
 - **Timer Display:** Real-time countdown showing remaining confirmation time
 
 - **Revert Warning:** Clear indication of automatic reversion behavior
-
-Security Considerations:
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-- **Expertise Requirement:** Advanced PF configuration requires specialized knowledge
-
-- **Risk Assessment:** Incorrect rules can create security vulnerabilities
-
-- **System Access:** Improper configuration can result in system lockout
-
-- **Best Practices:** Follow established firewall configuration best practices
-
-
-Security Center Walkthrough
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Security Center provides a centralized interface for managing and monitoring your infrastructure's security posture. This walkthrough will guide you through the key features and functionalities available in the Security Center.
-
-Accessing the Security Center
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Navigate to the Security Center to begin security monitoring and management.
-
-Security Center Navigation
-""""""""""""""""""""""""""
-   - Navigate to the "Security" tab on any node in the node's main menu
-   - The below image clearly indicates where to find the 'Security' tab on the interface.
-
-   .. figure:: _static/images/security/security_tab_pointer_newui2.png
-      :width: 600
-      :alt: Security Tab Pointer
-
-      Figure 1: Security Tab Pointer
-
-Overview Dashboard
-^^^^^^^^^^^^^^^^^^
-
-The Security Centre Overview Dashboard displays a real-time snapshot of your security posture with key metrics and status indicators.
-
-Security Dashboard Interface
-""""""""""""""""""""""""""""
-   - The Security Centre Overview Dashboard displays a real-time snapshot of your security posture
-   - Key metrics include risk percentage, system status, last scan status and top risk category
-   - The below image clearly shows where to find 'Scan' Button
-
-   .. figure:: _static/images/security/security_scan_pointer_newui.png
-      :width: 600
-      :alt: Security Scan Button
-
-      Figure 2: Security Scan Button
-
-Initiating Security Scans
-"""""""""""""""""""""""""
-   - Click the 'Scan' button to initiate a new security scan
-   - The system will perform vulnerability assessment and risk analysis
-   - Scan results will be displayed in real-time on the dashboard
-
-Compliance Score
-""""""""""""""""
-
-- **How this score is calculated:**
-  - The CAT I / CAT II / CAT III counts directly drive this compliance score — each issue reduces the score based on severity and total volume.
-
-- **CAT I (Critical):**
-  - Largest impact; each lowers compliance by ~1.5–2 points.
-
-- **CAT II (High/Medium):**
-  - Moderate impact; each lowers compliance by ~0.25–0.60 point.
-
-- **CAT III (Low):**
-  - Smallest impact; each lowers compliance by ~0.1–0.2 points.
-
-- **Volume Factor:**
-  - More total findings → each new one counts a bit more (up to ~30% extra impact).
-
-- **Calculation:**
-  - Compliance = 100 – (Weighted Findings × Volume Factor ÷ 10)
-  - Final score is clamped to 0–100. If no findings → 100% compliance.
-
-- **Score Ranges:**
-
-  * - **≥50% — Compliant:** 
-    - System is in acceptable state.
-  * - **30–49% — Partially Compliant:** 
-    - Gaps exist, needs attention.
-  * - **<30% — Non-Compliant:** 
-    - System at risk, immediate action required.   
-
-
-Security Vulnerability Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Access the Vulnerability Management section to view and manage identified vulnerabilities across your infrastructure.
-
-Vulnerability Assessment Interface
-""""""""""""""""""""""""""""""""""
-   - Access the Vulnerability Management section to view and manage identified vulnerabilities
-   - Use filters to sort vulnerabilities by severity
-   - Scroll Down to view detailed vulnerabilities information along with remediation options
-   - Please click on the vulnerability to know more information about it
-
-   .. figure:: _static/images/security/security_vuln_info_newui.png
-      :width: 600
-      :alt: Vulnerability Information
-
-      Figure 3: Vulnerability Information
-
-Vulnerability Details and Information
-"""""""""""""""""""""""""""""""""""""
-   - Click on any vulnerability to access detailed information
-   - A Pop up for the Vulnerability will look like this, it will contain a bit more information about the vulnerability and relevant links
-
-   .. figure:: _static/images/security/security_vuln_popup_newui.png
-      :width: 600
-      :alt: Vulnerability Popup
-
-      Figure 4: Vulnerability Popup
-
-   - The vulnerability popup contains:
-     - Detailed vulnerability description
-     - Risk assessment information
-     - Relevant security links and references
-     - Potential impact analysis
-
-Remediation Actions
-^^^^^^^^^^^^^^^^^^^
-
-The Remediation Actions section allows you to initiate automated fixes for identified security issues.
-
-Automated Remediation Interface
-"""""""""""""""""""""""""""""""
-   - The Remediation Actions section allows you to initiate automated fixes for identified issues
-   - Where to find the remediation option (if there are any vulnerabilities to remediate)
-
-   .. note::
-      One-click Remediation is available for very few vulnerabilities at this point to make sure that it does not hamper the system functionality.
-
-   .. figure:: _static/images/security/security_vuln_remediation_pointer_section_new.png
-      :width: 600
-      :alt: Vulnerability Remediation Pointer
-
-      Figure 5: Vulnerability Remediation Pointer
-
-Remediation Process
-"""""""""""""""""""
-   - Review available remediation options for identified vulnerabilities
-   - Select appropriate remediation actions based on risk assessment
-   - Monitor remediation progress and validate fixes
-   - Verify system functionality after remediation
-
-Recommendation Process
-""""""""""""""""""""""  
-   - Safety-First Remediation - All XCCDF rules include automated checks with manual remediation for high-risk changes that could cause system lockout (SSH, PAM, firewall modifications).
-   - Industry Standard Compliance - Rules follow CIS FreeBSD 14 Benchmark v1.0.1 with proper CVE identifiers, CVSS scores, and NIST 800-53 control mappings for enterprise compliance frameworks.
-   - Service Continuity Protection - Remediation scripts avoid automatic service restarts and include clear warnings about potential disruption to critical services like SSH and databases.
-   - Operational Documentation - Each rule includes comprehensive warning, remediation, and recommendation sections with specific manual steps for safe implementation in production environments.
-
-   .. figure:: _static/images/security/recommendation_pointer_newui.png
-      :width: 600
-      :alt: Vulnerability Recommendation Pointer
-
-      Figure 6: Vulnerability Recommendation Pointer
-
-Recommendation Pop-up
-"""""""""""""""""""""
-   - Click on the 'Recommendation' button to view detailed recommendation information
-   - The recommendation pop-up contains:
-     - Detailed recommendation description
-     - Risk assessment information
-     - Potential impact analysis
-     - Manual remediation steps
-
-   .. figure:: _static/images/security/recommendation_popup_newui.png
-      :width: 600
-      :alt: Vulnerability Recommendation Popup
-
-      Figure 7: Vulnerability Recommendation Popup
-
-Scan History and Reporting
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Scan History section provides a log of all security scans performed with detailed reporting capabilities.
-
-Security Scan History Navigation
-""""""""""""""""""""""""""""""""
-   - The Scan History section provides a log of all security scans performed
-   - Review past scan results and reports
-   - Please click on the 'Metrics' button beside the 'Scan' button to navigate to Security Scan History Page
-
-   .. figure:: _static/images/security/security_navigate_to_history_page_newui.png
-      :width: 600
-      :alt: Security Scan History Pointer
-
-      Figure 8: Security Scan History Pointer
-
-Security Scan History Dashboard
-"""""""""""""""""""""""""""""""
-   - The Security Scan History Page provides a metrics dashboard for previous scans performed
-   - Review historical reports in html and PDF formats
-   - You can find the previous scan details, Compliance Score from earlier scan and other additional details in this Security Scan History Page
-
-   .. figure:: _static/images/security/security_history_page_newui.png
-      :width: 600
-      :alt: Security History Page
-
-      Figure 9: Security History Page
-
-Security Report Generation
-""""""""""""""""""""""""""
-   - The below image clearly indicates where to find the PDF & HTML report download options under the Scan History section
-
-   .. figure:: _static/images/security/security_report_pointer_newui.png
-      :width: 600
-      :alt: Security Report Pointer
-
-      Figure 10: Security Report Pointer
-
-Security Report Content
-"""""""""""""""""""""""
-   - Once downloaded, the security report will contain detailed information of all the vulnerabilities identified in the scan
-   - It also contains System information on which scan was performed such as OS version, architecture, kernel version, and other relevant details
-
-   .. figure:: _static/images/security/security_report_content_newui.png
-      :width: 600
-      :alt: Security Report Content
-
-      Figure 11: Security Report Content
-
-Virtual Machine Security Scan
-"""""""""""""""""""""""""""""
-   - When a VM is created with CloudInit, Kshield Agent installs automatically on first boot and performs the security scan.
-   - Click the Scan action for a VM to start a security scan from the Security Center view.
-   - Review all virtual machines with their FQDN/IP, OS type, creation time, and current compliance score.
-   - Ubuntu and RHEL virtual machines are currently supported; Windows virtual machine scanning is coming soon.
-
-   .. figure:: _static/images/security/virtual_machine_security_scan_newui.png
-      :width: 600
-      :alt: Virtual Machine Security Scan
-
-      Figure 12: Virtual Machine Security Scan
-
-
-**Security Report Components**
-
-The security report includes:
-
-- **Vulnerability Details**: Complete list of identified security issues
-- **System Information**: OS version, architecture, kernel version
-- **Risk Assessment**: Severity ratings and impact analysis
-- **Remediation Recommendations**: Suggested fixes and security improvements
-- **Scan Metadata**: Timestamp, scan duration, and coverage information
-
-Best Practices for Security Management
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Security Monitoring Guidelines
-""""""""""""""""""""""""""""""
-
-**Regular Security Scanning**
-   - Schedule regular security scans to maintain current security posture
-   - Monitor scan results and track security trends over time
-   - Address high-priority vulnerabilities promptly
-
-**Vulnerability Assessment**
-   - Review vulnerability details thoroughly before taking action
-   - Assess potential impact on system functionality
-   - Plan remediation activities during appropriate maintenance windows
-
-**Report Management**
-   - Download and archive security reports for compliance purposes
-   - Share reports with relevant stakeholders and security teams
-   - Track remediation progress using historical scan data
-
-Security Configuration Management
-"""""""""""""""""""""""""""""""""
-
-**Remediation Planning**
-   - Prioritize vulnerabilities based on risk assessment
-   - Test remediation actions in development environments first
-   - Document all security configuration changes
-
-**System Monitoring**
-   - Monitor system performance after applying security fixes
-   - Verify that remediation actions do not impact system functionality
-   - Maintain audit trails of all security-related changes
-
-.. important::
-   Always test security remediation actions in a controlled environment before applying them to production systems to ensure system stability and functionality.
 
 Node Log Management
 ~~~~~~~~~~~~~~~~~~~
@@ -6001,8 +4988,8 @@ Best Practices
 * **Documentation**: Include problem descriptions with diagnostic reports
 * **Sharing**: Use PDF reports for collaboration with support teams
 
-Security Considerations
-^^^^^^^^^^^^^^^^^^^^^^^
+Data Handling Considerations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * **Sensitive Data**: Review outputs for confidential information before sharing
 * **Access Control**: Restrict access to diagnostic framework and outputs
@@ -6153,8 +5140,8 @@ Use the following template when submitting your support bundle:
    
    Please let us know if you need further information.
 
-Security Considerations
-^^^^^^^^^^^^^^^^^^^^^^^
+Handling the Support Bundle
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Password Protection**
     The archive is encrypted to protect sensitive system information during transmission
@@ -6503,10 +5490,10 @@ Cloud-Init VMs require initial user account setup:
    :width: 600
 
 
-SSH Key Authentication (Enhanced Security)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SSH Key Authentication
+~~~~~~~~~~~~~~~~~~~~~~~
 
-For enhanced security, configure SSH key authentication for your virtual machines.
+Configure SSH key authentication for your virtual machines.
 
 **SSH Key Format**
 
@@ -6528,7 +5515,7 @@ For enhanced security, configure SSH key authentication for your virtual machine
 
 - SSH keys are managed centrally via the Karios interface.
 - Administrators can add, remove, or update authorized keys for each VM.
-- Regularly review and rotate SSH keys for optimal security.
+- Regularly review and rotate SSH keys.
 
 .. note::
 
@@ -6551,15 +5538,15 @@ For enhanced security, configure SSH key authentication for your virtual machine
    :width: 600
    :alt: Network Configuration Options
 
-Security Best Practices
-~~~~~~~~~~~~~~~~~~~~~~~
+VM Access Best Practices
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The system provides security recommendations to ensure safe and reliable VM operations:
+The system provides recommendations to ensure safe and reliable VM operations:
 
 - **Strong Passwords**: Use complex passwords with a mix of uppercase, lowercase, numbers, and special characters.
-- **SSH Key Authentication**: Prefer SSH keys over passwords for VM access; they offer enhanced security and reduce brute-force risks.
+- **SSH Key Authentication**: Prefer SSH keys over passwords for VM access; they offer stronger protection and reduce brute-force risks.
 - **Password Disabling**: When SSH keys are configured, consider disabling password authentication for remote access.
-- **Network Security**: Apply appropriate network security policies, such as firewalls and VLAN segmentation, to protect VM traffic.
+- **Network Configuration**: Apply appropriate network policies, such as firewalls and VLAN segmentation, to protect VM traffic.
 
 VM Deployment Process
 ~~~~~~~~~~~~~~~~~~~~~
@@ -6806,9 +5793,8 @@ VM Maintenance
 
 Perform regular maintenance operations to ensure optimal VM performance:
 
-- **Updates**: Apply operating system and application updates
+- **Updates**: Apply operating system, application, and patch updates promptly
 - **Backups**: Create regular VM backups for disaster recovery
-- **Security Patches**: Apply security updates and patches promptly
 - **Configuration Changes**: Modify VM settings through the Hardware tab as needed
 - **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
 
@@ -6844,9 +5830,8 @@ VM Maintenance
 
 Perform regular maintenance operations to ensure optimal VM performance:
 
-- **Updates**: Apply operating system and application updates
+- **Updates**: Apply operating system, application, and patch updates promptly
 - **Backups**: Create regular VM backups for disaster recovery
-- **Security Patches**: Apply security updates and patches promptly
 - **Configuration Changes**: Modify VM settings through the Hardware tab as needed
 - **Hardware Modifications**: Dynamically adjust CPU, memory, storage, and network configurations
 
@@ -6873,7 +5858,6 @@ PCIe passthrough allows virtual machines to directly access physical hardware de
 
 **Hardware Isolation**
 
-* **Security**: Physical isolation between VMs at the hardware level
 * **Resource Allocation**: Guaranteed hardware resources without sharing
 * **Compliance**: Meeting regulatory requirements for hardware isolation
 
@@ -6944,7 +5928,7 @@ NIC Passthrough Use Cases
 Network Appliances
 ^^^^^^^^^^^^^^^^^^^
 
-* **Firewalls**: Dedicated interfaces for security appliances
+* **Firewalls**: Dedicated interfaces for network appliances
 * **Load Balancers**: High-performance traffic distribution
 * **VPN Gateways**: Hardware-accelerated encryption processing
 * **Network Monitoring**: Dedicated capture interfaces for analysis tools
@@ -6984,14 +5968,14 @@ VM Resource Planning
 * **CPU Assignment**: Allocate appropriate CPU cores for device-intensive workloads
 * **Storage Performance**: Ensure storage subsystem can support additional I/O
 
-Security Considerations
-~~~~~~~~~~~~~~~~~~~~~~~
+Hardware Access Considerations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Access Control
 ^^^^^^^^^^^^^^
 
 * **Device Ownership**: Clearly define which VMs own which devices
-* **Physical Security**: Secure physical access to passthrough-capable hardware
+* **Physical Access**: Restrict physical access to passthrough-capable hardware
 * **Firmware Updates**: Maintain current firmware on passthrough devices
 
 Isolation Verification
@@ -7818,30 +6802,10 @@ Control the core Karios backend services:
    * - ``service karios_core status``
      - Check Karios core service status
 
-Release Management Service
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Licensing Services
+~~~~~~~~~~~~~~~~~~~
 
-Manage the Karios Release Management System:
-
-.. list-table::
-   :widths: 50 50
-   :header-rows: 1
-
-   * - Command
-     - Description
-   * - ``service karios_rms start``
-     - Start the Release Management Service
-   * - ``service karios_rms stop``
-     - Stop the Release Management Service  
-   * - ``service karios_rms restart``
-     - Restart the Release Management Service
-   * - ``service karios_rms status``
-     - Check RMS service status
-
-Security Services
-~~~~~~~~~~~~~~~~~~
-
-Control Karios security and licensing components:
+Control Karios licensing components:
 
 .. list-table::
    :widths: 50 50
@@ -7849,14 +6813,6 @@ Control Karios security and licensing components:
 
    * - Command
      - Description
-   * - ``service kshield start``
-     - Start the Karios security shield service
-   * - ``service kshield stop``
-     - Stop the Karios security shield service
-   * - ``service kshield restart``
-     - Restart the Karios security shield service
-   * - ``service kshield status``
-     - Check security shield status
    * - ``service karios_license start``
      - Start the Karios license service
    * - ``service karios_license stop``
@@ -8108,7 +7064,7 @@ With authentication configured, you can now test all available API endpoints:
 
 - Always use HTTPS for API calls
 - Keep access tokens confidential
-- Refresh tokens as per the system's security policy
+- Refresh tokens as needed
 - Handle authentication errors gracefully
 - Validate response status codes
 

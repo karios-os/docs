@@ -4,7 +4,7 @@ Integrated Firewall
 What is PF (Packet Filter)
 ---------------------------
 
-Think of a firewall like a security guard at the entrance of a building (your network). It checks every visitor (data packet) to decide who gets in or out based on rules you set. PF (Packet Filter) is a powerful and flexible firewall used on systems like FreeBSD to:
+Think of a firewall like a guard at the entrance of a building (your network). It checks every visitor (data packet) to decide who gets in or out based on rules you set. PF (Packet Filter) is a powerful and flexible firewall used on systems like FreeBSD to:
 
 * Protect your computer or network from hackers
 * Control which websites or services your network can access
@@ -243,11 +243,6 @@ The Internet Control Message Protocol (ICMP) is vital for network diagnostics. T
 * Discover path MTU
 * Confirm whether hosts are reachable
 
-However, allowing all ICMP traffic can pose security risks, as attackers may exploit ICMP to:
-
-* Map out your network
-* Launch denial-of-service or spoofing attacks
-
 Basic Secure ICMP Rules
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -284,9 +279,6 @@ Key Features in Karios's PF Setup
 **Web Services**
     Opens ports like 80 (HTTP) and 443 (HTTPS) for web dashboards or APIs
 
-**VXLAN (Virtual Networking)**
-    Supports virtual networks, like connecting multiple servers securely
-
 **Anti-Spoofing**
     Blocks fake traffic pretending to come from your network
 
@@ -315,7 +307,7 @@ Rules begin with best-practice global options:
 * **Block policy**: either return or drop (depending on config)
 * **Scrubbing**: enabled to normalize and reassemble fragmented packets
 * **Loopback traffic**: excluded via ``set skip on lo``
-* **TCP timeout and OS fingerprinting**: performance and security optimized
+* **TCP timeout and OS fingerprinting**: performance optimized
 
 SSH Access
 ^^^^^^^^^^^
@@ -349,38 +341,13 @@ These port ranges include both:
 
 Example ports: ``{ 80, 443, 8080, ... }``
 
-UDP Traffic
-^^^^^^^^^^^^
-
-A single UDP port (commonly used for encapsulation protocols like VXLAN) is allowed, indicating:
-
-* Use of VXLAN-based tunneling or overlay networking
-* Possibly container networking or virtualized infrastructure
-
-.. code-block:: 
-
-   pass proto udp to port <port>
-
-VXLAN Tunnel ICMP
-^^^^^^^^^^^^^^^^^^
-
-Separate rules for allowing ICMP over VXLAN interfaces signal:
-
-* Health checks or keep alives over virtual networking layers
-* Secure and monitorable overlay networking
-
-.. code-block:: 
-
-   pass in  quick on vxlan proto icmp
-   pass out quick on vxlan proto icmp
-
 Outbound Rules
 ^^^^^^^^^^^^^^
 
 Outbound traffic is generally open with keep state, which:
 
 * Allows connections initiated by the system (e.g., API calls, updates)
-* Tracks session state for connection security
+* Tracks session state for established connections
 
 Anti-Spoofing
 ~~~~~~~~~~~~~~
@@ -407,7 +374,7 @@ One of the configs introduces:
 This implies:
 
 * Some services may operate behind NAT
-* FTP services are wrapped or filtered for security
+* FTP services are wrapped or filtered
 * Modular, reloadable configs are used for maintenance or toggles
 
 Blacklisting and Blocking
@@ -599,30 +566,6 @@ Application Ports
 .. note::
    Each ``pass in proto tcp ...`` line opens those services. If included, anyone can connect from outside unless additional restrictions are added (like ``<trusted_nets>``).
 
-UDP Rules
-----------
-
-VXLAN Support
-~~~~~~~~~~~~~~
-
-.. code-block:: 
-
-   pass proto udp to port 4789
-
-* Allows VXLAN encapsulation traffic (used for virtual networks)
-* Needed for overlay networking. Without it, VXLAN tunnels break
-
-VXLAN ICMP Rules
-~~~~~~~~~~~~~~~~~
-
-.. code-block:: 
-
-   pass in quick on vxlan proto icmp
-   pass out quick on vxlan proto icmp
-
-* Allows pinging across VXLAN tunnels
-* Needed for testing overlay connectivity
-
 NAT / Redirect Rules
 --------------------
 
@@ -724,4 +667,3 @@ Additional References
 ---------------------
 
 * `OpenBSD PF FAQ <https://www.openbsd.org/faq/pf/>`_
-* `ZenArmor FreeBSD Firewall Configuration <https://www.zenarmor.com/docs/network-security-tutorials/freebsd-firewall-configuration-with-pf>`_
