@@ -185,10 +185,6 @@ Cluster Installation
    :alt: Cluster Details
    :width: 600
 
-.. note::
-   Use the prefix ``om`` in the cluster name to identify Omni clusters.
-   for the baremetal Clusters , the nodes in the registered nodes will be shown here to select from. 
-
 
 - Select **Server**, **Storage Pool**, and **Network Switch**.  
 - Enter VM specs **CPU's, Memory(GB), Disk Size(GB)** and click **Update**.
@@ -971,9 +967,6 @@ Create Ubuntu Kubernetes Bare Metal Cluster
 
 - Enter **HostName**, **BMC IP Address** , **NodeType** , and **Additional techstack** If required.
 
-.. figure:: _static/images/UbuntuKubernetes/UbuntuK8s-baremetal-2.png
-   :alt: Attach Ubuntu Image
-   :width: 600
 
 - Click on the **Add Node** button to add Bare Metal Nodes to the Cluster.
 
@@ -1031,9 +1024,6 @@ Key internal differences from traditional Kubernetes:
 
 - Click on the **Provision Vm Cluster** to provision the Virtual Machines
 
-.. figure:: _static/images/k3s/k3sKubernetesBaremetalprovision-3.png
-   :alt: Setup Kubernetes Button
-   :width: 600
 
 4.1.2 Enter Cluster Details
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1235,9 +1225,6 @@ Create K3s Kubernetes Bare Metal Cluster
 
 - Select the **DNS Zone**.
 
-.. figure:: _static/images/k3s/K3sKubernetesBaremetalprovision-2.png
-   :alt: Setup Kubernetes Button
-   :width: 600 
 
 **Step 4.3.2: Enter Cluster Details**
 
@@ -1247,10 +1234,6 @@ Create K3s Kubernetes Bare Metal Cluster
    The ``k3s-bm`` prefix helps uniquely identify K3s Bare Metal clusters.
 
 - Enter **HostName**, **BMC IP Address** , **NodeType** , and **Additional techstack** If required.
-
-.. figure:: _static/images/k3s/k3sKubernetesBaremetalprovision-3.png
-   :alt: Attach Ubuntu Image
-   :width: 600
 
 - Click on the **Add Node** button to add Bare Metal Nodes to the Cluster.
 
