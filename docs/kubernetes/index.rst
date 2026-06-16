@@ -1211,41 +1211,6 @@ Example:
    - User: ``admin``  
    - Password: ``prom-operator``  
 
-
-Create K3s Kubernetes Bare Metal Cluster
-----------------------------------------------------
-**Step 4.3.1: Create the Cluster Machine in Karios UI**
-- Click **Setup Kubernetes** in the Karios UI, and Select **K3s**.
-
-.. figure:: _static/images/k3s/K3sFristpage.png
-   :alt: Setup Kubernetes Button
-   :width: 600
-
-- Click on the **Provision Bare Metal Cluster** to provision the Bare Metal Nodes
-
-- Select the **DNS Zone**.
-
-
-**Step 4.3.2: Enter Cluster Details**
-
-- **Cluster name**: Enter a DNS-compliant name (e.g., ``k3s-bm-test1``).
-
-.. note::
-   The ``k3s-bm`` prefix helps uniquely identify K3s Bare Metal clusters.
-
-- Enter **HostName**, **BMC IP Address** , **NodeType** , and **Additional techstack** If required.
-
-- Click on the **Add Node** button to add Bare Metal Nodes to the Cluster.
-
-**Step 4.3.3: Wait for cluster Nodes to be ready**
-- Wait for the cluster Nodes to be ready for the cluster. Wait for them to report the ip
-
-.. note::
-   It may take several minutes for all Nodes to be ready in the cluster.
-   Once the Nodes are ready the job status button disappears from the Karios UI.
-   And you can Access the Tech stack if selected during the cluster creation, using the similar steps mentioned in section 4.2.
-
-
 4.4 Next Steps
 ~~~~~~~~~~~~~~~
 
