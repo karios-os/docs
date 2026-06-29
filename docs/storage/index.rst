@@ -972,13 +972,6 @@ MinIO
 * **Written in**: Go language
 * **Best for**: High-performance scenarios, cloud-native applications
 
-SeaweedFS (Optional)
-~~~~~~~~~~~~~~~~~~~~~
-
-* **What it is**: Distributed object storage with S3 compatibility
-* **Written in**: Go language
-* **Best for**: Massive scale, distributed environments
-
 Ceph RadosGW
 ~~~~~~~~~~~~
 
@@ -1550,342 +1543,6 @@ Consider Alternatives When
 * **Object Storage Needs**: S3-compatible storage for unstructured data
 * **Internet Access**: iSCSI not designed for internet exposure
 
-SeaweedFS
-=========
-
-What is SeaweedFS?
-------------------
-
-SeaweedFS is a distributed object storage system designed to store and serve massive amounts of data. Unlike traditional file systems, SeaweedFS is specifically designed for storing large numbers of files efficiently at massive scale.
-
-.. note::
-   **Simple Explanation**: Imagine you need to store millions of photos, videos, or documents. Traditional file systems become slow when dealing with so many files. SeaweedFS is designed to handle this scale efficiently by distributing files across many storage servers and using special techniques to quickly locate any file.
-
-SeaweedFS vs Traditional Storage
---------------------------------
-
-Traditional File System Limitations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **Directory Size**: Large directories become slow
-* **Single Point of Failure**: One server failure affects all data
-* **Limited Scale**: Hard to add more storage capacity
-* **Performance**: Slows down as more files are added
-
-SeaweedFS Advantages
-~~~~~~~~~~~~~~~~~~~~
-
-* **No Directory Limits**: Can handle billions of files efficiently
-* **Distributed**: Spread across many servers for reliability
-* **Elastic**: Easy to add more storage servers
-* **Fast Lookup**: Constant-time file lookup regardless of number of files
-
-SeaweedFS Architecture
-----------------------
-
-Core Components
-~~~~~~~~~~~~~~~
-
-**Master Server**:
-
-* **Role**: Coordinates the entire system
-* **Responsibilities**:
-  
-  * Assigns file IDs to new files
-  * Tracks which Volume Servers store which files
-  * Manages Volume Servers and their capacity
-  * Handles replication decisions
-
-* **High Availability**: Can run multiple masters for redundancy
-
-**Volume Server**:
-
-* **Role**: Actually stores the file data
-* **How it works**:
-  
-  * Stores files in "volumes" (large binary files)
-  * Each volume can store many individual files
-  * Replicates data to other volume servers for safety
-
-* **Scalability**: Add more volume servers to increase storage capacity
-
-**Filer (Optional)**:
-
-* **Role**: Provides a traditional file system interface
-* **Benefits**:
-  
-  * Makes SeaweedFS appear like a normal file system
-  * Supports directories and file paths
-  * Compatible with existing applications
-
-* **Implementation**: Can use various storage backends for metadata
-
-SeaweedFS on FreeBSD
---------------------
-
-.. tip::
-   It is recommended to configure seaweed from the UI.
-
-Installation
-~~~~~~~~~~~~
-
-**From Packages**:
-
-.. code-block:: bash
-
-   # Install SeaweedFS
-   pkg install seaweedfs
-
-   # Or build from source (Go required)
-   pkg install go
-   go get github.com/seaweedfs/seaweedfs/weed
-
-Basic Setup
-~~~~~~~~~~~
-
-**Start Master Server**:
-
-.. code-block:: bash
-
-   # Start master server
-   weed master -port=9333 -mdir=/tank/seaweed/master
-
-   # Start with high availability (multiple masters)
-   weed master -port=9333 -peers=master1:9333,master2:9333,master3:9333 -mdir=/tank/seaweed/master
-
-**Start Volume Server**:
-
-.. code-block:: bash
-
-   # Start volume server
-   weed volume -port=8080 -dir=/tank/seaweed/volume1 -mserver=localhost:9333
-
-   # Start with specific configuration
-   weed volume -port=8080 -dir=/tank/seaweed/volume1 -max=100 -mserver=localhost:9333 -dataCenter=dc1 -rack=rack1
-
-**Start Filer (Optional)**:
-
-.. code-block:: bash
-
-   # Start filer with leveldb backend
-   weed filer -port=8888 -master=localhost:9333
-
-   # Start with different metadata backend
-   weed filer -port=8888 -master=localhost:9333 -leveldb2.dir=/tank/seaweed/filer
-
-Advanced Configuration
-~~~~~~~~~~~~~~~~~~~~~~
-
-**Multiple Data Centers**:
-
-.. code-block:: bash
-
-   # Volume server in data center 1
-   weed volume -port=8080 -dir=/tank/seaweed/dc1 -mserver=master:9333 -dataCenter=dc1 -rack=rack1
-
-   # Volume server in data center 2  
-   weed volume -port=8081 -dir=/tank/seaweed/dc2 -mserver=master:9333 -dataCenter=dc2 -rack=rack1
-
-**Replication Configuration**:
-
-.. code-block:: bash
-
-   # Start with replication settings
-   # 000: no replication
-   # 001: replicate once in same rack
-   # 010: replicate once in same data center
-   # 100: replicate once in different data center
-   weed volume -port=8080 -dir=/tank/seaweed/volume -mserver=localhost:9333 -defaultReplication=010
-
-Understanding SeaweedFS Features
---------------------------------
-
-Volume Management
-~~~~~~~~~~~~~~~~~
-
-**What are Volumes?**:
-
-* Large files (typically 8GB) that store many individual files
-* Similar to how a CD contains many music files
-* Allows efficient storage of small files without file system overhead
-
-**Volume States**:
-
-* **Writable**: Can accept new files
-* **ReadOnly**: Full volumes that only serve existing files
-* **Compacting**: Being optimized to reclaim space from deleted files
-
-File ID System
-~~~~~~~~~~~~~~
-
-**File ID Structure**: ``3,01637037d6``
-
-* **Volume ID** (3): Which volume contains the file
-* **File Key** (01637037d6): Unique identifier within the volume
-* **Cookie**: Optional verification token
-
-**File Lookup Process**:
-
-1. Client requests file: ``3,01637037d6``
-2. Master server responds: "Volume 3 is on servers A and B"
-3. Client directly contacts server A or B for the file
-4. Volume server returns the file data
-
-Replication and Fault Tolerance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Replication Levels**:
-
-* **No Replication (000)**: Single copy, highest performance, highest risk
-* **Same Rack (001)**: Two copies in same rack, good for disk failures
-* **Same DC (010)**: Two copies in same data center, good for server failures
-* **Different DC (100)**: Two copies in different data centers, good for site failures
-
-**Automatic Failover**:
-
-* If a volume server fails, clients automatically use replica servers
-* Master server detects failed servers and redirects traffic
-* Failed volumes are automatically repaired when servers return
-
-SeaweedFS Performance Features
-------------------------------
-
-Caching Strategies
-~~~~~~~~~~~~~~~~~~
-
-**Volume Server Caching**:
-
-* Frequently accessed files cached in memory
-* Operating system page cache utilized
-* SSD caching for "warm" data
-
-**Client-Side Caching**:
-
-.. code-block:: bash
-
-   # Mount with caching options
-   weed mount -filer=localhost:8888 -dir=/mnt/seaweed -cacheDir=/tmp/cache -cacheCapacityMB=1000
-
-**CDN Integration**:
-
-* SeaweedFS can work behind CDNs
-* Perfect for serving static content globally
-* Automatic cache invalidation support
-
-Performance Optimizations
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Concurrent Operations**:
-
-* Multiple files uploaded/downloaded simultaneously
-* Parallel operations across multiple volume servers
-* Efficient handling of many small files
-
-**Network Optimizations**:
-
-.. code-block:: bash
-
-   # Configure for high-performance networks
-   weed volume -port=8080 -dir=/tank/seaweed -mserver=localhost:9333 -readTimeout=3s -max=1000
-
-S3 Compatibility
-----------------
-
-SeaweedFS includes an S3-compatible gateway, allowing it to work with existing S3 tools and applications.
-
-S3 Gateway Setup
-~~~~~~~~~~~~~~~~
-
-.. code-block:: bash
-
-   # Start S3 gateway
-   weed s3 -port=8333 -filer=localhost:8888
-
-   # Start with authentication
-   weed s3 -port=8333 -filer=localhost:8888 -config=/etc/seaweedfs/s3.json
-
-Using S3 API
-~~~~~~~~~~~~
-
-.. code-block:: bash
-
-   # Configure aws-cli
-   aws configure --profile seaweed
-   # AWS Access Key ID: admin-access-key
-   # AWS Secret Access Key: admin-secret-key  
-   # Default region name: us-east-1
-   # Default output format: json
-
-   # Use SeaweedFS via S3 API
-   aws --profile seaweed --endpoint-url http://localhost:8333 s3 mb s3://my-bucket
-   aws --profile seaweed --endpoint-url http://localhost:8333 s3 cp file.txt s3://my-bucket/
-
-Virtual Machine Storage with SeaweedFS
---------------------------------------
-
-VM Image Storage
-~~~~~~~~~~~~~~~~
-
-**Storing VM Disks**:
-
-.. code-block:: bash
-
-   # Upload VM disk image
-   curl -F "file=@vm-disk.qcow2" "http://localhost:8080/submit"
-   # Returns: {"fileId":"3,01637037d6","fileName":"vm-disk.qcow2","fileUrl":"localhost:8080/3,01637037d6","size":1073741824}
-
-   # Download VM disk image
-   curl "http://localhost:8080/3,01637037d6" -o vm-disk.qcow2
-
-**Via S3 Interface**:
-
-.. code-block:: bash
-
-   # Store VM template
-   aws --endpoint-url http://localhost:8333 s3 cp ubuntu-template.qcow2 s3://vm-templates/
-
-   # Store VM snapshots
-   aws --endpoint-url http://localhost:8333 s3 cp vm-snapshot.qcow2 s3://vm-snapshots/$(date +%Y%m%d)/
-
-Benefits for VM Storage
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* **Massive Scale**: Store thousands of VM images efficiently
-* **Global Distribution**: Access VM images from multiple data centers
-* **Cost Effective**: Efficient storage of large VM files
-* **S3 Compatibility**: Works with existing S3-based tools
-* **Fast Access**: Quick retrieval of VM images for deployment
-
-Performance Considerations
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **Large Files**: Optimized for large VM disk images
-* **Sequential Access**: Good performance for VM boot sequences
-* **Caching**: Important for frequently accessed VM templates
-* **Network Bandwidth**: Performance depends on available network bandwidth
-
-When to Use SeaweedFS
----------------------
-
-Ideal Scenarios
-~~~~~~~~~~~~~~~
-
-* **Massive File Storage**: Storing millions or billions of files
-* **Media Storage**: Photos, videos, audio files
-* **Content Distribution**: Static content for websites or applications
-* **Backup Storage**: Large-scale backup solutions
-* **Object Storage**: When you need S3-compatible object storage
-* **Multi-Data Center**: When you need geographic distribution
-
-Consider Alternatives When
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **Small Scale**: Traditional file systems might be simpler for small deployments
-* **Relational Data**: Use databases for structured, relational data
-* **High-Frequency Updates**: Files that change very frequently
-* **Complex Queries**: When you need complex search capabilities
-* **POSIX Compliance**: Applications requiring full POSIX file system semantics
-
 Storage Protocol Comparison and Selection Guide
 ===============================================
 
@@ -1898,9 +1555,8 @@ Latency (Lower is Better)
 1. **iSCSI**: ~1-2ms (direct block access)
 2. **NFS**: ~2-5ms (file system overhead)
 3. **SMB**: ~3-8ms (depends on version and features)
-4. **SeaweedFS**: ~5-15ms (object storage overhead)
-5. **MooseFS**: ~10-30ms (distributed architecture)
-6. **S3**: ~20-100ms (REST API overhead)
+4. **MooseFS**: ~10-30ms (distributed architecture)
+5. **S3**: ~20-100ms (REST API overhead)
 
 Throughput (Higher is Better)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1908,9 +1564,8 @@ Throughput (Higher is Better)
 1. **iSCSI**: Up to network limit (excellent for large sequential I/O)
 2. **SMB3**: Near network limit (with SMB Direct)
 3. **NFS**: High throughput with proper tuning
-4. **SeaweedFS**: High aggregate throughput
-5. **MooseFS**: Scalable with cluster size
-6. **S3**: Variable (depends on implementation)
+4. **MooseFS**: Scalable with cluster size
+5. **S3**: Variable (depends on implementation)
 
 Scalability Comparison
 ----------------------
@@ -1918,7 +1573,7 @@ Scalability Comparison
 Horizontal Scaling (Adding More Servers)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* **Excellent**: MooseFS, SeaweedFS, S3 (designed for scale-out)
+* **Excellent**: MooseFS, S3 (designed for scale-out)
 * **Good**: NFS (with clustering), SMB (with DFS)
 * **Limited**: iSCSI (limited by target capabilities)
 
@@ -1926,7 +1581,7 @@ Vertical Scaling (More Powerful Servers)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * **Excellent**: iSCSI, NFS, SMB
-* **Good**: S3, SeaweedFS
+* **Good**: S3
 * **Limited**: MooseFS (distributed by design)
 
 Encryption Comparison
@@ -1936,14 +1591,14 @@ Built-in Encryption
 ~~~~~~~~~~~~~~~~~~~
 
 * **Excellent**: SMB3 (end-to-end), S3 (various options)
-* **Good**: NFS (with Kerberos), SeaweedFS (HTTPS + data at rest)
+* **Good**: NFS (with Kerberos)
 * **Basic**: iSCSI (requires IPSec), MooseFS (TLS between components)
 
 Authentication Strength
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * **Strongest**: NFS + Kerberos, SMB + Active Directory
-* **Strong**: S3 (IAM), SeaweedFS (JWT)
+* **Strong**: S3 (IAM)
 * **Moderate**: iSCSI (CHAP)
 * **Basic**: MooseFS (IP-based)
 
@@ -1955,7 +1610,7 @@ Virtual Machine Storage
 
 * **Best**: iSCSI (high performance, native support)
 * **Good**: NFS (traditional choice, good compatibility)
-* **Specific Cases**: SMB (Windows environments), S3/SeaweedFS (cloud-native)
+* **Specific Cases**: SMB (Windows environments), S3 (cloud-native)
 
 File Sharing
 ~~~~~~~~~~~~
@@ -1967,7 +1622,7 @@ File Sharing
 Backup and Archive
 ~~~~~~~~~~~~~~~~~~
 
-* **Best**: S3/SeaweedFS (cost-effective, scalable)
+* **Best**: S3 (cost-effective, scalable)
 * **Good**: MooseFS (distributed, scalable)
 * **Traditional**: NFS/SMB (familiar management)
 
@@ -1980,7 +1635,7 @@ High-Performance Computing
 Web Content
 ~~~~~~~~~~~
 
-* **Best**: SeaweedFS, S3 (CDN integration, global distribution)
+* **Best**: S3 (CDN integration, global distribution)
 * **Traditional**: NFS/SMB (familiar tools)
 
 Database Storage
@@ -2017,7 +1672,7 @@ Native Support
 --------------
 
 * **Excellent**: NFS, iSCSI (built into FreeBSD)
-* **Good**: SMB (Samba), S3/SeaweedFS (third-party but mature)
+* **Good**: SMB (Samba), S3 (third-party but mature)
 * **Community**: MooseFS (smaller user base on FreeBSD)
 
 ZFS Integration
@@ -2025,7 +1680,7 @@ ZFS Integration
 
 * **Excellent**: iSCSI (ZVols), NFS (datasets)
 * **Good**: SMB (Samba with ZFS)
-* **Possible**: SeaweedFS, S3, MooseFS (can use ZFS as backend)
+* **Possible**: S3, MooseFS (can use ZFS as backend)
 
 Performance on FreeBSD
 ----------------------
@@ -2045,7 +1700,7 @@ Protocol Selection Summary
 * **Choose iSCSI** for high-performance virtual machines and databases
 * **Choose NFS** for traditional UNIX file sharing and general purpose storage
 * **Choose SMB** for Windows environments and mixed networks
-* **Choose S3/SeaweedFS** for web applications and massive scale object storage
+* **Choose S3** for web applications and massive scale object storage
 * **Choose MooseFS** for distributed file systems with high availability requirements
 
 .. important::
