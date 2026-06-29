@@ -291,15 +291,7 @@ Therefore, Keycloak needs to be removed manually from the node.
 Removal Procedure
 -----------------
 
-To manually remove the Keycloak jail, follow these steps:
-
-Step 1.3.1 Click on the **Control Center** in the Karios UI. under the **Devices** section,  you can find the **Device IP** of the node. 
-
-.. figure:: _static/images/omni/keycloak.png
-   :alt: Device IP
-   :width: 600
-
-Step 1.3.2 Using the Terminal, SSH into the node using the Device IP.
+Step 1.3.1 Using the Terminal, SSH into the node using the Device IP.
 
 .. code-block:: bash
 
@@ -308,7 +300,7 @@ Step 1.3.2 Using the Terminal, SSH into the node using the Device IP.
    ssh root@192.168.1.100
    # Password: karios12345
 
-Step 1.3.3 Remove the Keycloak Jail
+Step 1.3.2 Remove the Keycloak Jail
 
 . **Run the following commands in sequence:**
 
@@ -700,13 +692,6 @@ Create the Ubuntu Kubernetes Virtual-Machines Cluster
    :alt: Setup Kubernetes Button
    :width: 600
 
-- Click on the **Provision Vm Cluster** to provision the Virtual Machines
-
-.. figure:: _static/images/UbuntuKubernetes/Ubuntuprovisioningpage.png
-   :alt: Setup Kubernetes Button
-   :width: 600
-
-
 **Step 3.1.2: Enter Cluster Details**
 
 - **Cluster name**: Enter a DNS-compliant name (e.g., ``ub-test1``).  
@@ -945,41 +930,6 @@ Example output:
 .. note::
    you can access the dashboard using the bootstrap/control plane node IP or any worker node IP.
 
-
-Create Ubuntu Kubernetes Bare Metal Cluster
-----------------------------------------------------
-**Step 3.4.1: Create the Cluster Machine in Karios UI**
-
-- Click **Setup Kubernetes** in the Karios UI, and Select **Ubuntu**.
-
-- Click on the **Provision Bare Metal Cluster** to provision the Bare Metal Nodes
-
-.. figure:: _static/images/UbuntuKubernetes/Ubuntuprovisioningpage.png
-   :alt: Setup Kubernetes Button
-   :width: 600
-
-**Step 3.4.2: Enter Cluster Details**
-
-- **Cluster name**: Enter a DNS-compliant name (e.g., ``ub-bm-test1``).
- 
-.. note::
-   The ``ub-bm`` prefix helps uniquely identify Ubuntu Bare Metal clusters.   
-
-- Enter **HostName**, **BMC IP Address** , **NodeType** , and **Additional techstack** If required.
-
-
-- Click on the **Add Node** button to add Bare Metal Nodes to the Cluster.
-
-
-**Step 3.4.3: Wait for cluster Nodes to be ready**
-
-- Wait for the cluster Nodes to be ready for the cluster. Wait for them to report the ip
-
-
-.. note::
-   It may take several minutes for all Nodes to be ready in the cluster.
-   Once the Nodes are ready the job status button disappears from the Karios UI.
-   And you can Access the Tech stack as mentioned in the previous section, Along with the verification of the Cluster setup.
 
 Create the K3s Cluster
 ----------------------
