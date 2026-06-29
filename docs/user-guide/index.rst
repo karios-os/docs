@@ -1157,10 +1157,6 @@ Click Mount to mount the selected iSCSI devices and make them available for use.
 - **Remove Device**: Completely removes the device from the system configuration
 - **Destroy Path**: Removes the multipath configuration and destroys the path mapping
 
-.. figure:: _static/images/control_center/storage_management/storage_iscsi_device_actions.png
-   :alt: iSCSI Device Actions
-   :width: 800
-
 NFS Storage
 ^^^^^^^^^^^
 
@@ -2024,21 +2020,21 @@ ISO Management
 
 - **Download Section:** FQDN URL input field with download button for remote ISO retrieval
 
-.. figure:: _static/images/nodemanagement/Image_078.png
+.. figure:: _static/images/control_center/iso_management/iso_download_interface.png
    :width: 600
 
 Please provide a valid FQDN url and click “Download”. The downloaded iso can be viewed in the Available ISOs section.
 
 - **Upload Section:** File selection interface with upload button for local ISO/RAW files
 
-.. figure:: _static/images/nodemanagement/Image_079.png
+.. figure:: _static/images/control_center/iso_management/iso_upload_interface.png
    :width: 600
 
 Please select the appropriate ISO/RAW files from your system and click “Upload”. The uploaded file will be in the available ISO/Cloud images section.
 
 - **Available Files Dropdown:** Comprehensive list of all available ISO and RAW files
 
-.. figure:: _static/images/nodemanagement/Image_080.png
+.. figure:: _static/images/control_center/iso_management/available_iso_files.png
    :width: 600
 
 - **Status Indicators:** Visual indicators for file availability and upload status
